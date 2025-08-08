@@ -10,3 +10,10 @@ dependencies:
   - drupal:field
   - drupal:content_translation
   - drupal:language
+  # Contrib modules required by Bioland. These must be present in the codebase
+  # (installed via Composer) for Bioland to enable successfully.
+  - drupal:auto_node_translate
+  - drupal:auto_node_translate_deepl
+  - drupal:auto_node_translate_amazon
+  - drupal:ant_bulk
+  - drupal:fontawesome

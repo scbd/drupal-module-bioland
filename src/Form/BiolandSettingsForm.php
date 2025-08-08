@@ -91,10 +91,10 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $form['general']['country'] = [
       '#type' => 'select',
-      '#title' => $this->t('Default Country'),
+      '#title' => $this->t('Country or Countries'),
       '#description' => $this->t('Select the default country for this site.'),
       '#options' => $this->getCountryOptions(),
-      '#default_value' => $config->get('country') ?: 'us',
+      '#default_value' => $config->get('country') ?: 'lk',
       '#required' => TRUE,
     ];
 
@@ -128,7 +128,8 @@ class BiolandSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Enabled Locales'),
       '#description' => $this->t('Select which locales should be available on this site.'),
       '#options' => $this->getLocaleOptions(),
-      '#default_value' => $config->get('enabled_locales') ?: ['en'],
+      // Default to the six UN official languages when not configured.
+      '#default_value' => $config->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'],
     ];
 
     $form['field_behavior'] = [
@@ -343,6 +344,7 @@ class BiolandSettingsForm extends ConfigFormBase {
    */
   protected function getCountryOptions() {
     return [
+      'lk' => $this->t('Sri Lanka'),
       'us' => $this->t('United States'),
       'ca' => $this->t('Canada'),
       'mx' => $this->t('Mexico'),

@@ -141,6 +141,14 @@ The module maintains backward compatibility with the original SCBD field module:
 3. Configure settings at `/admin/config/bioland/settings`
 4. Clear caches
 
+### Installation Notes
+
+- Requires a content type with machine name `content` (form id `node_content_form`). The installer will create it if missing.
+- Defaults on fresh install:
+  - Country: `lk` (Sri Lanka)
+  - Enabled locales: UN official languages (`ar`, `zh`, `en`, `fr`, `ru`, `es`)
+  - Settings access: restricted by permission `administer bioland settings`, granted to the `administrator` role only by default.
+
 ## Configuration Export/Import
 
 The module's configuration can be exported/imported using Drupal's configuration management system. The configuration is stored in `bioland.settings`.

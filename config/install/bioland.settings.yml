@@ -1,8 +1,13 @@
-country: 'us'
+country: 'lk'
 region: 'north_america'
 default_locale: 'en'
 enabled_locales:
+  - 'ar'
+  - 'zh'
   - 'en'
+  - 'fr'
+  - 'ru'
+  - 'es'
 enable_field_visibility: true
 enable_additional_fields: true
 enable_auto_summary: true
