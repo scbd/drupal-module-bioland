@@ -49,7 +49,7 @@ Bioland is a comprehensive Drupal module that provides enhanced field management
 
 ## Configuration
 
-Navigate to `/admin/config/bioland2/settings` to configure the module:
+Navigate to `/admin/config/bioland/settings` to configure the module:
 
 ### General Settings
 
@@ -83,7 +83,7 @@ The module uses a modular JavaScript architecture:
 - **fieldVisibility.js**: Handles field show/hide logic
 - **additionalFields.js**: Manages Vue.js-based additional field mounting
 - **autoSummary.js**: Provides intelligent summary generation
-- **bioland2.field-visibility.js**: Main coordination behavior for Drupal
+- **bioland.field-visibility.js**: Main coordination behavior for Drupal
 
 ### Libraries
 
@@ -94,16 +94,16 @@ The module uses a modular JavaScript architecture:
 
 ### Services
 
-- **bioland2.field_functionality_manager**: Manages settings and provides helper methods
-- **bioland2.settings_manager**: General settings management
-- **bioland2.translation_manager**: Handles automatic translation creation
-- **bioland2.translation_batch**: Processes batch translation operations
+- **bioland.field_functionality_manager**: Manages settings and provides helper methods
+- **bioland.settings_manager**: General settings management
+- **bioland.translation_manager**: Handles translation defaults creation
+- **bioland.translation_batch**: Processes batch translation operations
 
 ## Usage
 
 ### For Developers
 
-The module automatically attaches to node forms and forms containing SCBD-related patterns. JavaScript settings are passed via `drupalSettings.bioland2`.
+The module automatically attaches to node forms. JavaScript settings are passed via `drupalSettings.bioland`.
 
 ### For Content Editors
 
@@ -136,14 +136,14 @@ The module maintains backward compatibility with the original SCBD field module:
 
 ## Installation
 
-1. Place the module in `/modules/custom/bioland2`
+1. Place the module in `/modules/custom/bioland`
 2. Enable the module via Drupal admin or Drush
-3. Configure settings at `/admin/config/bioland2/settings`
+3. Configure settings at `/admin/config/bioland/settings`
 4. Clear caches
 
 ## Configuration Export/Import
 
-The module's configuration can be exported/imported using Drupal's configuration management system. The configuration is stored in `bioland2.settings`.
+The module's configuration can be exported/imported using Drupal's configuration management system. The configuration is stored in `bioland.settings`.
 
 ## Translation Default Feature Details
 
@@ -162,7 +162,7 @@ The module's configuration can be exported/imported using Drupal's configuration
 
 ### Configuration Options
 
-Access the configuration at: `/admin/config/bioland2/settings`
+Access the configuration at: `/admin/config/bioland/settings`
 
 #### Translation Default Configuration Settings
 
@@ -178,7 +178,7 @@ You can also use the translation manager service programmatically:
 
 ```php
 // Get the translation manager service
-$translation_manager = \Drupal::service('bioland2.translation_manager');
+$translation_manager = \Drupal::service('bioland.translation_manager');
 
 // Create translation defaults for an entity
 $translation_manager->createTranslations($entity, 'insert');
@@ -198,20 +198,20 @@ The module provides helper functions:
 
 ```php
 // Check if entity is translatable
-if (bioland2_entity_is_translatable($entity)) {
+if (bioland_entity_is_translatable($entity)) {
   // Process entity
 }
 
 // Get translatable field values from entity
-$values = bioland2_get_translatable_field_values($entity);
+$values = bioland_get_translatable_field_values($entity);
 
 // Check if entity has SCBD fields (legacy)
-if (bioland2_entity_has_scbd_fields($entity)) {
+if (bioland_entity_has_scbd_fields($entity)) {
   // Process entity
 }
 
 // Get SCBD field values from entity (legacy)
-$values = bioland2_get_scbd_field_values($entity);
+$values = bioland_get_scbd_field_values($entity);
 ```
 
 ### Batch Operations
@@ -225,7 +225,7 @@ The translation settings form includes batch operations to process existing enti
 
 ### Logging
 
-Translation default creation activities are logged to the 'bioland2' log channel. Check the logs for:
+Translation default creation activities are logged to the 'bioland' log channel. Check the logs for:
 
 - Successful translation default creation
 - Errors during translation default creation
@@ -260,7 +260,7 @@ Translation default creation activities are logged to the 'bioland2' log channel
 
 ### Translation Defaults Not Creating
 
-- Ensure auto-translation default creation is enabled in Bioland settings
+- Ensure translation default creation is enabled in Bioland settings
 - Check that Content Translation module is enabled
 - Verify the entity type is selected in Translation Default Configuration Settings
 - Confirm the entity is translatable

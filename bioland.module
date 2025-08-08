@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Main module file for Bioland.
+ * Main module file for Drupal Module Bioland.
  */
 
 use Drupal\Core\Form\FormStateInterface;

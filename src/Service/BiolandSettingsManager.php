@@ -5,7 +5,7 @@ namespace Drupal\bioland\Service;
 use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
- * Provides access to Bioland settings.
+ * Provides access to Drupal Module Bioland settings.
  */
 class BiolandSettingsManager {
 

@@ -5,7 +5,8 @@ namespace Drupal\bioland\Service;
 use Drupal\Core\Config\ConfigFactoryInterface;
 
 /**
- * Manages which field-related functionalities are enabled and JS settings.
+ * Manages which field-related functionalities are enabled and JS settings for
+ * Drupal Module Bioland.
  */
 class BiolandFieldFunctionalityManager {
 

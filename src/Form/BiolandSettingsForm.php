@@ -10,7 +10,7 @@ use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Configuration form for Bioland settings.
+ * Configuration form for Drupal Module Bioland settings.
  */
 class BiolandSettingsForm extends ConfigFormBase {
 
@@ -36,7 +36,7 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected $translationBatchService;
 
   /**
-   * Constructs a new BiolandSettingsForm.
+  * Constructs a new Drupal Module Bioland settings form.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager.

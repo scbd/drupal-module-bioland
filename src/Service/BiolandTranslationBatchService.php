@@ -7,7 +7,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
- * Batch operations for Bioland translations.
+ * Batch operations for Drupal Module Bioland translation defaults.
  */
 class BiolandTranslationBatchService {
 

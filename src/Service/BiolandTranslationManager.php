@@ -9,7 +9,8 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * Service for managing Translation Defaults of entities with SCBD fields.
+ * Drupal Module Bioland service for managing Translation Defaults of entities
+ * with SCBD fields.
  */
 class BiolandTranslationManager {
 
