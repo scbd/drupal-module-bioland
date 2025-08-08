@@ -1,0 +1,7 @@
+bioland.settings:
+  path: '/admin/config/bioland/settings'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Bioland Settings'
+  requirements:
+    _permission: 'administer bioland settings'

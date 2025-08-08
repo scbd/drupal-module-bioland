@@ -63,3 +63,7 @@
 /drush
 /drupal.phar
 /drupal
+.env
+.DS_Store
+.vscode
+.env*

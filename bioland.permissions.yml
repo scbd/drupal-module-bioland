@@ -1,0 +1,4 @@
+administer bioland settings:
+  title: 'Administer Bioland settings'
+  description: 'Configure Bioland settings including locales, country, region, field behavior, and translation settings.'
+  restrict access: TRUE

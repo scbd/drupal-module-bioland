@@ -1,0 +1,12 @@
+name: Bioland
+type: module
+description: 'Handles settings for the Bioland tool including locales, country, region, dynamic form field visibility, and automatic translation functionality.'
+package: Custom
+core_version_requirement: ^9.4 || ^10 || ^11
+configure: bioland.settings
+dependencies:
+  - drupal:system
+  - drupal:node
+  - drupal:field
+  - drupal:content_translation
+  - drupal:language

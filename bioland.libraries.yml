@@ -1,0 +1,36 @@
+field_visibility:
+  js:
+    js/bioland.field-visibility.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+additional_fields:
+  js:
+    js/bioland.additional-fields.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+auto_summary:
+  js:
+    js/bioland.auto-summary.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+comprehensive_fields:
+  js:
+    js/bioland.field-visibility.js: {}
+    js/bioland.additional-fields.js: {}
+    js/bioland.auto-summary.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+admin:
+  css:
+    theme:
+      css/bioland.admin.css: {}
+  dependencies:
+    - core/drupal

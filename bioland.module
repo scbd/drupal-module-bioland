@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Bioland.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Adds comprehensive SCBD field functionality based on settings.
+ */
+function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Get the field functionality manager service
+  $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
+
+  // Attach to common content entity edit forms. Many forms use IDs like
+  // 'node_*_form' or include a body field; we keep this permissive but cheap.
+  $target_form = (
+    strpos($form_id, 'node_') === 0 && substr($form_id, -5) === '_form'
+  ) || isset($form['body']) || isset($form['#node']);
+
+  if ($target_form && $fieldFunctionalityManager->isAnyFunctionalityEnabled()) {
+    $form['#attached']['library'][] = 'bioland/comprehensive_fields';
+    // Pass settings to JavaScript
+    $form['#attached']['drupalSettings']['bioland'] = $fieldFunctionalityManager->getJavaScriptSettings();
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function bioland_entity_insert(EntityInterface $entity) {
+  // Only process content entities.
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Use the translation manager service to handle translation creation.
+  \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'insert');
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function bioland_entity_update(EntityInterface $entity) {
+  // Only process content entities.
+  if (!$entity instanceof ContentEntityInterface) {
+    return;
+  }
+
+  // Use the translation manager service to handle translation creation.
+  \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'update');
+}
+
+/**
+ * Helper function to check if an entity is translatable.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity to check.
+ *
+ * @return bool
+ *   TRUE if the entity is translatable, FALSE otherwise.
+ */
+function bioland_entity_is_translatable(ContentEntityInterface $entity) {
+  return $entity->isTranslatable();
+}
+
+/**
+ * Helper function to get translatable field values from an entity.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity to get values from.
+ *
+ * @return array
+ *   Array of field values keyed by field name.
+ */
+function bioland_get_translatable_field_values(ContentEntityInterface $entity) {
+  $values = [];
+
+  foreach ($entity->getFieldDefinitions() as $field_name => $field_definition) {
+    if ($field_definition->isTranslatable()) {
+      $field_value = $entity->get($field_name)->getValue();
+      if (!empty($field_value)) {
+        $values[$field_name] = $field_value;
+      }
+    }
+  }
+
+  return $values;
+}
+
+/**
+ * Helper function to check if an entity has SCBD thesaurus fields.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity to check.
+ *
+ * @return bool
+ *   TRUE if the entity has SCBD fields, FALSE otherwise.
+ */
+function bioland_entity_has_scbd_fields(ContentEntityInterface $entity) {
+  foreach ($entity->getFieldDefinitions() as $field_definition) {
+    if ($field_definition->getType() === 'scbd_field_thesaurus') {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Helper function to get SCBD field values from an entity.
+ *
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity to get values from.
+ *
+ * @return array
+ *   Array of field values keyed by field name.
+ */
+function bioland_get_scbd_field_values(ContentEntityInterface $entity) {
+  $values = [];
+
+  foreach ($entity->getFieldDefinitions() as $field_name => $field_definition) {
+    if ($field_definition->getType() === 'scbd_field_thesaurus') {
+      $field_value = $entity->get($field_name)->getValue();
+      if (!empty($field_value)) {
+        $values[$field_name] = $field_value;
+      }
+    }
+  }
+
+  return $values;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Defines custom theme templates for Bioland.
+ */
+function bioland_theme() {
+  return [
+    'bioland_settings_summary' => [
+      'variables' => [
+        'locales' => [],
+        'country' => '',
+        'region' => '',
+        'field_functionality' => [],
+      ],
+      'template' => 'bioland-settings-summary',
+    ],
+  ];
+}
