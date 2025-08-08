@@ -35,13 +35,13 @@ bioland.settings:
       mapping:
         auto_create:
           type: boolean
-          label: 'Automatically create translations'
+          label: 'Automatically create translation defaults'
         use_all_languages:
           type: boolean
           label: 'Use all available languages'
         target_languages:
           type: sequence
-          label: 'Target languages for auto-translation'
+          label: 'Target languages for translation defaults'
           sequence:
             type: string
             label: 'Language code'

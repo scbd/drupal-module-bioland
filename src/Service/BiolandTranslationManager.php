@@ -9,7 +9,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * Service for managing automatic translations of entities with SCBD fields.
+ * Service for managing Translation Defaults of entities with SCBD fields.
  */
 class BiolandTranslationManager {
 
@@ -61,7 +61,7 @@ class BiolandTranslationManager {
   }
 
   /**
-   * Creates translations for an entity if configured to do so.
+  * Creates translation defaults for an entity if configured to do so.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The entity to create translations for.
@@ -74,7 +74,7 @@ class BiolandTranslationManager {
   public function createTranslations(ContentEntityInterface $entity, $operation = 'insert') {
     $config = $this->configFactory->get('bioland.settings');
 
-    // Check if auto-translation is enabled
+  // Check if translation defaults creation is enabled
     if (!$config->get('translation.auto_create')) {
       return FALSE;
     }
@@ -93,7 +93,7 @@ class BiolandTranslationManager {
     // Always work with the source entity to avoid title concatenation issues
     $source_entity = $entity->getUntranslated();
 
-    // Determine target languages based on configuration
+  // Determine target languages based on configuration
     $use_all_languages = $config->get('translation.use_all_languages') ?: FALSE;
     $configured_target_languages = $config->get('translation.target_languages') ?: [];
 
@@ -122,23 +122,17 @@ class BiolandTranslationManager {
         continue;
       }
 
-      // Check if translation already exists
+      // If a translation exists and its source is proper (not 'und'), do not overwrite.
       if ($source_entity->hasTranslation($langcode)) {
-        // Get the existing translation and check its source language
         $existing_translation = $source_entity->getTranslation($langcode);
         $translation_source_language = $existing_translation->getUntranslated()->language()->getId();
-
-        // Skip if translation exists and source is not 'und' (undefined)
         if ($translation_source_language !== 'und') {
-          $this->loggerFactory->get('bioland')->debug('Translation already exists for @lang with non-undefined source language: @source', [
+          $this->loggerFactory->get('bioland')->debug('Skipping @lang; existing translation source is @source (proper)', [
             '@lang' => $langcode,
-            '@source' => $translation_source_language
+            '@source' => $translation_source_language,
           ]);
           continue;
         }
-
-        $this->loggerFactory->get('bioland')->debug('Translation already exists for @lang', ['@lang' => $langcode]);
-        continue;
       }
 
       $this->loggerFactory->get('bioland')->debug('Creating translation for @lang', ['@lang' => $langcode]);
@@ -167,7 +161,7 @@ class BiolandTranslationManager {
         $created_count++;
 
         $this->loggerFactory->get('bioland')->info(
-          'Auto-created @langcode translation for @entity_type @entity_id',
+          'Created translation default for @langcode on @entity_type @entity_id',
           [
             '@langcode' => $langcode,
             '@entity_type' => $source_entity->getEntityTypeId(),

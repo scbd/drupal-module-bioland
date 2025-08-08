@@ -1,6 +1,6 @@
 name: Bioland
 type: module
-description: 'Handles settings for the Bioland tool including locales, country, region, field visibility, additional fields, auto summary, and automatic translation functionality.'
+description: 'Handles settings for the Bioland tool including locales, country, region, field visibility, additional fields, auto summary, and translation defaults functionality.'
 package: Custom
 core_version_requirement: ^9.4 || ^10 || ^11
 configure: bioland.settings

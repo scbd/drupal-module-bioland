@@ -79,7 +79,7 @@ class BiolandTranslationBatchService {
     }
 
     $batch = [
-      'title' => $this->t('Creating translations for @type entities', ['@type' => $entity_type_id]),
+      'title' => $this->t('Creating translation defaults for @type entities', ['@type' => $entity_type_id]),
       'operations' => $operations,
       'finished' => [static::class, 'finishTranslationBatch'],
       'progressive' => TRUE,
@@ -131,7 +131,7 @@ class BiolandTranslationBatchService {
       }
     }
 
-    $context['message'] = t('Processed @processed entities, created @created translations', [
+  $context['message'] = t('Processed @processed entities, created @created translation defaults', [
       '@processed' => $context['results']['processed'],
       '@created' => $context['results']['created'],
     ]);
@@ -151,8 +151,8 @@ class BiolandTranslationBatchService {
     if ($success) {
       $message = \Drupal::translation()->formatPlural(
         $results['processed'],
-        'Processed 1 entity, created @created translations.',
-        'Processed @count entities, created @created translations.',
+        'Processed 1 entity, created @created translation defaults.',
+        'Processed @count entities, created @created translation defaults.',
         ['@created' => $results['created']]
       );
       \Drupal::messenger()->addMessage($message);

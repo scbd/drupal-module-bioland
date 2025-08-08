@@ -1,6 +1,6 @@
 # Bioland Module
 
-Bioland is a comprehensive Drupal module that provides enhanced field management functionality and automatic translation default creation capabilities, originally adapted from the SCBD thesaurus tags module. It offers four main functionalities that can be individually enabled or disabled through the administration interface.
+Bioland is a comprehensive Drupal module that provides enhanced field management functionality and translation default creation capabilities, originally adapted from the SCBD thesaurus tags module. It offers four main functionalities that can be individually enabled or disabled through the administration interface.
 
 ## Features
 
@@ -36,7 +36,7 @@ Bioland is a comprehensive Drupal module that provides enhanced field management
 - **Triggers**: On body field changes, keydown events, and mouseout
 - **Setting**: `enable_auto_summary`
 
-### 4. Automatic Translation Default Creation
+### 4. Translation Default Creation
 
 - **Purpose**: Automatically create translation defaults (in all configured languages) for translatable entities
 - **Features**:
@@ -67,7 +67,7 @@ Navigate to `/admin/config/bioland2/settings` to configure the module:
 
 ### Translation Default Settings
 
-- **Automatically create translation defaults**: Enable/disable automatic translation default creation
+- **Automatically create translation defaults**: Enable/disable translation default creation
 - **Use all available languages**: When enabled, creates translation defaults for all languages installed on the site
 - **Target languages**: Select specific languages to create translation defaults for (only used when "Use all available languages" is disabled)
 - **Copy source field values**: Whether to copy translatable field values from source to translation defaults
@@ -147,17 +147,18 @@ The module's configuration can be exported/imported using Drupal's configuration
 
 ## Translation Default Feature Details
 
-### How Automatic Translation Default Creation Works
+### How Translation Default Creation Works
 
-**By default, the module is configured to automatically create translation defaults using all available languages** when translatable entities are created or updated.
+**By default, the module is configured to create translation defaults using all available languages** when translatable entities are created or updated.
 
 1. When a translatable entity is created or updated
-2. The module checks if auto-translation default creation is enabled (enabled by default)
+2. The module checks if translation default creation is enabled (enabled by default)
 3. If "Use all available languages" is enabled (default), it gets all installed languages
 4. If "Use all available languages" is disabled, it uses the configured target languages
 5. For each target language:
-   - Creates a new translation default (without translating the content)
-   - Sets the translation default as published by default
+
+- Creates a new translation default (without translating the content). If a translation already exists and its source is proper (not 'und'), it will not be overwritten.
+- Sets the translation default as published by default
 
 ### Configuration Options
 

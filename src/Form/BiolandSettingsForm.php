@@ -177,15 +177,15 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $form['translation'] = [
       '#type' => 'details',
-      '#title' => $this->t('Translation Settings'),
-      '#description' => $this->t('Configure automatic translation creation for translatable entities.'),
+      '#title' => $this->t('Translation Defaults'),
+      '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
       '#open' => FALSE,
     ];
 
     $form['translation']['auto_create'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Automatically create translations'),
-      '#description' => $this->t('When enabled, translations will be automatically created for translatable entities.'),
+      '#title' => $this->t('Automatically create translation defaults'),
+      '#description' => $this->t('When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten.'),
       '#default_value' => $config->get('translation.auto_create') ?: FALSE,
     ];
 
@@ -210,8 +210,8 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $form['translation']['target_languages'] = [
       '#type' => 'checkboxes',
-      '#title' => $this->t('Target languages'),
-      '#description' => $this->t('Select which languages to create translations for. This is only used when "Use all available languages" is disabled.'),
+      '#title' => $this->t('Target languages for translation defaults'),
+      '#description' => $this->t('Select which languages to create translation defaults for. Used only when "Use all available languages" is disabled.'),
       '#options' => $language_options,
       '#default_value' => array_combine(
         $config->get('translation.target_languages') ?: [],
@@ -249,7 +249,7 @@ class BiolandSettingsForm extends ConfigFormBase {
     $form['translation']['entity_types'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Entity types'),
-      '#description' => $this->t('Select which entity types should have automatic translations created.'),
+      '#description' => $this->t('Select which entity types should have translation defaults created.'),
       '#options' => $content_entity_options,
       '#default_value' => array_combine(
         $config->get('translation.entity_types') ?: [],
@@ -265,7 +265,7 @@ class BiolandSettingsForm extends ConfigFormBase {
     $form['translation']['batch_operations'] = [
       '#type' => 'details',
       '#title' => $this->t('Batch Operations'),
-      '#description' => $this->t('Process existing entities to create missing translations.'),
+      '#description' => $this->t('Process existing entities to create missing translation defaults.'),
       '#open' => FALSE,
     ];
 
@@ -278,7 +278,7 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $form['translation']['batch_operations']['run_batch'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Create translations for existing entities'),
+      '#value' => $this->t('Create translation defaults for existing entities'),
       '#submit' => ['::submitBatchForm'],
       '#states' => [
         'visible' => [
