@@ -18,16 +18,35 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Get the field functionality manager service
   $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
 
-  // Attach to common content entity edit forms. Many forms use IDs like
-  // 'node_*_form' or include a body field; we keep this permissive but cheap.
-  $target_form = (
-    strpos($form_id, 'node_') === 0 && substr($form_id, -5) === '_form'
-  ) || isset($form['body']) || isset($form['#node']);
+  // Only attach to node_content_form as requested.
+  if ($form_id !== 'node_content_form') {
+    return;
+  }
 
-  if ($target_form && $fieldFunctionalityManager->isAnyFunctionalityEnabled()) {
-    $form['#attached']['library'][] = 'bioland/comprehensive_fields';
-    // Pass settings to JavaScript
-    $form['#attached']['drupalSettings']['bioland'] = $fieldFunctionalityManager->getJavaScriptSettings();
+  // Gather JS settings to know which features are enabled.
+  $jsSettings = $fieldFunctionalityManager->getJavaScriptSettings();
+
+  $anyAttached = FALSE;
+
+  // Attach libraries per feature based on settings.
+  if (!empty($jsSettings['enableFieldVisibility'])) {
+    $form['#attached']['library'][] = 'bioland/field_visibility';
+    $anyAttached = TRUE;
+  }
+
+  if (!empty($jsSettings['enableAdditionalFields'])) {
+    $form['#attached']['library'][] = 'bioland/additional_fields';
+    $anyAttached = TRUE;
+  }
+
+  if (!empty($jsSettings['enableAutoSummary'])) {
+    $form['#attached']['library'][] = 'bioland/auto_summary';
+    $anyAttached = TRUE;
+  }
+
+  // Pass settings to JavaScript if any feature is attached.
+  if ($anyAttached) {
+    $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
   }
 }
 
