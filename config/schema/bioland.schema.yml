@@ -26,9 +26,6 @@ bioland.settings:
     enable_auto_summary:
       type: boolean
       label: 'Enable auto summary'
-    enable_dynamic_fields:
-      type: boolean
-      label: 'Enable dynamic field visibility (legacy)'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules'

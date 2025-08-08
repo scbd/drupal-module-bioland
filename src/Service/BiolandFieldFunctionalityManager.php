@@ -29,8 +29,7 @@ class BiolandFieldFunctionalityManager {
     return (
       ($c->get('enable_field_visibility') !== FALSE) ||
       ($c->get('enable_additional_fields') !== FALSE) ||
-      ($c->get('enable_auto_summary') !== FALSE) ||
-      ($c->get('enable_dynamic_fields') !== FALSE)
+  ($c->get('enable_auto_summary') !== FALSE)
     );
   }
 
@@ -42,8 +41,7 @@ class BiolandFieldFunctionalityManager {
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
-      'enableAutoSummary' => $c->get('enable_auto_summary') !== FALSE,
-      'enableDynamicFields' => $c->get('enable_dynamic_fields') !== FALSE,
+  'enableAutoSummary' => $c->get('enable_auto_summary') !== FALSE,
       'fieldVisibilityRules' => $c->get('field_visibility_rules') ?: '',
     ];
   }

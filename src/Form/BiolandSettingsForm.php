@@ -162,13 +162,6 @@ class BiolandSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('enable_auto_summary') !== FALSE,
     ];
 
-    // Legacy support for existing setting
-    $form['field_behavior']['enable_dynamic_fields'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Dynamic Fields (Legacy)'),
-      '#description' => $this->t('Legacy setting - use individual settings above instead.'),
-      '#default_value' => $config->get('enable_dynamic_fields') !== FALSE,
-    ];
 
     $form['field_behavior']['field_visibility_rules'] = [
       '#type' => 'textarea',
@@ -316,7 +309,6 @@ class BiolandSettingsForm extends ConfigFormBase {
       ->set('enable_field_visibility', $values['enable_field_visibility'])
       ->set('enable_additional_fields', $values['enable_additional_fields'])
       ->set('enable_auto_summary', $values['enable_auto_summary'])
-      ->set('enable_dynamic_fields', $values['enable_dynamic_fields'])
       ->set('field_visibility_rules', $values['field_visibility_rules'])
       ->set('translation.auto_create', $values['auto_create'])
       ->set('translation.use_all_languages', $values['use_all_languages'])

@@ -1,7 +1,7 @@
 /**
  * @file
  * Additional fields functionality for Bioland module.
- * Manages dynamic Vue-based additional fields based on content type.
+ * Manages Vue-based additional fields based on content type.
  */
 
 (function ($, Drupal) {

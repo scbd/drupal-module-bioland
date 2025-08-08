@@ -63,7 +63,6 @@ Navigate to `/admin/config/bioland2/settings` to configure the module:
 - **Enable Field Visibility Control**: Toggle field show/hide functionality
 - **Enable Additional Fields**: Toggle content-type specific additional fields
 - **Enable Auto Summary**: Toggle automatic summary generation
-- **Enable Dynamic Fields (Legacy)**: Backward compatibility setting
 - **Field Visibility Rules**: Custom JSON rules for field visibility
 
 ### Translation Default Settings
@@ -126,7 +125,7 @@ The module maintains backward compatibility with the original SCBD field module:
 - Global `window.fieldVisibility` object
 - Global `window.additionalFields` object
 - Global `window.autoSummary` object
-- Legacy `enable_dynamic_fields` setting support
+ 
 
 ## Requirements
 

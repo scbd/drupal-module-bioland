@@ -6,7 +6,6 @@ enabled_locales:
 enable_field_visibility: true
 enable_additional_fields: true
 enable_auto_summary: true
-enable_dynamic_fields: true
 field_visibility_rules: ''
 translation:
   auto_create: true
