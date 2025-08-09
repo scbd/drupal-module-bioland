@@ -68,3 +68,7 @@
 .vscode
 .env*
 .github/prompts*
+node_modules/
+coverage/
+package-lock.json
+composer.lock

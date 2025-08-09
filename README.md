@@ -80,10 +80,9 @@ Navigate to `/admin/config/bioland/settings` to configure the module:
 
 The module uses a modular JavaScript architecture:
 
-- **fieldVisibility.js**: Handles field show/hide logic
-- **additionalFields.js**: Manages Vue.js-based additional field mounting
-- **autoSummary.js**: Provides intelligent summary generation
-- **bioland.field-visibility.js**: Main coordination behavior for Drupal
+- **js/bioland.field-visibility.js**: Handles field show/hide logic
+- **js/bioland.additional-fields.js**: Manages Vue.js-based additional field mounting
+- **js/bioland.auto-summary.js**: Provides intelligent summary generation
 
 ### Libraries
 
@@ -91,6 +90,7 @@ The module uses a modular JavaScript architecture:
 - **field_visibility**: Only field visibility functionality
 - **additional_fields**: Only additional fields functionality
 - **auto_summary**: Only auto summary functionality
+- **admin**: Admin UI CSS for settings form
 
 ### Services
 
@@ -103,7 +103,7 @@ The module uses a modular JavaScript architecture:
 
 ### For Developers
 
-The module automatically attaches to node forms. JavaScript settings are passed via `drupalSettings.bioland`.
+The module attaches to the `node_content_form` (content type machine name `content`). JavaScript settings are passed via `drupalSettings.bioland`.
 
 ### For Content Editors
 
@@ -129,7 +129,7 @@ The module maintains backward compatibility with the original SCBD field module:
 
 ## Requirements
 
-- Drupal 8/9/10
+- Drupal 9.4+/10/11
 - jQuery (provided by Drupal core)
 - Vue.js (for additional fields functionality)
 - Modern browser with JavaScript enabled
@@ -146,6 +146,8 @@ The module maintains backward compatibility with the original SCBD field module:
 - Requires a content type with machine name `content` (form id `node_content_form`). The installer will create it if missing.
 - Defaults on fresh install:
   - Country: `lk` (Sri Lanka)
+  - Region: `north_america`
+  - Default locale: `en`
   - Enabled locales: UN official languages (`ar`, `zh`, `en`, `fr`, `ru`, `es`)
   - Settings access: restricted by permission `administer bioland settings`, granted to the `administrator` role only by default.
 
@@ -241,7 +243,7 @@ Translation default creation activities are logged to the 'bioland' log channel.
 
 ### Requirements for Translation Default Feature
 
-- Drupal 9.4+ or Drupal 10+
+- Drupal 9.4+/10/11
 - Content Translation module enabled
 - Multiple languages configured on the site
 - Translatable entity types configured on the site
