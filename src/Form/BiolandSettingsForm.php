@@ -7,7 +7,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
-use Drupal\Core\Site\Settings;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -83,13 +82,6 @@ class BiolandSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('bioland.settings');
 
-  // Read optional overrides from settings.php if provided under
-  // $settings['scbd_field'] (countries, locale, locales).
-  $scbd_settings = Settings::get('scbd_field') ?: [];
-  $scbd_countries = $scbd_settings['countries'] ?? NULL; // string|array|null
-  $scbd_locale = $scbd_settings['locale'] ?? NULL;       // string|null
-  $scbd_locales = $scbd_settings['locales'] ?? NULL;     // array|string|null
-
     $form['general'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('General Settings'),
@@ -102,14 +94,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Country or Countries'),
       '#description' => $this->t('Select the default country or countries for this site.'),
       '#options' => $this->getCountryOptions(),
-      // If settings.scbd_field.countries exists, prefer it.
-      // The form element is a single-select; when an array is provided,
-      // use the first value.
-      '#default_value' => (
-        isset($scbd_countries)
-          ? (is_array($scbd_countries) ? reset($scbd_countries) : $scbd_countries)
-          : ($config->get('country') ?: 'lk')
-      ),
+      '#default_value' => $config->get('country') ?: 'lk',
       '#required' => TRUE,
     ];
 
@@ -134,7 +119,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Default Locale'),
       '#description' => $this->t('Select the default locale for this site.'),
       '#options' => $this->getLocaleOptions(),
-      '#default_value' => ($scbd_locale ?? ($config->get('default_locale') ?: 'en')),
+      '#default_value' => $config->get('default_locale') ?: 'en',
       '#required' => TRUE,
     ];
 
@@ -144,11 +129,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       '#description' => $this->t('Select which locales should be available on this site.'),
       '#options' => $this->getLocaleOptions(),
       // Default to the six UN official languages when not configured.
-      '#default_value' => (
-        isset($scbd_locales)
-          ? (is_array($scbd_locales) ? $scbd_locales : [$scbd_locales])
-          : ($config->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'])
-      ),
+      '#default_value' => $config->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'],
     ];
 
     $form['field_behavior'] = [

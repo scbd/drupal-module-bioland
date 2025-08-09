@@ -4,6 +4,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\Role;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Site\Settings;
 
 /**
  * Implements hook_install().
@@ -58,6 +59,42 @@ function bioland_install() {
   if ($admin && !$admin->hasPermission('administer bioland settings')) {
     $admin->grantPermission('administer bioland settings');
     $admin->save();
+  }
+
+  // Initialize configuration defaults, optionally sourcing from settings.php.
+  try {
+    $config_factory = \Drupal::configFactory();
+    $editable = $config_factory->getEditable('bioland.settings');
+
+    // Read settings under $settings['scbd_field'].
+    $scbd = Settings::get('scbd_field') ?: [];
+
+    // Default country from settings.scbd_field.countries (string or first item), if present.
+    $country = $editable->get('country') ?: 'lk';
+    if (isset($scbd['countries'])) {
+      $country = is_array($scbd['countries']) ? reset($scbd['countries']) : $scbd['countries'];
+    }
+
+    // Default locale from settings.scbd_field.locale, if present.
+    $default_locale = $editable->get('default_locale') ?: 'en';
+    if (!empty($scbd['locale']) && is_string($scbd['locale'])) {
+      $default_locale = $scbd['locale'];
+    }
+
+    // Enabled locales from settings.scbd_field.locales, if present.
+    $enabled_locales = $editable->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'];
+    if (!empty($scbd['locales'])) {
+      $enabled_locales = is_array($scbd['locales']) ? $scbd['locales'] : [$scbd['locales']];
+    }
+
+    $editable
+      ->set('country', $country)
+      ->set('default_locale', $default_locale)
+      ->set('enabled_locales', $enabled_locales)
+      ->save();
+  }
+  catch (\Throwable $e) {
+    // Swallow errors to avoid failing installation; values will remain defaults.
   }
 }
 
