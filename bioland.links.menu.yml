@@ -1,6 +1,6 @@
 bioland.settings:
   route_name: bioland.settings
   title: 'Bioland'
-  description: 'Configure Bioland settings including locales, country, and region.'
+  description: 'Configure Bioland settings including locales, countries, and region.'
   parent: system.admin_config_system
   weight: 99

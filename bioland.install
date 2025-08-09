@@ -69,10 +69,10 @@ function bioland_install() {
     // Read settings under $settings['scbd_field'].
     $scbd = Settings::get('scbd_field') ?: [];
 
-    // Default country from settings.scbd_field.countries (string or first item), if present.
-    $country = $editable->get('country') ?: 'lk';
+    // Default countries from settings.scbd_field.countries.
+    $countries = $editable->get('countries') ?: ['lk'];
     if (isset($scbd['countries'])) {
-      $country = is_array($scbd['countries']) ? reset($scbd['countries']) : $scbd['countries'];
+      $countries = is_array($scbd['countries']) ? $scbd['countries'] : [$scbd['countries']];
     }
 
     // Default locale from settings.scbd_field.locale, if present.
@@ -88,7 +88,7 @@ function bioland_install() {
     }
 
     $editable
-      ->set('country', $country)
+  ->set('countries', array_values(array_filter($countries)))
       ->set('default_locale', $default_locale)
       ->set('enabled_locales', $enabled_locales)
       ->save();

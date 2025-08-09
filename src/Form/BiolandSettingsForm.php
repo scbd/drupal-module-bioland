@@ -90,11 +90,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     ];
 
     $form['general']['countries'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Country or Countries'),
-      '#description' => $this->t('Select the default country or countries for this site.'),
-      '#options' => $this->getCountryOptions(),
-      '#default_value' => $config->get('country') ?: 'lk',
+      '#type' => 'textarea',
+      '#title' => $this->t('Countries'),
+      '#description' => $this->t('Enter one country code per line.'),
+      '#default_value' => implode("\n", (array) ($config->get('countries') ?: ['lk'])),
       '#required' => TRUE,
     ];
 
@@ -124,12 +123,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     ];
 
     $form['localization']['enabled_locales'] = [
-      '#type' => 'checkboxes',
+      '#type' => 'textarea',
       '#title' => $this->t('Enabled Locales'),
-      '#description' => $this->t('Select which locales should be available on this site.'),
-      '#options' => $this->getLocaleOptions(),
-      // Default to the six UN official languages when not configured.
-      '#default_value' => $config->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'],
+      '#description' => $this->t('Enter one locale code per line.'),
+      '#default_value' => implode("\n", (array) ($config->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'])),
     ];
 
     $form['field_behavior'] = [
@@ -297,14 +294,14 @@ class BiolandSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
 
-    // Filter out empty locales
-    $enabled_locales = array_filter($values['enabled_locales']);
+  // Normalize textarea inputs (one per line) to arrays
+  $enabled_locales = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['enabled_locales']))));
+  $countries = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['countries']))));
     $target_languages = array_filter($values['target_languages']);
     $entity_types = array_filter($values['entity_types']);
 
     $this->config('bioland.settings')
-  // Store into config key 'country' using the renamed form element.
-  ->set('country', $values['countries'])
+  ->set('countries', $countries)
       ->set('region', $values['region'])
       ->set('default_locale', $values['default_locale'])
       ->set('enabled_locales', $enabled_locales)
@@ -343,31 +340,7 @@ class BiolandSettingsForm extends ConfigFormBase {
    * @return array
    *   Array of country options.
    */
-  protected function getCountryOptions() {
-    return [
-      'lk' => $this->t('Sri Lanka'),
-      'us' => $this->t('United States'),
-      'ca' => $this->t('Canada'),
-      'mx' => $this->t('Mexico'),
-      'br' => $this->t('Brazil'),
-      'ar' => $this->t('Argentina'),
-      'uk' => $this->t('United Kingdom'),
-      'de' => $this->t('Germany'),
-      'fr' => $this->t('France'),
-      'es' => $this->t('Spain'),
-      'it' => $this->t('Italy'),
-      'nl' => $this->t('Netherlands'),
-      'be' => $this->t('Belgium'),
-      'ch' => $this->t('Switzerland'),
-      'au' => $this->t('Australia'),
-      'nz' => $this->t('New Zealand'),
-      'jp' => $this->t('Japan'),
-      'cn' => $this->t('China'),
-      'in' => $this->t('India'),
-      'za' => $this->t('South Africa'),
-      'eg' => $this->t('Egypt'),
-    ];
-  }
+  // No country options needed; countries are entered as free-form codes per line.
 
   /**
    * Get available region options.

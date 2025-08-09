@@ -2,9 +2,12 @@ bioland.settings:
   type: config_object
   label: 'Bioland settings'
   mapping:
-    country:
-      type: string
-      label: 'Default country'
+    countries:
+      type: sequence
+      label: 'Default countries'
+      sequence:
+        type: string
+        label: 'Country code'
     region:
       type: string
       label: 'Region'

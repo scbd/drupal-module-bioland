@@ -165,7 +165,7 @@ function bioland_theme() {
     'bioland_settings_summary' => [
       'variables' => [
         'locales' => [],
-        'country' => '',
+  'countries' => [],
         'region' => '',
         'field_functionality' => [],
       ],

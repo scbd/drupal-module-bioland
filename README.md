@@ -53,7 +53,7 @@ Navigate to `/admin/config/bioland/settings` to configure the module:
 
 ### General Settings
 
-- **Default Country**: Select the default country for the site
+- **Countries**: Enter one ISO country code per line (supports multiple)
 - **Region**: Choose the geographical region
 - **Default Locale**: Set the default language/locale
 - **Enabled Locales**: Select which locales should be available
@@ -145,7 +145,7 @@ The module maintains backward compatibility with the original SCBD field module:
 
 - Requires a content type with machine name `content` (form id `node_content_form`). The installer will create it if missing.
 - Defaults on fresh install:
-  - Country: `lk` (Sri Lanka)
+  - Countries: `lk` (Sri Lanka)
   - Region: `north_america`
   - Default locale: `en`
   - Enabled locales: UN official languages (`ar`, `zh`, `en`, `fr`, `ru`, `es`)

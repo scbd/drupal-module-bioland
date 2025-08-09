@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - locales: Array of enabled locales.
- * - country: The default country code.
+ * - countries: Array of default country codes.
  * - region: The selected region.
  *
  * @see bioland2_theme()
@@ -19,7 +19,7 @@
  *
  * Available variables:
  * - locales: Array of enabled locales
- * - country: Default country setting
+ * - countries: Default countries setting
  * - region: Default region setting
  * - field_functionality: Object containing field functionality settings
  */
@@ -28,9 +28,16 @@
 <div class="bioland2-settings-summary">
   <div class="settings-section">
     <h3>{{ 'General Settings'|t }}</h3>
+    {% if countries %}
     <div class="setting-item">
-      <strong>{{ 'Country'|t }}:</strong> {{ country }}
+      <strong>{{ 'Countries'|t }}:</strong>
+      <ul class="countries-list">
+        {% for c in countries %}
+          <li>{{ c }}</li>
+        {% endfor %}
+      </ul>
     </div>
+    {% endif %}
     <div class="setting-item">
       <strong>{{ 'Region'|t }}:</strong> {{ region }}
     </div>

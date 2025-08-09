@@ -1,4 +1,5 @@
-country: 'lk'
+countries:
+  - 'lk'
 region: 'north_america'
 default_locale: 'en'
 enabled_locales:
