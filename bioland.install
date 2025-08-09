@@ -145,3 +145,18 @@ function bioland_requirements($phase) {
 
   return $requirements;
 }
+
+/**
+ * Migrate single 'country' config to 'countries' array.
+ */
+function bioland_update_9001() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+  $old = $editable->get('country');
+  $new = $editable->get('countries');
+  if ($old && empty($new)) {
+    $editable->set('countries', [$old]);
+    $editable->clear('country');
+    $editable->save();
+  }
+}
