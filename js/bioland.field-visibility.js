@@ -11,6 +11,9 @@
    * Drupal behavior for Bioland field visibility.
    */
   Drupal.behaviors.biolandFieldVisibility = {
+    // Track the last content type value to detect changes
+    lastContentTypeValue: null,
+
     attach: function (context, settings) {
       // Get settings from Drupal
       const biolandSettings = settings.bioland || {};
@@ -43,6 +46,9 @@
       }
 
       console.log('Bioland: Applying field visibility for content type:', contentTypeValue);
+
+      // Store the initial value
+      this.lastContentTypeValue = contentTypeValue;
 
       // Apply initial field visibility
       this.applyFieldVisibility(contentTypeValue);
@@ -177,8 +183,28 @@
       
       if (!contentTypeField) return;
 
-      // Set up event handlers for content type placement field changes
-      $('#edit-field-type-placement', context).once('bioland-field-visibility').on('change keydown mouseout', function () {
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      if (!fieldElement) return;
+
+      // Check if already initialized
+      if (fieldElement.dataset.biolandFieldVisibilityInit) {
+        return;
+      }
+
+      // Mark as initialized
+      fieldElement.dataset.biolandFieldVisibilityInit = 'true';
+
+      $(fieldElement).on('change.biolandFieldVisibility', function () {
+        self.handleContentTypeChange();
+      });
+      
+      $(fieldElement).on('keydown.biolandFieldVisibility', function () {
+        setTimeout(function() {
+          self.handleContentTypeChange();
+        }, 100);
+      });
+      
+      $(fieldElement).on('mouseout.biolandFieldVisibility', function () {
         self.handleContentTypeChange();
       });
     },
@@ -190,7 +216,23 @@
       const updatedField = this.getContentTypeField();
       const updatedValue = updatedField?.value;
       
-      if (!updatedValue) return;
+      console.log('Bioland: Visibility handleContentTypeChange called');
+      console.log('Bioland: Visibility previous value:', this.lastContentTypeValue);
+      console.log('Bioland: Visibility new value:', updatedValue);
+      
+      if (!updatedValue) {
+        console.log('Bioland: No updated value found');
+        return;
+      }
+
+      // Check if value actually changed
+      if (this.lastContentTypeValue === updatedValue) {
+        console.log('Bioland: Content type value unchanged, skipping');
+        return;
+      }
+
+      // Update the stored value
+      this.lastContentTypeValue = updatedValue;
 
       console.log('Bioland: Content type changed, updating field visibility:', updatedValue);
       this.applyFieldVisibility(updatedValue);
