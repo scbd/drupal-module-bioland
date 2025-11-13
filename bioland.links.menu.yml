@@ -1,6 +1,7 @@
 bioland.settings:
   route_name: bioland.settings
   title: 'Bioland'
-  description: 'Configure Bioland settings including locales, countries, and region.'
+  description: 'Configure settings including locales, countries, and region.'
   parent: system.admin_config_system
   weight: 99
+  deriver: '\Drupal\bioland\Plugin\Derivative\BiolandMenuLink'
