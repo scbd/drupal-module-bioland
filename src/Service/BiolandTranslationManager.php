@@ -73,16 +73,74 @@ class BiolandTranslationManager {
    *   TRUE if translations were created, FALSE otherwise.
    */
   public function createTranslations(ContentEntityInterface $entity, $operation = 'insert') {
+    // Prevent recursive calls when saving translations
+    static $processing = [];
+    $entity_key = $entity->getEntityTypeId() . ':' . $entity->id();
+    
+    if (isset($processing[$entity_key])) {
+      return FALSE;
+    }
+    
+    $processing[$entity_key] = TRUE;
+    
+    try {
+      $result = $this->doCreateTranslations($entity, $operation);
+      unset($processing[$entity_key]);
+      return $result;
+    }
+    catch (\Exception $e) {
+      unset($processing[$entity_key]);
+      throw $e;
+    }
+  }
+
+  /**
+   * Internal method to create translation defaults.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity to create translations for.
+   * @param string $operation
+   *   The operation being performed (insert, update, etc.).
+   *
+   * @return bool
+   *   TRUE if translations were created, FALSE otherwise.
+   */
+  protected function doCreateTranslations(ContentEntityInterface $entity, $operation = 'insert') {
     $config = $this->configFactory->get('bioland.settings');
 
+    $this->loggerFactory->get('bioland')->debug('createTranslations called for entity type @type, id @id, operation @op', [
+      '@type' => $entity->getEntityTypeId(),
+      '@id' => $entity->id(),
+      '@op' => $operation,
+    ]);
+
   // Check if translation defaults creation is enabled
-    if (!$config->get('translation.auto_create')) {
+    $auto_create = $config->get('translation.auto_create');
+    if (!$auto_create) {
+      $this->loggerFactory->get('bioland')->debug('Auto-create is disabled');
       return FALSE;
     }
 
     // Check if this entity type should be auto-translated
-    $enabled_types = $config->get('translation.entity_types') ?: [];
+    $enabled_types = $config->get('translation.entity_types');
+    
+    // Handle empty configuration - provide helpful warning
+    if (empty($enabled_types)) {
+      $this->loggerFactory->get('bioland')->warning(
+        'Translation defaults are enabled but no entity types are configured. Please visit /admin/config/bioland/settings and select at least one entity type, or run "drush updatedb" to apply configuration updates.'
+      );
+      return FALSE;
+    }
+    
+    $this->loggerFactory->get('bioland')->debug('Enabled entity types: @types', [
+      '@types' => print_r($enabled_types, TRUE),
+    ]);
+    
     if (!in_array($entity->getEntityTypeId(), $enabled_types)) {
+      $this->loggerFactory->get('bioland')->debug('Entity type @type not in enabled types: @types', [
+        '@type' => $entity->getEntityTypeId(),
+        '@types' => print_r($enabled_types, TRUE),
+      ]);
       return FALSE;
     }
 
@@ -156,9 +214,6 @@ class BiolandTranslationManager {
         }
 
         $translation = $source_entity->addTranslation($langcode, $translation_values);
-
-        // Save the translation
-        $translation->save();
         $created_count++;
 
         $this->loggerFactory->get('bioland')->info(
@@ -180,6 +235,28 @@ class BiolandTranslationManager {
             '@message' => $e->getMessage(),
           ]
         );
+      }
+    }
+
+    // Save the entity once after all translations are added
+    if ($created_count > 0) {
+      try {
+        $source_entity->save();
+        $this->loggerFactory->get('bioland')->info(
+          'Saved @entity_type @entity_id with @count new translations',
+          [
+            '@entity_type' => $source_entity->getEntityTypeId(),
+            '@entity_id' => $source_entity->id(),
+            '@count' => $created_count,
+          ]
+        );
+      }
+      catch (\Exception $e) {
+        $this->loggerFactory->get('bioland')->error(
+          'Failed to save entity with translations: @message',
+          ['@message' => $e->getMessage()]
+        );
+        return FALSE;
       }
     }
 
