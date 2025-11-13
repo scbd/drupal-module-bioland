@@ -42,3 +42,61 @@
     transform: translateY(0);
   }
 }
+
+/* Toggle link styles */
+.bioland-toggle-visibility-settings {
+  display: inline-block;
+  margin-left: 1em;
+  font-size: 0.9em;
+  text-decoration: none;
+  color: #0073aa;
+  cursor: pointer;
+}
+
+.bioland-toggle-visibility-settings:hover {
+  text-decoration: underline;
+}
+
+.bioland-toggle-visibility-settings::before {
+  content: "▼ ";
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.bioland-toggle-visibility-settings.expanded::before {
+  transform: rotate(-180deg);
+}
+
+/* Collapsible container styles */
+.bioland-field-visibility-settings {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.bioland-collapsible-hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.bioland-collapsible-visible {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 1em;
+}
+
+/* Additional fields mapping styles */
+.bioland-additional-fields-mapping ul {
+  list-style-type: disc;
+  margin-left: 2em;
+  line-height: 1.8;
+}
+
+.bioland-additional-fields-mapping li {
+  margin-bottom: 0.5em;
+}
+
+.bioland-additional-fields-mapping p {
+  margin-top: 1em;
+  font-size: 0.9em;
+}
