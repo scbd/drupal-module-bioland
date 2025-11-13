@@ -59,20 +59,20 @@
             }
           }
         }, 100);
-        return;
-      }
-
-      console.log('Bioland: Initial content type value:', contentTypeValue);
-      
-      // Store the initial value
-      this.lastContentTypeValue = contentTypeValue;
-
-      // Check if this content type should have additional fields
-      if (!this.shouldMountAdditionalFields(contentTypeValue)) {
-        console.log('Bioland: No additional fields for content type:', contentTypeValue);
+        // Don't return early - continue to set up listeners
       } else {
-        // Mount additional fields
-        this.mountAdditionalFields(contentTypeValue);
+        console.log('Bioland: Initial content type value:', contentTypeValue);
+        
+        // Store the initial value
+        this.lastContentTypeValue = contentTypeValue;
+
+        // Check if this content type should have additional fields
+        if (!this.shouldMountAdditionalFields(contentTypeValue)) {
+          console.log('Bioland: No additional fields for content type:', contentTypeValue);
+        } else {
+          // Mount additional fields
+          this.mountAdditionalFields(contentTypeValue);
+        }
       }
     },
 
@@ -333,9 +333,17 @@
 
       if (!typePlacementInputEl) return null;
 
+      // Get the value - could be from value property or selected option
+      let value = typePlacementInputEl.value;
+      
+      // If it's a select element and has a selected option, use that
+      if (typePlacementInputEl.tagName === 'SELECT' && typePlacementInputEl.selectedOptions.length > 0) {
+        value = typePlacementInputEl.selectedOptions[0].value;
+      }
+
       return {
         element: typePlacementInputEl,
-        value: typePlacementInputEl.value
+        value: value
       };
     },
 
