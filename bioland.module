@@ -18,8 +18,8 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Get the field functionality manager service
   $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
 
-  // Only attach to node_content_form as requested.
-  if ($form_id !== 'node_content_form') {
+  // Only attach to node_content_form (create) and node_content_edit_form (edit).
+  if ($form_id !== 'node_content_form' && $form_id !== 'node_content_edit_form') {
     return;
   }
 
@@ -41,6 +41,11 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
   if (!empty($jsSettings['enableAutoSummary'])) {
     $form['#attached']['library'][] = 'bioland/auto_summary';
+    $anyAttached = TRUE;
+  }
+
+  if (!empty($jsSettings['enableHelpComments'])) {
+    $form['#attached']['library'][] = 'bioland/help_comments';
     $anyAttached = TRUE;
   }
 
