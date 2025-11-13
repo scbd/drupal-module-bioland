@@ -1,21 +1,40 @@
 countries:
-  - 'lk'
+  - 'gt'
 region: 'north_america'
-default_locale: 'en'
-enabled_locales:
-  - 'ar'
-  - 'zh'
-  - 'en'
-  - 'fr'
-  - 'ru'
-  - 'es'
+is_biosafety_land: false
 enable_field_visibility: true
+field_visibility:
+  url_content_types:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+  published_content_types:
+    - 3
+    - 5
+    - 12
+  date_range_content_types:
+    - 2
+    - 4
+    - 11
+    - 13
 enable_additional_fields: true
 enable_auto_summary: true
+enable_help_comments: true
 field_visibility_rules: ''
 translation:
   auto_create: true
   use_all_languages: true
   target_languages: []
-  copy_source_values: false
-  entity_types: []
+  copy_source_values: true
+  entity_types:
+    - node
+default_locale: 'en'
+enabled_locales:
+  - 'en'

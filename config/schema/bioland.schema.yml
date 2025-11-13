@@ -4,34 +4,53 @@ bioland.settings:
   mapping:
     countries:
       type: sequence
-      label: 'Default countries'
+      label: 'Country codes'
       sequence:
         type: string
-        label: 'Country code'
+        label: 'ISO country code'
     region:
       type: string
-      label: 'Region'
-    default_locale:
-      type: string
-      label: 'Default locale'
-    enabled_locales:
-      type: sequence
-      label: 'Enabled locales'
-      sequence:
-        type: string
-        label: 'Locale code'
+      label: 'Geographic region'
+    is_biosafety_land:
+      type: boolean
+      label: 'Is Biosafety Land'
     enable_field_visibility:
       type: boolean
       label: 'Enable field visibility control'
+    field_visibility:
+      type: mapping
+      label: 'Field visibility settings'
+      mapping:
+        url_content_types:
+          type: sequence
+          label: 'Content types where URL field is visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        published_content_types:
+          type: sequence
+          label: 'Content types where Published field is visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        date_range_content_types:
+          type: sequence
+          label: 'Content types where Date Range fields (Start & End Date) are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
     enable_additional_fields:
       type: boolean
       label: 'Enable additional fields'
     enable_auto_summary:
       type: boolean
       label: 'Enable auto summary'
+    enable_help_comments:
+      type: boolean
+      label: 'Enable field help comments'
     field_visibility_rules:
       type: text
-      label: 'Field visibility rules'
+      label: 'Field visibility rules (JSON)'
     translation:
       type: mapping
       label: 'Translation settings'
@@ -56,4 +75,13 @@ bioland.settings:
           label: 'Entity types to auto-translate'
           sequence:
             type: string
-            label: 'Entity type'
+            label: 'Entity type machine name'
+    default_locale:
+      type: string
+      label: 'Default locale'
+    enabled_locales:
+      type: sequence
+      label: 'Enabled locales'
+      sequence:
+        type: string
+        label: 'Language code'
