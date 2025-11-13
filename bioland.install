@@ -75,26 +75,109 @@ function bioland_install() {
       $countries = is_array($scbd['countries']) ? $scbd['countries'] : [$scbd['countries']];
     }
 
-    // Default locale from settings.scbd_field.locale, if present.
-    $default_locale = $editable->get('default_locale') ?: 'en';
-    if (!empty($scbd['locale']) && is_string($scbd['locale'])) {
-      $default_locale = $scbd['locale'];
-    }
-
-    // Enabled locales from settings.scbd_field.locales, if present.
-    $enabled_locales = $editable->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'];
-    if (!empty($scbd['locales'])) {
-      $enabled_locales = is_array($scbd['locales']) ? $scbd['locales'] : [$scbd['locales']];
-    }
-
     $editable
   ->set('countries', array_values(array_filter($countries)))
-      ->set('default_locale', $default_locale)
-      ->set('enabled_locales', $enabled_locales)
       ->save();
   }
   catch (\Throwable $e) {
     // Swallow errors to avoid failing installation; values will remain defaults.
+  }
+
+  // Import translations from PO files.
+  _bioland_import_translations();
+}
+
+/**
+ * Helper function to import translation files.
+ */
+function _bioland_import_translations() {
+  // Only import if locale module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    \Drupal::logger('bioland')->notice('Skipping translation import: locale module is not enabled.');
+    return;
+  }
+
+  // Check if the locale.translation service is available.
+  if (!\Drupal::hasService('locale.translation')) {
+    \Drupal::logger('bioland')->warning('Skipping translation import: locale.translation service is not available.');
+    return;
+  }
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('bioland');
+  $translations_path = $module_path . '/translations';
+
+  // Check if translations directory exists.
+  if (!is_dir($translations_path)) {
+    \Drupal::logger('bioland')->notice('Skipping translation import: translations directory not found.');
+    return;
+  }
+
+  // Get list of PO files.
+  $files = \Drupal::service('file_system')->scanDirectory($translations_path, '/\.po$/');
+
+  if (empty($files)) {
+    \Drupal::logger('bioland')->notice('No translation files found to import.');
+    return;
+  }
+
+  $imported_count = 0;
+  $skipped_count = 0;
+
+  foreach ($files as $file) {
+    // Extract language code from filename (e.g., bioland.fr.po -> fr).
+    if (preg_match('/bioland\.([a-z]{2})\.po$/', $file->filename, $matches)) {
+      $langcode = $matches[1];
+
+      // Check if language is enabled.
+      $language = \Drupal::languageManager()->getLanguage($langcode);
+      if (!$language) {
+        \Drupal::logger('bioland')->notice('Skipping translation file @file: language @lang is not enabled.', [
+          '@file' => $file->filename,
+          '@lang' => $langcode,
+        ]);
+        $skipped_count++;
+        continue;
+      }
+
+      // Import the PO file.
+      try {
+        $options = [
+          'langcode' => $langcode,
+          'overwrite_options' => [
+            'customized' => TRUE,
+            'not_customized' => TRUE,
+          ],
+          'customized' => TRUE,
+        ];
+
+        \Drupal::service('locale.translation')->importTranslationFile(
+          $file->uri,
+          $options
+        );
+        $imported_count++;
+        \Drupal::logger('bioland')->notice('Successfully imported translation file @file.', [
+          '@file' => $file->filename,
+        ]);
+      }
+      catch (\Exception $e) {
+        \Drupal::logger('bioland')->error('Failed to import translation file @file: @message', [
+          '@file' => $file->filename,
+          '@message' => $e->getMessage(),
+        ]);
+        $skipped_count++;
+      }
+    }
+  }
+
+  if ($imported_count > 0) {
+    \Drupal::logger('bioland')->notice('Imported @count translation file(s).', [
+      '@count' => $imported_count,
+    ]);
+  }
+  if ($skipped_count > 0) {
+    \Drupal::logger('bioland')->notice('Skipped @count translation file(s).', [
+      '@count' => $skipped_count,
+    ]);
   }
 }
 
@@ -159,4 +242,40 @@ function bioland_update_9001() {
     $editable->clear('country');
     $editable->save();
   }
+}
+
+/**
+ * Import Bioland translation files.
+ */
+function bioland_update_9002() {
+  // Check if locale module and service are available.
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    return t('Skipped translation import: locale module is not enabled.');
+  }
+  
+  if (!\Drupal::hasService('locale.translation')) {
+    return t('Skipped translation import: locale.translation service is not available. Enable the Interface Translation module.');
+  }
+
+  _bioland_import_translations();
+  return t('Bioland translation import process completed. Check logs for details.');
+}
+
+/**
+ * Set default entity type (node) for translation defaults if not configured.
+ */
+function bioland_update_9003() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+  
+  // Check if entity_types is empty or not set
+  $entity_types = $editable->get('translation.entity_types');
+  if (empty($entity_types)) {
+    // Set node as the default entity type for translation defaults
+    $editable->set('translation.entity_types', ['node']);
+    $editable->save();
+    return t('Set "node" as default entity type for translation defaults. Translation defaults will now be created automatically for nodes.');
+  }
+  
+  return t('Entity types for translation defaults already configured.');
 }
