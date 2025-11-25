@@ -18,10 +18,13 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Get the field functionality manager service
   $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
 
-  // Only attach to node_content_form (create) and node_content_edit_form (edit).
-  if ($form_id !== 'node_content_form' && $form_id !== 'node_content_edit_form') {
+  // Only attach to node_content_form and node_content_edit_form.
+  if (!in_array($form_id, ['node_content_form', 'node_content_edit_form'])) {
     return;
   }
+
+  // Add custom submit handler to redirect with query parameter.
+  $form['actions']['submit']['#submit'][] = 'bioland_node_content_form_submit';
 
   // Gather JS settings to know which features are enabled.
   $jsSettings = $fieldFunctionalityManager->getJavaScriptSettings();
@@ -177,4 +180,68 @@ function bioland_theme() {
       'template' => 'bioland-settings-summary',
     ],
   ];
+}
+
+/**
+ * Custom submit handler for node_content_form and node_content_edit_form.
+ *
+ * Adds ?bypass-cache=true to the redirect URL.
+ */
+function bioland_node_content_form_submit($form, FormStateInterface $form_state) {
+  // Get the entity from the form.
+  $entity = $form_state->getFormObject()->getEntity();
+
+  if ($entity) {
+    // Create a URL object for the entity canonical page.
+    $url = $entity->toUrl();
+
+    // Add the query parameter.
+    $options = $url->getOptions();
+    $options['query']['bypass-cache'] = (string) round(microtime(TRUE) * 1000);
+    $url->setOptions($options);
+
+    // Set the redirect.
+    $form_state->setRedirectUrl($url);
+  }
+}
+
+/**
+ * Implements hook_link_alter().
+ *
+ * Appends ?bypass-cache=true to node links when displayed on admin pages.
+ */
+function bioland_link_alter(&$variables) {
+  // Only proceed if we are on an admin route.
+  // We check the current route to see if it's an admin path.
+  $route = \Drupal::route_match()->getRouteObject();
+  if (!$route || !\Drupal::service('router.admin_context')->isAdminRoute($route)) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Url $url */
+  $url = $variables['url'];
+
+  // Check if the link is for a node canonical page.
+  if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical') {
+    $route_parameters = $url->getRouteParameters();
+
+    if (isset($route_parameters['node'])) {
+      $node = NULL;
+
+      // Try to get the entity from options first to avoid reloading.
+      $entity = $url->getOption('entity');
+      if ($entity instanceof \Drupal\node\NodeInterface) {
+        $node = $entity;
+      }
+      // Otherwise load it (should be statically cached if we are in a View like admin/content).
+      elseif (is_numeric($route_parameters['node'])) {
+        $node = \Drupal::entityTypeManager()->getStorage('node')->load($route_parameters['node']);
+      }
+
+      // If it's a 'content' type node, append the query parameter.
+      if ($node && $node->bundle() === 'content') {
+        $variables['options']['query']['bypass-cache'] = (string) round(microtime(TRUE) * 1000);
+      }
+    }
+  }
 }
