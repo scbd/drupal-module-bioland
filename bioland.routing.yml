@@ -3,5 +3,24 @@ bioland.settings:
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
     _title_callback: '\Drupal\bioland\Form\BiolandSettingsForm::getTitle'
+    section: 'general'
   requirements:
     _permission: 'administer bioland settings'
+
+bioland.settings.fields:
+  path: '/admin/config/bioland/settings/fields'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Field Behavior Settings'
+    section: 'fields'
+  requirements:
+    _permission: 'administer bioland field settings'
+
+bioland.settings.translation:
+  path: '/admin/config/bioland/settings/translation'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Translation Defaults'
+    section: 'translation'
+  requirements:
+    _permission: 'administer bioland translation settings'

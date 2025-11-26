@@ -2,3 +2,13 @@ administer bioland settings:
   title: 'Administer Bioland settings'
   description: 'Configure Bioland settings including locales, countries, region, field behavior, and translation settings.'
   restrict access: TRUE
+
+administer bioland field settings:
+  title: 'Administer Bioland field behavior settings'
+  description: 'Configure Bioland field behavior settings.'
+  restrict access: TRUE
+
+administer bioland translation settings:
+  title: 'Administer Bioland translation defaults'
+  description: 'Configure Bioland translation defaults.'
+  restrict access: TRUE

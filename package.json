@@ -1,11 +1,12 @@
 {
     "name": "bioland",
-    "version": "0.0.1",
+    "version": "1.0.3",
     "private": true,
     "scripts": {
         "test": "jest",
         "test:ci": "jest --ci --coverage",
-        "deploy:dev": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/"
+        "deploy:dev": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
+        "deploy:stg": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/"
     },
     "devDependencies": {
         "jest": "^29.7.0"

@@ -185,7 +185,7 @@ function bioland_theme() {
 /**
  * Custom submit handler for node_content_form and node_content_edit_form.
  *
- * Adds ?bypass-cache=true to the redirect URL.
+ * Adds ?seachain-taisce=true to the redirect URL.
  */
 function bioland_node_content_form_submit($form, FormStateInterface $form_state) {
   // Get the entity from the form.
@@ -197,7 +197,7 @@ function bioland_node_content_form_submit($form, FormStateInterface $form_state)
 
     // Add the query parameter.
     $options = $url->getOptions();
-    $options['query']['bypass-cache'] = (string) round(microtime(TRUE) * 1000);
+    $options['query']['seachain-taisce'] = (string) microtime(TRUE);
     $url->setOptions($options);
 
     // Set the redirect.
@@ -208,12 +208,12 @@ function bioland_node_content_form_submit($form, FormStateInterface $form_state)
 /**
  * Implements hook_link_alter().
  *
- * Appends ?bypass-cache=true to node links when displayed on admin pages.
+ * Appends ?seachain-taisce=true to node links when displayed on admin pages.
  */
 function bioland_link_alter(&$variables) {
   // Only proceed if we are on an admin route.
   // We check the current route to see if it's an admin path.
-  $route = \Drupal::route_match()->getRouteObject();
+  $route = \Drupal::routeMatch()->getRouteObject();
   if (!$route || !\Drupal::service('router.admin_context')->isAdminRoute($route)) {
     return;
   }
@@ -221,8 +221,14 @@ function bioland_link_alter(&$variables) {
   /** @var \Drupal\Core\Url $url */
   $url = $variables['url'];
 
-  // Check if the link is for a node canonical page.
-  if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical') {
+  if (!$url->isRouted()) {
+    return;
+  }
+
+  $route_name = $url->getRouteName();
+
+  // Check if the link is for a node canonical page or edit form.
+  if ($route_name === 'entity.node.canonical' || $route_name === 'entity.node.edit_form') {
     $route_parameters = $url->getRouteParameters();
 
     if (isset($route_parameters['node'])) {
@@ -238,9 +244,18 @@ function bioland_link_alter(&$variables) {
         $node = \Drupal::entityTypeManager()->getStorage('node')->load($route_parameters['node']);
       }
 
-      // If it's a 'content' type node, append the query parameter.
+      // If it's a 'content' type node.
       if ($node && $node->bundle() === 'content') {
-        $variables['options']['query']['bypass-cache'] = (string) round(microtime(TRUE) * 1000);
+        // For canonical links, append the query parameter.
+        if ($route_name === 'entity.node.canonical') {
+          $variables['options']['query']['seachain-taisce'] = (string) microtime(TRUE);
+        }
+        // For edit links, remove the destination parameter to allow custom redirect.
+        elseif ($route_name === 'entity.node.edit_form') {
+          if (isset($variables['options']['query']['destination'])) {
+            unset($variables['options']['query']['destination']);
+          }
+        }
       }
     }
   }

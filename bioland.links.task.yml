@@ -1,0 +1,14 @@
+bioland.settings_tab:
+  route_name: bioland.settings
+  title: 'General Settings'
+  base_route: bioland.settings
+
+bioland.settings_fields_tab:
+  route_name: bioland.settings.fields
+  title: 'Field Behavior'
+  base_route: bioland.settings
+
+bioland.settings_translation_tab:
+  route_name: bioland.settings.translation
+  title: 'Translation Defaults'
+  base_route: bioland.settings

@@ -101,332 +101,341 @@ class BiolandSettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state, $section = 'general') {
     $config = $this->config('bioland.settings');
 
-    $form['general'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('General Settings'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-    ];
+    // Store the section in the form state for submit handler
+    $form_state->set('bioland_section', $section);
 
-    $form['general']['countries'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Countries'),
-      '#description' => $this->t('Enter one country code per line.'),
-      '#default_value' => implode("\n", (array) ($config->get('countries') ?: ['lk'])),
-      '#required' => TRUE,
-    ];
+    if ($section === 'general') {
+      $form['general'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('General Settings'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
 
-    $form['general']['region'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Region'),
-      '#description' => $this->t('Select the geographical region.'),
-      '#options' => $this->getRegionOptions(),
-      '#default_value' => $config->get('region') ?: 'north_america',
-      '#required' => TRUE,
-    ];
+      $form['general']['countries'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Countries'),
+        '#description' => $this->t('Enter one country code per line.'),
+        '#default_value' => implode("\n", (array) ($config->get('countries') ?: ['lk'])),
+        '#required' => TRUE,
+      ];
 
-    $form['general']['is_biosafety_land'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Is Biosafety Land?'),
-      '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
-      '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
-    ];
+      $form['general']['region'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Region'),
+        '#description' => $this->t('Select the geographical region.'),
+        '#options' => $this->getRegionOptions(),
+        '#default_value' => $config->get('region') ?: 'north_america',
+        '#required' => TRUE,
+      ];
 
-    $form['field_behavior'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Field Behavior Settings'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-    ];
-
-    // Field Visibility functionality - wrapped in fieldset
-    $form['field_behavior']['field_visibility'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Field Visibility Control'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-    ];
-
-    $form['field_behavior']['field_visibility']['enable_field_visibility'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Field Visibility Control'),
-      '#description' => $this->t('Show/hide fields based on content type selection. Configure which fields are visible for each content type below.'),
-      '#default_value' => $config->get('enable_field_visibility') !== FALSE,
-      '#suffix' => '<a href="#" class="bioland-toggle-visibility-settings" data-target="field-visibility-settings">Show more</a>',
-    ];
-
-    // Container for all field visibility settings
-    $form['field_behavior']['field_visibility']['settings_container'] = [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['bioland-field-visibility-settings', 'bioland-collapsible-hidden']],
-    ];
-
-    // Define content types with their names
-    $content_types = [
-      2 => $this->t('News (2)'),
-      3 => $this->t('Meeting or Event (3)'),
-      5 => $this->t('Project (5)'),
-      12 => $this->t('Document (12)'),
-      13 => $this->t('Related Website (13)'),
-      15 => $this->t('Other Resource (15)'),
-      16 => $this->t('Image or Video (16)'),
-      43 => $this->t('FAQ (43)'),
-      44 => $this->t('National Information (44)'),
-      45 => $this->t('Status of LMOs (45)'),
-      46 => $this->t('Field Trial (46)'),
-      47 => $this->t('National Mainstreaming Strategy (47)'),
-      48 => $this->t('Capacity-Building (48)'),
-      49 => $this->t('Announcement (49)'),
-      50 => $this->t('Contact (50)'),
-    ];
-
-    // URL Field visibility settings
-    $form['field_behavior']['field_visibility']['settings_container']['url_field'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('URL Field'),
-      '#collapsible' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['field_behavior']['field_visibility']['settings_container']['url_field']['url_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show URL field for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('field_visibility.url_content_types') ?: [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50],
-    ];
-
-    // Published Field visibility settings
-    $form['field_behavior']['field_visibility']['settings_container']['published_field'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Published Field'),
-      '#collapsible' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['field_behavior']['field_visibility']['settings_container']['published_field']['published_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Published field for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('field_visibility.published_content_types') ?: [3, 5, 12],
-    ];
-
-    // Date Range Field visibility settings
-    $form['field_behavior']['field_visibility']['settings_container']['date_range_field'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Date Range Field (Start & End Date)'),
-      '#collapsible' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['field_behavior']['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Date Range fields (Start & End Date) for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('field_visibility.date_range_content_types') ?: [2, 3, 13],
-    ];
-
-    // Additional Fields functionality - wrapped in fieldset
-    $form['field_behavior']['additional_fields'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Additional Fields Control'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-    ];
-
-    $form['field_behavior']['additional_fields']['enable_additional_fields'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Additional Fields'),
-      '#description' => $this->t('Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type.'),
-      '#default_value' => $config->get('enable_additional_fields') !== FALSE,
-      '#suffix' => '<a href="#" class="bioland-toggle-additional-fields-settings" data-target="additional-fields-settings">Show more</a>',
-    ];
-
-    // Container for additional fields information
-    $form['field_behavior']['additional_fields']['settings_container'] = [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['bioland-additional-fields-settings', 'bioland-collapsible-hidden']],
-    ];
-
-    $form['field_behavior']['additional_fields']['settings_container']['info'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Additional Fields Mapping'),
-      '#description' => $this->t('The following content types will have these additional fields available:'),
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['field_behavior']['additional_fields']['settings_container']['info']['mapping'] = [
-      '#markup' => '
-        <div class="bioland-additional-fields-mapping">
-          <ul>
-            <li><strong>' . $this->t('Meeting or Event (3)') . ':</strong> ' . $this->t('Event Statuses') . '</li>
-            <li><strong>' . $this->t('Project (5)') . ':</strong> ' . $this->t('Project Statuses, Geographic Scopes') . '</li>
-            <li><strong>' . $this->t('Ministry (8)') . ':</strong> ' . $this->t('Organization Types, Government Types') . '</li>
-            <li><strong>' . $this->t('Ecosystem (9)') . ':</strong> ' . $this->t('Ecosystem Types') . '</li>
-            <li><strong>' . $this->t('Document (12)') . ':</strong> ' . $this->t('Document Types') . '</li>
-          </ul>
-          <p><em>' . $this->t('These fields are dynamically added based on the selected content type and are powered by a Vue.js component.') . '</em></p>
-        </div>
-      ',
-    ];
-
-    // Auto Summary functionality
-    $form['field_behavior']['enable_auto_summary'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Auto Summary'),
-      '#description' => $this->t('Automatically generate summary from body content as user types.'),
-      '#default_value' => $config->get('enable_auto_summary') !== FALSE,
-    ];
-
-    // Field Help Comments functionality
-    $form['field_behavior']['enable_help_comments'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Field Help Comments'),
-      '#description' => $this->t('Display contextual help comments for fields based on content type.'),
-      '#default_value' => $config->get('enable_help_comments') !== FALSE,
-    ];
-
-    $form['field_behavior']['field_visibility_rules'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Field Visibility Rules (Advanced)'),
-      '#description' => $this->t('Define custom field visibility rules in JSON format. Leave empty to use the settings above.'),
-      '#default_value' => $config->get('field_visibility_rules') ?: '',
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['translation'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Translation Defaults'),
-      '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
-      '#open' => FALSE,
-    ];
-
-    $form['translation']['auto_create'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Automatically create translation defaults'),
-      '#description' => $this->t('When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten.'),
-      '#default_value' => $config->get('translation.auto_create') ?: FALSE,
-    ];
-
-    $form['translation']['use_all_languages'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Use all available languages'),
-      '#description' => $this->t('When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used.'),
-      '#default_value' => $config->get('translation.use_all_languages') ?: TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="auto_create"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    // Get available languages.
-    $languages = $this->languageManager->getLanguages();
-    $language_options = [];
-    foreach ($languages as $langcode => $language) {
-      $language_options[$langcode] = $language->getName();
+      $form['general']['is_biosafety_land'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Is Biosafety Land?'),
+        '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
+        '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
+      ];
     }
 
-    $form['translation']['target_languages'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Target languages for translation defaults'),
-      '#description' => $this->t('Select which languages to create translation defaults for. Used only when "Use all available languages" is disabled.'),
-      '#options' => $language_options,
-      '#default_value' => array_combine(
-        $config->get('translation.target_languages') ?: [],
-        $config->get('translation.target_languages') ?: []
-      ),
-      '#states' => [
-        'visible' => [
-          ':input[name="use_all_languages"]' => ['checked' => FALSE],
-          ':input[name="auto_create"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
+    if ($section === 'fields') {
+      $form['field_behavior'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Field Behavior Settings'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
 
-    $form['translation']['copy_source_values'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Copy source field values'),
-      '#description' => $this->t('When enabled, translatable field values from the source language will be copied to new translations.'),
-      '#default_value' => $config->get('translation.copy_source_values') !== FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="auto_create"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
+      // Field Visibility functionality - wrapped in fieldset
+      $form['field_behavior']['field_visibility'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Field Visibility Control'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
 
-    // Get content entity types.
-    $entity_types = $this->entityTypeManager->getDefinitions();
-    $content_entity_options = [];
-    foreach ($entity_types as $entity_type_id => $entity_type) {
-      if ($entity_type->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
-        $content_entity_options[$entity_type_id] = $entity_type->getLabel();
+      $form['field_behavior']['field_visibility']['enable_field_visibility'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Field Visibility Control'),
+        '#description' => $this->t('Show/hide fields based on content type selection. Configure which fields are visible for each content type below.'),
+        '#default_value' => $config->get('enable_field_visibility') !== FALSE,
+        '#suffix' => '<a href="#" class="bioland-toggle-visibility-settings" data-target="field-visibility-settings">Show more</a>',
+      ];
+
+      // Container for all field visibility settings
+      $form['field_behavior']['field_visibility']['settings_container'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['bioland-field-visibility-settings', 'bioland-collapsible-hidden']],
+      ];
+
+      // Define content types with their names
+      $content_types = [
+        2 => $this->t('News (2)'),
+        3 => $this->t('Meeting or Event (3)'),
+        5 => $this->t('Project (5)'),
+        12 => $this->t('Document (12)'),
+        13 => $this->t('Related Website (13)'),
+        15 => $this->t('Other Resource (15)'),
+        16 => $this->t('Image or Video (16)'),
+        43 => $this->t('FAQ (43)'),
+        44 => $this->t('National Information (44)'),
+        45 => $this->t('Status of LMOs (45)'),
+        46 => $this->t('Field Trial (46)'),
+        47 => $this->t('National Mainstreaming Strategy (47)'),
+        48 => $this->t('Capacity-Building (48)'),
+        49 => $this->t('Announcement (49)'),
+        50 => $this->t('Contact (50)'),
+      ];
+
+      // URL Field visibility settings
+      $form['field_behavior']['field_visibility']['settings_container']['url_field'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('URL Field'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['field_behavior']['field_visibility']['settings_container']['url_field']['url_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show URL field for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('field_visibility.url_content_types') ?: [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50],
+      ];
+
+      // Published Field visibility settings
+      $form['field_behavior']['field_visibility']['settings_container']['published_field'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Published Field'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['field_behavior']['field_visibility']['settings_container']['published_field']['published_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Published field for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('field_visibility.published_content_types') ?: [3, 5, 12],
+      ];
+
+      // Date Range Field visibility settings
+      $form['field_behavior']['field_visibility']['settings_container']['date_range_field'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Date Range Field (Start & End Date)'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['field_behavior']['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Date Range fields (Start & End Date) for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('field_visibility.date_range_content_types') ?: [2, 3, 13],
+      ];
+
+      // Additional Fields functionality - wrapped in fieldset
+      $form['field_behavior']['additional_fields'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Additional Fields Control'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['field_behavior']['additional_fields']['enable_additional_fields'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Additional Fields'),
+        '#description' => $this->t('Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type.'),
+        '#default_value' => $config->get('enable_additional_fields') !== FALSE,
+        '#suffix' => '<a href="#" class="bioland-toggle-additional-fields-settings" data-target="additional-fields-settings">Show more</a>',
+      ];
+
+      // Container for additional fields information
+      $form['field_behavior']['additional_fields']['settings_container'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['bioland-additional-fields-settings', 'bioland-collapsible-hidden']],
+      ];
+
+      $form['field_behavior']['additional_fields']['settings_container']['info'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Additional Fields Mapping'),
+        '#description' => $this->t('The following content types will have these additional fields available:'),
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['field_behavior']['additional_fields']['settings_container']['info']['mapping'] = [
+        '#markup' => '
+          <div class="bioland-additional-fields-mapping">
+            <ul>
+              <li><strong>' . $this->t('Meeting or Event (3)') . ':</strong> ' . $this->t('Event Statuses') . '</li>
+              <li><strong>' . $this->t('Project (5)') . ':</strong> ' . $this->t('Project Statuses, Geographic Scopes') . '</li>
+              <li><strong>' . $this->t('Ministry (8)') . ':</strong> ' . $this->t('Organization Types, Government Types') . '</li>
+              <li><strong>' . $this->t('Ecosystem (9)') . ':</strong> ' . $this->t('Ecosystem Types') . '</li>
+              <li><strong>' . $this->t('Document (12)') . ':</strong> ' . $this->t('Document Types') . '</li>
+            </ul>
+            <p><em>' . $this->t('These fields are dynamically added based on the selected content type and are powered by a Vue.js component.') . '</em></p>
+          </div>
+        ',
+      ];
+
+      // Auto Summary functionality
+      $form['field_behavior']['enable_auto_summary'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Auto Summary'),
+        '#description' => $this->t('Automatically generate summary from body content as user types.'),
+        '#default_value' => $config->get('enable_auto_summary') !== FALSE,
+      ];
+
+      // Field Help Comments functionality
+      $form['field_behavior']['enable_help_comments'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Field Help Comments'),
+        '#description' => $this->t('Display contextual help comments for fields based on content type.'),
+        '#default_value' => $config->get('enable_help_comments') !== FALSE,
+      ];
+
+      $form['field_behavior']['field_visibility_rules'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Field Visibility Rules (Advanced)'),
+        '#description' => $this->t('Define custom field visibility rules in JSON format. Leave empty to use the settings above.'),
+        '#default_value' => $config->get('field_visibility_rules') ?: '',
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+    }
+
+    if ($section === 'translation') {
+      $form['translation'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Translation Defaults'),
+        '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
+        '#open' => TRUE,
+      ];
+
+      $form['translation']['auto_create'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Automatically create translation defaults'),
+        '#description' => $this->t('When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten.'),
+        '#default_value' => $config->get('translation.auto_create') ?: FALSE,
+      ];
+
+      $form['translation']['use_all_languages'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Use all available languages'),
+        '#description' => $this->t('When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used.'),
+        '#default_value' => $config->get('translation.use_all_languages') ?: TRUE,
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Get available languages.
+      $languages = $this->languageManager->getLanguages();
+      $language_options = [];
+      foreach ($languages as $langcode => $language) {
+        $language_options[$langcode] = $language->getName();
       }
+
+      $form['translation']['target_languages'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Target languages for translation defaults'),
+        '#description' => $this->t('Select which languages to create translation defaults for. Used only when "Use all available languages" is disabled.'),
+        '#options' => $language_options,
+        '#default_value' => array_combine(
+          $config->get('translation.target_languages') ?: [],
+          $config->get('translation.target_languages') ?: []
+        ),
+        '#states' => [
+          'visible' => [
+            ':input[name="use_all_languages"]' => ['checked' => FALSE],
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['translation']['copy_source_values'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Copy source field values'),
+        '#description' => $this->t('When enabled, translatable field values from the source language will be copied to new translations.'),
+        '#default_value' => $config->get('translation.copy_source_values') !== FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Get content entity types.
+      $entity_types = $this->entityTypeManager->getDefinitions();
+      $content_entity_options = [];
+      foreach ($entity_types as $entity_type_id => $entity_type) {
+        if ($entity_type->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
+          $content_entity_options[$entity_type_id] = $entity_type->getLabel();
+        }
+      }
+
+      $form['translation']['entity_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Entity types') . ' ' . $this->t('(Required)'),
+        '#description' => $this->t('<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>.'),
+        '#options' => $content_entity_options,
+        '#default_value' => array_combine(
+          $config->get('translation.entity_types') ?: [],
+          $config->get('translation.entity_types') ?: []
+        ),
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['translation']['batch_operations'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Batch Operations'),
+        '#description' => $this->t('Process existing entities to create missing translation defaults.'),
+        '#open' => TRUE,
+      ];
+
+      $form['translation']['batch_operations']['batch_entity_type'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Entity type to process'),
+        '#options' => ['' => $this->t('- Select -')] + $content_entity_options,
+        '#description' => $this->t('Select an entity type to create translations for existing entities.'),
+      ];
+
+      $form['translation']['batch_operations']['run_batch'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Create translation defaults for existing entities'),
+        '#submit' => ['::submitBatchForm'],
+        '#states' => [
+          'visible' => [
+            ':input[name="batch_entity_type"]' => ['!value' => ''],
+          ],
+        ],
+      ];
     }
-
-    $form['translation']['entity_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Entity types') . ' ' . $this->t('(Required)'),
-      '#description' => $this->t('<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>.'),
-      '#options' => $content_entity_options,
-      '#default_value' => array_combine(
-        $config->get('translation.entity_types') ?: [],
-        $config->get('translation.entity_types') ?: []
-      ),
-      '#states' => [
-        'visible' => [
-          ':input[name="auto_create"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['translation']['batch_operations'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Batch Operations'),
-      '#description' => $this->t('Process existing entities to create missing translation defaults.'),
-      '#open' => FALSE,
-    ];
-
-    $form['translation']['batch_operations']['batch_entity_type'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Entity type to process'),
-      '#options' => ['' => $this->t('- Select -')] + $content_entity_options,
-      '#description' => $this->t('Select an entity type to create translations for existing entities.'),
-    ];
-
-    $form['translation']['batch_operations']['run_batch'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Create translation defaults for existing entities'),
-      '#submit' => ['::submitBatchForm'],
-      '#states' => [
-        'visible' => [
-          ':input[name="batch_entity_type"]' => ['!value' => ''],
-        ],
-      ],
-    ];
 
     // Attach the settings toggle library
     $form['#attached']['library'][] = 'bioland/settings_toggle';
@@ -440,13 +449,17 @@ class BiolandSettingsForm extends ConfigFormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
 
-    // Validate translation settings
-    $auto_create = $form_state->getValue('auto_create');
-    $entity_types = array_filter($form_state->getValue('entity_types') ?: []);
+    $section = $form_state->get('bioland_section');
 
-    // If auto-create is enabled but no entity types are selected, show a warning
-    if ($auto_create && empty($entity_types)) {
-      $form_state->setErrorByName('entity_types', $this->t('You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable "Automatically create translation defaults".'));
+    if ($section === 'translation') {
+      // Validate translation settings
+      $auto_create = $form_state->getValue('auto_create');
+      $entity_types = array_filter($form_state->getValue('entity_types') ?: []);
+
+      // If auto-create is enabled but no entity types are selected, show a warning
+      if ($auto_create && empty($entity_types)) {
+        $form_state->setErrorByName('entity_types', $this->t('You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable "Automatically create translation defaults".'));
+      }
     }
   }
 
@@ -455,35 +468,49 @@ class BiolandSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
+    $section = $form_state->get('bioland_section');
+    $config = $this->config('bioland.settings');
 
-  // Normalize textarea inputs (one per line) to arrays
-  $countries = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['countries']))));
-    $target_languages = array_filter($values['target_languages']);
-    $entity_types = array_filter($values['entity_types']);
+    if ($section === 'general') {
+      // Normalize textarea inputs (one per line) to arrays
+      $countries = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['countries']))));
+      
+      $config
+        ->set('countries', $countries)
+        ->set('region', $values['region'])
+        ->set('is_biosafety_land', $values['is_biosafety_land']);
+    }
 
-    // Process field visibility content type selections
-    $url_content_types = array_values(array_filter($values['url_content_types']));
-    $published_content_types = array_values(array_filter($values['published_content_types']));
-    $date_range_content_types = array_values(array_filter($values['date_range_content_types']));
+    if ($section === 'fields') {
+      // Process field visibility content type selections
+      $url_content_types = array_values(array_filter($values['url_content_types']));
+      $published_content_types = array_values(array_filter($values['published_content_types']));
+      $date_range_content_types = array_values(array_filter($values['date_range_content_types']));
 
-    $this->config('bioland.settings')
-  ->set('countries', $countries)
-      ->set('region', $values['region'])
-      ->set('is_biosafety_land', $values['is_biosafety_land'])
-      ->set('enable_field_visibility', $values['enable_field_visibility'])
-      ->set('field_visibility.url_content_types', $url_content_types)
-      ->set('field_visibility.published_content_types', $published_content_types)
-      ->set('field_visibility.date_range_content_types', $date_range_content_types)
-      ->set('enable_additional_fields', $values['enable_additional_fields'])
-      ->set('enable_auto_summary', $values['enable_auto_summary'])
-      ->set('enable_help_comments', $values['enable_help_comments'])
-      ->set('field_visibility_rules', $values['field_visibility_rules'])
-      ->set('translation.auto_create', $values['auto_create'])
-      ->set('translation.use_all_languages', $values['use_all_languages'])
-      ->set('translation.target_languages', array_values($target_languages))
-      ->set('translation.copy_source_values', $values['copy_source_values'])
-      ->set('translation.entity_types', array_values($entity_types))
-      ->save();
+      $config
+        ->set('enable_field_visibility', $values['enable_field_visibility'])
+        ->set('field_visibility.url_content_types', $url_content_types)
+        ->set('field_visibility.published_content_types', $published_content_types)
+        ->set('field_visibility.date_range_content_types', $date_range_content_types)
+        ->set('enable_additional_fields', $values['enable_additional_fields'])
+        ->set('enable_auto_summary', $values['enable_auto_summary'])
+        ->set('enable_help_comments', $values['enable_help_comments'])
+        ->set('field_visibility_rules', $values['field_visibility_rules']);
+    }
+
+    if ($section === 'translation') {
+      $target_languages = array_filter($values['target_languages']);
+      $entity_types = array_filter($values['entity_types']);
+
+      $config
+        ->set('translation.auto_create', $values['auto_create'])
+        ->set('translation.use_all_languages', $values['use_all_languages'])
+        ->set('translation.target_languages', array_values($target_languages))
+        ->set('translation.copy_source_values', $values['copy_source_values'])
+        ->set('translation.entity_types', array_values($entity_types));
+    }
+
+    $config->save();
 
     parent::submitForm($form, $form_state);
   }
