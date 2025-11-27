@@ -56,6 +56,20 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($anyAttached) {
     $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
   }
+
+  // Move field_order to the sidebar (advanced group) and rename it.
+  if (isset($form['field_order'])) {
+    $form['order_override_wrapper'] = [
+      '#type' => 'details',
+      '#title' => t('Order Override'),
+      '#group' => 'advanced',
+      '#weight' => 90, // Place above Promotion options (usually 95).
+      '#open' => TRUE,
+      '#optional' => TRUE,
+    ];
+
+    $form['field_order']['#group'] = 'order_override_wrapper';
+  }
 }
 
 /**

@@ -1,10 +1,12 @@
 <?php
 
-use Drupal\node\Entity\NodeType;
-use Drupal\user\Entity\Role;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\NodeType;
+use Drupal\user\Entity\Role;
 
 /**
  * Implements hook_install().
@@ -85,6 +87,19 @@ function bioland_install() {
 
   // Import translations from PO files.
   _bioland_import_translations();
+
+  // Ensure the new field is visible in the form display.
+  $entity_form_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_form_display')
+    ->load('node.content.default');
+
+  if ($entity_form_display) {
+    $entity_form_display->setComponent('field_order', [
+      'type' => 'number',
+      'weight' => 10,
+    ]);
+    $entity_form_display->save();
+  }
 }
 
 /**
@@ -278,4 +293,72 @@ function bioland_update_9003() {
   }
   
   return t('Entity types for translation defaults already configured.');
+}
+
+/**
+ * Add the field_order field on existing installs.
+ */
+function bioland_update_9004() {
+  // Ensure the node module and required content type exist.
+  if (!\Drupal::moduleHandler()->moduleExists('node')) {
+    return t('Skipped field_order creation: Node module is not enabled.');
+  }
+
+  $content_type = NodeType::load('content');
+  if (!$content_type) {
+    return t('Skipped field_order creation: Content type "content" does not exist.');
+  }
+
+  // Create field storage if it does not exist.
+  $field_storage = FieldStorageConfig::loadByName('node', 'field_order');
+  if (!$field_storage) {
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => 'field_order',
+      'entity_type' => 'node',
+      'type' => 'integer',
+      'settings' => [
+        'unsigned' => FALSE,
+        'size' => 'normal',
+      ],
+      'cardinality' => 1,
+      'translatable' => FALSE,
+    ]);
+    $field_storage->save();
+  }
+
+  // Create field instance on the "content" bundle if it does not exist.
+  $field = FieldConfig::loadByName('node', 'content', 'field_order');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_name' => 'field_order',
+      'entity_type' => 'node',
+      'bundle' => 'content',
+      'label' => 'Order',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => FALSE,
+      'settings' => [
+        'min' => NULL,
+        'max' => NULL,
+        'prefix' => '',
+        'suffix' => '',
+      ],
+    ]);
+    $field->save();
+  }
+
+  // Ensure the field is visible in the default form display.
+  $entity_form_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_form_display')
+    ->load('node.content.default');
+
+  if ($entity_form_display && !$entity_form_display->getComponent('field_order')) {
+    $entity_form_display->setComponent('field_order', [
+      'type' => 'number',
+      'weight' => 10,
+    ]);
+    $entity_form_display->save();
+  }
+
+  return t('Ensured field_order field exists on the Content content type and is visible on the form display.');
 }
