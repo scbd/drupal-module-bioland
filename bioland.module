@@ -64,7 +64,7 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#title' => t('Order Override'),
       '#group' => 'advanced',
       '#weight' => 90, // Place above Promotion options (usually 95).
-      '#open' => TRUE,
+      '#open' => FALSE,
       '#optional' => TRUE,
     ];
 

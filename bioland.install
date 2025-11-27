@@ -100,6 +100,9 @@ function bioland_install() {
     ]);
     $entity_form_display->save();
   }
+
+  // Ensure help text is cleared for specific fields on the Content type.
+  _bioland_clear_field_help_text('node', 'content', ['body', 'field_attachments']);
 }
 
 /**
@@ -194,6 +197,39 @@ function _bioland_import_translations() {
       '@count' => $skipped_count,
     ]);
   }
+}
+
+/**
+ * Helper to clear field help text (description) for a bundle.
+ *
+ * This is used on install and in update hooks to ensure that specific fields
+ * (e.g. body, field_attachments) on the `content` node type do not display
+ * any help text on the node edit form.
+ *
+ * @param string $entity_type
+ *   The entity type ID (e.g. 'node').
+ * @param string $bundle
+ *   The bundle machine name (e.g. 'content').
+ * @param array $field_names
+ *   A list of field machine names whose descriptions should be cleared.
+ *
+ * @return int
+ *   The number of fields whose description was updated.
+ */
+function _bioland_clear_field_help_text($entity_type, $bundle, array $field_names) {
+  $updated = 0;
+
+  foreach ($field_names as $field_name) {
+    /** @var \Drupal\field\Entity\FieldConfig|null $field */
+    $field = FieldConfig::loadByName($entity_type, $bundle, $field_name);
+    if ($field && $field->getDescription() !== '') {
+      $field->setDescription('');
+      $field->save();
+      $updated++;
+    }
+  }
+
+  return $updated;
 }
 
 /**
@@ -361,4 +397,36 @@ function bioland_update_9004() {
   }
 
   return t('Ensured field_order field exists on the Content content type and is visible on the form display.');
+}
+
+/**
+ * Clear help text on body and field_attachments fields for Content nodes.
+ */
+function bioland_update_9005() {
+  $updated = _bioland_clear_field_help_text('node', 'content', ['body', 'field_attachments']);
+
+  if ($updated > 0) {
+    return t('Cleared help text on @count field(s) (body, field_attachments) for the Content content type.', ['@count' => $updated]);
+  }
+
+  return t('No help text found to clear on body or field_attachments for the Content content type.');
+}
+
+/**
+ * Ensure SCBD Staff role exists on existing installs.
+ */
+function bioland_update_9006() {
+  $role = Role::load('scbd_staff');
+
+  if ($role) {
+    return t('SCBD Staff role (scbd_staff) already exists; no changes made.');
+  }
+
+  $role = Role::create([
+    'id' => 'scbd_staff',
+    'label' => 'SCBD Staff',
+  ]);
+  $role->save();
+
+  return t('Created SCBD Staff role (machine name: scbd_staff).');
 }

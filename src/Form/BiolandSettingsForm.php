@@ -108,12 +108,79 @@ class BiolandSettingsForm extends ConfigFormBase {
     $form_state->set('bioland_section', $section);
 
     if ($section === 'general') {
+      $site_config = $this->config('system.site');
+      $languages = $this->languageManager->getLanguages();
+      $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
+      $has_multiple_languages = count($languages) > 1;
+
       $form['general'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('General Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
+
+      $form['general']['site_name'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Site name'),
+        '#default_value' => $site_config->get('name'),
+        '#required' => TRUE,
+      ];
+
+      $form['general']['site_slogan'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Slogan'),
+        '#default_value' => $site_config->get('slogan'),
+        '#description' => $this->t('How this is used depends on your site\'s theme.'),
+      ];
+
+      $form['general']['site_mail'] = [
+        '#type' => 'email',
+        '#title' => $this->t('Email address'),
+        '#default_value' => $site_config->get('mail'),
+        '#description' => $this->t("The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"),
+        '#required' => TRUE,
+      ];
+
+      // Translation fields (refactored to reduce duplication)
+      if ($has_multiple_languages) {
+        $translatable_fields = [
+          'site_name' => [
+            'title' => $this->t('Translate Site Name'),
+            'config_key' => 'name',
+          ],
+          'site_slogan' => [
+            'title' => $this->t('Translate Slogan'),
+            'config_key' => 'slogan',
+          ],
+        ];
+
+        // Cache config overrides (load once per language)
+        $config_overrides = [];
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $config_overrides[$langcode] = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
+        }
+
+        foreach ($translatable_fields as $field_name => $translation_info) {
+          $form['general']["{$field_name}_translations"] = [
+            '#type' => 'details',
+            '#title' => $translation_info['title'],
+            '#open' => FALSE,
+            '#tree' => TRUE,
+          ];
+
+          foreach ($config_overrides as $langcode => $config_override) {
+            $form['general']["{$field_name}_translations"][$langcode] = [
+              '#type' => 'textfield',
+              '#title' => $languages[$langcode]->getName(),
+              '#default_value' => $config_override->get($translation_info['config_key']),
+            ];
+          }
+        }
+      }
 
       $form['general']['countries'] = [
         '#type' => 'textarea',
@@ -440,6 +507,9 @@ class BiolandSettingsForm extends ConfigFormBase {
     // Attach the settings toggle library
     $form['#attached']['library'][] = 'bioland/settings_toggle';
 
+    // Add cache metadata for proper invalidation
+    $form['#cache']['tags'] = ['config:system.site', 'config:bioland.settings'];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -472,6 +542,59 @@ class BiolandSettingsForm extends ConfigFormBase {
     $config = $this->config('bioland.settings');
 
     if ($section === 'general') {
+      $languages = $this->languageManager->getLanguages();
+      $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
+
+      // Save system.site configuration (only if changed)
+      $site_config = $this->configFactory()->getEditable('system.site');
+      $site_config_changed = FALSE;
+
+      if ($site_config->get('name') !== $values['site_name']) {
+        $site_config->set('name', $values['site_name']);
+        $site_config_changed = TRUE;
+      }
+      if ($site_config->get('slogan') !== $values['site_slogan']) {
+        $site_config->set('slogan', $values['site_slogan']);
+        $site_config_changed = TRUE;
+      }
+      if ($site_config->get('mail') !== $values['site_mail']) {
+        $site_config->set('mail', $values['site_mail']);
+        $site_config_changed = TRUE;
+      }
+
+      if ($site_config_changed) {
+        $site_config->save();
+      }
+
+      // Save translations if there are multiple languages
+      if (count($languages) > 1) {
+        $translatable_fields = [
+          'name' => 'site_name_translations',
+          'slogan' => 'site_slogan_translations',
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+
+          $config_override = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
+          $override_changed = FALSE;
+
+          foreach ($translatable_fields as $config_key => $form_key) {
+            $new_value = $values[$form_key][$langcode] ?? '';
+            if ($config_override->get($config_key) !== $new_value) {
+              $config_override->set($config_key, $new_value);
+              $override_changed = TRUE;
+            }
+          }
+
+          if ($override_changed) {
+            $config_override->save();
+          }
+        }
+      }
+
       // Normalize textarea inputs (one per line) to arrays
       $countries = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['countries']))));
       

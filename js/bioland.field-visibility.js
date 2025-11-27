@@ -56,6 +56,9 @@
       // Hide text format elements
       this.hideTextFormat();
 
+      // Hide summary field (always hidden)
+      this.hideSummary();
+
       // Set up content type field change listeners
       this.setupContentTypeListeners(context);
     },
@@ -153,6 +156,31 @@
       }
       if (helpLink) {
         helpLink.style.display = 'none';
+      }
+    },
+
+    /**
+     * Hide the summary field (always hidden).
+     */
+    hideSummary: function () {
+      // Hide the summary wrapper
+      const summaryWrapper = document.querySelector('.text-summary-wrapper');
+      
+      if (summaryWrapper) {
+        summaryWrapper.style.display = 'none';
+      }
+
+      // Also hide the summary textarea directly if it exists
+      const summaryField = document.querySelector('textarea[data-drupal-selector="edit-body-0-summary"]');
+      
+      if (summaryField) {
+        // Hide the parent wrapper if it exists
+        const parentWrapper = summaryField.closest('.js-form-type-textarea');
+        if (parentWrapper) {
+          parentWrapper.style.display = 'none';
+        } else {
+          summaryField.style.display = 'none';
+        }
       }
     },
 
