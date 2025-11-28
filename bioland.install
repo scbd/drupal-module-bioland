@@ -430,3 +430,21 @@ function bioland_update_9006() {
 
   return t('Created SCBD Staff role (machine name: scbd_staff).');
 }
+
+/**
+ * Set max limit of 10000 on field_order field.
+ */
+function bioland_update_9007() {
+  $field = FieldConfig::loadByName('node', 'content', 'field_order');
+
+  if (!$field) {
+    return t('field_order field does not exist; skipping max limit update.');
+  }
+
+  $settings = $field->getSettings();
+  $settings['max'] = 10000;
+  $field->setSettings($settings);
+  $field->save();
+
+  return t('Set max limit of 10000 on field_order field.');
+}

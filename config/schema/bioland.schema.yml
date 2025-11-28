@@ -48,6 +48,9 @@ bioland.settings:
     enable_help_comments:
       type: boolean
       label: 'Enable field help comments'
+    enable_menu_depth_restriction:
+      type: boolean
+      label: 'Enable menu depth restriction'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'

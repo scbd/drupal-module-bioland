@@ -47,6 +47,11 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
+  // Change "Save (this translation)" to just "Save".
+  if (isset($form['actions']['submit'])) {
+    $form['actions']['submit']['#value'] = t('Save');
+  }
+
   // Add custom submit handler to redirect with query parameter.
   $form['actions']['submit']['#submit'][] = 'bioland_node_content_form_submit';
 
@@ -93,6 +98,90 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     ];
 
     $form['field_order']['#group'] = 'order_override_wrapper';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for menu_link_content_form.
+ *
+ * Adds validation to restrict menu depth for non-admin users.
+ */
+function bioland_form_menu_link_content_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Check if menu depth restriction is enabled
+  $config = \Drupal::config('bioland.settings');
+  if ($config->get('enable_menu_depth_restriction') === FALSE) {
+    return;
+  }
+
+  // Add custom validation handler
+  $form['#validate'][] = 'bioland_menu_link_depth_validate';
+}
+
+/**
+ * Custom validation to restrict menu depth by role.
+ *
+ * Prevents non-administrator users from creating second-level menu items and deeper.
+ */
+function bioland_menu_link_depth_validate(array &$form, FormStateInterface $form_state) {
+  $current_user = \Drupal::currentUser();
+  
+  // Allow administrators to create any depth
+  if ($current_user->hasPermission('administer menu')) {
+    return;
+  }
+
+  // Check the selected parent
+  $parent = $form_state->getValue('menu_parent');
+  
+  if (empty($parent)) {
+    return;
+  }
+
+  // Parse parent value (format: "menu_name:parent_id" or "menu_name:")
+  if (strpos($parent, ':') !== FALSE) {
+    list($menu_name, $parent_id) = explode(':', $parent, 2);
+    
+    // If parent_id is empty, this is a top-level item - allow it
+    if (empty($parent_id)) {
+      return;
+    }
+
+    // Parent exists, so this would be at least second level
+    // Load the parent menu link to check its depth
+    try {
+      // Try to load as menu_link_content entity first
+      if (strpos($parent_id, 'menu_link_content:') === 0) {
+        $uuid = str_replace('menu_link_content:', '', $parent_id);
+        $parent_links = \Drupal::entityTypeManager()
+          ->getStorage('menu_link_content')
+          ->loadByProperties(['uuid' => $uuid]);
+        
+        if (!empty($parent_links)) {
+          $parent_link = reset($parent_links);
+          // If parent exists, this would create a second-level item
+          $form_state->setErrorByName('menu_parent', t('You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role.'));
+          return;
+        }
+      }
+
+      // Also check if it's a plugin-based menu link (e.g., views, system links)
+      $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+      try {
+        $parent_link = $menu_link_manager->createInstance($parent_id);
+        if ($parent_link) {
+          // Any non-empty parent means this would be a child item
+          $form_state->setErrorByName('menu_parent', t('You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role.'));
+          return;
+        }
+      }
+      catch (\Exception $e) {
+        // Parent might not exist as plugin, continue
+      }
+    }
+    catch (\Exception $e) {
+      // If we can't load the parent, be safe and restrict
+      \Drupal::logger('bioland')->warning('Could not validate menu parent depth: @message', ['@message' => $e->getMessage()]);
+    }
   }
 }
 

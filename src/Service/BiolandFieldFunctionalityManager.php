@@ -31,7 +31,8 @@ class BiolandFieldFunctionalityManager {
       ($c->get('enable_field_visibility') !== FALSE) ||
       ($c->get('enable_additional_fields') !== FALSE) ||
   ($c->get('enable_auto_summary') !== FALSE) ||
-      ($c->get('enable_help_comments') !== FALSE)
+      ($c->get('enable_help_comments') !== FALSE) ||
+      ($c->get('enable_menu_depth_restriction') !== FALSE)
     );
   }
 
@@ -45,6 +46,7 @@ class BiolandFieldFunctionalityManager {
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
   'enableAutoSummary' => $c->get('enable_auto_summary') !== FALSE,
       'enableHelpComments' => $c->get('enable_help_comments') !== FALSE,
+      'enableMenuDepthRestriction' => $c->get('enable_menu_depth_restriction') !== FALSE,
       'fieldVisibilityRules' => $c->get('field_visibility_rules') ?: '',
     ];
   }

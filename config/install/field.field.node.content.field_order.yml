@@ -18,7 +18,7 @@ default_value:
 default_value_callback: ''
 settings:
   min: null
-  max: null
+  max: 10000
   prefix: ''
   suffix: ''
 field_type: integer
