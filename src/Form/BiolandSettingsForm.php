@@ -110,6 +110,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     if ($section === 'general') {
       $site_config = $this->config('system.site');
       $languages = $this->languageManager->getLanguages();
+      // Filter out Lolspeak language.
+      $languages = array_filter($languages, function($language) {
+        return $language->getId() !== 'en-x-lolspeak';
+      });
       $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
       $has_multiple_languages = count($languages) > 1;
 
@@ -377,6 +381,14 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#default_value' => $config->get('enable_help_comments') !== FALSE,
       ];
 
+      // Menu Depth Restriction functionality
+      $form['field_behavior']['enable_menu_depth_restriction'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Menu Depth Restriction'),
+        '#description' => $this->t('Restrict non-administrator users from creating second-level menu items and deeper. Only users with "administer menu" permission can create nested menu items.'),
+        '#default_value' => $config->get('enable_menu_depth_restriction') !== FALSE,
+      ];
+
       $form['field_behavior']['field_visibility_rules'] = [
         '#type' => 'textarea',
         '#title' => $this->t('Field Visibility Rules (Advanced)'),
@@ -419,6 +431,10 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Get available languages.
       $languages = $this->languageManager->getLanguages();
+      // Filter out Lolspeak language.
+      $languages = array_filter($languages, function($language) {
+        return $language->getId() !== 'en-x-lolspeak';
+      });
       $language_options = [];
       foreach ($languages as $langcode => $language) {
         $language_options[$langcode] = $language->getName();
@@ -618,6 +634,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('enable_additional_fields', $values['enable_additional_fields'])
         ->set('enable_auto_summary', $values['enable_auto_summary'])
         ->set('enable_help_comments', $values['enable_help_comments'])
+        ->set('enable_menu_depth_restriction', $values['enable_menu_depth_restriction'])
         ->set('field_visibility_rules', $values['field_visibility_rules']);
     }
 

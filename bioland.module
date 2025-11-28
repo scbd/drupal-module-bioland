@@ -15,6 +15,30 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * Adds comprehensive SCBD field functionality based on settings.
  */
 function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Hide Lolspeak from translation overview for non-administrators.
+  if ($form_id === 'content_translation_overview') {
+    $current_user = \Drupal::currentUser();
+    if (!$current_user->hasPermission('administer site configuration')) {
+      if (isset($form['languages']['en-x-lolspeak'])) {
+        $form['languages']['en-x-lolspeak']['#access'] = FALSE;
+      }
+    }
+  }
+
+  // Hide Lolspeak from language selectors in entity forms for non-administrators.
+  $current_user = \Drupal::currentUser();
+  if (!$current_user->hasPermission('administer site configuration')) {
+    // Check for language selection fields and remove Lolspeak option.
+    if (isset($form['langcode']['widget'][0]['value']['#options']['en-x-lolspeak'])) {
+      unset($form['langcode']['widget'][0]['value']['#options']['en-x-lolspeak']);
+    }
+    
+    // Also check for content_translation_language_widget.
+    if (isset($form['content_translation']['widget'][0]['value']['#options']['en-x-lolspeak'])) {
+      unset($form['content_translation']['widget'][0]['value']['#options']['en-x-lolspeak']);
+    }
+  }
+
   // Get the field functionality manager service
   $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
 
@@ -216,6 +240,29 @@ function bioland_node_content_form_submit($form, FormStateInterface $form_state)
 
     // Set the redirect.
     $form_state->setRedirectUrl($url);
+  }
+}
+
+/**
+ * Implements hook_local_tasks_alter().
+ *
+ * Hides Lolspeak translation tabs from non-administrators.
+ */
+function bioland_local_tasks_alter(&$local_tasks) {
+  // Check if user is administrator.
+  $current_user = \Drupal::currentUser();
+  if ($current_user->hasPermission('administer site configuration')) {
+    return;
+  }
+
+  // Remove Lolspeak translation tasks.
+  foreach ($local_tasks as $task_id => $task) {
+    // Check if this is a content translation task for Lolspeak.
+    if (strpos($task_id, 'entity.node.content_translation_overview:en-x-lolspeak') !== FALSE ||
+        strpos($task_id, '.content_translation_add:en-x-lolspeak') !== FALSE ||
+        strpos($task_id, '.content_translation_edit:en-x-lolspeak') !== FALSE) {
+      unset($local_tasks[$task_id]);
+    }
   }
 }
 
