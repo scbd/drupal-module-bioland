@@ -160,28 +160,29 @@
     },
 
     /**
-     * Hide the summary field (always hidden).
+     * Hide the summary field initially but allow Drupal's toggle to work.
+     * This hides the field but keeps the wrapper visible so the "Edit summary" link works.
      */
     hideSummary: function () {
-      // Hide the summary wrapper
-      const summaryWrapper = document.querySelector('.text-summary-wrapper');
-      
-      if (summaryWrapper) {
-        summaryWrapper.style.display = 'none';
-      }
-
-      // Also hide the summary textarea directly if it exists
+      // Find the summary textarea
       const summaryField = document.querySelector('textarea[data-drupal-selector="edit-body-0-summary"]');
       
-      if (summaryField) {
-        // Hide the parent wrapper if it exists
-        const parentWrapper = summaryField.closest('.js-form-type-textarea');
-        if (parentWrapper) {
-          parentWrapper.style.display = 'none';
-        } else {
-          summaryField.style.display = 'none';
-        }
+      if (!summaryField) return;
+
+      // Find the immediate form item wrapper (the one that gets toggled by Drupal)
+      const formItem = summaryField.closest('.js-form-type-textarea');
+      
+      if (formItem) {
+        // Initially hide just the form item, not the outer wrapper
+        // This allows Drupal's "Edit summary" link to remain visible and functional
+        formItem.style.display = 'none';
+      } else {
+        // Fallback: hide the field directly
+        summaryField.style.display = 'none';
       }
+
+      // Don't hide .text-summary-wrapper - it contains the "Edit summary" link
+      // that needs to remain visible and functional
     },
 
     /**
