@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: af\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Algemene Instellings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Lande"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Voer een landkode per reël in."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Streek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Kies die geografiese streek."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Noord-Amerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Suid-Amerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Europa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asië"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oseanië"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Is Biosafety Land?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Dui aan of dit 'n Biosafety Land-instansie is."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Veld Gedrag Instellings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Aktiveer Veld Sigbaarheid Beheer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Wys/versteek velde gebaseer op inhoudsoorte keuse. Beheer URL, datum en gepubliseerde velde sigbaarheid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Aktiveer Bykomende Velde"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Voeg inhoudsoorte-spesifieke bykomende velde by (gebeurtenis statusse, projek statusse, ens.) gebaseer op tesaurus inhoudsoorte."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Aktiveer Outomatiese Opsomming"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Genereer outomaties opsomming van liggaam inhoud soos gebruiker tik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Aktiveer Veld Hulp Kommentare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Wys kontekstuele hulp kommentare vir velde gebaseer op inhoudsoorte."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Veld Sigbaarheid Reëls"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Definieer aangepaste veld sigbaarheid reëls (JSON formaat)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Vertaling Verstekwaardes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Konfigureer skep van vertaling verstekwaardes (taal plekhouers) vir vertaalbare entiteite."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Skep outomaties vertaling verstekwaardes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Wanneer geaktiveer, word vertaling verstekwaardes (plekhouers) geskep vir ander tale by entiteit skep/opdatering. Bestaande vertalings met behoorlike bron word nie oorskryf nie."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Gebruik alle beskikbare tale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Wanneer geaktiveer, sal vertalings geskep word vir alle tale wat op die werf geïnstalleer is. Wanneer gedeaktiveer, sal slegs die gekose teikentale hieronder gebruik word."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Teikentale vir vertaling verstekwaardes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Kies watter tale om vertaling verstekwaardes vir te skep. Gebruik slegs wanneer \"Gebruik alle beskikbare tale\" gedeaktiveer is."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Kopieer bron veld waardes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Wanneer geaktiveer, sal vertaalbare veld waardes van die brontaal gekopieer word na nuwe vertalings."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Entiteit tipes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Kies watter entiteit tipes vertaling verstekwaardes geskep moet hê."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Bondel Operasies"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Prosesseer bestaande entiteite om ontbrekende vertaling verstekwaardes te skep."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Entiteit tipe om te prosesseer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Kies -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Kies 'n entiteit tipe om vertalings te skep vir bestaande entiteite."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Skep vertaling verstekwaardes vir bestaande entiteite"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Kies asseblief 'n entiteit tipe om te prosesseer."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Engels"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Spaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Frans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Duits"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Italiaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugees"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Chinees"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japannees"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Koreaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabies"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Russies"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Hulp"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Dit sal die hoofinhoud van jou nuwe werf inhoud wees. Die opsomming kan gebruik word om 'n kort bondige beskrywing van jou inhoud te wys. Verder sal die opsomming in lys en kaart aansigte van jou rekord op die webwerf gewys word. Alternatiewelik sal die eerste paar sinne van die hoofinhoud gebruik word."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Beelde"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "Die <b>eerste beeld</b> in volgorde van links na regs hier, <b>sal die hoofbeeld</b> van jou rekord wees wat op die bladsy en in duimnaels in lys en kaart aansigte gewys word. Alle ander beelde sal onder die hoofinhoud gewys word."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Helde"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Enige bladsy/inhoudstipe kan verskeie <b>held baniere</b> hê. As daar meer as een is, sal hulle op 'n uurlikse basis geroteer word."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Nuus (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Vergadering of Gebeurtenis (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Projek (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dokument (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Verwante Webwerf (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Ander Hulpbron (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Beeld of Video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "VGV (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Nasionale Inligting (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Status van LMO's (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Veld Proef (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Nasionale Hoofstroom Strategie (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Kapasiteitsbou (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Aankondiging (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Kontak (50)"

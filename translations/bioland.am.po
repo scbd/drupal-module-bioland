@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: am\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "አጠቃላይ ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "አገሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "በእያንዳንዱ መስመር አንድ የአገር ኮድ ያስገቡ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "ክልል"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "የጂኦግራፊያዊ ክልሉን ይምረጡ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "ሰሜን አሜሪካ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "ደቡብ አሜሪካ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "አውሮፓ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "እስያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "አፍሪካ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "ኦሽንያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "የባዮሴፍቲ መሬት ነው?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "ይህ የባዮሴፍቲ መሬት ምሳሌ መሆኑን ያመለክታል።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "የመስክ ባህሪ ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "የመስክ ታይነት ቁጥጥርን አንቃ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "በይዘት አይነት ምርጫ ላይ በመመስረት መስኮችን አሳይ/ደብቅ። የዩአርኤል፣ የቀን እና የታተሙ መስኮችን ታይነት ይቆጣጠራል።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "ተጨማሪ መስኮችን አንቃ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "በቴሶረስ የይዘት አይነት ላይ በመመስረት ከይዘት-አይነት ጋር የተያያዙ ተጨማሪ መስኮችን (የክስተት ሁኔታዎች፣ የፕሮጀክት ሁኔታዎች፣ ወዘተ) ያክሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "ራስ-ሰር ማጠቃለያን አንቃ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "ተጠቃሚው በሚጽፍበት ጊዜ ከዋናው ይዘት ራስ-ሰር ማጠቃለያ ይፍጠሩ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "የመስክ እገዛ አስተያየቶችን አንቃ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "በይዘት አይነት ላይ በመመስረት ለመስኮች የአውድ እገዛ አስተያየቶችን አሳይ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "የመስክ ታይነት ደንቦች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "ብጁ የመስክ ታይነት ደንቦችን ይግለጹ (JSON ቅርጸት)።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "የትርጉም ነባሪዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "ሊተረጎሙ ለሚችሉ አካላት የትርጉም ነባሪዎች (የቋንቋ ቦታ ያዦች) መፈጠርን ያዋቅሩ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "የትርጉም ነባሪዎችን በራስ-ሰር ይፍጠሩ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "ሲነቃ፣ አካል ሲፈጠር/ሲዘምን ለሌሎች ቋንቋዎች የትርጉም ነባሪዎች (ቦታ ያዦች) ይፈጠራሉ። ትክክለኛ ምንጭ ያላቸው ነባር ትርጉሞች አይገለበጡም።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "ሁሉንም የሚገኙ ቋንቋዎችን ተጠቀም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "ሲነቃ፣ በጣቢያው ላይ ለተጫኑ ሁሉም ቋንቋዎች ትርጉሞች ይፈጠራሉ። ሲሰናከል፣ ከታች የተመረጡት የታለመላቸው ቋንቋዎች ብቻ ጥቅም ላይ ይውላሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "ለትርጉም ነባሪዎች የታለሙ ቋንቋዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "የትርጉም ነባሪዎችን ለመፍጠር የትኞቹን ቋንቋዎች እንደሚፈልጉ ይምረጡ። \"ሁሉንም የሚገኙ ቋንቋዎችን ተጠቀም\" ሲሰናከል ብቻ ጥቅም ላይ ይውላል።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "የምንጭ መስክ እሴቶችን ቅዳ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "ሲነቃ፣ ከምንጭ ቋንቋው ሊተረጎሙ የሚችሉ የመስክ እሴቶች ወደ አዲስ ትርጉሞች ይገለበጣሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "የአካል አይነቶች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "የትኞቹ የአካል አይነቶች የትርጉም ነባሪዎች እንዲፈጠሩላቸው እንደሚፈልጉ ይምረጡ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "የቡድን ክንውኖች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "የጎደሉ የትርጉም ነባሪዎችን ለመፍጠር ነባር አካላትን ያካሂዱ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "ለማካሄድ የአካል አይነት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- ይምረጡ -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "ለነባር አካላት ትርጉሞችን ለመፍጠር የአካል አይነት ይምረጡ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "ለነባር አካላት የትርጉም ነባሪዎችን ይፍጠሩ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "እባክዎ ለማካሄድ የአካል አይነት ይምረጡ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "እንግሊዝኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "ስፓኒሽ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "ፈረንሳይኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "ጀርመንኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "ጣሊያንኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "ፖርቱጋልኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "ደች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "ቻይንኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "ጃፓንኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "ኮሪያኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "አረብኛ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "ራሽያኛ"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "እገዛ"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "ይህ የአዲሱ የጣቢያ ይዘትዎ ዋና ይዘት ይሆናል። ማጠቃለያው የይዘትዎን አጭር መግለጫ ለማሳየት ሊያገለግል ይችላል። በተጨማሪም፣ ማጠቃለያው በድር ጣቢያው ላይ ባለው የመዝገብዎ ዝርዝር እና የካርድ እይታዎች ላይ ይታያል። በአማራጭ፣ ከዋናው ይዘት የመጀመሪያዎቹ ጥቂት ዓረፍተ ነገሮች ጥቅም ላይ ይውላሉ።"
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "ምስሎች"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "እዚህ ከግራ ወደ ቀኝ በቅደም ተከተል ያለው <b>የመጀመሪያው ምስል</b>፣ በገጹ ላይ እና በዝርዝር እና በካርድ እይታዎች ድንክዬዎች ላይ የሚታየው የመዝገብዎ <b>ዋና ምስል ይሆናል</b>። ሁሉም ሌሎች ምስሎች ከዋናው ይዘት በታች ይታያሉ።"
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "ጀግኖች"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "ማንኛውም ገጽ/የይዘት አይነት ብዙ <b>የጀግና ባነሮች</b> ሊኖሩት ይችላል። ከአንድ በላይ ካሉ በየሰዓቱ ይሽከረከራሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "ዜና (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "ስብሰባ ወይም ክስተት (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "ፕሮጀክት (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "ሰነድ (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "ተዛማጅ ድር ጣቢያ (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "ሌላ ምንጭ (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "ምስል ወይም ቪዲዮ (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "ተደጋጋሚ ጥያቄዎች (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "ብሔራዊ መረጃ (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "የኤልኤምኦዎች ሁኔታ (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "የመስክ ሙከራ (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "ብሔራዊ ዋና ስትራቴጂ (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "አቅም ግንባታ (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "ማስታወቂያ (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "እውቂያ (50)"

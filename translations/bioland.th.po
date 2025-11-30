@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: th\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "การตั้งค่าทั่วไป"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "ประเทศ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "ป้อนรหัสประเทศหนึ่งรหัสต่อบรรทัด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "ภูมิภาค"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "เลือกภูมิภาคทางภูมิศาสตร์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "อเมริกาเหนือ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "อเมริกาใต้"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "ยุโรป"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "เอเชีย"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "แอฟริกา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "โอเชียเนีย"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "เป็นพื้นที่ความปลอดภัยทางชีวภาพหรือไม่?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "ระบุว่านี่เป็นอินสแตนซ์ของพื้นที่ความปลอดภัยทางชีวภาพหรือไม่"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "การตั้งค่าพฤติกรรมของฟิลด์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "เปิดใช้งานการควบคุมการมองเห็นฟิลด์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "แสดง/ซ่อนฟิลด์ตามการเลือกประเภทเนื้อหา ควบคุมการมองเห็น URL, วันที่ และฟิลด์ที่เผยแพร่"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "เปิดใช้งานฟิลด์เพิ่มเติม"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "เพิ่มฟิลด์เพิ่มเติมเฉพาะประเภทเนื้อหา (สถานะกิจกรรม, สถานะโครงการ ฯลฯ) ตามประเภทเนื้อหาของอรรถาภิธาน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "เปิดใช้งานสรุปอัตโนมัติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "สร้างสรุปจากเนื้อหาหลักโดยอัตโนมัติขณะที่ผู้ใช้พิมพ์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "เปิดใช้งานความคิดเห็นช่วยเหลือสำหรับฟิลด์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "แสดงความคิดเห็นช่วยเหลือตามบริบทสำหรับฟิลด์ตามประเภทเนื้อหา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "กฎการมองเห็นฟิลด์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "กำหนดกฎการมองเห็นฟิลด์แบบกำหนดเอง (รูปแบบ JSON)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "ค่าเริ่มต้นการแปล"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "กำหนดค่าการสร้างค่าเริ่มต้นการแปล (ตัวยึดตำแหน่งภาษา) สำหรับเอนทิตีที่แปลได้"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "สร้างค่าเริ่มต้นการแปลโดยอัตโนมัติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "เมื่อเปิดใช้งาน ค่าเริ่มต้นการแปล (ตัวยึดตำแหน่ง) จะถูกสร้างขึ้นสำหรับภาษาอื่น ๆ เมื่อสร้าง/อัปเดตเอนทิตี การแปลที่มีอยู่ซึ่งมีแหล่งที่มาที่เหมาะสมจะไม่ถูกเขียนทับ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "ใช้ภาษาที่มีอยู่ทั้งหมด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "เมื่อเปิดใช้งาน การแปลจะถูกสร้างขึ้นสำหรับทุกภาษาที่ติดตั้งบนไซต์ เมื่อปิดใช้งาน จะใช้เฉพาะภาษาเป้าหมายที่เลือกด้านล่างเท่านั้น"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "ภาษาเป้าหมายสำหรับค่าเริ่มต้นการแปล"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "เลือกภาษาที่จะสร้างค่าเริ่มต้นการแปล ใช้เฉพาะเมื่อ \"ใช้ภาษาที่มีอยู่ทั้งหมด\" ถูกปิดใช้งาน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "คัดลอกค่าฟิลด์ต้นฉบับ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "เมื่อเปิดใช้งาน ค่าฟิลด์ที่แปลได้จากภาษาต้นฉบบจะถูกคัดลอกไปยังการแปลใหม่"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "ประเภทเอนทิตี"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "เลือกประเภทเอนทิตีที่ควรสร้างค่าเริ่มต้นการแปล"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "การดำเนินการแบบกลุ่ม"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "ประมวลผลเอนทิตีที่มีอยู่เพื่อสร้างค่าเริ่มต้นการแปลที่ขาดหายไป"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "ประเภทเอนทิตีที่จะประมวลผล"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- เลือก -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "เลือกประเภทเอนทิตีเพื่อสร้างการแปลสำหรับเอนทิตีที่มีอยู่"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "สร้างค่าเริ่มต้นการแปลสำหรับเอนทิตีที่มีอยู่"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "โปรดเลือกประเภทเอนทิตีที่จะประมวลผล"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "อังกฤษ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "สเปน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "ฝรั่งเศส"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "เยอรมัน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "อิตาลี"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "โปรตุเกส"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "ดัตช์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "จีน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "ญี่ปุ่น"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "เกาหลี"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "อาหรับ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "รัสเซีย"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "ช่วยเหลือ"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "นี่จะเป็นเนื้อหาหลักของเนื้อหาไซต์ใหม่ของคุณ สรุปสามารถใช้เพื่อแสดงคำอธิบายสั้น ๆ ที่กระชับของเนื้อหาของคุณ นอกจากนี้ สรุปจะแสดงในมุมมองรายการและการ์ดของบันทึกของคุณบนเว็บไซต์ หรืออาจใช้ประโยคแรก ๆ จากเนื้อหาหลักแทน"
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "รูปภาพ"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>ภาพแรก</b>ตามลำดับจากซ้ายไปขวาที่นี่ <b>จะเป็นภาพหลัก</b>ของบันทึกของคุณที่แสดงบนหน้าและในภาพขนาดย่อในมุมมองรายการและการ์ด รูปภาพอื่น ๆ ทั้งหมดจะแสดงอยู่ใต้เนื้อหาหลัก"
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "ฮีโร่"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "หน้า/ประเภทเนื้อหาใด ๆ สามารถมี <b>แบนเนอร์ฮีโร่</b> ได้หลายอัน หากมีมากกว่าหนึ่งอัน แบนเนอร์จะหมุนเวียนทุกชั่วโมง"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "ข่าว (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "การประชุมหรือกิจกรรม (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "โครงการ (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "เอกสาร (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "เว็บไซต์ที่เกี่ยวข้อง (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "แหล่งข้อมูลอื่น (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "รูปภาพหรือวิดีโอ (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "คำถามที่พบบ่อย (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "ข้อมูลระดับชาติ (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "สถานะของ LMOs (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "การทดลองภาคสนาม (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "ยุทธศาสตร์การบูรณาการระดับชาติ (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "การสร้างขีดความสามารถ (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "ประกาศ (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "ติดต่อ (50)"

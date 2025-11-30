@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hy\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Ընդհանուր կարգավորումներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Երկրներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Մուտքագրեք մեկ երկրի կոդ յուրաքանչյուր տողում:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Տարածաշրջան"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Ընտրեք աշխարհագրական տարածաշրջանը:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Հյուսիսային Ամերիկա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Հարավային Ամերիկա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Եվրոպա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Ասիա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Աֆրիկա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Օվկիանիա"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Կենսանվտանգության հողամա՞ս է:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Նշում է, թե արդյոք սա Կենսանվտանգության հողամասի օրինակ է:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Դաշտի վարքագծի կարգավորումներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Միացնել դաշտի տեսանելիության վերահսկումը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Ցուցադրել/թաքցնել դաշտերը՝ հիմնվելով բովանդակության տեսակի ընտրության վրա: Վերահսկում է URL-ի, ամսաթվի և հրապարակված դաշտերի տեսանելիությունը:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Միացնել լրացուցիչ դաշտերը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Ավելացնել բովանդակության տեսակին հատուկ լրացուցիչ դաշտեր (իրադարձությունների կարգավիճակներ, նախագծերի կարգավիճակներ և այլն)՝ հիմնվելով թեզաուրուսի բովանդակության տեսակի վրա:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Միացնել ավտոմատ ամփոփումը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Օգտատիրոջ մուտքագրման ընթացքում ավտոմատ կերպով ստեղծել ամփոփում հիմնական բովանդակությունից:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Միացնել դաշտի օգնության մեկնաբանությունները"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Ցուցադրել համատեքստային օգնության մեկնաբանություններ դաշտերի համար՝ հիմնվելով բովանդակության տեսակի վրա:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Դաշտի տեսանելիության կանոններ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Սահմանել դաշտի տեսանելիության հատուկ կանոններ (JSON ձևաչափով):"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Թարգմանության լռելյայն արժեքներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Կարգավորել թարգմանության լռելյայն արժեքների (լեզվի տեղապահների) ստեղծումը թարգմանելի օբյեկտների համար:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Ավտոմատ կերպով ստեղծել թարգմանության լռելյայն արժեքներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Միացված լինելու դեպքում, թարգմանության լռելյայն արժեքները (տեղապահները) ստեղծվում են այլ լեզուների համար օբյեկտի ստեղծման/թարմացման ժամանակ: Համապատասխան աղբյուրով գոյություն ունեցող թարգմանությունները չեն վերագրվում:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Օգտագործել բոլոր հասանելի լեզուները"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Միացված լինելու դեպքում, թարգմանությունները կստեղծվեն կայքում տեղադրված բոլոր լեզուների համար: Անջատված լինելու դեպքում, կօգտագործվեն միայն ստորև ընտրված թիրախային լեզուները:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Թիրախային լեզուներ թարգմանության լռելյայն արժեքների համար"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Ընտրեք, թե որ լեզուների համար ստեղծել թարգմանության լռելյայն արժեքներ: Օգտագործվում է միայն այն դեպքում, երբ «Օգտագործել բոլոր հասանելի լեզուները» անջատված է:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Պատճենել աղբյուրի դաշտի արժեքները"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Միացված լինելու դեպքում, թարգմանելի դաշտերի արժեքները աղբյուր լեզվից կպատճենվեն նոր թարգմանությունների մեջ:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Օբյեկտի տեսակներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Ընտրեք, թե որ օբյեկտի տեսակների համար պետք է ստեղծվեն թարգմանության լռելյայն արժեքներ:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Խմբաքանակային գործողություններ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Մշակել գոյություն ունեցող օբյեկտները՝ բացակայող թարգմանության լռելյայն արժեքները ստեղծելու համար:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Մշակման ենթակա օբյեկտի տեսակ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Ընտրել -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Ընտրեք օբյեկտի տեսակ՝ գոյություն ունեցող օբյեկտների համար թարգմանություններ ստեղծելու համար:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Ստեղծել թարգմանության լռելյայն արժեքներ գոյություն ունեցող օբյեկտների համար"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Խնդրում ենք ընտրել մշակման ենթակա օբյեկտի տեսակ:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Անգլերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Իսպաներեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Ֆրանսերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Գերմաներեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Իտալերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Պորտուգալերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Հոլանդերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Չինարեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Ճապոներեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Կորեերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Արաբերեն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Ռուսերեն"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Օգնություն"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Սա կլինի ձեր նոր կայքի բովանդակության հիմնական մասը: Ամփոփումը կարող է օգտագործվել ձեր բովանդակության համառոտ նկարագրությունը ցուցադրելու համար: Ավելին, ամփոփումը կցուցադրվի ձեր գրառման ցուցակային և քարտային տեսքերում կայքում: Այլընտրանքորեն, կօգտագործվեն հիմնական բովանդակության առաջին մի քանի նախադասությունները:"
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Նկարներ"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "Այստեղ ձախից աջ հերթականությամբ <b>առաջին նկարը</b> <b>կլինի ձեր գրառման հիմնական նկարը</b>, որը կցուցադրվի էջում և մանրապատկերներում՝ ցուցակային և քարտային տեսքերում: Մնացած բոլոր նկարները կցուցադրվեն հիմնական բովանդակությունից ներքև:"
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Հերոսներ"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Ցանկացած էջ/բովանդակության տեսակ կարող է ունենալ բազմաթիվ <b>հերոսական բաներներ</b>: Եթե մեկից ավելի լինեն, դրանք կպտտվեն ժամային հիմունքներով:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Նորություններ (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Հանդիպում կամ իրադարձություն (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Նախագիծ (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Փաստաթուղթ (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Առնչվող կայք (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Այլ ռեսուրս (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Նկար կամ տեսանյութ (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "ՀՏՀ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Ազգային տեղեկատվություն (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Կենդանի ձևափոխված օրգանիզմների (ԿՁՕ) կարգավիճակը (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Դաշտային փորձարկում (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Ազգային ինտեգրման ռազմավարություն (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Կարողությունների զարգացում (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Հայտարարություն (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Կոնտակտ (50)"

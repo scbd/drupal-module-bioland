@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "تنظیمات عمومی"
+
+msgid "Field Functionality Settings"
+msgstr "تنظیمات عملکرد فیلد"
+
+msgid "Translation Defaults Settings"
+msgstr "تنظیمات پیش‌فرض ترجمه"
+
+msgid "Field Visibility"
+msgstr "نمایش فیلد"
+
+msgid "Enable field visibility functionality"
+msgstr "فعال‌سازی عملکرد نمایش فیلد"
+
+msgid "When enabled, fields can be shown/hidden based on content type selection."
+msgstr "وقتی فعال باشد، فیلدها می‌توانند بر اساس انتخاب نوع محتوا نمایش داده شوند یا مخفی شوند."
+
+msgid "Field Visibility Rules"
+msgstr "قوانین نمایش فیلد"
+
+msgid "JSON configuration for field visibility rules"
+msgstr "پیکربندی JSON برای قوانین نمایش فیلد"
+
+msgid "Additional Fields"
+msgstr "فیلدهای اضافی"
+
+msgid "Enable additional fields functionality"
+msgstr "فعال‌سازی عملکرد فیلدهای اضافی"
+
+msgid "When enabled, additional fields will be available based on content type."
+msgstr "وقتی فعال باشد، فیلدهای اضافی بر اساس نوع محتوا در دسترس خواهند بود."
+
+msgid "Auto Summary"
+msgstr "خلاصه خودکار"
+
+msgid "Enable auto summary functionality"
+msgstr "فعال‌سازی عملکرد خلاصه خودکار"
+
+msgid "When enabled, summary field will be automatically populated from the body field."
+msgstr "وقتی فعال باشد، فیلد خلاصه به طور خودکار از فیلد متن پر می‌شود."
+
+msgid "Auto Summary Character Limit"
+msgstr "محدودیت کاراکتر خلاصه خودکار"
+
+msgid "Maximum number of characters for auto-generated summaries (default: 600)"
+msgstr "حداکثر تعداد کاراکتر برای خلاصه‌های تولید شده خودکار (پیش‌فرض: 600)"
+
+msgid "Enable Automatic Translation Default Creation"
+msgstr "فعال‌سازی ایجاد خودکار پیش‌فرض ترجمه"
+
+msgid "When enabled, translation defaults will be created automatically when content is saved."
+msgstr "وقتی فعال باشد، پیش‌فرض‌های ترجمه به طور خودکار هنگام ذخیره محتوا ایجاد می‌شوند."
+
+msgid "Languages for Translation Defaults"
+msgstr "زبان‌ها برای پیش‌فرض‌های ترجمه"
+
+msgid "Select which languages should have translation defaults created. Leave empty to use all enabled languages."
+msgstr "انتخاب کنید کدام زبان‌ها باید پیش‌فرض‌های ترجمه داشته باشند. برای استفاده از همه زبان‌های فعال خالی بگذارید."
+
+msgid "Copy Source Values to Translations"
+msgstr "کپی مقادیر منبع به ترجمه‌ها"
+
+msgid "When enabled, field values from the source content will be copied to the translation defaults."
+msgstr "وقتی فعال باشد، مقادیر فیلد از محتوای منبع به پیش‌فرض‌های ترجمه کپی می‌شوند."
+
+msgid "Create Translation Defaults for Existing Content"
+msgstr "ایجاد پیش‌فرض‌های ترجمه برای محتوای موجود"
+
+msgid "Process existing content to create missing translation defaults. This operation will run in batch mode."
+msgstr "پردازش محتوای موجود برای ایجاد پیش‌فرض‌های ترجمه گمشده. این عملیات در حالت دسته‌ای اجرا می‌شود."
+
+msgid "Content Types"
+msgstr "انواع محتوا"
+
+msgid "Select which content types should be processed. Leave empty to process all content types."
+msgstr "انتخاب کنید کدام انواع محتوا باید پردازش شوند. برای پردازش همه انواع محتوا خالی بگذارید."
+
+msgid "Process Existing Content"
+msgstr "پردازش محتوای موجود"
+
+msgid "Start batch processing to create translation defaults for existing content."
+msgstr "شروع پردازش دسته‌ای برای ایجاد پیش‌فرض‌های ترجمه برای محتوای موجود."
+
+msgid "Save configuration"
+msgstr "ذخیره پیکربندی"
+
+msgid "The configuration options have been saved."
+msgstr "گزینه‌های پیکربندی ذخیره شده‌اند."
+
+msgid "Translation defaults batch processing has been queued."
+msgstr "پردازش دسته‌ای پیش‌فرض‌های ترجمه در صف قرار گرفته است."
+
+msgid "Creating translation defaults for @entity_type @id"
+msgstr "ایجاد پیش‌فرض‌های ترجمه برای @entity_type @id"
+
+msgid "Created @count translation defaults."
+msgstr "@count پیش‌فرض ترجمه ایجاد شد."
+
+msgid "Finished processing translation defaults. Created @count translations."
+msgstr "پردازش پیش‌فرض‌های ترجمه به پایان رسید. @count ترجمه ایجاد شد."

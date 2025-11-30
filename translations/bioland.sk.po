@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Všeobecné nastavenia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Krajiny"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Zadajte jeden kód krajiny na riadok."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Región"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Vyberte geografický región."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Severná Amerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Južná Amerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Európa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Ázia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceánia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Je Biosafety Land?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Označuje, či ide o inštanciu Biosafety Land."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Nastavenia správania polí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Povoliť kontrolu viditeľnosti polí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Zobraziť/skryť polia na základe výberu typu obsahu. Ovláda viditeľnosť polí URL, dátumu a zverejnenia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Povoliť ďalšie polia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Pridať ďalšie polia špecifické pre typ obsahu (stavy udalostí, stavy projektov atď.) na základe typu obsahu tezauru."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Povoliť automatické zhrnutie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Automaticky generovať zhrnutie z obsahu tela počas písania používateľom."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Povoliť pomocné komentáre k poliam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Zobraziť kontextové pomocné komentáre k poliam na základe typu obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Pravidlá viditeľnosti polí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Definovať vlastné pravidlá viditeľnosti polí (formát JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Predvolené hodnoty prekladu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Konfigurovať vytváranie predvolených hodnôt prekladu (jazykových zástupných symbolov) pre preložiteľné entity."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Automaticky vytvárať predvolené hodnoty prekladu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Ak je povolené, pri vytváraní/aktualizácii entity sa vytvoria predvolené hodnoty prekladu (zástupné symboly) pre ostatné jazyky. Existujúce preklady so správnym zdrojom sa neprepíšu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Použiť všetky dostupné jazyky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Ak je povolené, preklady sa vytvoria pre všetky jazyky nainštalované na stránke. Ak je zakázané, použijú sa iba nižšie vybrané cieľové jazyky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Cieľové jazyky pre predvolené hodnoty prekladu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Vyberte, pre ktoré jazyky sa majú vytvoriť predvolené hodnoty prekladu. Používa sa iba vtedy, ak je zakázané „Použiť všetky dostupné jazyky“."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Kopírovať hodnoty zdrojových polí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Ak je povolené, hodnoty preložiteľných polí zo zdrojového jazyka sa skopírujú do nových prekladov."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Typy entít"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Vyberte, pre ktoré typy entít sa majú vytvoriť predvolené hodnoty prekladu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Hromadné operácie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Spracovať existujúce entity na vytvorenie chýbajúcich predvolených hodnôt prekladu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Typ entity na spracovanie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Vybrať -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Vyberte typ entity na vytvorenie prekladov pre existujúce entity."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Vytvoriť predvolené hodnoty prekladu pre existujúce entity"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Vyberte typ entity na spracovanie."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Angličtina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Španielčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Francúzština"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Nemčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Taliančina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugalčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holandčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Čínština"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japončina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Kórejčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabčina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Ruština"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Pomoc"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Toto bude hlavný obsah vášho nového obsahu stránky. Zhrnutie sa môže použiť na zobrazenie stručného popisu vášho obsahu. Ďalej sa zhrnutie zobrazí v zoznamoch a kartových zobrazeniach vášho záznamu na webovej stránke. Alternatívne sa použije prvých pár viet z hlavného obsahu."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Obrázky"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Prvý obrázok</b> v poradí zľava doprava tu <b>bude hlavným obrázkom</b> vášho záznamu zobrazeného na stránke a v miniatúrach v zoznamoch a kartových zobrazeniach. Všetky ostatné obrázky sa zobrazia pod hlavným obsahom."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Hlavné bannery"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Akákoľvek stránka/typ obsahu môže mať viacero <b>hlavných bannerov</b>. Ak je ich viac, budú sa striedať na hodinovej báze."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Novinky (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Stretnutie alebo udalosť (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Projekt (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dokument (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Súvisiaca webová stránka (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Iný zdroj (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Obrázok alebo video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Často kladené otázky (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Národné informácie (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Stav LMO (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Poľný pokus (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Národná stratégia presadzovania (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Budovanie kapacít (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Oznámenie (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Kontakt (50)"

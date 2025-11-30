@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lv\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Vispārīgie iestatījumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Valstis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Ievadiet vienu valsts kodu katrā rindā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Reģions"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Atlasiet ģeogrāfisko reģionu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Ziemeļamerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Dienvidamerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Eiropa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Āzija"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Āfrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Okeānija"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Vai ir biodrošības zeme?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Norāda, vai šī ir biodrošības zemes instance."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Lauka uzvedības iestatījumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Iespējot lauka redzamības kontroli"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Rādīt/slēpt laukus, pamatojoties uz satura veida izvēli. Kontrolē URL, datuma un publicēto lauku redzamību."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Iespējot papildu laukus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Pievienot satura veidam specifiskus papildu laukus (pasākumu statusi, projektu statusi utt.), pamatojoties uz tēzaura satura veidu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Iespējot automātisko kopsavilkumu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Automātiski ģenerēt kopsavilkumu no pamatteksta satura, lietotājam rakstot."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Iespējot lauka palīdzības komentārus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Rādīt kontekstuālus palīdzības komentārus laukiem, pamatojoties uz satura veidu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Lauka redzamības noteikumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Definēt pielāgotus lauka redzamības noteikumus (JSON formātā)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Tulkošanas noklusējumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Konfigurēt tulkošanas noklusējumu (valodu vietturu) izveidi tulkojamiem entītijām."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Automātiski izveidot tulkošanas noklusējumus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Ja iespējots, tulkošanas noklusējumi (vietturi) tiek izveidoti citām valodām, veidojot/atjauninot entītiju. Esošie tulkojumi ar pareizu avotu netiek pārrakstīti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Izmantot visas pieejamās valodas"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Ja iespējots, tulkojumi tiks izveidoti visām vietnē instalētajām valodām. Ja atspējots, tiks izmantotas tikai tālāk atlasītās mērķa valodas."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Mērķa valodas tulkošanas noklusējumiem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Atlasiet, kurām valodām izveidot tulkošanas noklusējumus. Izmanto tikai tad, ja ir atspējota opcija \"Izmantot visas pieejamās valodas\"."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Kopēt avota lauka vērtības"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Ja iespējots, tulkojamo lauku vērtības no avota valodas tiks kopētas jaunos tulkojumos."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Entītiju veidi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Atlasiet, kuriem entītiju veidiem jāizveido tulkošanas noklusējumi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Pakešdarbības"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Apstrādāt esošās entītijas, lai izveidotu trūkstošos tulkošanas noklusējumus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Apstrādājamais entītijas veids"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Atlasīt -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Atlasiet entītijas veidu, lai izveidotu tulkojumus esošajām entītijām."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Izveidot tulkošanas noklusējumus esošajām entītijām"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Lūdzu, atlasiet apstrādājamo entītijas veidu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Angļu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Spāņu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Franču"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Vācu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Itāļu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugāļu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holandiešu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Ķīniešu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japāņu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Korejiešu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arābu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Krievu"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Palīdzība"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Šis būs jūsu jaunā vietnes satura galvenais saturs.  Kopsavilkumu var izmantot, lai parādītu īsu, kodolīgu jūsu satura aprakstu.  Turklāt kopsavilkums  tiks parādīts jūsu ieraksta saraksta un kartīšu skatos vietnē.  Alternatīvi tiks izmantoti pirmie daži teikumi no galvenā satura."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Attēli"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Pirmais attēls</b> šeit no kreisās uz labo, <b>būs jūsu ieraksta galvenais attēls</b>, kas tiks parādīts lapā un sīktēlos saraksta un kartīšu skatos.  Visi pārējie attēli tiks parādīti zem galvenā satura."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Galvenie baneri"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Jebkurai lapai/satura veidam var būt vairāki <b>galvenie baneri</b>.  Ja ir vairāk nekā viens, tie tiks rotēti reizi stundā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Ziņas (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Sanāksme vai pasākums (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Projekts (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dokuments (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Saistītā vietne (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Cits resurss (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Attēls vai video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "BUJ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Nacionālā informācija (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "LMO statuss (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Lauka izmēģinājums (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Nacionālā integrācijas stratēģija (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Spēju veidošana (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Paziņojums (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Kontakts (50)"

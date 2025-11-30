@@ -1,0 +1,468 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Основни настройки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Държави"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Въведете по един код на държава на ред."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Регион"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Изберете географски регион."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Северна Америка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Южна Америка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Европа"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Азия"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Африка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Океания"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Биобезопасна зона ли е?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Показва дали това е инстанция на Биобезопасна зона."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Настройки за поведение на полетата"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Активиране на контрола за видимост на полетата"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Показване/скриване на полета въз основа на избора на тип съдържание. Контролира видимостта на полетата за URL, дата и публикуване."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Активиране на допълнителни полета"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Добавяне на специфични за типа съдържание допълнителни полета (статуси на събития, статуси на проекти и др.) въз основа на типа съдържание от тезауруса."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Активиране на автоматично резюме"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Автоматично генериране на резюме от съдържанието на основния текст, докато потребителят пише."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Активиране на помощни коментари за полетата"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Показване на контекстуални помощни коментари за полета въз основа на типа съдържание."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Правила за видимост на полетата"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Дефиниране на персонализирани правила за видимост на полетата (JSON формат)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Преводи по подразбиране"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Конфигуриране на създаването на преводи по подразбиране (езикови контейнери) за преводими единици."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Автоматично създаване на преводи по подразбиране"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Когато е активирано, преводи по подразбиране (контейнери) се създават за други езици при създаване/актуализиране на единица. Съществуващи преводи с правилен източник не се презаписват."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Използване на всички налични езици"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Когато е активирано, ще се създават преводи за всички инсталирани на сайта езици. Когато е деактивирано, ще се използват само избраните по-долу целеви езици."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Целеви езици за преводи по подразбиране"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Изберете за кои езици да се създават преводи по подразбиране. Използва се само когато \"Използване на всички налични езици\" е деактивирано."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Копиране на стойностите на полетата от източника"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Когато е активирано, стойностите на преводимите полета от изходния език ще бъдат копирани в новите преводи."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Типове единици"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Изберете за кои типове единици трябва да се създават преводи по подразбиране."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Пакетни операции"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Обработка на съществуващи единици за създаване на липсващи преводи по подразбиране."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Тип единица за обработка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Изберете -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Изберете тип единица, за да създадете преводи за съществуващи единици."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Създаване на преводи по подразбиране за съществуващи единици"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Моля, изберете тип единица за обработка."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Английски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Испански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Френски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Немски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Италиански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Португалски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Холандски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Китайски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Японски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Корейски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Арабски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Руски"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Помощ"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Това ще бъде основното съдържание на новото ви съдържание на сайта. Резюмето може да се използва за показване на кратко и сбито описание на вашето съдържание. Освен това, резюмето ще се показва в изгледи на списък и карти на вашия запис на уебсайта. Като алтернатива ще се използват първите няколко изречения от основното съдържание."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Изображения"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Първото изображение</b> по ред отляво надясно тук, <b>ще бъде основното изображение</b> на вашия запис, показвано на страницата и в миниатюри в изгледи на списък и карти. Всички други изображения ще бъдат показани под основното съдържание."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Хироу банери"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Всяка страница/тип съдържание може да има множество <b>хироу банери</b>. Ако има повече от един, те ще се сменят на ротационен принцип на всеки час."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Новини (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Среща или събитие (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Проект (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Документ (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Свързан уебсайт (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Друг ресурс (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Изображение или видео (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "ЧЗВ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Национална информация (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Статус на ЖМО (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Полеви опит (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Национална стратегия за интегриране (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Изграждане на капацитет (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Съобщение (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Контакт (50)"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Презаписване на реда"
+
+#: bioland.module
+msgid "Save"
+msgstr "Запазване"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "Нямате разрешение да създавате елементи от менюто под други елементи от менюто. За вашата роля са разрешени само елементи от менюто на най-високо ниво."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Име на сайта"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "Слоган"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "Как се използва това зависи от темата на вашия сайт."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Имейл адрес"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "Адресът <em>От</em> в автоматизирани имейли, изпращани по време на регистрация и заявки за нова парола, и други известия. (Използвайте адрес, завършващ с домейна на вашия сайт, за да предотвратите маркирането на този имейл като спам.)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Превод на името на сайта"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Превод на слогана"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Биобезопасна зона"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Биоленд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "Настройки на @branding"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Контрол на видимостта на полетата"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Показване/скриване на полета въз основа на избора на тип съдържание. Конфигурирайте кои полета са видими за всеки тип съдържание по-долу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "Поле за URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Показване на полето за URL за тези типове съдържание:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Поле за публикуване"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Показване на полето за публикуване за тези типове съдържание:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Поле за период от време (Начална и крайна дата)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Показване на полетата за период от време (Начална и крайна дата) за тези типове съдържание:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Контрол на допълнителните полета"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Картографиране на допълнителни полета"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "Следните типове съдържание ще имат на разположение тези допълнителни полета:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Статуси на събития"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Статуси на проекти, Географски обхвати"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Министерство (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Типове организации, Типове управление"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Екосистема (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Типове екосистеми"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Типове документи"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "Тези полета се добавят динамично въз основа на избрания тип съдържание и се захранват от компонент на Vue.js."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Menu Depth Restriction"
+msgstr "Активиране на ограничението за дълбочина на менюто"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Ограничаване на потребители, които не са администратори, да създават елементи от менюто на второ ниво и по-дълбоко. Само потребители с разрешение \"administer menu\" могат да създават вложени елементи от менюто."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Правила за видимост на полетата (Разширени)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Дефинирайте персонализирани правила за видимост на полетата в JSON формат. Оставете празно, за да използвате горните настройки."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Required)"
+msgstr "(Задължително)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Задължително:</strong> Изберете за кои типове единици трябва да се създават преводи по подразбиране. Трябва да изберете поне един тип единица, за да работят автоматичните преводи по подразбиране. Често срещан избор: <em>Съдържание (node)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "Трябва да изберете поне един тип единица, за да работят автоматичните преводи по подразбиране. Моля, изберете един или повече типове единици или деактивирайте \"Автоматично създаване на преводи по подразбиране\"."

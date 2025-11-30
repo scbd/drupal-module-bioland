@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mr\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "सामान्य सेटिंग्ज"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "देश"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "प्रति ओळ एक देश कोड प्रविष्ट करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "प्रदेश"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "भौगोलिक प्रदेश निवडा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "उत्तर अमेरिका"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "दक्षिण अमेरिका"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "युरोप"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "आशिया"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "आफ्रिका"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "ओशनिया"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "बायोसेफ्टी लँड आहे का?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "हे बायोसेफ्टी लँडचे उदाहरण आहे की नाही हे सूचित करते."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "फील्ड वर्तन सेटिंग्ज"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "फील्ड दृश्यमानता नियंत्रण सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "सामग्री प्रकार निवडीवर आधारित फील्ड दर्शवा/लपवा. URL, तारीख आणि प्रकाशित फील्ड दृश्यमानता नियंत्रित करते."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "अतिरिक्त फील्ड सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "थिसॉरस सामग्री प्रकारावर आधारित सामग्री-प्रकार विशिष्ट अतिरिक्त फील्ड (इव्हेंट स्थिती, प्रकल्प स्थिती इ.) जोडा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "स्वयं-सारांश सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "वापरकर्ता टाइप करत असताना मुख्य सामग्रीमधून आपोआप सारांश तयार करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "फील्ड मदत टिप्पण्या सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "सामग्री प्रकारावर आधारित फील्डसाठी संदर्भित मदत टिप्पण्या प्रदर्शित करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "फील्ड दृश्यमानता नियम"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "सानुकूल फील्ड दृश्यमानता नियम परिभाषित करा (JSON स्वरूप)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "अनुवाद डीफॉल्ट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "अनुवाद करण्यायोग्य घटकांसाठी अनुवाद डीफॉल्ट (भाषा प्लेसहोल्डर) तयार करणे कॉन्फिगर करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "स्वयंचलितपणे अनुवाद डीफॉल्ट तयार करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "सक्षम केल्यावर, घटक तयार/अद्यतनित करताना इतर भाषांसाठी अनुवाद डीफॉल्ट (प्लेसहोल्डर) तयार केले जातात. योग्य स्त्रोतासह विद्यमान अनुवाद ओव्हरराइट केले जात नाहीत."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "सर्व उपलब्ध भाषा वापरा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "सक्षम केल्यावर, साइटवर स्थापित केलेल्या सर्व भाषांसाठी अनुवाद तयार केले जातील. अक्षम केल्यावर, खालील निवडलेल्या लक्ष्य भाषाच वापरल्या जातील."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "अनुवाद डीफॉल्टसाठी लक्ष्य भाषा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "कोणत्या भाषांसाठी अनुवाद डीफॉल्ट तयार करायचे ते निवडा. फक्त \"सर्व उपलब्ध भाषा वापरा\" अक्षम असताना वापरले जाते."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "स्त्रोत फील्ड मूल्ये कॉपी करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "सक्षम केल्यावर, स्त्रोत भाषेतील अनुवाद करण्यायोग्य फील्ड मूल्ये नवीन अनुवादांमध्ये कॉपी केली जातील."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "घटक प्रकार"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "कोणत्या घटक प्रकारांसाठी अनुवाद डीफॉल्ट तयार केले पाहिजेत ते निवडा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "बॅच ऑपरेशन्स"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "गहाळ अनुवाद डीफॉल्ट तयार करण्यासाठी विद्यमान घटकांवर प्रक्रिया करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "प्रक्रिया करण्यासाठी घटक प्रकार"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- निवडा -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "विद्यमान घटकांसाठी अनुवाद तयार करण्यासाठी एक घटक प्रकार निवडा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "विद्यमान घटकांसाठी अनुवाद डीफॉल्ट तयार करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "कृपया प्रक्रिया करण्यासाठी एक घटक प्रकार निवडा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "इंग्रजी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "स्पॅनिश"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "फ्रेंच"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "जर्मन"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "इटालियन"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "पोर्तुगीज"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "डच"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "चीनी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "जपानी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "कोरियन"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "अरबी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "रशियन"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "मदत"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "ही तुमच्या नवीन साइट सामग्रीची मुख्य सामग्री असेल. सारांश तुमच्या सामग्रीचे संक्षिप्त वर्णन प्रदर्शित करण्यासाठी वापरला जाऊ शकतो. पुढे, सारांश वेबसाइटवर तुमच्या रेकॉर्डच्या सूची आणि कार्ड दृश्यांमध्ये प्रदर्शित केला जाईल. वैकल्पिकरित्या, मुख्य सामग्रीमधील पहिली काही वाक्ये वापरली जातील."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "प्रतिमा"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "येथे डावीकडून उजवीकडे क्रमाने <b>पहिली प्रतिमा</b>, पृष्ठावर आणि सूची आणि कार्ड दृश्यांमधील लघुप्रतिमांमध्ये प्रदर्शित होणारी तुमच्या रेकॉर्डची <b>मुख्य प्रतिमा असेल</b>. इतर सर्व प्रतिमा मुख्य सामग्रीच्या खाली प्रदर्शित केल्या जातील."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "हीरोज"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "कोणत्याही पृष्ठा/सामग्री प्रकारात एकापेक्षा जास्त <b>हीरो बॅनर</b> असू शकतात. एकापेक्षा जास्त असल्यास ते तासाभराने फिरवले जातील."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "बातम्या (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "बैठक किंवा कार्यक्रम (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "प्रकल्प (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "दस्तऐवज (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "संबंधित वेबसाइट (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "इतर संसाधन (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "प्रतिमा किंवा व्हिडिओ (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "FAQ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "राष्ट्रीय माहिती (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "LMOs ची स्थिती (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "फील्ड ट्रायल (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "राष्ट्रीय मुख्य प्रवाहाची रणनीती (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "क्षमता-बांधणी (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "घोषणा (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "संपर्क (50)"

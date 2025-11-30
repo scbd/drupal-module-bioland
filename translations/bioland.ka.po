@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "ზოგადი პარამეტრები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "ქვეყნები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "შეიყვანეთ თითო ქვეყნის კოდი თითო ხაზზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "რეგიონი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "აირჩიეთ გეოგრაფიული რეგიონი."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "ჩრდილოეთ ამერიკა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "სამხრეთ ამერიკა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "ევროპა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "აზია"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "აფრიკა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "ოკეანეთი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "არის ბიოუსაფრთხოების მიწა?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "მიუთითებს, არის თუ არა ეს ბიოუსაფრთხოების მიწის ინსტანცია."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "ველის ქცევის პარამეტრები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "ველის ხილვადობის კონტროლის ჩართვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "ველების ჩვენება/დამალვა კონტენტის ტიპის მიხედვით. აკონტროლებს URL-ის, თარიღისა და გამოქვეყნებული ველების ხილვადობას."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "დამატებითი ველების ჩართვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "დაამატეთ კონტენტის ტიპის სპეციფიკური დამატებითი ველები (ღონისძიების სტატუსები, პროექტის სტატუსები და ა.შ.) თეზაურუსის კონტენტის ტიპის მიხედვით."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "ავტომატური შეჯამების ჩართვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "ავტომატურად შექმენით შეჯამება ძირითადი ტექსტიდან მომხმარებლის აკრეფისას."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "ველის დახმარების კომენტარების ჩართვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "აჩვენეთ კონტექსტური დახმარების კომენტარები ველებისთვის კონტენტის ტიპის მიხედვით."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "ველის ხილვადობის წესები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "განსაზღვრეთ ველის ხილვადობის მორგებული წესები (JSON ფორმატი)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "თარგმანის ნაგულისხმევი პარამეტრები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "თარგმნადი ერთეულებისთვის თარგმანის ნაგულისხმევი პარამეტრების (ენის ჩამნაცვლებლების) შექმნის კონფიგურაცია."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "თარგმანის ნაგულისხმევი პარამეტრების ავტომატურად შექმნა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "ჩართვისას, თარგმანის ნაგულისხმევი პარამეტრები (ჩამნაცვლებლები) იქმნება სხვა ენებისთვის ერთეულის შექმნის/განახლებისას. არსებული თარგმანები სათანადო წყაროთი არ გადაიწერება."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "ყველა ხელმისაწვდომი ენის გამოყენება"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "ჩართვისას, თარგმანები შეიქმნება საიტზე დაინსტალირებული ყველა ენისთვის. გამორთვისას, გამოყენებული იქნება მხოლოდ ქვემოთ არჩეული სამიზნე ენები."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "სამიზნე ენები თარგმანის ნაგულისხმევი პარამეტრებისთვის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "აირჩიეთ, რომელი ენებისთვის შეიქმნას თარგმანის ნაგულისხმევი პარამეტრები. გამოიყენება მხოლოდ მაშინ, როდესაც \"ყველა ხელმისაწვდომი ენის გამოყენება\" გამორთულია."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "წყაროს ველის მნიშვნელობების კოპირება"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "ჩართვისას, თარგმნადი ველების მნიშვნელობები წყაროს ენიდან დაკოპირდება ახალ თარგმანებში."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "ერთეულის ტიპები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "აირჩიეთ, რომელი ერთეულის ტიპებისთვის უნდა შეიქმნას თარგმანის ნაგულისხმევი პარამეტრები."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "ჯგუფური ოპერაციები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "დაამუშავეთ არსებული ერთეულები გამოტოვებული თარგმანის ნაგულისხმევი პარამეტრების შესაქმნელად."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "დასამუშავებელი ერთეულის ტიპი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- აირჩიეთ -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "აირჩიეთ ერთეულის ტიპი არსებული ერთეულებისთვის თარგმანების შესაქმნელად."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "თარგმანის ნაგულისხმევი პარამეტრების შექმნა არსებული ერთეულებისთვის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "გთხოვთ, აირჩიოთ დასამუშავებელი ერთეულის ტიპი."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "ინგლისური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "ესპანური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "ფრანგული"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "გერმანული"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "იტალიური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "პორტუგალიური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "ჰოლანდიური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "ჩინური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "იაპონური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "კორეული"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "არაბული"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "რუსული"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "დახმარება"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "ეს იქნება თქვენი ახალი საიტის კონტენტის მთავარი შინაარსი. შეჯამება შეიძლება გამოყენებულ იქნას თქვენი კონტენტის მოკლე, ლაკონური აღწერილობის საჩვენებლად. გარდა ამისა, შეჯამება გამოჩნდება თქვენი ჩანაწერის სიისა და ბარათის ხედებში ვებსაიტზე. ალტერნატიულად, გამოყენებული იქნება პირველი რამდენიმე წინადადება მთავარი შინაარსიდან."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "სურათები"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>პირველი სურათი</b> აქ მარცხნიდან მარჯვნივ თანმიმდევრობით, <b>იქნება თქვენი ჩანაწერის მთავარი სურათი</b>, რომელიც გამოჩნდება გვერდზე და მინიატურებში სიისა და ბარათის ხედებში. ყველა სხვა სურათი გამოჩნდება მთავარი შინაარსის ქვემოთ."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "ჰედერის სურათები"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "ნებისმიერ გვერდს/კონტენტის ტიპს შეიძლება ჰქონდეს მრავალი <b>ჰედერის ბანერი</b>. თუ ერთზე მეტია, ისინი საათობრივად შეიცვლება."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "სიახლეები (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "შეხვედრა ან ღონისძიება (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "პროექტი (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "დოკუმენტი (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "დაკავშირებული ვებსაიტი (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "სხვა რესურსი (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "სურათი ან ვიდეო (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "ხშირად დასმული კითხვები (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "ეროვნული ინფორმაცია (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "LMO-ების სტატუსი (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "საველე ცდა (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "ეროვნული ინტეგრაციის სტრატეგია (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "შესაძლებლობების განვითარება (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "განცხადება (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "კონტაქტი (50)"

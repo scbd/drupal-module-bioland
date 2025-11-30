@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: so\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Dejinta Guud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Wadamada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Geli hal kood wadan halkii sadar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Gobolka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Dooro gobolka juqraafi ahaan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Waqooyiga Ameerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Koonfurta Ameerika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Yurub"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Aasiya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Ooshiyaaniya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Ma Dhul Badbaadada Bayoolaji ahbaa?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Waxay tilmaamaysaa in kani yahay tusaale Dhul Badbaadada Bayoolaji ah."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Dejinta Dhaqanka Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Daar Kontoroolka Muuqashada Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Tus/qari goobaha ku salaysan doorashada nooca nuxurka. Waxay kontarooshaa URL, taariikhda, iyo muuqashada goobaha la daabacay."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Daar Goobo Dheeraad ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Ku dar goobo dheeraad ah oo u gaar ah nooca nuxurka (heerarka dhacdooyinka, heerarka mashaariicda, iwm.) oo ku salaysan nooca nuxurka thesaurus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Daar Soo Koobid Toos ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Si toos ah uga soo saar soo koobid nuxurka jidhka marka isticmaaluhu wax qorayo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Daar Faallooyinka Caawinta Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Soo bandhig faallooyin caawimaad ah oo macnaha guud ku saleysan goobaha ku xiran nooca nuxurka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Xeerarka Muuqashada Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Qeex xeerar gaar ah oo muuqashada goobta ah (qaabka JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Dejinta Turjumaada ee Asalka ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Habee abuurista dejinta turjumaada ee asalka ah (boos-hayayaasha luqadda) ee cutubyada la turjumi karo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Si toos ah u abuur dejinta turjumaada ee asalka ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Marka la daaro, dejinta turjumaada ee asalka ah (boos-hayayaasha) ayaa loo abuuraa luqadaha kale marka la abuurayo/cusboonaysiinayo cutubka. Turjumaadaha jira ee leh isha saxda ah lama dul qorayo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Isticmaal dhammaan luqadaha la heli karo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Marka la daaro, turjumaado ayaa loo abuuri doonaa dhammaan luqadaha ku rakiban bogga. Marka la damiyo, kaliya luqadaha bartilmaameedka ah ee hoos ku xusan ayaa la isticmaali doonaa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Luqadaha bartilmaameedka u ah dejinta turjumaada ee asalka ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Dooro luqadaha loo abuurayo dejinta turjumaada ee asalka ah. Waxaa la isticmaalaa kaliya marka \"Isticmaal dhammaan luqadaha la heli karo\" la damiyo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Nuqul ka samee qiyamka goobta isha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Marka la daaro, qiyamka goobta la turjumi karo ee luqadda isha ayaa loo guurin doonaa turjumaadaha cusub."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Noocyada cutubyada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Dooro noocyada cutubyada ee loo abuurayo dejinta turjumaada ee asalka ah."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Hawlgallada Dufcadda ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Ka shaqee cutubyada jira si aad u abuurto dejinta turjumaada ee asalka ah ee maqan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Nooca cutubka ee la shaqeynayo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Dooro -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Dooro nooc cutub si aad turjumaado ugu abuurto cutubyada jira."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "U abuur dejinta turjumaada ee asalka ah cutubyada jira"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Fadlan dooro nooc cutub si aad uga shaqeyso."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Ingiriis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Isbaanish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Faransiis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Jarmal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Talyaani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Bortaqiis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Hollandays"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Shiineys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Jabbaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Kuuriyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Carabi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Ruush"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Caawin"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Kani wuxuu noqon doonaa nuxurka ugu muhiimsan ee nuxurka boggaaga cusub. Soo koobidda waxaa loo isticmaali karaa in lagu soo bandhigo sharraxaad kooban oo qeexan oo ku saabsan nuxurkaaga. Intaa waxaa dheer, soo koobidda waxaa lagu soo bandhigi doonaa liiska iyo aragtiyaha kaararka ee diiwaankaaga ee bogga internetka. Haddii kale, dhowrka jumladood ee ugu horreeya ee nuxurka ugu muhiimsan ayaa la isticmaali doonaa."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Sawirro"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Sawirka ugu horreeya</b> ee sida ay u kala horreeyaan bidix ilaa midig halkan, <b>wuxuu noqon doonaa sawirka ugu muhiimsan</b> ee diiwaankaaga ee lagu soo bandhigay bogga iyo sawirrada yaryar ee liiska iyo aragtiyaha kaararka. Dhammaan sawirrada kale waxaa lagu soo bandhigi doonaa hoosta nuxurka ugu muhiimsan."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Halyeeyo"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Bog kasta/nooc kasta oo nuxur ah wuxuu yeelan karaa <b>boorar halyeeyo</b> oo badan. Haddii ay jiraan wax ka badan hal, waxaa la isku beddeli doonaa saacad kasta."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Wararka (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Kulan ama Dhacdo (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Mashruuc (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dukumenti (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Websaydh La Xidhiidha (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Kheyraad Kale (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Sawir ama Fiidiyoow (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Su'aalaha Inta Badan La Isweydiiyo (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Macluumaadka Qaranka (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Heerka LMO-yada (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Tijaabada Goobta (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Istaraatiijiyadda Guud ee Qaranka (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Dhisidda Awoodda (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Ogeysiis (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "La Xidhiidh (50)"

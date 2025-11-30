@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Generelle indstillinger"
+
+msgid "Bioland Settings"
+msgstr "Bioland-indstillinger"
+
+msgid "Configure field visibility rules, additional fields, and other Bioland module settings."
+msgstr "Konfigurer feltsynlighedsregler, yderligere felter og andre Bioland-modulindstillinger."
+
+msgid "Enable Field Visibility"
+msgstr "Aktivér feltsynlighed"
+
+msgid "Enable field visibility control based on content type."
+msgstr "Aktivér feltsynlighedskontrol baseret på indholdstype."
+
+msgid "Field Visibility Rules"
+msgstr "Feltsynlighedsregler"
+
+msgid "Enter field visibility rules in JSON format."
+msgstr "Indtast feltsynlighedsregler i JSON-format."
+
+msgid "Enable Additional Fields"
+msgstr "Aktivér yderligere felter"
+
+msgid "Enable additional fields functionality."
+msgstr "Aktivér funktionalitet for yderligere felter."
+
+msgid "Enable Auto Summary"
+msgstr "Aktivér automatisk resumé"
+
+msgid "Automatically generate summary from body field."
+msgstr "Generer automatisk resumé fra brødtekstfeltet."
+
+msgid "Enable Help Comments"
+msgstr "Aktivér hjælpekommentarer"
+
+msgid "Show help comments on content forms."
+msgstr "Vis hjælpekommentarer på indholdsformularer."
+
+msgid "Translation Settings"
+msgstr "Oversættelsesindstillinger"
+
+msgid "Auto-create Translation Defaults"
+msgstr "Opret automatisk oversættelsesstandarder"
+
+msgid "Automatically create translation defaults when content is saved."
+msgstr "Opret automatisk oversættelsesstandarder, når indhold gemmes."
+
+msgid "Use All Languages"
+msgstr "Brug alle sprog"
+
+msgid "Create translations for all enabled languages. If disabled, only selected languages will be used."
+msgstr "Opret oversættelser til alle aktiverede sprog. Hvis deaktiveret, bruges kun valgte sprog."
+
+msgid "Selected Languages"
+msgstr "Valgte sprog"
+
+msgid "Select which languages to create translations for (only used when 'Use All Languages' is disabled)."
+msgstr "Vælg hvilke sprog der skal oprettes oversættelser til (bruges kun, når 'Brug alle sprog' er deaktiveret)."
+
+msgid "Copy Source Values"
+msgstr "Kopiér kildeværdier"
+
+msgid "Copy field values from source to translations. If disabled, translations will be created empty."
+msgstr "Kopiér feltværdier fra kilde til oversættelser. Hvis deaktiveret, oprettes oversættelser tomme."
+
+msgid "Batch Translation Processing"
+msgstr "Batchoversættelsesbehandling"
+
+msgid "Process existing content to create translation defaults. This will process all published content nodes."
+msgstr "Behandl eksisterende indhold for at oprette oversættelsesstandarder. Dette vil behandle alle publicerede indholdsnoder."
+
+msgid "Process Translations"
+msgstr "Behandl oversættelser"
+
+msgid "The configuration options have been saved."
+msgstr "Konfigurationsindstillingerne er blevet gemt."
+
+msgid "Translation defaults batch processing started."
+msgstr "Batchbehandling af oversættelsesstandarder startet."
+
+#: bioland.module
+msgid "Help"
+msgstr "Hjælp"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "Bioland-modulet giver feltstyring og oversættelsesfunktionalitet."
+
+msgid "Bioland configuration"
+msgstr "Bioland-konfiguration"
+
+#: bioland.permissions.yml
+msgid "Administer Bioland settings"
+msgstr "Administrer Bioland-indstillinger"
+
+msgid "Configure field visibility, additional fields, and translation settings."
+msgstr "Konfigurer feltsynlighed, yderligere felter og oversættelsesindstillinger."

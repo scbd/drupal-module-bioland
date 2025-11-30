@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Üldseaded"
+
+msgid "Field Functionality Settings"
+msgstr "Välja Funktsionaalsuse Seaded"
+
+msgid "Translation Defaults Settings"
+msgstr "Tõlke Vaikeseaded"
+
+msgid "Field Visibility"
+msgstr "Välja Nähtavus"
+
+msgid "Enable field visibility functionality"
+msgstr "Luba välja nähtavuse funktsionaalsus"
+
+msgid "When enabled, fields can be shown/hidden based on content type selection."
+msgstr "Kui lubatud, saab välju näidata/peita sisu tüübi valiku alusel."
+
+msgid "Field Visibility Rules"
+msgstr "Välja Nähtavuse Reeglid"
+
+msgid "JSON configuration for field visibility rules"
+msgstr "JSON konfiguratsioon välja nähtavuse reeglitele"
+
+msgid "Additional Fields"
+msgstr "Täiendavad Väljad"
+
+msgid "Enable additional fields functionality"
+msgstr "Luba täiendavate väljade funktsionaalsus"
+
+msgid "When enabled, additional fields will be available based on content type."
+msgstr "Kui lubatud, on täiendavad väljad saadaval sisu tüübi alusel."
+
+msgid "Auto Summary"
+msgstr "Automaatne Kokkuvõte"
+
+msgid "Enable auto summary functionality"
+msgstr "Luba automaatse kokkuvõtte funktsionaalsus"
+
+msgid "When enabled, summary field will be automatically populated from the body field."
+msgstr "Kui lubatud, täidetakse kokkuvõtte väli automaatselt põhiteksti väljalt."
+
+msgid "Auto Summary Character Limit"
+msgstr "Automaatse Kokkuvõtte Märgipiirang"
+
+msgid "Maximum number of characters for auto-generated summaries (default: 600)"
+msgstr "Maksimaalne märkide arv automaatselt genereeritud kokkuvõtetele (vaikimisi: 600)"
+
+msgid "Enable Automatic Translation Default Creation"
+msgstr "Luba Automaatne Tõlke Vaikeväärtuse Loomine"
+
+msgid "When enabled, translation defaults will be created automatically when content is saved."
+msgstr "Kui lubatud, luuakse tõlke vaikeväärtused automaatselt sisu salvestamisel."
+
+msgid "Languages for Translation Defaults"
+msgstr "Keeled Tõlke Vaikeväärtustele"
+
+msgid "Select which languages should have translation defaults created. Leave empty to use all enabled languages."
+msgstr "Valige, millistes keeltes tuleks luua tõlke vaikeväärtused. Jätke tühjaks, et kasutada kõiki lubatud keeli."
+
+msgid "Copy Source Values to Translations"
+msgstr "Kopeeri Lähte Väärtused Tõlgetesse"
+
+msgid "When enabled, field values from the source content will be copied to the translation defaults."
+msgstr "Kui lubatud, kopeeritakse lähte sisu välja väärtused tõlke vaikeväärtustesse."
+
+msgid "Create Translation Defaults for Existing Content"
+msgstr "Loo Tõlke Vaikeväärtused Olemasolevale Sisule"
+
+msgid "Process existing content to create missing translation defaults. This operation will run in batch mode."
+msgstr "Töötle olemasolevat sisu puuduvate tõlke vaikeväärtuste loomiseks. See toiming käivitatakse pakktöötluse režiimis."
+
+msgid "Content Types"
+msgstr "Sisu Tüübid"
+
+msgid "Select which content types should be processed. Leave empty to process all content types."
+msgstr "Valige, milliseid sisu tüüpe tuleks töödelda. Jätke tühjaks, et töödelda kõiki sisu tüüpe."
+
+msgid "Process Existing Content"
+msgstr "Töötle Olemasolevat Sisu"
+
+msgid "Start batch processing to create translation defaults for existing content."
+msgstr "Alusta pakktöötlust tõlke vaikeväärtuste loomiseks olemasolevale sisule."
+
+msgid "Save configuration"
+msgstr "Salvesta konfiguratsioon"
+
+msgid "The configuration options have been saved."
+msgstr "Konfiguratsioonivalikud on salvestatud."
+
+msgid "Translation defaults batch processing has been queued."
+msgstr "Tõlke vaikeväärtuste pakktöötlus on järjekorda lisatud."
+
+msgid "Creating translation defaults for @entity_type @id"
+msgstr "Tõlke vaikeväärtuste loomine @entity_type @id jaoks"
+
+msgid "Created @count translation defaults."
+msgstr "Loodud @count tõlke vaikeväärtust."
+
+msgid "Finished processing translation defaults. Created @count translations."
+msgstr "Tõlke vaikeväärtuste töötlemine lõpetatud. Loodud @count tõlget."

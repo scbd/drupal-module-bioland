@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "일반 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "국가"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "한 줄에 하나의 국가 코드를 입력하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "지역"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "지리적 지역을 선택하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "북미"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "남미"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "유럽"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "아시아"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "아프리카"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "오세아니아"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "생물안전성 랜드입니까?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "이것이 생물안전성 랜드 인스턴스인지 여부를 나타냅니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "필드 동작 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "필드 가시성 제어 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "콘텐츠 유형 선택에 따라 필드를 표시/숨김합니다. URL, 날짜 및 게시된 필드 가시성을 제어합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "추가 필드 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "시소러스 콘텐츠 유형에 따라 콘텐츠 유형별 추가 필드(이벤트 상태, 프로젝트 상태 등)를 추가합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "자동 요약 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "사용자가 입력할 때 본문 내용에서 자동으로 요약을 생성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "필드 도움말 주석 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "콘텐츠 유형에 따라 필드에 대한 상황별 도움말 주석을 표시합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "필드 가시성 규칙"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "사용자 지정 필드 가시성 규칙을 정의합니다 (JSON 형식)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "번역 기본값"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "번역 가능한 엔터티에 대한 번역 기본값(언어 자리 표시자) 생성을 구성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "자동으로 번역 기본값 생성"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "활성화하면 엔터티 생성/업데이트 시 다른 언어에 대한 번역 기본값(자리 표시자)이 생성됩니다. 적절한 소스가 있는 기존 번역은 덮어쓰지 않습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "사용 가능한 모든 언어 사용"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "활성화하면 사이트에 설치된 모든 언어에 대한 번역이 생성됩니다. 비활성화하면 아래의 선택된 대상 언어만 사용됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "번역 기본값의 대상 언어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "번역 기본값을 생성할 언어를 선택하세요. \"사용 가능한 모든 언어 사용\"이 비활성화된 경우에만 사용됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "소스 필드 값 복사"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "활성화하면 소스 언어의 번역 가능한 필드 값이 새 번역으로 복사됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "엔터티 유형"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "번역 기본값을 생성해야 하는 엔터티 유형을 선택하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "일괄 작업"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "기존 엔터티를 처리하여 누락된 번역 기본값을 생성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "처리할 엔터티 유형"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- 선택 -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "기존 엔터티에 대한 번역을 생성할 엔터티 유형을 선택하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "기존 엔터티에 대한 번역 기본값 생성"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "처리할 엔터티 유형을 선택하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "영어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "스페인어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "프랑스어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "독일어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "이탈리아어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "포르투갈어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "네덜란드어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "중국어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "일본어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "한국어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "아랍어"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "러시아어"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "도움말"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "이것이 새 사이트 콘텐츠의 주요 내용이 됩니다. 요약은 콘텐츠에 대한 간결한 설명을 표시하는 데 사용할 수 있습니다. 또한 요약은 웹사이트의 레코드 목록 및 카드 보기에 표시됩니다. 또는 본문의 처음 몇 문장이 사용됩니다."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "이미지"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "여기서 왼쪽에서 오른쪽 순서로 <b>첫 번째 이미지</b>가 페이지와 목록 및 카드 보기의 썸네일에 표시되는 레코드의 <b>주요 이미지</b>가 됩니다. 다른 모든 이미지는 주요 콘텐츠 아래에 표시됩니다."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "히어로"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "모든 페이지/콘텐츠 유형은 여러 개의 <b>히어로 배너</b>를 가질 수 있습니다. 하나 이상인 경우 시간 단위로 순환됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "뉴스 (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "회의 또는 이벤트 (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "프로젝트 (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "문서 (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "관련 웹사이트 (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "기타 리소스 (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "이미지 또는 비디오 (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "자주 묻는 질문 (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "국가 정보 (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "LMO 상태 (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "현장 시험 (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "국가 주류화 전략 (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "역량 강화 (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "공지 (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "연락처 (50)"

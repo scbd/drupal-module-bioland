@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: is\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Almennar stillingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Lönd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Sláðu inn einn landsnúmer á línu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Svæði"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Veldu landfræðilegt svæði."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Norður-Ameríka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Suður-Ameríka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Evrópa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asía"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afríka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Eyjaálfa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Er líföryggisland?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Gefur til kynna hvort þetta sé dæmi um líföryggisland."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Stillingar fyrir hegðun reita"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Virkja stjórn á sýnileika reita"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Sýna/fela reiti eftir vali á innihaldstegund. Stýrir sýnileika vefslóða, dagsetninga og birtingareita."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Virkja viðbótarreiti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Bæta við viðbótarreitum sem eru sértækir fyrir innihaldstegund (stöður viðburða, stöður verkefna o.s.frv.) byggt á samheitaorðabók innihaldstegundar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Virkja sjálfvirkan útdrátt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Búa sjálfkrafa til útdrátt úr meginmáli á meðan notandi skrifar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Virkja hjálparathugasemdir fyrir reiti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Birta samhengisbundnar hjálparathugasemdir fyrir reiti eftir innihaldstegund."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Reglur um sýnileika reita"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Skilgreina sérsniðnar reglur um sýnileika reita (JSON snið)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Sjálfgefnar þýðingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Stilla stofnun sjálfgefinna þýðinga (staðgengla fyrir tungumál) fyrir þýðanlegar einingar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Búa sjálfkrafa til sjálfgefnar þýðingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Þegar virkjað, eru sjálfgefnar þýðingar (staðgenglar) búnar til fyrir önnur tungumál við stofnun/uppfærslu einingar. Fyrirliggjandi þýðingar með réttum uppruna eru ekki yfirskrifaðar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Nota öll tiltæk tungumál"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Þegar virkjað, verða þýðingar búnar til fyrir öll tungumál sem eru uppsett á vefsvæðinu. Þegar óvirkjað, verða aðeins valin markmál hér að neðan notuð."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Markmál fyrir sjálfgefnar þýðingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Veldu fyrir hvaða tungumál á að búa til sjálfgefnar þýðingar. Aðeins notað þegar „Nota öll tiltæk tungumál“ er óvirkjað."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Afrita gildi upprunareita"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Þegar virkjað, verða gildi þýðanlegra reita úr upprunatungumálinu afrituð yfir í nýjar þýðingar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Tegundir eininga"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Veldu fyrir hvaða tegundir eininga á að búa til sjálfgefnar þýðingar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Hópkeyrslur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Vinna úr fyrirliggjandi einingum til að búa til vantar sjálfgefnar þýðingar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Tegund einingar til að vinna úr"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Veldu -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Veldu tegund einingar til að búa til þýðingar fyrir fyrirliggjandi einingar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Búa til sjálfgefnar þýðingar fyrir fyrirliggjandi einingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Vinsamlegast veldu tegund einingar til að vinna úr."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Enska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Spænska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Franska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Þýska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Ítalska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portúgalska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Hollenska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Kínverska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japanska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Kóreska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabíska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rússneska"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Hjálp"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Þetta verður aðalinnihald nýja vefsvæðisins þíns. Hægt er að nota útdráttinn til að birta stutta og hnitmiðaða lýsingu á innihaldinu þínu. Ennfremur mun útdrátturinn birtast í lista- og kortasýn á færslunni þinni á vefsíðunni. Að öðrum kosti verða fyrstu fáu setningarnar úr aðalinnihaldinu notaðar."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Myndir"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Fyrsta myndin</b> í röð frá vinstri til hægri hér, <b>verður aðalmyndin</b> á færslunni þinni sem birtist á síðunni og í smámyndum í lista- og kortasýn. Allar aðrar myndir verða birtar fyrir neðan aðalinnihaldið."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Hetjur"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Hvaða síða/innihaldstegund sem er getur haft marga <b>hetjuborða</b>. Ef það er fleiri en einn verður þeim snúið á klukkutíma fresti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Fréttir (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Fundur eða viðburður (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Verkefni (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Skjal (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Tengd vefsíða (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Annað úrræði (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Mynd eða myndband (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Algengar spurningar (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Landsupplýsingar (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Staða erfðabreyttra lífvera (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Vettvangstilraun (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Landsáætlun um samþættingu (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Hæfnisuppbygging (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Tilkynning (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Tengiliður (50)"

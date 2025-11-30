@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ht\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Anviwònman Jeneral"
+
+msgid "Field Functionality Settings"
+msgstr "Paramèt Fonksyonalite Chan"
+
+msgid "Translation Defaults Settings"
+msgstr "Paramèt Defò Tradiksyon"
+
+msgid "Field Visibility"
+msgstr "Vizibilite Chan"
+
+msgid "Enable field visibility functionality"
+msgstr "Aktive fonksyonalite vizibilite chan"
+
+msgid "When enabled, fields can be shown/hidden based on content type selection."
+msgstr "Lè li aktive, chan yo ka montre/kache selon seleksyon tip kontni."
+
+msgid "Field Visibility Rules"
+msgstr "Règleman Vizibilite Chan"
+
+msgid "JSON configuration for field visibility rules"
+msgstr "Konfigirasyon JSON pou règleman vizibilite chan"
+
+msgid "Additional Fields"
+msgstr "Chan Adisyonèl"
+
+msgid "Enable additional fields functionality"
+msgstr "Aktive fonksyonalite chan adisyonèl"
+
+msgid "When enabled, additional fields will be available based on content type."
+msgstr "Lè li aktive, chan adisyonèl yo ap disponib selon tip kontni."
+
+msgid "Auto Summary"
+msgstr "Rezime Otomatik"
+
+msgid "Enable auto summary functionality"
+msgstr "Aktive fonksyonalite rezime otomatik"
+
+msgid "When enabled, summary field will be automatically populated from the body field."
+msgstr "Lè li aktive, chan rezime a ap otomatikman ranpli ak chan kò a."
+
+msgid "Auto Summary Character Limit"
+msgstr "Limit Karaktè Rezime Otomatik"
+
+msgid "Maximum number of characters for auto-generated summaries (default: 600)"
+msgstr "Kantite maksimòm karaktè pou rezime ki otomatikman kreye (pa defo: 600)"
+
+msgid "Enable Automatic Translation Default Creation"
+msgstr "Aktive Kreyasyon Otomatik Defò Tradiksyon"
+
+msgid "When enabled, translation defaults will be created automatically when content is saved."
+msgstr "Lè li aktive, defò tradiksyon yo ap otomatikman kreye lè kontni a anrejistre."
+
+msgid "Languages for Translation Defaults"
+msgstr "Lang pou Defò Tradiksyon"
+
+msgid "Select which languages should have translation defaults created. Leave empty to use all enabled languages."
+msgstr "Chwazi ki lang ki ta dwe gen defò tradiksyon kreye. Kite vid pou itilize tout lang ki aktive yo."
+
+msgid "Copy Source Values to Translations"
+msgstr "Kopye Valè Sous nan Tradiksyon"
+
+msgid "When enabled, field values from the source content will be copied to the translation defaults."
+msgstr "Lè li aktive, valè chan soti nan kontni sous la ap kopye nan defò tradiksyon yo."
+
+msgid "Create Translation Defaults for Existing Content"
+msgstr "Kreye Defò Tradiksyon pou Kontni ki Egziste"
+
+msgid "Process existing content to create missing translation defaults. This operation will run in batch mode."
+msgstr "Trete kontni ki egziste pou kreye defò tradiksyon ki manke. Operasyon sa a ap fèt nan mòd pake."
+
+msgid "Content Types"
+msgstr "Tip Kontni"
+
+msgid "Select which content types should be processed. Leave empty to process all content types."
+msgstr "Chwazi ki tip kontni ki ta dwe trete. Kite vid pou trete tout tip kontni."
+
+msgid "Process Existing Content"
+msgstr "Trete Kontni ki Egziste"
+
+msgid "Start batch processing to create translation defaults for existing content."
+msgstr "Kòmanse tretman pake pou kreye defò tradiksyon pou kontni ki egziste."
+
+msgid "Save configuration"
+msgstr "Anrejistre konfigirasyon"
+
+msgid "The configuration options have been saved."
+msgstr "Opsyon konfigirasyon yo anrejistre."
+
+msgid "Translation defaults batch processing has been queued."
+msgstr "Tretman pake defò tradiksyon yo nan ranje."
+
+msgid "Creating translation defaults for @entity_type @id"
+msgstr "Kreye defò tradiksyon pou @entity_type @id"
+
+msgid "Created @count translation defaults."
+msgstr "Kreye @count defò tradiksyon."
+
+msgid "Finished processing translation defaults. Created @count translations."
+msgstr "Fini trete defò tradiksyon. Kreye @count tradiksyon."

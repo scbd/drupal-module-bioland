@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Általános Beállítások"
+
+msgid "Field Functionality Settings"
+msgstr "Mező Funkcionalitás Beállítások"
+
+msgid "Translation Defaults Settings"
+msgstr "Fordítási Alapértelmezések Beállításai"
+
+msgid "Field Visibility"
+msgstr "Mező Láthatóság"
+
+msgid "Enable field visibility functionality"
+msgstr "Mező láthatósági funkcionalitás engedélyezése"
+
+msgid "When enabled, fields can be shown/hidden based on content type selection."
+msgstr "Ha engedélyezve van, a mezők megjeleníthetők/elrejthetők a tartalomtípus kiválasztása alapján."
+
+msgid "Field Visibility Rules"
+msgstr "Mező Láthatósági Szabályok"
+
+msgid "JSON configuration for field visibility rules"
+msgstr "JSON konfiguráció a mező láthatósági szabályokhoz"
+
+msgid "Additional Fields"
+msgstr "További Mezők"
+
+msgid "Enable additional fields functionality"
+msgstr "További mezők funkcionalitásának engedélyezése"
+
+msgid "When enabled, additional fields will be available based on content type."
+msgstr "Ha engedélyezve van, további mezők lesznek elérhetők a tartalomtípus alapján."
+
+msgid "Auto Summary"
+msgstr "Automatikus Összefoglaló"
+
+msgid "Enable auto summary functionality"
+msgstr "Automatikus összefoglaló funkcionalitás engedélyezése"
+
+msgid "When enabled, summary field will be automatically populated from the body field."
+msgstr "Ha engedélyezve van, az összefoglaló mező automatikusan kitöltődik a szövegtörzs mezőből."
+
+msgid "Auto Summary Character Limit"
+msgstr "Automatikus Összefoglaló Karakterkorlát"
+
+msgid "Maximum number of characters for auto-generated summaries (default: 600)"
+msgstr "Automatikusan generált összefoglalók maximális karakterszáma (alapértelmezett: 600)"
+
+msgid "Enable Automatic Translation Default Creation"
+msgstr "Automatikus Fordítási Alapértelmezés Létrehozásának Engedélyezése"
+
+msgid "When enabled, translation defaults will be created automatically when content is saved."
+msgstr "Ha engedélyezve van, a fordítási alapértelmezések automatikusan létrejönnek a tartalom mentésekor."
+
+msgid "Languages for Translation Defaults"
+msgstr "Nyelvek a Fordítási Alapértelmezésekhez"
+
+msgid "Select which languages should have translation defaults created. Leave empty to use all enabled languages."
+msgstr "Válassza ki, mely nyelvekhez kell fordítási alapértelmezéseket létrehozni. Hagyja üresen az összes engedélyezett nyelv használatához."
+
+msgid "Copy Source Values to Translations"
+msgstr "Forrásértékek Másolása a Fordításokba"
+
+msgid "When enabled, field values from the source content will be copied to the translation defaults."
+msgstr "Ha engedélyezve van, a forrástartalom mezőértékei átmásolódnak a fordítási alapértelmezésekbe."
+
+msgid "Create Translation Defaults for Existing Content"
+msgstr "Fordítási Alapértelmezések Létrehozása Meglévő Tartalomhoz"
+
+msgid "Process existing content to create missing translation defaults. This operation will run in batch mode."
+msgstr "Meglévő tartalom feldolgozása a hiányzó fordítási alapértelmezések létrehozásához. Ez a művelet kötegelt módban fog futni."
+
+msgid "Content Types"
+msgstr "Tartalomtípusok"
+
+msgid "Select which content types should be processed. Leave empty to process all content types."
+msgstr "Válassza ki, mely tartalomtípusokat kell feldolgozni. Hagyja üresen az összes tartalomtípus feldolgozásához."
+
+msgid "Process Existing Content"
+msgstr "Meglévő Tartalom Feldolgozása"
+
+msgid "Start batch processing to create translation defaults for existing content."
+msgstr "Kötegelt feldolgozás indítása a fordítási alapértelmezések létrehozásához meglévő tartalomhoz."
+
+msgid "Save configuration"
+msgstr "Konfiguráció mentése"
+
+msgid "The configuration options have been saved."
+msgstr "A konfigurációs beállítások mentésre kerültek."
+
+msgid "Translation defaults batch processing has been queued."
+msgstr "A fordítási alapértelmezések kötegelt feldolgozása sorba került."
+
+msgid "Creating translation defaults for @entity_type @id"
+msgstr "Fordítási alapértelmezések létrehozása @entity_type @id-hez"
+
+msgid "Created @count translation defaults."
+msgstr "@count fordítási alapértelmezés létrehozva."
+
+msgid "Finished processing translation defaults. Created @count translations."
+msgstr "Fordítási alapértelmezések feldolgozása befejezve. @count fordítás létrehozva."

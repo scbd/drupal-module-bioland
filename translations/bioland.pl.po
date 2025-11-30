@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Ustawienia ogólne"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Kraje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Wprowadź jeden kod kraju w wierszu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Region"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Wybierz region geograficzny."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Ameryka Północna"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Ameryka Południowa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Europa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Azja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afryka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Czy to jest ziemia bezpieczeństwa biologicznego?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Wskazuje, czy jest to instancja ziemi bezpieczeństwa biologicznego."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Ustawienia zachowania pól"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Włącz kontrolę widoczności pól"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Pokaż/ukryj pola na podstawie wyboru typu zawartości. Kontroluje widoczność pól URL, daty i opublikowanych."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Włącz dodatkowe pola"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Dodaj dodatkowe pola specyficzne dla typu zawartości (statusy wydarzeń, statusy projektów itp.) na podstawie typu zawartości tezaurusa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Włącz automatyczne podsumowanie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Automatycznie generuj podsumowanie z treści podczas pisania przez użytkownika."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Włącz komentarze pomocy do pól"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Wyświetlaj kontekstowe komentarze pomocy dla pól na podstawie typu zawartości."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Reguły widoczności pól"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Zdefiniuj niestandardowe reguły widoczności pól (format JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Domyślne ustawienia tłumaczenia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Skonfiguruj tworzenie domyślnych tłumaczeń (symboli zastępczych języka) dla jednostek podlegających tłumaczeniu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Automatycznie twórz domyślne tłumaczenia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Gdy włączone, domyślne tłumaczenia (symbole zastępcze) są tworzone dla innych języków podczas tworzenia/aktualizacji jednostki. Istniejące tłumaczenia z prawidłowym źródłem nie są nadpisywane."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Użyj wszystkich dostępnych języków"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Gdy włączone, tłumaczenia będą tworzone dla wszystkich języków zainstalowanych na stronie. Gdy wyłączone, używane będą tylko wybrane poniżej języki docelowe."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Języki docelowe dla domyślnych tłumaczeń"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Wybierz, dla których języków tworzyć domyślne tłumaczenia. Używane tylko wtedy, gdy opcja \"Użyj wszystkich dostępnych języków\" jest wyłączona."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Kopiuj wartości pól źródłowych"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Gdy włączone, wartości pól podlegających tłumaczeniu z języka źródłowego będą kopiowane do nowych tłumaczeń."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Typy jednostek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Wybierz, dla których typów jednostek powinny być tworzone domyślne tłumaczenia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operacje wsadowe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Przetwarzaj istniejące jednostki, aby utworzyć brakujące domyślne tłumaczenia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Typ jednostki do przetworzenia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Wybierz -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Wybierz typ jednostki, aby utworzyć tłumaczenia dla istniejących jednostek."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Utwórz domyślne tłumaczenia dla istniejących jednostek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Proszę wybrać typ jednostki do przetworzenia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Angielski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Hiszpański"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Francuski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Niemiecki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Włoski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugalski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holenderski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Chiński"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japoński"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Koreański"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabski"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rosyjski"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Pomoc"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "To będzie główna treść Twojej nowej zawartości na stronie. Podsumowanie może być użyte do wyświetlenia krótkiego, zwięzłego opisu Twojej zawartości. Ponadto, podsumowanie będzie wyświetlane w widokach listy i kart Twojego rekordu na stronie internetowej. Alternatywnie, użyte zostanie kilka pierwszych zdań z głównej treści."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Obrazy"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Pierwszy obraz</b> w kolejności od lewej do prawej tutaj, <b>będzie głównym obrazem</b> Twojego rekordu wyświetlanym na stronie oraz w miniaturach w widokach listy i kart. Wszystkie inne obrazy będą wyświetlane poniżej głównej treści."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Banery główne"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Każda strona/typ zawartości może mieć wiele <b>banerów głównych</b>. Jeśli jest ich więcej niż jeden, będą one obracane co godzinę."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Wiadomości (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Spotkanie lub wydarzenie (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Projekt (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dokument (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Powiązana strona internetowa (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Inny zasób (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Obraz lub wideo (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "FAQ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Informacje krajowe (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Status LMO (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Próba polowa (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Krajowa strategia wdrażania (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Budowanie zdolności (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Ogłoszenie (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Kontakt (50)"

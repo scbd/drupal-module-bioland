@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Γενικές Ρυθμίσεις"
+
+msgid "Field Visibility Settings"
+msgstr "Ρυθμίσεις Ορατότητας Πεδίων"
+
+msgid "Enable Field Visibility functionality"
+msgstr "Ενεργοποίηση λειτουργικότητας Ορατότητας Πεδίων"
+
+msgid "When enabled, field visibility rules will be applied to the form."
+msgstr "Όταν είναι ενεργοποιημένο, οι κανόνες ορατότητας πεδίων θα εφαρμόζονται στη φόρμα."
+
+msgid "Field Visibility Rules"
+msgstr "Κανόνες Ορατότητας Πεδίων"
+
+msgid "JSON configuration for field visibility rules. See documentation for format details."
+msgstr "Διαμόρφωση JSON για κανόνες ορατότητας πεδίων. Δείτε την τεκμηρίωση για λεπτομέρειες μορφής."
+
+msgid "Additional Fields Settings"
+msgstr "Ρυθμίσεις Πρόσθετων Πεδίων"
+
+msgid "Enable Additional Fields functionality"
+msgstr "Ενεργοποίηση λειτουργικότητας Πρόσθετων Πεδίων"
+
+msgid "When enabled, additional fields will be available in the form."
+msgstr "Όταν είναι ενεργοποιημένο, τα πρόσθετα πεδία θα είναι διαθέσιμα στη φόρμα."
+
+msgid "Auto Summary Settings"
+msgstr "Ρυθμίσεις Αυτόματης Περίληψης"
+
+msgid "Enable Auto Summary functionality"
+msgstr "Ενεργοποίηση λειτουργικότητας Αυτόματης Περίληψης"
+
+msgid "When enabled, summary will be automatically generated from the body field."
+msgstr "Όταν είναι ενεργοποιημένο, η περίληψη θα δημιουργείται αυτόματα από το πεδίο κειμένου."
+
+msgid "Auto Summary Maximum Length"
+msgstr "Μέγιστο Μήκος Αυτόματης Περίληψης"
+
+msgid "Maximum number of characters for the auto-generated summary (default: 300)."
+msgstr "Μέγιστος αριθμός χαρακτήρων για την αυτόματα δημιουργημένη περίληψη (προεπιλογή: 300)."
+
+msgid "Translation Settings"
+msgstr "Ρυθμίσεις Μετάφρασης"
+
+msgid "Enable Auto Translation Default Creation"
+msgstr "Ενεργοποίηση Αυτόματης Δημιουργίας Προεπιλεγμένων Μεταφράσεων"
+
+msgid "When enabled, default translations will be created automatically for new content."
+msgstr "Όταν είναι ενεργοποιημένο, οι προεπιλεγμένες μεταφράσεις θα δημιουργούνται αυτόματα για νέο περιεχόμενο."
+
+msgid "Languages for Auto Translation"
+msgstr "Γλώσσες για Αυτόματη Μετάφραση"
+
+msgid "Select which languages should have default translations created automatically. Leave empty to use all enabled languages."
+msgstr "Επιλέξτε ποιες γλώσσες θα πρέπει να έχουν αυτόματη δημιουργία προεπιλεγμένων μεταφράσεων. Αφήστε κενό για χρήση όλων των ενεργοποιημένων γλωσσών."
+
+msgid "Copy Source Values to Translations"
+msgstr "Αντιγραφή Τιμών Πηγής σε Μεταφράσεις"
+
+msgid "When enabled, source field values will be copied to new translations (except title and body)."
+msgstr "Όταν είναι ενεργοποιημένο, οι τιμές των πεδίων πηγής θα αντιγράφονται σε νέες μεταφράσεις (εκτός από τίτλο και κείμενο)."
+
+msgid "Batch Translation Processing"
+msgstr "Επεξεργασία Μαζικής Μετάφρασης"
+
+msgid "Process existing content"
+msgstr "Επεξεργασία υπάρχοντος περιεχομένου"
+
+msgid "Create default translations for all existing content that doesn't have them yet. This may take a while for large sites."
+msgstr "Δημιουργία προεπιλεγμένων μεταφράσεων για όλο το υπάρχον περιεχόμενο που δεν τις έχει ακόμα. Αυτό μπορεί να διαρκέσει για μεγάλους ιστότοπους."
+
+msgid "Bioland Settings"
+msgstr "Ρυθμίσεις Bioland"
+
+msgid "Configure Bioland module functionality"
+msgstr "Διαμόρφωση λειτουργικότητας μονάδας Bioland"
+
+msgid "The configuration options have been saved."
+msgstr "Οι επιλογές διαμόρφωσης έχουν αποθηκευτεί."
+
+msgid "Processing @count items for translation..."
+msgstr "Επεξεργασία @count στοιχείων για μετάφραση..."
+
+msgid "Successfully created translations for @success items. @error errors occurred."
+msgstr "Επιτυχής δημιουργία μεταφράσεων για @success στοιχεία. Προέκυψαν @error σφάλματα."
+
+#: bioland.module
+msgid "Help"
+msgstr "Βοήθεια"
+
+msgid "About"
+msgstr "Σχετικά"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "Η μονάδα Bioland παρέχει λειτουργικότητα διαχείρισης πεδίων και μετάφρασης."
+
+msgid "Uses"
+msgstr "Χρήσεις"
+
+msgid "Field Visibility"
+msgstr "Ορατότητα Πεδίων"
+
+msgid "Control which fields are visible based on content type and other conditions."
+msgstr "Έλεγχος ποια πεδία είναι ορατά με βάση τον τύπο περιεχομένου και άλλες συνθήκες."
+
+msgid "Additional Fields"
+msgstr "Πρόσθετα Πεδία"
+
+msgid "Add dynamic additional fields to content forms."
+msgstr "Προσθήκη δυναμικών πρόσθετων πεδίων σε φόρμες περιεχομένου."
+
+msgid "Auto Summary"
+msgstr "Αυτόματη Περίληψη"
+
+msgid "Automatically generate summaries from body content."
+msgstr "Αυτόματη δημιουργία περιλήψεων από το περιεχόμενο κειμένου."
+
+msgid "Translation Management"
+msgstr "Διαχείριση Μετάφρασης"
+
+msgid "Automatically create default translations for content."
+msgstr "Αυτόματη δημιουργία προεπιλεγμένων μεταφράσεων για περιεχόμενο."

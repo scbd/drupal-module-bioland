@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sw\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Mipangilio ya Jumla"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Nchi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Weka nambari ya nchi moja kwa kila mstari."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Mkoa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Chagua eneo la kijiografia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Amerika ya Kaskazini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Amerika ya Kusini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Ulaya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Je, ni Ardhi ya Usalama wa Mazingira?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Inaonyesha ikiwa hii ni mfano wa Ardhi ya Usalama wa Mazingira."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Mipangilio ya Tabia ya Sehemu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Wezesha Udhibiti wa Mwonekano wa Sehemu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Onyesha/ficha sehemu kulingana na uteuzi wa aina ya maudhui. Inadhibiti URL, tarehe, na mwonekano wa sehemu zilizochapishwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Wezesha Sehemu za Ziada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Ongeza sehemu za ziada maalum za aina ya maudhui (hali za matukio, hali za miradi, n.k.) kulingana na aina ya maudhui ya thesaurus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Wezesha Muhtasari wa Kiotomatiki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Tengeneza muhtasari kiotomatiki kutoka kwa maudhui ya msingi mtumiaji anapoandika."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Wezesha Maoni ya Usaidizi wa Sehemu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Onyesha maoni ya usaidizi wa kimazingira kwa sehemu kulingana na aina ya maudhui."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Kanuni za Mwonekano wa Sehemu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Bainisha kanuni maalum za mwonekano wa sehemu (muundo wa JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Chaguo-msingi za Tafsiri"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Sanidi uundaji wa chaguo-msingi za tafsiri (vishikilia nafasi vya lugha) kwa huluki zinazoweza kutafsiriwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Unda chaguo-msingi za tafsiri kiotomatiki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Inapowezeshwa, chaguo-msingi za tafsiri (vishikilia nafasi) huundwa kwa lugha zingine wakati wa kuunda/kusasisha huluki. Tafsiri zilizopo zenye chanzo sahihi haziandikwi juu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Tumia lugha zote zilizopo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Inapowezeshwa, tafsiri zitatengenezwa kwa lugha zote zilizosakinishwa kwenye tovuti. Inapozimwa, ni lugha lengwa zilizochaguliwa hapa chini pekee ndizo zitatumika."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Lugha lengwa za chaguo-msingi za tafsiri"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Chagua lugha za kuundia chaguo-msingi za tafsiri. Hutumika tu wakati \"Tumia lugha zote zilizopo\" imezimwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Nakili thamani za sehemu za chanzo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Inapowezeshwa, thamani za sehemu zinazoweza kutafsiriwa kutoka lugha ya chanzo zitanakiliwa kwenye tafsiri mpya."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Aina za huluki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Chagua aina za huluki ambazo zinapaswa kuundwa chaguo-msingi za tafsiri."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operesheni za Kundi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Chakata huluki zilizopo ili kuunda chaguo-msingi za tafsiri zinazokosekana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Aina ya huluki ya kuchakata"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Chagua -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Chagua aina ya huluki ili kuunda tafsiri za huluki zilizopo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Unda chaguo-msingi za tafsiri za huluki zilizopo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Tafadhali chagua aina ya huluki ya kuchakata."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Kiingereza"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Kihispania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Kifaransa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Kijerumani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Kiitaliano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Kireno"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Kiholanzi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Kichina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Kijapani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Kikorea"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Kiarabu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Kirusi"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Msaada"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Haya yatakuwa maudhui makuu ya maudhui yako mapya ya tovuti. Muhtasari unaweza kutumika kuonyesha maelezo mafupi na ya wazi ya maudhui yako. Zaidi ya hayo, muhtasari utaonyeshwa katika mionekano ya orodha na kadi ya rekodi yako kwenye tovuti. Vinginevyo, sentensi chache za kwanza kutoka kwa maudhui makuu zitatumika."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Picha"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Picha ya kwanza</b> kwa mpangilio kutoka kushoto kwenda kulia hapa, <b>itakuwa picha kuu</b> ya rekodi yako inayoonyeshwa kwenye ukurasa na katika vijipicha katika mionekano ya orodha na kadi. Picha zingine zote zitaonyeshwa chini ya maudhui makuu."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Mashujaa"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Ukurasa/aina yoyote ya maudhui inaweza kuwa na <b>mabango ya kishujaa</b> mengi. Ikiwa kuna zaidi ya moja, yatabadilishwa kila saa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Habari (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Mkutano au Tukio (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Mradi (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Hati (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Tovuti Husika (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Rasilimali Nyingine (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Picha au Video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Maswali Yanayoulizwa Mara kwa Mara (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Taarifa za Kitaifa (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Hali ya Viumbe Vilivyobadilishwa Maumbile (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Jaribio la shambani (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Mkakati wa Kitaifa wa Ujumuishaji (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Ujenzi wa Uwezo (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Tangazo (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Mawasiliano (50)"

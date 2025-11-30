@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: kk\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Жалпы параметрлер"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Елдер"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Бір жолға бір ел кодын енгізіңіз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Аймақ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Географиялық аймақты таңдаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Солтүстік Америка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Оңтүстік Америка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Еуропа"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Азия"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Африка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Океания"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Биоқауіпсіздік жері ме?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Бұл Биоқауіпсіздік жері данасы екенін көрсетеді."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Өріс әрекетінің параметрлері"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Өріс көрінуін басқаруды қосу"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Мазмұн түрін таңдау негізінде өрістерді көрсету/жасыру. URL, күн және жарияланған өрістердің көрінуін басқарады."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Қосымша өрістерді қосу"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Тезаурус мазмұн түріне негізделген мазмұн түріне тән қосымша өрістерді (оқиға күйлері, жоба күйлері, т.б.) қосыңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Автоматты түйіндемені қосу"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Пайдаланушы теріп жатқанда негізгі мазмұннан автоматты түрде түйіндеме жасау."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Өріс анықтамалық түсініктемелерін қосу"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Мазмұн түріне негізделген өрістер үшін контекстік анықтамалық түсініктемелерді көрсету."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Өріс көріну ережелері"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Жеке өріс көріну ережелерін анықтаңыз (JSON форматы)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Аударманың әдепкілері"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Аударылатын нысандар үшін аударманың әдепкілерін (тіл толтырғыштарын) жасауды конфигурациялаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Аударманың әдепкілерін автоматты түрде жасау"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Қосылған кезде, нысанды жасау/жаңарту кезінде басқа тілдер үшін аударманың әдепкілері (толтырғыштар) жасалады. Дұрыс көзі бар бұрыннан бар аудармалар қайта жазылмайды."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Барлық қолжетімді тілдерді пайдалану"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Қосылған кезде, сайтта орнатылған барлық тілдер үшін аудармалар жасалады. Өшірілген кезде, тек төменде таңдалған мақсатты тілдер пайдаланылады."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Аударманың әдепкілері үшін мақсатты тілдер"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Аударманың әдепкілерін жасау үшін қай тілдерді таңдаңыз. Тек \"Барлық қолжетімді тілдерді пайдалану\" өшірілген кезде пайдаланылады."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Бастапқы өріс мәндерін көшіру"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Қосылған кезде, бастапқы тілдегі аударылатын өріс мәндері жаңа аудармаларға көшіріледі."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Нысан түрлері"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Аударманың әдепкілері жасалуы керек нысан түрлерін таңдаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Топтық операциялар"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Жоқ аударманың әдепкілерін жасау үшін бұрыннан бар нысандарды өңдеу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Өңделетін нысан түрі"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Таңдаңыз -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Бұрыннан бар нысандар үшін аудармалар жасау үшін нысан түрін таңдаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Бұрыннан бар нысандар үшін аударманың әдепкілерін жасау"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Өңдеу үшін нысан түрін таңдаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Ағылшын"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Испан"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Француз"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Неміс"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Итальян"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Португал"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Голланд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Қытай"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Жапон"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Корей"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Араб"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Орыс"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Көмек"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Бұл сіздің жаңа сайт мазмұныңыздың негізгі мазмұны болады. Түйіндеме сіздің мазмұныңыздың қысқаша сипаттамасын көрсету үшін пайдаланылуы мүмкін. Сонымен қатар, түйіндеме веб-сайттағы жазбаңыздың тізім және карта көріністерінде көрсетіледі. Балама ретінде, негізгі мазмұнның алғашқы бірнеше сөйлемі пайдаланылады."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Суреттер"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "Мұнда солдан оңға қарай реттелген <b>бірінші сурет</b>, бетте және тізім мен карта көріністеріндегі нобайларда көрсетілетін жазбаңыздың <b>негізгі суреті</b> болады. Барлық басқа суреттер негізгі мазмұнның астында көрсетіледі."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Көрнекті баннерлер"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Кез келген бет/мазмұн түрінде бірнеше <b>көрнекті баннер</b> болуы мүмкін. Егер бірнешеу болса, олар сағат сайын ауыстырылып тұрады."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Жаңалықтар (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Кездесу немесе оқиға (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Жоба (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Құжат (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Байланысты веб-сайт (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Басқа ресурс (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Сурет немесе бейне (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Жиі қойылатын сұрақтар (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Ұлттық ақпарат (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "ТГМ мәртебесі (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Далалық сынақ (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Ұлттық негізгі бағыт стратегиясы (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Әлеуетті арттыру (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Хабарландыру (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Байланыс (50)"

@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cy\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Gosodiadau Cyffredinol"
+
+msgid "Field Visibility Settings"
+msgstr "Gosodiadau Gwelededd Meysydd"
+
+msgid "Enable Field Visibility functionality"
+msgstr "Galluogi swyddogaethedd Gwelededd Meysydd"
+
+msgid "When enabled, field visibility rules will be applied to the form."
+msgstr "Pan fydd wedi'i alluogi, bydd rheolau gwelededd meysydd yn cael eu cymhwyso i'r ffurflen."
+
+msgid "Field Visibility Rules"
+msgstr "Rheolau Gwelededd Meysydd"
+
+msgid "JSON configuration for field visibility rules. See documentation for format details."
+msgstr "Ffurfweddiad JSON ar gyfer rheolau gwelededd meysydd. Gweler y ddogfennaeth am fanylion fformat."
+
+msgid "Additional Fields Settings"
+msgstr "Gosodiadau Meysydd Ychwanegol"
+
+msgid "Enable Additional Fields functionality"
+msgstr "Galluogi swyddogaethedd Meysydd Ychwanegol"
+
+msgid "When enabled, additional fields will be available in the form."
+msgstr "Pan fydd wedi'i alluogi, bydd meysydd ychwanegol ar gael yn y ffurflen."
+
+msgid "Auto Summary Settings"
+msgstr "Gosodiadau Crynodeb Awtomatig"
+
+msgid "Enable Auto Summary functionality"
+msgstr "Galluogi swyddogaethedd Crynodeb Awtomatig"
+
+msgid "When enabled, summary will be automatically generated from the body field."
+msgstr "Pan fydd wedi'i alluogi, bydd y crynodeb yn cael ei gynhyrchu'n awtomatig o'r maes corff."
+
+msgid "Auto Summary Maximum Length"
+msgstr "Hyd Uchaf Crynodeb Awtomatig"
+
+msgid "Maximum number of characters for the auto-generated summary (default: 300)."
+msgstr "Nifer uchaf o gymeriadau ar gyfer y crynodeb a gynhyrchir yn awtomatig (rhagosodedig: 300)."
+
+msgid "Translation Settings"
+msgstr "Gosodiadau Cyfieithu"
+
+msgid "Enable Auto Translation Default Creation"
+msgstr "Galluogi Creu Cyfieithiadau Rhagosodedig yn Awtomatig"
+
+msgid "When enabled, default translations will be created automatically for new content."
+msgstr "Pan fydd wedi'i alluogi, bydd cyfieithiadau rhagosodedig yn cael eu creu'n awtomatig ar gyfer cynnwys newydd."
+
+msgid "Languages for Auto Translation"
+msgstr "Ieithoedd ar gyfer Cyfieithu Awtomatig"
+
+msgid "Select which languages should have default translations created automatically. Leave empty to use all enabled languages."
+msgstr "Dewiswch pa ieithoedd ddylai gael cyfieithiadau rhagosodedig wedi'u creu'n awtomatig. Gadewch yn wag i ddefnyddio'r holl ieithoedd sydd wedi'u galluogi."
+
+msgid "Copy Source Values to Translations"
+msgstr "Copïo Gwerthoedd Ffynhonnell i Gyfieithiadau"
+
+msgid "When enabled, source field values will be copied to new translations (except title and body)."
+msgstr "Pan fydd wedi'i alluogi, bydd gwerthoedd meysydd ffynhonnell yn cael eu copïo i gyfieithiadau newydd (ac eithrio teitl a chorff)."
+
+msgid "Batch Translation Processing"
+msgstr "Prosesu Cyfieithu Swp"
+
+msgid "Process existing content"
+msgstr "Prosesu cynnwys presennol"
+
+msgid "Create default translations for all existing content that doesn't have them yet. This may take a while for large sites."
+msgstr "Creu cyfieithiadau rhagosodedig ar gyfer yr holl gynnwys presennol sydd heb eu cael eto. Gall hyn gymryd peth amser ar gyfer safleoedd mawr."
+
+msgid "Bioland Settings"
+msgstr "Gosodiadau Bioland"
+
+msgid "Configure Bioland module functionality"
+msgstr "Ffurfweddu swyddogaethedd modiwl Bioland"
+
+msgid "The configuration options have been saved."
+msgstr "Mae'r opsiynau ffurfweddu wedi'u cadw."
+
+msgid "Processing @count items for translation..."
+msgstr "Yn prosesu @count eitem ar gyfer cyfieithu..."
+
+msgid "Successfully created translations for @success items. @error errors occurred."
+msgstr "Wedi creu cyfieithiadau'n llwyddiannus ar gyfer @success eitem. Digwyddodd @error gwall."
+
+#: bioland.module
+msgid "Help"
+msgstr "Cymorth"
+
+msgid "About"
+msgstr "Ynghylch"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "Mae'r modiwl Bioland yn darparu swyddogaethedd rheoli meysydd a chyfieithu."
+
+msgid "Uses"
+msgstr "Defnyddiau"
+
+msgid "Field Visibility"
+msgstr "Gwelededd Meysydd"
+
+msgid "Control which fields are visible based on content type and other conditions."
+msgstr "Rheoli pa feysydd sy'n weladwy yn seiliedig ar fath cynnwys ac amodau eraill."
+
+msgid "Additional Fields"
+msgstr "Meysydd Ychwanegol"
+
+msgid "Add dynamic additional fields to content forms."
+msgstr "Ychwanegu meysydd ychwanegol dynamig i ffurflenni cynnwys."
+
+msgid "Auto Summary"
+msgstr "Crynodeb Awtomatig"
+
+msgid "Automatically generate summaries from body content."
+msgstr "Cynhyrchu crynodebau'n awtomatig o gynnwys y corff."
+
+msgid "Translation Management"
+msgstr "Rheoli Cyfieithu"
+
+msgid "Automatically create default translations for content."
+msgstr "Creu cyfieithiadau rhagosodedig yn awtomatig ar gyfer cynnwys."

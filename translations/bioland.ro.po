@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Setări Generale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Țări"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Introduceți un cod de țară pe linie."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Regiune"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Selectați regiunea geografică."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "America de Nord"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "America de Sud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Europa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Africa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Este Teren de Biosecuritate?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Indică dacă aceasta este o instanță de Teren de Biosecuritate."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Setări de Comportament al Câmpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Activați Controlul Vizibilității Câmpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Afișați/ascundeți câmpurile în funcție de selecția tipului de conținut. Controlează vizibilitatea câmpurilor URL, dată și publicate."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Activați Câmpuri Suplimentare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Adăugați câmpuri suplimentare specifice tipului de conținut (stări de eveniment, stări de proiect etc.) pe baza tipului de conținut din tezaur."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Activați Rezumatul Automat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Generați automat rezumatul din conținutul corpului pe măsură ce utilizatorul tastează."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Activați Comentariile de Ajutor pentru Câmpuri"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Afișați comentarii de ajutor contextual pentru câmpuri în funcție de tipul de conținut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Reguli de Vizibilitate a Câmpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Definiți reguli personalizate de vizibilitate a câmpului (format JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Implicite de Traducere"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Configurați crearea de implicite de traducere (substituenți de limbă) pentru entitățile traductibile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Creați automat implicite de traducere"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Când este activat, implicitele de traducere (substituenții) sunt create pentru alte limbi la crearea/actualizarea entității. Traducerile existente cu sursă corectă nu sunt suprascrise."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Utilizați toate limbile disponibile"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Când este activat, traducerile vor fi create pentru toate limbile instalate pe site. Când este dezactivat, vor fi utilizate numai limbile țintă selectate mai jos."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Limbi țintă pentru implicitele de traducere"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Selectați pentru ce limbi să creați implicite de traducere. Utilizat numai când \"Utilizați toate limbile disponibile\" este dezactivat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Copiați valorile câmpului sursă"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Când este activat, valorile câmpurilor traductibile din limba sursă vor fi copiate în noile traduceri."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Tipuri de entități"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Selectați pentru ce tipuri de entități ar trebui create implicite de traducere."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operațiuni în Lot"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Procesați entitățile existente pentru a crea implicite de traducere lipsă."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Tip de entitate de procesat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Selectați -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Selectați un tip de entitate pentru a crea traduceri pentru entitățile existente."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Creați implicite de traducere pentru entitățile existente"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Vă rugăm să selectați un tip de entitate de procesat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Engleză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Spaniolă"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Franceză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Germană"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Italiană"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugheză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Olandeză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Chineză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japoneză"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Coreeană"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabă"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rusă"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Ajutor"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Acesta va fi conținutul principal al noului dvs. conținut de site. Rezumatul poate fi folosit pentru a afișa o descriere scurtă și concisă a conținutului dvs. Mai mult, rezumatul va fi afișat în vizualizările de listă și card ale înregistrării dvs. pe site. Alternativ, vor fi folosite primele câteva propoziții din conținutul principal."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Imagini"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Prima imagine</b> în ordine de la stânga la dreapta aici, <b>va fi imaginea principală</b> a înregistrării dvs. afișată pe pagină și în miniaturi în vizualizările de listă și card. Toate celelalte imagini vor fi afișate sub conținutul principal."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Eroi"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Orice pagină/tip de conținut poate avea mai multe <b>bannere erou</b>. Dacă există mai mult de unul, acestea vor fi rotite la fiecare oră."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Știri (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Întâlnire sau Eveniment (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Proiect (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Document (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Site web asociat (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Altă Resursă (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Imagine sau Video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Întrebări Frecvente (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Informații Naționale (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Starea OGM-urilor (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Test pe teren (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Strategie Națională de Integrare (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Dezvoltarea Capacităților (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Anunț (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Contact (50)"

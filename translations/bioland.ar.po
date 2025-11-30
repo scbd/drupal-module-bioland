@@ -1,0 +1,353 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+
+msgid "General Settings"
+msgstr "الإعدادات العامة"
+
+msgid "Countries"
+msgstr "الدول"
+
+msgid "Enter one country code per line."
+msgstr "أدخل رمز دولة واحداً في كل سطر."
+
+msgid "Region"
+msgstr "المنطقة"
+
+msgid "Select the geographical region."
+msgstr "اختر المنطقة الجغرافية."
+
+msgid "North America"
+msgstr "أمريكا الشمالية"
+
+msgid "South America"
+msgstr "أمريكا الجنوبية"
+
+msgid "Europe"
+msgstr "أوروبا"
+
+msgid "Asia"
+msgstr "آسيا"
+
+msgid "Africa"
+msgstr "أفريقيا"
+
+msgid "Oceania"
+msgstr "أوقيانوسيا"
+
+msgid "Is Biosafety Land?"
+msgstr "هل هي أرض السلامة الأحيائية؟"
+
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "يشير إلى ما إذا كانت هذه نسخة من أرض السلامة الأحيائية."
+
+msgid "Field Behavior Settings"
+msgstr "إعدادات سلوك الحقول"
+
+msgid "Enable Field Visibility Control"
+msgstr "تفعيل التحكم في رؤية الحقول"
+
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "إظهار/إخفاء الحقول بناءً على نوع المحتوى المحدد. يتحكم في رؤية حقول الرابط والتاريخ والنشر."
+
+msgid "Enable Additional Fields"
+msgstr "تفعيل الحقول الإضافية"
+
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "إضافة حقول إضافية خاصة بنوع المحتوى (حالات الأحداث، حالات المشاريع، وغيرها) بالاستناد إلى نوع محتوى المعجم."
+
+msgid "Enable Auto Summary"
+msgstr "تفعيل الملخص التلقائي"
+
+msgid "Automatically generate summary from body content as user types."
+msgstr "إنشاء ملخص تلقائياً من نص المحتوى أثناء كتابة المستخدم."
+
+msgid "Enable Field Help Comments"
+msgstr "تفعيل تعليقات المساعدة للحقول"
+
+msgid "Display contextual help comments for fields based on content type."
+msgstr "عرض تعليقات مساعدة سياقية للحقول بناءً على نوع المحتوى."
+
+msgid "Field Visibility Rules"
+msgstr "قواعد رؤية الحقول"
+
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "تعريف قواعد مخصصة لرؤية الحقول (بتنسيق JSON)."
+
+msgid "Translation Defaults"
+msgstr "الإعدادات الافتراضية للترجمة"
+
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "تهيئة إنشاء الإعدادات الافتراضية للترجمة (عناصر اللغة النائبة) للكيانات القابلة للترجمة."
+
+msgid "Automatically create translation defaults"
+msgstr "إنشاء الإعدادات الافتراضية للترجمة تلقائياً"
+
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "عند التفعيل، تُنشأ الإعدادات الافتراضية للترجمة (العناصر النائبة) للغات الأخرى عند إنشاء الكيان أو تحديثه. لا تُستبدل الترجمات الموجودة التي تمتلك مصدراً صحيحاً."
+
+msgid "Use all available languages"
+msgstr "استخدام جميع اللغات المتاحة"
+
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "عند التفعيل، تُنشأ الترجمات لجميع اللغات المثبتة على الموقع. عند التعطيل، ستُستخدم فقط اللغات المستهدفة المحددة أدناه."
+
+msgid "Target languages for translation defaults"
+msgstr "اللغات المستهدفة للإعدادات الافتراضية للترجمة"
+
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "حدد اللغات التي سيتم إنشاء إعدادات الترجمة الافتراضية لها. يُستخدم فقط عند تعطيل خيار \"استخدام جميع اللغات المتاحة\"."
+
+msgid "Copy source field values"
+msgstr "نسخ قيم الحقول المصدرية"
+
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "عند التفعيل، ستُنسخ قيم الحقول القابلة للترجمة من اللغة المصدر إلى الترجمات الجديدة."
+
+msgid "Entity types"
+msgstr "أنواع الكيانات"
+
+msgid "Select which entity types should have translation defaults created."
+msgstr "حدد أنواع الكيانات التي يجب إنشاء إعدادات الترجمة الافتراضية لها."
+
+msgid "Batch Operations"
+msgstr "العمليات الدفعية"
+
+msgid "Process existing entities to create missing translation defaults."
+msgstr "معالجة الكيانات الموجودة لإنشاء إعدادات الترجمة الافتراضية الناقصة."
+
+msgid "Entity type to process"
+msgstr "نوع الكيان المطلوب معالجته"
+
+msgid "- Select -"
+msgstr "- اختر -"
+
+msgid "Select an entity type to create translations for existing entities."
+msgstr "اختر نوع كيان لإنشاء ترجمات للكيانات الحالية."
+
+msgid "Create translation defaults for existing entities"
+msgstr "إنشاء إعدادات ترجمة افتراضية للكيانات الحالية"
+
+msgid "Please select an entity type to process."
+msgstr "يرجى اختيار نوع كيان لمعالجته."
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Spanish"
+msgstr "الإسبانية"
+
+msgid "French"
+msgstr "الفرنسية"
+
+msgid "German"
+msgstr "الألمانية"
+
+msgid "Italian"
+msgstr "الإيطالية"
+
+msgid "Portuguese"
+msgstr "البرتغالية"
+
+msgid "Dutch"
+msgstr "الهولندية"
+
+msgid "Chinese"
+msgstr "الصينية"
+
+msgid "Japanese"
+msgstr "اليابانية"
+
+msgid "Korean"
+msgstr "الكورية"
+
+msgid "Arabic"
+msgstr "العربية"
+
+msgid "Russian"
+msgstr "الروسية"
+
+msgid "Help"
+msgstr "مساعدة"
+
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "سيكون هذا المحتوى الرئيسي لمحتوى موقعك الجديد. يمكن استخدام الملخص لعرض وصف موجز ودقيق لمحتواك. بالإضافة إلى ذلك، سيُعرض الملخص في طرق عرض القوائم والبطاقات لسجلك على الموقع. وبدلاً من ذلك، ستُستخدم الجمل القليلة الأولى من المحتوى الرئيسي."
+
+msgid "Images"
+msgstr "الصور"
+
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "ستكون <b>أول صورة</b> من اليسار إلى اليمين هنا <b>هي الصورة الرئيسية</b> لسجلك المعروضة على الصفحة وفي الصور المصغرة ضمن طرق عرض القوائم والبطاقات. ستُعرض جميع الصور الأخرى أسفل المحتوى الرئيسي."
+
+msgid "Heroes"
+msgstr "اللافتات الرئيسية"
+
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "يمكن لأي صفحة/نوع محتوى أن يحتوي على عدة <b>لافتات رئيسية</b>. إذا وُجد أكثر من واحدة فسيتم تبديلها كل ساعة."
+
+msgid "News (2)"
+msgstr "الأخبار (2)"
+
+msgid "Meeting or Event (3)"
+msgstr "اجتماع أو فعالية (3)"
+
+msgid "Project (5)"
+msgstr "مشروع (5)"
+
+msgid "Document (12)"
+msgstr "وثيقة (12)"
+
+msgid "Related Website (13)"
+msgstr "موقع ذو صلة (13)"
+
+msgid "Other Resource (15)"
+msgstr "مورد آخر (15)"
+
+msgid "Image or Video (16)"
+msgstr "صورة أو فيديو (16)"
+
+msgid "FAQ (43)"
+msgstr "الأسئلة الشائعة (43)"
+
+msgid "National Information (44)"
+msgstr "معلومات وطنية (44)"
+
+msgid "Status of LMOs (45)"
+msgstr "حالة الكائنات الحية المحورة (45)"
+
+msgid "Field Trial (46)"
+msgstr "تجربة حقلية (46)"
+
+msgid "National Mainstreaming Strategy (47)"
+msgstr "استراتيجية الدمج الوطنية (47)"
+
+msgid "Capacity-Building (48)"
+msgstr "بناء القدرات (48)"
+
+msgid "Announcement (49)"
+msgstr "إعلان (49)"
+
+msgid "Contact (50)"
+msgstr "جهة اتصال (50)"
+
+msgid "Order Override"
+msgstr "تجاوز الترتيب"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "ليست لديك صلاحية إنشاء عناصر قائمة تحت عناصر قائمة أخرى. يُسمح لك فقط بعناصر القائمة ذات المستوى الأعلى."
+
+msgid "Site name"
+msgstr "اسم الموقع"
+
+msgid "Slogan"
+msgstr "الشعار"
+
+msgid "How this is used depends on your site's theme."
+msgstr "تعتمد طريقة استخدامه على سمة موقعك."
+
+msgid "Email address"
+msgstr "عنوان البريد الإلكتروني"
+
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "عنوان <em>المرسل</em> في رسائل البريد الإلكتروني الآلية المرسلة أثناء التسجيل وطلبات كلمة المرور الجديدة والإشعارات الأخرى. (استخدم عنواناً ينتهي بنطاق موقعك للمساعدة في منع وضع هذا البريد ضمن الرسائل المزعجة.)"
+
+msgid "Translate Site Name"
+msgstr "ترجمة اسم الموقع"
+
+msgid "Translate Slogan"
+msgstr "ترجمة الشعار"
+
+msgid "Biosafety Land"
+msgstr "أرض السلامة الأحيائية"
+
+msgid "Bioland"
+msgstr "بيولاند"
+
+msgid "@branding Settings"
+msgstr "إعدادات @branding"
+
+msgid "Field Visibility Control"
+msgstr "التحكم في رؤية الحقول"
+
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "إظهار/إخفاء الحقول بناءً على نوع المحتوى المحدد. قم بتهيئة الحقول المرئية لكل نوع محتوى أدناه."
+
+msgid "URL Field"
+msgstr "حقل الرابط"
+
+msgid "Show URL field for these content types:"
+msgstr "إظهار حقل الرابط لأنواع المحتوى التالية:"
+
+msgid "Published Field"
+msgstr "حقل النشر"
+
+msgid "Show Published field for these content types:"
+msgstr "إظهار حقل النشر لأنواع المحتوى التالية:"
+
+msgid "Date Range Field (Start & End Date)"
+msgstr "حقل نطاق التاريخ (تاريخ البداية والنهاية)"
+
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "إظهار حقول نطاق التاريخ (تاريخ البداية والنهاية) لأنواع المحتوى التالية:"
+
+msgid "Additional Fields Control"
+msgstr "التحكم في الحقول الإضافية"
+
+msgid "Additional Fields Mapping"
+msgstr "تعيين الحقول الإضافية"
+
+msgid "The following content types will have these additional fields available:"
+msgstr "ستتوفر أنواع المحتوى التالية على هذه الحقول الإضافية:"
+
+msgid "Event Statuses"
+msgstr "حالات الحدث"
+
+msgid "Project Statuses, Geographic Scopes"
+msgstr "حالات المشروع، النطاقات الجغرافية"
+
+msgid "Ministry (8)"
+msgstr "الوزارة (8)"
+
+msgid "Organization Types, Government Types"
+msgstr "أنواع المنظمات، أنواع الحكومات"
+
+msgid "Ecosystem (9)"
+msgstr "النظام البيئي (9)"
+
+msgid "Ecosystem Types"
+msgstr "أنواع النظم البيئية"
+
+msgid "Document Types"
+msgstr "أنواع الوثائق"
+
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "تُضاف هذه الحقول ديناميكياً بناءً على نوع المحتوى المحدد ويتم تشغيلها بواسطة مكون Vue.js."
+
+msgid "Enable Menu Depth Restriction"
+msgstr "تفعيل تقييد عمق القائمة"
+
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "تقييد المستخدمين غير الإداريين من إنشاء عناصر قائمة من المستوى الثاني وما بعده. يمكن فقط للمستخدمين الذين لديهم صلاحية \"إدارة القائمة\" إنشاء عناصر قائمة متداخلة."
+
+msgid "Field Visibility Rules (Advanced)"
+msgstr "قواعد رؤية الحقول (متقدم)"
+
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "حدد قواعد مخصصة لرؤية الحقول بتنسيق JSON. اتركه فارغاً لاستخدام الإعدادات أعلاه."
+
+msgid "(Required)"
+msgstr "(مطلوب)"
+
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>مطلوب:</strong> حدد أنواع الكيانات التي يجب إنشاء إعدادات الترجمة الافتراضية لها. يجب اختيار نوع كيان واحد على الأقل ليعمل إنشاء الترجمة الآلي. الخيار الشائع: <em>المحتوى (node)</em>."
+
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "يجب اختيار نوع كيان واحد على الأقل ليعمل إنشاء الترجمة الافتراضي تلقائياً. يرجى اختيار نوع كيان واحد أو أكثر، أو تعطيل خيار \"إنشاء الإعدادات الافتراضية للترجمة تلقائياً\"."

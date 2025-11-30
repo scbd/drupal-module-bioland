@@ -1,0 +1,353 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bn\n"
+
+msgid "General Settings"
+msgstr "সাধারণ সেটিংস"
+
+msgid "Countries"
+msgstr "দেশ"
+
+msgid "Enter one country code per line."
+msgstr "প্রতি লাইনে একটি করে দেশের কোড লিখুন।"
+
+msgid "Region"
+msgstr "অঞ্চল"
+
+msgid "Select the geographical region."
+msgstr "ভৌগোলিক অঞ্চল নির্বাচন করুন।"
+
+msgid "North America"
+msgstr "উত্তর আমেরিকা"
+
+msgid "South America"
+msgstr "দক্ষিণ আমেরিকা"
+
+msgid "Europe"
+msgstr "ইউরোপ"
+
+msgid "Asia"
+msgstr "এশিয়া"
+
+msgid "Africa"
+msgstr "আফ্রিকা"
+
+msgid "Oceania"
+msgstr "ওশেনিয়া"
+
+msgid "Is Biosafety Land?"
+msgstr "এটি কি বায়োসেফটি ল্যান্ড?"
+
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "নির্দেশ করে যে এটি একটি বায়োসেফটি ল্যান্ড ইনস্ট্যান্স কিনা।"
+
+msgid "Field Behavior Settings"
+msgstr "ফিল্ড আচরণ সেটিংস"
+
+msgid "Enable Field Visibility Control"
+msgstr "ফিল্ড দৃশ্যমানতা নিয়ন্ত্রণ সক্ষম করুন"
+
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "বিষয়বস্তুর প্রকার নির্বাচনের উপর ভিত্তি করে ফিল্ড দেখান/লুকান। URL, তারিখ, এবং প্রকাশিত ফিল্ডের দৃশ্যমানতা নিয়ন্ত্রণ করে।"
+
+msgid "Enable Additional Fields"
+msgstr "অতিরিক্ত ফিল্ড সক্ষম করুন"
+
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "থিসোরাস বিষয়বস্তুর প্রকারের উপর ভিত্তি করে বিষয়বস্তু-প্রকার নির্দিষ্ট অতিরিক্ত ফিল্ড (ইভেন্টের অবস্থা, প্রকল্পের অবস্থা, ইত্যাদি) যোগ করুন।"
+
+msgid "Enable Auto Summary"
+msgstr "স্বয়ংক্রিয় সারাংশ সক্ষম করুন"
+
+msgid "Automatically generate summary from body content as user types."
+msgstr "ব্যবহারকারী টাইপ করার সাথে সাথে মূল বিষয়বস্তু থেকে স্বয়ংক্রিয়ভাবে সারাংশ তৈরি করুন।"
+
+msgid "Enable Field Help Comments"
+msgstr "ফিল্ড সহায়তা মন্তব্য সক্ষম করুন"
+
+msgid "Display contextual help comments for fields based on content type."
+msgstr "বিষয়বস্তুর প্রকারের উপর ভিত্তি করে ফিল্ডের জন্য প্রাসঙ্গিক সহায়তা মন্তব্য প্রদর্শন করুন।"
+
+msgid "Field Visibility Rules"
+msgstr "ফিল্ড দৃশ্যমানতার নিয়ম"
+
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "কাস্টম ফিল্ড দৃশ্যমানতার নিয়ম নির্ধারণ করুন (JSON ফরম্যাট)।"
+
+msgid "Translation Defaults"
+msgstr "অনুবাদ ডিফল্ট"
+
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "অনুবাদযোগ্য সত্তার জন্য অনুবাদ ডিফল্ট (ভাষা স্থানধারক) তৈরির কনফিগার করুন।"
+
+msgid "Automatically create translation defaults"
+msgstr "স্বয়ংক্রিয়ভাবে অনুবাদ ডিফল্ট তৈরি করুন"
+
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "সক্ষম করা হলে, সত্তা তৈরি/আপডেট করার সময় অন্যান্য ভাষার জন্য অনুবাদ ডিফল্ট (স্থানধারক) তৈরি করা হয়। সঠিক উৎস সহ বিদ্যমান অনুবাদগুলি ওভাররাইট করা হয় না।"
+
+msgid "Use all available languages"
+msgstr "সমস্ত উপলব্ধ ভাষা ব্যবহার করুন"
+
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "সক্ষম করা হলে, সাইটে ইনস্টল করা সমস্ত ভাষার জন্য অনুবাদ তৈরি করা হবে। অক্ষম করা হলে, শুধুমাত্র নীচের নির্বাচিত লক্ষ্য ভাষাগুলি ব্যবহার করা হবে।"
+
+msgid "Target languages for translation defaults"
+msgstr "অনুবাদ ডিফল্টের জন্য লক্ষ্য ভাষা"
+
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "কোন ভাষার জন্য অনুবাদ ডিফল্ট তৈরি করতে হবে তা নির্বাচন করুন। শুধুমাত্র যখন \"সমস্ত উপলব্ধ ভাষা ব্যবহার করুন\" অক্ষম থাকে তখন ব্যবহৃত হয়।"
+
+msgid "Copy source field values"
+msgstr "উৎস ফিল্ডের মান অনুলিপি করুন"
+
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "সক্ষম করা হলে, উৎস ভাষা থেকে অনুবাদযোগ্য ফিল্ডের মানগুলি নতুন অনুবাদে অনুলিপি করা হবে।"
+
+msgid "Entity types"
+msgstr "সত্তার প্রকার"
+
+msgid "Select which entity types should have translation defaults created."
+msgstr "কোন সত্তার প্রকারের জন্য অনুবাদ ডিফল্ট তৈরি করা উচিত তা নির্বাচন করুন।"
+
+msgid "Batch Operations"
+msgstr "ব্যাচ অপারেশন"
+
+msgid "Process existing entities to create missing translation defaults."
+msgstr "বিদ্যমান সত্তাগুলি প্রক্রিয়া করে অনুপস্থিত অনুবাদ ডিফল্ট তৈরি করুন।"
+
+msgid "Entity type to process"
+msgstr "প্রক্রিয়াকরণের জন্য সত্তার প্রকার"
+
+msgid "- Select -"
+msgstr "- নির্বাচন করুন -"
+
+msgid "Select an entity type to create translations for existing entities."
+msgstr "বিদ্যমান সত্তার জন্য অনুবাদ তৈরি করতে একটি সত্তার প্রকার নির্বাচন করুন।"
+
+msgid "Create translation defaults for existing entities"
+msgstr "বিদ্যমান সত্তার জন্য অনুবাদ ডিফল্ট তৈরি করুন"
+
+msgid "Please select an entity type to process."
+msgstr "প্রক্রিয়াকরণের জন্য অনুগ্রহ করে একটি সত্তার প্রকার নির্বাচন করুন।"
+
+msgid "English"
+msgstr "ইংরেজি"
+
+msgid "Spanish"
+msgstr "স্প্যানিশ"
+
+msgid "French"
+msgstr "ফরাসি"
+
+msgid "German"
+msgstr "জার্মান"
+
+msgid "Italian"
+msgstr "ইতালীয়"
+
+msgid "Portuguese"
+msgstr "পর্তুগিজ"
+
+msgid "Dutch"
+msgstr "ডাচ"
+
+msgid "Chinese"
+msgstr "চীনা"
+
+msgid "Japanese"
+msgstr "জাপানি"
+
+msgid "Korean"
+msgstr "কোরিয়ান"
+
+msgid "Arabic"
+msgstr "আরবি"
+
+msgid "Russian"
+msgstr "রাশিয়ান"
+
+msgid "Help"
+msgstr "সাহায্য"
+
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "এটি আপনার নতুন সাইটের বিষয়বস্তুর প্রধান অংশ হবে। সারাংশটি আপনার বিষয়বস্তুর একটি সংক্ষিপ্ত বিবরণ প্রদর্শন করতে ব্যবহার করা যেতে পারে। এছাড়াও, সারাংশটি ওয়েবসাইটে আপনার রেকর্ডের তালিকা এবং কার্ড ভিউতে প্রদর্শিত হবে। বিকল্পভাবে, প্রধান বিষয়বস্তু থেকে প্রথম কয়েকটি বাক্য ব্যবহার করা হবে।"
+
+msgid "Images"
+msgstr "ছবি"
+
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "এখানে বাম থেকে ডানের ক্রমে <b>প্রথম ছবিটি</b>, আপনার রেকর্ডের <b>প্রধান ছবি</b> হবে যা পৃষ্ঠায় এবং তালিকা ও কার্ড ভিউতে থাম্বনেইল হিসাবে প্রদর্শিত হবে। অন্য সমস্ত ছবি প্রধান বিষয়বস্তুর নীচে প্রদর্শিত হবে।"
+
+msgid "Heroes"
+msgstr "হিরো"
+
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "যেকোনো পৃষ্ঠা/বিষয়বস্তুর প্রকারে একাধিক <b>হিরো ব্যানার</b> থাকতে পারে। যদি একাধিক থাকে তবে সেগুলি প্রতি ঘণ্টায় ঘোরানো হবে।"
+
+msgid "News (2)"
+msgstr "সংবাদ (২)"
+
+msgid "Meeting or Event (3)"
+msgstr "সভা বা অনুষ্ঠান (৩)"
+
+msgid "Project (5)"
+msgstr "প্রকল্প (৫)"
+
+msgid "Document (12)"
+msgstr "নথি (১২)"
+
+msgid "Related Website (13)"
+msgstr "সম্পর্কিত ওয়েবসাইট (১৩)"
+
+msgid "Other Resource (15)"
+msgstr "অন্যান্য সম্পদ (১৫)"
+
+msgid "Image or Video (16)"
+msgstr "ছবি বা ভিডিও (১৬)"
+
+msgid "FAQ (43)"
+msgstr "সাধারণ জিজ্ঞাসা (৪৩)"
+
+msgid "National Information (44)"
+msgstr "জাতীয় তথ্য (৪৪)"
+
+msgid "Status of LMOs (45)"
+msgstr "LMO-এর অবস্থা (৪৫)"
+
+msgid "Field Trial (46)"
+msgstr "ক্ষেত্র পরীক্ষা (৪৬)"
+
+msgid "National Mainstreaming Strategy (47)"
+msgstr "জাতীয় মূলধারার কৌশল (৪৭)"
+
+msgid "Capacity-Building (48)"
+msgstr "সক্ষমতা বৃদ্ধি (৪৮)"
+
+msgid "Announcement (49)"
+msgstr "ঘোষণা (৪৯)"
+
+msgid "Contact (50)"
+msgstr "যোগাযোগ (৫০)"
+
+msgid "Order Override"
+msgstr "অর্ডার ওভাররাইড"
+
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "আপনার অন্য মেনু আইটেমের অধীনে মেনু আইটেম তৈরি করার অনুমতি নেই। আপনার ভূমিকার জন্য শুধুমাত্র শীর্ষ-স্তরের মেনু আইটেম অনুমোদিত।"
+
+msgid "Site name"
+msgstr "সাইটের নাম"
+
+msgid "Slogan"
+msgstr "স্লোগান"
+
+msgid "How this is used depends on your site's theme."
+msgstr "এটি কীভাবে ব্যবহৃত হয় তা আপনার সাইটের থিমের উপর নির্ভর করে।"
+
+msgid "Email address"
+msgstr "ইমেল ঠিকানা"
+
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "নিবন্ধন এবং নতুন পাসওয়ার্ড অনুরোধের সময় পাঠানো স্বয়ংক্রিয় ই-মেইলে <em>প্রেরকের</em> ঠিকানা, এবং অন্যান্য বিজ্ঞপ্তি। (এই ই-মেইলটি স্প্যাম হিসাবে চিহ্নিত হওয়া রোধ করতে আপনার সাইটের ডোমেইনে শেষ হওয়া একটি ঠিকানা ব্যবহার করুন।)"
+
+msgid "Translate Site Name"
+msgstr "সাইটের নাম অনুবাদ করুন"
+
+msgid "Translate Slogan"
+msgstr "স্লোগান অনুবাদ করুন"
+
+msgid "Biosafety Land"
+msgstr "বায়োসেফটি ল্যান্ড"
+
+msgid "Bioland"
+msgstr "বায়োল্যান্ড"
+
+msgid "@branding Settings"
+msgstr "@ব্র্যান্ডিং সেটিংস"
+
+msgid "Field Visibility Control"
+msgstr "ফিল্ড দৃশ্যমানতা নিয়ন্ত্রণ"
+
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "বিষয়বস্তুর প্রকার নির্বাচনের উপর ভিত্তি করে ফিল্ড দেখান/লুকান। নীচে প্রতিটি বিষয়বস্তুর প্রকারের জন্য কোন ফিল্ডগুলি দৃশ্যমান হবে তা কনফিগার করুন।"
+
+msgid "URL Field"
+msgstr "URL ফিল্ড"
+
+msgid "Show URL field for these content types:"
+msgstr "এই বিষয়বস্তুর প্রকারগুলির জন্য URL ফিল্ড দেখান:"
+
+msgid "Published Field"
+msgstr "প্রকাশিত ফিল্ড"
+
+msgid "Show Published field for these content types:"
+msgstr "এই বিষয়বস্তুর প্রকারগুলির জন্য প্রকাশিত ফিল্ড দেখান:"
+
+msgid "Date Range Field (Start & End Date)"
+msgstr "তারিখ পরিসীমা ফিল্ড (শুরু এবং শেষের তারিখ)"
+
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "এই বিষয়বস্তুর প্রকারগুলির জন্য তারিখ পরিসীমা ফিল্ড (শুরু এবং শেষের তারিখ) দেখান:"
+
+msgid "Additional Fields Control"
+msgstr "অতিরিক্ত ফিল্ড নিয়ন্ত্রণ"
+
+msgid "Additional Fields Mapping"
+msgstr "অতিরিক্ত ফিল্ড ম্যাপিং"
+
+msgid "The following content types will have these additional fields available:"
+msgstr "নিম্নলিখিত বিষয়বস্তুর প্রকারগুলিতে এই অতিরিক্ত ফিল্ডগুলি উপলব্ধ থাকবে:"
+
+msgid "Event Statuses"
+msgstr "ইভেন্টের অবস্থা"
+
+msgid "Project Statuses, Geographic Scopes"
+msgstr "প্রকল্পের অবস্থা, ভৌগোলিক পরিধি"
+
+msgid "Ministry (8)"
+msgstr "মন্ত্রণালয় (৮)"
+
+msgid "Organization Types, Government Types"
+msgstr "সংস্থার প্রকার, সরকারের প্রকার"
+
+msgid "Ecosystem (9)"
+msgstr "বাস্তুতন্ত্র (৯)"
+
+msgid "Ecosystem Types"
+msgstr "বাস্তুতন্ত্রের প্রকার"
+
+msgid "Document Types"
+msgstr "নথির প্রকার"
+
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "এই ফিল্ডগুলি নির্বাচিত বিষয়বস্তুর প্রকারের উপর ভিত্তি করে গতিশীলভাবে যোগ করা হয় এবং একটি Vue.js উপাদান দ্বারা চালিত হয়।"
+
+msgid "Enable Menu Depth Restriction"
+msgstr "মেনু গভীরতা সীমাবদ্ধতা সক্ষম করুন"
+
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "অ-প্রশাসক ব্যবহারকারীদের দ্বিতীয়-স্তরের মেনু আইটেম এবং তার চেয়ে গভীরতর তৈরি করা থেকে সীমাবদ্ধ করুন। শুধুমাত্র \"মেনু পরিচালনা\" অনুমতি সহ ব্যবহারকারীরা নেস্টেড মেনু আইটেম তৈরি করতে পারেন।"
+
+msgid "Field Visibility Rules (Advanced)"
+msgstr "ফিল্ড দৃশ্যমানতার নিয়ম (উন্নত)"
+
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "JSON ফরম্যাটে কাস্টম ফিল্ড দৃশ্যমানতার নিয়ম নির্ধারণ করুন। উপরের সেটিংস ব্যবহার করতে খালি রাখুন।"
+
+msgid "(Required)"
+msgstr "(প্রয়োজনীয়)"
+
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>প্রয়োজনীয়:</strong> কোন সত্তার প্রকারের জন্য অনুবাদ ডিফল্ট তৈরি করা উচিত তা নির্বাচন করুন। স্বয়ংক্রিয় অনুবাদ ডিফল্ট কাজ করার জন্য আপনাকে অবশ্যই কমপক্ষে একটি সত্তার প্রকার নির্বাচন করতে হবে। সাধারণ পছন্দ: <em>বিষয়বস্তু (নোড)</em>।"
+
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "স্বয়ংক্রিয় অনুবাদ ডিফল্ট কাজ করার জন্য আপনাকে অবশ্যই কমপক্ষে একটি সত্তার প্রকার নির্বাচন করতে হবে। অনুগ্রহ করে এক বা একাধিক সত্তার প্রকার নির্বাচন করুন, অথবা \"স্বয়ংক্রিয়ভাবে অনুবাদ ডিফল্ট তৈরি করুন\" অক্ষম করুন।"

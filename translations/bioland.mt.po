@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mt\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Settings Ġenerali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Pajjiżi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Daħħal kodiċi wieħed tal-pajjiż għal kull linja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Reġjun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Agħżel ir-reġjun ġeografiku."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Amerika ta' Fuq"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Amerika t'Isfel"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Ewropa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afrika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oċeanja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Hija Art tal-Bijosigurtà?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Jindika jekk din hijiex istanza ta' Art tal-Bijosigurtà."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Settings tal-Imġieba tal-Oqsma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Attiva l-Kontroll tal-Viżibilità tal-Oqsma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Uri/aħbi l-oqsma bbażati fuq l-għażla tat-tip ta' kontenut. Jikkontrolla l-viżibilità tal-URL, id-data, u l-oqsma ppubblikati."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Attiva Oqsma Addizzjonali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Żid oqsma addizzjonali speċifiċi għat-tip ta' kontenut (status tal-avvenimenti, status tal-proġetti, eċċ.) ibbażati fuq it-tip ta' kontenut tat-teżawru."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Attiva Sommarju Awtomatiku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Iġġenera sommarju awtomatikament mill-kontenut tal-body hekk kif l-utent jittajpja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Attiva Kummenti ta' Għajnuna għall-Oqsma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Uri kummenti ta' għajnuna kuntestwali għall-oqsma bbażati fuq it-tip ta' kontenut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Regoli tal-Viżibilità tal-Oqsma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Iddefinixxi regoli personalizzati tal-viżibilità tal-oqsma (format JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Defaults tat-Traduzzjoni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Ikkonfigura l-ħolqien ta' defaults tat-traduzzjoni (placeholders tal-lingwa) għal entitajiet traduttibbli."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Oħloq defaults tat-traduzzjoni awtomatikament"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Meta attivata, id-defaults tat-traduzzjoni (placeholders) jinħolqu għal lingwi oħra mal-ħolqien/aġġornament tal-entità. Traduzzjonijiet eżistenti b'sors xieraq ma jinkitbux fuqhom."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Uża l-lingwi kollha disponibbli"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Meta attivata, it-traduzzjonijiet jinħolqu għal-lingwi kollha installati fuq is-sit. Meta diżattivata, jintużaw biss il-lingwi fil-mira magħżula hawn taħt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Lingwi fil-mira għad-defaults tat-traduzzjoni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Agħżel liema lingwi toħloq defaults tat-traduzzjoni għalihom. Użat biss meta \"Uża l-lingwi kollha disponibbli\" tkun diżattivata."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Ikkopja l-valuri tal-oqsma tas-sors"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Meta attivata, il-valuri tal-oqsma traduttibbli mil-lingwa tas-sors jiġu kkupjati għal traduzzjonijiet ġodda."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Tipi ta' entità"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Agħżel liema tipi ta' entità għandu jkollhom defaults tat-traduzzjoni maħluqa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operazzjonijiet f'Lottijiet"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Ipproċessa entitajiet eżistenti biex toħloq defaults tat-traduzzjoni neqsin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Tip ta' entità biex tipproċessa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Agħżel -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Agħżel tip ta' entità biex toħloq traduzzjonijiet għal entitajiet eżistenti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Oħloq defaults tat-traduzzjoni għal entitajiet eżistenti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Jekk jogħġbok agħżel tip ta' entità biex tipproċessa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Ingliż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Spanjol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Franċiż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Ġermaniż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Taljan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugiż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Olandiż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Ċiniż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Ġappuniż"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Korean"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Għarbi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Russu"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Għajnuna"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Dan se jkun il-kontenut ewlieni tal-kontenut il-ġdid tas-sit tiegħek. Is-sommarju jista' jintuża biex juri deskrizzjoni qasira u konċiża tal-kontenut tiegħek. Barra minn hekk, is-sommarju jintwera fil-veduti tal-lista u tal-kards tar-rekord tiegħek fuq il-websajt. Alternattivament, jintużaw l-ewwel ftit sentenzi mill-kontenut ewlieni."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Stampi"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "L-<b>ewwel stampa</b> fl-ordni mix-xellug għal-lemin hawnhekk, <b>se tkun l-istampa ewlenija</b> tar-rekord tiegħek murija fuq il-paġna u fil-thumbnails fil-veduti tal-lista u tal-kards. L-istampi l-oħra kollha jintwerew taħt il-kontenut ewlieni."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Eroj"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Kwalunkwe paġna/tip ta' kontenut jista' jkollha diversi <b>banners eroj</b>. Jekk ikun hemm aktar minn wieħed, dawn jiġu mdawra kull siegħa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Aħbarijiet (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Laqgħa jew Avveniment (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Proġett (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dokument (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Websajt Relatata (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Riżors Ieħor (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Stampa jew Vidjo (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "FAQ (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Informazzjoni Nazzjonali (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Status tal-LMOs (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Prova fuq il-Post (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Strateġija Nazzjonali għall-Integrazzjoni (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Bini tal-Kapaċità (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Tħabbira (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Kuntatt (50)"

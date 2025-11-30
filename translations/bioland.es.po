@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Configuración General"
+
+msgid "Field Visibility Settings"
+msgstr "Configuración de Visibilidad de Campos"
+
+msgid "Enable Field Visibility functionality"
+msgstr "Habilitar funcionalidad de Visibilidad de Campos"
+
+msgid "When enabled, field visibility rules will be applied to the form."
+msgstr "Cuando esté habilitado, las reglas de visibilidad de campos se aplicarán al formulario."
+
+msgid "Field Visibility Rules"
+msgstr "Reglas de Visibilidad de Campos"
+
+msgid "JSON configuration for field visibility rules. See documentation for format details."
+msgstr "Configuración JSON para reglas de visibilidad de campos. Consulte la documentación para detalles del formato."
+
+msgid "Additional Fields Settings"
+msgstr "Configuración de Campos Adicionales"
+
+msgid "Enable Additional Fields functionality"
+msgstr "Habilitar funcionalidad de Campos Adicionales"
+
+msgid "When enabled, additional fields will be available in the form."
+msgstr "Cuando esté habilitado, los campos adicionales estarán disponibles en el formulario."
+
+msgid "Auto Summary Settings"
+msgstr "Configuración de Resumen Automático"
+
+msgid "Enable Auto Summary functionality"
+msgstr "Habilitar funcionalidad de Resumen Automático"
+
+msgid "When enabled, summary will be automatically generated from the body field."
+msgstr "Cuando esté habilitado, el resumen se generará automáticamente desde el campo de cuerpo."
+
+msgid "Auto Summary Maximum Length"
+msgstr "Longitud Máxima del Resumen Automático"
+
+msgid "Maximum number of characters for the auto-generated summary (default: 300)."
+msgstr "Número máximo de caracteres para el resumen generado automáticamente (predeterminado: 300)."
+
+msgid "Translation Settings"
+msgstr "Configuración de Traducción"
+
+msgid "Enable Auto Translation Default Creation"
+msgstr "Habilitar Creación Automática de Traducciones Predeterminadas"
+
+msgid "When enabled, default translations will be created automatically for new content."
+msgstr "Cuando esté habilitado, las traducciones predeterminadas se crearán automáticamente para contenido nuevo."
+
+msgid "Languages for Auto Translation"
+msgstr "Idiomas para Traducción Automática"
+
+msgid "Select which languages should have default translations created automatically. Leave empty to use all enabled languages."
+msgstr "Seleccione qué idiomas deben tener traducciones predeterminadas creadas automáticamente. Deje vacío para usar todos los idiomas habilitados."
+
+msgid "Copy Source Values to Translations"
+msgstr "Copiar Valores de Origen a las Traducciones"
+
+msgid "When enabled, source field values will be copied to new translations (except title and body)."
+msgstr "Cuando esté habilitado, los valores de los campos de origen se copiarán a las nuevas traducciones (excepto título y cuerpo)."
+
+msgid "Batch Translation Processing"
+msgstr "Procesamiento de Traducción por Lotes"
+
+msgid "Process existing content"
+msgstr "Procesar contenido existente"
+
+msgid "Create default translations for all existing content that doesn't have them yet. This may take a while for large sites."
+msgstr "Crear traducciones predeterminadas para todo el contenido existente que aún no las tenga. Esto puede tomar un tiempo para sitios grandes."
+
+msgid "Bioland Settings"
+msgstr "Configuración de Bioland"
+
+msgid "Configure Bioland module functionality"
+msgstr "Configurar funcionalidad del módulo Bioland"
+
+msgid "The configuration options have been saved."
+msgstr "Las opciones de configuración han sido guardadas."
+
+msgid "Processing @count items for translation..."
+msgstr "Procesando @count elementos para traducción..."
+
+msgid "Successfully created translations for @success items. @error errors occurred."
+msgstr "Se crearon traducciones exitosamente para @success elementos. Ocurrieron @error errores."
+
+#: bioland.module
+msgid "Help"
+msgstr "Ayuda"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "El módulo Bioland proporciona funcionalidad de gestión de campos y traducción."
+
+msgid "Uses"
+msgstr "Usos"
+
+msgid "Field Visibility"
+msgstr "Visibilidad de Campos"
+
+msgid "Control which fields are visible based on content type and other conditions."
+msgstr "Controle qué campos son visibles según el tipo de contenido y otras condiciones."
+
+msgid "Additional Fields"
+msgstr "Campos Adicionales"
+
+msgid "Add dynamic additional fields to content forms."
+msgstr "Agregue campos adicionales dinámicos a formularios de contenido."
+
+msgid "Auto Summary"
+msgstr "Resumen Automático"
+
+msgid "Automatically generate summaries from body content."
+msgstr "Genere resúmenes automáticamente desde el contenido del cuerpo."
+
+msgid "Translation Management"
+msgstr "Gestión de Traducción"
+
+msgid "Automatically create default translations for content."
+msgstr "Cree traducciones predeterminadas automáticamente para contenido."

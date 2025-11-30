@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Yleiset Asetukset"
+
+msgid "Field Functionality Settings"
+msgstr "Kenttätoiminnallisuuden Asetukset"
+
+msgid "Translation Defaults Settings"
+msgstr "Käännöksen Oletusasetusten Asetukset"
+
+msgid "Field Visibility"
+msgstr "Kentän Näkyvyys"
+
+msgid "Enable field visibility functionality"
+msgstr "Ota käyttöön kentän näkyvyystoiminto"
+
+msgid "When enabled, fields can be shown/hidden based on content type selection."
+msgstr "Kun käytössä, kenttiä voidaan näyttää/piilottaa sisältötyypin valinnan perusteella."
+
+msgid "Field Visibility Rules"
+msgstr "Kentän Näkyvyyssäännöt"
+
+msgid "JSON configuration for field visibility rules"
+msgstr "JSON-kokoonpano kentän näkyvyyssäännöille"
+
+msgid "Additional Fields"
+msgstr "Lisäkentät"
+
+msgid "Enable additional fields functionality"
+msgstr "Ota käyttöön lisäkenttien toiminto"
+
+msgid "When enabled, additional fields will be available based on content type."
+msgstr "Kun käytössä, lisäkentät ovat saatavilla sisältötyypin perusteella."
+
+msgid "Auto Summary"
+msgstr "Automaattinen Yhteenveto"
+
+msgid "Enable auto summary functionality"
+msgstr "Ota käyttöön automaattinen yhteenvetotoiminto"
+
+msgid "When enabled, summary field will be automatically populated from the body field."
+msgstr "Kun käytössä, yhteenvetokenttä täytetään automaattisesti leipätekstikentästä."
+
+msgid "Auto Summary Character Limit"
+msgstr "Automaattisen Yhteenvedon Merkkimääräraja"
+
+msgid "Maximum number of characters for auto-generated summaries (default: 600)"
+msgstr "Automaattisesti luotujen yhteenvetojen enimmäismerkkimäärä (oletus: 600)"
+
+msgid "Enable Automatic Translation Default Creation"
+msgstr "Ota käyttöön Automaattinen Käännöksen Oletusarvojen Luonti"
+
+msgid "When enabled, translation defaults will be created automatically when content is saved."
+msgstr "Kun käytössä, käännöksen oletusarvot luodaan automaattisesti sisältöä tallennettaessa."
+
+msgid "Languages for Translation Defaults"
+msgstr "Kielet Käännöksen Oletusarvoille"
+
+msgid "Select which languages should have translation defaults created. Leave empty to use all enabled languages."
+msgstr "Valitse, mille kielille käännöksen oletusarvot luodaan. Jätä tyhjäksi käyttääksesi kaikkia käytössä olevia kieliä."
+
+msgid "Copy Source Values to Translations"
+msgstr "Kopioi Lähdearvot Käännöksiin"
+
+msgid "When enabled, field values from the source content will be copied to the translation defaults."
+msgstr "Kun käytössä, lähdesiällön kenttäarvot kopioidaan käännöksen oletusarvoihin."
+
+msgid "Create Translation Defaults for Existing Content"
+msgstr "Luo Käännöksen Oletusarvot Olemassa Olevalle Sisällölle"
+
+msgid "Process existing content to create missing translation defaults. This operation will run in batch mode."
+msgstr "Käsittele olemassa olevaa sisältöä puuttuvien käännösten oletusarvojen luomiseksi. Tämä toiminto suoritetaan eräajona."
+
+msgid "Content Types"
+msgstr "Sisältötyypit"
+
+msgid "Select which content types should be processed. Leave empty to process all content types."
+msgstr "Valitse, mitkä sisältötyypit käsitellään. Jätä tyhjäksi käsitelläksesi kaikki sisältötyypit."
+
+msgid "Process Existing Content"
+msgstr "Käsittele Olemassa Oleva Sisältö"
+
+msgid "Start batch processing to create translation defaults for existing content."
+msgstr "Aloita eräkäsittely luodaksesi käännöksen oletusarvot olemassa olevalle sisällölle."
+
+msgid "Save configuration"
+msgstr "Tallenna kokoonpano"
+
+msgid "The configuration options have been saved."
+msgstr "Kokoonpanoasetukset on tallennettu."
+
+msgid "Translation defaults batch processing has been queued."
+msgstr "Käännöksen oletusarvojen eräkäsittely on asetettu jonoon."
+
+msgid "Creating translation defaults for @entity_type @id"
+msgstr "Luodaan käännöksen oletusarvoja kohteelle @entity_type @id"
+
+msgid "Created @count translation defaults."
+msgstr "Luotiin @count käännöksen oletusarvoa."
+
+msgid "Finished processing translation defaults. Created @count translations."
+msgstr "Käännöksen oletusarvojen käsittely valmis. Luotiin @count käännöstä."

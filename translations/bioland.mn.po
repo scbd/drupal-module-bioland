@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mn\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Ерөнхий тохиргоо"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Улсууд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Нэг мөрөнд нэг улсын код оруулна уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Бүс нутаг"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Газарзүйн бүс нутгийг сонгоно уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Хойд Америк"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Өмнөд Америк"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Европ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Ази"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Африк"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Далайн орнууд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Энэ нь Биоаюулгүй байдлын газар мөн үү?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Энэ нь Биоаюулгүй байдлын газрын жишээ эсэхийг заана."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Талбарын ажиллагааны тохиргоо"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Талбарын харагдацын хяналтыг идэвхжүүлэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Агуулгын төрлийн сонголтод үндэслэн талбаруудыг харуулах/нуух. URL, огноо, нийтлэгдсэн талбаруудын харагдацыг хянана."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Нэмэлт талбаруудыг идэвхжүүлэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Тезаурусын агуулгын төрөлд үндэслэн агуулгын төрөлд хамаарах нэмэлт талбаруудыг (үйл явдлын төлөв, төслийн төлөв гэх мэт) нэмэх."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Автомат хураангуйг идэвхжүүлэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Хэрэглэгч бичиж байх үед үндсэн агуулгаас хураангуйг автоматаар үүсгэх."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Талбарын тусламжийн сэтгэгдлийг идэвхжүүлэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Агуулгын төрөлд үндэслэн талбаруудад зориулсан контекст тусламжийн сэтгэгдлийг харуулах."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Талбарын харагдацын дүрэм"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Талбарын харагдацын дүрмийг (JSON форматаар) тодорхойлох."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Орчуулгын анхдагч утгууд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Орчуулагдах боломжтой нэгжүүдэд зориулсан орчуулгын анхдагч утгуудыг (хэлний байр эзлэгч) үүсгэх тохиргоо."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Орчуулгын анхдагч утгуудыг автоматаар үүсгэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Идэвхжүүлсэн үед, нэгжийг үүсгэх/шинэчлэх үед бусад хэлэнд зориулсан орчуулгын анхдагч утгууд (байр эзлэгч) үүсгэгдэнэ. Зөв эх сурвалжтай одоо байгаа орчуулгууд дахин бичигдэхгүй."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Бүх боломжит хэлийг ашиглах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Идэвхжүүлсэн үед, сайтад суулгасан бүх хэлэнд орчуулга үүсгэгдэнэ. Идэвхгүй болгосон үед, зөвхөн доорх сонгосон зорилтот хэлнүүд ашиглагдана."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Орчуулгын анхдагч утгуудад зориулсан зорилтот хэлнүүд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Орчуулгын анхдагч утгуудыг ямар хэлэнд үүсгэхээ сонгоно уу. Зөвхөн \"Бүх боломжит хэлийг ашиглах\" идэвхгүй үед ашиглагдана."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Эх талбарын утгуудыг хуулах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Идэвхжүүлсэн үед, эх хэлний орчуулагдах боломжтой талбарын утгууд шинэ орчуулга руу хуулагдана."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Нэгжийн төрлүүд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Ямар нэгжийн төрлүүдэд орчуулгын анхдагч утгууд үүсгэх ёстойг сонгоно уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Багц үйлдлүүд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Одоо байгаа нэгжүүдийг боловсруулж, дутуу орчуулгын анхдагч утгуудыг үүсгэх."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Боловсруулах нэгжийн төрөл"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Сонгох -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Одоо байгаа нэгжүүдэд орчуулга үүсгэхийн тулд нэгжийн төрлийг сонгоно уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Одоо байгаа нэгжүүдэд орчуулгын анхдагч утгуудыг үүсгэх"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Боловсруулах нэгжийн төрлийг сонгоно уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Англи"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Испани"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Франц"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Герман"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Итали"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Португал"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Голланд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Хятад"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Япон"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Солонгос"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Араб"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Орос"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Тусламж"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Энэ нь таны шинэ сайтын агуулгын үндсэн хэсэг болно. Хураангуйг таны агуулгын товч, тодорхой тайлбарыг харуулахад ашиглаж болно. Цаашилбал, хураангуй нь вэбсайт дахь таны бичлэгийн жагсаалт болон карт харагдацад харагдах болно. Эсвэл үндсэн агуулгын эхний хэдэн өгүүлбэрийг ашиглана."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Зураг"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "Энд зүүнээс баруун тийш дарааллаар <b>эхний зураг</b> нь таны бичлэгийн хуудсан дээр болон жагсаалт, карт харагдац дахь жижиг зурагт харагдах <b>үндсэн зураг</b> болно. Бусад бүх зураг үндсэн агуулгын доор харагдана."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Онцлох баннерууд"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Ямар ч хуудас/агуулгын төрөл олон <b>онцлох баннертай</b> байж болно. Хэрэв нэгээс олон байвал цаг тутамд ээлжлэн солигдоно."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Мэдээ (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Уулзалт эсвэл Үйл явдал (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Төсөл (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Баримт бичиг (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Холбоотой вэбсайт (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Бусад нөөц (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Зураг эсвэл Видео (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Түгээмэл асуултууд (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Үндэсний мэдээлэл (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Хувиргасан амьд организмын төлөв (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Хээрийн туршилт (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Үндэсний нэгдсэн стратеги (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Чадавх бэхжүүлэх (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Зарлал (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Холбоо барих (50)"

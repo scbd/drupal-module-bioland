@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Cài đặt chung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Các quốc gia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Nhập một mã quốc gia mỗi dòng."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Khu vực"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Chọn khu vực địa lý."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Bắc Mỹ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Nam Mỹ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Châu Âu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Châu Á"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Châu Phi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Châu Đại Dương"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Có phải là Vùng đất An toàn Sinh học không?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Cho biết đây có phải là một phiên bản Vùng đất An toàn Sinh học hay không."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Cài đặt Hành vi Trường"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Bật Kiểm soát Hiển thị Trường"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Hiển thị/ẩn các trường dựa trên lựa chọn loại nội dung. Kiểm soát khả năng hiển thị của các trường URL, ngày tháng và đã xuất bản."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Bật các trường bổ sung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Thêm các trường bổ sung dành riêng cho loại nội dung (trạng thái sự kiện, trạng thái dự án, v.v.) dựa trên loại nội dung từ điển đồng nghĩa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Bật Tóm tắt Tự động"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Tự động tạo tóm tắt từ nội dung chính khi người dùng nhập."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Bật Nhận xét Trợ giúp Trường"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Hiển thị các nhận xét trợ giúp theo ngữ cảnh cho các trường dựa trên loại nội dung."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Quy tắc Hiển thị Trường"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Xác định các quy tắc hiển thị trường tùy chỉnh (định dạng JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Mặc định Dịch"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Cấu hình việc tạo các mặc định dịch (trình giữ chỗ ngôn ngữ) cho các thực thể có thể dịch."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Tự động tạo mặc định dịch"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Khi được bật, các mặc định dịch (trình giữ chỗ) sẽ được tạo cho các ngôn ngữ khác khi tạo/cập nhật thực thể. Các bản dịch hiện có với nguồn phù hợp sẽ không bị ghi đè."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Sử dụng tất cả các ngôn ngữ có sẵn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Khi được bật, các bản dịch sẽ được tạo cho tất cả các ngôn ngữ được cài đặt trên trang web. Khi bị tắt, chỉ các ngôn ngữ đích được chọn bên dưới sẽ được sử dụng."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Ngôn ngữ đích cho mặc định dịch"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Chọn ngôn ngữ nào để tạo mặc định dịch. Chỉ được sử dụng khi \"Sử dụng tất cả các ngôn ngữ có sẵn\" bị tắt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Sao chép giá trị trường nguồn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Khi được bật, các giá trị trường có thể dịch từ ngôn ngữ nguồn sẽ được sao chép sang các bản dịch mới."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Loại thực thể"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Chọn loại thực thể nào sẽ được tạo mặc định dịch."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Thao tác hàng loạt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Xử lý các thực thể hiện có để tạo các mặc định dịch còn thiếu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Loại thực thể để xử lý"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Chọn -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Chọn một loại thực thể để tạo bản dịch cho các thực thể hiện có."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Tạo mặc định dịch cho các thực thể hiện có"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Vui lòng chọn một loại thực thể để xử lý."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Tiếng Anh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Tiếng Tây Ban Nha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Tiếng Pháp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Tiếng Đức"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Tiếng Ý"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Tiếng Bồ Đào Nha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Tiếng Hà Lan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Tiếng Trung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Tiếng Nhật"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Tiếng Hàn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Tiếng Ả Rập"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Tiếng Nga"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Đây sẽ là nội dung chính của nội dung trang web mới của bạn. Phần tóm tắt có thể được sử dụng để hiển thị một mô tả ngắn gọn, súc tích về nội dung của bạn. Hơn nữa, phần tóm tắt sẽ được hiển thị trong các chế độ xem danh sách và thẻ của bản ghi của bạn trên trang web. Ngoài ra, một vài câu đầu tiên từ nội dung chính sẽ được sử dụng."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Hình ảnh"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Hình ảnh đầu tiên</b> theo thứ tự từ trái sang phải ở đây, <b>sẽ là hình ảnh chính</b> của bản ghi của bạn được hiển thị trên trang và trong các hình thu nhỏ ở chế độ xem danh sách và thẻ. Tất cả các hình ảnh khác sẽ được hiển thị bên dưới nội dung chính."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Biểu ngữ chính"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Bất kỳ trang/loại nội dung nào cũng có thể có nhiều <b>biểu ngữ chính</b>. Nếu có nhiều hơn một, chúng sẽ được xoay vòng hàng giờ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Tin tức (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Cuộc họp hoặc Sự kiện (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Dự án (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Tài liệu (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Trang web liên quan (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Tài nguyên khác (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Hình ảnh hoặc Video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Câu hỏi thường gặp (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Thông tin quốc gia (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Tình trạng của LMO (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Thử nghiệm thực địa (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Chiến lược lồng ghép quốc gia (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Nâng cao năng lực (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Thông báo (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Liên hệ (50)"

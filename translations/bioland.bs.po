@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bs\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Opće postavke"
+
+msgid "Bioland Settings"
+msgstr "Bioland postavke"
+
+msgid "Configure field visibility rules, additional fields, and other Bioland module settings."
+msgstr "Konfigurirajte pravila vidljivosti polja, dodatna polja i druge postavke Bioland modula."
+
+msgid "Enable Field Visibility"
+msgstr "Omogući vidljivost polja"
+
+msgid "Enable field visibility control based on content type."
+msgstr "Omogućite kontrolu vidljivosti polja na osnovu tipa sadržaja."
+
+msgid "Field Visibility Rules"
+msgstr "Pravila vidljivosti polja"
+
+msgid "Enter field visibility rules in JSON format."
+msgstr "Unesite pravila vidljivosti polja u JSON formatu."
+
+msgid "Enable Additional Fields"
+msgstr "Omogući dodatna polja"
+
+msgid "Enable additional fields functionality."
+msgstr "Omogućite funkcionalnost dodatnih polja."
+
+msgid "Enable Auto Summary"
+msgstr "Omogući automatski sažetak"
+
+msgid "Automatically generate summary from body field."
+msgstr "Automatski generirajte sažetak iz polja tijela."
+
+msgid "Enable Help Comments"
+msgstr "Omogući komentare za pomoć"
+
+msgid "Show help comments on content forms."
+msgstr "Prikažite komentare za pomoć na obrascima sadržaja."
+
+msgid "Translation Settings"
+msgstr "Postavke prijevoda"
+
+msgid "Auto-create Translation Defaults"
+msgstr "Automatski kreirajte zadane postavke prijevoda"
+
+msgid "Automatically create translation defaults when content is saved."
+msgstr "Automatski kreirajte zadane postavke prijevoda kada se sadržaj sačuva."
+
+msgid "Use All Languages"
+msgstr "Koristi sve jezike"
+
+msgid "Create translations for all enabled languages. If disabled, only selected languages will be used."
+msgstr "Kreirajte prijevode za sve omogućene jezike. Ako je onemogućeno, koristit će se samo odabrani jezici."
+
+msgid "Selected Languages"
+msgstr "Odabrani jezici"
+
+msgid "Select which languages to create translations for (only used when 'Use All Languages' is disabled)."
+msgstr "Odaberite za koje jezike želite kreirati prijevode (koristi se samo kada je 'Koristi sve jezike' onemogućeno)."
+
+msgid "Copy Source Values"
+msgstr "Kopiraj izvorišne vrijednosti"
+
+msgid "Copy field values from source to translations. If disabled, translations will be created empty."
+msgstr "Kopirajte vrijednosti polja iz izvora u prijevode. Ako je onemogućeno, prijevodi će biti kreirani prazni."
+
+msgid "Batch Translation Processing"
+msgstr "Obrada prijevoda u grupama"
+
+msgid "Process existing content to create translation defaults. This will process all published content nodes."
+msgstr "Obradite postojeći sadržaj kako biste kreirali zadane postavke prijevoda. Ovo će obraditi sve objavljene čvorove sadržaja."
+
+msgid "Process Translations"
+msgstr "Obradi prijevode"
+
+msgid "The configuration options have been saved."
+msgstr "Opcije konfiguracije su sačuvane."
+
+msgid "Translation defaults batch processing started."
+msgstr "Obrada zadanih postavki prijevoda u grupama je započela."
+
+#: bioland.module
+msgid "Help"
+msgstr "Pomoć"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "Bioland modul pruža upravljanje poljima i funkcionalnost prijevoda."
+
+msgid "Bioland configuration"
+msgstr "Bioland konfiguracija"
+
+#: bioland.permissions.yml
+msgid "Administer Bioland settings"
+msgstr "Upravljaj Bioland postavkama"
+
+msgid "Configure field visibility, additional fields, and translation settings."
+msgstr "Konfigurirajte vidljivost polja, dodatna polja i postavke prijevoda."

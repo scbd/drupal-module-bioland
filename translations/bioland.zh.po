@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "常规设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "国家"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "每行输入一个国家代码。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "地区"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "选择地理区域。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "北美洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "南美洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "欧洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "亚洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "非洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "大洋洲"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "是生物安全之地吗？"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "指示这是否是一个生物安全之地的实例。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "字段行为设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "启用字段可见性控制"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "根据内容类型选择显示/隐藏字段。控制 URL、日期和已发布字段的可见性。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "启用附加字段"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "根据同义词库内容类型添加特定于内容类型的附加字段（事件状态、项目状态等）。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "启用自动摘要"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "在用户输入时从正文内容自动生成摘要。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "启用字段帮助注释"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "根据内容类型显示字段的上下文帮助注释。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "字段可见性规则"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "定义自定义字段可见性规则（JSON 格式）。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "翻译默认值"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "为可翻译实体配置翻译默认值（语言占位符）的创建。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "自动创建翻译默认值"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "启用后，在实体创建/更新时会为其他语言创建翻译默认值（占位符）。具有正确来源的现有翻译不会被覆盖。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "使用所有可用语言"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "启用后，将为网站上安装的所有语言创建翻译。禁用后，将仅使用下面选定的目标语言。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "翻译默认值的目标语言"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "选择要为其创建翻译默认值的语言。仅在禁用“使用所有可用语言”时使用。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "复制源字段值"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "启用后，源语言的可翻译字段值将被复制到新的翻译中。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "实体类型"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "选择应为其创建翻译默认值的实体类型。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "批量操作"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "处理现有实体以创建缺失的翻译默认值。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "要处理的实体类型"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- 选择 -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "选择一个实体类型为现有实体创建翻译。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "为现有实体创建翻译默认值"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "请选择要处理的实体类型。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "英语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "法语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "德语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "意大利语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "中文"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "日语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "韩语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "阿拉伯语"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "俄语"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "帮助"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "这将是您新网站内容的主要内容。摘要可用于显示您内容的简明描述。此外，摘要将显示在您记录在网站上的列表和卡片视图中。或者，将使用主要内容的前几句话。"
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "图片"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "此处从左到右顺序的<b>第一张图片</b>，<b>将是您记录的主图片</b>，显示在页面上以及列表和卡片视图的缩略图中。所有其他图片将显示在主要内容下方。"
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "英雄横幅"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "任何页面/内容类型都可以有多个<b>英雄横幅</b>。如果有一个以上，它们将每小时轮换一次。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "新闻 (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "会议或活动 (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "项目 (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "文档 (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "相关网站 (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "其他资源 (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "图片或视频 (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "常见问题 (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "国家信息 (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "改性活生物体状况 (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "田间试验 (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "国家主流化战略 (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "能力建设 (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "公告 (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "联系人 (50)"

@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Configuració General"
+
+msgid "Field Visibility Settings"
+msgstr "Configuració de Visibilitat de Camps"
+
+msgid "Enable Field Visibility functionality"
+msgstr "Habilita la funcionalitat de Visibilitat de Camps"
+
+msgid "When enabled, field visibility rules will be applied to the form."
+msgstr "Quan estigui habilitat, les regles de visibilitat de camps s'aplicaran al formulari."
+
+msgid "Field Visibility Rules"
+msgstr "Regles de Visibilitat de Camps"
+
+msgid "JSON configuration for field visibility rules. See documentation for format details."
+msgstr "Configuració JSON per a les regles de visibilitat de camps. Consulteu la documentació per a detalls del format."
+
+msgid "Additional Fields Settings"
+msgstr "Configuració de Camps Addicionals"
+
+msgid "Enable Additional Fields functionality"
+msgstr "Habilita la funcionalitat de Camps Addicionals"
+
+msgid "When enabled, additional fields will be available in the form."
+msgstr "Quan estigui habilitat, els camps addicionals estaran disponibles al formulari."
+
+msgid "Auto Summary Settings"
+msgstr "Configuració de Resum Automàtic"
+
+msgid "Enable Auto Summary functionality"
+msgstr "Habilita la funcionalitat de Resum Automàtic"
+
+msgid "When enabled, summary will be automatically generated from the body field."
+msgstr "Quan estigui habilitat, el resum es generarà automàticament des del camp de cos."
+
+msgid "Auto Summary Maximum Length"
+msgstr "Longitud Màxima del Resum Automàtic"
+
+msgid "Maximum number of characters for the auto-generated summary (default: 300)."
+msgstr "Nombre màxim de caràcters per al resum generat automàticament (per defecte: 300)."
+
+msgid "Translation Settings"
+msgstr "Configuració de Traducció"
+
+msgid "Enable Auto Translation Default Creation"
+msgstr "Habilita la Creació Automàtica de Traduccions per Defecte"
+
+msgid "When enabled, default translations will be created automatically for new content."
+msgstr "Quan estigui habilitat, les traduccions per defecte es crearan automàticament per al contingut nou."
+
+msgid "Languages for Auto Translation"
+msgstr "Idiomes per a la Traducció Automàtica"
+
+msgid "Select which languages should have default translations created automatically. Leave empty to use all enabled languages."
+msgstr "Seleccioneu quins idiomes haurien de tenir traduccions per defecte creades automàticament. Deixeu-ho buit per utilitzar tots els idiomes habilitats."
+
+msgid "Copy Source Values to Translations"
+msgstr "Copia els Valors d'Origen a les Traduccions"
+
+msgid "When enabled, source field values will be copied to new translations (except title and body)."
+msgstr "Quan estigui habilitat, els valors dels camps d'origen es copiaran a les noves traduccions (excepte títol i cos)."
+
+msgid "Batch Translation Processing"
+msgstr "Processament de Traducció per Lots"
+
+msgid "Process existing content"
+msgstr "Processa el contingut existent"
+
+msgid "Create default translations for all existing content that doesn't have them yet. This may take a while for large sites."
+msgstr "Crea traduccions per defecte per a tot el contingut existent que encara no les tingui. Això pot trigar una estona per a llocs grans."
+
+msgid "Bioland Settings"
+msgstr "Configuració de Bioland"
+
+msgid "Configure Bioland module functionality"
+msgstr "Configura la funcionalitat del mòdul Bioland"
+
+msgid "The configuration options have been saved."
+msgstr "Les opcions de configuració s'han desat."
+
+msgid "Processing @count items for translation..."
+msgstr "Processant @count elements per a traducció..."
+
+msgid "Successfully created translations for @success items. @error errors occurred."
+msgstr "S'han creat traduccions correctament per a @success elements. S'han produït @error errors."
+
+#: bioland.module
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "About"
+msgstr "Quant a"
+
+msgid "The Bioland module provides field management and translation functionality."
+msgstr "El mòdul Bioland proporciona funcionalitat de gestió de camps i traducció."
+
+msgid "Uses"
+msgstr "Usos"
+
+msgid "Field Visibility"
+msgstr "Visibilitat de Camps"
+
+msgid "Control which fields are visible based on content type and other conditions."
+msgstr "Controla quins camps són visibles segons el tipus de contingut i altres condicions."
+
+msgid "Additional Fields"
+msgstr "Camps Addicionals"
+
+msgid "Add dynamic additional fields to content forms."
+msgstr "Afegeix camps addicionals dinàmics als formularis de contingut."
+
+msgid "Auto Summary"
+msgstr "Resum Automàtic"
+
+msgid "Automatically generate summaries from body content."
+msgstr "Genera automàticament resums des del contingut del cos."
+
+msgid "Translation Management"
+msgstr "Gestió de Traducció"
+
+msgid "Automatically create default translations for content."
+msgstr "Crea automàticament traduccions per defecte per al contingut."

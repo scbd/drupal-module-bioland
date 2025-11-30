@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bioland 0.0.1\n"
+"POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ha\n"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Settings"
+msgstr "Saiti na Gabaɗaya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Kasashe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Shigar da lambar ƙasa ɗaya a kowace layi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Yanki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Zaɓi yankin ƙasa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Arewacin Amurka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Kudancin Amurka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Turai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asiya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Afirka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oshaniya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "Shin Kasa ce ta Tsaron Halittu?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Yana nuna ko wannan misali ne na Kasa ta Tsaron Halittu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Saitunan Halayen Filaye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Kunna Kula da Ganin Filaye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgstr "Nuna/ɓoye filaye dangane da zaɓin nau'in abun ciki. Yana sarrafa ganin URL, kwanan wata, da filayen da aka buga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Kunna Ƙarin Filaye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Ƙara ƙarin filaye na musamman na nau'in abun ciki (matsayin taron, matsayin aikin, da sauransu) dangane da nau'in abun ciki na thesaurus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Kunna Takaitawa ta atomatik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Samar da takaitawa ta atomatik daga babban abun ciki yayin da mai amfani ke bugawa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Kunna Sharhin Taimakon Filaye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Nuna sharhin taimako na mahallin don filaye dangane da nau'in abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules"
+msgstr "Dokokin Ganin Filaye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules (JSON format)."
+msgstr "Bayyana dokokin ganin filaye na al'ada (tsarin JSON)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Tsoffin Fassarori"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Sanya yadda za a ƙirƙiri tsoffin fassarori (masu riƙe wuri na harshe) don abubuwan da za a iya fassarawa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Ƙirƙiri tsoffin fassarori ta atomatik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Idan an kunna, ana ƙirƙirar tsoffin fassarori (masu riƙe wuri) don wasu harsuna a lokacin ƙirƙirar/sabunta abu. Ba a sake rubuta fassarorin da ke akwai tare da tushe mai kyau."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Yi amfani da duk harsunan da ke akwai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Idan an kunna, za a ƙirƙiri fassarori don duk harsunan da aka sanya a shafin. Idan an kashe, za a yi amfani da harsunan da aka zaɓa a ƙasa kawai."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Harsunan da aka nufa don tsoffin fassarori"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Zaɓi waɗanne harsuna za a ƙirƙira tsoffin fassarori don su. Ana amfani da shi ne kawai lokacin da aka kashe \"Yi amfani da duk harsunan da ke akwai\"."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Kwafi dabi'un filin tushe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Idan an kunna, za a kwafi dabi'un filayen da za a iya fassarawa daga harshen tushe zuwa sababbin fassarori."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Nau'ukan Abubuwa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which entity types should have translation defaults created."
+msgstr "Zaɓi waɗanne nau'ukan abubuwa ya kamata a ƙirƙira musu tsoffin fassarori."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Ayyukan Rukuni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Gudanar da abubuwan da ke akwai don ƙirƙirar tsoffin fassarorin da suka ɓace."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Nau'in abu don sarrafawa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Zaɓi -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Zaɓi nau'in abu don ƙirƙirar fassarori don abubuwan da ke akwai."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Ƙirƙiri tsoffin fassarori don abubuwan da ke akwai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Da fatan za a zaɓi nau'in abu don sarrafawa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Turanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Sifaniyanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Faransanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Jamusanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Italiyanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Fotigalci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Sinanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Jafananci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Koreyanci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Larabci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rashanci"
+
+#: js/bioland.help-comments.js
+msgid "Help"
+msgstr "Taimako"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Wannan zai zama babban abun cikin sabon abun cikin shafinku. Ana iya amfani da takaitawa don nuna taƙaitaccen bayanin abun cikin ku. Bugu da ƙari, za a nuna takaitawar a cikin jerin gwano da kallon kati na rikodin ku a kan gidan yanar gizon. A madadin haka, za a yi amfani da 'yan jimlolin farko daga babban abun ciki."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Hotuna"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "<b>Hoto na farko</b> a cikin jerin daga hagu zuwa dama a nan, <b>zai zama babban hoton</b> rikodin ku da aka nuna a shafin da kuma a cikin ƙananan hotuna a cikin jerin gwano da kallon kati. Duk sauran hotuna za a nuna su a ƙasan babban abun ciki."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Jaruman Hoto"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Kowane shafi/nau'in abun ciki na iya samun <b>bango na jarumai</b> da yawa. Idan akwai fiye da ɗaya za a juya su a kowace sa'a."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Labarai (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Taro ko Biki (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Aiki (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Takarda (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Gidan Yanar Gizo Mai Alaƙa (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Wata Majiya (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Hoto ko Bidiyo (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Tambayoyi da Amsoshi (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Bayanin Kasa (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Matsayin LMOs (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Gwajin Filin (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Dabarun Haɗa Kai na Kasa (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Gina Iya-Iya (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Sanarwa (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Saduwa (50)"
