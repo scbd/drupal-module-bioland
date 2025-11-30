@@ -161,7 +161,7 @@
 
     /**
      * Hide the summary field initially but allow Drupal's toggle to work.
-     * This hides the field but keeps the wrapper visible so the "Edit summary" link works.
+     * This hides the field but keeps the "Edit summary" link visible and functional.
      */
     hideSummary: function () {
       // Find the summary textarea
@@ -169,20 +169,17 @@
       
       if (!summaryField) return;
 
-      // Find the immediate form item wrapper (the one that gets toggled by Drupal)
-      const formItem = summaryField.closest('.js-form-type-textarea');
+      // Hide only the textarea itself, not any wrapper elements
+      // This preserves the "Edit summary" link functionality
+      summaryField.style.display = 'none';
       
-      if (formItem) {
-        // Initially hide just the form item, not the outer wrapper
-        // This allows Drupal's "Edit summary" link to remain visible and functional
-        formItem.style.display = 'none';
-      } else {
-        // Fallback: hide the field directly
-        summaryField.style.display = 'none';
+      // Also hide the label if it exists
+      const summaryLabel = summaryField.parentElement?.querySelector('label');
+      if (summaryLabel) {
+        summaryLabel.style.display = 'none';
       }
 
-      // Don't hide .text-summary-wrapper - it contains the "Edit summary" link
-      // that needs to remain visible and functional
+      // The .text-summary-wrapper and its "Edit summary" link remain visible and functional
     },
 
     /**
