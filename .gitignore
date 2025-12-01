@@ -77,3 +77,4 @@ failed-*
 *.py
 .env*
 .github/prompts*
+.github/instructions*

@@ -1,4 +1,8 @@
-# AI Coding Agent Instructions: Drupal Module Bioland
+# AI Agent Instructions: Drupal Module Bioland
+
+## Important!
+- if this exists follow these memory rules every questions `.github/instructions/memory.md`
+- if it exists the default guidance at `.github/instructions/default.instructions.md` is the canonical source of instructions.
 
 ## Project Overview
 This is a Drupal 9/10/11 custom module (`bioland`) that provides comprehensive field management and translation functionality. The module combines:
