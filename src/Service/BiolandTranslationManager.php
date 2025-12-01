@@ -214,6 +214,14 @@ class BiolandTranslationManager {
         }
 
         $translation = $source_entity->addTranslation($langcode, $translation_values);
+
+        // Mark newly created translations as outdated relative to the source content.
+        // This ensures editors can clearly see that the auto-generated translation
+        // still needs manual review and update.
+        if ($translation->hasField('content_translation_outdated')) {
+          $translation->set('content_translation_outdated', 1);
+        }
+
         $created_count++;
 
         $this->loggerFactory->get('bioland')->info(
