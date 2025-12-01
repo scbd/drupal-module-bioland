@@ -56,9 +56,6 @@
       // Hide text format elements
       this.hideTextFormat();
 
-      // Hide summary field (always hidden)
-      this.hideSummary();
-
       // Set up content type field change listeners
       this.setupContentTypeListeners(context);
     },
@@ -157,29 +154,6 @@
       if (helpLink) {
         helpLink.style.display = 'none';
       }
-    },
-
-    /**
-     * Hide the summary field initially but allow Drupal's toggle to work.
-     * This hides the field but keeps the "Edit summary" link visible and functional.
-     */
-    hideSummary: function () {
-      // Find the summary textarea
-      const summaryField = document.querySelector('textarea[data-drupal-selector="edit-body-0-summary"]');
-      
-      if (!summaryField) return;
-
-      // Hide only the textarea itself, not any wrapper elements
-      // This preserves the "Edit summary" link functionality
-      summaryField.style.display = 'none';
-      
-      // Also hide the label if it exists
-      const summaryLabel = summaryField.parentElement?.querySelector('label');
-      if (summaryLabel) {
-        summaryLabel.style.display = 'none';
-      }
-
-      // The .text-summary-wrapper and its "Edit summary" link remain visible and functional
     },
 
     /**
