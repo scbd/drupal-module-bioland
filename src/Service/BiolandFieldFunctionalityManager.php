@@ -42,7 +42,7 @@ class BiolandFieldFunctionalityManager {
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
-  'enableAutoSummary' => $c->get('enable_auto_summary') !== FALSE,
+      'enableAutoSummary' => $c->get('enable_auto_summary') !== FALSE,
       'fieldVisibilityRules' => $c->get('field_visibility_rules') ?: '',
     ];
   }
