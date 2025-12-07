@@ -1,0 +1,162 @@
+<?php
+
+use Drupal\node\Entity\NodeType;
+use Drupal\user\Entity\Role;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Site\Settings;
+
+/**
+ * Implements hook_install().
+ */
+function bioland_install() {
+  // Validate required system roles exist before proceeding.
+  $required_system_roles = [
+    'anonymous',
+    'authenticated',
+    'administrator',
+  ];
+
+  foreach ($required_system_roles as $rid) {
+    if (!Role::load($rid)) {
+      // Throwing an exception stops installation as requested.
+      throw new \RuntimeException(sprintf('Required system role "%s" is missing. Please ensure core roles Anonymous, Authenticated, and Administrator exist before installing Bioland.', $rid));
+    }
+  }
+
+  // Ensure custom roles exist or create them if missing.
+  $custom_roles = [
+    'scbd_staff' => 'SCBD Staff',
+    'site_manager' => 'Site Manager',
+    'content_manager' => 'Content Manager',
+    'contributor' => 'Contributor',
+  ];
+
+  foreach ($custom_roles as $rid => $label) {
+    if (!Role::load($rid)) {
+      $role = Role::create([
+        'id' => $rid,
+        'label' => $label,
+      ]);
+      $role->save();
+    }
+  }
+
+  // Ensure required content type with machine name 'content' exists.
+  if (\Drupal::moduleHandler()->moduleExists('node')) {
+    $type = NodeType::load('content');
+    if (!$type) {
+      $type = NodeType::create([
+        'type' => 'content',
+        'name' => 'Content',
+      ]);
+      $type->save();
+    }
+  }
+
+  // Grant settings permission to the administrator role only.
+  $admin = Role::load('administrator');
+  if ($admin && !$admin->hasPermission('administer bioland settings')) {
+    $admin->grantPermission('administer bioland settings');
+    $admin->save();
+  }
+
+  // Initialize configuration defaults, optionally sourcing from settings.php.
+  try {
+    $config_factory = \Drupal::configFactory();
+    $editable = $config_factory->getEditable('bioland.settings');
+
+    // Read settings under $settings['scbd_field'].
+    $scbd = Settings::get('scbd_field') ?: [];
+
+    // Default countries from settings.scbd_field.countries.
+    $countries = $editable->get('countries') ?: ['lk'];
+    if (isset($scbd['countries'])) {
+      $countries = is_array($scbd['countries']) ? $scbd['countries'] : [$scbd['countries']];
+    }
+
+    // Default locale from settings.scbd_field.locale, if present.
+    $default_locale = $editable->get('default_locale') ?: 'en';
+    if (!empty($scbd['locale']) && is_string($scbd['locale'])) {
+      $default_locale = $scbd['locale'];
+    }
+
+    // Enabled locales from settings.scbd_field.locales, if present.
+    $enabled_locales = $editable->get('enabled_locales') ?: ['ar', 'zh', 'en', 'fr', 'ru', 'es'];
+    if (!empty($scbd['locales'])) {
+      $enabled_locales = is_array($scbd['locales']) ? $scbd['locales'] : [$scbd['locales']];
+    }
+
+    $editable
+  ->set('countries', array_values(array_filter($countries)))
+      ->set('default_locale', $default_locale)
+      ->set('enabled_locales', $enabled_locales)
+      ->save();
+  }
+  catch (\Throwable $e) {
+    // Swallow errors to avoid failing installation; values will remain defaults.
+  }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function bioland_requirements($phase) {
+  $requirements = [];
+
+  if ($phase === 'install' || $phase === 'runtime') {
+    // Verify contrib modules are available (composer) and enabled (Drupal).
+    $contrib_modules = [
+      'auto_node_translate' => 'drupal/auto_node_translate',
+      'auto_node_translate_deepl' => 'drupal/auto_node_translate_deepl',
+      'auto_node_translate_amazon' => 'drupal/auto_node_translate_amazon',
+      'ant_bulk' => 'drupal/ant_bulk',
+      'fontawesome' => 'drupal/fontawesome',
+    ];
+
+    $module_handler = \Drupal::moduleHandler();
+    foreach ($contrib_modules as $machine_name => $composer_pkg) {
+      $enabled = $module_handler->moduleExists($machine_name);
+      if (!$enabled) {
+        $requirements['bioland_dep_' . $machine_name] = [
+          'title' => t('Required module: @module', ['@module' => $machine_name]),
+          'value' => t('Missing or disabled'),
+          'description' => t('Install and enable the module via Composer: composer require "@pkg" --with-all-dependencies', ['@pkg' => $composer_pkg]),
+          'severity' => ($phase === 'install') ? REQUIREMENT_ERROR : REQUIREMENT_ERROR,
+        ];
+      }
+    }
+
+    $has_type = FALSE;
+    if (\Drupal::moduleHandler()->moduleExists('node')) {
+      $has_type = (bool) NodeType::load('content');
+    }
+
+    if (!$has_type) {
+      $severity = ($phase === 'install') ? REQUIREMENT_WARNING : REQUIREMENT_ERROR;
+      $requirements['bioland_node_content'] = [
+        'title' => t('Bioland required content type'),
+        'value' => t('Missing node type with machine name "content" (form id: node_content_form).'),
+        'description' => t('Bioland requires a content type named "Content" with machine name "content". It will be created automatically on install; if still missing at runtime, please create it.'),
+        'severity' => $severity,
+      ];
+    }
+  }
+
+  return $requirements;
+}
+
+/**
+ * Migrate single 'country' config to 'countries' array.
+ */
+function bioland_update_9001() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+  $old = $editable->get('country');
+  $new = $editable->get('countries');
+  if ($old && empty($new)) {
+    $editable->set('countries', [$old]);
+    $editable->clear('country');
+    $editable->save();
+  }
+}
