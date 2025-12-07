@@ -1,0 +1,406 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/pr-resolver-state.schema.json",
+  "title": "PR Resolver State",
+  "description": "State file schema for the PR Resolver Agent",
+  "type": "object",
+  "required": ["version", "startedAt", "phase", "step", "baseBranch", "sourceBranch"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "const": "1.0"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp when processing started"
+    },
+    "completedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO timestamp when processing completed"
+    },
+    "phase": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Current workflow phase (0-5)"
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Current step within the phase"
+    },
+    "lastCheckpoint": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of last state save"
+    },
+    "backupBranch": {
+      "type": "string",
+      "description": "Name of the backup branch created in Phase 0"
+    },
+    "baseBranch": {
+      "type": "string",
+      "description": "Target branch for PRs (e.g., master)"
+    },
+    "sourceBranch": {
+      "type": "string",
+      "description": "Branch being reorganized"
+    },
+    "config": {
+      "type": "object",
+      "description": "Snapshot of configuration used for this run"
+    },
+    "commits": {
+      "type": "array",
+      "description": "Analyzed commits",
+      "items": {
+        "type": "object",
+        "required": ["sha", "message"],
+        "properties": {
+          "sha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{7,40}$"
+          },
+          "message": {
+            "type": "string"
+          },
+          "tickets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z]+-\\d+$"
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "linesAdded": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "linesDeleted": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "type": {
+            "type": "string",
+            "enum": ["feature", "bugfix", "refactor", "chore", "migration", "docs", "test", "unknown"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "processed", "skipped", "failed"],
+            "default": "pending"
+          },
+          "assignedChunk": {
+            "type": ["string", "null"]
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["orphan", "multi-ticket", "binary", "migration", "conflict", "manual-review"]
+            }
+          }
+        }
+      }
+    },
+    "chunks": {
+      "type": "array",
+      "description": "Planned PR groupings",
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^chunk-\\d{3}$"
+          },
+          "tickets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "commits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "totalLoc": {
+                "type": "integer"
+              },
+              "fileCount": {
+                "type": "integer"
+              },
+              "commitCount": {
+                "type": "integer"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "delegated", "completed", "failed"],
+            "default": "pending"
+          },
+          "assignedAgent": {
+            "type": ["string", "null"],
+            "enum": ["claude", "codex", "gemini", null]
+          },
+          "branch": {
+            "type": ["string", "null"]
+          },
+          "prNumber": {
+            "type": ["integer", "null"]
+          },
+          "prUrl": {
+            "type": ["string", "null"],
+            "format": "uri"
+          },
+          "qualityGates": {
+            "type": "object",
+            "properties": {
+              "build": {
+                "type": ["boolean", "null"]
+              },
+              "tests": {
+                "type": ["boolean", "null"]
+              },
+              "lint": {
+                "type": ["boolean", "null"]
+              },
+              "secrets": {
+                "type": ["boolean", "null"]
+              }
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "prs": {
+      "type": "array",
+      "description": "Created pull requests",
+      "items": {
+        "type": "object",
+        "required": ["number", "url", "status"],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "chunkId": {
+            "type": "string"
+          },
+          "tickets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "merged", "closed", "draft"]
+          },
+          "qualityGatesPassed": {
+            "type": "boolean"
+          },
+          "mergeOrder": {
+            "type": "integer",
+            "description": "Order in which this PR should be merged"
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "PR numbers this PR depends on"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Errors encountered during processing",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "severity", "message"],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phase": {
+            "type": "integer"
+          },
+          "step": {
+            "type": "integer"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["warning", "error", "critical"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "context": {
+            "type": "object",
+            "description": "Additional error context"
+          },
+          "resolved": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "flags": {
+      "type": "object",
+      "description": "Processing flags",
+      "properties": {
+        "dryRun": {
+          "type": "boolean",
+          "default": false
+        },
+        "validated": {
+          "type": "boolean",
+          "default": false
+        },
+        "backupCreated": {
+          "type": "boolean",
+          "default": false
+        },
+        "analysisComplete": {
+          "type": "boolean",
+          "default": false
+        },
+        "planningComplete": {
+          "type": "boolean",
+          "default": false
+        },
+        "executionComplete": {
+          "type": "boolean",
+          "default": false
+        },
+        "rolledBack": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Processing metrics",
+      "properties": {
+        "totalCommits": {
+          "type": "integer"
+        },
+        "processedCommits": {
+          "type": "integer"
+        },
+        "skippedCommits": {
+          "type": "integer"
+        },
+        "totalChunks": {
+          "type": "integer"
+        },
+        "completedChunks": {
+          "type": "integer"
+        },
+        "failedChunks": {
+          "type": "integer"
+        },
+        "totalPRs": {
+          "type": "integer"
+        },
+        "openPRs": {
+          "type": "integer"
+        },
+        "mergedPRs": {
+          "type": "integer"
+        },
+        "manualInterventionRequired": {
+          "type": "integer"
+        },
+        "processingTimeMinutes": {
+          "type": "number"
+        }
+      }
+    },
+    "manualInterventions": {
+      "type": "array",
+      "description": "Items requiring manual intervention",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "description"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["conflict", "orphan", "circular-dependency", "size-limit", "quality-gate", "other"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "affectedCommits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "affectedTickets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "suggestedAction": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean",
+            "default": false
+          },
+          "resolution": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    }
+  }
+}

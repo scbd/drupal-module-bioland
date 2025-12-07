@@ -63,3 +63,12 @@
 /drush
 /drupal.phar
 /drupal
+.env
+.DS_Store
+.vscode
+.env*
+.github/prompts*
+node_modules/
+coverage/
+package-lock.json
+composer.lock
