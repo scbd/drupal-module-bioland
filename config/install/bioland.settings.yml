@@ -1,0 +1,21 @@
+countries:
+  - 'lk'
+region: 'north_america'
+default_locale: 'en'
+enabled_locales:
+  - 'ar'
+  - 'zh'
+  - 'en'
+  - 'fr'
+  - 'ru'
+  - 'es'
+enable_field_visibility: true
+enable_additional_fields: true
+enable_auto_summary: true
+field_visibility_rules: ''
+translation:
+  auto_create: true
+  use_all_languages: true
+  target_languages: []
+  copy_source_values: false
+  entity_types: []

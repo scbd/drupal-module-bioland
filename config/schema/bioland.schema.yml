@@ -1,0 +1,59 @@
+bioland.settings:
+  type: config_object
+  label: 'Bioland settings'
+  mapping:
+    countries:
+      type: sequence
+      label: 'Default countries'
+      sequence:
+        type: string
+        label: 'Country code'
+    region:
+      type: string
+      label: 'Region'
+    default_locale:
+      type: string
+      label: 'Default locale'
+    enabled_locales:
+      type: sequence
+      label: 'Enabled locales'
+      sequence:
+        type: string
+        label: 'Locale code'
+    enable_field_visibility:
+      type: boolean
+      label: 'Enable field visibility control'
+    enable_additional_fields:
+      type: boolean
+      label: 'Enable additional fields'
+    enable_auto_summary:
+      type: boolean
+      label: 'Enable auto summary'
+    field_visibility_rules:
+      type: text
+      label: 'Field visibility rules'
+    translation:
+      type: mapping
+      label: 'Translation settings'
+      mapping:
+        auto_create:
+          type: boolean
+          label: 'Automatically create translation defaults'
+        use_all_languages:
+          type: boolean
+          label: 'Use all available languages'
+        target_languages:
+          type: sequence
+          label: 'Target languages for translation defaults'
+          sequence:
+            type: string
+            label: 'Language code'
+        copy_source_values:
+          type: boolean
+          label: 'Copy source field values to translations'
+        entity_types:
+          type: sequence
+          label: 'Entity types to auto-translate'
+          sequence:
+            type: string
+            label: 'Entity type'
