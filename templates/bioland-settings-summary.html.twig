@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Template for displaying Bioland 2 settings summary.
+ *
+ * Available variables:
+ * - locales: Array of enabled locales.
+ * - countries: Array of default country codes.
+ * - region: The selected region.
+ *
+ * @see bioland2_theme()
+ */
+#}
+
+{#
+/**
+ * @file
+ * Template for displaying Bioland 2 settings summary.
+ *
+ * Available variables:
+ * - locales: Array of enabled locales
+ * - countries: Default countries setting
+ * - region: Default region setting
+ * - field_functionality: Object containing field functionality settings
+ */
+#}
+
+<div class="bioland2-settings-summary">
+  <div class="settings-section">
+    <h3>{{ 'General Settings'|t }}</h3>
+    {% if countries %}
+    <div class="setting-item">
+      <strong>{{ 'Countries'|t }}:</strong>
+      <ul class="countries-list">
+        {% for c in countries %}
+          <li>{{ c }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <div class="setting-item">
+      <strong>{{ 'Region'|t }}:</strong> {{ region }}
+    </div>
+  </div>
+
+  {% if locales %}
+  <div class="settings-section">
+    <h3>{{ 'Localization'|t }}</h3>
+    <div class="setting-item">
+      <strong>{{ 'Enabled Locales'|t }}:</strong>
+      <ul class="locales-list">
+        {% for locale in locales %}
+          <li>{{ locale }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if field_functionality %}
+  <div class="settings-section">
+    <h3>{{ 'Field Functionality'|t }}</h3>
+    <div class="setting-item">
+      <strong>{{ 'Field Visibility'|t }}:</strong>
+      <span class="status {{ field_functionality.field_visibility ? 'enabled' : 'disabled' }}">
+        {{ field_functionality.field_visibility ? 'Enabled'|t : 'Disabled'|t }}
+      </span>
+    </div>
+    <div class="setting-item">
+      <strong>{{ 'Additional Fields'|t }}:</strong>
+      <span class="status {{ field_functionality.additional_fields ? 'enabled' : 'disabled' }}">
+        {{ field_functionality.additional_fields ? 'Enabled'|t : 'Disabled'|t }}
+      </span>
+    </div>
+    <div class="setting-item">
+      <strong>{{ 'Auto Summary'|t }}:</strong>
+      <span class="status {{ field_functionality.auto_summary ? 'enabled' : 'disabled' }}">
+        {{ field_functionality.auto_summary ? 'Enabled'|t : 'Disabled'|t }}
+      </span>
+    </div>
+  </div>
+  {% endif %}
+</div>

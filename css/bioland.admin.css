@@ -1,0 +1,44 @@
+/**
+ * @file
+ * CSS styles for Bioland 2 administration interface.
+ */
+
+.bioland2-settings-form .fieldset {
+  margin-bottom: 1.5em;
+}
+
+.bioland2-settings-form .form-item {
+  margin-bottom: 1em;
+}
+
+.bioland2-settings-form .form-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5em;
+}
+
+.bioland2-settings-form .description {
+  font-style: italic;
+  color: #666;
+}
+
+/* Field visibility transitions */
+.field--hidden-by-bioland2 {
+  display: none !important;
+}
+
+.field--shown-by-bioland2 {
+  display: block !important;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
