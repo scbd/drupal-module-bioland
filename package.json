@@ -10,7 +10,7 @@
         "deploy:stg": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/"
     },
     "devDependencies": {
-        "jest": "^29.7.0"
+        "jest": "29.7.0"
     }
 }
 

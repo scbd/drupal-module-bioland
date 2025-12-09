@@ -50,6 +50,9 @@
       // Store the initial value
       this.lastContentTypeValue = contentTypeValue;
 
+      // Store settings for later use
+      this.settings = settings;
+
       // Apply initial field visibility
       this.applyFieldVisibility(contentTypeValue);
       
@@ -94,7 +97,10 @@
       
       if (!urlWrapper) return;
 
-      if ([13, 2, 4, 11, 12, 3, 8, 5, 4, 10, 9].includes(Number(contentTypeValue))) {
+      // Use settings from PHP, with fallback defaults
+      const urlContentTypes = this.settings?.urlContentTypes || [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50];
+
+      if (urlContentTypes.includes(Number(contentTypeValue))) {
         urlWrapper.style.display = 'block';
       } else {
         urlWrapper.style.display = 'none';
@@ -112,7 +118,10 @@
       
       if (!publishedWrapper) return;
 
-      if ([13, 2, 4, 11, 12, 3, 8, 5, 4, 10, 9].includes(Number(contentTypeValue))) {
+      // Use settings from PHP, with fallback defaults
+      const publishedContentTypes = this.settings?.publishedContentTypes || [3, 5, 12];
+
+      if (publishedContentTypes.includes(Number(contentTypeValue))) {
         publishedWrapper.style.display = 'block';
       } else {
         publishedWrapper.style.display = 'none';
@@ -129,8 +138,9 @@
       const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
       const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
       
-      const contentTypesWithDates = [13, 2, 4, 11];
-      const shouldShowDates = contentTypesWithDates.includes(Number(contentTypeValue));
+      // Use settings from PHP, with fallback defaults
+      const dateRangeContentTypes = this.settings?.dateRangeContentTypes || [2, 3, 13];
+      const shouldShowDates = dateRangeContentTypes.includes(Number(contentTypeValue));
 
       if (startDateWrapper) {
         startDateWrapper.style.display = shouldShowDates ? 'block' : 'none';
