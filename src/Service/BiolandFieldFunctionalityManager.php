@@ -26,6 +26,9 @@ class BiolandFieldFunctionalityManager {
 
   /**
    * Returns TRUE if any of the major functionalities are enabled.
+   *
+   * @return bool
+   *   TRUE if any functionality is enabled, FALSE otherwise.
    */
   public function isAnyFunctionalityEnabled(): bool {
     $c = $this->configFactory->get('bioland.settings');
