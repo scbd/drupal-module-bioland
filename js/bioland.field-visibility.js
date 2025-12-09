@@ -178,7 +178,7 @@
       if (!contentTypeField) return;
 
       // Set up event handlers for content type placement field changes
-      $('#edit-field-type-placement', context).once('bioland-field-visibility').on('change keydown mouseout', function () {
+      $('#edit-field-type-placement', context).once('bioland-field-visibility').on('change', function () {
         self.handleContentTypeChange();
       });
     },
