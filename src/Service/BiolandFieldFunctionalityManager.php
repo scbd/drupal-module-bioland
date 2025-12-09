@@ -38,6 +38,13 @@ class BiolandFieldFunctionalityManager {
 
   /**
    * Build the drupalSettings payload for frontend behaviors.
+   *
+   * @return array
+   *   An associative array containing:
+   *   - enableFieldVisibility: Whether field visibility is enabled.
+   *   - enableAdditionalFields: Whether additional fields are enabled.
+   *   - enableAutoSummary: Whether auto summary is enabled.
+   *   - fieldVisibilityRules: The field visibility configuration rules.
    */
   public function getJavaScriptSettings(): array {
     $c = $this->configFactory->get('bioland.settings');
