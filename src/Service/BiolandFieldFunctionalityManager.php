@@ -11,6 +11,8 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 class BiolandFieldFunctionalityManager {
 
   /**
+   * The config factory service.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
