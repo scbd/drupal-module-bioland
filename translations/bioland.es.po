@@ -8,126 +8,445 @@ msgstr ""
 "Language: es\n"
 
 #: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Bioland"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Biosafety Land"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "Configuración de @branding"
+
+#: src/Form/BiolandSettingsForm.php
 msgid "General Settings"
 msgstr "Configuración General"
 
-msgid "Field Visibility Settings"
-msgstr "Configuración de Visibilidad de Campos"
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Nombre del sitio"
 
-msgid "Enable Field Visibility functionality"
-msgstr "Habilitar funcionalidad de Visibilidad de Campos"
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "Eslogan"
 
-msgid "When enabled, field visibility rules will be applied to the form."
-msgstr "Cuando esté habilitado, las reglas de visibilidad de campos se aplicarán al formulario."
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "Cómo se utiliza esto depende del tema de su sitio."
 
-msgid "Field Visibility Rules"
-msgstr "Reglas de Visibilidad de Campos"
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Dirección de correo electrónico"
 
-msgid "JSON configuration for field visibility rules. See documentation for format details."
-msgstr "Configuración JSON para reglas de visibilidad de campos. Consulte la documentación para detalles del formato."
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "La dirección <em>De</em> en correos electrónicos automáticos enviados durante el registro y solicitudes de nueva contraseña, y otras notificaciones. (Use una dirección que termine en el dominio de su sitio para ayudar a prevenir que este correo sea marcado como spam.)"
 
-msgid "Additional Fields Settings"
-msgstr "Configuración de Campos Adicionales"
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Traducir Nombre del Sitio"
 
-msgid "Enable Additional Fields functionality"
-msgstr "Habilitar funcionalidad de Campos Adicionales"
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Traducir Eslogan"
 
-msgid "When enabled, additional fields will be available in the form."
-msgstr "Cuando esté habilitado, los campos adicionales estarán disponibles en el formulario."
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Países"
 
-msgid "Auto Summary Settings"
-msgstr "Configuración de Resumen Automático"
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Ingrese un código de país por línea."
 
-msgid "Enable Auto Summary functionality"
-msgstr "Habilitar funcionalidad de Resumen Automático"
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Región"
 
-msgid "When enabled, summary will be automatically generated from the body field."
-msgstr "Cuando esté habilitado, el resumen se generará automáticamente desde el campo de cuerpo."
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Seleccione la región geográfica."
 
-msgid "Auto Summary Maximum Length"
-msgstr "Longitud Máxima del Resumen Automático"
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "América del Norte"
 
-msgid "Maximum number of characters for the auto-generated summary (default: 300)."
-msgstr "Número máximo de caracteres para el resumen generado automáticamente (predeterminado: 300)."
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "América del Sur"
 
-msgid "Translation Settings"
-msgstr "Configuración de Traducción"
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Europa"
 
-msgid "Enable Auto Translation Default Creation"
-msgstr "Habilitar Creación Automática de Traducciones Predeterminadas"
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asia"
 
-msgid "When enabled, default translations will be created automatically for new content."
-msgstr "Cuando esté habilitado, las traducciones predeterminadas se crearán automáticamente para contenido nuevo."
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "África"
 
-msgid "Languages for Auto Translation"
-msgstr "Idiomas para Traducción Automática"
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceanía"
 
-msgid "Select which languages should have default translations created automatically. Leave empty to use all enabled languages."
-msgstr "Seleccione qué idiomas deben tener traducciones predeterminadas creadas automáticamente. Deje vacío para usar todos los idiomas habilitados."
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "¿Es Biosafety Land?"
 
-msgid "Copy Source Values to Translations"
-msgstr "Copiar Valores de Origen a las Traducciones"
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Indica si esta es una instancia de Biosafety Land."
 
-msgid "When enabled, source field values will be copied to new translations (except title and body)."
-msgstr "Cuando esté habilitado, los valores de los campos de origen se copiarán a las nuevas traducciones (excepto título y cuerpo)."
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Configuración de Comportamiento de Campos"
 
-msgid "Batch Translation Processing"
-msgstr "Procesamiento de Traducción por Lotes"
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Control de Visibilidad de Campos"
 
-msgid "Process existing content"
-msgstr "Procesar contenido existente"
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Habilitar Control de Visibilidad de Campos"
 
-msgid "Create default translations for all existing content that doesn't have them yet. This may take a while for large sites."
-msgstr "Crear traducciones predeterminadas para todo el contenido existente que aún no las tenga. Esto puede tomar un tiempo para sitios grandes."
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Mostrar/ocultar campos según la selección del tipo de contenido. Configure qué campos son visibles para cada tipo de contenido a continuación."
 
-msgid "Bioland Settings"
-msgstr "Configuración de Bioland"
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "Campo URL"
 
-msgid "Configure Bioland module functionality"
-msgstr "Configurar funcionalidad del módulo Bioland"
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Mostrar campo URL para estos tipos de contenido:"
 
-msgid "The configuration options have been saved."
-msgstr "Las opciones de configuración han sido guardadas."
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Campo Publicado"
 
-msgid "Processing @count items for translation..."
-msgstr "Procesando @count elementos para traducción..."
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Mostrar campo Publicado para estos tipos de contenido:"
 
-msgid "Successfully created translations for @success items. @error errors occurred."
-msgstr "Se crearon traducciones exitosamente para @success elementos. Ocurrieron @error errores."
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Campo de Rango de Fechas (Fecha de Inicio y Fin)"
 
-#: bioland.module
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Mostrar campos de Rango de Fechas (Fecha de Inicio y Fin) para estos tipos de contenido:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Control de Campos Adicionales"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Habilitar Campos Adicionales"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Agregar campos adicionales específicos del tipo de contenido (estados de eventos, estados de proyectos, etc.) basados en el tipo de contenido del tesauro."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Mapeo de Campos Adicionales"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "Los siguientes tipos de contenido tendrán estos campos adicionales disponibles:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Estados de Eventos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Estados de Proyectos, Ámbitos Geográficos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Ministerio (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Tipos de Organización, Tipos de Gobierno"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Ecosistema (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Tipos de Ecosistema"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Tipos de Documento"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "Estos campos se agregan dinámicamente según el tipo de contenido seleccionado y son impulsados por un componente Vue.js."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Habilitar Resumen Automático"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Generar automáticamente el resumen del contenido del cuerpo mientras el usuario escribe."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Habilitar Comentarios de Ayuda de Campos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Mostrar comentarios de ayuda contextual para campos según el tipo de contenido."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Menu Depth Restriction"
+msgstr "Habilitar Restricción de Profundidad del Menú"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Restringir a los usuarios no administradores de crear elementos de menú de segundo nivel y más profundos. Solo los usuarios con permiso \"administrar menú\" pueden crear elementos de menú anidados."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Reglas de Visibilidad de Campos (Avanzado)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Defina reglas personalizadas de visibilidad de campos en formato JSON. Deje vacío para usar la configuración anterior."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Valores Predeterminados de Traducción"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Configure la creación de valores predeterminados de traducción (marcadores de posición de idioma) para entidades traducibles."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Crear automáticamente valores predeterminados de traducción"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Cuando está habilitado, los valores predeterminados de traducción (marcadores de posición) se crean para otros idiomas al crear/actualizar entidades. Las traducciones existentes con fuente adecuada no se sobrescriben."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Usar todos los idiomas disponibles"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Cuando está habilitado, las traducciones se crearán para todos los idiomas instalados en el sitio. Cuando está deshabilitado, solo se usarán los idiomas de destino seleccionados a continuación."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Idiomas de destino para valores predeterminados de traducción"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Seleccione para qué idiomas crear valores predeterminados de traducción. Se usa solo cuando \"Usar todos los idiomas disponibles\" está deshabilitado."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Copiar valores de campos de origen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Cuando está habilitado, los valores de campos traducibles del idioma de origen se copiarán a las nuevas traducciones."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Tipos de entidad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Required)"
+msgstr "(Requerido)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Requerido:</strong> Seleccione qué tipos de entidad deben tener valores predeterminados de traducción creados. Debe seleccionar al menos un tipo de entidad para que los valores predeterminados de traducción automática funcionen. Opción común: <em>Contenido (nodo)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "Debe seleccionar al menos un tipo de entidad para que los valores predeterminados de traducción automática funcionen. Por favor seleccione uno o más tipos de entidad, o deshabilite \"Crear automáticamente valores predeterminados de traducción\"."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operaciones por Lotes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Procesar entidades existentes para crear valores predeterminados de traducción faltantes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Tipo de entidad a procesar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Seleccionar -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Seleccione un tipo de entidad para crear traducciones para entidades existentes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Crear valores predeterminados de traducción para entidades existentes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Por favor seleccione un tipo de entidad a procesar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Inglés"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Español"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Francés"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Alemán"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Italiano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portugués"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holandés"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Chino"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japonés"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Coreano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Árabe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Ruso"
+
+#: js/bioland.help-comments.js
 msgid "Help"
 msgstr "Ayuda"
 
-msgid "About"
-msgstr "Acerca de"
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Este será el contenido principal de su nuevo contenido del sitio. El resumen se puede usar para mostrar una descripción breve y concisa de su contenido. Además, el resumen se mostrará en las vistas de lista y tarjeta de su registro en el sitio web. Alternativamente, se usarán las primeras oraciones del contenido principal."
 
-msgid "The Bioland module provides field management and translation functionality."
-msgstr "El módulo Bioland proporciona funcionalidad de gestión de campos y traducción."
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Imágenes"
 
-msgid "Uses"
-msgstr "Usos"
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "La <b>primera imagen</b> en orden de izquierda a derecha aquí, <b>será la imagen principal</b> de su registro que se mostrará en la página y en miniaturas en las vistas de lista y tarjeta. Todas las demás imágenes se mostrarán debajo del contenido principal."
 
-msgid "Field Visibility"
-msgstr "Visibilidad de Campos"
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Heroes"
 
-msgid "Control which fields are visible based on content type and other conditions."
-msgstr "Controle qué campos son visibles según el tipo de contenido y otras condiciones."
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Cualquier página/tipo de contenido puede tener múltiples <b>banners hero</b>. Si hay más de uno, se rotarán cada hora."
 
-msgid "Additional Fields"
-msgstr "Campos Adicionales"
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Noticias (2)"
 
-msgid "Add dynamic additional fields to content forms."
-msgstr "Agregue campos adicionales dinámicos a formularios de contenido."
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Reunión o Evento (3)"
 
-msgid "Auto Summary"
-msgstr "Resumen Automático"
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Proyecto (5)"
 
-msgid "Automatically generate summaries from body content."
-msgstr "Genere resúmenes automáticamente desde el contenido del cuerpo."
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Documento (12)"
 
-msgid "Translation Management"
-msgstr "Gestión de Traducción"
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Sitio Web Relacionado (13)"
 
-msgid "Automatically create default translations for content."
-msgstr "Cree traducciones predeterminadas automáticamente para contenido."
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Otro Recurso (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Imagen o Video (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "Preguntas Frecuentes (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Información Nacional (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Estado de los OVM (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Ensayo de Campo (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Estrategia Nacional de Integración (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Creación de Capacidad (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Anuncio (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Contacto (50)"
+
+#: bioland.module
+msgid "Save"
+msgstr "Guardar"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Anulación de Orden"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "No tiene permiso para crear elementos de menú debajo de otros elementos de menú. Solo se permiten elementos de menú de nivel superior para su rol."

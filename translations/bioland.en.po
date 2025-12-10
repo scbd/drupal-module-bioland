@@ -8,8 +8,48 @@ msgstr ""
 "Language: en\n"
 
 #: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Bioland"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Biosafety Land"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "@branding Settings"
+
+#: src/Form/BiolandSettingsForm.php
 msgid "General Settings"
 msgstr "General Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Site name"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "Slogan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "How this is used depends on your site's theme."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Email address"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Translate Site Name"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Translate Slogan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Countries"
@@ -64,12 +104,44 @@ msgid "Field Behavior Settings"
 msgstr "Field Behavior Settings"
 
 #: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Field Visibility Control"
+
+#: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
 msgstr "Enable Field Visibility Control"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
-msgstr "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "URL Field"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Show URL field for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Published Field"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Show Published field for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Date Range Field (Start & End Date)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Show Date Range fields (Start & End Date) for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Additional Fields Control"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Fields"
@@ -78,6 +150,46 @@ msgstr "Enable Additional Fields"
 #: src/Form/BiolandSettingsForm.php
 msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Additional Fields Mapping"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "The following content types will have these additional fields available:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Event Statuses"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Project Statuses, Geographic Scopes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Ministry (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Organization Types, Government Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Ecosystem (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Ecosystem Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Document Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -96,12 +208,20 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Display contextual help comments for fields based on content type."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules"
-msgstr "Field Visibility Rules"
+msgid "Enable Menu Depth Restriction"
+msgstr "Enable Menu Depth Restriction"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules (JSON format)."
-msgstr "Define custom field visibility rules (JSON format)."
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Field Visibility Rules (Advanced)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
@@ -148,8 +268,16 @@ msgid "Entity types"
 msgstr "Entity types"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select which entity types should have translation defaults created."
-msgstr "Select which entity types should have translation defaults created."
+msgid "(Required)"
+msgstr "(Required)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Batch Operations"
@@ -226,6 +354,330 @@ msgstr "Arabic"
 #: src/Form/BiolandSettingsForm.php
 msgid "Russian"
 msgstr "Russian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Amharic"
+msgstr "Amharic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asturian"
+msgstr "Asturian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Azerbaijani"
+msgstr "Azerbaijani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Belarusian"
+msgstr "Belarusian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bulgarian"
+msgstr "Bulgarian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bengali"
+msgstr "Bengali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tibetan"
+msgstr "Tibetan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bosnian"
+msgstr "Bosnian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Catalan"
+msgstr "Catalan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Czech"
+msgstr "Czech"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Welsh"
+msgstr "Welsh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Danish"
+msgstr "Danish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dzongkha"
+msgstr "Dzongkha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Greek"
+msgstr "Greek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Estonian"
+msgstr "Estonian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Basque"
+msgstr "Basque"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Persian"
+msgstr "Persian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Finnish"
+msgstr "Finnish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Filipino"
+msgstr "Filipino"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Faeroese"
+msgstr "Faeroese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Frisian"
+msgstr "Frisian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Irish"
+msgstr "Irish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots Gaelic"
+msgstr "Scots Gaelic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Galician"
+msgstr "Galician"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swiss German"
+msgstr "Swiss German"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hebrew"
+msgstr "Hebrew"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hindi"
+msgstr "Hindi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Croatian"
+msgstr "Croatian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Haitian Creole"
+msgstr "Haitian Creole"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hungarian"
+msgstr "Hungarian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Armenian"
+msgstr "Armenian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indonesian"
+msgstr "Indonesian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Icelandic"
+msgstr "Icelandic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Javanese"
+msgstr "Javanese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Georgian"
+msgstr "Georgian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Khmer"
+msgstr "Khmer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kannada"
+msgstr "Kannada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kurdish"
+msgstr "Kurdish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lao"
+msgstr "Lao"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lithuanian"
+msgstr "Lithuanian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latvian"
+msgstr "Latvian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malagasy"
+msgstr "Malagasy"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Macedonian"
+msgstr "Macedonian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mongolian"
+msgstr "Mongolian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Marathi"
+msgstr "Marathi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bahasa Malaysia"
+msgstr "Bahasa Malaysia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Burmese"
+msgstr "Burmese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Nepali"
+msgstr "Nepali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Bokmål"
+msgstr "Norwegian Bokmål"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Nynorsk"
+msgstr "Norwegian Nynorsk"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Occitan"
+msgstr "Occitan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Polish"
+msgstr "Polish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Portugal"
+msgstr "Portuguese, Portugal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Brazil"
+msgstr "Portuguese, Brazil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Romanian"
+msgstr "Romanian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots"
+msgstr "Scots"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Northern Sami"
+msgstr "Northern Sami"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Sinhala"
+msgstr "Sinhala"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovak"
+msgstr "Slovak"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovenian"
+msgstr "Slovenian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Albanian"
+msgstr "Albanian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Serbian"
+msgstr "Serbian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swedish"
+msgstr "Swedish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swahili"
+msgstr "Swahili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil"
+msgstr "Tamil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil, Sri Lanka"
+msgstr "Tamil, Sri Lanka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Telugu"
+msgstr "Telugu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Thai"
+msgstr "Thai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Turkish"
+msgstr "Turkish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tuvan"
+msgstr "Tuvan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Uyghur"
+msgstr "Uyghur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Urdu"
+msgstr "Urdu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Vietnamese"
+msgstr "Vietnamese"
 
 #: js/bioland.help-comments.js
 msgid "Help"
@@ -310,3 +762,15 @@ msgstr "Announcement (49)"
 #: src/Form/BiolandSettingsForm.php
 msgid "Contact (50)"
 msgstr "Contact (50)"
+
+#: bioland.module
+msgid "Save"
+msgstr "Save"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Order Override"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
