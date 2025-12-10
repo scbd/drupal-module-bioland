@@ -30,7 +30,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\": "tests/stubs/Drupal/"
+            "Drupal\\": "tests/stubs/Drupal/",
+            "Drupal\\Tests\\bioland\\Unit\\": "tests/Unit/"
         }
     },
     "scripts": {
