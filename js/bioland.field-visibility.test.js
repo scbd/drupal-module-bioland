@@ -1,0 +1,363 @@
+/**
+ * @file
+ * Unit tests for bioland.field-visibility.js
+ */
+
+describe('Bioland Field Visibility', () => {
+  let originalConsoleLog;
+  let originalConsoleWarn;
+
+  beforeEach(() => {
+    // Suppress console output during tests
+    originalConsoleLog = console.log;
+    originalConsoleWarn = console.warn;
+    console.log = jest.fn();
+    console.warn = jest.fn();
+
+    // Reset Drupal behaviors
+    global.Drupal.behaviors = {};
+
+    // Clear the module cache to get fresh module state
+    jest.resetModules();
+  });
+
+  afterEach(() => {
+    console.log = originalConsoleLog;
+    console.warn = originalConsoleWarn;
+  });
+
+  describe('Drupal behavior registration', () => {
+    test('should register biolandFieldVisibility behavior', () => {
+      require('./bioland.field-visibility.js');
+      expect(Drupal.behaviors.biolandFieldVisibility).toBeDefined();
+      expect(typeof Drupal.behaviors.biolandFieldVisibility.attach).toBe('function');
+    });
+
+    test('should not initialize if enableFieldVisibility is false', () => {
+      require('./bioland.field-visibility.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: false } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Should return early without logging initialization
+      expect(console.log).not.toHaveBeenCalledWith('Bioland: Initializing field visibility');
+    });
+  });
+
+  describe('Field visibility initialization', () => {
+    beforeEach(() => {
+      // Set up basic DOM structure
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+            <option value="5">Project</option>
+            <option value="8">Ministry</option>
+          </select>
+          <div id="edit-field-url-wrapper" style="display: block;"></div>
+          <div id="edit-field-published-wrapper" style="display: block;"></div>
+          <div id="edit-field-start-date-wrapper" style="display: block;"></div>
+          <div id="edit-field-end-date-wrapper" style="display: block;"></div>
+          <label for="edit-body-0-format--2">Format</label>
+          <div id="edit-body-0-format-help-about">Help</div>
+        </form>
+      `;
+    });
+
+    test('should initialize field visibility when content type field exists', () => {
+      require('./bioland.field-visibility.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland: Initializing field visibility');
+    });
+
+    test('should not initialize when content type field is missing', () => {
+      document.body.innerHTML = '<form class="node-content-form"></form>';
+      
+      require('./bioland.field-visibility.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland: No content type field found for visibility');
+    });
+  });
+
+  describe('URL field visibility', () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-url-wrapper" style="display: none;"></div>
+        </form>
+      `;
+    });
+
+    test('should show URL field for content types that require it', () => {
+      require('./bioland.field-visibility.js');
+      
+      const urlWrapper = document.querySelector('#edit-field-url-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          urlContentTypes: [3, 5, 12]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(urlWrapper.style.display).toBe('block');
+    });
+
+    test('should hide URL field for content types that do not require it', () => {
+      document.querySelector('#edit-field-type-placement').value = '1';
+      
+      require('./bioland.field-visibility.js');
+      
+      const urlWrapper = document.querySelector('#edit-field-url-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          urlContentTypes: [3, 5, 12]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(urlWrapper.style.display).toBe('none');
+    });
+  });
+
+  describe('Published field visibility', () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-published-wrapper" style="display: none;"></div>
+        </form>
+      `;
+    });
+
+    test('should show published field for content types that require it', () => {
+      require('./bioland.field-visibility.js');
+      
+      const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          publishedContentTypes: [3, 5, 12]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(publishedWrapper.style.display).toBe('block');
+    });
+
+    test('should hide published field for content types that do not require it', () => {
+      document.querySelector('#edit-field-type-placement').value = '1';
+      
+      require('./bioland.field-visibility.js');
+      
+      const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          publishedContentTypes: [3, 5, 12]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(publishedWrapper.style.display).toBe('none');
+    });
+  });
+
+  describe('Date fields visibility', () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-start-date-wrapper" style="display: none;"></div>
+          <div id="edit-field-end-date-wrapper" style="display: none;"></div>
+        </form>
+      `;
+    });
+
+    test('should show date fields for content types that require them', () => {
+      require('./bioland.field-visibility.js');
+      
+      const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
+      const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          dateRangeContentTypes: [2, 3, 13]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(startDateWrapper.style.display).toBe('block');
+      expect(endDateWrapper.style.display).toBe('block');
+    });
+
+    test('should hide date fields for content types that do not require them', () => {
+      document.querySelector('#edit-field-type-placement').value = '5';
+      
+      require('./bioland.field-visibility.js');
+      
+      const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
+      const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          dateRangeContentTypes: [2, 3, 13]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(startDateWrapper.style.display).toBe('none');
+      expect(endDateWrapper.style.display).toBe('none');
+    });
+  });
+
+  describe('Text format hiding', () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <label for="edit-body-0-format--2" style="display: block;">Format</label>
+          <div id="edit-body-0-format-help-about" style="display: block;">Help</div>
+        </form>
+      `;
+    });
+
+    test('should hide text format label and help link', () => {
+      require('./bioland.field-visibility.js');
+      
+      const label = document.querySelector('label[for="edit-body-0-format--2"]');
+      const helpLink = document.querySelector('#edit-body-0-format-help-about');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(label.style.display).toBe('none');
+      expect(helpLink.style.display).toBe('none');
+    });
+  });
+
+  describe('Content type change handling', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+            <option value="5">Project</option>
+          </select>
+          <div id="edit-field-url-wrapper" style="display: block;"></div>
+          <div id="edit-field-published-wrapper" style="display: block;"></div>
+          <div id="edit-field-start-date-wrapper" style="display: block;"></div>
+          <div id="edit-field-end-date-wrapper" style="display: block;"></div>
+        </form>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should set up change event listener', () => {
+      require('./bioland.field-visibility.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(fieldElement.dataset.biolandFieldVisibilityInit).toBe('true');
+    });
+
+    test('should update visibility when content type changes', () => {
+      require('./bioland.field-visibility.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          dateRangeContentTypes: [2, 3, 13]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Initially content type is 3 (event) - dates should be visible
+      expect(startDateWrapper.style.display).toBe('block');
+      
+      // Change to content type 5 (project) - dates should be hidden
+      fieldElement.value = '5';
+      fieldElement.dispatchEvent(new Event('change'));
+      
+      expect(startDateWrapper.style.display).toBe('none');
+    });
+
+    test('should not update visibility when value is unchanged', () => {
+      require('./bioland.field-visibility.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Trigger change event without actually changing the value
+      fieldElement.dispatchEvent(new Event('change'));
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland: Content type value unchanged, skipping');
+    });
+
+    test('should not attach duplicate event listeners', () => {
+      require('./bioland.field-visibility.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      // Attach twice
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Should only have the marker set once
+      expect(fieldElement.dataset.biolandFieldVisibilityInit).toBe('true');
+    });
+  });
+});
