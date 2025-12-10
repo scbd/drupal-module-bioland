@@ -5,613 +5,613 @@
  * Supports CKEditor 4, CKEditor 5, and plain textareas.
  */
 
-(function ($, Drupal) {
-  'use strict';
+/**
+ * Timeout reference for contenteditable monitoring
+ */
+let contentEditableTimeout = null;
 
-  /**
-   * Drupal behavior for Bioland auto summary.
-   */
-  Drupal.behaviors.biolandAutoSummary = {
-    attach: function (context, settings) {
-      // Get settings from Drupal
-      const biolandSettings = settings.bioland || {};
-      
-      // Only proceed if auto summary is enabled
-      if (biolandSettings.enableAutoSummary === false) {
-        console.log('Bioland: Auto summary is disabled in settings');
-        return;
+/**
+ * Drupal behavior for Bioland auto summary.
+ */
+Drupal.behaviors.biolandAutoSummary = {
+  attach(context, settings) {
+    // Get settings from Drupal
+    const biolandSettings = settings.bioland || {};
+    
+    // Only proceed if auto summary is enabled
+    if (biolandSettings.enableAutoSummary === false) {
+      console.log('Bioland: Auto summary is disabled in settings');
+      return;
+    }
+
+    console.log('Bioland: Auto summary enabled, initializing...');
+    
+    // Initialize auto summary functionality
+    initializeAutoSummary(context, biolandSettings);
+  }
+};
+
+/**
+ * Initialize auto summary functionality.
+ *
+ * @param {Element} context - The context element
+ * @param {Object} settings - Bioland settings from PHP
+ */
+function initializeAutoSummary(context, settings) {
+  const summaryField = getSummaryField(context);
+  
+  if (!summaryField) {
+    console.log('Bioland: Summary field not found, cannot enable auto-summary');
+    return;
+  }
+
+  // Prevent duplicate initialization
+  if (summaryField.dataset.biolandAutoSummaryInit) {
+    console.log('Bioland: Auto summary already initialized');
+    return;
+  }
+  summaryField.dataset.biolandAutoSummaryInit = 'true';
+
+  console.log('Bioland: Summary field found, setting up auto-summary');
+
+  // Initialize user edit tracking on the field itself
+  if (!summaryField.dataset.biolandUserEdited) {
+    summaryField.dataset.biolandUserEdited = 'false';
+  }
+
+  // Set up summary field listener to detect manual edits
+  setupSummaryFieldListener(summaryField);
+
+  // Try to detect and setup the editor
+  // Priority: CKEditor 4 > CKEditor 5 > Contenteditable Fallback > Plain Textarea
+  if (typeof CKEDITOR !== 'undefined') {
+    console.log('Bioland: CKEditor 4 detected, attempting to connect...');
+    setupCKEditor4(summaryField, context);
+  } else if (typeof Drupal.CKEditor5Instances !== 'undefined') {
+    console.log('Bioland: CKEditor 5 detected, attempting to connect...');
+    setupCKEditor5(summaryField, context);
+  } else if (document.querySelector('.ck-editor__editable[contenteditable="true"]')) {
+    console.log('Bioland: CKEditor detected via contenteditable div, using direct monitor...');
+    if (!setupContentEditableMonitor(summaryField, context)) {
+      setupPlainTextarea(summaryField, context);
+    }
+  } else {
+    console.log('Bioland: No CKEditor detected, using plain textarea');
+    setupPlainTextarea(summaryField, context);
+  }
+}
+
+/**
+ * Get the summary field element.
+ * @param {Element} context - The context element
+ * @returns {Element|null} The summary field element or null if not found
+ */
+function getSummaryField(context) {
+  // Try multiple possible selectors - use document instead of context
+  const selectors = [
+    'textarea[data-drupal-selector="edit-body-0-summary"]',
+    '#edit-body-0-summary',
+    'textarea[name="body[0][summary]"]'
+  ];
+
+  for (const selector of selectors) {
+    const field = document.querySelector(selector);
+    if (field) {
+      console.log('Bioland: Found summary field with selector:', selector);
+      return field;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Setup listener on summary field to detect manual edits.
+ * @param {Element} summaryField - The summary field element
+ */
+function setupSummaryFieldListener(summaryField) {
+  // Check if listener already attached
+  if (summaryField.dataset.biolandSummaryListenerInit) {
+    return;
+  }
+  summaryField.dataset.biolandSummaryListenerInit = 'true';
+
+  // Detect manual edits using native event listeners
+  summaryField.addEventListener('input', () => {
+    console.log('Bioland: User manually edited summary, disabling auto-summary');
+    summaryField.dataset.biolandUserEdited = 'true';
+  });
+
+  summaryField.addEventListener('keyup', () => {
+    console.log('Bioland: User manually edited summary, disabling auto-summary');
+    summaryField.dataset.biolandUserEdited = 'true';
+  });
+}
+
+/**
+ * Setup CKEditor 4 integration.
+ * @param {Element} summaryField - The summary field element
+ * @param {Element} context - The context element
+ */
+function setupCKEditor4(summaryField, context) {
+  let attempts = 0;
+  const maxAttempts = 50; // Try for 5 seconds
+
+  const checkEditor = setInterval(function() {
+    attempts++;
+    
+    // Try multiple possible instance names
+    const possibleNames = [
+      'edit-body-0-value',
+      'body-0-value',
+      'edit_body_0_value',
+      'body_0_value'
+    ];
+
+    let editorInstance = null;
+    let foundName = null;
+
+    for (const name of possibleNames) {
+      if (CKEDITOR.instances && CKEDITOR.instances[name]) {
+        editorInstance = CKEDITOR.instances[name];
+        foundName = name;
+        break;
       }
+    }
 
-      console.log('Bioland: Auto summary enabled, initializing...');
-      
-      // Initialize auto summary functionality
-      this.initializeAutoSummary(context, biolandSettings);
-    },
+    if (editorInstance) {
+      clearInterval(checkEditor);
+      console.log('Bioland: CKEditor 4 instance found:', foundName);
 
-    /**
-     * Initialize auto summary functionality.
-     *
-     * @param {Element} context - The context element
-     * @param {Object} settings - Bioland settings from PHP
-     */
-    initializeAutoSummary: function (context, settings) {
-      const summaryField = this.getSummaryField(context);
-      
-      if (!summaryField) {
-        console.log('Bioland: Summary field not found, cannot enable auto-summary');
-        return;
-      }
-
-      // Prevent duplicate initialization
-      if (summaryField.dataset.biolandAutoSummaryInit) {
-        console.log('Bioland: Auto summary already initialized');
-        return;
-      }
-      summaryField.dataset.biolandAutoSummaryInit = 'true';
-
-      console.log('Bioland: Summary field found, setting up auto-summary');
-
-      // Initialize user edit tracking on the field itself
-      if (!summaryField.dataset.biolandUserEdited) {
-        summaryField.dataset.biolandUserEdited = 'false';
-      }
-
-      // Set up summary field listener to detect manual edits
-      this.setupSummaryFieldListener(summaryField);
-
-      // Try to detect and setup the editor
-      // Priority: CKEditor 4 > CKEditor 5 > Contenteditable Fallback > Plain Textarea
-      if (typeof CKEDITOR !== 'undefined') {
-        console.log('Bioland: CKEditor 4 detected, attempting to connect...');
-        this.setupCKEditor4(summaryField, context);
-      } else if (typeof Drupal.CKEditor5Instances !== 'undefined') {
-        console.log('Bioland: CKEditor 5 detected, attempting to connect...');
-        this.setupCKEditor5(summaryField, context);
-      } else if (document.querySelector('.ck-editor__editable[contenteditable="true"]')) {
-        console.log('Bioland: CKEditor detected via contenteditable div, using direct monitor...');
-        if (!this.setupContentEditableMonitor(summaryField, context)) {
-          this.setupPlainTextarea(summaryField, context);
-        }
-      } else {
-        console.log('Bioland: No CKEditor detected, using plain textarea');
-        this.setupPlainTextarea(summaryField, context);
-      }
-    },
-
-    /**
-     * Get the summary field element.
-     * @param {Element} context - The context element
-     * @returns {Element|null} The summary field element or null if not found
-     */
-    getSummaryField: function (context) {
-      // Try multiple possible selectors - use document instead of context
-      const selectors = [
-        'textarea[data-drupal-selector="edit-body-0-summary"]',
-        '#edit-body-0-summary',
-        'textarea[name="body[0][summary]"]'
-      ];
-
-      for (const selector of selectors) {
-        const field = document.querySelector(selector);
-        if (field) {
-          console.log('Bioland: Found summary field with selector:', selector);
-          return field;
-        }
-      }
-
-      return null;
-    },
-
-    /**
-     * Setup listener on summary field to detect manual edits.
-     * @param {Element} summaryField - The summary field element
-     */
-    setupSummaryFieldListener: function (summaryField) {
-      const self = this;
-      
-      // Check if listener already attached
-      if (summaryField.dataset.biolandSummaryListenerInit) {
-        return;
-      }
-      summaryField.dataset.biolandSummaryListenerInit = 'true';
-
-      // Detect manual edits using namespaced event
-      $(summaryField).on('input.biolandAutoSummary keyup.biolandAutoSummary', function() {
-        console.log('Bioland: User manually edited summary, disabling auto-summary');
-        summaryField.dataset.biolandUserEdited = 'true';
+      // Listen for content changes
+      editorInstance.on('change', function() {
+        if (summaryField.dataset.biolandUserEdited === 'true') return;
+        const bodyHtml = editorInstance.getData();
+        updateSummaryFromHtml(bodyHtml, summaryField);
       });
-    },
 
-    /**
-     * Setup CKEditor 4 integration.
-     * @param {Element} summaryField - The summary field element
-     * @param {Element} context - The context element
-     */
-    setupCKEditor4: function (summaryField, context) {
-      const self = this;
-      let attempts = 0;
-      const maxAttempts = 50; // Try for 5 seconds
+      // Also trigger on keyup for immediate feedback (debounced)
+      let keyTimeout;
+      editorInstance.on('key', function() {
+        if (summaryField.dataset.biolandUserEdited === 'true') return;
+        clearTimeout(keyTimeout);
+        keyTimeout = setTimeout(function() {
+          const bodyHtml = editorInstance.getData();
+          updateSummaryFromHtml(bodyHtml, summaryField);
+        }, 300);
+      });
 
-      const checkEditor = setInterval(function() {
-        attempts++;
-        
-        // Try multiple possible instance names
-        const possibleNames = [
-          'edit-body-0-value',
-          'body-0-value',
-          'edit_body_0_value',
-          'body_0_value'
-        ];
+      // Trigger initial update if body has content
+      const initialContent = editorInstance.getData();
+      if (initialContent && !summaryField.value.trim()) {
+        updateSummaryFromHtml(initialContent, summaryField);
+      }
 
-        let editorInstance = null;
-        let foundName = null;
+      console.log('Bioland: CKEditor 4 auto-summary fully initialized');
+    } else if (attempts >= maxAttempts) {
+      clearInterval(checkEditor);
+      console.warn('Bioland: CKEditor 4 instance not found after', attempts, 'attempts, falling back to textarea');
+      setupPlainTextarea(summaryField, context);
+    }
+  }, 100);
+}
 
-        for (const name of possibleNames) {
-          if (CKEDITOR.instances && CKEDITOR.instances[name]) {
-            editorInstance = CKEDITOR.instances[name];
-            foundName = name;
+/**
+ * Setup CKEditor 5 integration.
+ * @param {Element} summaryField - The summary field element
+ * @param {Element} context - The context element
+ */
+function setupCKEditor5(summaryField, context) {
+  let attempts = 0;
+  const maxAttempts = 50;
+
+  const checkEditor = setInterval(function() {
+    attempts++;
+
+    const instances = Drupal.CKEditor5Instances;
+    
+    // Try to find the body field element first - use document instead of context
+    const bodySelectors = [
+      '[data-drupal-selector="edit-body-0-value"]',
+      '#edit-body-0-value',
+      'textarea[name="body[0][value]"]'
+    ];
+
+    let bodyFieldId = null;
+    let bodyField = null;
+    
+    for (const selector of bodySelectors) {
+      bodyField = document.querySelector(selector);
+      if (bodyField) {
+        bodyFieldId = bodyField.getAttribute('id');
+        console.log('Bioland: Found body field element with selector:', selector, 'ID:', bodyFieldId);
+        if (bodyFieldId) break;
+      }
+    }
+
+    // Also check if instances exist and log available instances for debugging
+    if (instances) {
+      console.log('Bioland: CKEditor5Instances available, size:', instances.size);
+      if (attempts === 1 && instances.size > 0) {
+        // Log available instance IDs on first attempt
+        const instanceIds = Array.from(instances.keys());
+        console.log('Bioland: Available CKEditor 5 instance IDs:', instanceIds);
+      }
+    } else {
+      console.log('Bioland: Drupal.CKEditor5Instances is not available');
+    }
+
+    // Try to find the editor instance - first by exact ID, then by iterating all instances
+    let editorInstance = null;
+    if (bodyFieldId && instances && instances.has(bodyFieldId)) {
+      editorInstance = instances.get(bodyFieldId);
+      console.log('Bioland: Found CKEditor 5 instance by exact ID match');
+    } else if (instances && instances.size > 0) {
+      // Try to find it by checking all instances
+      for (const [key, instance] of instances.entries()) {
+        console.log('Bioland: Checking instance with key:', key);
+        // Check if this instance's source element matches our body field
+        if (instance.sourceElement && bodyField) {
+          if (instance.sourceElement === bodyField || 
+              instance.sourceElement.id === bodyFieldId ||
+              instance.sourceElement.getAttribute('data-drupal-selector') === bodyField.getAttribute('data-drupal-selector')) {
+            editorInstance = instance;
+            console.log('Bioland: Found CKEditor 5 instance by matching source element with key:', key);
             break;
           }
         }
-
-        if (editorInstance) {
-          clearInterval(checkEditor);
-          console.log('Bioland: CKEditor 4 instance found:', foundName);
-
-          // Listen for content changes
-          editorInstance.on('change', function() {
-            if (summaryField.dataset.biolandUserEdited === 'true') return;
-            const bodyHtml = editorInstance.getData();
-            self.updateSummaryFromHtml(bodyHtml, summaryField);
-          });
-
-          // Also trigger on keyup for immediate feedback (debounced)
-          let keyTimeout;
-          editorInstance.on('key', function() {
-            if (summaryField.dataset.biolandUserEdited === 'true') return;
-            clearTimeout(keyTimeout);
-            keyTimeout = setTimeout(function() {
-              const bodyHtml = editorInstance.getData();
-              self.updateSummaryFromHtml(bodyHtml, summaryField);
-            }, 300);
-          });
-
-          // Trigger initial update if body has content
-          const initialContent = editorInstance.getData();
-          if (initialContent && !summaryField.value.trim()) {
-            self.updateSummaryFromHtml(initialContent, summaryField);
-          }
-
-          console.log('Bioland: CKEditor 4 auto-summary fully initialized');
-        } else if (attempts >= maxAttempts) {
-          clearInterval(checkEditor);
-          console.warn('Bioland: CKEditor 4 instance not found after', attempts, 'attempts, falling back to textarea');
-          self.setupPlainTextarea(summaryField, context);
-        }
-      }, 100);
-    },
-
-    /**
-     * Setup CKEditor 5 integration.
-     * @param {Element} summaryField - The summary field element
-     * @param {Element} context - The context element
-     */
-    setupCKEditor5: function (summaryField, context) {
-      const self = this;
-      let attempts = 0;
-      const maxAttempts = 50;
-
-      const checkEditor = setInterval(function() {
-        attempts++;
-
-        const instances = Drupal.CKEditor5Instances;
-        
-        // Try to find the body field element first - use document instead of context
-        const bodySelectors = [
-          '[data-drupal-selector="edit-body-0-value"]',
-          '#edit-body-0-value',
-          'textarea[name="body[0][value]"]'
-        ];
-
-        let bodyFieldId = null;
-        let bodyField = null;
-        
-        for (const selector of bodySelectors) {
-          bodyField = document.querySelector(selector);
-          if (bodyField) {
-            bodyFieldId = bodyField.getAttribute('id');
-            console.log('Bioland: Found body field element with selector:', selector, 'ID:', bodyFieldId);
-            if (bodyFieldId) break;
-          }
-        }
-
-        // Also check if instances exist and log available instances for debugging
-        if (instances) {
-          console.log('Bioland: CKEditor5Instances available, size:', instances.size);
-          if (attempts === 1 && instances.size > 0) {
-            // Log available instance IDs on first attempt
-            const instanceIds = Array.from(instances.keys());
-            console.log('Bioland: Available CKEditor 5 instance IDs:', instanceIds);
-          }
-        } else {
-          console.log('Bioland: Drupal.CKEditor5Instances is not available');
-        }
-
-        // Try to find the editor instance - first by exact ID, then by iterating all instances
-        let editorInstance = null;
-        if (bodyFieldId && instances && instances.has(bodyFieldId)) {
-          editorInstance = instances.get(bodyFieldId);
-          console.log('Bioland: Found CKEditor 5 instance by exact ID match');
-        } else if (instances && instances.size > 0) {
-          // Try to find it by checking all instances
-          for (const [key, instance] of instances.entries()) {
-            console.log('Bioland: Checking instance with key:', key);
-            // Check if this instance's source element matches our body field
-            if (instance.sourceElement && bodyField) {
-              if (instance.sourceElement === bodyField || 
-                  instance.sourceElement.id === bodyFieldId ||
-                  instance.sourceElement.getAttribute('data-drupal-selector') === bodyField.getAttribute('data-drupal-selector')) {
-                editorInstance = instance;
-                console.log('Bioland: Found CKEditor 5 instance by matching source element with key:', key);
-                break;
-              }
-            }
-          }
-        }
-
-        if (editorInstance) {
-          clearInterval(checkEditor);
-          console.log('Bioland: CKEditor 5 instance connected successfully');
-
-          // Listen for content changes
-          editorInstance.model.document.on('change:data', function() {
-            if (summaryField.dataset.biolandUserEdited === 'true') return;
-            const bodyHtml = editorInstance.getData();
-            self.updateSummaryFromHtml(bodyHtml, summaryField);
-          });
-
-          // Trigger initial update
-          const initialContent = editorInstance.getData();
-          if (initialContent && !summaryField.value.trim()) {
-            self.updateSummaryFromHtml(initialContent, summaryField);
-          }
-
-          console.log('Bioland: CKEditor 5 auto-summary fully initialized');
-        } else if (attempts >= maxAttempts) {
-          clearInterval(checkEditor);
-          console.warn('Bioland: CKEditor 5 instance not found after', attempts, 'attempts');
-          console.warn('Bioland: bodyFieldId:', bodyFieldId, 'instances:', instances);
-          
-          // Try to find the contenteditable div as a fallback
-          console.log('Bioland: Attempting contenteditable div fallback...');
-          if (self.setupContentEditableMonitor(summaryField, context)) {
-            console.log('Bioland: Contenteditable monitor setup successful');
-          } else {
-            console.warn('Bioland: Contenteditable monitor failed, falling back to textarea');
-            self.setupPlainTextarea(summaryField, context);
-          }
-        }
-      }, 100);
-    },
-
-    /**
-     * Setup direct monitoring of contenteditable div (CKEditor 5 fallback).
-     * @param {Element} summaryField - The summary field element
-     * @param {Element} context - The context element
-     * @returns {boolean} True if successfully setup, false otherwise
-     */
-    setupContentEditableMonitor: function (summaryField, context) {
-      const self = this;
-      
-      // Look for the CKEditor contenteditable div
-      const editableDiv = document.querySelector('.ck-editor__editable[contenteditable="true"]');
-      
-      if (!editableDiv) {
-        console.warn('Bioland: Contenteditable div not found');
-        return false;
-      }
-
-      // Prevent duplicate initialization
-      if (editableDiv.dataset.biolandAutoSummaryInit) {
-        console.log('Bioland: Contenteditable monitor already initialized');
-        return true;
-      }
-      editableDiv.dataset.biolandAutoSummaryInit = 'true';
-
-      console.log('Bioland: Found contenteditable div, setting up monitor');
-
-      // Use MutationObserver to watch for content changes
-      const observer = new MutationObserver(function(mutations) {
-        if (summaryField.dataset.biolandUserEdited === 'true') return;
-        
-        // Debounce the updates
-        clearTimeout(self._contentEditableTimeout);
-        self._contentEditableTimeout = setTimeout(function() {
-          const htmlContent = editableDiv.innerHTML;
-          self.updateSummaryFromHtml(htmlContent, summaryField);
-        }, 300);
-      });
-
-      // Observe changes to the contenteditable div
-      observer.observe(editableDiv, {
-        childList: true,
-        subtree: true,
-        characterData: true,
-        characterDataOldValue: false
-      });
-
-      // Also listen for input events as backup
-      $(editableDiv).on('input.biolandAutoSummary', function() {
-        if (summaryField.dataset.biolandUserEdited === 'true') return;
-        
-        clearTimeout(self._contentEditableTimeout);
-        self._contentEditableTimeout = setTimeout(function() {
-          const htmlContent = editableDiv.innerHTML;
-          self.updateSummaryFromHtml(htmlContent, summaryField);
-        }, 300);
-      });
-
-      // Trigger initial update
-      const initialContent = editableDiv.innerHTML;
-      if (initialContent && !summaryField.value.trim()) {
-        self.updateSummaryFromHtml(initialContent, summaryField);
-      }
-
-      console.log('Bioland: Contenteditable monitor fully initialized');
-      return true;
-    },
-
-    /**
-     * Setup plain textarea integration (fallback).
-     * @param {Element} summaryField - The summary field element
-     * @param {Element} context - The context element
-     */
-    setupPlainTextarea: function (summaryField, context) {
-      const self = this;
-      
-      const bodySelectors = [
-        'textarea[data-drupal-selector="edit-body-0-value"]',
-        '#edit-body-0-value',
-        'textarea[name="body[0][value]"]'
-      ];
-
-      let bodyField = null;
-      for (const selector of bodySelectors) {
-        bodyField = document.querySelector(selector);
-        if (bodyField) {
-          console.log('Bioland: Found body textarea with selector:', selector);
-          break;
-        }
-      }
-
-      if (!bodyField) {
-        console.warn('Bioland: Body field not found, cannot enable auto-summary');
-        return;
-      }
-
-      // Prevent duplicate event binding
-      if (bodyField.dataset.biolandAutoSummaryBodyInit) {
-        console.log('Bioland: Textarea listeners already attached');
-        return;
-      }
-      bodyField.dataset.biolandAutoSummaryBodyInit = 'true';
-
-      console.log('Bioland: Setting up textarea auto-summary');
-
-      // Listen for input with debouncing using namespaced events
-      let inputTimeout;
-      $(bodyField).on('input.biolandAutoSummary keyup.biolandAutoSummary', function() {
-        if (summaryField.dataset.biolandUserEdited === 'true') return;
-        clearTimeout(inputTimeout);
-        inputTimeout = setTimeout(function() {
-          self.updateSummaryFromHtml(bodyField.value, summaryField);
-        }, 300);
-      });
-
-      // Trigger initial update
-      if (bodyField.value && !summaryField.value.trim()) {
-        self.updateSummaryFromHtml(bodyField.value, summaryField);
-      }
-
-      console.log('Bioland: Plain textarea auto-summary fully initialized');
-    },
-
-    /**
-     * Update summary field from HTML content.
-     * @param {string} bodyHtml - The HTML content from body field
-     * @param {Element} summaryField - The summary field element
-     */
-    updateSummaryFromHtml: function (bodyHtml, summaryField) {
-      // Check if user has edited the summary
-      if (!bodyHtml || summaryField.dataset.biolandUserEdited === 'true') {
-        console.log('Bioland: Skipping update - bodyHtml empty or user edited');
-        return;
-      }
-
-      try {
-        const locale = document.querySelector('html').getAttribute('lang') || 'en';
-        
-        // Strip HTML with error handling for very long text
-        const strippedText = this.stripHtml(bodyHtml);
-        
-        if (!strippedText) {
-          console.log('Bioland: No text content after stripping HTML');
-          return;
-        }
-        
-        console.log('Bioland: Stripped text length:', strippedText.length, 'First 100 chars:', strippedText.substring(0, 100));
-        
-        const newSummary = this.smartTruncate(strippedText, 255, locale);
-        console.log('Bioland: New summary length:', newSummary.length, 'Content:', newSummary.substring(0, 100));
-        
-        // Only update if summary is empty or content has changed
-        if (summaryField.value.trim() === '' || summaryField.value !== newSummary) {
-          summaryField.value = newSummary;
-          console.log('Bioland: Auto-summary updated:', newSummary.substring(0, 50) + (newSummary.length > 50 ? '...' : ''));
-        } else {
-          console.log('Bioland: Summary unchanged, skipping update');
-        }
-      } catch (error) {
-        console.error('Bioland: Error updating summary from HTML:', error);
-        // Don't fail silently - at least set a basic summary
-        try {
-          const basicText = this.stripHtml(bodyHtml);
-          if (basicText && basicText.length > 0) {
-            summaryField.value = basicText.substring(0, 255).trim();
-          }
-        } catch (fallbackError) {
-          console.error('Bioland: Fallback summary generation also failed:', fallbackError);
-        }
-      }
-    },
-
-    /**
-     * Smart truncate text to specified length, preserving sentence boundaries.
-     * @param {string} texts - The text to truncate
-     * @param {number} length - Maximum length (default 512)
-     * @param {string} locale - Locale for sentence segmentation (default 'en')
-     * @returns {string} Truncated text
-     */
-    smartTruncate: function (texts, length = 512, locale = 'en') {
-      if (!texts) return '';
-      
-      try {
-        const text = this.stripHtml(texts);
-        
-        if (!text) return '';
-        
-        // For very long text (> 50KB), pre-truncate before sentence segmentation
-        // to avoid performance issues with Intl.Segmenter
-        const maxProcessingLength = 50000; // 50KB limit for segmentation
-        const workingText = text.length > maxProcessingLength 
-          ? text.substring(0, maxProcessingLength) 
-          : text;
-        
-        // Fallback for browsers that don't support Intl.Segmenter
-        if (typeof Intl === 'undefined' || typeof Intl.Segmenter === 'undefined') {
-          console.log('Bioland: Intl.Segmenter not available, using simple truncation');
-          return this.simpleSmartTruncate(workingText, length);
-        }
-
-        const segmenter = new Intl.Segmenter(locale, { granularity: 'sentence' });
-        const segments = Array.from(segmenter.segment(workingText), s => s.segment);
-
-        let charCount = 0;
-        let i = 0;
-        const sentences = [];
-
-        for (const segment of segments) {
-          if (charCount + segment.length > length) break;
-
-          sentences.push(segment);
-          charCount += segment.length;
-          i++;
-        }
-
-        const result = Array.isArray(sentences.join('')) ? sentences.join('')[0] : sentences.join('');
-        const response = result.length > length ? result.substring(0, length) : result;
-        const lastIndexOf = response.includes('.') ? response.lastIndexOf('.') + 1 : response.length;
-
-        return response.substring(0, lastIndexOf);
-      } catch (error) {
-        console.warn('Bioland: smartTruncate error, falling back to simple truncation:', error);
-        // More robust fallback - ensure we have text to work with
-        try {
-          const text = this.stripHtml(texts);
-          return this.simpleSmartTruncate(text || '', length);
-        } catch (fallbackError) {
-          console.error('Bioland: Even simple truncation failed:', fallbackError);
-          return texts ? texts.substring(0, length) : '';
-        }
-      }
-    },
-
-    /**
-     * Simple smart truncate fallback for older browsers.
-     * @param {string} text - The text to truncate
-     * @param {number} length - Maximum length
-     * @returns {string} Truncated text
-     */
-    simpleSmartTruncate: function (text, length) {
-      if (text.length <= length) return text;
-      
-      let truncated = text.substring(0, length);
-      const lastPeriod = truncated.lastIndexOf('.');
-      const lastSpace = truncated.lastIndexOf(' ');
-      
-      if (lastPeriod > length - 50) {
-        return truncated.substring(0, lastPeriod + 1);
-      } else if (lastSpace > length - 50) {
-        return truncated.substring(0, lastSpace) + '...';
-      } else {
-        return truncated + '...';
-      }
-    },
-
-    /**
-     * Strip all HTML tags from a string and clean up whitespace.
-     * @param {string} input - Input string
-     * @returns {string} String with HTML tags removed and whitespace normalized
-     */
-    stripHtml: function (input) {
-      if (!input) return '';
-      
-      try {
-        // For very long strings (> 100KB), use a more memory-efficient approach
-        const maxDirectParseLength = 100000; // 100KB limit for direct DOM parsing
-        
-        if (input.length > maxDirectParseLength) {
-          console.log('Bioland: Large HTML content detected (' + input.length + ' chars), using chunked processing');
-          
-          // For very long content, use regex-based stripping first to reduce size
-          // Remove script and style tags and their contents
-          let text = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ');
-          text = text.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ');
-          
-          // Remove HTML tags
-          text = text.replace(/<[^>]+>/g, ' ');
-          
-          // Decode common HTML entities
-          text = text.replace(/&nbsp;/g, ' ')
-                     .replace(/&amp;/g, '&')
-                     .replace(/&lt;/g, '<')
-                     .replace(/&gt;/g, '>')
-                     .replace(/&quot;/g, '"')
-                     .replace(/&#39;/g, "'")
-                     .replace(/&mdash;/g, '—')
-                     .replace(/&ndash;/g, '–');
-          
-          // Normalize whitespace
-          text = text.replace(/\s+/g, ' ').trim();
-          
-          return text;
-        }
-        
-        // For normal-sized content, use DOM parsing for accuracy
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = input;
-        
-        // Get the text content (this automatically handles HTML entities)
-        let text = tempDiv.textContent || tempDiv.innerText || '';
-        
-        // Normalize whitespace: replace multiple spaces/newlines with single space
-        text = text.replace(/\s+/g, ' ').trim();
-        
-        return text;
-      } catch (error) {
-        console.error('Bioland: Error in stripHtml:', error);
-        
-        // Ultra-safe fallback: just use regex to strip tags
-        try {
-          let text = input.replace(/<[^>]+>/g, ' ');
-          text = text.replace(/\s+/g, ' ').trim();
-          return text;
-        } catch (fallbackError) {
-          console.error('Bioland: Even fallback stripHtml failed:', fallbackError);
-          return '';
-        }
       }
     }
+
+    if (editorInstance) {
+      clearInterval(checkEditor);
+      console.log('Bioland: CKEditor 5 instance connected successfully');
+
+      // Listen for content changes
+      editorInstance.model.document.on('change:data', function() {
+        if (summaryField.dataset.biolandUserEdited === 'true') return;
+        const bodyHtml = editorInstance.getData();
+        updateSummaryFromHtml(bodyHtml, summaryField);
+      });
+
+      // Trigger initial update
+      const initialContent = editorInstance.getData();
+      if (initialContent && !summaryField.value.trim()) {
+        updateSummaryFromHtml(initialContent, summaryField);
+      }
+
+      console.log('Bioland: CKEditor 5 auto-summary fully initialized');
+    } else if (attempts >= maxAttempts) {
+      clearInterval(checkEditor);
+      console.warn('Bioland: CKEditor 5 instance not found after', attempts, 'attempts');
+      console.warn('Bioland: bodyFieldId:', bodyFieldId, 'instances:', instances);
+      
+      // Try to find the contenteditable div as a fallback
+      console.log('Bioland: Attempting contenteditable div fallback...');
+      if (setupContentEditableMonitor(summaryField, context)) {
+        console.log('Bioland: Contenteditable monitor setup successful');
+      } else {
+        console.warn('Bioland: Contenteditable monitor failed, falling back to textarea');
+        setupPlainTextarea(summaryField, context);
+      }
+    }
+  }, 100);
+}
+
+/**
+ * Setup direct monitoring of contenteditable div (CKEditor 5 fallback).
+ * @param {Element} summaryField - The summary field element
+ * @param {Element} context - The context element
+ * @returns {boolean} True if successfully setup, false otherwise
+ */
+function setupContentEditableMonitor(summaryField, context) {
+  // Look for the CKEditor contenteditable div
+  const editableDiv = document.querySelector('.ck-editor__editable[contenteditable="true"]');
+  
+  if (!editableDiv) {
+    console.warn('Bioland: Contenteditable div not found');
+    return false;
+  }
+
+  // Prevent duplicate initialization
+  if (editableDiv.dataset.biolandAutoSummaryInit) {
+    console.log('Bioland: Contenteditable monitor already initialized');
+    return true;
+  }
+  editableDiv.dataset.biolandAutoSummaryInit = 'true';
+
+  console.log('Bioland: Found contenteditable div, setting up monitor');
+
+  // Use MutationObserver to watch for content changes
+  const observer = new MutationObserver(function(mutations) {
+    if (summaryField.dataset.biolandUserEdited === 'true') return;
+    
+    // Debounce the updates
+    clearTimeout(contentEditableTimeout);
+    contentEditableTimeout = setTimeout(function() {
+      const htmlContent = editableDiv.innerHTML;
+      updateSummaryFromHtml(htmlContent, summaryField);
+    }, 300);
+  });
+
+  // Observe changes to the contenteditable div
+  observer.observe(editableDiv, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    characterDataOldValue: false
+  });
+
+  // Also listen for input events as backup
+  editableDiv.addEventListener('input', () => {
+    if (summaryField.dataset.biolandUserEdited === 'true') return;
+
+    clearTimeout(contentEditableTimeout);
+    contentEditableTimeout = setTimeout(() => {
+      const htmlContent = editableDiv.innerHTML;
+      updateSummaryFromHtml(htmlContent, summaryField);
+    }, 300);
+  });
+
+  // Trigger initial update
+  const initialContent = editableDiv.innerHTML;
+  if (initialContent && !summaryField.value.trim()) {
+    updateSummaryFromHtml(initialContent, summaryField);
+  }
+
+  console.log('Bioland: Contenteditable monitor fully initialized');
+  return true;
+}
+
+/**
+ * Setup plain textarea integration (fallback).
+ * @param {Element} summaryField - The summary field element
+ * @param {Element} context - The context element
+ */
+function setupPlainTextarea(summaryField, context) {
+  const bodySelectors = [
+    'textarea[data-drupal-selector="edit-body-0-value"]',
+    '#edit-body-0-value',
+    'textarea[name="body[0][value]"]'
+  ];
+
+  let bodyField = null;
+  for (const selector of bodySelectors) {
+    bodyField = document.querySelector(selector);
+    if (bodyField) {
+      console.log('Bioland: Found body textarea with selector:', selector);
+      break;
+    }
+  }
+
+  if (!bodyField) {
+    console.warn('Bioland: Body field not found, cannot enable auto-summary');
+    return;
+  }
+
+  // Prevent duplicate event binding
+  if (bodyField.dataset.biolandAutoSummaryBodyInit) {
+    console.log('Bioland: Textarea listeners already attached');
+    return;
+  }
+  bodyField.dataset.biolandAutoSummaryBodyInit = 'true';
+
+  console.log('Bioland: Setting up textarea auto-summary');
+
+  // Listen for input with debouncing using native event listeners
+  let inputTimeout;
+  const handleBodyInput = () => {
+    if (summaryField.dataset.biolandUserEdited === 'true') return;
+    clearTimeout(inputTimeout);
+    inputTimeout = setTimeout(() => {
+      updateSummaryFromHtml(bodyField.value, summaryField);
+    }, 300);
   };
 
-})(jQuery, Drupal);
+  bodyField.addEventListener('input', handleBodyInput);
+  bodyField.addEventListener('keyup', handleBodyInput);
+
+  // Trigger initial update
+  if (bodyField.value && !summaryField.value.trim()) {
+    updateSummaryFromHtml(bodyField.value, summaryField);
+  }
+
+  console.log('Bioland: Plain textarea auto-summary fully initialized');
+}
+
+/**
+ * Update summary field from HTML content.
+ * @param {string} bodyHtml - The HTML content from body field
+ * @param {Element} summaryField - The summary field element
+ */
+function updateSummaryFromHtml(bodyHtml, summaryField) {
+  // Check if user has edited the summary
+  if (!bodyHtml || summaryField.dataset.biolandUserEdited === 'true') {
+    console.log('Bioland: Skipping update - bodyHtml empty or user edited');
+    return;
+  }
+
+  try {
+    const locale = document.querySelector('html').getAttribute('lang') || 'en';
+    
+    // Strip HTML with error handling for very long text
+    const strippedText = stripHtml(bodyHtml);
+    
+    if (!strippedText) {
+      console.log('Bioland: No text content after stripping HTML');
+      return;
+    }
+    
+    console.log('Bioland: Stripped text length:', strippedText.length, 'First 100 chars:', strippedText.substring(0, 100));
+    
+    const newSummary = smartTruncate(strippedText, 255, locale);
+    console.log('Bioland: New summary length:', newSummary.length, 'Content:', newSummary.substring(0, 100));
+    
+    // Only update if summary is empty or content has changed
+    if (summaryField.value.trim() === '' || summaryField.value !== newSummary) {
+      summaryField.value = newSummary;
+      console.log('Bioland: Auto-summary updated:', newSummary.substring(0, 50) + (newSummary.length > 50 ? '...' : ''));
+    } else {
+      console.log('Bioland: Summary unchanged, skipping update');
+    }
+  } catch (error) {
+    console.error('Bioland: Error updating summary from HTML:', error);
+    // Don't fail silently - at least set a basic summary
+    try {
+      const basicText = stripHtml(bodyHtml);
+      if (basicText && basicText.length > 0) {
+        summaryField.value = basicText.substring(0, 255).trim();
+      }
+    } catch (fallbackError) {
+      console.error('Bioland: Fallback summary generation also failed:', fallbackError);
+    }
+  }
+}
+
+/**
+ * Smart truncate text to specified length, preserving sentence boundaries.
+ * @param {string} texts - The text to truncate
+ * @param {number} length - Maximum length (default 512)
+ * @param {string} locale - Locale for sentence segmentation (default 'en')
+ * @returns {string} Truncated text
+ */
+function smartTruncate(texts, length = 512, locale = 'en') {
+  if (!texts) return '';
+  
+  try {
+    const text = stripHtml(texts);
+    
+    if (!text) return '';
+    
+    // For very long text (> 50KB), pre-truncate before sentence segmentation
+    // to avoid performance issues with Intl.Segmenter
+    const maxProcessingLength = 50000; // 50KB limit for segmentation
+    const workingText = text.length > maxProcessingLength 
+      ? text.substring(0, maxProcessingLength) 
+      : text;
+    
+    // Fallback for browsers that don't support Intl.Segmenter
+    if (typeof Intl === 'undefined' || typeof Intl.Segmenter === 'undefined') {
+      console.log('Bioland: Intl.Segmenter not available, using simple truncation');
+      return simpleSmartTruncate(workingText, length);
+    }
+
+    const segmenter = new Intl.Segmenter(locale, { granularity: 'sentence' });
+    const segments = Array.from(segmenter.segment(workingText), s => s.segment);
+
+    let charCount = 0;
+    let i = 0;
+    const sentences = [];
+
+    for (const segment of segments) {
+      if (charCount + segment.length > length) break;
+
+      sentences.push(segment);
+      charCount += segment.length;
+      i++;
+    }
+
+    const result = Array.isArray(sentences.join('')) ? sentences.join('')[0] : sentences.join('');
+    const response = result.length > length ? result.substring(0, length) : result;
+    const lastIndexOf = response.includes('.') ? response.lastIndexOf('.') + 1 : response.length;
+
+    return response.substring(0, lastIndexOf);
+  } catch (error) {
+    console.warn('Bioland: smartTruncate error, falling back to simple truncation:', error);
+    // More robust fallback - ensure we have text to work with
+    try {
+      const text = stripHtml(texts);
+      return simpleSmartTruncate(text || '', length);
+    } catch (fallbackError) {
+      console.error('Bioland: Even simple truncation failed:', fallbackError);
+      return texts ? texts.substring(0, length) : '';
+    }
+  }
+}
+
+/**
+ * Simple smart truncate fallback for older browsers.
+ * @param {string} text - The text to truncate
+ * @param {number} length - Maximum length
+ * @returns {string} Truncated text
+ */
+function simpleSmartTruncate(text, length) {
+  if (text.length <= length) return text;
+  
+  let truncated = text.substring(0, length);
+  const lastPeriod = truncated.lastIndexOf('.');
+  const lastSpace = truncated.lastIndexOf(' ');
+  
+  if (lastPeriod > length - 50) {
+    return truncated.substring(0, lastPeriod + 1);
+  } else if (lastSpace > length - 50) {
+    return truncated.substring(0, lastSpace) + '...';
+  } else {
+    return truncated + '...';
+  }
+}
+
+/**
+ * Strip all HTML tags from a string and clean up whitespace.
+ * @param {string} input - Input string
+ * @returns {string} String with HTML tags removed and whitespace normalized
+ */
+function stripHtml(input) {
+  if (!input) return '';
+  
+  try {
+    // For very long strings (> 100KB), use a more memory-efficient approach
+    const maxDirectParseLength = 100000; // 100KB limit for direct DOM parsing
+    
+    if (input.length > maxDirectParseLength) {
+      console.log('Bioland: Large HTML content detected (' + input.length + ' chars), using chunked processing');
+      
+      // For very long content, use regex-based stripping first to reduce size
+      // Remove script and style tags and their contents
+      let text = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ');
+      text = text.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ');
+      
+      // Remove HTML tags
+      text = text.replace(/<[^>]+>/g, ' ');
+      
+      // Decode common HTML entities
+      text = text.replace(/&nbsp;/g, ' ')
+                 .replace(/&amp;/g, '&')
+                 .replace(/&lt;/g, '<')
+                 .replace(/&gt;/g, '>')
+                 .replace(/&quot;/g, '"')
+                 .replace(/&#39;/g, "'")
+                 .replace(/&mdash;/g, '—')
+                 .replace(/&ndash;/g, '–');
+      
+      // Normalize whitespace
+      text = text.replace(/\s+/g, ' ').trim();
+      
+      return text;
+    }
+    
+    // For normal-sized content, use DOM parsing for accuracy
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = input;
+    
+    // Get the text content (this automatically handles HTML entities)
+    let text = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // Normalize whitespace: replace multiple spaces/newlines with single space
+    text = text.replace(/\s+/g, ' ').trim();
+    
+    return text;
+  } catch (error) {
+    console.error('Bioland: Error in stripHtml:', error);
+    
+    // Ultra-safe fallback: just use regex to strip tags
+    try {
+      let text = input.replace(/<[^>]+>/g, ' ');
+      text = text.replace(/\s+/g, ' ').trim();
+      return text;
+    } catch (fallbackError) {
+      console.error('Bioland: Even fallback stripHtml failed:', fallbackError);
+      return '';
+    }
+  }
+}
