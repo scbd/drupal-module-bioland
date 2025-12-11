@@ -131,3 +131,763 @@ msgstr "Rheoli Cyfieithu"
 
 msgid "Automatically create default translations for content."
 msgstr "Creu cyfieithiadau rhagosodedig yn awtomatig ar gyfer cynnwys."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Bioland"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Tir Bioddiogelwch"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "@branding Gosodiadau"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Enw'r safle"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "Slogan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "Mae sut mae hyn yn cael ei ddefnyddio yn dibynnu ar thema eich gwefan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Cyfeiriad e-bost"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "Mae&#39;r cyfeiriad <em>From</em> mewn negeseuon e-bost awtomataidd a anfonir yn ystod cofrestru a cheisiadau cyfrinair newydd, a hysbysiadau eraill. (Defnyddiwch gyfeiriad sy&#39;n dod i ben ym mharth eich safle i helpu i atal yr e-bost hwn rhag cael ei nodi fel sbam.)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Cyfieithu Enw'r Safle"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Cyfieithu Slogan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Gwledydd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Rhowch un cod gwlad fesul llinell."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Rhanbarth"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Dewiswch y rhanbarth daearyddol."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Gogledd America"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "De America"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Ewrop"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Asia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Affrica"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "A yw Tir Bioddiogelwch?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Yn nodi a yw hwn yn enghraifft Tir Bioddiogelwch."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Gosodiadau Ymddygiad Maes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Rheoli Gwelededd Maes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Galluogi Rheoli Gwelededd Maes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Dangos/cuddio meysydd yn seiliedig ar ddewis math o gynnwys. Ffurfweddu pa feysydd sy'n weladwy ar gyfer pob math o gynnwys isod."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "Maes URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Dangos maes URL ar gyfer y mathau hyn o gynnwys:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Maes Cyhoeddwyd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Dangos Maes Cyhoeddedig ar gyfer y mathau hyn o gynnwys:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Maes Ystod Dyddiad (Dyddiad Cychwyn a Diwedd)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Dangos meysydd Ystod Dyddiad (Dyddiad Cychwyn a Diwedd) ar gyfer y mathau hyn o gynnwys:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Rheoli Meysydd Ychwanegol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Galluogi Meysydd Ychwanegol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Ychwanegwch feysydd ychwanegol penodol math cynnwys (statws digwyddiad, statws prosiect, ac ati) yn seiliedig ar fath cynnwys thesawrws."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Mapio Meysydd Ychwanegol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "Bydd gan y mathau canlynol o gynnwys y meysydd ychwanegol hyn ar gael:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Statws Digwyddiad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Statws Prosiect, Cwmpasau Daearyddol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Y Weinyddiaeth (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Mathau o Sefydliadau, Mathau Llywodraeth"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Ecosystem (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Mathau Ecosystem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Mathau o Ddogfennau"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "Mae'r meysydd hyn yn cael eu hychwanegu'n ddeinamig yn seiliedig ar y math o gynnwys a ddewiswyd ac yn cael eu pweru gan gydran Vue.js."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Galluogi Crynodeb Auto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Cynhyrchu crynodeb yn awtomatig o gynnwys corff fel mathau o ddefnyddwyr."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Galluogi Sylwadau Cymorth Maes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Arddangos sylwadau cymorth cyd-destunol ar gyfer meysydd yn seiliedig ar y math o gynnwys."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Menu Depth Restriction"
+msgstr "Galluogi Cyfyngiad Dyfnder Dewis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Cyfyngu defnyddwyr nad ydynt yn weinyddwr rhag creu eitemau dewislen ail lefel ac yn ddyfnach. Dim ond defnyddwyr sydd â chaniatâd “gweinyddu bwydlen” sy'n gallu creu eitemau dewislen nythu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Rheolau Gwelededd Maes (Uwch)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Diffinio rheolau gwelededd maes personol mewn fformat JSON. Gadewch yn wag i ddefnyddio'r gosodiadau uchod."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Rhagosodiadau Cyfieithu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Ffurfweddu creu rhagosodiadau cyfieithu (deiliaid lleoedd iaith) ar gyfer endidau y gellir eu cyfieithu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Creu rhagosodiadau cyfieithu yn awtomatig"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Pan gaiff ei alluogi, mae rhagosodiadau cyfieithu (deiliaid lleoedd) yn cael eu creu ar gyfer ieithoedd eraill yn endidau create/diweddaru. Nid yw cyfieithiadau presennol gyda ffynhonnell briodol yn cael eu trosysgrifo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Defnyddiwch yr holl ieithoedd sydd ar gael"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Pan gaiff eu galluogi, bydd cyfieithiadau yn cael eu creu ar gyfer yr holl ieithoedd sydd wedi'u gosod ar y safle. Pan fydd yn anabl, dim ond yr ieithoedd targed a ddewiswyd isod fydd yn cael eu defnyddio."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Ieithoedd targed ar gyfer rhagosodiadau cyfieithu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Dewiswch pa ieithoedd i greu rhagosodiadau cyfieithu ar eu cyfer. Defnyddir dim ond pan fydd “Defnyddiwch yr holl ieithoedd sydd ar gael” wedi'i analluogi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Copïwch werthoedd maes ffynhonnell"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Pan gaiff eu galluogi, bydd gwerthoedd maes y gellir eu cyfieithu o'r iaith ffynhonnell yn cael eu copïo i gyfieithiadau newydd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Mathau o endid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Required)"
+msgstr "(Gofynnol)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Angenrheidiol:</strong> Dewiswch pa fathau o endid ddylai fod â rhagosodiadau cyfieithu wedi&#39;u creu. Rhaid i chi ddewis o leiaf un math o endid er mwyn i ddiffygion cyfieithu awtomatig weithio. Dewis cyffredin: <em>Cynnwys (nod)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "Rhaid i chi ddewis o leiaf un math o endid er mwyn i ddiffygion cyfieithu awtomatig weithio. Dewiswch un neu fwy o fathau o endid, neu analluogwch “Creu rhagosodiadau cyfieithu yn awtomatig”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Gweithrediadau Swp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Prosesu endidau presennol i greu rhagosodiadau cyfieithu sydd ar goll."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Math o endid i'w brosesu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Dewiswch -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Dewiswch fath o endid i greu cyfieithiadau ar gyfer endidau presennol."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Creu rhagosodiadau cyfieithu ar gyfer endidau presennol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Dewiswch fath endid i'w brosesu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Saesneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Sbaeneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Ffrangeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Almaeneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Eidaleg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portiwgaleg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Iseldireg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Tsieinëeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japaneaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Corëeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Arabeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rwsieg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Amharic"
+msgstr "Amhareg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asturian"
+msgstr "Asturiaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Azerbaijani"
+msgstr "Azerbaijani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Belarusian"
+msgstr "Belarwseg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bulgarian"
+msgstr "Bwlgareg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bengali"
+msgstr "Bengalaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tibetan"
+msgstr "Tibetaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bosnian"
+msgstr "Bosniaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Catalan"
+msgstr "Catalaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Czech"
+msgstr "Tsiec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Welsh"
+msgstr "Cymraeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Danish"
+msgstr "Daneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dzongkha"
+msgstr "Dzongkha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Greek"
+msgstr "Groeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Estonian"
+msgstr "Estoneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Basque"
+msgstr "Basgeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Persian"
+msgstr "Persiaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Finnish"
+msgstr "Ffindir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Filipino"
+msgstr "Philippines"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Faeroese"
+msgstr "Ffareraidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Frisian"
+msgstr "Ffrisian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Irish"
+msgstr "Gwyddeleg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots Gaelic"
+msgstr "Gaeleg Albanaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Galician"
+msgstr "Galiseg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swiss German"
+msgstr "Almaeneg Swistir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hebrew"
+msgstr "Hebraeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hindi"
+msgstr "Hindi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Croatian"
+msgstr "Croateg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Haitian Creole"
+msgstr "Creole Haitian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hungarian"
+msgstr "Hwngareg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Armenian"
+msgstr "Armeneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indonesian"
+msgstr "Indonesiaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Icelandic"
+msgstr "Islandeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Javanese"
+msgstr "Jafaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Georgian"
+msgstr "Sioraidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Khmer"
+msgstr "Khmer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kannada"
+msgstr "Canadian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kurdish"
+msgstr "Cwrdaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lao"
+msgstr "Lao"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lithuanian"
+msgstr "Lithwaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latvian"
+msgstr "Latfieg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malagasy"
+msgstr "Malagasy"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Macedonian"
+msgstr "Macedoniaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mongolian"
+msgstr "Mongolaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Marathi"
+msgstr "Marathi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bahasa Malaysia"
+msgstr "Iaith Malaysia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Burmese"
+msgstr "Burmese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Nepali"
+msgstr "Nepalaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Bokmål"
+msgstr "Bokmål Norwyaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Nynorsk"
+msgstr "Norwyaidd Nynorsk"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Occitan"
+msgstr "Occitaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Polish"
+msgstr "Pwyleg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Portugal"
+msgstr "Portiwgal, Portiwgal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Brazil"
+msgstr "Portiwgaleg, Brasil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Romanian"
+msgstr "Rwmaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots"
+msgstr "Albanwyr"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Northern Sami"
+msgstr "Sami Gogledd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Sinhala"
+msgstr "Sinhala"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovak"
+msgstr "Slofaceg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovenian"
+msgstr "Slofeneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Albanian"
+msgstr "Albaneg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Serbian"
+msgstr "Serbiaidd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swedish"
+msgstr "Swedeg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swahili"
+msgstr "Swahili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil"
+msgstr "Tamil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil, Sri Lanka"
+msgstr "Tamil, Sri Lanka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Telugu"
+msgstr "Telugu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Thai"
+msgstr "Thai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Turkish"
+msgstr "Twrceg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tuvan"
+msgstr "Tuvan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Uyghur"
+msgstr "Uyghur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ukrainian"
+msgstr "Wcreineg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Urdu"
+msgstr "Wrdw"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Vietnamese"
+msgstr "Fietnameg"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Dyma fydd prif gynnwys eich cynnwys safle newydd. Gellir defnyddio'r crynodeb i arddangos disgrifiad cryno byr o'ch cynnwys. Ymhellach, bydd y crynodeb yn cael ei arddangos mewn golygfeydd rhestr a cherdyn o'ch cofnod ar y wefan. Fel arall, defnyddir yr ychydig frawddeg gyntaf o'r prif gynnwys."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Delweddau"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "Y ddel <b>wedd gyntaf</b> yn nhrefn o&#39;r chwith i&#39;r dde yma, <b>fydd prif ddelwedd</b> eich cofnod a ddangosir ar y dudalen ac mewn mân-luniau mewn golygfeydd rhestr a cherdyn. Bydd yr holl ddelweddau eraill yn cael eu harddangos o dan y prif gynnwys."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Arwyr"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Gall unrhyw fath o dudalen/cynnwys gael baneri arwyr lluosog<b>.</b> Os oes mwy yna un byddant yn cael eu cylchdroi bob awr."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Newyddion (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Cyfarfod neu Digwyddiad (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Prosiect (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Dogfen (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Gwefan Gysylltiedig (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Adnoddau Eraill (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Delwedd neu Fideo (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "CWESTIYNAU CYFFREDIN (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Gwybodaeth Genedlaethol (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Statws LMOs (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Treial Maes (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Strategaeth Brif Ffrydio Genedlaethol (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Adeiladu Capasiti (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Cyhoeddiad (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Cyswllt (50)"
+
+#: bioland.module
+msgid "Save"
+msgstr "Arbed"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Gorchymyn Diystyru"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "Nid oes gennych ganiatâd i greu eitemau dewislen o dan eitemau dewislen eraill. Dim ond eitemau bwydlen lefel uchaf sy'n cael eu caniatáu ar gyfer eich rôl."

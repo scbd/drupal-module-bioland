@@ -131,3 +131,763 @@ msgstr "Gestió de Traducció"
 
 msgid "Automatically create default translations for content."
 msgstr "Crea automàticament traduccions per defecte per al contingut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Bioterra"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Terra de Bioseguretat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "Configuració de @branding"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Nom del lloc"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "eslògan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "Com s'utilitza això depèn del tema del vostre lloc."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Adreça de correu electrònic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "L&#39;adreça <em>From</em> en els correus electrònics automatitzats enviats durant el registre i noves sol·licituds de contrasenya, i altres notificacions. (Utilitzeu una adreça que acaba en el domini del vostre lloc per evitar que aquest correu electrònic sigui senyalitzat com a correu brossa.)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Tradueix el nom del lloc"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Tradueix Slogan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Countries"
+msgstr "Països"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enter one country code per line."
+msgstr "Introduïu un codi de país per línia."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Region"
+msgstr "Regió"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select the geographical region."
+msgstr "Seleccioneu la regió geogràfica."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "North America"
+msgstr "Amèrica del Nord"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "South America"
+msgstr "Amèrica del Sud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Europe"
+msgstr "Europa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asia"
+msgstr "Àsia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Africa"
+msgstr "Àfrica"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Oceania"
+msgstr "Oceania"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Is Biosafety Land?"
+msgstr "És terra de bioseguretat?"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indicates whether this is a Biosafety Land instance."
+msgstr "Indica si es tracta d'una instància de Biosafety Land."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Behavior Settings"
+msgstr "Configuració del comportament del camp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Control de visibilitat del camp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Visibility Control"
+msgstr "Activa el control de visibilitat de camp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Mostra/oculta camps en funció de la selecció del tipus de contingut. Configureu quins camps són visibles per a cada tipus de contingut a continuació."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "Camp URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Mostra el camp URL per a aquests tipus de contingut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Camp publicat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Mostra el camp Publicat per a aquests tipus de contingut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Camp d'interval de dates (data d'inici i finalització)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Mostra els camps d'interval de dates (Data d'inici i finalització) per a aquests tipus de contingut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Control de camps addicionals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Additional Fields"
+msgstr "Activa camps addicionals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Afegir camps addicionals específics de tipus contingut (estats d'esdeveniments, estats del projecte, etc.) basats en el tipus de contingut de tesaurus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Mapeig de camps addicionals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "Els següents tipus de contingut tindran disponibles aquests camps addicionals:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Estats d'esdeveniments"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Estats del projecte, àmbits geogràfics"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Ministeri (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Tipus d'organització, tipus governamentals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Ecosistema (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Tipus d'ecosistemes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Tipus de documents"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "Aquests camps s'afegeixen dinàmicament en funció del tipus de contingut seleccionat i són alimentats per un component Vue.js."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Auto Summary"
+msgstr "Activa el resum automàtic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically generate summary from body content as user types."
+msgstr "Generar automàticament resum a partir del contingut corporal com a tipus d'usuari."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Field Help Comments"
+msgstr "Activa els comentaris d'ajuda de camp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display contextual help comments for fields based on content type."
+msgstr "Mostra els comentaris d'ajuda contextual per als camps basats en el tipus de contingut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Menu Depth Restriction"
+msgstr "Activa la restricció de profunditat del menú"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Restringir els usuaris no administradors de crear elements de menú de segon nivell i més profund. Només els usuaris amb permís “administrar menú” poden crear elements de menú imbricats."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Regles de visibilitat del camp (avançades)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Definir regles personalitzades de visibilitat de camps en format JSON. Deixeu buit per utilitzar la configuració anterior."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Defaults"
+msgstr "Valors per defecte de traducció"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
+msgstr "Configurar la creació de valors per defecte de traducció (marcadors de posició d'idioma) per a entitats traduïbles."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Automatically create translation defaults"
+msgstr "Crear automàticament valors per defecte de traducció"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
+msgstr "Quan està activat, es creen els valors predeterminats de traducció (marcadors de posició) per a altres idiomes a crear/actualitzar entitat. Les traduccions existents amb la font adequada no es sobreescriuen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Use all available languages"
+msgstr "Utilitzar tots els idiomes disponibles"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
+msgstr "Quan estigui activat, es crearan traduccions per a tots els idiomes instal·lats al lloc. Quan estigui desactivat, només s'utilitzaran els idiomes de destinació seleccionats a continuació."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Target languages for translation defaults"
+msgstr "Idiomes de destinació per als valors predeterminats de traducció"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
+msgstr "Seleccioneu per a quins idiomes heu de crear valors predeterminats de traducció. S'utilitza només quan “Utilitza tots els idiomes disponibles” està desactivat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Copy source field values"
+msgstr "Copia els valors del camp d'origen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "When enabled, translatable field values from the source language will be copied to new translations."
+msgstr "Quan estigui activat, els valors de camp traduïbles de l'idioma d'origen es copiaran a traduccions noves."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity types"
+msgstr "Tipus d'entitat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Required)"
+msgstr "(Obligatori)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Obligatori:</strong> Seleccioneu quins tipus d&#39;entitats han de tenir creats els valors predeterminats de traducció. Heu de seleccionar almenys un tipus d&#39;entitat perquè funcionin els valors predeterminats de traducció automàtica. Elecció comuna: <em>Contingut (node)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "Heu de seleccionar almenys un tipus d'entitat perquè funcionin els valors predeterminats de traducció automàtica. Si us plau, seleccioneu un o més tipus d'entitat, o desactiveu “Crear automàticament valors per defecte de traducció”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Batch Operations"
+msgstr "Operacions per lots"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults."
+msgstr "Processar les entitats existents per crear valors predeterminats de traducció que falten."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Entity type to process"
+msgstr "Tipus d'entitat a processar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "- Select -"
+msgstr "- Selecciona -"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select an entity type to create translations for existing entities."
+msgstr "Seleccioneu un tipus d'entitat per crear traduccions per a entitats existents."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Create translation defaults for existing entities"
+msgstr "Crear valors per defecte de traducció per a entitats existents"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Please select an entity type to process."
+msgstr "Si us plau, seleccioneu un tipus d'entitat per processar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "English"
+msgstr "Anglès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Spanish"
+msgstr "Castellà"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "French"
+msgstr "Francès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "German"
+msgstr "Alemany"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Italian"
+msgstr "Italià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese"
+msgstr "Portuguès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dutch"
+msgstr "Holandès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Chinese"
+msgstr "Xinès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Japanese"
+msgstr "Japonès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Korean"
+msgstr "Coreà"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Arabic"
+msgstr "Àrab"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Russian"
+msgstr "Rus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Amharic"
+msgstr "Amàric"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asturian"
+msgstr "Asturià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Azerbaijani"
+msgstr "Àzeri"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Belarusian"
+msgstr "Bielorús"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bulgarian"
+msgstr "Búlgar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bengali"
+msgstr "Bengalí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tibetan"
+msgstr "Tibetà"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bosnian"
+msgstr "Bosnià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Catalan"
+msgstr "Català"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Czech"
+msgstr "Txec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Welsh"
+msgstr "Gal·lès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Danish"
+msgstr "Danès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dzongkha"
+msgstr "Dzongkha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Greek"
+msgstr "Grec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Estonian"
+msgstr "Estonià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Basque"
+msgstr "Basc"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Persian"
+msgstr "Persa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Finnish"
+msgstr "Finès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Filipino"
+msgstr "Filipí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Faeroese"
+msgstr "faeroesa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Frisian"
+msgstr "Frisó"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Irish"
+msgstr "Irlandès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots Gaelic"
+msgstr "Gaèlic escocès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Galician"
+msgstr "Gallec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swiss German"
+msgstr "Suïssa alemanya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Gujarati"
+msgstr "Gujarat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hebrew"
+msgstr "Hebreu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hindi"
+msgstr "Hindi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Croatian"
+msgstr "Croata"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Haitian Creole"
+msgstr "Crioll haitià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hungarian"
+msgstr "Hongarès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Armenian"
+msgstr "Armeni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indonesian"
+msgstr "Indonèsia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Icelandic"
+msgstr "Islandès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Javanese"
+msgstr "Javanès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Georgian"
+msgstr "Georgià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Khmer"
+msgstr "Khmer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kannada"
+msgstr "Kannada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kurdish"
+msgstr "Kurda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kyrgyz"
+msgstr "Kirguiz"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lao"
+msgstr "Laosià"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lithuanian"
+msgstr "Lituà"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latvian"
+msgstr "Letó"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malagasy"
+msgstr "Malgaix"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Macedonian"
+msgstr "Macedoni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malayalam"
+msgstr "Malaiàlam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mongolian"
+msgstr "Mongol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Marathi"
+msgstr "Marathi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bahasa Malaysia"
+msgstr "Malàisia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Burmese"
+msgstr "Birmà"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Nepali"
+msgstr "Nepalí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Bokmål"
+msgstr "Bokmål noruec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Nynorsk"
+msgstr "Noruec Nynorsk"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Occitan"
+msgstr "occità"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Punjabi"
+msgstr "Panjabi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Polish"
+msgstr "Polonès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Portugal"
+msgstr "Portuguès, Portugal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Brazil"
+msgstr "Portuguès, Brasil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Romanian"
+msgstr "Romanès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots"
+msgstr "Escocesos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Northern Sami"
+msgstr "Sami septentrional"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Sinhala"
+msgstr "Cingalés"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovak"
+msgstr "Eslovac"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovenian"
+msgstr "Eslovè"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Albanian"
+msgstr "Albanès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Serbian"
+msgstr "Serbi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swedish"
+msgstr "Suec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swahili"
+msgstr "Suahili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil"
+msgstr "Tamil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil, Sri Lanka"
+msgstr "Tamil, Sri Lanka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Telugu"
+msgstr "Telugu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Thai"
+msgstr "Tailandès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Turkish"
+msgstr "Turc"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tuvan"
+msgstr "Tuvan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Uyghur"
+msgstr "Uigur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ukrainian"
+msgstr "Ucraïnès"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Urdu"
+msgstr "Urdú"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: js/bioland.help-comments.js
+msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
+msgstr "Aquest serà el contingut principal del contingut del vostre nou lloc. El resum es pot utilitzar per mostrar una breu descripció concisa del seu contingut. A més, el resum es mostrarà en vistes de llista i targetes del vostre registre al lloc web. Alternativament, s'utilitzarà la primera frase del contingut principal."
+
+#: js/bioland.help-comments.js
+msgid "Images"
+msgstr "Imatges"
+
+#: js/bioland.help-comments.js
+msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
+msgstr "La <b>primera imatge</b> per ordre d&#39;esquerra a dreta aquí, <b>serà la imatge principal</b> del seu registre mostrada a la pàgina i en miniatures en vistes de llista i targetes. Totes les altres imatges es mostraran sota el contingut principal."
+
+#: js/bioland.help-comments.js
+msgid "Heroes"
+msgstr "Herois"
+
+#: js/bioland.help-comments.js
+msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
+msgstr "Qualsevol pàgina/tipus de contingut pot tenir diversos bàners d&#39; <b>hero</b> is. Si n&#39;hi ha més, es farà una rotació horària."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "News (2)"
+msgstr "Notícies (2)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Meeting or Event (3)"
+msgstr "Reunió o esdeveniment (3)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project (5)"
+msgstr "Projecte (5)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document (12)"
+msgstr "Document (12)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Related Website (13)"
+msgstr "Web relacionada (13)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Other Resource (15)"
+msgstr "Altres recursos (15)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Image or Video (16)"
+msgstr "Imatge o vídeo (16)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "FAQ (43)"
+msgstr "PREGUNTES FREQÜENTS (43)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Information (44)"
+msgstr "Informació nacional (44)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Status of LMOs (45)"
+msgstr "Estat de les LMO (45)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Trial (46)"
+msgstr "Assaig de camp (46)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Mainstreaming Strategy (47)"
+msgstr "Estratègia nacional de transversalitat (47)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Capacity-Building (48)"
+msgstr "Creació de Capacitats (48)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Announcement (49)"
+msgstr "Anunci (49)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Contact (50)"
+msgstr "Contacte (50)"
+
+#: bioland.module
+msgid "Save"
+msgstr "Guardar"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Anul·lació de comandes"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "No teniu permís per crear elements de menú sota altres elements de menú. Només els elements de menú de nivell superior estan permesos per al vostre rol."

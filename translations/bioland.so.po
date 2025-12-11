@@ -310,3 +310,483 @@ msgstr "Ogeysiis (49)"
 #: src/Form/BiolandSettingsForm.php
 msgid "Contact (50)"
 msgstr "La Xidhiidh (50)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bioland"
+msgstr "Bioland"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Dhulka Biosafety"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@branding Settings"
+msgstr "Deegaanka @branding"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site name"
+msgstr "Magaca goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slogan"
+msgstr "loogu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "How this is used depends on your site's theme."
+msgstr "Sidee taasi loo isticmaalayo ayaa ku xidhiraan muuqdiinka goobtaaga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Email address"
+msgstr "Cinwaanka email"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr "Cinwaanka <em>From</em> ee email-aalada otomatiyo u diray xilliga diiwaangelinta iyo codsadaha cusub ee kaloonka, iyo ogayaal (Isticmaali cinwaan oo ku dhamaaday goobtaada goobtaada si aad u caawiyaan ka hortagayo emailkan lagu soo dhigay spam.)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Site Name"
+msgstr "Tarjumin Magaca Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Slogan"
+msgstr "Translate Slogan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Control"
+msgstr "Koontroolka Muuqaalka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
+msgstr "Muuq/qarin booyinka ku saleysan xulashada nooca waxyaabaha. Soo sameeyo booyinka ay muuqaan nooca kasta oo hoose ah."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "URL Field"
+msgstr "Goobka URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show URL field for these content types:"
+msgstr "Muuqda goobta URL ee noocadan waxyaabaha:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published Field"
+msgstr "Boolka Baahiyay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Published field for these content types:"
+msgstr "Muuqda boolka la baahiyay noocadan waxyaabaha:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Date Range Field (Start & End Date)"
+msgstr "Boolka Taariikhda (Bilowga & Taariikhda dhamaadka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Date Range fields (Start & End Date) for these content types:"
+msgstr "Muuqda booyinka Taariikhda (Bilowga & Taariikhda dhammaadka) noocadan waxyaabaha:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Control"
+msgstr "Maamulka Booyinka dheeraad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Fields Mapping"
+msgstr "Kaarinta Booyinka dheeraad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional fields available:"
+msgstr "Noocyada waxyaabaha soo socda waxay leeyihiin doonaan booyinka dheera"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Statuses"
+msgstr "Xaalada dhacdooyinka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Statuses, Geographic Scopes"
+msgstr "Xaalada Mashruuca, Geographical Scopes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ministry (8)"
+msgstr "Wasaaradda (8)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types, Government Types"
+msgstr "Nooca Ururka, Nooca Dowladda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem (9)"
+msgstr "Ekoodsiga (9)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Nooca Ecosystem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Nooca Dhaqaaqa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "Booyaani waxaa si sidii loo daray oo ku saleysan nooca waxyaabaha la doortay, waxaana la awood leeyahay qaybta Vue.js."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Menu Depth Restriction"
+msgstr "Xaddaadinta Doorada Menuqa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
+msgstr "Isticmaamiyaha aan maamul aan la xidhiin abuurta ayaabaha heerka labaad iyo Kaliya isticmaale leh “maamul menu” waxay abuuri kartaa shaqooyinka menyuu waa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Rules (Advanced)"
+msgstr "Xeerarka Muuqaalka Boolka (Advanced)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
+msgstr "Xeerka sharciyada muuqata goobta caadiga ee qaabka JSON Ka baxo si aad u adeegsado goobta kor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Required)"
+msgstr "(Looga baahan yahay)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
+msgstr "<strong>Waxaa loo baahan yahay:</strong> Dooro noocaha hay&#39;adda waa in ay leeyihiin dadka tarjumada Waa in aad doorto ugu yaraan hal nooca ahaafad ah ee tarjumada otomatigga ah si ay u shaqeeyaan. Doorashada guud <em>ah: Content (node)</em>."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
+msgstr "Waa in aad doorto ugu yaraan hal nooca ahaafad ah ee tarjumada otomatigga ah si ay u shaqeeyaan. Fadlan doorto hal ama nooco hay'adda badan, ama deyn “Automatic create default tarjumaad”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Amharic"
+msgstr "Amharic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asturian"
+msgstr "Asturian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Azerbaijani"
+msgstr "Azerbaijani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Belarusian"
+msgstr "Belarusiyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bulgarian"
+msgstr "bulgaariyaan ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bengali"
+msgstr "Bengali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tibetan"
+msgstr "Tibetan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bosnian"
+msgstr "Boosniyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Catalan"
+msgstr "Catalan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Czech"
+msgstr "Czech"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Welsh"
+msgstr "Welsh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Danish"
+msgstr "Deenish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dzongkha"
+msgstr "Dzongkha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Greek"
+msgstr "Giriig"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Estonian"
+msgstr "Estoniyan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Basque"
+msgstr "Basque"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Persian"
+msgstr "faaris udhashay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Finnish"
+msgstr "Finnish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Filipino"
+msgstr "Filibiin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Faeroese"
+msgstr "Faeroese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Frisian"
+msgstr "Friisian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Irish"
+msgstr "Irish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots Gaelic"
+msgstr "Scots Gaelic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Galician"
+msgstr "Galician"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swiss German"
+msgstr "Swiss German"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hebrew"
+msgstr "Cibraaniga"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hindi"
+msgstr "Hindi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Croatian"
+msgstr "korotiyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Haitian Creole"
+msgstr "Haiti Creole"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hungarian"
+msgstr "Hangari"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Armenian"
+msgstr "Armeniyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indonesian"
+msgstr "Indooniisiyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Icelandic"
+msgstr "Icelandic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Javanese"
+msgstr "Jawaaniis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Georgian"
+msgstr "Joorjiyan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kazakh"
+msgstr "Kazakh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Khmer"
+msgstr "Khmer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kannada"
+msgstr "Kannada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kurdish"
+msgstr "kurdinnimo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kyrgyz"
+msgstr "Kyrgyz"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lao"
+msgstr "Lao"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lithuanian"
+msgstr "Lithuaniyan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latvian"
+msgstr "Latvia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malagasy"
+msgstr "Malagasy"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Macedonian"
+msgstr "Makedoniya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mongolian"
+msgstr "Mongolian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Marathi"
+msgstr "Marathi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bahasa Malaysia"
+msgstr "Bahasa Malaysia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Burmese"
+msgstr "Burmese"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Nepali"
+msgstr "Nepali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Bokmål"
+msgstr "Norwegian Bokmål"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Nynorsk"
+msgstr "Norwegian Nynorsk"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Occitan"
+msgstr "Occitaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Polish"
+msgstr "Boolish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Portugal"
+msgstr "Portugal, Portugal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Brazil"
+msgstr "Portugal, Brazil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Romanian"
+msgstr "reer Romaniya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots"
+msgstr "Scots"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Northern Sami"
+msgstr "Waqooyiga Sami"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Sinhala"
+msgstr "Sinhala"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovak"
+msgstr "Slovak"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovenian"
+msgstr "Slovenian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Albanian"
+msgstr "Albaaniyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Serbian"
+msgstr "Serbian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swedish"
+msgstr "Iswidish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swahili"
+msgstr "Swahili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil"
+msgstr "Taamil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil, Sri Lanka"
+msgstr "Tamil, Sri Lanka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Telugu"
+msgstr "Telugu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Thai"
+msgstr "Thai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Turkish"
+msgstr "turki ah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tuvan"
+msgstr "Tuvan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Uyghur"
+msgstr "Uyghur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ukrainian"
+msgstr "Yukreeniyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Urdu"
+msgstr "Urdu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Vietnamese"
+msgstr "Fiyatnaamiis"
+
+#: bioland.module
+msgid "Save"
+msgstr "Badbaadin"
+
+#: bioland.module
+msgid "Order Override"
+msgstr "Order Override"
+
+#: bioland.module
+msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+msgstr "Ma leh ogolaan in aad u abuuro ayaabaha menu hoos ah sheyaha kale ee menu. Kaliya waxyaabaha heerka sare ee menu waxaa loo ogolaaday doorkaaga."

@@ -466,3 +466,327 @@ msgstr "<strong>Задължително:</strong> Изберете за кои 
 #: src/Form/BiolandSettingsForm.php
 msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
 msgstr "Трябва да изберете поне един тип единица, за да работят автоматичните преводи по подразбиране. Моля, изберете един или повече типове единици или деактивирайте \"Автоматично създаване на преводи по подразбиране\"."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Afrikaans"
+msgstr "африкански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Amharic"
+msgstr "амхарски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Asturian"
+msgstr "Астурийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Azerbaijani"
+msgstr "азербайджан"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Belarusian"
+msgstr "Беларуски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bulgarian"
+msgstr "български"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bengali"
+msgstr "Бенгалски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tibetan"
+msgstr "Тибетски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bosnian"
+msgstr "Босненски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Catalan"
+msgstr "Каталонски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Czech"
+msgstr "Чешки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Welsh"
+msgstr "Уелски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Danish"
+msgstr "датски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Dzongkha"
+msgstr "Дзонгкха"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Greek"
+msgstr "Гръцки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Esperanto"
+msgstr "Есперанто"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Estonian"
+msgstr "Естонски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Basque"
+msgstr "баски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Persian"
+msgstr "Персийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Finnish"
+msgstr "Финландски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Filipino"
+msgstr "филипински"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Faeroese"
+msgstr "Фарьорски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Frisian"
+msgstr "фризийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Irish"
+msgstr "ирландски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots Gaelic"
+msgstr "Шотландски галски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Galician"
+msgstr "галисийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swiss German"
+msgstr "Швейцарски немски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Gujarati"
+msgstr "Гуджаратски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hebrew"
+msgstr "иврит"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hindi"
+msgstr "Хинди"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Croatian"
+msgstr "Хърватски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Haitian Creole"
+msgstr "Хаитски креолски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Hungarian"
+msgstr "Унгарски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Armenian"
+msgstr "арменски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Indonesian"
+msgstr "Индонезийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Icelandic"
+msgstr "исландски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Javanese"
+msgstr "Явански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Georgian"
+msgstr "Грузински"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kazakh"
+msgstr "казахски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Khmer"
+msgstr "кхмерски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kannada"
+msgstr "Каннада"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kurdish"
+msgstr "Кюрдски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Kyrgyz"
+msgstr "Киргизки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lao"
+msgstr "Лао"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lithuanian"
+msgstr "Литовски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latvian"
+msgstr "Латвийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malagasy"
+msgstr "Малагасийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Macedonian"
+msgstr "Македонски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Malayalam"
+msgstr "Малаялам"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mongolian"
+msgstr "монголски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Marathi"
+msgstr "маратхи"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bahasa Malaysia"
+msgstr "Малайзийски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Burmese"
+msgstr "Бирмански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Nepali"
+msgstr "Непалски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Bokmål"
+msgstr "Норвежки бокмол"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Norwegian Nynorsk"
+msgstr "Норвежки Нинорск"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Occitan"
+msgstr "окситански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Punjabi"
+msgstr "Пенджаби"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Polish"
+msgstr "Полски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Portugal"
+msgstr "Португалски, Португалия"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Portuguese, Brazil"
+msgstr "Португалски, Бразилия"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Romanian"
+msgstr "Румънски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Scots"
+msgstr "Шотландци"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Northern Sami"
+msgstr "Северни саами"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Sinhala"
+msgstr "Синхала"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovak"
+msgstr "Словашки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Slovenian"
+msgstr "Словенски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Albanian"
+msgstr "Албански"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Serbian"
+msgstr "Сръбски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swedish"
+msgstr "Шведски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Swahili"
+msgstr "Суахили"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil"
+msgstr "тамилски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tamil, Sri Lanka"
+msgstr "Тамил, Шри Ланка"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Telugu"
+msgstr "Телугу"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Thai"
+msgstr "Тайландски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Turkish"
+msgstr "Турски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tuvan"
+msgstr "Туван"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Uyghur"
+msgstr "Уйгурски"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ukrainian"
+msgstr "украински"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Urdu"
+msgstr "урду"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Vietnamese"
+msgstr "Виетнамски"
