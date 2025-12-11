@@ -23,7 +23,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
     ];
     
     $configObject = new ImmutableConfig('bioland.settings', $configData);
@@ -46,7 +45,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => TRUE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
     ];
     
     $configObject = new ImmutableConfig('bioland.settings', $configData);
@@ -69,7 +67,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => TRUE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
     ];
     
     $configObject = new ImmutableConfig('bioland.settings', $configData);
@@ -92,30 +89,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => TRUE,
-      'enable_menu_depth_restriction' => FALSE,
-    ];
-    
-    $configObject = new ImmutableConfig('bioland.settings', $configData);
-    $configFactory = $this->createMock(ConfigFactoryInterface::class);
-    $configFactory->method('get')
-      ->with('bioland.settings')
-      ->willReturn($configObject);
-    
-    $manager = new BiolandFieldFunctionalityManager($configFactory);
-    
-    $this->assertTrue($manager->isAnyFunctionalityEnabled());
-  }
-
-  /**
-   * Tests isAnyFunctionalityEnabled returns true when menu depth restriction is enabled.
-   */
-  public function testIsAnyFunctionalityEnabledWithMenuDepthRestriction(): void {
-    $configData = [
-      'enable_field_visibility' => FALSE,
-      'enable_additional_fields' => FALSE,
-      'enable_auto_summary' => FALSE,
-      'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => TRUE,
     ];
     
     $configObject = new ImmutableConfig('bioland.settings', $configData);
@@ -138,7 +111,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
     ];
     
     $configObject = new ImmutableConfig('bioland.settings', $configData);
@@ -161,7 +133,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => TRUE,
       'enable_auto_summary' => TRUE,
       'enable_help_comments' => TRUE,
-      'enable_menu_depth_restriction' => TRUE,
       'field_visibility_rules' => '{"rule": "value"}',
       'field_visibility' => [
         'url_content_types' => ['2' => '2', '3' => '3', '0' => 0],
@@ -184,7 +155,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
     $this->assertTrue($settings['enableAdditionalFields']);
     $this->assertTrue($settings['enableAutoSummary']);
     $this->assertTrue($settings['enableHelpComments']);
-    $this->assertTrue($settings['enableMenuDepthRestriction']);
     $this->assertSame('{"rule": "value"}', $settings['fieldVisibilityRules']);
   }
 
@@ -197,7 +167,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
       'field_visibility_rules' => '',
       'field_visibility' => [
         // Simulating checkbox values with 0 for unchecked.
@@ -231,7 +200,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => NULL,
       'enable_auto_summary' => NULL,
       'enable_help_comments' => NULL,
-      'enable_menu_depth_restriction' => NULL,
       'field_visibility_rules' => NULL,
       'field_visibility' => [
         'url_content_types' => NULL,
@@ -254,7 +222,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
     $this->assertTrue($settings['enableAdditionalFields']);
     $this->assertTrue($settings['enableAutoSummary']);
     $this->assertTrue($settings['enableHelpComments']);
-    $this->assertTrue($settings['enableMenuDepthRestriction']);
     $this->assertSame('', $settings['fieldVisibilityRules']);
     $this->assertSame([], $settings['urlContentTypes']);
     $this->assertSame([], $settings['publishedContentTypes']);
@@ -270,7 +237,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       'enable_additional_fields' => FALSE,
       'enable_auto_summary' => FALSE,
       'enable_help_comments' => FALSE,
-      'enable_menu_depth_restriction' => FALSE,
       'field_visibility_rules' => '',
       'field_visibility' => [
         'url_content_types' => [],
@@ -292,7 +258,6 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
     $this->assertFalse($settings['enableAdditionalFields']);
     $this->assertFalse($settings['enableAutoSummary']);
     $this->assertFalse($settings['enableHelpComments']);
-    $this->assertFalse($settings['enableMenuDepthRestriction']);
   }
 
 }

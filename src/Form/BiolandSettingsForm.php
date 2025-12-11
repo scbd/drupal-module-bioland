@@ -381,14 +381,6 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#default_value' => $config->get('enable_help_comments') !== FALSE,
       ];
 
-      // Menu Depth Restriction functionality
-      $form['field_behavior']['enable_menu_depth_restriction'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Enable Menu Depth Restriction'),
-        '#description' => $this->t('Restrict non-administrator users from creating second-level menu items and deeper. Only users with "administer menu" permission can create nested menu items.'),
-        '#default_value' => $config->get('enable_menu_depth_restriction') !== FALSE,
-      ];
-
       $form['field_behavior']['field_visibility_rules'] = [
         '#type' => 'textarea',
         '#title' => $this->t('Field Visibility Rules (Advanced)'),
@@ -634,7 +626,6 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('enable_additional_fields', $values['enable_additional_fields'])
         ->set('enable_auto_summary', $values['enable_auto_summary'])
         ->set('enable_help_comments', $values['enable_help_comments'])
-        ->set('enable_menu_depth_restriction', $values['enable_menu_depth_restriction'])
         ->set('field_visibility_rules', $values['field_visibility_rules']);
     }
 

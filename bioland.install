@@ -448,3 +448,45 @@ function bioland_update_9007() {
 
   return t('Set max limit of 10000 on field_order field.');
 }
+
+/**
+ * Remove deprecated enable_menu_depth_restriction config setting.
+ */
+function bioland_update_9008() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+
+  // Check if the setting exists before clearing it.
+  if ($editable->get('enable_menu_depth_restriction') !== NULL) {
+    $editable->clear('enable_menu_depth_restriction');
+    $editable->save();
+    return t('Removed deprecated enable_menu_depth_restriction setting.');
+  }
+
+  return t('No enable_menu_depth_restriction setting found to remove.');
+}
+
+/**
+ * Remove deprecated default_locale and enabled_locales config keys.
+ */
+function bioland_update_9008() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+
+  $cleared = [];
+  if ($editable->get('default_locale') !== NULL) {
+    $editable->clear('default_locale');
+    $cleared[] = 'default_locale';
+  }
+  if ($editable->get('enabled_locales') !== NULL) {
+    $editable->clear('enabled_locales');
+    $cleared[] = 'enabled_locales';
+  }
+
+  if (!empty($cleared)) {
+    $editable->save();
+    return t('Removed deprecated config keys: @keys.', ['@keys' => implode(', ', $cleared)]);
+  }
+
+  return t('No deprecated locale config keys found to remove.');
+}

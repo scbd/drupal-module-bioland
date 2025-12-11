@@ -79,3 +79,4 @@ failed-*
 .github/prompts*
 .github/instructions*
 !.github/instructions/workflow.md
+.phpunit.result.cache

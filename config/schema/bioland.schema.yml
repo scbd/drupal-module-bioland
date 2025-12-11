@@ -48,9 +48,6 @@ bioland.settings:
     enable_help_comments:
       type: boolean
       label: 'Enable field help comments'
-    enable_menu_depth_restriction:
-      type: boolean
-      label: 'Enable menu depth restriction'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'
@@ -79,12 +76,3 @@ bioland.settings:
           sequence:
             type: string
             label: 'Entity type machine name'
-    default_locale:
-      type: string
-      label: 'Default locale'
-    enabled_locales:
-      type: sequence
-      label: 'Enabled locales'
-      sequence:
-        type: string
-        label: 'Language code'

@@ -27,7 +27,6 @@ field_visibility:
 enable_additional_fields: true
 enable_auto_summary: true
 enable_help_comments: true
-enable_menu_depth_restriction: true
 field_visibility_rules: ''
 translation:
   auto_create: true
@@ -36,6 +35,3 @@ translation:
   copy_source_values: true
   entity_types:
     - node
-default_locale: 'en'
-enabled_locales:
-  - 'en'
