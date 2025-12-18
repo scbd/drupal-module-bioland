@@ -3,6 +3,7 @@
 namespace Drupal\bioland\Service;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 
 /**
  * Manages which field-related functionalities are enabled and JS settings for
@@ -16,10 +17,16 @@ class BiolandFieldFunctionalityManager {
   protected $configFactory;
 
   /**
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
    * Constructor.
    */
-  public function __construct(ConfigFactoryInterface $config_factory) {
+  public function __construct(ConfigFactoryInterface $config_factory, ?LanguageManagerInterface $language_manager = NULL) {
     $this->configFactory = $config_factory;
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -51,6 +58,19 @@ class BiolandFieldFunctionalityManager {
     $published_content_types = array_values(array_map('intval', array_filter($published_content_types)));
     $date_range_content_types = array_values(array_map('intval', array_filter($date_range_content_types)));
 
+    // Build help comments settings with translation support
+    $helpComments = [];
+    if ($this->languageManager) {
+      $langcode = $this->languageManager->getCurrentLanguage()->getId();
+      $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
+
+      $helpComments = [
+        'bodyText' => $this->getTranslatedHelpText($c, 'help_comments.body_text', 'help_comments.body_text_translations', $langcode, $default_langcode),
+        'attachmentsImagesText' => $this->getTranslatedHelpText($c, 'help_comments.attachments_images_text', 'help_comments.attachments_images_translations', $langcode, $default_langcode),
+        'attachmentsHeroesText' => $this->getTranslatedHelpText($c, 'help_comments.attachments_heroes_text', 'help_comments.attachments_heroes_translations', $langcode, $default_langcode),
+      ];
+    }
+
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
@@ -60,6 +80,41 @@ class BiolandFieldFunctionalityManager {
       'urlContentTypes' => $url_content_types,
       'publishedContentTypes' => $published_content_types,
       'dateRangeContentTypes' => $date_range_content_types,
+      'helpComments' => $helpComments,
     ];
+  }
+
+  /**
+   * Get translated help text, falling back to default if no translation exists.
+   *
+   * @param \Drupal\Core\Config\ImmutableConfig $config
+   *   The configuration object.
+   * @param string $default_key
+   *   The config key for the default text.
+   * @param string $translations_key
+   *   The config key for translations mapping.
+   * @param string $langcode
+   *   The current language code.
+   * @param string $default_langcode
+   *   The default language code.
+   *
+   * @return string
+   *   The translated text or default.
+   */
+  protected function getTranslatedHelpText($config, string $default_key, string $translations_key, string $langcode, string $default_langcode): string {
+    $default = $config->get($default_key) ?: '';
+
+    // If current language is default, return default text
+    if ($langcode === $default_langcode) {
+      return $default;
+    }
+
+    // Check for translation
+    $translation = $config->get("{$translations_key}.{$langcode}");
+    if (!empty($translation)) {
+      return $translation;
+    }
+
+    return $default;
   }
 }

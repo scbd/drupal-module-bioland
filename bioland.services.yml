@@ -5,7 +5,7 @@ services:
   
   bioland.field_functionality_manager:
     class: Drupal\bioland\Service\BiolandFieldFunctionalityManager
-    arguments: ['@config.factory']
+    arguments: ['@config.factory', '@language_manager']
 
   bioland.translation_manager:
     class: Drupal\bioland\Service\BiolandTranslationManager

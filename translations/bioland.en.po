@@ -763,6 +763,18 @@ msgstr "Announcement (49)"
 msgid "Contact (50)"
 msgstr "Contact (50)"
 
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Admin Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Failed to load content type options from tags vocabulary: @message"
+
 #: bioland.module
 msgid "Save"
 msgstr "Save"

@@ -202,32 +202,25 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#default_value' => $config->get('region') ?: 'north_america',
         '#required' => TRUE,
       ];
-
-      $form['general']['is_biosafety_land'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Is Biosafety Land?'),
-        '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
-        '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
-      ];
     }
 
-    if ($section === 'fields') {
-      $form['field_behavior'] = [
+    if ($section === 'field_visibility') {
+      $form['field_visibility_settings'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Field Behavior Settings'),
+        '#title' => $this->t('Field Visibility Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
       // Field Visibility functionality - wrapped in fieldset
-      $form['field_behavior']['field_visibility'] = [
+      $form['field_visibility_settings']['field_visibility'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Field Visibility Control'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      $form['field_behavior']['field_visibility']['enable_field_visibility'] = [
+      $form['field_visibility_settings']['field_visibility']['enable_field_visibility'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Field Visibility Control'),
         '#description' => $this->t('Show/hide fields based on content type selection. Configure which fields are visible for each content type below.'),
@@ -236,32 +229,16 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Container for all field visibility settings
-      $form['field_behavior']['field_visibility']['settings_container'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container'] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['bioland-field-visibility-settings', 'bioland-collapsible-hidden']],
       ];
 
-      // Define content types with their names
-      $content_types = [
-        2 => $this->t('News (2)'),
-        3 => $this->t('Meeting or Event (3)'),
-        5 => $this->t('Project (5)'),
-        12 => $this->t('Document (12)'),
-        13 => $this->t('Related Website (13)'),
-        15 => $this->t('Other Resource (15)'),
-        16 => $this->t('Image or Video (16)'),
-        43 => $this->t('FAQ (43)'),
-        44 => $this->t('National Information (44)'),
-        45 => $this->t('Status of LMOs (45)'),
-        46 => $this->t('Field Trial (46)'),
-        47 => $this->t('National Mainstreaming Strategy (47)'),
-        48 => $this->t('Capacity-Building (48)'),
-        49 => $this->t('Announcement (49)'),
-        50 => $this->t('Contact (50)'),
-      ];
+      // Get content types from taxonomy vocabulary 'tags'.
+      $content_types = $this->getContentTypeOptions();
 
       // URL Field visibility settings
-      $form['field_behavior']['field_visibility']['settings_container']['url_field'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['url_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('URL Field'),
         '#collapsible' => FALSE,
@@ -272,7 +249,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_behavior']['field_visibility']['settings_container']['url_field']['url_content_types'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['url_field']['url_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show URL field for these content types:'),
         '#options' => $content_types,
@@ -280,7 +257,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Published Field visibility settings
-      $form['field_behavior']['field_visibility']['settings_container']['published_field'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['published_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Published Field'),
         '#collapsible' => FALSE,
@@ -291,7 +268,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_behavior']['field_visibility']['settings_container']['published_field']['published_content_types'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['published_field']['published_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Published field for these content types:'),
         '#options' => $content_types,
@@ -299,7 +276,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Date Range Field visibility settings
-      $form['field_behavior']['field_visibility']['settings_container']['date_range_field'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['date_range_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Date Range Field (Start & End Date)'),
         '#collapsible' => FALSE,
@@ -310,22 +287,34 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_behavior']['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
+      $form['field_visibility_settings']['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Date Range fields (Start & End Date) for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('field_visibility.date_range_content_types') ?: [2, 3, 13],
       ];
 
+      $form['field_visibility_settings']['field_visibility_rules'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Field Visibility Rules (Advanced)'),
+        '#description' => $this->t('Define custom field visibility rules in JSON format. Leave empty to use the settings above.'),
+        '#default_value' => $config->get('field_visibility_rules') ?: '',
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
       // Additional Fields functionality - wrapped in fieldset
-      $form['field_behavior']['additional_fields'] = [
+      $form['field_visibility_settings']['additional_fields'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Additional Fields Control'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      $form['field_behavior']['additional_fields']['enable_additional_fields'] = [
+      $form['field_visibility_settings']['additional_fields']['enable_additional_fields'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Additional Fields'),
         '#description' => $this->t('Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type.'),
@@ -334,12 +323,12 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Container for additional fields information
-      $form['field_behavior']['additional_fields']['settings_container'] = [
+      $form['field_visibility_settings']['additional_fields']['settings_container'] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['bioland-additional-fields-settings', 'bioland-collapsible-hidden']],
       ];
 
-      $form['field_behavior']['additional_fields']['settings_container']['info'] = [
+      $form['field_visibility_settings']['additional_fields']['settings_container']['info'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Additional Fields Mapping'),
         '#description' => $this->t('The following content types will have these additional fields available:'),
@@ -350,7 +339,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_behavior']['additional_fields']['settings_container']['info']['mapping'] = [
+      $form['field_visibility_settings']['additional_fields']['settings_container']['info']['mapping'] = [
         '#markup' => '
           <div class="bioland-additional-fields-mapping">
             <ul>
@@ -364,33 +353,170 @@ class BiolandSettingsForm extends ConfigFormBase {
           </div>
         ',
       ];
+    }
 
-      // Auto Summary functionality
-      $form['field_behavior']['enable_auto_summary'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Enable Auto Summary'),
-        '#description' => $this->t('Automatically generate summary from body content as user types.'),
-        '#default_value' => $config->get('enable_auto_summary') !== FALSE,
+    if ($section === 'help_comments') {
+      $languages = $this->languageManager->getLanguages();
+      // Filter out Lolspeak language.
+      $languages = array_filter($languages, function($language) {
+        return $language->getId() !== 'en-x-lolspeak';
+      });
+      $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
+      $has_multiple_languages = count($languages) > 1;
+
+      $form['help_comments'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Help Comments Settings'),
+        '#description' => $this->t('Configure contextual help messages displayed for fields in the content form.'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
       ];
 
-      // Field Help Comments functionality
-      $form['field_behavior']['enable_help_comments'] = [
+      $form['help_comments']['enable_help_comments'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Field Help Comments'),
         '#description' => $this->t('Display contextual help comments for fields based on content type.'),
         '#default_value' => $config->get('enable_help_comments') !== FALSE,
       ];
 
-      $form['field_behavior']['field_visibility_rules'] = [
-        '#type' => 'textarea',
-        '#title' => $this->t('Field Visibility Rules (Advanced)'),
-        '#description' => $this->t('Define custom field visibility rules in JSON format. Leave empty to use the settings above.'),
-        '#default_value' => $config->get('field_visibility_rules') ?: '',
+      // Body Field Help Comment
+      $form['help_comments']['body_help'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Body Field Help'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
         '#states' => [
           'visible' => [
-            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
+            ':input[name="enable_help_comments"]' => ['checked' => TRUE],
           ],
         ],
+      ];
+
+      $form['help_comments']['body_help']['help_body_text'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Body Field Help Text'),
+        '#description' => $this->t('Help text displayed for the body/content field.'),
+        '#default_value' => $config->get('help_comments.body_text') ?: $this->t('This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.'),
+        '#rows' => 3,
+      ];
+
+      // Body Help Translations
+      if ($has_multiple_languages) {
+        $form['help_comments']['body_help']['body_help_translations'] = [
+          '#type' => 'details',
+          '#title' => $this->t('Translate Body Help Text'),
+          '#open' => FALSE,
+          '#tree' => TRUE,
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $form['help_comments']['body_help']['body_help_translations'][$langcode] = [
+            '#type' => 'textarea',
+            '#title' => $language->getName(),
+            '#default_value' => $config->get("help_comments.body_text_translations.{$langcode}") ?: '',
+            '#rows' => 3,
+          ];
+        }
+      }
+
+      // Attachments Field Help Comment - Images
+      $form['help_comments']['attachments_help'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Attachments Field Help'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_help_comments"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['help_comments']['attachments_help']['help_attachments_images_text'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Images Help Text'),
+        '#description' => $this->t('Help text for the images section of attachments.'),
+        '#default_value' => $config->get('help_comments.attachments_images_text') ?: $this->t('The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.'),
+        '#rows' => 3,
+      ];
+
+      // Images Help Translations
+      if ($has_multiple_languages) {
+        $form['help_comments']['attachments_help']['images_help_translations'] = [
+          '#type' => 'details',
+          '#title' => $this->t('Translate Images Help Text'),
+          '#open' => FALSE,
+          '#tree' => TRUE,
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $form['help_comments']['attachments_help']['images_help_translations'][$langcode] = [
+            '#type' => 'textarea',
+            '#title' => $language->getName(),
+            '#default_value' => $config->get("help_comments.attachments_images_translations.{$langcode}") ?: '',
+            '#rows' => 3,
+          ];
+        }
+      }
+
+      $form['help_comments']['attachments_help']['help_attachments_heroes_text'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Heroes Help Text'),
+        '#description' => $this->t('Help text for the hero banners section.'),
+        '#default_value' => $config->get('help_comments.attachments_heroes_text') ?: $this->t('Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'),
+        '#rows' => 3,
+      ];
+
+      // Heroes Help Translations
+      if ($has_multiple_languages) {
+        $form['help_comments']['attachments_help']['heroes_help_translations'] = [
+          '#type' => 'details',
+          '#title' => $this->t('Translate Heroes Help Text'),
+          '#open' => FALSE,
+          '#tree' => TRUE,
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $form['help_comments']['attachments_help']['heroes_help_translations'][$langcode] = [
+            '#type' => 'textarea',
+            '#title' => $language->getName(),
+            '#default_value' => $config->get("help_comments.attachments_heroes_translations.{$langcode}") ?: '',
+            '#rows' => 3,
+          ];
+        }
+      }
+    }
+
+    if ($section === 'admin') {
+      $form['admin_settings'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Admin Settings'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      // Auto Summary functionality
+      $form['admin_settings']['enable_auto_summary'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Auto Summary'),
+        '#description' => $this->t('Automatically generate summary from body content as user types.'),
+        '#default_value' => $config->get('enable_auto_summary') !== FALSE,
+      ];
+
+      $form['admin_settings']['is_biosafety_land'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Is Biosafety Land?'),
+        '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
+        '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
       ];
     }
 
@@ -608,11 +734,10 @@ class BiolandSettingsForm extends ConfigFormBase {
       
       $config
         ->set('countries', $countries)
-        ->set('region', $values['region'])
-        ->set('is_biosafety_land', $values['is_biosafety_land']);
+        ->set('region', $values['region']);
     }
 
-    if ($section === 'fields') {
+    if ($section === 'field_visibility') {
       // Process field visibility content type selections
       $url_content_types = array_values(array_filter($values['url_content_types']));
       $published_content_types = array_values(array_filter($values['published_content_types']));
@@ -624,9 +749,46 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('field_visibility.published_content_types', $published_content_types)
         ->set('field_visibility.date_range_content_types', $date_range_content_types)
         ->set('enable_additional_fields', $values['enable_additional_fields'])
-        ->set('enable_auto_summary', $values['enable_auto_summary'])
-        ->set('enable_help_comments', $values['enable_help_comments'])
         ->set('field_visibility_rules', $values['field_visibility_rules']);
+    }
+
+    if ($section === 'help_comments') {
+      $languages = $this->languageManager->getLanguages();
+      $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
+
+      $config
+        ->set('enable_help_comments', $values['enable_help_comments'])
+        ->set('help_comments.body_text', $values['help_body_text'])
+        ->set('help_comments.attachments_images_text', $values['help_attachments_images_text'])
+        ->set('help_comments.attachments_heroes_text', $values['help_attachments_heroes_text']);
+
+      // Save translations for help comments
+      if (count($languages) > 1) {
+        $body_translations = $values['body_help_translations'] ?? [];
+        $images_translations = $values['images_help_translations'] ?? [];
+        $heroes_translations = $values['heroes_help_translations'] ?? [];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          if (!empty($body_translations[$langcode])) {
+            $config->set("help_comments.body_text_translations.{$langcode}", $body_translations[$langcode]);
+          }
+          if (!empty($images_translations[$langcode])) {
+            $config->set("help_comments.attachments_images_translations.{$langcode}", $images_translations[$langcode]);
+          }
+          if (!empty($heroes_translations[$langcode])) {
+            $config->set("help_comments.attachments_heroes_translations.{$langcode}", $heroes_translations[$langcode]);
+          }
+        }
+      }
+    }
+
+    if ($section === 'admin') {
+      $config
+        ->set('enable_auto_summary', $values['enable_auto_summary'])
+        ->set('is_biosafety_land', $values['is_biosafety_land']);
     }
 
     if ($section === 'translation') {
@@ -707,6 +869,36 @@ class BiolandSettingsForm extends ConfigFormBase {
       'ar' => $this->t('Arabic'),
       'ru' => $this->t('Russian'),
     ];
+  }
+
+  /**
+   * Get content type options from the 'tags' taxonomy vocabulary.
+   *
+   * @return array
+   *   Array of content type options keyed by term ID with term name as value.
+   */
+  protected function getContentTypeOptions() {
+    $options = [];
+    try {
+      $terms = $this->entityTypeManager
+        ->getStorage('taxonomy_term')
+        ->loadByProperties(['vid' => 'tags']);
+
+      foreach ($terms as $term) {
+        $tid = (int) $term->id();
+        $name = $term->label();
+        $options[$tid] = $this->t('@name (@tid)', ['@name' => $name, '@tid' => $tid]);
+      }
+
+      // Sort by term ID for consistent ordering.
+      ksort($options);
+    }
+    catch (\Exception $e) {
+      // Log error and return empty array if taxonomy terms cannot be loaded.
+      \Drupal::logger('bioland')->error('Failed to load content type options from tags vocabulary: @message', ['@message' => $e->getMessage()]);
+    }
+
+    return $options;
   }
 
 }

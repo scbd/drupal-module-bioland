@@ -27,6 +27,13 @@ field_visibility:
 enable_additional_fields: true
 enable_auto_summary: true
 enable_help_comments: true
+help_comments:
+  body_text: 'This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.'
+  body_text_translations: {}
+  attachments_images_text: 'The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.'
+  attachments_images_translations: {}
+  attachments_heroes_text: 'Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'
+  attachments_heroes_translations: {}
 field_visibility_rules: ''
 translation:
   auto_create: true

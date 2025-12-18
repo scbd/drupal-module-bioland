@@ -76,8 +76,10 @@ function addCloseButton(helpMessage, cookieName, infoIcon) {
 
 /**
  * Add help message below the body field.
+ *
+ * @param {Object} helpCommentsSettings - Help comments settings from Drupal.
  */
-function addBodyFieldHelp() {
+function addBodyFieldHelp(helpCommentsSettings) {
   // Find the label for the body field
   const bodyLabel = document.querySelector('label[for="edit-body-0-value"]');
 
@@ -103,9 +105,11 @@ function addBodyFieldHelp() {
   infoIcon.setAttribute('aria-label', 'Toggle help message');
   bodyLabel.appendChild(infoIcon);
 
-  // Get translated strings from Drupal settings
+  // Get translated strings from Drupal settings or use defaults
   const helpTitle = Drupal.t('Help');
-  const helpText = Drupal.t('This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used.');
+  const helpText = (helpCommentsSettings && helpCommentsSettings.bodyText)
+    ? helpCommentsSettings.bodyText
+    : Drupal.t('This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.');
 
   // Create help message element
   const helpMessage = document.createElement('p');
@@ -150,8 +154,10 @@ function addBodyFieldHelp() {
 
 /**
  * Add help message to the attachments field.
+ *
+ * @param {Object} helpCommentsSettings - Help comments settings from Drupal.
  */
-function addAttachmentsFieldHelp() {
+function addAttachmentsFieldHelp(helpCommentsSettings) {
   // Look for attachments field wrapper
   const attachmentsWrapper = document.querySelector('#field_attachments-media-library-wrapper');
 
@@ -192,12 +198,16 @@ function addAttachmentsFieldHelp() {
     legend.appendChild(infoIcon);
   }
 
-  // Get translated strings from Drupal settings
+  // Get translated strings from Drupal settings or use defaults
   const helpTitle = Drupal.t('Help');
   const imagesTitle = Drupal.t('Images');
-  const imagesText = Drupal.t('The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content.');
+  const imagesText = (helpCommentsSettings && helpCommentsSettings.attachmentsImagesText)
+    ? helpCommentsSettings.attachmentsImagesText
+    : Drupal.t('The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.');
   const heroesTitle = Drupal.t('Heroes');
-  const heroesText = Drupal.t('Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis.');
+  const heroesText = (helpCommentsSettings && helpCommentsSettings.attachmentsHeroesText)
+    ? helpCommentsSettings.attachmentsHeroesText
+    : Drupal.t('Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.');
 
   // Create help message element
   const helpMessage = document.createElement('p');
@@ -267,11 +277,14 @@ function initializeHelpComments(context, settings) {
   }
   form.dataset.biolandHelpCommentsInit = 'true';
 
+  // Get help comments settings
+  const helpCommentsSettings = settings.helpComments || {};
+
   // Add help message to body field
-  addBodyFieldHelp();
+  addBodyFieldHelp(helpCommentsSettings);
 
   // Add help message to attachments field
-  addAttachmentsFieldHelp();
+  addAttachmentsFieldHelp(helpCommentsSettings);
 }
 
 /**

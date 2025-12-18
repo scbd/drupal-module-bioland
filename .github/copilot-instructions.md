@@ -1,7 +1,7 @@
 # AI Agent Instructions: Drupal Module Bioland
 
 ## Important!
-- if this exists follow these memory rules every questions `.github/instructions/memory.md`
+- if this exists follow these memory rules every questions `.github/instructions/personal.md`
 - if it exists the default guidance at `.github/instructions/default.instructions.md` is the canonical source of instructions.
 - **CRITICAL**: Follow the Jira and Git workflow at `.github/instructions/workflow.md` for ALL code generation tasks.
 

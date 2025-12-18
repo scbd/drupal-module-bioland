@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 use Drupal\bioland\Service\BiolandFieldFunctionalityManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Unit tests for BiolandFieldFunctionalityManager service.
@@ -13,6 +15,23 @@ use Drupal\Core\Config\ImmutableConfig;
  * @covers \Drupal\bioland\Service\BiolandFieldFunctionalityManager
  */
 class BiolandFieldFunctionalityManagerTest extends TestCase {
+
+  /**
+   * Creates a mock language manager for testing.
+   *
+   * @return \Drupal\Core\Language\LanguageManagerInterface
+   *   A mock language manager.
+   */
+  protected function createMockLanguageManager(): LanguageManagerInterface {
+    $language = $this->createMock(LanguageInterface::class);
+    $language->method('getId')->willReturn('en');
+
+    $languageManager = $this->createMock(LanguageManagerInterface::class);
+    $languageManager->method('getCurrentLanguage')->willReturn($language);
+    $languageManager->method('getDefaultLanguage')->willReturn($language);
+
+    return $languageManager;
+  }
 
   /**
    * Tests isAnyFunctionalityEnabled returns true when field visibility is enabled.
@@ -147,7 +166,8 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       ->with('bioland.settings')
       ->willReturn($configObject);
     
-    $manager = new BiolandFieldFunctionalityManager($configFactory);
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
     $settings = $manager->getJavaScriptSettings();
     
     $this->assertIsArray($settings);
@@ -182,7 +202,8 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       ->with('bioland.settings')
       ->willReturn($configObject);
     
-    $manager = new BiolandFieldFunctionalityManager($configFactory);
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
     $settings = $manager->getJavaScriptSettings();
     
     // Should filter out 0 values and convert to integers.
@@ -214,7 +235,8 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       ->with('bioland.settings')
       ->willReturn($configObject);
     
-    $manager = new BiolandFieldFunctionalityManager($configFactory);
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
     $settings = $manager->getJavaScriptSettings();
     
     // Default behavior: NULL !== FALSE should be TRUE.
@@ -251,7 +273,8 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
       ->with('bioland.settings')
       ->willReturn($configObject);
     
-    $manager = new BiolandFieldFunctionalityManager($configFactory);
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
     $settings = $manager->getJavaScriptSettings();
     
     $this->assertFalse($settings['enableFieldVisibility']);

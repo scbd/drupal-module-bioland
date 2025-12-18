@@ -3,12 +3,26 @@ bioland.settings_tab:
   title: 'General Settings'
   base_route: bioland.settings
 
-bioland.settings_fields_tab:
-  route_name: bioland.settings.fields
-  title: 'Field Behavior'
+bioland.settings_field_visibility_tab:
+  route_name: bioland.settings.field_visibility
+  title: 'Field Visibility'
   base_route: bioland.settings
+  weight: 1
 
 bioland.settings_translation_tab:
   route_name: bioland.settings.translation
   title: 'Translation Defaults'
   base_route: bioland.settings
+  weight: 2
+
+bioland.settings_help_comments_tab:
+  route_name: bioland.settings.help_comments
+  title: 'Help Comments'
+  base_route: bioland.settings
+  weight: 3
+
+bioland.settings_admin_tab:
+  route_name: bioland.settings.admin
+  title: 'Admin'
+  base_route: bioland.settings
+  weight: 10

@@ -52,6 +52,13 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Get the field functionality manager service
   $fieldFunctionalityManager = \Drupal::service('bioland.field_functionality_manager');
 
+  // Handle menu link content forms - add custom submit handler for cache busting.
+  if (strpos($form_id, 'menu_link_content_') === 0) {
+    if (isset($form['actions']['submit'])) {
+      $form['actions']['submit']['#submit'][] = 'bioland_menu_link_form_submit';
+    }
+  }
+
   // Only attach to node_content_form and node_content_edit_form.
   if (!in_array($form_id, ['node_content_form', 'node_content_edit_form'])) {
     return;
@@ -255,6 +262,32 @@ function bioland_node_content_form_submit($form, FormStateInterface $form_state)
 
     // Set the redirect.
     $form_state->setRedirectUrl($url);
+  }
+}
+
+/**
+ * Custom submit handler for menu link content form.
+ *
+ * Adds ?seachain-taisce=<microtime> to the redirect URL for cache busting.
+ * Redirects to the page the menu link points to.
+ */
+function bioland_menu_link_form_submit($form, FormStateInterface $form_state) {
+  // Get the menu link entity.
+  $menu_link = $form_state->getFormObject()->getEntity();
+
+  if ($menu_link && $menu_link->getUrlObject()) {
+    $link_url = $menu_link->getUrlObject();
+
+    // Only process internal links.
+    if (!$link_url->isExternal() && $link_url->isRouted()) {
+      // Add the query parameter for cache busting.
+      $options = $link_url->getOptions();
+      $options['query']['seachain-taisce'] = (string) microtime(TRUE);
+      $link_url->setOptions($options);
+
+      // Set the redirect to the linked page.
+      $form_state->setRedirectUrl($link_url);
+    }
   }
 }
 

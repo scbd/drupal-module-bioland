@@ -35,6 +35,17 @@ interface LanguageManagerInterface {
   public function getDefaultLanguage();
 
   /**
+   * Gets the current language.
+   *
+   * @param string $type
+   *   The language type (optional).
+   *
+   * @return \Drupal\Core\Language\LanguageInterface
+   *   The current language.
+   */
+  public function getCurrentLanguage($type = NULL);
+
+  /**
    * Gets the language config override for a specific language.
    *
    * @param string $langcode
