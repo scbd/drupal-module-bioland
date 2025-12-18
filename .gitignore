@@ -80,3 +80,4 @@ failed-*
 .github/instructions*
 !.github/instructions/workflow.md
 .phpunit.result.cache
+.phpunit.result*

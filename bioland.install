@@ -469,7 +469,7 @@ function bioland_update_9008() {
 /**
  * Remove deprecated default_locale and enabled_locales config keys.
  */
-function bioland_update_9008() {
+function bioland_update_9009() {
   $config_factory = \Drupal::configFactory();
   $editable = $config_factory->getEditable('bioland.settings');
 
@@ -489,4 +489,53 @@ function bioland_update_9008() {
   }
 
   return t('No deprecated locale config keys found to remove.');
+}
+
+/**
+ * Add help_comments configuration for editable help text.
+ */
+function bioland_update_9010() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+
+  // Check if help_comments is already set
+  if ($editable->get('help_comments') !== NULL) {
+    return t('Help comments configuration already exists; no changes made.');
+  }
+
+  // Get all available languages (excluding Lolspeak)
+  $language_manager = \Drupal::languageManager();
+  $languages = $language_manager->getLanguages();
+  $default_langcode = $language_manager->getDefaultLanguage()->getId();
+  
+  // Initialize translation arrays for all languages
+  $body_text_translations = [];
+  $attachments_images_translations = [];
+  $attachments_heroes_translations = [];
+  
+  foreach ($languages as $langcode => $language) {
+    // Skip default language and Lolspeak
+    if ($langcode === $default_langcode || $langcode === 'en-x-lolspeak') {
+      continue;
+    }
+    $body_text_translations[$langcode] = '';
+    $attachments_images_translations[$langcode] = '';
+    $attachments_heroes_translations[$langcode] = '';
+  }
+
+  // Set default help comment texts
+  $help_comments = [
+    'body_text' => 'This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.',
+    'body_text_translations' => $body_text_translations,
+    'attachments_images_text' => 'The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.',
+    'attachments_images_translations' => $attachments_images_translations,
+    'attachments_heroes_text' => 'Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.',
+    'attachments_heroes_translations' => $attachments_heroes_translations,
+  ];
+
+  $editable->set('help_comments', $help_comments);
+  $editable->save();
+
+  $language_count = count($body_text_translations);
+  return t('Added help_comments configuration with default help text values for @count languages.', ['@count' => $language_count]);
 }

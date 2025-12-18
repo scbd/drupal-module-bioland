@@ -1,13 +1,16 @@
 {
     "name": "bioland",
-    "version": "1.0.9",
+    "version": "1.0.11",
     "private": true,
     "scripts": {
         "test": "jest",
-        "test:ci": "jest --ci --coverage",
-        "deploy:dev": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
-        "deploy:dev-bl2": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bl2/modules/custom/scbd-bioland/",
-        "deploy:stg": "rsync -av --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/"
+        "test:php": "composer test",
+        "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \\) -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n 1 php -l",
+        "test:all": "npm run lint:php && npm run test:php && npm test",
+        "test:ci": "npm run lint:php && npm run test:php && jest --ci --coverage",
+        "deploy:dev": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
+        "deploy:dev-clean": "ssh ubuntu@staging.infra.cbd.int 'rm -rf /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/*' && npm run deploy:dev",        "deploy:dev-bl2": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bl2/modules/custom/scbd-bioland/",
+        "deploy:stg": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/"
     },
     "devDependencies": {
         "jest": "29.7.0",
