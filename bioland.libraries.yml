@@ -1,32 +1,32 @@
 field_visibility:
   js:
-    js/bioland.field-visibility.js: { type: module }
+    js/bioland.field-visibility.js: {}
   dependencies:
     - core/drupal
 
 additional_fields:
   js:
-    js/bioland.additional-fields.js: { type: module }
+    js/bioland.additional-fields.js: {}
   dependencies:
     - core/drupal
 
 auto_summary:
   js:
-    js/bioland.auto-summary.js: { type: module }
+    js/bioland.auto-summary.js: {}
   dependencies:
     - core/drupal
 
 help_comments:
   js:
-    js/bioland.help-comments.js: { type: module }
+    js/bioland.help-comments.js: {}
   dependencies:
     - core/drupal
 
 comprehensive_fields:
   js:
-    js/bioland.field-visibility.js: { type: module }
-    js/bioland.additional-fields.js: { type: module }
-    js/bioland.auto-summary.js: { type: module }
+    js/bioland.field-visibility.js: {}
+    js/bioland.additional-fields.js: {}
+    js/bioland.auto-summary.js: {}
   dependencies:
     - core/drupal
 
@@ -39,7 +39,7 @@ admin:
 
 settings_toggle:
   js:
-    js/bioland.settings-toggle.js: { type: module }
+    js/bioland.settings-toggle.js: {}
   css:
     theme:
       css/bioland.admin.css: {}

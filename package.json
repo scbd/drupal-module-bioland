@@ -1,6 +1,6 @@
 {
     "name": "bioland",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "private": true,
     "scripts": {
         "test": "jest",
@@ -8,9 +8,18 @@
         "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \\) -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n 1 php -l",
         "test:all": "npm run lint:php && npm run test:php && npm test",
         "test:ci": "npm run lint:php && npm run test:php && jest --ci --coverage",
-        "deploy:dev": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
-        "deploy:dev-clean": "ssh ubuntu@staging.infra.cbd.int 'rm -rf /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/*' && npm run deploy:dev",        "deploy:dev-bl2": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bl2/modules/custom/scbd-bioland/",
-        "deploy:stg": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/"
+        "deploy:dev-bsl": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
+        "deploy:dev-bsl-clean": "ssh ubuntu@staging.infra.cbd.int 'rm -rf /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/*' && npm run deploy:dev-bsl",        
+        "deploy:dev-bl2": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bl2/modules/custom/scbd-bioland/",
+        "deploy:dev-bl2-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/dev/dev/bl2/modules/custom/scbd-bioland/*' && npm run deploy:dev-bl2",
+        "deploy:stg-bsl": "rsync -av --exclude='.git' --exclude='.vscode' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/",
+        "deploy:stg-bsl-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/stg/stg/bsl/modules/custom/scbd-bioland/*' ",
+        "deploy:stg-bl2": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/stg/stg/bl2/modules/custom/scbd-bioland/",
+        "deploy:stg-bl2-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/stg/stg/bl2/modules/custom/scbd-bioland/*' && npm run deploy:stg-bl2",
+        "deploy:bsl": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/prod/prod/bsl/modules/custom/scbd-bioland/",
+        "deploy:bsl-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/prod/prod/bsl/modules/custom/scbd-bioland/*' && npm run deploy:bsl",
+        "deploy:bl2": "rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/prod/prod/bl2/modules/custom/scbd-bioland/",
+        "deploy:bl2-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/prod/prod/bl2/modules/custom/scbd-bioland/*' && npm run deploy:bl2"
     },
     "devDependencies": {
         "jest": "29.7.0",
