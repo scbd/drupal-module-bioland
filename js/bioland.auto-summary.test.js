@@ -48,7 +48,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Auto summary is disabled in settings');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Auto summary is disabled in settings');
     });
   });
 
@@ -67,7 +67,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Found summary field with selector:', 'textarea[data-drupal-selector="edit-body-0-summary"]');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Found summary field with selector:', 'textarea[data-drupal-selector="edit-body-0-summary"]');
     });
 
     test('should find summary field by id', () => {
@@ -84,7 +84,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Found summary field with selector:', '#edit-body-0-summary');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Found summary field with selector:', '#edit-body-0-summary');
     });
 
     test('should find summary field by name attribute', () => {
@@ -101,7 +101,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Found summary field with selector:', 'textarea[name="body[0][summary]"]');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Found summary field with selector:', 'textarea[name="body[0][summary]"]');
     });
 
     test('should handle missing summary field gracefully', () => {
@@ -114,7 +114,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Summary field not found, cannot enable auto-summary');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Summary field not found, cannot enable auto-summary');
     });
   });
 
@@ -138,7 +138,7 @@ describe('Bioland Auto Summary', () => {
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Auto summary already initialized');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Auto summary already initialized');
     });
 
     test('should set initialization marker on summary field', () => {
@@ -222,7 +222,7 @@ describe('Bioland Auto Summary', () => {
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
       // When no CKEditor is detected, it falls through to plain textarea setup
-      expect(console.log).toHaveBeenCalledWith('Bioland: No CKEditor detected, using plain textarea');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: No CKEditor detected, using plain textarea');
     });
 
     test('should update summary from body field on initial load', () => {
@@ -235,7 +235,7 @@ describe('Bioland Auto Summary', () => {
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
       // Should have updated the summary - the plain textarea handler triggers on initial load
-      expect(console.log).toHaveBeenCalledWith('Bioland: Plain textarea auto-summary fully initialized');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Plain textarea auto-summary fully initialized');
     });
 
     test('should update summary when body field changes', () => {
@@ -455,7 +455,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: CKEditor 4 detected, attempting to connect...');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor 4 detected, attempting to connect...');
     });
 
     test('should connect to CKEditor 4 instance when available', () => {
@@ -481,7 +481,7 @@ describe('Bioland Auto Summary', () => {
       // Wait for the interval to find the instance
       jest.advanceTimersByTime(100);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: CKEditor 4 instance found:', 'edit-body-0-value');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor 4 instance found:', 'edit-body-0-value');
     });
   });
 
@@ -515,7 +515,7 @@ describe('Bioland Auto Summary', () => {
       
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: CKEditor 5 detected, attempting to connect...');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor 5 detected, attempting to connect...');
     });
   });
 
@@ -544,7 +544,7 @@ describe('Bioland Auto Summary', () => {
       Drupal.behaviors.biolandAutoSummary.attach(context, settings);
       
       // The code checks for contenteditable after checking for CKEditor
-      expect(console.log).toHaveBeenCalledWith('Bioland: CKEditor detected via contenteditable div, using direct monitor...');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor detected via contenteditable div, using direct monitor...');
     });
 
     test('should set up contenteditable monitor', () => {

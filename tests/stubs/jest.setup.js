@@ -19,12 +19,54 @@ global.drupalSettings = {
       fieldVisibility: true,
       additionalFields: true,
       autoSummary: true,
-      helpComments: true
+      helpComments: true,
+      settingsToggle: true
     }
   }
 };
 
-// Mock BiolandLogger to enable logging during tests
+/**
+ * Mock window.biolandGetLogger - the new logger factory pattern.
+ * This is used by all Bioland JS files to get a logger instance.
+ * 
+ * @param {string} area - The area name for prefixing logs
+ * @param {Object} settings - The bioland settings object
+ * @returns {Object} Logger object with log, warn, error methods
+ */
+global.window.biolandGetLogger = function(area, settings) {
+  const biolandSettings = settings || {};
+  const enableDebugLogging = biolandSettings.enableDebugLogging !== false;
+  const debugLogAreas = biolandSettings.debugLogAreas || {};
+
+  if (!enableDebugLogging || debugLogAreas[area] === false) {
+    return {
+      log: function() {},
+      warn: function() {},
+      error: function() {}
+    };
+  }
+
+  const prefix = 'Bioland [' + area + ']: ';
+  return {
+    log: function() {
+      const args = Array.prototype.slice.call(arguments);
+      args[0] = prefix + (args[0] || '');
+      console.log.apply(console, args);
+    },
+    warn: function() {
+      const args = Array.prototype.slice.call(arguments);
+      args[0] = prefix + (args[0] || '');
+      console.warn.apply(console, args);
+    },
+    error: function() {
+      const args = Array.prototype.slice.call(arguments);
+      args[0] = prefix + (args[0] || '');
+      console.error.apply(console, args);
+    }
+  };
+};
+
+// Legacy BiolandLogger mock (kept for backwards compatibility with older test patterns)
 global.BiolandLogger = {
   isLoggingEnabled: function() { return true; },
   log: function(area, message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 2))); },

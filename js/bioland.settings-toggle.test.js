@@ -50,7 +50,7 @@ describe('Bioland Settings Toggle', () => {
       
       Drupal.behaviors.biolandSettingsToggle.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Settings toggle initialized for', '.bioland-toggle-visibility-settings');
+      expect(console.log).toHaveBeenCalledWith('Bioland [settingsToggle]: Settings toggle initialized for', '.bioland-toggle-visibility-settings');
     });
 
     test('should show settings when toggle is clicked', () => {
@@ -211,7 +211,7 @@ describe('Bioland Settings Toggle', () => {
       
       Drupal.behaviors.biolandSettingsToggle.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Settings toggle initialized for', '.bioland-toggle-additional-fields-settings');
+      expect(console.log).toHaveBeenCalledWith('Bioland [settingsToggle]: Settings toggle initialized for', '.bioland-toggle-additional-fields-settings');
     });
 
     test('should show additional fields settings when toggle is clicked', () => {
@@ -256,8 +256,8 @@ describe('Bioland Settings Toggle', () => {
       
       Drupal.behaviors.biolandSettingsToggle.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Settings toggle initialized for', '.bioland-toggle-visibility-settings');
-      expect(console.log).toHaveBeenCalledWith('Bioland: Settings toggle initialized for', '.bioland-toggle-additional-fields-settings');
+      expect(console.log).toHaveBeenCalledWith('Bioland [settingsToggle]: Settings toggle initialized for', '.bioland-toggle-visibility-settings');
+      expect(console.log).toHaveBeenCalledWith('Bioland [settingsToggle]: Settings toggle initialized for', '.bioland-toggle-additional-fields-settings');
     });
 
     test('should toggle each section independently', () => {

@@ -47,7 +47,7 @@ describe('Bioland Help Comments', () => {
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
       // Should not log initialization
-      expect(console.log).not.toHaveBeenCalledWith('Bioland: Initializing help comments');
+      expect(console.log).not.toHaveBeenCalledWith('Bioland [helpComments]: Initializing help comments');
     });
   });
 
@@ -66,7 +66,7 @@ describe('Bioland Help Comments', () => {
       
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Initializing help comments');
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Initializing help comments');
     });
 
     test('should detect node-content-edit-form', () => {
@@ -83,7 +83,7 @@ describe('Bioland Help Comments', () => {
       
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Initializing help comments');
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Initializing help comments');
     });
 
     test('should not initialize when form is missing', () => {
@@ -96,7 +96,7 @@ describe('Bioland Help Comments', () => {
       
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Content form not found for help comments');
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Content form not found for help comments');
     });
   });
 
@@ -173,7 +173,7 @@ describe('Bioland Help Comments', () => {
       
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Body field label not found for help comment');
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Body field label not found for help comment');
     });
   });
 
@@ -233,7 +233,7 @@ describe('Bioland Help Comments', () => {
       
       Drupal.behaviors.biolandHelpComments.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Attachments field wrapper not found for help comment');
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Attachments field wrapper not found for help comment');
     });
   });
 

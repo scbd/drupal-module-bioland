@@ -46,7 +46,7 @@ describe('Bioland Additional Fields', () => {
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
       // Should return early without logging initialization
-      expect(console.log).not.toHaveBeenCalledWith('Bioland: Initializing additional fields');
+      expect(console.log).not.toHaveBeenCalledWith('Bioland [additionalFields]: Initializing additional fields');
     });
   });
 
@@ -68,7 +68,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Initial content type value:', '3');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Initial content type value:', '3');
     });
 
     test('should handle missing content type field gracefully', () => {
@@ -81,7 +81,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: No initial content type value found, checking again shortly...');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: No initial content type value found, checking again shortly...');
     });
   });
 
@@ -106,7 +106,7 @@ describe('Bioland Additional Fields', () => {
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
       // Content type 3 should have additional fields
-      expect(console.log).not.toHaveBeenCalledWith('Bioland: No additional fields for content type:', '3');
+      expect(console.log).not.toHaveBeenCalledWith('Bioland [additionalFields]: No additional fields for content type:', '3');
     });
 
     test('should return true for content type 5 (projects)', () => {
@@ -119,7 +119,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).not.toHaveBeenCalledWith('Bioland: No additional fields for content type:', '5');
+      expect(console.log).not.toHaveBeenCalledWith('Bioland [additionalFields]: No additional fields for content type:', '5');
     });
 
     test('should return false for content types without additional fields', () => {
@@ -141,7 +141,7 @@ describe('Bioland Additional Fields', () => {
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
       // The value is a string '1' from the select element
-      expect(console.log).toHaveBeenCalledWith('Bioland: No additional fields for content type:', '1');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: No additional fields for content type:', '1');
     });
   });
 
@@ -173,7 +173,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.warn).toHaveBeenCalledWith('Bioland: Vue or ScbdDrupalScbdFieldJs is not available for additional fields');
+      expect(console.warn).toHaveBeenCalledWith('Bioland [additionalFields]: Vue or ScbdDrupalScbdFieldJs is not available for additional fields');
     });
 
     test('should create hidden field for additional fields', () => {
@@ -242,7 +242,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Found wrapper element for additional fields:', '#edit-field-tags-wrapper');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Found wrapper element for additional fields:', '#edit-field-tags-wrapper');
     });
 
     test('should fall back to form wrapper when specific wrapper not found', () => {
@@ -261,7 +261,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Using form wrapper as fallback for additional fields');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Using form wrapper as fallback for additional fields');
     });
 
     test('should warn when no wrapper element is found', () => {
@@ -280,7 +280,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.warn).toHaveBeenCalledWith('Bioland: Could not find wrapper element for additional fields');
+      expect(console.warn).toHaveBeenCalledWith('Bioland [additionalFields]: Could not find wrapper element for additional fields');
     });
   });
 
@@ -327,7 +327,7 @@ describe('Bioland Additional Fields', () => {
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Event listeners already attached');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Event listeners already attached');
     });
 
     test('should handle content type change to type without additional fields', () => {
@@ -343,7 +343,7 @@ describe('Bioland Additional Fields', () => {
       fieldElement.value = '1';
       fieldElement.dispatchEvent(new Event('change'));
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: New content type should NOT have additional fields, removing if exists...');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: New content type should NOT have additional fields, removing if exists...');
     });
   });
 
@@ -365,7 +365,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Extracted field name suffix from wrapper:', 'tags');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Extracted field name suffix from wrapper:', 'tags');
     });
 
     test('should use default field name when extraction fails', () => {
@@ -384,7 +384,7 @@ describe('Bioland Additional Fields', () => {
       
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: No field name found, using default');
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: No field name found, using default');
     });
   });
 });

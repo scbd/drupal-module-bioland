@@ -57,3 +57,4 @@ settings_toggle:
       css/bioland.admin.css: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger

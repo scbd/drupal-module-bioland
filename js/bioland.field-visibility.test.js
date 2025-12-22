@@ -42,7 +42,7 @@ describe('Bioland Field Visibility', () => {
       Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
       
       // Should return early without logging initialization
-      expect(console.log).not.toHaveBeenCalledWith('Bioland: Initializing field visibility');
+      expect(console.log).not.toHaveBeenCalledWith('Bioland [fieldVisibility]: Initializing field visibility');
     });
   });
 
@@ -74,7 +74,7 @@ describe('Bioland Field Visibility', () => {
       
       Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Initializing field visibility');
+      expect(console.log).toHaveBeenCalledWith('Bioland [fieldVisibility]: Initializing field visibility');
     });
 
     test('should not initialize when content type field is missing', () => {
@@ -87,7 +87,7 @@ describe('Bioland Field Visibility', () => {
       
       Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: No content type field found for visibility');
+      expect(console.log).toHaveBeenCalledWith('Bioland [fieldVisibility]: No content type field found for visibility');
     });
   });
 
@@ -342,7 +342,7 @@ describe('Bioland Field Visibility', () => {
       // Trigger change event without actually changing the value
       fieldElement.dispatchEvent(new Event('change'));
       
-      expect(console.log).toHaveBeenCalledWith('Bioland: Content type value unchanged, skipping');
+      expect(console.log).toHaveBeenCalledWith('Bioland [fieldVisibility]: Content type value unchanged, skipping');
     });
 
     test('should not attach duplicate event listeners', () => {

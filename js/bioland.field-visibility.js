@@ -2,156 +2,58 @@
  * @file
  * Field visibility functionality for Bioland module.
  * Controls show/hide behavior of fields based on content type selection.
+ * 
+ * Note: No module-level state. All state passed via parameters or stored in DOM data attributes.
+ * Uses window.biolandGetLogger for logging (loaded via debug_logger dependency).
  */
-
-(function (Drupal, window) {
+(function(Drupal, window, document) {
   'use strict';
 
-  // Prevent duplicate initialization if script is loaded multiple times
-  if (Drupal.behaviors.biolandFieldVisibility) {
-    return;
-  }
+  /**
+   * Get the content type field element and its current value.
+   * 
+   * @returns {Object|null} Object with element and value properties, or null if not found
+   */
+  const getContentTypeField = function() {
+    const typePlacementInputEl = document.querySelector('#edit-field-type-placement');
+
+    if (!typePlacementInputEl) return null;
+
+    return {
+      element: typePlacementInputEl,
+      value: typePlacementInputEl.value
+    };
+  };
 
   /**
-   * Track the last content type value to detect changes
-   * Using var to avoid block-scoping issues with early returns
+   * Hide text format elements from the body field.
    */
-  var lastContentTypeValue = null;
+  const hideTextFormat = function() {
+    const label = document.querySelector('label[for="edit-body-0-format--2"]');
+    const helpLink = document.querySelector('#edit-body-0-format-help-about');
 
-  /**
-   * Store settings for later use
-   */
-  var storedSettings = {};
-
-  /**
-   * Logger shortcut for this module
-   */
-  function logger() {
-    return window.BiolandLogger && window.BiolandLogger.fieldVisibility 
-      ? window.BiolandLogger.fieldVisibility 
-      : { log: function() {}, warn: function() {}, error: function() {} };
-  }
-
-  /**
-   * Initialize field visibility functionality.
-   *
-   * @param {Element} context - The context element
-   * @param {Object} settings - Bioland settings from PHP
-   */
-  function initializeFieldVisibility(context, settings) {
-    logger().log('Initializing field visibility');
-    
-    // Get the content type field
-    var contentTypeField = getContentTypeField();
-    var contentTypeValue = contentTypeField ? contentTypeField.value : null;
-    
-    if (!contentTypeValue) {
-      logger().log('No content type field found for visibility');
-      return;
+    if (label) {
+      label.style.display = 'none';
     }
-
-    logger().log('Applying field visibility for content type:', contentTypeValue);
-
-    // Store the initial value
-    lastContentTypeValue = contentTypeValue;
-
-    // Store settings for later use
-    storedSettings = settings;
-
-    // Apply initial field visibility
-    applyFieldVisibility(contentTypeValue);
-    
-    // Hide text format elements
-    hideTextFormat();
-
-    // Set up content type field change listeners
-    setupContentTypeListeners(context);
-  }
-
-  /**
-   * Apply field visibility based on content type.
-   *
-   * @param {string|number} contentTypeValue - The content type value
-   */
-  function applyFieldVisibility(contentTypeValue) {
-    if (!contentTypeValue) return;
-
-    hideFields(contentTypeValue);
-  }
-
-  /**
-   * Main function to hide/show fields based on content type.
-   * @param {string|number} contentTypeValue - The content type value
-   */
-  function hideFields(contentTypeValue) {
-    if (!contentTypeValue) return;
-
-    hideDates(contentTypeValue);
-    hideUrl(contentTypeValue);
-    hidePublished(contentTypeValue);
-  }
-
-  /**
-   * Hide/show URL field wrapper based on content type.
-   * @param {string|number} contentTypeValue - The content type value
-   */
-  function hideUrl(contentTypeValue) {
-    if (!contentTypeValue) return;
-
-    var urlWrapper = document.querySelector('#edit-field-url-wrapper');
-    
-    if (!urlWrapper) return;
-
-    // Use settings from PHP, with fallback defaults
-    var urlContentTypes = storedSettings && storedSettings.urlContentTypes 
-      ? storedSettings.urlContentTypes 
-      : [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50];
-
-    if (urlContentTypes.indexOf(Number(contentTypeValue)) !== -1) {
-      urlWrapper.style.display = 'block';
-    } else {
-      urlWrapper.style.display = 'none';
+    if (helpLink) {
+      helpLink.style.display = 'none';
     }
-  }
-
-  /**
-   * Hide/show published field wrapper based on content type.
-   * @param {string|number} contentTypeValue - The content type value
-   */
-  function hidePublished(contentTypeValue) {
-    if (!contentTypeValue) return;
-
-    var publishedWrapper = document.querySelector('#edit-field-published-wrapper');
-    
-    if (!publishedWrapper) return;
-
-    // Use settings from PHP, with fallback defaults
-    var publishedContentTypes = storedSettings && storedSettings.publishedContentTypes 
-      ? storedSettings.publishedContentTypes 
-      : [3, 5, 12];
-
-    if (publishedContentTypes.indexOf(Number(contentTypeValue)) !== -1) {
-      publishedWrapper.style.display = 'block';
-    } else {
-      publishedWrapper.style.display = 'none';
-    }
-  }
+  };
 
   /**
    * Hide/show date field wrappers based on content type.
+   * 
    * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} settings - Bioland settings from PHP
    */
-  function hideDates(contentTypeValue) {
+  const hideDates = function(contentTypeValue, settings) {
     if (!contentTypeValue) return;
 
-    var startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
-    var endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
+    const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
+    const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
     
-    // Use settings from PHP, with fallback defaults
-    var dateRangeContentTypes = storedSettings && storedSettings.dateRangeContentTypes 
-      ? storedSettings.dateRangeContentTypes 
-      : [2, 3, 13];
-    var shouldShowDates = dateRangeContentTypes.indexOf(Number(contentTypeValue)) !== -1;
+    const dateRangeContentTypes = settings?.dateRangeContentTypes || [2, 3, 13];
+    const shouldShowDates = dateRangeContentTypes.includes(Number(contentTypeValue));
 
     if (startDateWrapper) {
       startDateWrapper.style.display = shouldShowDates ? 'block' : 'none';
@@ -160,120 +62,190 @@
     if (endDateWrapper) {
       endDateWrapper.style.display = shouldShowDates ? 'block' : 'none';
     }
-  }
+  };
 
   /**
-   * Hide text format elements from the body field.
-   */
-  function hideTextFormat() {
-    var label = document.querySelector('label[for="edit-body-0-format--2"]');
-    var helpLink = document.querySelector('#edit-body-0-format-help-about');
-
-    if (label) {
-      label.style.display = 'none';
-    }
-    if (helpLink) {
-      helpLink.style.display = 'none';
-    }
-  }
-
-  /**
-   * Get the content type field element and its current value.
+   * Hide/show URL field wrapper based on content type.
    * 
-   * @returns {Object|null} Object with element and value properties, or null if not found
+   * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} settings - Bioland settings from PHP
    */
-  function getContentTypeField() {
-    var typePlacementInputEl = document.querySelector('#edit-field-type-placement');
+  const hideUrl = function(contentTypeValue, settings) {
+    if (!contentTypeValue) return;
 
-    if (!typePlacementInputEl) return null;
+    const urlWrapper = document.querySelector('#edit-field-url-wrapper');
+    
+    if (!urlWrapper) return;
 
-    return {
-      element: typePlacementInputEl,
-      value: typePlacementInputEl.value
-    };
-  }
+    const urlContentTypes = settings?.urlContentTypes || [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50];
+
+    if (urlContentTypes.includes(Number(contentTypeValue))) {
+      urlWrapper.style.display = 'block';
+    } else {
+      urlWrapper.style.display = 'none';
+    }
+  };
+
+  /**
+   * Hide/show published field wrapper based on content type.
+   * 
+   * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} settings - Bioland settings from PHP
+   */
+  const hidePublished = function(contentTypeValue, settings) {
+    if (!contentTypeValue) return;
+
+    const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
+    
+    if (!publishedWrapper) return;
+
+    const publishedContentTypes = settings?.publishedContentTypes || [3, 5, 12];
+
+    if (publishedContentTypes.includes(Number(contentTypeValue))) {
+      publishedWrapper.style.display = 'block';
+    } else {
+      publishedWrapper.style.display = 'none';
+    }
+  };
+
+  /**
+   * Main function to hide/show fields based on content type.
+   * 
+   * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} settings - Bioland settings from PHP
+   */
+  const hideFields = function(contentTypeValue, settings) {
+    if (!contentTypeValue) return;
+
+    hideDates(contentTypeValue, settings);
+    hideUrl(contentTypeValue, settings);
+    hidePublished(contentTypeValue, settings);
+  };
+
+  /**
+   * Apply field visibility based on content type.
+   *
+   * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} settings - Bioland settings from PHP
+   */
+  const applyFieldVisibility = function(contentTypeValue, settings) {
+    if (!contentTypeValue) return;
+
+    hideFields(contentTypeValue, settings);
+  };
+
+  /**
+   * Handle content type field changes by updating field visibility.
+   * 
+   * @param {Element} fieldElement - The content type field element
+   * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
+   */
+  const handleContentTypeChange = function(fieldElement, settings, logger) {
+    const updatedValue = fieldElement ? fieldElement.value : null;
+    const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandLastValue : null;
+    
+    logger.log('Visibility handleContentTypeChange called');
+    logger.log('Visibility previous value:', lastValue);
+    logger.log('Visibility new value:', updatedValue);
+    
+    if (!updatedValue) {
+      logger.log('No updated value found');
+      return;
+    }
+
+    if (lastValue === updatedValue) {
+      logger.log('Content type value unchanged, skipping');
+      return;
+    }
+
+    fieldElement.dataset.biolandLastValue = updatedValue;
+
+    logger.log('Content type changed, updating field visibility:', updatedValue);
+    applyFieldVisibility(updatedValue, settings);
+  };
 
   /**
    * Set up event listeners for content type field changes.
    * 
    * @param {Element} context - The context element
+   * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  function setupContentTypeListeners(context) {
-    var contentTypeField = getContentTypeField();
+  const setupContentTypeListeners = function(context, settings, logger) {
+    const contentTypeField = getContentTypeField();
     
     if (!contentTypeField) return;
 
-    var fieldElement = document.querySelector('#edit-field-type-placement');
+    const fieldElement = contentTypeField.element;
     if (!fieldElement) return;
 
-    // Check if already initialized
     if (fieldElement.dataset.biolandFieldVisibilityInit) {
       return;
     }
 
-    // Mark as initialized
     fieldElement.dataset.biolandFieldVisibilityInit = 'true';
 
     fieldElement.addEventListener('change', function() {
-      handleContentTypeChange();
+      handleContentTypeChange(this, settings, logger);
     });
 
     fieldElement.addEventListener('keydown', function() {
+      const element = this;
       setTimeout(function() {
-        handleContentTypeChange();
+        handleContentTypeChange(element, settings, logger);
       }, 100);
     });
 
     fieldElement.addEventListener('mouseout', function() {
-      handleContentTypeChange();
+      handleContentTypeChange(this, settings, logger);
     });
-  }
+  };
 
   /**
-   * Handle content type field changes by updating field visibility.
+   * Initialize field visibility functionality.
+   *
+   * @param {Element} context - The context element
+   * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  function handleContentTypeChange() {
-    var updatedField = getContentTypeField();
-    var updatedValue = updatedField ? updatedField.value : null;
+  const initializeFieldVisibility = function(context, settings, logger) {
+    logger.log('Initializing field visibility');
     
-    logger().log('Visibility handleContentTypeChange called');
-    logger().log('Visibility previous value:', lastContentTypeValue);
-    logger().log('Visibility new value:', updatedValue);
+    const contentTypeField = getContentTypeField();
+    const contentTypeValue = contentTypeField ? contentTypeField.value : null;
     
-    if (!updatedValue) {
-      logger().log('No updated value found');
+    if (!contentTypeValue) {
+      logger.log('No content type field found for visibility');
       return;
     }
 
-    // Check if value actually changed
-    if (lastContentTypeValue === updatedValue) {
-      logger().log('Content type value unchanged, skipping');
-      return;
+    logger.log('Applying field visibility for content type:', contentTypeValue);
+
+    const fieldElement = contentTypeField ? contentTypeField.element : null;
+    if (fieldElement) {
+      fieldElement.dataset.biolandLastValue = contentTypeValue;
     }
 
-    // Update the stored value
-    lastContentTypeValue = updatedValue;
-
-    logger().log('Content type changed, updating field visibility:', updatedValue);
-    applyFieldVisibility(updatedValue);
-  }
+    applyFieldVisibility(contentTypeValue, settings);
+    hideTextFormat();
+    setupContentTypeListeners(context, settings, logger);
+  };
 
   /**
    * Drupal behavior for Bioland field visibility.
    */
   Drupal.behaviors.biolandFieldVisibility = {
     attach: function(context, settings) {
-      // Get settings from Drupal
-      var biolandSettings = settings.bioland || {};
+      const biolandSettings = settings.bioland || {};
+      const logger = window.biolandGetLogger('fieldVisibility', biolandSettings);
       
-      // Only proceed if field visibility is enabled
       if (biolandSettings.enableFieldVisibility === false) {
         return;
       }
 
-      // Initialize field visibility functionality
-      initializeFieldVisibility(context, biolandSettings);
+      initializeFieldVisibility(context, biolandSettings, logger);
     }
   };
 
-})(Drupal, window);
+})(Drupal, window, document);
