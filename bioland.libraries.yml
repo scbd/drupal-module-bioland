@@ -1,26 +1,37 @@
+debug_logger:
+  js:
+    js/bioland.debug-logger.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+
 field_visibility:
   js:
     js/bioland.field-visibility.js: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger
 
 additional_fields:
   js:
     js/bioland.additional-fields.js: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger
 
 auto_summary:
   js:
     js/bioland.auto-summary.js: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger
 
 help_comments:
   js:
     js/bioland.help-comments.js: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger
 
 comprehensive_fields:
   js:
@@ -29,6 +40,7 @@ comprehensive_fields:
     js/bioland.auto-summary.js: {}
   dependencies:
     - core/drupal
+    - bioland/debug_logger
 
 admin:
   css:

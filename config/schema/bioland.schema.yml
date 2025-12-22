@@ -79,6 +79,25 @@ bioland.settings:
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'
+    enable_debug_logging:
+      type: boolean
+      label: 'Enable debug logging'
+    debug_log_areas:
+      type: mapping
+      label: 'Debug log areas'
+      mapping:
+        field_visibility:
+          type: boolean
+          label: 'Log field visibility'
+        additional_fields:
+          type: boolean
+          label: 'Log additional fields'
+        auto_summary:
+          type: boolean
+          label: 'Log auto summary'
+        help_comments:
+          type: boolean
+          label: 'Log help comments'
     translation:
       type: mapping
       label: 'Translation settings'

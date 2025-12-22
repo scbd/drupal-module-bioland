@@ -72,6 +72,15 @@ class BiolandFieldFunctionalityManager {
       ];
     }
 
+    // Build debug logging settings
+    $enableDebugLogging = $c->get('enable_debug_logging') ?: FALSE;
+    $debugLogAreas = [
+      'fieldVisibility' => $enableDebugLogging && ($c->get('debug_log_areas.field_visibility') !== FALSE),
+      'additionalFields' => $enableDebugLogging && ($c->get('debug_log_areas.additional_fields') !== FALSE),
+      'autoSummary' => $enableDebugLogging && ($c->get('debug_log_areas.auto_summary') !== FALSE),
+      'helpComments' => $enableDebugLogging && ($c->get('debug_log_areas.help_comments') !== FALSE),
+    ];
+
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
@@ -82,6 +91,8 @@ class BiolandFieldFunctionalityManager {
       'publishedContentTypes' => $published_content_types,
       'dateRangeContentTypes' => $date_range_content_types,
       'helpComments' => $helpComments,
+      'enableDebugLogging' => $enableDebugLogging,
+      'debugLogAreas' => $debugLogAreas,
     ];
   }
 

@@ -15,6 +15,11 @@ let lastContentTypeValue = null;
 let storedSettings = {};
 
 /**
+ * Logger shortcut for this module
+ */
+const logger = () => window.BiolandLogger?.fieldVisibility || { log: () => {}, warn: () => {}, error: () => {} };
+
+/**
  * Drupal behavior for Bioland field visibility.
  */
 Drupal.behaviors.biolandFieldVisibility = {
@@ -39,18 +44,18 @@ Drupal.behaviors.biolandFieldVisibility = {
  * @param {Object} settings - Bioland settings from PHP
  */
 function initializeFieldVisibility(context, settings) {
-  console.log('Bioland: Initializing field visibility');
+  logger().log('Initializing field visibility');
   
   // Get the content type field
   const contentTypeField = getContentTypeField();
   const contentTypeValue = contentTypeField?.value;
   
   if (!contentTypeValue) {
-    console.log('Bioland: No content type field found for visibility');
+    logger().log('No content type field found for visibility');
     return;
   }
 
-  console.log('Bioland: Applying field visibility for content type:', contentTypeValue);
+  logger().log('Applying field visibility for content type:', contentTypeValue);
 
   // Store the initial value
   lastContentTypeValue = contentTypeValue;
@@ -230,24 +235,24 @@ function handleContentTypeChange() {
   const updatedField = getContentTypeField();
   const updatedValue = updatedField?.value;
   
-  console.log('Bioland: Visibility handleContentTypeChange called');
-  console.log('Bioland: Visibility previous value:', lastContentTypeValue);
-  console.log('Bioland: Visibility new value:', updatedValue);
+  logger().log('Visibility handleContentTypeChange called');
+  logger().log('Visibility previous value:', lastContentTypeValue);
+  logger().log('Visibility new value:', updatedValue);
   
   if (!updatedValue) {
-    console.log('Bioland: No updated value found');
+    logger().log('No updated value found');
     return;
   }
 
   // Check if value actually changed
   if (lastContentTypeValue === updatedValue) {
-    console.log('Bioland: Content type value unchanged, skipping');
+    logger().log('Content type value unchanged, skipping');
     return;
   }
 
   // Update the stored value
   lastContentTypeValue = updatedValue;
 
-  console.log('Bioland: Content type changed, updating field visibility:', updatedValue);
+  logger().log('Content type changed, updating field visibility:', updatedValue);
   applyFieldVisibility(updatedValue);
 }

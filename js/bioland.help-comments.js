@@ -5,6 +5,11 @@
  */
 
 /**
+ * Logger shortcut for this module
+ */
+const logger = () => window.BiolandLogger?.helpComments || { log: () => {}, warn: () => {}, error: () => {} };
+
+/**
  * Get cookie value by name.
  *
  * @param {string} name - Cookie name
@@ -64,7 +69,7 @@ function addCloseButton(helpMessage, cookieName, infoIcon) {
     if (infoIcon) {
       infoIcon.style.display = 'inline';
     }
-    console.log('Bioland: Help comment hidden and saved to cookie');
+    logger().log('Help comment hidden and saved to cookie');
   });
 
   // Make help message position relative for absolute positioning of close button
@@ -84,7 +89,7 @@ function addBodyFieldHelp(helpCommentsSettings) {
   const bodyLabel = document.querySelector('label[for="edit-body-0-value"]');
 
   if (!bodyLabel) {
-    console.log('Bioland: Body field label not found for help comment');
+    logger().log('Body field label not found for help comment');
     return;
   }
 
@@ -122,7 +127,7 @@ function addBodyFieldHelp(helpCommentsSettings) {
   if (getCookie(cookieName) === 'hidden') {
     helpMessage.style.display = 'none';
     infoIcon.style.display = 'inline';
-    console.log('Bioland: Body field help comment is hidden by user preference');
+    logger().log('Body field help comment is hidden by user preference');
   } else {
     infoIcon.style.display = 'none';
   }
@@ -140,16 +145,16 @@ function addBodyFieldHelp(helpCommentsSettings) {
       helpMessage.style.display = 'block';
       infoIcon.style.display = 'none';
       setCookie(cookieName, 'visible', 365);
-      console.log('Bioland: Body field help comment shown');
+      logger().log('Body field help comment shown');
     } else {
       helpMessage.style.display = 'none';
       infoIcon.style.display = 'inline';
       setCookie(cookieName, 'hidden', 365);
-      console.log('Bioland: Body field help comment hidden');
+      logger().log('Body field help comment hidden');
     }
   });
 
-  console.log('Bioland: Body field help comment added');
+  logger().log('Body field help comment added');
 }
 
 /**
@@ -162,7 +167,7 @@ function addAttachmentsFieldHelp(helpCommentsSettings) {
   const attachmentsWrapper = document.querySelector('#field_attachments-media-library-wrapper');
 
   if (!attachmentsWrapper) {
-    console.log('Bioland: Attachments field wrapper not found for help comment');
+    logger().log('Attachments field wrapper not found for help comment');
     return;
   }
 
@@ -170,7 +175,7 @@ function addAttachmentsFieldHelp(helpCommentsSettings) {
   const legend = attachmentsWrapper.querySelector('legend');
 
   if (!legend) {
-    console.log('Bioland: Attachments legend not found for help comment');
+    logger().log('Attachments legend not found for help comment');
     return;
   }
 
@@ -225,7 +230,7 @@ function addAttachmentsFieldHelp(helpCommentsSettings) {
   if (getCookie(cookieName) === 'hidden') {
     helpMessage.style.display = 'none';
     infoIcon.style.display = 'inline';
-    console.log('Bioland: Attachments field help comment is hidden by user preference');
+    logger().log('Attachments field help comment is hidden by user preference');
   } else {
     infoIcon.style.display = 'none';
   }
@@ -243,16 +248,16 @@ function addAttachmentsFieldHelp(helpCommentsSettings) {
       helpMessage.style.display = 'block';
       infoIcon.style.display = 'none';
       setCookie(cookieName, 'visible', 365);
-      console.log('Bioland: Attachments field help comment shown');
+      logger().log('Attachments field help comment shown');
     } else {
       helpMessage.style.display = 'none';
       infoIcon.style.display = 'inline';
       setCookie(cookieName, 'hidden', 365);
-      console.log('Bioland: Attachments field help comment hidden');
+      logger().log('Attachments field help comment hidden');
     }
   });
 
-  console.log('Bioland: Attachments field help comment added');
+  logger().log('Attachments field help comment added');
 }
 
 /**
@@ -265,7 +270,7 @@ function addPromotionOptionsHelp(helpCommentsSettings) {
   const promoteWrapper = document.querySelector('[data-drupal-selector=\"edit-promote-wrapper\"]');
 
   if (!promoteWrapper) {
-    console.log('Bioland: Promote field wrapper not found for help comment');
+    logger().log('Promote field wrapper not found for help comment');
     return;
   }
 
@@ -315,7 +320,7 @@ function addPromotionOptionsHelp(helpCommentsSettings) {
   if (getCookie(cookieName) === 'hidden') {
     helpMessage.style.display = 'none';
     infoIcon.style.display = 'inline';
-    console.log('Bioland: Promotion options help comment is hidden by user preference');
+    logger().log('Promotion options help comment is hidden by user preference');
   } else {
     infoIcon.style.display = 'none';
   }
@@ -340,16 +345,16 @@ function addPromotionOptionsHelp(helpCommentsSettings) {
       helpMessage.style.display = 'block';
       infoIcon.style.display = 'none';
       setCookie(cookieName, 'visible', 365);
-      console.log('Bioland: Promotion options help comment shown');
+      logger().log('Promotion options help comment shown');
     } else {
       helpMessage.style.display = 'none';
       infoIcon.style.display = 'inline';
       setCookie(cookieName, 'hidden', 365);
-      console.log('Bioland: Promotion options help comment hidden');
+      logger().log('Promotion options help comment hidden');
     }
   });
 
-  console.log('Bioland: Promotion options help comment added');
+  logger().log('Promotion options help comment added');
 }
 
 /**
@@ -359,13 +364,13 @@ function addPromotionOptionsHelp(helpCommentsSettings) {
  * @param {Object} settings - Bioland settings from PHP
  */
 function initializeHelpComments(context, settings) {
-  console.log('Bioland: Initializing help comments');
+  logger().log('Initializing help comments');
 
   // Prevent duplicate initialization using data attribute
   // Check for both create form and edit form
   const form = document.querySelector('form.node-content-form, form.node-content-edit-form');
   if (!form) {
-    console.log('Bioland: Content form not found for help comments');
+    logger().log('Content form not found for help comments');
     return;
   }
 

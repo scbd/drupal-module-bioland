@@ -577,6 +577,60 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
         '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
       ];
+
+      // Debug Logging settings
+      $form['admin_settings']['debug_logging'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Debug Logging'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['admin_settings']['debug_logging']['enable_debug_logging'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Debug Logging'),
+        '#description' => $this->t('Enable console.log output for Bioland JavaScript features. Useful for debugging.'),
+        '#default_value' => $config->get('enable_debug_logging') ?: FALSE,
+      ];
+
+      $form['admin_settings']['debug_logging']['debug_log_areas'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Debug Log Areas'),
+        '#description' => $this->t('Select which areas should output debug logs. Only effective when Debug Logging is enabled.'),
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_debug_logging"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['admin_settings']['debug_logging']['debug_log_areas']['debug_log_field_visibility'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Field Visibility'),
+        '#description' => $this->t('Log field visibility show/hide operations.'),
+        '#default_value' => $config->get('debug_log_areas.field_visibility') !== FALSE,
+      ];
+
+      $form['admin_settings']['debug_logging']['debug_log_areas']['debug_log_additional_fields'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Additional Fields'),
+        '#description' => $this->t('Log additional fields mounting and content type changes.'),
+        '#default_value' => $config->get('debug_log_areas.additional_fields') !== FALSE,
+      ];
+
+      $form['admin_settings']['debug_logging']['debug_log_areas']['debug_log_auto_summary'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Auto Summary'),
+        '#description' => $this->t('Log auto summary generation and CKEditor connections.'),
+        '#default_value' => $config->get('debug_log_areas.auto_summary') !== FALSE,
+      ];
+
+      $form['admin_settings']['debug_logging']['debug_log_areas']['debug_log_help_comments'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Help Comments'),
+        '#description' => $this->t('Log help comment insertion and visibility changes.'),
+        '#default_value' => $config->get('debug_log_areas.help_comments') !== FALSE,
+      ];
     }
 
     if ($section === 'translation') {
@@ -852,7 +906,12 @@ class BiolandSettingsForm extends ConfigFormBase {
     if ($section === 'admin') {
       $config
         ->set('enable_auto_summary', $values['enable_auto_summary'])
-        ->set('is_biosafety_land', $values['is_biosafety_land']);
+        ->set('is_biosafety_land', $values['is_biosafety_land'])
+        ->set('enable_debug_logging', $values['enable_debug_logging'])
+        ->set('debug_log_areas.field_visibility', $values['debug_log_field_visibility'])
+        ->set('debug_log_areas.additional_fields', $values['debug_log_additional_fields'])
+        ->set('debug_log_areas.auto_summary', $values['debug_log_auto_summary'])
+        ->set('debug_log_areas.help_comments', $values['debug_log_help_comments']);
     }
 
     if ($section === 'translation') {

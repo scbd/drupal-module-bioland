@@ -11,6 +11,11 @@
 let contentEditableTimeout = null;
 
 /**
+ * Logger shortcut for this module
+ */
+const logger = () => window.BiolandLogger?.autoSummary || { log: () => {}, warn: () => {}, error: () => {} };
+
+/**
  * Drupal behavior for Bioland auto summary.
  */
 Drupal.behaviors.biolandAutoSummary = {
@@ -20,11 +25,11 @@ Drupal.behaviors.biolandAutoSummary = {
     
     // Only proceed if auto summary is enabled
     if (biolandSettings.enableAutoSummary === false) {
-      console.log('Bioland: Auto summary is disabled in settings');
+      logger().log('Auto summary is disabled in settings');
       return;
     }
 
-    console.log('Bioland: Auto summary enabled, initializing...');
+    logger().log('Auto summary enabled, initializing...');
     
     // Initialize auto summary functionality
     initializeAutoSummary(context, biolandSettings);
@@ -41,18 +46,18 @@ function initializeAutoSummary(context, settings) {
   const summaryField = getSummaryField(context);
   
   if (!summaryField) {
-    console.log('Bioland: Summary field not found, cannot enable auto-summary');
+    logger().log('Summary field not found, cannot enable auto-summary');
     return;
   }
 
   // Prevent duplicate initialization
   if (summaryField.dataset.biolandAutoSummaryInit) {
-    console.log('Bioland: Auto summary already initialized');
+    logger().log('Auto summary already initialized');
     return;
   }
   summaryField.dataset.biolandAutoSummaryInit = 'true';
 
-  console.log('Bioland: Summary field found, setting up auto-summary');
+  logger().log('Summary field found, setting up auto-summary');
 
   // Initialize user edit tracking on the field itself
   if (!summaryField.dataset.biolandUserEdited) {
@@ -65,18 +70,18 @@ function initializeAutoSummary(context, settings) {
   // Try to detect and setup the editor
   // Priority: CKEditor 4 > CKEditor 5 > Contenteditable Fallback > Plain Textarea
   if (typeof CKEDITOR !== 'undefined') {
-    console.log('Bioland: CKEditor 4 detected, attempting to connect...');
+    logger().log('CKEditor 4 detected, attempting to connect...');
     setupCKEditor4(summaryField, context);
   } else if (typeof Drupal.CKEditor5Instances !== 'undefined') {
-    console.log('Bioland: CKEditor 5 detected, attempting to connect...');
+    logger().log('CKEditor 5 detected, attempting to connect...');
     setupCKEditor5(summaryField, context);
   } else if (document.querySelector('.ck-editor__editable[contenteditable="true"]')) {
-    console.log('Bioland: CKEditor detected via contenteditable div, using direct monitor...');
+    logger().log('CKEditor detected via contenteditable div, using direct monitor...');
     if (!setupContentEditableMonitor(summaryField, context)) {
       setupPlainTextarea(summaryField, context);
     }
   } else {
-    console.log('Bioland: No CKEditor detected, using plain textarea');
+    logger().log('No CKEditor detected, using plain textarea');
     setupPlainTextarea(summaryField, context);
   }
 }
@@ -97,7 +102,7 @@ function getSummaryField(context) {
   for (const selector of selectors) {
     const field = document.querySelector(selector);
     if (field) {
-      console.log('Bioland: Found summary field with selector:', selector);
+      logger().log('Found summary field with selector:', selector);
       return field;
     }
   }
@@ -118,12 +123,12 @@ function setupSummaryFieldListener(summaryField) {
 
   // Detect manual edits using native event listeners
   summaryField.addEventListener('input', () => {
-    console.log('Bioland: User manually edited summary, disabling auto-summary');
+    logger().log('User manually edited summary, disabling auto-summary');
     summaryField.dataset.biolandUserEdited = 'true';
   });
 
   summaryField.addEventListener('keyup', () => {
-    console.log('Bioland: User manually edited summary, disabling auto-summary');
+    logger().log('User manually edited summary, disabling auto-summary');
     summaryField.dataset.biolandUserEdited = 'true';
   });
 }
@@ -161,7 +166,7 @@ function setupCKEditor4(summaryField, context) {
 
     if (editorInstance) {
       clearInterval(checkEditor);
-      console.log('Bioland: CKEditor 4 instance found:', foundName);
+      logger().log('CKEditor 4 instance found:', foundName);
 
       // Listen for content changes
       editorInstance.on('change', function() {
@@ -187,10 +192,10 @@ function setupCKEditor4(summaryField, context) {
         updateSummaryFromHtml(initialContent, summaryField);
       }
 
-      console.log('Bioland: CKEditor 4 auto-summary fully initialized');
+      logger().log('CKEditor 4 auto-summary fully initialized');
     } else if (attempts >= maxAttempts) {
       clearInterval(checkEditor);
-      console.warn('Bioland: CKEditor 4 instance not found after', attempts, 'attempts, falling back to textarea');
+      logger().warn('CKEditor 4 instance not found after', attempts, 'attempts, falling back to textarea');
       setupPlainTextarea(summaryField, context);
     }
   }, 100);
@@ -224,39 +229,39 @@ function setupCKEditor5(summaryField, context) {
       bodyField = document.querySelector(selector);
       if (bodyField) {
         bodyFieldId = bodyField.getAttribute('id');
-        console.log('Bioland: Found body field element with selector:', selector, 'ID:', bodyFieldId);
+        logger().log('Found body field element with selector:', selector, 'ID:', bodyFieldId);
         if (bodyFieldId) break;
       }
     }
 
     // Also check if instances exist and log available instances for debugging
     if (instances) {
-      console.log('Bioland: CKEditor5Instances available, size:', instances.size);
+      logger().log('CKEditor5Instances available, size:', instances.size);
       if (attempts === 1 && instances.size > 0) {
         // Log available instance IDs on first attempt
         const instanceIds = Array.from(instances.keys());
-        console.log('Bioland: Available CKEditor 5 instance IDs:', instanceIds);
+        logger().log('Available CKEditor 5 instance IDs:', instanceIds);
       }
     } else {
-      console.log('Bioland: Drupal.CKEditor5Instances is not available');
+      logger().log('Drupal.CKEditor5Instances is not available');
     }
 
     // Try to find the editor instance - first by exact ID, then by iterating all instances
     let editorInstance = null;
     if (bodyFieldId && instances && instances.has(bodyFieldId)) {
       editorInstance = instances.get(bodyFieldId);
-      console.log('Bioland: Found CKEditor 5 instance by exact ID match');
+      logger().log('Found CKEditor 5 instance by exact ID match');
     } else if (instances && instances.size > 0) {
       // Try to find it by checking all instances
       for (const [key, instance] of instances.entries()) {
-        console.log('Bioland: Checking instance with key:', key);
+        logger().log('Checking instance with key:', key);
         // Check if this instance's source element matches our body field
         if (instance.sourceElement && bodyField) {
           if (instance.sourceElement === bodyField || 
               instance.sourceElement.id === bodyFieldId ||
               instance.sourceElement.getAttribute('data-drupal-selector') === bodyField.getAttribute('data-drupal-selector')) {
             editorInstance = instance;
-            console.log('Bioland: Found CKEditor 5 instance by matching source element with key:', key);
+            logger().log('Found CKEditor 5 instance by matching source element with key:', key);
             break;
           }
         }
@@ -265,7 +270,7 @@ function setupCKEditor5(summaryField, context) {
 
     if (editorInstance) {
       clearInterval(checkEditor);
-      console.log('Bioland: CKEditor 5 instance connected successfully');
+      logger().log('CKEditor 5 instance connected successfully');
 
       // Listen for content changes
       editorInstance.model.document.on('change:data', function() {
@@ -280,18 +285,18 @@ function setupCKEditor5(summaryField, context) {
         updateSummaryFromHtml(initialContent, summaryField);
       }
 
-      console.log('Bioland: CKEditor 5 auto-summary fully initialized');
+      logger().log('CKEditor 5 auto-summary fully initialized');
     } else if (attempts >= maxAttempts) {
       clearInterval(checkEditor);
-      console.warn('Bioland: CKEditor 5 instance not found after', attempts, 'attempts');
-      console.warn('Bioland: bodyFieldId:', bodyFieldId, 'instances:', instances);
+      logger().warn('CKEditor 5 instance not found after', attempts, 'attempts');
+      logger().warn('bodyFieldId:', bodyFieldId, 'instances:', instances);
       
       // Try to find the contenteditable div as a fallback
-      console.log('Bioland: Attempting contenteditable div fallback...');
+      logger().log('Attempting contenteditable div fallback...');
       if (setupContentEditableMonitor(summaryField, context)) {
-        console.log('Bioland: Contenteditable monitor setup successful');
+        logger().log('Contenteditable monitor setup successful');
       } else {
-        console.warn('Bioland: Contenteditable monitor failed, falling back to textarea');
+        logger().warn('Contenteditable monitor failed, falling back to textarea');
         setupPlainTextarea(summaryField, context);
       }
     }
@@ -309,18 +314,18 @@ function setupContentEditableMonitor(summaryField, context) {
   const editableDiv = document.querySelector('.ck-editor__editable[contenteditable="true"]');
   
   if (!editableDiv) {
-    console.warn('Bioland: Contenteditable div not found');
+    logger().warn('Contenteditable div not found');
     return false;
   }
 
   // Prevent duplicate initialization
   if (editableDiv.dataset.biolandAutoSummaryInit) {
-    console.log('Bioland: Contenteditable monitor already initialized');
+    logger().log('Contenteditable monitor already initialized');
     return true;
   }
   editableDiv.dataset.biolandAutoSummaryInit = 'true';
 
-  console.log('Bioland: Found contenteditable div, setting up monitor');
+  logger().log('Found contenteditable div, setting up monitor');
 
   // Use MutationObserver to watch for content changes
   const observer = new MutationObserver(function(mutations) {
@@ -359,7 +364,7 @@ function setupContentEditableMonitor(summaryField, context) {
     updateSummaryFromHtml(initialContent, summaryField);
   }
 
-  console.log('Bioland: Contenteditable monitor fully initialized');
+  logger().log('Contenteditable monitor fully initialized');
   return true;
 }
 
@@ -379,24 +384,24 @@ function setupPlainTextarea(summaryField, context) {
   for (const selector of bodySelectors) {
     bodyField = document.querySelector(selector);
     if (bodyField) {
-      console.log('Bioland: Found body textarea with selector:', selector);
+      logger().log('Found body textarea with selector:', selector);
       break;
     }
   }
 
   if (!bodyField) {
-    console.warn('Bioland: Body field not found, cannot enable auto-summary');
+    logger().warn('Body field not found, cannot enable auto-summary');
     return;
   }
 
   // Prevent duplicate event binding
   if (bodyField.dataset.biolandAutoSummaryBodyInit) {
-    console.log('Bioland: Textarea listeners already attached');
+    logger().log('Textarea listeners already attached');
     return;
   }
   bodyField.dataset.biolandAutoSummaryBodyInit = 'true';
 
-  console.log('Bioland: Setting up textarea auto-summary');
+  logger().log('Setting up textarea auto-summary');
 
   // Listen for input with debouncing using native event listeners
   let inputTimeout;
@@ -416,7 +421,7 @@ function setupPlainTextarea(summaryField, context) {
     updateSummaryFromHtml(bodyField.value, summaryField);
   }
 
-  console.log('Bioland: Plain textarea auto-summary fully initialized');
+  logger().log('Plain textarea auto-summary fully initialized');
 }
 
 /**
@@ -427,7 +432,7 @@ function setupPlainTextarea(summaryField, context) {
 function updateSummaryFromHtml(bodyHtml, summaryField) {
   // Check if user has edited the summary
   if (!bodyHtml || summaryField.dataset.biolandUserEdited === 'true') {
-    console.log('Bioland: Skipping update - bodyHtml empty or user edited');
+    logger().log('Skipping update - bodyHtml empty or user edited');
     return;
   }
 
@@ -438,24 +443,24 @@ function updateSummaryFromHtml(bodyHtml, summaryField) {
     const strippedText = stripHtml(bodyHtml);
     
     if (!strippedText) {
-      console.log('Bioland: No text content after stripping HTML');
+      logger().log('No text content after stripping HTML');
       return;
     }
     
-    console.log('Bioland: Stripped text length:', strippedText.length, 'First 100 chars:', strippedText.substring(0, 100));
+    logger().log('Stripped text length:', strippedText.length, 'First 100 chars:', strippedText.substring(0, 100));
     
     const newSummary = smartTruncate(strippedText, 255, locale);
-    console.log('Bioland: New summary length:', newSummary.length, 'Content:', newSummary.substring(0, 100));
+    logger().log('New summary length:', newSummary.length, 'Content:', newSummary.substring(0, 100));
     
     // Only update if summary is empty or content has changed
     if (summaryField.value.trim() === '' || summaryField.value !== newSummary) {
       summaryField.value = newSummary;
-      console.log('Bioland: Auto-summary updated:', newSummary.substring(0, 50) + (newSummary.length > 50 ? '...' : ''));
+      logger().log('Auto-summary updated:', newSummary.substring(0, 50) + (newSummary.length > 50 ? '...' : ''));
     } else {
-      console.log('Bioland: Summary unchanged, skipping update');
+      logger().log('Summary unchanged, skipping update');
     }
   } catch (error) {
-    console.error('Bioland: Error updating summary from HTML:', error);
+    logger().error('Error updating summary from HTML:', error);
     // Don't fail silently - at least set a basic summary
     try {
       const basicText = stripHtml(bodyHtml);
@@ -463,7 +468,7 @@ function updateSummaryFromHtml(bodyHtml, summaryField) {
         summaryField.value = basicText.substring(0, 255).trim();
       }
     } catch (fallbackError) {
-      console.error('Bioland: Fallback summary generation also failed:', fallbackError);
+      logger().error('Fallback summary generation also failed:', fallbackError);
     }
   }
 }
@@ -492,7 +497,7 @@ function smartTruncate(texts, length = 512, locale = 'en') {
     
     // Fallback for browsers that don't support Intl.Segmenter
     if (typeof Intl === 'undefined' || typeof Intl.Segmenter === 'undefined') {
-      console.log('Bioland: Intl.Segmenter not available, using simple truncation');
+      logger().log('Intl.Segmenter not available, using simple truncation');
       return simpleSmartTruncate(workingText, length);
     }
 
@@ -517,13 +522,13 @@ function smartTruncate(texts, length = 512, locale = 'en') {
 
     return response.substring(0, lastIndexOf);
   } catch (error) {
-    console.warn('Bioland: smartTruncate error, falling back to simple truncation:', error);
+    logger().warn('smartTruncate error, falling back to simple truncation:', error);
     // More robust fallback - ensure we have text to work with
     try {
       const text = stripHtml(texts);
       return simpleSmartTruncate(text || '', length);
     } catch (fallbackError) {
-      console.error('Bioland: Even simple truncation failed:', fallbackError);
+      logger().error('Even simple truncation failed:', fallbackError);
       return texts ? texts.substring(0, length) : '';
     }
   }
@@ -564,7 +569,7 @@ function stripHtml(input) {
     const maxDirectParseLength = 100000; // 100KB limit for direct DOM parsing
     
     if (input.length > maxDirectParseLength) {
-      console.log('Bioland: Large HTML content detected (' + input.length + ' chars), using chunked processing');
+      logger().log('Large HTML content detected (' + input.length + ' chars), using chunked processing');
       
       // For very long content, use regex-based stripping first to reduce size
       // Remove script and style tags and their contents
@@ -602,7 +607,7 @@ function stripHtml(input) {
     
     return text;
   } catch (error) {
-    console.error('Bioland: Error in stripHtml:', error);
+    logger().error('Error in stripHtml:', error);
     
     // Ultra-safe fallback: just use regex to strip tags
     try {
@@ -610,7 +615,7 @@ function stripHtml(input) {
       text = text.replace(/\s+/g, ' ').trim();
       return text;
     } catch (fallbackError) {
-      console.error('Bioland: Even fallback stripHtml failed:', fallbackError);
+      logger().error('Even fallback stripHtml failed:', fallbackError);
       return '';
     }
   }

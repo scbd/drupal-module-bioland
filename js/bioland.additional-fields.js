@@ -26,6 +26,11 @@ const contentTypeAdditionalFields = {
 const contentTypesWithFields = [3, 5, 8, 9, 12];
 
 /**
+ * Logger shortcut for this module
+ */
+const logger = () => window.BiolandLogger?.additionalFields || { log: () => {}, warn: () => {}, error: () => {} };
+
+/**
  * Drupal behavior for Bioland additional fields.
  */
 Drupal.behaviors.biolandAdditionalFields = {
@@ -50,7 +55,7 @@ Drupal.behaviors.biolandAdditionalFields = {
  * @param {Object} settings - Bioland settings from PHP
  */
 function initializeAdditionalFields(context, settings) {
-  console.log('Bioland: Initializing additional fields');
+  logger().log('Initializing additional fields');
   
   // Always set up content type field change listeners first
   setupContentTypeListeners(context);
@@ -60,14 +65,14 @@ function initializeAdditionalFields(context, settings) {
   const contentTypeValue = contentTypeField?.value;
   
   if (!contentTypeValue) {
-    console.log('Bioland: No initial content type value found, checking again shortly...');
+    logger().log('No initial content type value found, checking again shortly...');
     // On edit forms, the value might not be available immediately
     // Check again after a brief delay
     setTimeout(function() {
       const deferredField = getContentTypeField();
       const deferredValue = deferredField?.value;
       if (deferredValue) {
-        console.log('Bioland: Deferred check found content type value:', deferredValue);
+        logger().log('Deferred check found content type value:', deferredValue);
         lastContentTypeValue = deferredValue;
         if (shouldMountAdditionalFields(deferredValue)) {
           mountAdditionalFields(deferredValue);
@@ -76,14 +81,14 @@ function initializeAdditionalFields(context, settings) {
     }, 100);
     // Don't return early - continue to set up listeners
   } else {
-    console.log('Bioland: Initial content type value:', contentTypeValue);
+    logger().log('Initial content type value:', contentTypeValue);
     
     // Store the initial value
     lastContentTypeValue = contentTypeValue;
 
     // Check if this content type should have additional fields
     if (!shouldMountAdditionalFields(contentTypeValue)) {
-      console.log('Bioland: No additional fields for content type:', contentTypeValue);
+      logger().log('No additional fields for content type:', contentTypeValue);
     } else {
       // Mount additional fields
       mountAdditionalFields(contentTypeValue);
@@ -100,7 +105,7 @@ function mountAdditionalFields(contentTypeValue) {
   // Find the wrapper element
   const wrapperEl = findAdditionalFieldsWrapper();
   if (!wrapperEl) {
-    console.warn('Bioland: Could not find wrapper element for additional fields');
+    logger().warn('Could not find wrapper element for additional fields');
     return;
   }
 
@@ -110,8 +115,8 @@ function mountAdditionalFields(contentTypeValue) {
   // Get field name
   const fieldName = getFieldName();
   
-  console.log('Bioland: Field name for Vue component:', fieldName);
-  console.log('Bioland: Full field name will be:', fieldName + '[0][value]');
+  logger().log('Field name for Vue component:', fieldName);
+  logger().log('Full field name will be:', fieldName + '[0][value]');
 
   // Mount the Vue app for additional fields
   const success = mountAdditionalFieldsVueApp({
@@ -122,9 +127,9 @@ function mountAdditionalFields(contentTypeValue) {
   });
 
   if (success) {
-    console.log('Bioland: Additional fields mounted successfully');
+    logger().log('Additional fields mounted successfully');
   } else {
-    console.warn('Bioland: Failed to mount additional fields');
+    logger().warn('Failed to mount additional fields');
   }
 }
 
@@ -180,19 +185,19 @@ function mountAdditionalFieldsVueApp({ contentTypeValue, wrapperEl, locale, name
   const domains = contentTypeAdditionalFields[contentTypeValue];
   if (!domains || !Array.isArray(domains) || domains.length === 0) return false;
 
-  console.log('Bioland: Field name suffix (passed to Vue):', name);
+  logger().log('Field name suffix (passed to Vue):', name);
   
   // The Vue component prepends "field_" to the name, so we need to do the same for the hidden field
   const actualFieldName = 'field_' + name;
   const fullFieldName = actualFieldName + '[0][value]';
   
-  console.log('Bioland: Actual full field name in DOM:', fullFieldName);
+  logger().log('Actual full field name in DOM:', fullFieldName);
 
   // Ensure the hidden field exists BEFORE creating the mount element
   let hiddenField = document.querySelector('input[name="' + fullFieldName + '"]');
   
-  console.log('Bioland: Looking for existing hidden field with name:', fullFieldName);
-  console.log('Bioland: Found existing hidden field:', hiddenField);
+  logger().log('Looking for existing hidden field with name:', fullFieldName);
+  logger().log('Found existing hidden field:', hiddenField);
   
   if (!hiddenField) {
     hiddenField = document.createElement('input');
@@ -200,9 +205,9 @@ function mountAdditionalFieldsVueApp({ contentTypeValue, wrapperEl, locale, name
     hiddenField.name = fullFieldName;
     hiddenField.value = '';
     wrapperEl.insertBefore(hiddenField, wrapperEl.firstChild);
-    console.log('Bioland: Created hidden field with name:', fullFieldName);
+    logger().log('Created hidden field with name:', fullFieldName);
   } else {
-    console.log('Bioland: Using existing hidden field with name:', fullFieldName);
+    logger().log('Using existing hidden field with name:', fullFieldName);
   }
 
   // Create the mount element
@@ -211,7 +216,7 @@ function mountAdditionalFieldsVueApp({ contentTypeValue, wrapperEl, locale, name
 
   // Check if Vue and the app are available
   if (typeof Vue === 'undefined' || typeof ScbdDrupalScbdFieldJs === 'undefined') {
-    console.warn('Bioland: Vue or ScbdDrupalScbdFieldJs is not available for additional fields');
+    logger().warn('Vue or ScbdDrupalScbdFieldJs is not available for additional fields');
     return false;
   }
 
@@ -219,11 +224,11 @@ function mountAdditionalFieldsVueApp({ contentTypeValue, wrapperEl, locale, name
     const { createApp } = Vue;
     const App = ScbdDrupalScbdFieldJs.default;
     
-    console.log('Bioland: Creating Vue app with props:');
-    console.log('  - name:', name);
-    console.log('  - locale:', locale);
-    console.log('  - domains:', domains);
-    console.log('  - isAdditionalField: true');
+    logger().log('Creating Vue app with props:');
+    logger().log('  - name:', name);
+    logger().log('  - locale:', locale);
+    logger().log('  - domains:', domains);
+    logger().log('  - isAdditionalField: true');
     
     const anApp = createApp(App, { 
       name, 
@@ -234,10 +239,10 @@ function mountAdditionalFieldsVueApp({ contentTypeValue, wrapperEl, locale, name
     });
 
     anApp.mount('#bl-additional-fields');
-    console.log('Bioland: Additional fields Vue app mounted successfully');
+    logger().log('Additional fields Vue app mounted successfully');
     return true;
   } catch (error) {
-    console.error('Bioland: Error mounting additional fields Vue app:', error);
+    logger().error('Error mounting additional fields Vue app:', error);
     return false;
   }
 }
@@ -257,7 +262,7 @@ function findAdditionalFieldsWrapper() {
   for (const selector of possibleWrappers) {
     const element = document.querySelector(selector);
     if (element) {
-      console.log('Bioland: Found wrapper element for additional fields:', selector);
+      logger().log('Found wrapper element for additional fields:', selector);
       return element;
     }
   }
@@ -265,7 +270,7 @@ function findAdditionalFieldsWrapper() {
   // Fallback: try to find any form wrapper
   const formWrapper = document.querySelector('.node-form, form[id*="node"]');
   if (formWrapper) {
-    console.log('Bioland: Using form wrapper as fallback for additional fields');
+    logger().log('Using form wrapper as fallback for additional fields');
     return formWrapper;
   }
 
@@ -284,13 +289,13 @@ function getFieldName() {
   // First, try to get it from the wrapper element ID
   const wrapper = findAdditionalFieldsWrapper();
   if (wrapper && wrapper.id) {
-    console.log('Bioland: Wrapper element ID:', wrapper.id);
+    logger().log('Wrapper element ID:', wrapper.id);
     // Extract field name from wrapper ID like "edit-field-tags-wrapper" -> "tags"
     // Note: We extract WITHOUT "field_" prefix since Vue component adds it
     const wrapperMatch = wrapper.id.match(/edit-field[_-]([a-zA-Z0-9_]+)-wrapper/);
     if (wrapperMatch) {
       const fieldName = wrapperMatch[1];
-      console.log('Bioland: Extracted field name suffix from wrapper:', fieldName);
+      logger().log('Extracted field name suffix from wrapper:', fieldName);
       return fieldName;
     }
   }
@@ -298,26 +303,26 @@ function getFieldName() {
   // Try to get base field name from existing thesaurus field
   const thesaurusField = document.querySelector('[class*="edit-scbd_field-thesaurus-additional"], [class*="edit-bioland-field-additional"]');
   
-  console.log('Bioland: Looking for thesaurus field...');
-  console.log('Bioland: Found thesaurus field:', thesaurusField);
+  logger().log('Looking for thesaurus field...');
+  logger().log('Found thesaurus field:', thesaurusField);
   
   if (thesaurusField && thesaurusField.name) {
-    console.log('Bioland: Thesaurus field name attribute:', thesaurusField.name);
+    logger().log('Thesaurus field name attribute:', thesaurusField.name);
     
     // Extract the suffix after "field_"
     // e.g., "field_tags[0][value2]" -> "tags"
     const match = thesaurusField.name.match(/field[_-]([a-zA-Z0-9_]+)/);
     
-    console.log('Bioland: Regex match result:', match);
+    logger().log('Regex match result:', match);
     
     if (match) {
       const baseName = match[1];
-      console.log('Bioland: Found thesaurus field suffix for additional fields:', baseName);
+      logger().log('Found thesaurus field suffix for additional fields:', baseName);
       return baseName;
     }
   }
   
-  console.log('Bioland: No field name found, using default');
+  logger().log('No field name found, using default');
   // Default fallback name WITHOUT "field_" prefix (Vue will add it)
   return 'bioland_additional';
 }
@@ -355,21 +360,21 @@ function setupContentTypeListeners(context) {
   const contentTypeField = getContentTypeField();
   
   if (!contentTypeField) {
-    console.log('Bioland: No content type field found for setting up listeners');
+    logger().log('No content type field found for setting up listeners');
     return;
   }
 
-  console.log('Bioland: Setting up content type listeners');
+  logger().log('Setting up content type listeners');
 
   const fieldElement = document.querySelector('#edit-field-type-placement');
   if (!fieldElement) {
-    console.warn('Bioland: Content type field element not found');
+    logger().warn('Content type field element not found');
     return;
   }
 
   // Check if already initialized
   if (fieldElement.dataset.biolandAdditionalFieldsInit) {
-    console.log('Bioland: Event listeners already attached');
+    logger().log('Event listeners already attached');
     return;
   }
 
@@ -377,23 +382,23 @@ function setupContentTypeListeners(context) {
   fieldElement.dataset.biolandAdditionalFieldsInit = 'true';
 
   fieldElement.addEventListener('change', () => {
-    console.log('Bioland: Change event fired on content type field');
+    logger().log('Change event fired on content type field');
     handleContentTypeChange();
   });
 
   fieldElement.addEventListener('keydown', () => {
-    console.log('Bioland: Keydown event fired on content type field');
+    logger().log('Keydown event fired on content type field');
     setTimeout(() => {
       handleContentTypeChange();
     }, 100);
   });
 
   fieldElement.addEventListener('mouseout', () => {
-    console.log('Bioland: Mouseout event fired on content type field');
+    logger().log('Mouseout event fired on content type field');
     handleContentTypeChange();
   });
 
-  console.log('Bioland: Event listeners attached successfully');
+  logger().log('Event listeners attached successfully');
 }
 
 /**
@@ -403,32 +408,32 @@ function handleContentTypeChange() {
   const updatedField = getContentTypeField();
   const updatedValue = updatedField?.value;
   
-  console.log('Bioland: handleContentTypeChange called');
-  console.log('Bioland: Previous value:', lastContentTypeValue);
-  console.log('Bioland: New value:', updatedValue);
+  logger().log('handleContentTypeChange called');
+  logger().log('Previous value:', lastContentTypeValue);
+  logger().log('New value:', updatedValue);
   
   if (!updatedValue) {
-    console.log('Bioland: No updated value found');
+    logger().log('No updated value found');
     return;
   }
 
   // Check if value actually changed (allow null -> value transition for edit forms)
   if (lastContentTypeValue !== null && lastContentTypeValue === updatedValue) {
-    console.log('Bioland: Content type value unchanged, skipping');
+    logger().log('Content type value unchanged, skipping');
     return;
   }
 
   // Update the stored value
   lastContentTypeValue = updatedValue;
 
-  console.log('Bioland: Content type changed, updating additional fields:', updatedValue);
+  logger().log('Content type changed, updating additional fields:', updatedValue);
   
   // Check if the new content type should have additional fields
   if (shouldMountAdditionalFields(updatedValue)) {
-    console.log('Bioland: New content type SHOULD have additional fields, mounting...');
+    logger().log('New content type SHOULD have additional fields, mounting...');
     mountAdditionalFields(updatedValue);
   } else {
-    console.log('Bioland: New content type should NOT have additional fields, removing if exists...');
+    logger().log('New content type should NOT have additional fields, removing if exists...');
     // Remove existing additional fields if they exist
     const existingEl = document.querySelector('#bl-additional-fields');
     if (existingEl) {
@@ -436,7 +441,7 @@ function handleContentTypeChange() {
         existingEl.__vue_app__.unmount();
       }
       existingEl.remove();
-      console.log('Bioland: Removed additional fields');
+      logger().log('Removed additional fields');
     }
   }
 }
