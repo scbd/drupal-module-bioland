@@ -7,6 +7,11 @@
 (function (Drupal) {
   'use strict';
 
+  // Prevent duplicate initialization if script is loaded multiple times
+  if (Drupal.behaviors.biolandFieldVisibility) {
+    return;
+  }
+
   /**
    * Track the last content type value to detect changes
    */
