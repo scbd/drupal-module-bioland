@@ -800,23 +800,23 @@ msgstr "Ουρντού"
 msgid "Vietnamese"
 msgstr "Βιετναμέζικα"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Αυτό θα είναι το κύριο περιεχόμενο του νέου περιεχομένου του ιστότοπού σας. Η περίληψη μπορεί να χρησιμοποιηθεί για να εμφανίσει μια σύντομη συνοπτική περιγραφή του περιεχομένου σας. Επιπλέον, η περίληψη θα εμφανίζεται σε προβολές λίστας και κάρτας της εγγραφής σας στον ιστότοπο. Εναλλακτικά, θα χρησιμοποιηθούν οι πρώτες προτάσεις από το κύριο περιεχόμενο."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Εικόνες"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "Η <b>πρώτη εικόνα με</b> σειρά από αριστερά προς τα δεξιά εδώ, <b>θα είναι η κύρια εικόνα της εγγραφής</b> σας που εμφανίζεται στη σελίδα και σε μικρογραφίες σε προβολές λίστας και κάρτας. Όλες οι άλλες εικόνες θα εμφανιστούν κάτω από το κύριο περιεχόμενο."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Ήρωες"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Οποιοσδήποτε τύπος σελίδας/περιεχομένου μπορεί να έχει πολλαπλά πανό <b>ηρώων</b>. Εάν υπάρχουν περισσότερα από ένα, θα εναλλάσσονται σε ωριαία βάση."
 

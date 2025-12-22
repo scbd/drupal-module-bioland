@@ -227,27 +227,27 @@ msgstr "Għarbi"
 msgid "Russian"
 msgstr "Russu"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Għajnuna"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Dan se jkun il-kontenut ewlieni tal-kontenut il-ġdid tas-sit tiegħek. Is-sommarju jista' jintuża biex juri deskrizzjoni qasira u konċiża tal-kontenut tiegħek. Barra minn hekk, is-sommarju jintwera fil-veduti tal-lista u tal-kards tar-rekord tiegħek fuq il-websajt. Alternattivament, jintużaw l-ewwel ftit sentenzi mill-kontenut ewlieni."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Stampi"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "L-<b>ewwel stampa</b> fl-ordni mix-xellug għal-lemin hawnhekk, <b>se tkun l-istampa ewlenija</b> tar-rekord tiegħek murija fuq il-paġna u fil-thumbnails fil-veduti tal-lista u tal-kards. L-istampi l-oħra kollha jintwerew taħt il-kontenut ewlieni."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Eroj"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Kwalunkwe paġna/tip ta' kontenut jista' jkollha diversi <b>banners eroj</b>. Jekk ikun hemm aktar minn wieħed, dawn jiġu mdawra kull siegħa."
 

@@ -227,27 +227,27 @@ msgstr "Kiarabu"
 msgid "Russian"
 msgstr "Kirusi"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Msaada"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Haya yatakuwa maudhui makuu ya maudhui yako mapya ya tovuti. Muhtasari unaweza kutumika kuonyesha maelezo mafupi na ya wazi ya maudhui yako. Zaidi ya hayo, muhtasari utaonyeshwa katika mionekano ya orodha na kadi ya rekodi yako kwenye tovuti. Vinginevyo, sentensi chache za kwanza kutoka kwa maudhui makuu zitatumika."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Picha"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Picha ya kwanza</b> kwa mpangilio kutoka kushoto kwenda kulia hapa, <b>itakuwa picha kuu</b> ya rekodi yako inayoonyeshwa kwenye ukurasa na katika vijipicha katika mionekano ya orodha na kadi. Picha zingine zote zitaonyeshwa chini ya maudhui makuu."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Mashujaa"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Ukurasa/aina yoyote ya maudhui inaweza kuwa na <b>mabango ya kishujaa</b> mengi. Ikiwa kuna zaidi ya moja, yatabadilishwa kila saa."
 

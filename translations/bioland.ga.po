@@ -227,27 +227,27 @@ msgstr "Araibis"
 msgid "Russian"
 msgstr "Rúisis"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Cabhair"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Seo a bheidh mar phríomhábhar d'ábhar nua do shuímh.  Is féidir an achoimre a úsáid chun cur síos gairid beacht ar d'ábhar a thaispeáint.  Ina theannta sin, taispeánfar an achoimre i radhairc liosta agus cárta de do thaifead ar an suíomh gréasáin.  Mar mhalairt air sin, úsáidfear an chéad chúpla abairt ón bpríomhábhar."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Íomhánna"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "An <b>chéad íomhá</b> in ord ó chlé go deas anseo, <b>a bheidh mar phríomhíomhá</b> de do thaifead a thaispeánfar ar an leathanach agus i mionsamhlacha i radhairc liosta agus cárta.  Taispeánfar gach íomhá eile faoin bpríomhábhar."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Laochra"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Is féidir le haon leathanach/cineál ábhair <b>meirgí laochra</b> iolracha a bheith aige.  Má tá níos mó ná ceann amháin ann, rothlófar iad ar bhonn uaire."
 

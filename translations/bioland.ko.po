@@ -227,27 +227,27 @@ msgstr "아랍어"
 msgid "Russian"
 msgstr "러시아어"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "도움말"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "이것이 새 사이트 콘텐츠의 주요 내용이 됩니다. 요약은 콘텐츠에 대한 간결한 설명을 표시하는 데 사용할 수 있습니다. 또한 요약은 웹사이트의 레코드 목록 및 카드 보기에 표시됩니다. 또는 본문의 처음 몇 문장이 사용됩니다."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "이미지"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "여기서 왼쪽에서 오른쪽 순서로 <b>첫 번째 이미지</b>가 페이지와 목록 및 카드 보기의 썸네일에 표시되는 레코드의 <b>주요 이미지</b>가 됩니다. 다른 모든 이미지는 주요 콘텐츠 아래에 표시됩니다."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "히어로"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "모든 페이지/콘텐츠 유형은 여러 개의 <b>히어로 배너</b>를 가질 수 있습니다. 하나 이상인 경우 시간 단위로 순환됩니다."
 

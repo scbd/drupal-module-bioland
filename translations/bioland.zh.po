@@ -227,27 +227,27 @@ msgstr "阿拉伯语"
 msgid "Russian"
 msgstr "俄语"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "帮助"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "这将是您新网站内容的主要内容。摘要可用于显示您内容的简明描述。此外，摘要将显示在您记录在网站上的列表和卡片视图中。或者，将使用主要内容的前几句话。"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "图片"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "此处从左到右顺序的<b>第一张图片</b>，<b>将是您记录的主图片</b>，显示在页面上以及列表和卡片视图的缩略图中。所有其他图片将显示在主要内容下方。"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "英雄横幅"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "任何页面/内容类型都可以有多个<b>英雄横幅</b>。如果有一个以上，它们将每小时轮换一次。"
 

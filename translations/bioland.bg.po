@@ -227,27 +227,27 @@ msgstr "Арабски"
 msgid "Russian"
 msgstr "Руски"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Помощ"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Това ще бъде основното съдържание на новото ви съдържание на сайта. Резюмето може да се използва за показване на кратко и сбито описание на вашето съдържание. Освен това, резюмето ще се показва в изгледи на списък и карти на вашия запис на уебсайта. Като алтернатива ще се използват първите няколко изречения от основното съдържание."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Изображения"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Първото изображение</b> по ред отляво надясно тук, <b>ще бъде основното изображение</b> на вашия запис, показвано на страницата и в миниатюри в изгледи на списък и карти. Всички други изображения ще бъдат показани под основното съдържание."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Хироу банери"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Всяка страница/тип съдържание може да има множество <b>хироу банери</b>. Ако има повече от един, те ще се сменят на ротационен принцип на всеки час."
 

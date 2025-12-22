@@ -227,27 +227,27 @@ msgstr "Arabe"
 msgid "Russian"
 msgstr "Ruso"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Tulong"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Ito ang magiging pangunahing nilalaman ng iyong bagong nilalaman sa site. Ang buod ay maaaring gamitin upang magpakita ng isang maikli at malinaw na paglalarawan ng iyong nilalaman. Bukod dito, ang buod ay ipapakita sa mga listahan at card view ng iyong talaan sa website. Bilang alternatibo, gagamitin ang mga unang ilang pangungusap mula sa pangunahing nilalaman."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Mga Larawan"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "Ang <b>unang larawan</b> sa pagkakasunud-sunod mula kaliwa pakanan dito, <b>ang magiging pangunahing larawan</b> ng iyong talaan na ipapakita sa pahina at sa mga thumbnail sa mga listahan at card view. Lahat ng iba pang mga larawan ay ipapakita sa ibaba ng pangunahing nilalaman."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Mga Hero Banner"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Anumang uri ng pahina/nilalaman ay maaaring magkaroon ng maraming <b>hero banner</b>. Kung mayroong higit sa isa, iikot ang mga ito bawat oras."
 

@@ -227,27 +227,27 @@ msgstr "Carabi"
 msgid "Russian"
 msgstr "Ruush"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Caawin"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Kani wuxuu noqon doonaa nuxurka ugu muhiimsan ee nuxurka boggaaga cusub. Soo koobidda waxaa loo isticmaali karaa in lagu soo bandhigo sharraxaad kooban oo qeexan oo ku saabsan nuxurkaaga. Intaa waxaa dheer, soo koobidda waxaa lagu soo bandhigi doonaa liiska iyo aragtiyaha kaararka ee diiwaankaaga ee bogga internetka. Haddii kale, dhowrka jumladood ee ugu horreeya ee nuxurka ugu muhiimsan ayaa la isticmaali doonaa."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Sawirro"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Sawirka ugu horreeya</b> ee sida ay u kala horreeyaan bidix ilaa midig halkan, <b>wuxuu noqon doonaa sawirka ugu muhiimsan</b> ee diiwaankaaga ee lagu soo bandhigay bogga iyo sawirrada yaryar ee liiska iyo aragtiyaha kaararka. Dhammaan sawirrada kale waxaa lagu soo bandhigi doonaa hoosta nuxurka ugu muhiimsan."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Halyeeyo"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Bog kasta/nooc kasta oo nuxur ah wuxuu yeelan karaa <b>boorar halyeeyo</b> oo badan. Haddii ay jiraan wax ka badan hal, waxaa la isku beddeli doonaa saacad kasta."
 

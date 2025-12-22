@@ -227,27 +227,27 @@ msgstr "ಅರೇಬಿಕ್"
 msgid "Russian"
 msgstr "ರಷ್ಯನ್"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "ಸಹಾಯ"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "ಇದು ನಿಮ್ಮ ಹೊಸ ಸೈಟ್ ವಿಷಯದ ಮುಖ್ಯ ವಿಷಯವಾಗಿರುತ್ತದೆ. ನಿಮ್ಮ ವಿಷಯದ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆಯನ್ನು ಪ್ರದರ್ಶಿಸಲು ಸಾರಾಂಶವನ್ನು ಬಳಸಬಹುದು. ಇದಲ್ಲದೆ, ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ದಾಖಲೆಯ ಪಟ್ಟಿ ಮತ್ತು ಕಾರ್ಡ್ ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಸಾರಾಂಶವನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ. ಪರ್ಯಾಯವಾಗಿ, ಮುಖ್ಯ ವಿಷಯದಿಂದ ಮೊದಲ ಕೆಲವು ವಾಕ್ಯಗಳನ್ನು ಬಳಸಲಾಗುತ್ತದೆ."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "ಚಿತ್ರಗಳು"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "ಇಲ್ಲಿ ಎಡದಿಂದ ಬಲಕ್ಕೆ ಕ್ರಮದಲ್ಲಿರುವ <b>ಮೊದಲ ಚಿತ್ರ</b>, ಪುಟದಲ್ಲಿ ಮತ್ತು ಪಟ್ಟಿ ಮತ್ತು ಕಾರ್ಡ್ ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಥಂಬ್‌ನೇಲ್‌ಗಳಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾದ ನಿಮ್ಮ ದಾಖಲೆಯ <b>ಮುಖ್ಯ ಚಿತ್ರವಾಗಿರುತ್ತದೆ</b>. ಉಳಿದ ಎಲ್ಲಾ ಚಿತ್ರಗಳನ್ನು ಮುಖ್ಯ ವಿಷಯದ ಕೆಳಗೆ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "ಹೀರೋಗಳು"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "ಯಾವುದೇ ಪುಟ/ವಿಷಯ ಪ್ರಕಾರವು ಬಹು <b>ಹೀರೋ ಬ್ಯಾನರ್‌ಗಳನ್ನು</b> ಹೊಂದಬಹುದು. ಒಂದಕ್ಕಿಂತ ಹೆಚ್ಚು ಇದ್ದರೆ ಅವುಗಳನ್ನು ಗಂಟೆಗೊಮ್ಮೆ ತಿರುಗಿಸಲಾಗುತ್ತದೆ."
 

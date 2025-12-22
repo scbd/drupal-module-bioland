@@ -227,27 +227,27 @@ msgstr "Arabisk"
 msgid "Russian"
 msgstr "Russisk"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Hjelp"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Dette blir hovedinnholdet i det nye nettstedsinnholdet ditt. Sammendraget kan brukes til å vise en kort og konsis beskrivelse av innholdet ditt. Videre vil sammendraget bli vist i liste- og kortvisninger av posten din på nettstedet. Alternativt vil de første par setningene fra hovedinnholdet bli brukt."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Bilder"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "Det <b>første bildet</b> i rekkefølge fra venstre mot høyre her, <b>vil være hovedbildet</b> for posten din som vises på siden og i miniatyrbilder i liste- og kortvisninger. Alle andre bilder vil bli vist under hovedinnholdet."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Hovedbannere"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Enhver side/innholdstype kan ha flere <b>hovedbannere</b>. Hvis det er mer enn ett, vil de rotere på timebasis."
 

@@ -227,27 +227,27 @@ msgstr "አረብኛ"
 msgid "Russian"
 msgstr "ራሽያኛ"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "እገዛ"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "ይህ የአዲሱ የጣቢያ ይዘትዎ ዋና ይዘት ይሆናል። ማጠቃለያው የይዘትዎን አጭር መግለጫ ለማሳየት ሊያገለግል ይችላል። በተጨማሪም፣ ማጠቃለያው በድር ጣቢያው ላይ ባለው የመዝገብዎ ዝርዝር እና የካርድ እይታዎች ላይ ይታያል። በአማራጭ፣ ከዋናው ይዘት የመጀመሪያዎቹ ጥቂት ዓረፍተ ነገሮች ጥቅም ላይ ይውላሉ።"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "ምስሎች"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "እዚህ ከግራ ወደ ቀኝ በቅደም ተከተል ያለው <b>የመጀመሪያው ምስል</b>፣ በገጹ ላይ እና በዝርዝር እና በካርድ እይታዎች ድንክዬዎች ላይ የሚታየው የመዝገብዎ <b>ዋና ምስል ይሆናል</b>። ሁሉም ሌሎች ምስሎች ከዋናው ይዘት በታች ይታያሉ።"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "ጀግኖች"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "ማንኛውም ገጽ/የይዘት አይነት ብዙ <b>የጀግና ባነሮች</b> ሊኖሩት ይችላል። ከአንድ በላይ ካሉ በየሰዓቱ ይሽከረከራሉ።"
 

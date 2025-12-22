@@ -778,27 +778,27 @@ msgstr "Urdu"
 msgid "Vietnamese"
 msgstr "Vietnami"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Help"
 msgstr "Abi"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "See on teie uue saidi sisu peamine sisu. Kokkuvõtte abil saate kuvada teie sisu lühikese kokkuvõtte kirjeldust. Lisaks kuvatakse kokkuvõte veebisaidil teie kirje loendi- ja kaardivaadetes. Teise võimalusena kasutatakse põhisisu esimesi lauseid."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Images"
 msgstr "Pildid"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Esimene pil</b> t vasakult paremale järjekorras on teie kirje <b>põhipil</b> t, mis kuvatakse lehel ning loendi- ja kaardivaadete pisipiltidel. Kõik ülejäänud pildid kuvatakse põhisisu all."
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Heroes"
 msgstr "Kangelased"
 
-#: js/bioland.help-comments.js
+#: js/bioland-help-comments-1-0-20.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Igal lehele/sisutüübil võib olla mitu k <b>angel</b> ase bännerit. Kui neid on rohkem, pööratakse neid tunni kaupa."
 
