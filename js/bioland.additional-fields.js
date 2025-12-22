@@ -4,18 +4,24 @@
  * Manages Vue-based additional fields based on content type.
  */
 
-(function (Drupal) {
+(function (Drupal, window) {
   'use strict';
+
+  // Prevent duplicate initialization if script is loaded multiple times
+  if (Drupal.behaviors.biolandAdditionalFields) {
+    return;
+  }
 
   /**
    * Track the last content type value to detect changes
+   * Using var to avoid block-scoping issues with early returns
    */
-  let lastContentTypeValue = null;
+  var lastContentTypeValue = null;
 
   /**
    * Content type to additional fields mapping
    */
-  const contentTypeAdditionalFields = {
+  var contentTypeAdditionalFields = {
     3: ['eventStatuses'], // event 
     5: ['projectStatuses', 'geoScopes'],
     8: ['orgTypes', 'govTypes'], // ministry
@@ -26,12 +32,16 @@
   /**
    * Content types that have additional fields
    */
-  const contentTypesWithFields = [3, 5, 8, 9, 12];
+  var contentTypesWithFields = [3, 5, 8, 9, 12];
 
   /**
    * Logger shortcut for this module
    */
-  const logger = () => window.BiolandLogger?.additionalFields || { log: () => {}, warn: () => {}, error: () => {} };
+  function logger() {
+    return window.BiolandLogger && window.BiolandLogger.additionalFields 
+      ? window.BiolandLogger.additionalFields 
+      : { log: function() {}, warn: function() {}, error: function() {} };
+  }
 
   /**
    * Drupal behavior for Bioland additional fields.
@@ -438,7 +448,7 @@ function handleContentTypeChange() {
   } else {
     logger().log('New content type should NOT have additional fields, removing if exists...');
     // Remove existing additional fields if they exist
-    const existingEl = document.querySelector('#bl-additional-fields');
+    var existingEl = document.querySelector('#bl-additional-fields');
     if (existingEl) {
       if (existingEl.__vue_app__) {
         existingEl.__vue_app__.unmount();
@@ -449,4 +459,4 @@ function handleContentTypeChange() {
   }
 }
 
-})(Drupal);
+})(Drupal, window);

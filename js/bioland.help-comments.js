@@ -4,60 +4,72 @@
  * Adds helpful messages to body and attachments fields.
  */
 
-/**
- * Logger shortcut for this module
- */
-const logger = () => window.BiolandLogger?.helpComments || { log: () => {}, warn: () => {}, error: () => {} };
+(function (Drupal, window, document) {
+  'use strict';
 
-/**
- * Get cookie value by name.
- *
- * @param {string} name - Cookie name
- * @returns {string|null} Cookie value or null if not found
- */
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return parts.pop().split(';').shift();
+  // Prevent duplicate initialization if script is loaded multiple times
+  if (Drupal.behaviors.biolandHelpComments) {
+    return;
   }
-  return null;
-}
 
-/**
- * Set cookie with name, value, and days to expire.
- *
- * @param {string} name - Cookie name
- * @param {string} value - Cookie value
- * @param {number} days - Days until expiration
- */
-function setCookie(name, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  const expires = `expires=${date.toUTCString()}`;
-  document.cookie = `${name}=${value};${expires};path=/`;
-}
+  /**
+   * Logger shortcut for this module
+   */
+  function logger() {
+    return window.BiolandLogger && window.BiolandLogger.helpComments 
+      ? window.BiolandLogger.helpComments 
+      : { log: function() {}, warn: function() {}, error: function() {} };
+  }
 
-/**
- * Add close button to help message.
- *
- * @param {HTMLElement} helpMessage - The help message element
- * @param {string} cookieName - Cookie name for persistence
- * @param {HTMLElement} infoIcon - The info icon element
- */
-function addCloseButton(helpMessage, cookieName, infoIcon) {
-  const closeButton = document.createElement('button');
-  closeButton.type = 'button';
-  closeButton.className = 'bioland-help-close';
-  closeButton.innerHTML = '<i class="fa-solid fa-times"></i>';
-  closeButton.style.cssText = 'position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 18px; cursor: pointer; padding: 0; line-height: 1; color: inherit; opacity: 0.6;';
-  closeButton.setAttribute('aria-label', 'Close help message');
+  /**
+   * Get cookie value by name.
+   *
+   * @param {string} name - Cookie name
+   * @returns {string|null} Cookie value or null if not found
+   */
+  function getCookie(name) {
+    var value = '; ' + document.cookie;
+    var parts = value.split('; ' + name + '=');
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+    return null;
+  }
 
-  // Add hover effect
-  closeButton.addEventListener('mouseenter', function () {
-    this.style.opacity = '1';
-  });
-  closeButton.addEventListener('mouseleave', function () {
+  /**
+   * Set cookie with name, value, and days to expire.
+   *
+   * @param {string} name - Cookie name
+   * @param {string} value - Cookie value
+   * @param {number} days - Days until expiration
+   */
+  function setCookie(name, value, days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    var expires = 'expires=' + date.toUTCString();
+    document.cookie = name + '=' + value + ';' + expires + ';path=/';
+  }
+
+  /**
+   * Add close button to help message.
+   *
+   * @param {HTMLElement} helpMessage - The help message element
+   * @param {string} cookieName - Cookie name for persistence
+   * @param {HTMLElement} infoIcon - The info icon element
+   */
+  function addCloseButton(helpMessage, cookieName, infoIcon) {
+    var closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'bioland-help-close';
+    closeButton.innerHTML = '<i class="fa-solid fa-times"></i>';
+    closeButton.style.cssText = 'position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 18px; cursor: pointer; padding: 0; line-height: 1; color: inherit; opacity: 0.6;';
+    closeButton.setAttribute('aria-label', 'Close help message');
+
+    // Add hover effect
+    closeButton.addEventListener('mouseenter', function () {
+      this.style.opacity = '1';
+    });
+    closeButton.addEventListener('mouseleave', function () {
     this.style.opacity = '0.6';
   });
 
@@ -396,9 +408,9 @@ function initializeHelpComments(context, settings) {
  * Drupal behavior for Bioland help comments.
  */
 Drupal.behaviors.biolandHelpComments = {
-  attach(context, settings) {
+  attach: function(context, settings) {
     // Get settings from Drupal
-    const biolandSettings = settings.bioland || {};
+    var biolandSettings = settings.bioland || {};
 
     // Only proceed if help comments is enabled
     if (biolandSettings.enableHelpComments === false) {
@@ -409,3 +421,5 @@ Drupal.behaviors.biolandHelpComments = {
     initializeHelpComments(context, biolandSettings);
   }
 };
+
+})(Drupal, window, document);

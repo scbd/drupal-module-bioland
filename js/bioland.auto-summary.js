@@ -5,18 +5,27 @@
  * Supports CKEditor 4, CKEditor 5, and plain textareas.
  */
 
-(function (Drupal) {
+(function (Drupal, window) {
   'use strict';
+
+  // Prevent duplicate initialization if script is loaded multiple times
+  if (Drupal.behaviors.biolandAutoSummary) {
+    return;
+  }
 
   /**
    * Timeout reference for contenteditable monitoring
    */
-  let contentEditableTimeout = null;
+  var contentEditableTimeout = null;
 
   /**
    * Logger shortcut for this module
    */
-  const logger = () => window.BiolandLogger?.autoSummary || { log: () => {}, warn: () => {}, error: () => {} };
+  function logger() {
+    return window.BiolandLogger && window.BiolandLogger.autoSummary 
+      ? window.BiolandLogger.autoSummary 
+      : { log: function() {}, warn: function() {}, error: function() {} };
+  }
 
   /**
    * Drupal behavior for Bioland auto summary.
@@ -603,7 +612,7 @@ function stripHtml(input) {
     tempDiv.innerHTML = input;
     
     // Get the text content (this automatically handles HTML entities)
-    let text = tempDiv.textContent || tempDiv.innerText || '';
+    var text = tempDiv.textContent || tempDiv.innerText || '';
     
     // Normalize whitespace: replace multiple spaces/newlines with single space
     text = text.replace(/\s+/g, ' ').trim();
@@ -614,9 +623,9 @@ function stripHtml(input) {
     
     // Ultra-safe fallback: just use regex to strip tags
     try {
-      let text = input.replace(/<[^>]+>/g, ' ');
-      text = text.replace(/\s+/g, ' ').trim();
-      return text;
+      var text2 = input.replace(/<[^>]+>/g, ' ');
+      text2 = text2.replace(/\s+/g, ' ').trim();
+      return text2;
     } catch (fallbackError) {
       logger().error('Even fallback stripHtml failed:', fallbackError);
       return '';
@@ -624,4 +633,4 @@ function stripHtml(input) {
   }
 }
 
-})(Drupal);
+})(Drupal, window);

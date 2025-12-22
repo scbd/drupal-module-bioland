@@ -11,6 +11,47 @@ global.Drupal = {
   // Note: CKEditor5Instances is intentionally NOT set here - let tests set it as needed
 };
 
+// Mock drupalSettings for debug logging
+global.drupalSettings = {
+  bioland: {
+    enableDebugLogging: true,
+    debugLogAreas: {
+      fieldVisibility: true,
+      additionalFields: true,
+      autoSummary: true,
+      helpComments: true
+    }
+  }
+};
+
+// Mock BiolandLogger to enable logging during tests
+global.BiolandLogger = {
+  isLoggingEnabled: function() { return true; },
+  log: function(area, message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 2))); },
+  warn: function(area, message) { console.warn.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 2))); },
+  error: function(area, message) { console.error.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 2))); },
+  fieldVisibility: {
+    log: function(message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    warn: function(message) { console.warn.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    error: function(message) { console.error.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); }
+  },
+  additionalFields: {
+    log: function(message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    warn: function(message) { console.warn.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    error: function(message) { console.error.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); }
+  },
+  autoSummary: {
+    log: function(message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    warn: function(message) { console.warn.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    error: function(message) { console.error.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); }
+  },
+  helpComments: {
+    log: function(message) { console.log.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    warn: function(message) { console.warn.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); },
+    error: function(message) { console.error.apply(console, ['Bioland: ' + message].concat(Array.prototype.slice.call(arguments, 1))); }
+  }
+};
+
 // Mock console methods to reduce noise in tests (optional)
 // Comment out if you want to see console output during tests
 // global.console = {
