@@ -745,3 +745,92 @@ function _bioland_add_field_order_to_search_index() {
     '@total' => $sandbox['total'],
   ]);
 }
+
+/**
+ * Configure URL field to use Linkit widget and show language selector.
+ *
+ * 1. Configure field_url to use linkit_field_widget for URL autocomplete.
+ * 2. Show langcode field in the meta sidebar (advanced settings).
+ */
+function bioland_update_9013() {
+  $messages = [];
+
+  // Load the content node form display.
+  $form_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_form_display')
+    ->load('node.content.default');
+
+  if (!$form_display) {
+    return t('Form display node.content.default not found; skipping configuration.');
+  }
+
+  $changed = FALSE;
+
+  // 1. Configure field_url to use Linkit widget if Linkit module is enabled.
+  if (\Drupal::moduleHandler()->moduleExists('linkit')) {
+    $url_component = $form_display->getComponent('field_url');
+    if ($url_component) {
+      // Use linkit widget with autocomplete for internal/external URLs.
+      $form_display->setComponent('field_url', [
+        'type' => 'linkit',
+        'weight' => $url_component['weight'] ?? 0,
+        'settings' => [
+          'linkit_profile' => 'default',
+          'linkit_auto_link_text' => FALSE,
+          'placeholder_url' => '',
+          'placeholder_title' => '',
+        ],
+        'third_party_settings' => [],
+      ]);
+      $changed = TRUE;
+      $messages[] = t('Configured field_url to use Linkit widget.');
+    }
+    else {
+      $messages[] = t('field_url not found in form display; skipping Linkit configuration.');
+    }
+  }
+  else {
+    $messages[] = t('Linkit module not enabled; skipping field_url widget configuration.');
+  }
+
+  // 2. Show language selector in the meta/sidebar area.
+  // The langcode field needs to be visible and in the 'meta' group.
+  $langcode_component = $form_display->getComponent('langcode');
+
+  // Set langcode to be visible in the advanced/meta sidebar.
+  $form_display->setComponent('langcode', [
+    'type' => 'language_select',
+    'weight' => $langcode_component['weight'] ?? 5,
+    'settings' => [
+      'include_locked' => FALSE,
+    ],
+    'region' => 'content',
+    'third_party_settings' => [],
+  ]);
+  $changed = TRUE;
+  $messages[] = t('Language selector is now visible on the form.');
+
+  // Try to add langcode to the meta group if field_group module is available.
+  if (\Drupal::moduleHandler()->moduleExists('field_group')) {
+    $third_party = $form_display->getThirdPartySettings('field_group');
+    
+    // Check if there's a meta or advanced group we can add langcode to.
+    foreach (['group_meta', 'group_advanced', 'group_sidebar'] as $group_name) {
+      if (isset($third_party[$group_name])) {
+        $group = $third_party[$group_name];
+        if (!in_array('langcode', $group['children'] ?? [])) {
+          $group['children'][] = 'langcode';
+          $form_display->setThirdPartySetting('field_group', $group_name, $group);
+          $messages[] = t('Added langcode to @group.', ['@group' => $group_name]);
+          break;
+        }
+      }
+    }
+  }
+
+  if ($changed) {
+    $form_display->save();
+  }
+
+  return implode(' ', $messages);
+}
