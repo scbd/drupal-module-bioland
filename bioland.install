@@ -834,3 +834,53 @@ function bioland_update_9013() {
 
   return implode(' ', $messages);
 }
+
+/**
+ * Add Promotion Options help message configuration.
+ */
+function bioland_update_9014() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+
+  // Check if promotion_text is already set
+  if ($editable->get('help_comments.promotion_text') !== NULL) {
+    return t('Promotion options help text already exists; no changes made.');
+  }
+
+  // Get all available languages
+  $language_manager = \Drupal::languageManager();
+  $languages = $language_manager->getLanguages();
+  $default_langcode = $language_manager->getDefaultLanguage()->getId();
+  
+  // Initialize translation array
+  $promotion_translations = [];
+  foreach ($languages as $langcode => $language) {
+    if ($langcode === $default_langcode || $langcode === 'en-x-lolspeak') {
+      continue;
+    }
+    $promotion_translations[$langcode] = '';
+  }
+
+  // Set default promotion help text (HTML allowed)
+  $promotion_text = '<b>Promoted to front page:</b>
+<ul>
+<li>Content appears in featured listings, homepage blocks, or "promoted" views</li>
+<li>Useful for highlighting important or timely content</li>
+<li>Multiple items can be promoted simultaneously</li>
+</ul>
+
+<b>Sticky at top of lists:</b>
+<ul>
+<li>Content stays pinned at the top of content listings</li>
+<li>Remains at top regardless of publication date</li>
+<li>Multiple sticky items appear before non-sticky content</li>
+</ul>
+
+<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility.';
+
+  $editable->set('help_comments.promotion_text', $promotion_text);
+  $editable->set('help_comments.promotion_translations', $promotion_translations);
+  $editable->save();
+
+  return t('Added Promotion Options help message configuration.');
+}

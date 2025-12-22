@@ -494,6 +494,65 @@ class BiolandSettingsForm extends ConfigFormBase {
           ];
         }
       }
+
+      // Promotion Options Field Help Comment
+      $form['help_comments']['promotion_help'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Promotion Options Help'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_help_comments"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $default_promotion_text = $this->t('<b>Promoted to front page:</b>
+<ul>
+<li>Content appears in featured listings, homepage blocks, or "promoted" views</li>
+<li>Useful for highlighting important or timely content</li>
+<li>Multiple items can be promoted simultaneously</li>
+</ul>
+
+<b>Sticky at top of lists:</b>
+<ul>
+<li>Content stays pinned at the top of content listings</li>
+<li>Remains at top regardless of publication date</li>
+<li>Multiple sticky items appear before non-sticky content</li>
+</ul>
+
+<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility.');
+
+      $form['help_comments']['promotion_help']['help_promotion_text'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Promotion Options Help Text'),
+        '#description' => $this->t('Help text explaining the Promoted and Sticky options. HTML is allowed.'),
+        '#default_value' => $config->get('help_comments.promotion_text') ?: $default_promotion_text,
+        '#rows' => 8,
+      ];
+
+      // Promotion Help Translations
+      if ($has_multiple_languages) {
+        $form['help_comments']['promotion_help']['promotion_help_translations'] = [
+          '#type' => 'details',
+          '#title' => $this->t('Translate Promotion Help Text'),
+          '#open' => FALSE,
+          '#tree' => TRUE,
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $form['help_comments']['promotion_help']['promotion_help_translations'][$langcode] = [
+            '#type' => 'textarea',
+            '#title' => $language->getName(),
+            '#default_value' => $config->get("help_comments.promotion_translations.{$langcode}") ?: '',
+            '#rows' => 8,
+          ];
+        }
+      }
     }
 
     if ($section === 'admin') {
@@ -760,13 +819,15 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('enable_help_comments', $values['enable_help_comments'])
         ->set('help_comments.body_text', $values['help_body_text'])
         ->set('help_comments.attachments_images_text', $values['help_attachments_images_text'])
-        ->set('help_comments.attachments_heroes_text', $values['help_attachments_heroes_text']);
+        ->set('help_comments.attachments_heroes_text', $values['help_attachments_heroes_text'])
+        ->set('help_comments.promotion_text', $values['help_promotion_text']);
 
       // Save translations for help comments
       if (count($languages) > 1) {
         $body_translations = $values['body_help_translations'] ?? [];
         $images_translations = $values['images_help_translations'] ?? [];
         $heroes_translations = $values['heroes_help_translations'] ?? [];
+        $promotion_translations = $values['promotion_help_translations'] ?? [];
 
         foreach ($languages as $langcode => $language) {
           if ($langcode === $default_langcode) {
@@ -780,6 +841,9 @@ class BiolandSettingsForm extends ConfigFormBase {
           }
           if (!empty($heroes_translations[$langcode])) {
             $config->set("help_comments.attachments_heroes_translations.{$langcode}", $heroes_translations[$langcode]);
+          }
+          if (!empty($promotion_translations[$langcode])) {
+            $config->set("help_comments.promotion_translations.{$langcode}", $promotion_translations[$langcode]);
           }
         }
       }

@@ -68,6 +68,7 @@ class BiolandFieldFunctionalityManager {
         'bodyText' => $this->getTranslatedHelpText($c, 'help_comments.body_text', 'help_comments.body_text_translations', $langcode, $default_langcode),
         'attachmentsImagesText' => $this->getTranslatedHelpText($c, 'help_comments.attachments_images_text', 'help_comments.attachments_images_translations', $langcode, $default_langcode),
         'attachmentsHeroesText' => $this->getTranslatedHelpText($c, 'help_comments.attachments_heroes_text', 'help_comments.attachments_heroes_translations', $langcode, $default_langcode),
+        'promotionText' => $this->getTranslatedHelpText($c, 'help_comments.promotion_text', 'help_comments.promotion_translations', $langcode, $default_langcode),
       ];
     }
 

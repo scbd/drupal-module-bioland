@@ -70,6 +70,12 @@ bioland.settings:
         attachments_heroes_translations:
           type: mapping
           label: 'Attachments heroes help text translations'
+        promotion_text:
+          type: text
+          label: 'Promotion options help text'
+        promotion_translations:
+          type: mapping
+          label: 'Promotion options help text translations'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'

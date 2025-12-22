@@ -256,6 +256,103 @@ function addAttachmentsFieldHelp(helpCommentsSettings) {
 }
 
 /**
+ * Add help message for the Promotion Options section.
+ *
+ * @param {Object} helpCommentsSettings - Help comments settings from Drupal.
+ */
+function addPromotionOptionsHelp(helpCommentsSettings) {
+  // Find the promote field wrapper
+  const promoteWrapper = document.querySelector('[data-drupal-selector=\"edit-promote-wrapper\"]');
+
+  if (!promoteWrapper) {
+    console.log('Bioland: Promote field wrapper not found for help comment');
+    return;
+  }
+
+  // Prevent duplicate initialization
+  if (promoteWrapper.dataset.biolandHelpInit) {
+    return;
+  }
+  promoteWrapper.dataset.biolandHelpInit = 'true';
+
+  const cookieName = 'bioland_help_promotion_hidden';
+
+  // Get translated strings from Drupal settings or use defaults
+  const helpTitle = Drupal.t('How it Works');
+  const helpText = (helpCommentsSettings && helpCommentsSettings.promotionText)
+    ? helpCommentsSettings.promotionText
+    : '<b>' + Drupal.t('Promoted to front page:') + '</b>' +
+      '<ul>' +
+      '<li>' + Drupal.t('Content appears in featured listings, homepage blocks, or \"promoted\" views') + '</li>' +
+      '<li>' + Drupal.t('Useful for highlighting important or timely content') + '</li>' +
+      '<li>' + Drupal.t('Multiple items can be promoted simultaneously') + '</li>' +
+      '</ul>' +
+      '<b>' + Drupal.t('Sticky at top of lists:') + '</b>' +
+      '<ul>' +
+      '<li>' + Drupal.t('Content stays pinned at the top of content listings') + '</li>' +
+      '<li>' + Drupal.t('Remains at top regardless of publication date') + '</li>' +
+      '<li>' + Drupal.t('Multiple sticky items appear before non-sticky content') + '</li>' +
+      '</ul>' +
+      '<b>' + Drupal.t('Using both:') + '</b> ' + Drupal.t('Content can be both promoted AND sticky for maximum visibility.');
+
+  // Create help message element
+  const helpMessage = document.createElement('div');
+  helpMessage.className = 'alert alert-info bioland-help-comment fieldset_description';
+  helpMessage.innerHTML = '<big><b><i class=\"fa-solid fa-info-circle\">&nbsp;</i> ' + helpTitle + ' </b></big><br><br>' + helpText;
+  helpMessage.style.marginBottom = '16px';
+  helpMessage.style.fontSize = '0.8em';
+
+  // Create info icon for toggle
+  const infoIcon = document.createElement('i');
+  infoIcon.className = 'fa-solid fa-info-circle';
+  infoIcon.innerHTML = '&nbsp;';
+  infoIcon.style.cursor = 'pointer';
+  infoIcon.style.marginLeft = '8px';
+  infoIcon.style.fontSize = '14px';
+  infoIcon.setAttribute('aria-label', 'Toggle help message');
+
+  // Check cookie to see if help is hidden
+  if (getCookie(cookieName) === 'hidden') {
+    helpMessage.style.display = 'none';
+    infoIcon.style.display = 'inline';
+    console.log('Bioland: Promotion options help comment is hidden by user preference');
+  } else {
+    infoIcon.style.display = 'none';
+  }
+
+  // Add close button
+  addCloseButton(helpMessage, cookieName, infoIcon);
+
+  // Find the parent container (claro-details__content)
+  const parentContainer = promoteWrapper.parentElement;
+  if (parentContainer) {
+    // Insert help message as the first child of the container
+    parentContainer.insertBefore(helpMessage, parentContainer.firstChild);
+    
+    // Insert info icon after the help message for when it's hidden
+    parentContainer.insertBefore(infoIcon, helpMessage.nextSibling);
+  }
+
+  // Add click handler to info icon to toggle visibility
+  infoIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (helpMessage.style.display === 'none') {
+      helpMessage.style.display = 'block';
+      infoIcon.style.display = 'none';
+      setCookie(cookieName, 'visible', 365);
+      console.log('Bioland: Promotion options help comment shown');
+    } else {
+      helpMessage.style.display = 'none';
+      infoIcon.style.display = 'inline';
+      setCookie(cookieName, 'hidden', 365);
+      console.log('Bioland: Promotion options help comment hidden');
+    }
+  });
+
+  console.log('Bioland: Promotion options help comment added');
+}
+
+/**
  * Initialize help comments functionality.
  *
  * @param {Element} context - The context element
@@ -285,6 +382,9 @@ function initializeHelpComments(context, settings) {
 
   // Add help message to attachments field
   addAttachmentsFieldHelp(helpCommentsSettings);
+
+  // Add help message to promotion options
+  addPromotionOptionsHelp(helpCommentsSettings);
 }
 
 /**
