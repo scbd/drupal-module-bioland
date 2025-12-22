@@ -369,3 +369,25 @@ function bioland_link_alter(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_search_api_index_items_alter().
+ *
+ * Adds field_order value to indexed items for the "content" index.
+ */
+function bioland_search_api_index_items_alter(\Drupal\search_api\IndexInterface $index, array &$items) {
+  if ($index->id() !== 'content') {
+    return;
+  }
+
+  foreach ($items as $item) {
+    $entity = $item->getOriginalObject()->getValue();
+    if ($entity instanceof ContentEntityInterface && $entity->hasField('field_order')) {
+      $order_value = $entity->get('field_order')->value;
+      // Set the field_order value on the item if the field exists in the index.
+      if ($index->getField('field_order')) {
+        $item->getField('field_order')->addValue($order_value ?? 10000);
+      }
+    }
+  }
+}

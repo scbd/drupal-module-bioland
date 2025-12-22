@@ -56,11 +56,45 @@ function bioland_install() {
     }
   }
 
-  // Grant settings permission to the administrator role only.
-  $admin = Role::load('administrator');
-  if ($admin && !$admin->hasPermission('administer bioland settings')) {
-    $admin->grantPermission('administer bioland settings');
-    $admin->save();
+  // Grant permissions to roles based on standard permission matrix.
+  // Administrator, Site Manager, Content Manager, SCBD Staff: all 3 permissions
+  $permission_matrix = [
+    'administrator' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'site_manager' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'content_manager' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'scbd_staff' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+  ];
+
+  foreach ($permission_matrix as $rid => $permissions) {
+    $role = Role::load($rid);
+    if ($role) {
+      $changed = FALSE;
+      foreach ($permissions as $permission) {
+        if (!$role->hasPermission($permission)) {
+          $role->grantPermission($permission);
+          $changed = TRUE;
+        }
+      }
+      if ($changed) {
+        $role->save();
+      }
+    }
   }
 
   // Initialize configuration defaults, optionally sourcing from settings.php.
@@ -100,6 +134,9 @@ function bioland_install() {
     ]);
     $entity_form_display->save();
   }
+
+  // Add field_order to Search API "content" index if it exists.
+  _bioland_add_field_order_to_search_index();
 
   // Ensure help text is cleared for specific fields on the Content type.
   _bioland_clear_field_help_text('node', 'content', ['body', 'field_attachments']);
@@ -241,10 +278,6 @@ function bioland_requirements($phase) {
   if ($phase === 'install' || $phase === 'runtime') {
     // Verify contrib modules are available (composer) and enabled (Drupal).
     $contrib_modules = [
-      'auto_node_translate' => 'drupal/auto_node_translate',
-      'auto_node_translate_deepl' => 'drupal/auto_node_translate_deepl',
-      'auto_node_translate_amazon' => 'drupal/auto_node_translate_amazon',
-      'ant_bulk' => 'drupal/ant_bulk',
       'fontawesome' => 'drupal/fontawesome',
     ];
 
@@ -538,4 +571,177 @@ function bioland_update_9010() {
 
   $language_count = count($body_text_translations);
   return t('Added help_comments configuration with default help text values for @count languages.', ['@count' => $language_count]);
+}
+
+/**
+ * Add field_order to the Search API "content" index.
+ */
+function bioland_update_9011() {
+  // Check if Search API module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
+    return t('Search API module is not enabled; skipping field_order index addition.');
+  }
+
+  // Load the "content" index.
+  $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+  $index = $index_storage->load('content');
+
+  if (!$index) {
+    return t('Search API index "content" not found; skipping field_order addition.');
+  }
+
+  // Check if field_order already exists in the index.
+  if ($index->getField('field_order')) {
+    return t('field_order already exists in the "content" index.');
+  }
+
+  // Add field_order to the index.
+  $field = \Drupal::getContainer()
+    ->get('search_api.fields_helper')
+    ->createField($index, 'field_order', [
+      'label' => 'Order',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_order',
+      'type' => 'integer',
+    ]);
+
+  $index->addField($field);
+  $index->save();
+
+  // Rebuild tracking information and mark all items for reindexing.
+  $index->rebuildTracker();
+  $index->reindex();
+
+  // Index all items immediately (-1 means no limit).
+  $index->indexItems(-1);
+
+  return t('Added field_order to the Search API "content" index. All items have been reindexed.');
+}
+
+/**
+ * Helper function to add field_order to the Search API "content" index.
+ */
+function _bioland_add_field_order_to_search_index() {
+  // Check if Search API module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
+    \Drupal::logger('bioland')->notice('Search API module is not enabled; skipping field_order index addition.');
+    return;
+  }
+
+  try {
+    // Load the "content" index.
+    $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+    $index = $index_storage->load('content');
+
+    if (!$index) {
+      \Drupal::logger('bioland')->notice('Search API index "content" not found; skipping field_order addition.');
+      return;
+    }
+
+    // Check if field_order already exists in the index.
+    if ($index->getField('field_order')) {
+      \Drupal::logger('bioland')->notice('field_order already exists in the "content" index.');
+      return;
+    }
+
+    // Add field_order to the index.
+    $field = \Drupal::getContainer()
+      ->get('search_api.fields_helper')
+      ->createField($index, 'field_order', [
+        'label' => 'Order',
+        'datasource_id' => 'entity:node',
+        'property_path' => 'field_order',
+        'type' => 'integer',
+      ]);
+
+    $index->addField($field);
+    $index->save();
+
+    // Rebuild tracking information and mark all items for reindexing.
+    $index->rebuildTracker();
+    $index->reindex();
+
+    // Index all items immediately (-1 means no limit).
+    $index->indexItems(-1);
+
+    \Drupal::logger('bioland')->notice('Added field_order to the Search API "content" index. All items have been reindexed.');
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('bioland')->error('Failed to add field_order to Search API index: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+}
+
+/**
+ * Create translation defaults for all existing content nodes.
+ */
+ function bioland_update_9012(&$sandbox) {
+  // Check if translation defaults are enabled.
+  $config = \Drupal::config('bioland.settings');
+  if (!$config->get('translation.auto_create_enabled')) {
+    return t('Translation auto-create is not enabled; skipping batch processing.');
+  }
+
+  // Initialize sandbox on first run.
+  if (!isset($sandbox['progress'])) {
+    // Get all content node IDs.
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'content')
+      ->accessCheck(FALSE);
+    $sandbox['nids'] = $query->execute();
+    $sandbox['total'] = count($sandbox['nids']);
+    $sandbox['progress'] = 0;
+    $sandbox['created'] = 0;
+    $sandbox['errors'] = 0;
+
+    if ($sandbox['total'] === 0) {
+      $sandbox['#finished'] = 1;
+      return t('No content nodes found to process.');
+    }
+  }
+
+  // Process nodes in batches of 20.
+  $batch_size = 20;
+  $nids_to_process = array_slice($sandbox['nids'], $sandbox['progress'], $batch_size);
+
+  $translation_manager = \Drupal::service('bioland.translation_manager');
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  foreach ($nids_to_process as $nid) {
+    try {
+      $node = $storage->load($nid);
+      if ($node) {
+        $created = $translation_manager->createTranslations($node, 'batch');
+        if ($created) {
+          $sandbox['created']++;
+        }
+      }
+    }
+    catch (\Exception $e) {
+      $sandbox['errors']++;
+      \Drupal::logger('bioland')->error('Update 9012: Error processing node @nid: @message', [
+        '@nid' => $nid,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+    $sandbox['progress']++;
+  }
+
+  // Calculate progress.
+  $sandbox['#finished'] = $sandbox['progress'] / $sandbox['total'];
+
+  // Return status message.
+  if ($sandbox['#finished'] >= 1) {
+    return t('Processed @total content nodes. Created @created translation defaults. Errors: @errors.', [
+      '@total' => $sandbox['total'],
+      '@created' => $sandbox['created'],
+      '@errors' => $sandbox['errors'],
+    ]);
+  }
+
+  return t('Processed @progress of @total content nodes...', [
+    '@progress' => $sandbox['progress'],
+    '@total' => $sandbox['total'],
+  ]);
 }
