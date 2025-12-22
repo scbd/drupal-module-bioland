@@ -778,27 +778,27 @@ msgstr "urdu"
 msgid "Vietnamese"
 msgstr "vietnami"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Segítség"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Ez lesz az új webhely tartalmának fő tartalma. Az összefoglaló felhasználható a tartalom rövid, tömör leírásának megjelenítésére. Továbbá, az összefoglaló a webhelyen található bejegyzés lista- és kártyanézeteiben jelenik meg. Alternatív megoldásként a fő tartalom első néhány mondatát fogjuk használni."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Képek"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "Az <b>első kép</b> itt balról jobbra sorrendben a rekord <b>fő képe lesz</b>, amely az oldalon, miniatűrökben jelenik meg a lista- és kártyanézetekben. Az összes többi kép a fő tartalom alatt jelenik meg."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Hősök"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Bármely oldal/tartalomtípus több <b>hő</b> s bannerrel rendelkezhet. Ha több van, akkor egy, akkor óránként forgatják őket."
 

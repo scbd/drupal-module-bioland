@@ -227,27 +227,27 @@ msgstr "Арабська"
 msgid "Russian"
 msgstr "Російська"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Допомога"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Це буде основний вміст вашого нового сайту.  Резюме можна використовувати для відображення короткого стислого опису вашого вмісту.  Крім того, резюме  буде відображатися у вигляді списку та карток вашого запису на веб-сайті.  В іншому випадку буде використано перші кілька речень з основного вмісту."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Зображення"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Перше зображення</b> тут, у порядку зліва направо, <b>буде головним зображенням</b> вашого запису, що відображається на сторінці та в мініатюрах у вигляді списку та карток.  Усі інші зображення будуть відображені під основним вмістом."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Герої"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Будь-яка сторінка/тип вмісту може мати кілька <b>банерів-героїв</b>.  Якщо їх більше одного, вони будуть обертатися щогодини."
 

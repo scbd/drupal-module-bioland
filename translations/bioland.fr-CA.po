@@ -227,27 +227,27 @@ msgstr "Arabe"
 msgid "Russian"
 msgstr "Russe"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Aide"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Ce sera le contenu principal de votre nouveau contenu de site.  Le résumé peut être utilisé pour afficher une description brève et concise de votre contenu.  De plus, le résumé  sera affiché dans les vues de liste et de carte de votre enregistrement sur le site Web.  Alternativement, les premières phrases du contenu principal seront utilisées."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Images"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "La <b>première image</b> dans l'ordre de gauche à droite ici, <b>sera l'image principale</b> de votre enregistrement affichée sur la page et dans les vignettes des vues de liste et de carte.  Toutes les autres images seront affichées sous le contenu principal."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Héros"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "N'importe quelle page/type de contenu peut avoir plusieurs <b>bannières de héros</b>.  S'il y en a plus d'une, elles tourneront toutes les heures."
 

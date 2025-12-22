@@ -227,27 +227,27 @@ msgstr "Арабский"
 msgid "Russian"
 msgstr "Русский"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Помощь"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Это будет основное содержимое вашего нового контента на сайте. Резюме можно использовать для отображения краткого и лаконичного описания вашего контента. Кроме того, резюме будет отображаться в виде списка и карточек вашей записи на веб-сайте. В качестве альтернативы будут использованы первые несколько предложений из основного содержимого."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Изображения"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Первое изображение</b> в порядке слева направо здесь <b>будет главным изображением</b> вашей записи, отображаемым на странице и в миниатюрах в виде списка и карточек. Все остальные изображения будут отображаться под основным содержимым."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Баннеры"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Любая страница/тип контента может иметь несколько <b>главных баннеров</b>. Если их больше одного, они будут меняться ежечасно."
 

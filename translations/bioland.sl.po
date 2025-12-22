@@ -227,27 +227,27 @@ msgstr "Arabščina"
 msgid "Russian"
 msgstr "Ruščina"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Pomoč"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "To bo glavna vsebina vaše nove vsebine spletnega mesta. Povzetek se lahko uporabi za prikaz kratkega jedrnatega opisa vaše vsebine. Poleg tega bo povzetek prikazan v seznamih in kartičnih pogledih vašega zapisa na spletnem mestu. Druga možnost je, da se uporabi prvih nekaj stavkov iz glavne vsebine."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Slike"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Prva slika</b> po vrstnem redu od leve proti desni tukaj <b>bo glavna slika</b> vašega zapisa, prikazana na strani in v sličicah v seznamih in kartičnih pogledih. Vse druge slike bodo prikazane pod glavno vsebino."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Junaki"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Vsaka stran/vrsta vsebine ima lahko več <b>junaških pasic</b>. Če jih je več, se bodo menjavale vsako uro."
 

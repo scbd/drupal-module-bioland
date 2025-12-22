@@ -227,27 +227,27 @@ msgstr "عربي"
 msgid "Russian"
 msgstr "روسي"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "مرسته"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "دا به ستاسو د نوي سایټ منځپانګې اصلي محتوا وي. لنډیز ستاسو د منځپانګې د یوې لنډې او جامعې شرحې ښودلو لپاره کارول کیدی شي. سربیره پردې، لنډیز به ستاسو د ریکارډ په لیست او کارډ لیدونو کې په ویب پاڼه کې وښودل شي. په بدیل توګه، د اصلي منځپانګې څخه لومړۍ څو جملې به وکارول شي."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "انځورونه"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "دلته له کیڼ څخه ښي ته په ترتیب کې <b>لومړی انځور</b>، ستاسو د ریکارډ <b>اصلي انځور</b> به وي چې په پاڼه او د لیست او کارډ لیدونو کې په تمبنیلونو کې ښودل کیږي. نور ټول انځورونه به د اصلي منځپانګې لاندې وښودل شي."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "هیرويان"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "هر پاڼه/منځپانګې ډول کولی شي ډیری <b>هیرو بینرونه</b> ولري. که چیرې له یو څخه ډیر وي، دوی به په ساعت کې یو ځل وګرځول شي."
 

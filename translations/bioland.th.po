@@ -227,27 +227,27 @@ msgstr "อาหรับ"
 msgid "Russian"
 msgstr "รัสเซีย"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "นี่จะเป็นเนื้อหาหลักของเนื้อหาไซต์ใหม่ของคุณ สรุปสามารถใช้เพื่อแสดงคำอธิบายสั้น ๆ ที่กระชับของเนื้อหาของคุณ นอกจากนี้ สรุปจะแสดงในมุมมองรายการและการ์ดของบันทึกของคุณบนเว็บไซต์ หรืออาจใช้ประโยคแรก ๆ จากเนื้อหาหลักแทน"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "รูปภาพ"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>ภาพแรก</b>ตามลำดับจากซ้ายไปขวาที่นี่ <b>จะเป็นภาพหลัก</b>ของบันทึกของคุณที่แสดงบนหน้าและในภาพขนาดย่อในมุมมองรายการและการ์ด รูปภาพอื่น ๆ ทั้งหมดจะแสดงอยู่ใต้เนื้อหาหลัก"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "ฮีโร่"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "หน้า/ประเภทเนื้อหาใด ๆ สามารถมี <b>แบนเนอร์ฮีโร่</b> ได้หลายอัน หากมีมากกว่าหนึ่งอัน แบนเนอร์จะหมุนเวียนทุกชั่วโมง"
 

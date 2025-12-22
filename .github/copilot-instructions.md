@@ -211,7 +211,7 @@ Key methods:
 
 ## Content Type Requirements
 - **Primary form**: `node_content_form` (content type machine name: `content`)
-- **Additional fields mapping** (in `js/bioland-additional-fields-1-0-20.js`):
+- **Additional fields mapping** (in `js/bioland-additional-fields-1-0-21.js`):
   - Type 3: eventStatuses
   - Type 5: projectStatuses, geoScopes
   - Type 8: orgTypes, govTypes

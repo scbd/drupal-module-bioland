@@ -297,9 +297,9 @@ $all_settings = $settings_manager->getAllSettings();
 
 The module uses a modular JavaScript architecture:
 
-- **js/bioland-field-visibility-1-0-20.js**: Handles field show/hide logic
-- **js/bioland-additional-fields-1-0-20.js**: Manages Vue.js-based additional field mounting
-- **js/bioland-auto-summary-1-0-20.js**: Provides intelligent summary generation
+- **js/bioland-field-visibility-1-0-21.js**: Handles field show/hide logic
+- **js/bioland-additional-fields-1-0-21.js**: Manages Vue.js-based additional field mounting
+- **js/bioland-auto-summary-1-0-21.js**: Provides intelligent summary generation
 
 ### Libraries
 

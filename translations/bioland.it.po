@@ -227,27 +227,27 @@ msgstr "Arabo"
 msgid "Russian"
 msgstr "Russo"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Aiuto"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Questo sarà il contenuto principale del tuo nuovo contenuto del sito. Il riepilogo può essere utilizzato per visualizzare una breve e concisa descrizione del tuo contenuto. Inoltre, il riepilogo verrà visualizzato nelle viste a elenco e a scheda del tuo record sul sito web. In alternativa, verranno utilizzate le prime frasi del contenuto principale."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Immagini"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "La <b>prima immagine</b> in ordine da sinistra a destra qui, <b>sarà l'immagine principale</b> del tuo record visualizzata sulla pagina e nelle miniature nelle viste a elenco e a scheda. Tutte le altre immagini verranno visualizzate sotto il contenuto principale."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Banner Principali"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Qualsiasi pagina/tipo di contenuto può avere più <b>banner principali</b>. Se ce n'è più di uno, verranno ruotati su base oraria."
 

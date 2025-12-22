@@ -227,27 +227,27 @@ msgstr "അറബിക്"
 msgid "Russian"
 msgstr "റഷ്യൻ"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "സഹായം"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "ഇതായിരിക്കും നിങ്ങളുടെ പുതിയ സൈറ്റ് ഉള്ളടക്കത്തിന്റെ പ്രധാന ഉള്ളടക്കം. നിങ്ങളുടെ ഉള്ളടക്കത്തിന്റെ സംക്ഷിപ്ത വിവരണം പ്രദർശിപ്പിക്കുന്നതിന് സംഗ്രഹം ഉപയോഗിക്കാം. കൂടാതെ, വെബ്സൈറ്റിലെ നിങ്ങളുടെ റെക്കോർഡിന്റെ ലിസ്റ്റ്, കാർഡ് കാഴ്‌ചകളിൽ സംഗ്രഹം പ്രദർശിപ്പിക്കും. പകരമായി, പ്രധാന ഉള്ളടക്കത്തിൽ നിന്നുള്ള ആദ്യത്തെ കുറച്ച് വാക്യങ്ങൾ ഉപയോഗിക്കും."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "ചിത്രങ്ങൾ"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "ഇവിടെ ഇടത്തുനിന്ന് വലത്തോട്ടുള്ള ക്രമത്തിൽ <b>ആദ്യത്തെ ചിത്രം</b>, പേജിലും ലിസ്റ്റ്, കാർഡ് കാഴ്‌ചകളിലെ ലഘുചിത്രങ്ങളിലും പ്രദർശിപ്പിക്കുന്ന നിങ്ങളുടെ റെക്കോർഡിന്റെ <b>പ്രധാന ചിത്രമായിരിക്കും</b>. മറ്റെല്ലാ ചിത്രങ്ങളും പ്രധാന ഉള്ളടക്കത്തിന് താഴെ പ്രദർശിപ്പിക്കും."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "ഹീറോകൾ"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "ഏത് പേജിനും/ഉള്ളടക്ക തരത്തിനും ഒന്നിലധികം <b>ഹീറോ ബാനറുകൾ</b> ഉണ്ടാകാം. ഒന്നിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ അവ മണിക്കൂർ അടിസ്ഥാനത്തിൽ റൊട്ടേറ്റ് ചെയ്യപ്പെടും."
 

@@ -227,27 +227,27 @@ msgstr "Arabų"
 msgid "Russian"
 msgstr "Rusų"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Pagalba"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Tai bus pagrindinis jūsų naujo svetainės turinio tekstas. Santrauka gali būti naudojama trumpam ir glaustam jūsų turinio aprašymui. Be to, santrauka bus rodoma jūsų įrašo sąrašo ir kortelių rodiniuose svetainėje. Kitu atveju bus naudojami keli pirmieji sakiniai iš pagrindinio turinio."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Paveikslėliai"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Pirmasis paveikslėlis</b> iš kairės į dešinę čia <b>bus pagrindinis jūsų įrašo paveikslėlis</b>, rodomas puslapyje ir miniatiūrose sąrašo bei kortelių rodiniuose. Visi kiti paveikslėliai bus rodomi po pagrindiniu turiniu."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Didieji baneriai (herojai)"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Bet kuris puslapis/turinio tipas gali turėti kelis <b>didžiuosius banerius (herojus)</b>. Jei jų yra daugiau nei vienas, jie bus keičiami kas valandą."
 

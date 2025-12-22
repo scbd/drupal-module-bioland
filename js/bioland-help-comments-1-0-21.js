@@ -334,21 +334,36 @@
 
     // Find the parent container (claro-details__content)
     const parentContainer = promoteWrapper.parentElement;
+    
+    // Find the summary element to append the info icon to
+    const detailsElement = parentContainer ? parentContainer.closest('details') : null;
+    const summaryElement = detailsElement ? detailsElement.querySelector('summary') : null;
+    
     if (parentContainer) {
       // Insert help message as the first child of the container
       parentContainer.insertBefore(helpMessage, parentContainer.firstChild);
       
-      // Insert info icon after the help message for when it's hidden
-      parentContainer.insertBefore(infoIcon, helpMessage.nextSibling);
+      // Insert info icon into the summary element (so it's visible when collapsed)
+      if (summaryElement) {
+        summaryElement.appendChild(infoIcon);
+      } else {
+        // Fallback: insert after help message if summary not found
+        parentContainer.insertBefore(infoIcon, helpMessage.nextSibling);
+      }
     }
 
     // Add click handler to info icon to toggle visibility
     infoIcon.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation(); // Prevent triggering the summary toggle
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
         infoIcon.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
+        // Ensure the details element is open so user can see the help
+        if (detailsElement && !detailsElement.open) {
+          detailsElement.open = true;
+        }
         logger.log('Promotion options help comment shown');
       } else {
         helpMessage.style.display = 'none';

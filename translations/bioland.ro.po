@@ -227,27 +227,27 @@ msgstr "Arabă"
 msgid "Russian"
 msgstr "Rusă"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Help"
 msgstr "Ajutor"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
 msgstr "Acesta va fi conținutul principal al noului dvs. conținut de site. Rezumatul poate fi folosit pentru a afișa o descriere scurtă și concisă a conținutului dvs. Mai mult, rezumatul va fi afișat în vizualizările de listă și card ale înregistrării dvs. pe site. Alternativ, vor fi folosite primele câteva propoziții din conținutul principal."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Imagini"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
 msgstr "<b>Prima imagine</b> în ordine de la stânga la dreapta aici, <b>va fi imaginea principală</b> a înregistrării dvs. afișată pe pagină și în miniaturi în vizualizările de listă și card. Toate celelalte imagini vor fi afișate sub conținutul principal."
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Eroi"
 
-#: js/bioland-help-comments-1-0-20.js
+#: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
 msgstr "Orice pagină/tip de conținut poate avea mai multe <b>bannere erou</b>. Dacă există mai mult de unul, acestea vor fi rotite la fiecare oră."
 
