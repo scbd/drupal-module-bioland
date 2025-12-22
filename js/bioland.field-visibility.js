@@ -4,25 +4,28 @@
  * Controls show/hide behavior of fields based on content type selection.
  */
 
-/**
- * Track the last content type value to detect changes
- */
-let lastContentTypeValue = null;
+(function (Drupal) {
+  'use strict';
 
-/**
- * Store settings for later use
- */
-let storedSettings = {};
+  /**
+   * Track the last content type value to detect changes
+   */
+  let lastContentTypeValue = null;
 
-/**
- * Logger shortcut for this module
- */
-const logger = () => window.BiolandLogger?.fieldVisibility || { log: () => {}, warn: () => {}, error: () => {} };
+  /**
+   * Store settings for later use
+   */
+  let storedSettings = {};
 
-/**
- * Drupal behavior for Bioland field visibility.
- */
-Drupal.behaviors.biolandFieldVisibility = {
+  /**
+   * Logger shortcut for this module
+   */
+  const logger = () => window.BiolandLogger?.fieldVisibility || { log: () => {}, warn: () => {}, error: () => {} };
+
+  /**
+   * Drupal behavior for Bioland field visibility.
+   */
+  Drupal.behaviors.biolandFieldVisibility = {
   attach(context, settings) {
     // Get settings from Drupal
     const biolandSettings = settings.bioland || {};
@@ -256,3 +259,5 @@ function handleContentTypeChange() {
   logger().log('Content type changed, updating field visibility:', updatedValue);
   applyFieldVisibility(updatedValue);
 }
+
+})(Drupal);

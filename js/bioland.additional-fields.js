@@ -4,36 +4,39 @@
  * Manages Vue-based additional fields based on content type.
  */
 
-/**
- * Track the last content type value to detect changes
- */
-let lastContentTypeValue = null;
+(function (Drupal) {
+  'use strict';
 
-/**
- * Content type to additional fields mapping
- */
-const contentTypeAdditionalFields = {
-  3: ['eventStatuses'], // event 
-  5: ['projectStatuses', 'geoScopes'],
-  8: ['orgTypes', 'govTypes'], // ministry
-  9: ['ecosystemTypes'],
-  12: ['documentTypes'],
-};
+  /**
+   * Track the last content type value to detect changes
+   */
+  let lastContentTypeValue = null;
 
-/**
- * Content types that have additional fields
- */
-const contentTypesWithFields = [3, 5, 8, 9, 12];
+  /**
+   * Content type to additional fields mapping
+   */
+  const contentTypeAdditionalFields = {
+    3: ['eventStatuses'], // event 
+    5: ['projectStatuses', 'geoScopes'],
+    8: ['orgTypes', 'govTypes'], // ministry
+    9: ['ecosystemTypes'],
+    12: ['documentTypes'],
+  };
 
-/**
- * Logger shortcut for this module
- */
-const logger = () => window.BiolandLogger?.additionalFields || { log: () => {}, warn: () => {}, error: () => {} };
+  /**
+   * Content types that have additional fields
+   */
+  const contentTypesWithFields = [3, 5, 8, 9, 12];
 
-/**
- * Drupal behavior for Bioland additional fields.
- */
-Drupal.behaviors.biolandAdditionalFields = {
+  /**
+   * Logger shortcut for this module
+   */
+  const logger = () => window.BiolandLogger?.additionalFields || { log: () => {}, warn: () => {}, error: () => {} };
+
+  /**
+   * Drupal behavior for Bioland additional fields.
+   */
+  Drupal.behaviors.biolandAdditionalFields = {
   attach(context, settings) {
     // Get settings from Drupal
     const biolandSettings = settings.bioland || {};
@@ -445,3 +448,5 @@ function handleContentTypeChange() {
     }
   }
 }
+
+})(Drupal);

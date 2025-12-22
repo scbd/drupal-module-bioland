@@ -5,20 +5,23 @@
  * Supports CKEditor 4, CKEditor 5, and plain textareas.
  */
 
-/**
- * Timeout reference for contenteditable monitoring
- */
-let contentEditableTimeout = null;
+(function (Drupal) {
+  'use strict';
 
-/**
- * Logger shortcut for this module
- */
-const logger = () => window.BiolandLogger?.autoSummary || { log: () => {}, warn: () => {}, error: () => {} };
+  /**
+   * Timeout reference for contenteditable monitoring
+   */
+  let contentEditableTimeout = null;
 
-/**
- * Drupal behavior for Bioland auto summary.
- */
-Drupal.behaviors.biolandAutoSummary = {
+  /**
+   * Logger shortcut for this module
+   */
+  const logger = () => window.BiolandLogger?.autoSummary || { log: () => {}, warn: () => {}, error: () => {} };
+
+  /**
+   * Drupal behavior for Bioland auto summary.
+   */
+  Drupal.behaviors.biolandAutoSummary = {
   attach(context, settings) {
     // Get settings from Drupal
     const biolandSettings = settings.bioland || {};
@@ -620,3 +623,5 @@ function stripHtml(input) {
     }
   }
 }
+
+})(Drupal);
