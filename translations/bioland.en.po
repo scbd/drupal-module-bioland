@@ -786,3 +786,67 @@ msgstr "Order Override"
 #: bioland.module
 msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
 msgstr "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Promotion Options Help"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Promotion Options Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Help text explaining the Promoted and Sticky options. HTML is allowed."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Translate Promotion Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Debug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Enable Debug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Debug Log Areas"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Field Visibility"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Log field visibility show/hide operations."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Log additional fields mounting and content type changes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Log auto summary generation and CKEditor connections."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Help Comments"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Log help comment insertion and visibility changes."
+
+#: js/bioland.help-comments.js
+msgid "Promotion Options"
+msgstr "Promotion Options"
