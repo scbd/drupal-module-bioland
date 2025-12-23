@@ -81,6 +81,20 @@ class BiolandFieldFunctionalityManager {
       'helpComments' => $enableDebugLogging && ($c->get('debug_log_areas.help_comments') !== FALSE),
     ];
 
+    // Get additional tags content type settings and convert to integer arrays
+    $event_status_content_types = $c->get('additional_tags.event_status_content_types') ?: [3];
+    $project_status_content_types = $c->get('additional_tags.project_status_content_types') ?: [5];
+    $organization_types_content_types = $c->get('additional_tags.organization_types_content_types') ?: [8];
+    $ecosystem_types_content_types = $c->get('additional_tags.ecosystem_types_content_types') ?: [9];
+    $document_types_content_types = $c->get('additional_tags.document_types_content_types') ?: [12];
+
+    // Filter out unchecked values (0) and convert to integers
+    $event_status_content_types = array_values(array_map('intval', array_filter($event_status_content_types)));
+    $project_status_content_types = array_values(array_map('intval', array_filter($project_status_content_types)));
+    $organization_types_content_types = array_values(array_map('intval', array_filter($organization_types_content_types)));
+    $ecosystem_types_content_types = array_values(array_map('intval', array_filter($ecosystem_types_content_types)));
+    $document_types_content_types = array_values(array_map('intval', array_filter($document_types_content_types)));
+
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
       'enableAdditionalFields' => $c->get('enable_additional_fields') !== FALSE,
@@ -90,6 +104,13 @@ class BiolandFieldFunctionalityManager {
       'urlContentTypes' => $url_content_types,
       'publishedContentTypes' => $published_content_types,
       'dateRangeContentTypes' => $date_range_content_types,
+      'additionalTags' => [
+        'eventStatusContentTypes' => $event_status_content_types,
+        'projectStatusContentTypes' => $project_status_content_types,
+        'organizationTypesContentTypes' => $organization_types_content_types,
+        'ecosystemTypesContentTypes' => $ecosystem_types_content_types,
+        'documentTypesContentTypes' => $document_types_content_types,
+      ],
       'helpComments' => $helpComments,
       'enableDebugLogging' => $enableDebugLogging,
       'debugLogAreas' => $debugLogAreas,

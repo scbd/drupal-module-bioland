@@ -10,9 +10,9 @@
   'use strict';
 
   /**
-   * Content type to additional fields mapping
+   * Default content type to additional fields mapping (fallback if settings not available)
    */
-  const contentTypeAdditionalFields = {
+  const defaultContentTypeAdditionalFields = {
     3: ['eventStatuses'], // event 
     5: ['projectStatuses', 'geoScopes'],
     8: ['orgTypes', 'govTypes'], // ministry
@@ -21,9 +21,100 @@
   };
 
   /**
-   * Content types that have additional fields
+   * Build content type to additional fields mapping from settings.
+   * 
+   * @param {Object} additionalTags - Settings from drupalSettings.bioland.additionalTags
+   * @returns {Object} Content type to fields mapping
    */
-  const contentTypesWithFields = [3, 5, 8, 9, 12];
+  const buildContentTypeAdditionalFields = function(additionalTags) {
+    if (!additionalTags) {
+      return defaultContentTypeAdditionalFields;
+    }
+
+    const mapping = {};
+    
+    // Event Status -> eventStatuses
+    if (additionalTags.eventStatusContentTypes) {
+      additionalTags.eventStatusContentTypes.forEach(function(tid) {
+        if (!mapping[tid]) mapping[tid] = [];
+        mapping[tid].push('eventStatuses');
+      });
+    }
+    
+    // Project Status -> projectStatuses, geoScopes
+    if (additionalTags.projectStatusContentTypes) {
+      additionalTags.projectStatusContentTypes.forEach(function(tid) {
+        if (!mapping[tid]) mapping[tid] = [];
+        mapping[tid].push('projectStatuses');
+        mapping[tid].push('geoScopes');
+      });
+    }
+    
+    // Organization Types -> orgTypes, govTypes
+    if (additionalTags.organizationTypesContentTypes) {
+      additionalTags.organizationTypesContentTypes.forEach(function(tid) {
+        if (!mapping[tid]) mapping[tid] = [];
+        mapping[tid].push('orgTypes');
+        mapping[tid].push('govTypes');
+      });
+    }
+    
+    // Ecosystem Types -> ecosystemTypes
+    if (additionalTags.ecosystemTypesContentTypes) {
+      additionalTags.ecosystemTypesContentTypes.forEach(function(tid) {
+        if (!mapping[tid]) mapping[tid] = [];
+        mapping[tid].push('ecosystemTypes');
+      });
+    }
+    
+    // Document Types -> documentTypes
+    if (additionalTags.documentTypesContentTypes) {
+      additionalTags.documentTypesContentTypes.forEach(function(tid) {
+        if (!mapping[tid]) mapping[tid] = [];
+        mapping[tid].push('documentTypes');
+      });
+    }
+    
+    // If no mappings were built, return defaults
+    if (Object.keys(mapping).length === 0) {
+      return defaultContentTypeAdditionalFields;
+    }
+    
+    return mapping;
+  };
+
+  /**
+   * Build list of content types that have additional fields from settings.
+   * 
+   * @param {Object} additionalTags - Settings from drupalSettings.bioland.additionalTags
+   * @returns {Array} List of content type IDs
+   */
+  const buildContentTypesWithFields = function(additionalTags) {
+    if (!additionalTags) {
+      return [3, 5, 8, 9, 12]; // defaults
+    }
+
+    const types = new Set();
+    
+    if (additionalTags.eventStatusContentTypes) {
+      additionalTags.eventStatusContentTypes.forEach(function(tid) { types.add(tid); });
+    }
+    if (additionalTags.projectStatusContentTypes) {
+      additionalTags.projectStatusContentTypes.forEach(function(tid) { types.add(tid); });
+    }
+    if (additionalTags.organizationTypesContentTypes) {
+      additionalTags.organizationTypesContentTypes.forEach(function(tid) { types.add(tid); });
+    }
+    if (additionalTags.ecosystemTypesContentTypes) {
+      additionalTags.ecosystemTypesContentTypes.forEach(function(tid) { types.add(tid); });
+    }
+    if (additionalTags.documentTypesContentTypes) {
+      additionalTags.documentTypesContentTypes.forEach(function(tid) { types.add(tid); });
+    }
+    
+    const result = Array.from(types);
+    return result.length > 0 ? result : [3, 5, 8, 9, 12]; // defaults if empty
+  };
 
   /**
    * Get the content type field element and its current value.
@@ -49,9 +140,10 @@
   /**
    * Check if content type should have additional fields.
    * @param {string|number} contentTypeValue - The content type value
+   * @param {Array} contentTypesWithFields - List of content types with fields
    * @returns {boolean} True if content type should have additional fields
    */
-  const shouldMountAdditionalFields = function(contentTypeValue) {
+  const shouldMountAdditionalFields = function(contentTypeValue, contentTypesWithFields) {
     return contentTypeValue && contentTypesWithFields.includes(Number(contentTypeValue));
   };
 
@@ -168,6 +260,8 @@
    * @param {Element} params.wrapperEl - The wrapper element to mount to
    * @param {string} params.locale - The locale
    * @param {string} params.name - The field name
+   * @param {Object} params.contentTypeAdditionalFields - Mapping of content types to fields
+   * @param {Array} params.contentTypesWithFields - List of content types with fields
    * @param {Object} params.logger - Logger instance
    * @returns {boolean} True if mounted successfully, false otherwise
    */
@@ -176,6 +270,8 @@
     const wrapperEl = params.wrapperEl;
     const locale = params.locale;
     const name = params.name;
+    const contentTypeAdditionalFields = params.contentTypeAdditionalFields;
+    const contentTypesWithFields = params.contentTypesWithFields;
     const logger = params.logger;
 
     if (!contentTypeValue || !wrapperEl) return false;
@@ -252,9 +348,11 @@
    * Mount additional fields for the given content type.
    *
    * @param {string|number} contentTypeValue - The content type value
+   * @param {Object} contentTypeAdditionalFields - Mapping of content types to fields
+   * @param {Array} contentTypesWithFields - List of content types with fields
    * @param {Object} logger - Logger instance
    */
-  const mountAdditionalFields = function(contentTypeValue, logger) {
+  const mountAdditionalFields = function(contentTypeValue, contentTypeAdditionalFields, contentTypesWithFields, logger) {
     // Find the wrapper element
     const wrapperEl = findAdditionalFieldsWrapper(logger);
     if (!wrapperEl) {
@@ -277,6 +375,8 @@
       wrapperEl: wrapperEl,
       locale: locale,
       name: fieldName,
+      contentTypeAdditionalFields: contentTypeAdditionalFields,
+      contentTypesWithFields: contentTypesWithFields,
       logger: logger
     });
 
@@ -291,9 +391,11 @@
    * Handle content type field changes by updating additional fields.
    * 
    * @param {Element} fieldElement - The content type field element
+   * @param {Object} contentTypeAdditionalFields - Mapping of content types to fields
+   * @param {Array} contentTypesWithFields - List of content types with fields
    * @param {Object} logger - Logger instance
    */
-  const handleContentTypeChange = function(fieldElement, logger) {
+  const handleContentTypeChange = function(fieldElement, contentTypeAdditionalFields, contentTypesWithFields, logger) {
     const updatedField = getContentTypeField();
     const updatedValue = updatedField ? updatedField.value : null;
     const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandAdditionalLastValue : null;
@@ -319,9 +421,9 @@
     logger.log('Content type changed, updating additional fields:', updatedValue);
     
     // Check if the new content type should have additional fields
-    if (shouldMountAdditionalFields(updatedValue)) {
+    if (shouldMountAdditionalFields(updatedValue, contentTypesWithFields)) {
       logger.log('New content type SHOULD have additional fields, mounting...');
-      mountAdditionalFields(updatedValue, logger);
+      mountAdditionalFields(updatedValue, contentTypeAdditionalFields, contentTypesWithFields, logger);
     } else {
       logger.log('New content type should NOT have additional fields, removing if exists...');
       // Remove existing additional fields if they exist
@@ -340,9 +442,11 @@
    * Set up event listeners for content type field changes.
    * 
    * @param {Element} context - The context element
+   * @param {Object} contentTypeAdditionalFields - Mapping of content types to fields
+   * @param {Array} contentTypesWithFields - List of content types with fields
    * @param {Object} logger - Logger instance
    */
-  const setupContentTypeListeners = function(context, logger) {
+  const setupContentTypeListeners = function(context, contentTypeAdditionalFields, contentTypesWithFields, logger) {
     const contentTypeField = getContentTypeField();
     
     if (!contentTypeField) {
@@ -369,19 +473,19 @@
 
     fieldElement.addEventListener('change', function() {
       logger.log('Change event fired on content type field');
-      handleContentTypeChange(fieldElement, logger);
+      handleContentTypeChange(fieldElement, contentTypeAdditionalFields, contentTypesWithFields, logger);
     });
 
     fieldElement.addEventListener('keydown', function() {
       logger.log('Keydown event fired on content type field');
       setTimeout(function() {
-        handleContentTypeChange(fieldElement, logger);
+        handleContentTypeChange(fieldElement, contentTypeAdditionalFields, contentTypesWithFields, logger);
       }, 100);
     });
 
     fieldElement.addEventListener('mouseout', function() {
       logger.log('Mouseout event fired on content type field');
-      handleContentTypeChange(fieldElement, logger);
+      handleContentTypeChange(fieldElement, contentTypeAdditionalFields, contentTypesWithFields, logger);
     });
 
     logger.log('Event listeners attached successfully');
@@ -397,8 +501,15 @@
   const initializeAdditionalFields = function(context, settings, logger) {
     logger.log('Initializing additional fields');
     
+    // Build content type mappings from settings
+    const contentTypeAdditionalFields = buildContentTypeAdditionalFields(settings.additionalTags);
+    const contentTypesWithFields = buildContentTypesWithFields(settings.additionalTags);
+    
+    logger.log('Content type additional fields mapping:', contentTypeAdditionalFields);
+    logger.log('Content types with fields:', contentTypesWithFields);
+    
     // Always set up content type field change listeners first
-    setupContentTypeListeners(context, logger);
+    setupContentTypeListeners(context, contentTypeAdditionalFields, contentTypesWithFields, logger);
     
     // Get the content type field
     const contentTypeField = getContentTypeField();
@@ -416,8 +527,8 @@
         if (deferredValue && deferredElement) {
           logger.log('Deferred check found content type value:', deferredValue);
           deferredElement.dataset.biolandAdditionalLastValue = deferredValue;
-          if (shouldMountAdditionalFields(deferredValue)) {
-            mountAdditionalFields(deferredValue, logger);
+          if (shouldMountAdditionalFields(deferredValue, contentTypesWithFields)) {
+            mountAdditionalFields(deferredValue, contentTypeAdditionalFields, contentTypesWithFields, logger);
           }
         }
       }, 100);
@@ -431,11 +542,11 @@
       }
 
       // Check if this content type should have additional fields
-      if (!shouldMountAdditionalFields(contentTypeValue)) {
+      if (!shouldMountAdditionalFields(contentTypeValue, contentTypesWithFields)) {
         logger.log('No additional fields for content type:', contentTypeValue);
       } else {
         // Mount additional fields
-        mountAdditionalFields(contentTypeValue, logger);
+        mountAdditionalFields(contentTypeValue, contentTypeAdditionalFields, contentTypesWithFields, logger);
       }
     }
   };

@@ -884,3 +884,26 @@ function bioland_update_9014() {
 
   return t('Added Promotion Options help message configuration.');
 }
+
+/**
+ * Add additional_tags configuration with default content type mappings.
+ */
+function bioland_update_9015() {
+  $config_factory = \Drupal::configFactory();
+  $editable = $config_factory->getEditable('bioland.settings');
+
+  // Check if additional_tags is already set
+  if ($editable->get('additional_tags.event_status_content_types') !== NULL) {
+    return t('Additional tags configuration already exists; no changes made.');
+  }
+
+  // Set default additional tags content type mappings
+  $editable->set('additional_tags.event_status_content_types', [3]);
+  $editable->set('additional_tags.project_status_content_types', [5]);
+  $editable->set('additional_tags.organization_types_content_types', [8]);
+  $editable->set('additional_tags.ecosystem_types_content_types', [9]);
+  $editable->set('additional_tags.document_types_content_types', [12]);
+  $editable->save();
+
+  return t('Added additional tags configuration with default content type mappings.');
+}

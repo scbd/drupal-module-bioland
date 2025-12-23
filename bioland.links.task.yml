@@ -9,15 +9,15 @@ bioland.settings_field_visibility_tab:
   base_route: bioland.settings
   weight: 1
 
-bioland.settings_translation_tab:
-  route_name: bioland.settings.translation
-  title: 'Translation Defaults'
-  base_route: bioland.settings
-  weight: 2
-
 bioland.settings_tags_tab:
   route_name: bioland.settings.tags
   title: 'Tags'
+  base_route: bioland.settings
+  weight: 2
+
+bioland.settings_translation_tab:
+  route_name: bioland.settings.translation
+  title: 'Translation Defaults'
   base_route: bioland.settings
   weight: 3
 

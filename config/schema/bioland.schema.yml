@@ -42,6 +42,40 @@ bioland.settings:
     enable_additional_fields:
       type: boolean
       label: 'Enable additional fields'
+    additional_tags:
+      type: mapping
+      label: 'Additional tags settings'
+      mapping:
+        event_status_content_types:
+          type: sequence
+          label: 'Content types where Event Status tags are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        project_status_content_types:
+          type: sequence
+          label: 'Content types where Project Status tags are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        organization_types_content_types:
+          type: sequence
+          label: 'Content types where Organization Types tags are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        ecosystem_types_content_types:
+          type: sequence
+          label: 'Content types where Ecosystem Types tags are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
+        document_types_content_types:
+          type: sequence
+          label: 'Content types where Document Types tags are visible'
+          sequence:
+            type: integer
+            label: 'Content type ID'
     enable_auto_summary:
       type: boolean
       label: 'Enable auto summary'
@@ -100,6 +134,18 @@ bioland.settings:
         promotion_translations_format:
           type: mapping
           label: 'Promotion options help text translations formats'
+        order_override_text:
+          type: text
+          label: 'Order override help text'
+        order_override_text_format:
+          type: string
+          label: 'Order override help text format'
+        order_override_translations:
+          type: mapping
+          label: 'Order override help text translations'
+        order_override_translations_format:
+          type: mapping
+          label: 'Order override help text translations formats'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'

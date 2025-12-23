@@ -132,9 +132,10 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       $form['general']['site_slogan'] = [
-        '#type' => 'textfield',
+        '#type' => 'text_format',
         '#title' => $this->t('Slogan'),
         '#default_value' => $site_config->get('slogan'),
+        '#format' => 'basic_html',
         '#description' => $this->t('How this is used depends on your site\'s theme.'),
       ];
 
@@ -177,11 +178,22 @@ class BiolandSettingsForm extends ConfigFormBase {
           ];
 
           foreach ($config_overrides as $langcode => $config_override) {
-            $form['general']["{$field_name}_translations"][$langcode] = [
-              '#type' => 'textfield',
-              '#title' => $languages[$langcode]->getName(),
-              '#default_value' => $config_override->get($translation_info['config_key']),
-            ];
+            // Use text_format for slogan, textfield for others
+            if ($field_name === 'site_slogan') {
+              $form['general']["{$field_name}_translations"][$langcode] = [
+                '#type' => 'text_format',
+                '#title' => $languages[$langcode]->getName(),
+                '#default_value' => $config_override->get($translation_info['config_key']),
+                '#format' => 'basic_html',
+              ];
+            }
+            else {
+              $form['general']["{$field_name}_translations"][$langcode] = [
+                '#type' => 'textfield',
+                '#title' => $languages[$langcode]->getName(),
+                '#default_value' => $config_override->get($translation_info['config_key']),
+              ];
+            }
           }
         }
       }
@@ -316,19 +328,17 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Enable Additional Tags'),
         '#description' => $this->t('Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type.'),
         '#default_value' => $config->get('enable_additional_fields') !== FALSE,
-        '#suffix' => '<a href="#" class="bioland-toggle-additional-fields-settings" data-target="additional-fields-settings">Show more</a>',
       ];
 
-      // Container for additional tags information
-      $form['tags_settings']['additional_tags']['settings_container'] = [
-        '#type' => 'container',
-        '#attributes' => ['class' => ['bioland-additional-fields-settings', 'bioland-collapsible-hidden']],
-      ];
+      // Get content type options for tag configuration
+      $content_types = $this->getContentTypeOptions();
 
-      $form['tags_settings']['additional_tags']['settings_container']['info'] = [
+      // Event Status tag settings
+      $form['tags_settings']['additional_tags']['event_status'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Additional Tags Mapping'),
-        '#description' => $this->t('The following content types will have these additional tags available:'),
+        '#title' => $this->t('Event Status'),
+        '#description' => $this->t('Content types that will have Event Status tags available.'),
+        '#collapsible' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -336,19 +346,91 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['settings_container']['info']['mapping'] = [
-        '#markup' => '
-          <div class="bioland-additional-fields-mapping">
-            <ul>
-              <li><strong>' . $this->t('Meeting or Event (3)') . ':</strong> ' . $this->t('Event Statuses') . '</li>
-              <li><strong>' . $this->t('Project (5)') . ':</strong> ' . $this->t('Project Statuses, Geographic Scopes') . '</li>
-              <li><strong>' . $this->t('Ministry (8)') . ':</strong> ' . $this->t('Organization Types, Government Types') . '</li>
-              <li><strong>' . $this->t('Ecosystem (9)') . ':</strong> ' . $this->t('Ecosystem Types') . '</li>
-              <li><strong>' . $this->t('Document (12)') . ':</strong> ' . $this->t('Document Types') . '</li>
-            </ul>
-            <p><em>' . $this->t('These tags are dynamically added based on the selected content type and are powered by a Vue.js component.') . '</em></p>
-          </div>
-        ',
+      $form['tags_settings']['additional_tags']['event_status']['event_status_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Event Status tags for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('additional_tags.event_status_content_types') ?: [3],
+      ];
+
+      // Project Status tag settings
+      $form['tags_settings']['additional_tags']['project_status'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Project Status'),
+        '#description' => $this->t('Content types that will have Project Status and Geographic Scope tags available.'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['tags_settings']['additional_tags']['project_status']['project_status_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Project Status tags for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('additional_tags.project_status_content_types') ?: [5],
+      ];
+
+      // Organization Types tag settings
+      $form['tags_settings']['additional_tags']['organization_types'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Organization Types'),
+        '#description' => $this->t('Content types that will have Organization Types and Government Types tags available.'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['tags_settings']['additional_tags']['organization_types']['organization_types_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Organization Types tags for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('additional_tags.organization_types_content_types') ?: [8],
+      ];
+
+      // Ecosystem Types tag settings
+      $form['tags_settings']['additional_tags']['ecosystem_types'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Ecosystem Types'),
+        '#description' => $this->t('Content types that will have Ecosystem Types tags available.'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['tags_settings']['additional_tags']['ecosystem_types']['ecosystem_types_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Ecosystem Types tags for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('additional_tags.ecosystem_types_content_types') ?: [9],
+      ];
+
+      // Document Types tag settings
+      $form['tags_settings']['additional_tags']['document_types'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Document Types'),
+        '#description' => $this->t('Content types that will have Document Types tags available.'),
+        '#collapsible' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['tags_settings']['additional_tags']['document_types']['document_types_content_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Show Document Types tags for these content types:'),
+        '#options' => $content_types,
+        '#default_value' => $config->get('additional_tags.document_types_content_types') ?: [12],
       ];
     }
 
@@ -547,6 +629,59 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.promotion_translations.{$langcode}") ?: '',
             '#format' => $config->get("help_comments.promotion_translations_format.{$langcode}") ?: 'basic_html',
+          ];
+        }
+      }
+
+      // Order Override Field Help Comment
+      $form['help_comments']['order_override_help'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Order Override Help'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="enable_help_comments"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $default_order_override_text = $this->t('<b>Content sorting priority (highest to lowest):</b>
+<ol>
+<li><b>Sticky</b> – Items marked "Sticky at top of lists" always appear first</li>
+<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
+<li><b>Promoted</b> – Items marked "Promoted to front page" come next</li>
+<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Last Modified</b> – Finally sorted by most recently updated</li>
+</ol>
+<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later.');
+
+      $form['help_comments']['order_override_help']['help_order_override_text'] = [
+        '#type' => 'text_format',
+        '#title' => $this->t('Order Override Help Text'),
+        '#description' => $this->t('Help text explaining the Order Override field and content sorting priority.'),
+        '#default_value' => $config->get('help_comments.order_override_text') ?: $default_order_override_text,
+        '#format' => $config->get('help_comments.order_override_text_format') ?: 'basic_html',
+      ];
+
+      // Order Override Help Translations
+      if ($has_multiple_languages) {
+        $form['help_comments']['order_override_help']['order_override_help_translations'] = [
+          '#type' => 'details',
+          '#title' => $this->t('Translate Order Override Help Text'),
+          '#open' => FALSE,
+          '#tree' => TRUE,
+        ];
+
+        foreach ($languages as $langcode => $language) {
+          if ($langcode === $default_langcode) {
+            continue;
+          }
+          $form['help_comments']['order_override_help']['order_override_help_translations'][$langcode] = [
+            '#type' => 'text_format',
+            '#title' => $language->getName(),
+            '#default_value' => $config->get("help_comments.order_override_translations.{$langcode}") ?: '',
+            '#format' => $config->get("help_comments.order_override_translations_format.{$langcode}") ?: 'basic_html',
           ];
         }
       }
@@ -797,8 +932,10 @@ class BiolandSettingsForm extends ConfigFormBase {
         $site_config->set('name', $values['site_name']);
         $site_config_changed = TRUE;
       }
-      if ($site_config->get('slogan') !== $values['site_slogan']) {
-        $site_config->set('slogan', $values['site_slogan']);
+      // Extract slogan value from text_format array
+      $slogan_value = is_array($values['site_slogan']) ? ($values['site_slogan']['value'] ?? '') : $values['site_slogan'];
+      if ($site_config->get('slogan') !== $slogan_value) {
+        $site_config->set('slogan', $slogan_value);
         $site_config_changed = TRUE;
       }
       if ($site_config->get('mail') !== $values['site_mail']) {
@@ -826,7 +963,14 @@ class BiolandSettingsForm extends ConfigFormBase {
           $override_changed = FALSE;
 
           foreach ($translatable_fields as $config_key => $form_key) {
-            $new_value = $values[$form_key][$langcode] ?? '';
+            $field_value = $values[$form_key][$langcode] ?? '';
+            // Extract value from text_format array for slogan field
+            if ($config_key === 'slogan' && is_array($field_value)) {
+              $new_value = $field_value['value'] ?? '';
+            }
+            else {
+              $new_value = $field_value;
+            }
             if ($config_override->get($config_key) !== $new_value) {
               $config_override->set($config_key, $new_value);
               $override_changed = TRUE;
@@ -861,8 +1005,20 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     if ($section === 'tags') {
+      // Process additional tags content type selections
+      $event_status_content_types = array_values(array_filter($values['event_status_content_types']));
+      $project_status_content_types = array_values(array_filter($values['project_status_content_types']));
+      $organization_types_content_types = array_values(array_filter($values['organization_types_content_types']));
+      $ecosystem_types_content_types = array_values(array_filter($values['ecosystem_types_content_types']));
+      $document_types_content_types = array_values(array_filter($values['document_types_content_types']));
+
       $config
-        ->set('enable_additional_fields', $values['enable_additional_fields']);
+        ->set('enable_additional_fields', $values['enable_additional_fields'])
+        ->set('additional_tags.event_status_content_types', $event_status_content_types)
+        ->set('additional_tags.project_status_content_types', $project_status_content_types)
+        ->set('additional_tags.organization_types_content_types', $organization_types_content_types)
+        ->set('additional_tags.ecosystem_types_content_types', $ecosystem_types_content_types)
+        ->set('additional_tags.document_types_content_types', $document_types_content_types);
     }
 
     if ($section === 'help_comments') {
@@ -885,6 +1041,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       $images_text = $extractTextFormat($values['help_attachments_images_text']);
       $heroes_text = $extractTextFormat($values['help_attachments_heroes_text']);
       $promotion_text = $extractTextFormat($values['help_promotion_text']);
+      $order_override_text = $extractTextFormat($values['help_order_override_text']);
 
       $config
         ->set('enable_help_comments', $values['enable_help_comments'])
@@ -895,7 +1052,9 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('help_comments.attachments_heroes_text', $heroes_text['value'])
         ->set('help_comments.attachments_heroes_text_format', $heroes_text['format'])
         ->set('help_comments.promotion_text', $promotion_text['value'])
-        ->set('help_comments.promotion_text_format', $promotion_text['format']);
+        ->set('help_comments.promotion_text_format', $promotion_text['format'])
+        ->set('help_comments.order_override_text', $order_override_text['value'])
+        ->set('help_comments.order_override_text_format', $order_override_text['format']);
 
       // Save translations for help comments
       if (count($languages) > 1) {
@@ -903,6 +1062,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         $images_translations = $values['images_help_translations'] ?? [];
         $heroes_translations = $values['heroes_help_translations'] ?? [];
         $promotion_translations = $values['promotion_help_translations'] ?? [];
+        $order_override_translations = $values['order_override_help_translations'] ?? [];
 
         foreach ($languages as $langcode => $language) {
           if ($langcode === $default_langcode) {
@@ -927,6 +1087,11 @@ class BiolandSettingsForm extends ConfigFormBase {
             $promotion_trans = $extractTextFormat($promotion_translations[$langcode]);
             $config->set("help_comments.promotion_translations.{$langcode}", $promotion_trans['value']);
             $config->set("help_comments.promotion_translations_format.{$langcode}", $promotion_trans['format']);
+          }
+          if (!empty($order_override_translations[$langcode])) {
+            $order_override_trans = $extractTextFormat($order_override_translations[$langcode]);
+            $config->set("help_comments.order_override_translations.{$langcode}", $order_override_trans['value']);
+            $config->set("help_comments.order_override_translations_format.{$langcode}", $order_override_trans['format']);
           }
         }
       }

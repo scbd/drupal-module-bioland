@@ -105,6 +105,22 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
   // Move field_order to the sidebar (advanced group) and rename it.
   if (isset($form['field_order'])) {
+    // Get help text from config if help comments are enabled.
+    $help_description = '';
+    $bioland_config = \Drupal::config('bioland.settings');
+    if ($bioland_config->get('enable_help_comments')) {
+      $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+      $default_langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
+      
+      // Try to get translated text first, fall back to default.
+      if ($langcode !== $default_langcode) {
+        $help_description = $bioland_config->get("help_comments.order_override_translations.{$langcode}") ?: '';
+      }
+      if (empty($help_description)) {
+        $help_description = $bioland_config->get('help_comments.order_override_text') ?: '';
+      }
+    }
+
     $form['order_override_wrapper'] = [
       '#type' => 'details',
       '#title' => t('Order Override'),
@@ -113,6 +129,15 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#open' => FALSE,
       '#optional' => TRUE,
     ];
+
+    // Add help description if available.
+    if (!empty($help_description)) {
+      $form['order_override_wrapper']['help_text'] = [
+        '#type' => 'markup',
+        '#markup' => '<div class="bioland-help-text order-override-help">' . $help_description . '</div>',
+        '#weight' => -10,
+      ];
+    }
 
     $form['field_order']['#group'] = 'order_override_wrapper';
   }

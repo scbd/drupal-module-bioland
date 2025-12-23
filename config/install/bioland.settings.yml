@@ -25,6 +25,17 @@ field_visibility:
     - 11
     - 13
 enable_additional_fields: true
+additional_tags:
+  event_status_content_types:
+    - 3
+  project_status_content_types:
+    - 5
+  organization_types_content_types:
+    - 8
+  ecosystem_types_content_types:
+    - 9
+  document_types_content_types:
+    - 12
 enable_auto_summary: true
 enable_help_comments: true
 help_comments:

@@ -786,3 +786,79 @@ msgstr "آرډر اوورډ کړئ"
 #: bioland.module
 msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
 msgstr "تاسو د نورو مینو توکو لاندې د مینو توکي جوړولو اجازه نه لرئ. یوازې د لوړې کچه مینو توکي ستاسو د رول لپاره اجازه دی."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Order Override Help"
+msgstr "Order Override Help"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Order Override Help Text"
+msgstr "Order Override Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Order Override field and content sorting priority."
+msgstr "Help text explaining the Order Override field and content sorting priority."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Order Override Help Text"
+msgstr "Translate Order Override Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Event Status"
+msgstr "Event Status"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content types that will have Event Status tags available."
+msgstr "Content types that will have Event Status tags available."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Event Status tags for these content types:"
+msgstr "Show Event Status tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Project Status"
+msgstr "Project Status"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content types that will have Project Status and Geographic Scope tags available."
+msgstr "Content types that will have Project Status and Geographic Scope tags available."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Project Status tags for these content types:"
+msgstr "Show Project Status tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Types"
+msgstr "Organization Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content types that will have Organization Types and Government Types tags available."
+msgstr "Content types that will have Organization Types and Government Types tags available."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Types tags for these content types:"
+msgstr "Show Organization Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Types"
+msgstr "Ecosystem Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content types that will have Ecosystem Types tags available."
+msgstr "Content types that will have Ecosystem Types tags available."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Types tags for these content types:"
+msgstr "Show Ecosystem Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Types"
+msgstr "Document Types"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content types that will have Document Types tags available."
+msgstr "Content types that will have Document Types tags available."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Types tags for these content types:"
+msgstr "Show Document Types tags for these content types:"
