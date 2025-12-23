@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-auto-summary-1-0-22.js
+ * Unit tests for bioland-auto-summary-1-0-23.js
  */
 
 describe('Bioland Auto Summary', () => {
@@ -35,13 +35,13 @@ describe('Bioland Auto Summary', () => {
 
   describe('Drupal behavior registration', () => {
     test('should register biolandAutoSummary behavior', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       expect(Drupal.behaviors.biolandAutoSummary).toBeDefined();
       expect(typeof Drupal.behaviors.biolandAutoSummary.attach).toBe('function');
     });
 
     test('should not initialize if enableAutoSummary is false', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: false } };
@@ -60,7 +60,7 @@ describe('Bioland Auto Summary', () => {
         </form>
       `;
 
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -77,7 +77,7 @@ describe('Bioland Auto Summary', () => {
         </form>
       `;
 
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -94,7 +94,7 @@ describe('Bioland Auto Summary', () => {
         </form>
       `;
 
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -107,7 +107,7 @@ describe('Bioland Auto Summary', () => {
     test('should handle missing summary field gracefully', () => {
       document.body.innerHTML = '<form class="node-content-form"></form>';
 
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -129,7 +129,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should prevent duplicate initialization', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -142,7 +142,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should set initialization marker on summary field', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const context = document.createElement('div');
@@ -165,7 +165,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should track user edits to summary field via input event', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const context = document.createElement('div');
@@ -180,7 +180,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should track user edits to summary field via keyup event', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const context = document.createElement('div');
@@ -214,7 +214,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should set up plain textarea when no CKEditor detected', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -226,7 +226,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should update summary from body field on initial load', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const context = document.createElement('div');
@@ -239,7 +239,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should update summary when body field changes', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -263,7 +263,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should not update summary when user has manually edited it', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -307,7 +307,7 @@ describe('Bioland Auto Summary', () => {
     test('should strip HTML tags from content', () => {
       document.querySelector('#edit-body-0-value').value = '<p>Hello <strong>world</strong>. This is <em>formatted</em>.</p>';
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -329,7 +329,7 @@ describe('Bioland Auto Summary', () => {
     test('should normalize whitespace', () => {
       document.querySelector('#edit-body-0-value').value = 'Hello    world.\n\n\nThis   is a   test.';
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -367,7 +367,7 @@ describe('Bioland Auto Summary', () => {
       const longText = 'This is a sentence. '.repeat(50);
       document.querySelector('#edit-body-0-value').value = longText;
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -387,7 +387,7 @@ describe('Bioland Auto Summary', () => {
       const shortText = 'Short sentence.';
       document.querySelector('#edit-body-0-value').value = shortText;
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -407,7 +407,7 @@ describe('Bioland Auto Summary', () => {
       const text = 'First sentence. Second sentence. Third sentence is much longer and continues for a while to make this text long enough to need truncation. Fourth sentence. Fifth sentence. Sixth sentence. Seventh sentence.';
       document.querySelector('#edit-body-0-value').value = text;
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const bodyField = document.querySelector('#edit-body-0-value');
@@ -448,7 +448,7 @@ describe('Bioland Auto Summary', () => {
         instances: {}
       };
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -471,7 +471,7 @@ describe('Bioland Auto Summary', () => {
         }
       };
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -508,7 +508,7 @@ describe('Bioland Auto Summary', () => {
     test('should detect CKEditor 5 when available', () => {
       global.Drupal.CKEditor5Instances = new Map();
       
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -536,7 +536,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should detect contenteditable div', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAutoSummary: true } };
@@ -548,7 +548,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should set up contenteditable monitor', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const editableDiv = document.querySelector('.ck-editor__editable');
       const context = document.createElement('div');
@@ -560,7 +560,7 @@ describe('Bioland Auto Summary', () => {
     });
 
     test('should update summary from contenteditable content', () => {
-      require('./bioland-auto-summary-1-0-22.js');
+      require('./bioland-auto-summary-1-0-23.js');
       
       const summaryField = document.querySelector('#edit-body-0-summary');
       const editableDiv = document.querySelector('.ck-editor__editable');

@@ -293,45 +293,42 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#options' => $content_types,
         '#default_value' => $config->get('field_visibility.date_range_content_types') ?: [2, 3, 13],
       ];
+    }
 
-      $form['field_visibility_settings']['field_visibility_rules'] = [
-        '#type' => 'textarea',
-        '#title' => $this->t('Field Visibility Rules (Advanced)'),
-        '#description' => $this->t('Define custom field visibility rules in JSON format. Leave empty to use the settings above.'),
-        '#default_value' => $config->get('field_visibility_rules') ?: '',
-        '#states' => [
-          'visible' => [
-            ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
-          ],
-        ],
-      ];
-
-      // Additional Fields functionality - wrapped in fieldset
-      $form['field_visibility_settings']['additional_fields'] = [
+    if ($section === 'tags') {
+      $form['tags_settings'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Additional Fields Control'),
+        '#title' => $this->t('Tags Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      $form['field_visibility_settings']['additional_fields']['enable_additional_fields'] = [
+      // Additional Tags functionality - wrapped in fieldset
+      $form['tags_settings']['additional_tags'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Additional Tags Control'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['tags_settings']['additional_tags']['enable_additional_fields'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('Enable Additional Fields'),
-        '#description' => $this->t('Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type.'),
+        '#title' => $this->t('Enable Additional Tags'),
+        '#description' => $this->t('Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type.'),
         '#default_value' => $config->get('enable_additional_fields') !== FALSE,
         '#suffix' => '<a href="#" class="bioland-toggle-additional-fields-settings" data-target="additional-fields-settings">Show more</a>',
       ];
 
-      // Container for additional fields information
-      $form['field_visibility_settings']['additional_fields']['settings_container'] = [
+      // Container for additional tags information
+      $form['tags_settings']['additional_tags']['settings_container'] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['bioland-additional-fields-settings', 'bioland-collapsible-hidden']],
       ];
 
-      $form['field_visibility_settings']['additional_fields']['settings_container']['info'] = [
+      $form['tags_settings']['additional_tags']['settings_container']['info'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Additional Fields Mapping'),
-        '#description' => $this->t('The following content types will have these additional fields available:'),
+        '#title' => $this->t('Additional Tags Mapping'),
+        '#description' => $this->t('The following content types will have these additional tags available:'),
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -339,7 +336,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility_settings']['additional_fields']['settings_container']['info']['mapping'] = [
+      $form['tags_settings']['additional_tags']['settings_container']['info']['mapping'] = [
         '#markup' => '
           <div class="bioland-additional-fields-mapping">
             <ul>
@@ -349,7 +346,7 @@ class BiolandSettingsForm extends ConfigFormBase {
               <li><strong>' . $this->t('Ecosystem (9)') . ':</strong> ' . $this->t('Ecosystem Types') . '</li>
               <li><strong>' . $this->t('Document (12)') . ':</strong> ' . $this->t('Document Types') . '</li>
             </ul>
-            <p><em>' . $this->t('These fields are dynamically added based on the selected content type and are powered by a Vue.js component.') . '</em></p>
+            <p><em>' . $this->t('These tags are dynamically added based on the selected content type and are powered by a Vue.js component.') . '</em></p>
           </div>
         ',
       ];
@@ -393,11 +390,11 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       $form['help_comments']['body_help']['help_body_text'] = [
-        '#type' => 'textarea',
+        '#type' => 'text_format',
         '#title' => $this->t('Body Field Help Text'),
         '#description' => $this->t('Help text displayed for the body/content field.'),
         '#default_value' => $config->get('help_comments.body_text') ?: $this->t('This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.'),
-        '#rows' => 3,
+        '#format' => $config->get('help_comments.body_text_format') ?: 'basic_html',
       ];
 
       // Body Help Translations
@@ -414,10 +411,10 @@ class BiolandSettingsForm extends ConfigFormBase {
             continue;
           }
           $form['help_comments']['body_help']['body_help_translations'][$langcode] = [
-            '#type' => 'textarea',
+            '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.body_text_translations.{$langcode}") ?: '',
-            '#rows' => 3,
+            '#format' => $config->get("help_comments.body_text_translations_format.{$langcode}") ?: 'basic_html',
           ];
         }
       }
@@ -436,11 +433,11 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       $form['help_comments']['attachments_help']['help_attachments_images_text'] = [
-        '#type' => 'textarea',
+        '#type' => 'text_format',
         '#title' => $this->t('Images Help Text'),
         '#description' => $this->t('Help text for the images section of attachments.'),
         '#default_value' => $config->get('help_comments.attachments_images_text') ?: $this->t('The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.'),
-        '#rows' => 3,
+        '#format' => $config->get('help_comments.attachments_images_text_format') ?: 'basic_html',
       ];
 
       // Images Help Translations
@@ -457,20 +454,20 @@ class BiolandSettingsForm extends ConfigFormBase {
             continue;
           }
           $form['help_comments']['attachments_help']['images_help_translations'][$langcode] = [
-            '#type' => 'textarea',
+            '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.attachments_images_translations.{$langcode}") ?: '',
-            '#rows' => 3,
+            '#format' => $config->get("help_comments.attachments_images_translations_format.{$langcode}") ?: 'basic_html',
           ];
         }
       }
 
       $form['help_comments']['attachments_help']['help_attachments_heroes_text'] = [
-        '#type' => 'textarea',
+        '#type' => 'text_format',
         '#title' => $this->t('Heroes Help Text'),
         '#description' => $this->t('Help text for the hero banners section.'),
         '#default_value' => $config->get('help_comments.attachments_heroes_text') ?: $this->t('Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'),
-        '#rows' => 3,
+        '#format' => $config->get('help_comments.attachments_heroes_text_format') ?: 'basic_html',
       ];
 
       // Heroes Help Translations
@@ -487,10 +484,10 @@ class BiolandSettingsForm extends ConfigFormBase {
             continue;
           }
           $form['help_comments']['attachments_help']['heroes_help_translations'][$langcode] = [
-            '#type' => 'textarea',
+            '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.attachments_heroes_translations.{$langcode}") ?: '',
-            '#rows' => 3,
+            '#format' => $config->get("help_comments.attachments_heroes_translations_format.{$langcode}") ?: 'basic_html',
           ];
         }
       }
@@ -525,11 +522,11 @@ class BiolandSettingsForm extends ConfigFormBase {
 <b>Using both:</b> Content can be both promoted AND sticky for maximum visibility.');
 
       $form['help_comments']['promotion_help']['help_promotion_text'] = [
-        '#type' => 'textarea',
+        '#type' => 'text_format',
         '#title' => $this->t('Promotion Options Help Text'),
-        '#description' => $this->t('Help text explaining the Promoted and Sticky options. HTML is allowed.'),
+        '#description' => $this->t('Help text explaining the Promoted and Sticky options.'),
         '#default_value' => $config->get('help_comments.promotion_text') ?: $default_promotion_text,
-        '#rows' => 8,
+        '#format' => $config->get('help_comments.promotion_text_format') ?: 'basic_html',
       ];
 
       // Promotion Help Translations
@@ -546,10 +543,10 @@ class BiolandSettingsForm extends ConfigFormBase {
             continue;
           }
           $form['help_comments']['promotion_help']['promotion_help_translations'][$langcode] = [
-            '#type' => 'textarea',
+            '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.promotion_translations.{$langcode}") ?: '',
-            '#rows' => 8,
+            '#format' => $config->get("help_comments.promotion_translations_format.{$langcode}") ?: 'basic_html',
           ];
         }
       }
@@ -860,21 +857,45 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('enable_field_visibility', $values['enable_field_visibility'])
         ->set('field_visibility.url_content_types', $url_content_types)
         ->set('field_visibility.published_content_types', $published_content_types)
-        ->set('field_visibility.date_range_content_types', $date_range_content_types)
-        ->set('enable_additional_fields', $values['enable_additional_fields'])
-        ->set('field_visibility_rules', $values['field_visibility_rules']);
+        ->set('field_visibility.date_range_content_types', $date_range_content_types);
+    }
+
+    if ($section === 'tags') {
+      $config
+        ->set('enable_additional_fields', $values['enable_additional_fields']);
     }
 
     if ($section === 'help_comments') {
       $languages = $this->languageManager->getLanguages();
       $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
 
+      // Helper function to extract value and format from text_format fields
+      $extractTextFormat = function($field) {
+        if (is_array($field)) {
+          return [
+            'value' => $field['value'] ?? '',
+            'format' => $field['format'] ?? 'basic_html',
+          ];
+        }
+        return ['value' => $field, 'format' => 'basic_html'];
+      };
+
+      // Extract values and formats for all help text fields
+      $body_text = $extractTextFormat($values['help_body_text']);
+      $images_text = $extractTextFormat($values['help_attachments_images_text']);
+      $heroes_text = $extractTextFormat($values['help_attachments_heroes_text']);
+      $promotion_text = $extractTextFormat($values['help_promotion_text']);
+
       $config
         ->set('enable_help_comments', $values['enable_help_comments'])
-        ->set('help_comments.body_text', $values['help_body_text'])
-        ->set('help_comments.attachments_images_text', $values['help_attachments_images_text'])
-        ->set('help_comments.attachments_heroes_text', $values['help_attachments_heroes_text'])
-        ->set('help_comments.promotion_text', $values['help_promotion_text']);
+        ->set('help_comments.body_text', $body_text['value'])
+        ->set('help_comments.body_text_format', $body_text['format'])
+        ->set('help_comments.attachments_images_text', $images_text['value'])
+        ->set('help_comments.attachments_images_text_format', $images_text['format'])
+        ->set('help_comments.attachments_heroes_text', $heroes_text['value'])
+        ->set('help_comments.attachments_heroes_text_format', $heroes_text['format'])
+        ->set('help_comments.promotion_text', $promotion_text['value'])
+        ->set('help_comments.promotion_text_format', $promotion_text['format']);
 
       // Save translations for help comments
       if (count($languages) > 1) {
@@ -888,16 +909,24 @@ class BiolandSettingsForm extends ConfigFormBase {
             continue;
           }
           if (!empty($body_translations[$langcode])) {
-            $config->set("help_comments.body_text_translations.{$langcode}", $body_translations[$langcode]);
+            $body_trans = $extractTextFormat($body_translations[$langcode]);
+            $config->set("help_comments.body_text_translations.{$langcode}", $body_trans['value']);
+            $config->set("help_comments.body_text_translations_format.{$langcode}", $body_trans['format']);
           }
           if (!empty($images_translations[$langcode])) {
-            $config->set("help_comments.attachments_images_translations.{$langcode}", $images_translations[$langcode]);
+            $images_trans = $extractTextFormat($images_translations[$langcode]);
+            $config->set("help_comments.attachments_images_translations.{$langcode}", $images_trans['value']);
+            $config->set("help_comments.attachments_images_translations_format.{$langcode}", $images_trans['format']);
           }
           if (!empty($heroes_translations[$langcode])) {
-            $config->set("help_comments.attachments_heroes_translations.{$langcode}", $heroes_translations[$langcode]);
+            $heroes_trans = $extractTextFormat($heroes_translations[$langcode]);
+            $config->set("help_comments.attachments_heroes_translations.{$langcode}", $heroes_trans['value']);
+            $config->set("help_comments.attachments_heroes_translations_format.{$langcode}", $heroes_trans['format']);
           }
           if (!empty($promotion_translations[$langcode])) {
-            $config->set("help_comments.promotion_translations.{$langcode}", $promotion_translations[$langcode]);
+            $promotion_trans = $extractTextFormat($promotion_translations[$langcode]);
+            $config->set("help_comments.promotion_translations.{$langcode}", $promotion_trans['value']);
+            $config->set("help_comments.promotion_translations_format.{$langcode}", $promotion_trans['format']);
           }
         }
       }

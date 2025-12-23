@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Afficher/masquer les champs en fonction de la sélection du type de contenu. Contrôle la visibilité des champs URL, date et publié."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Activer les champs supplémentaires"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ajouter des champs supplémentaires spécifiques au type de contenu (statuts d'événement, statuts de projet, etc.) en fonction du type de contenu du thésaurus."
 
 #: src/Form/BiolandSettingsForm.php

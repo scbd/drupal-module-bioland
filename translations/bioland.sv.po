@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Visa/dölj fält baserat på val av innehållstyp. Styr synligheten för URL-, datum- och publicerade fält."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Aktivera ytterligare fält"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Lägg till innehållstypsspecifika ytterligare fält (händelsestatus, projektstatus etc.) baserat på innehållstypen i tesaurusen."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Visa datumintervallfält (Start- och slutdatum) för dessa innehållstyper:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kontroll av ytterligare fält"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Mappning av ytterligare fält"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Följande innehållstyper har dessa ytterligare fält tillgängliga:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Dokumenttyper"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Dessa fält läggs dynamiskt till baserat på den valda innehållstypen och drivs av en Vue.js komponent."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Begränsa icke-administratörsanvändare från att skapa menyalternativ på andra nivån och djupare. Endast användare med behörighet ”administrera meny” kan skapa kapslade menyalternativ."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Regler för fältsynlighet (Avancerat)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Definiera anpassade fältsynlighetsregler i JSON-format. Lämna tomt för att använda inställningarna ovan."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

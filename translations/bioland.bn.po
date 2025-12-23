@@ -55,10 +55,10 @@ msgstr "ফিল্ড দৃশ্যমানতা নিয়ন্ত্�
 msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
 msgstr "বিষয়বস্তুর প্রকার নির্বাচনের উপর ভিত্তি করে ফিল্ড দেখান/লুকান। URL, তারিখ, এবং প্রকাশিত ফিল্ডের দৃশ্যমানতা নিয়ন্ত্রণ করে।"
 
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "অতিরিক্ত ফিল্ড সক্ষম করুন"
 
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "থিসোরাস বিষয়বস্তুর প্রকারের উপর ভিত্তি করে বিষয়বস্তু-প্রকার নির্দিষ্ট অতিরিক্ত ফিল্ড (ইভেন্টের অবস্থা, প্রকল্পের অবস্থা, ইত্যাদি) যোগ করুন।"
 
 msgid "Enable Auto Summary"
@@ -298,13 +298,13 @@ msgstr "তারিখ পরিসীমা ফিল্ড (শুরু এ�
 msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "এই বিষয়বস্তুর প্রকারগুলির জন্য তারিখ পরিসীমা ফিল্ড (শুরু এবং শেষের তারিখ) দেখান:"
 
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "অতিরিক্ত ফিল্ড নিয়ন্ত্রণ"
 
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "অতিরিক্ত ফিল্ড ম্যাপিং"
 
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "নিম্নলিখিত বিষয়বস্তুর প্রকারগুলিতে এই অতিরিক্ত ফিল্ডগুলি উপলব্ধ থাকবে:"
 
 msgid "Event Statuses"
@@ -328,7 +328,7 @@ msgstr "বাস্তুতন্ত্রের প্রকার"
 msgid "Document Types"
 msgstr "নথির প্রকার"
 
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "এই ফিল্ডগুলি নির্বাচিত বিষয়বস্তুর প্রকারের উপর ভিত্তি করে গতিশীলভাবে যোগ করা হয় এবং একটি Vue.js উপাদান দ্বারা চালিত হয়।"
 
 msgid "Enable Menu Depth Restriction"
@@ -337,11 +337,7 @@ msgstr "মেনু গভীরতা সীমাবদ্ধতা সক্
 msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
 msgstr "অ-প্রশাসক ব্যবহারকারীদের দ্বিতীয়-স্তরের মেনু আইটেম এবং তার চেয়ে গভীরতর তৈরি করা থেকে সীমাবদ্ধ করুন। শুধুমাত্র \"মেনু পরিচালনা\" অনুমতি সহ ব্যবহারকারীরা নেস্টেড মেনু আইটেম তৈরি করতে পারেন।"
 
-msgid "Field Visibility Rules (Advanced)"
-msgstr "ফিল্ড দৃশ্যমানতার নিয়ম (উন্নত)"
 
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "JSON ফরম্যাটে কাস্টম ফিল্ড দৃশ্যমানতার নিয়ম নির্ধারণ করুন। উপরের সেটিংস ব্যবহার করতে খালি রাখুন।"
 
 msgid "(Required)"
 msgstr "(প্রয়োজনীয়)"

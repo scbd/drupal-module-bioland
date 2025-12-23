@@ -55,27 +55,51 @@ bioland.settings:
         body_text:
           type: text
           label: 'Body field help text'
+        body_text_format:
+          type: string
+          label: 'Body field help text format'
         body_text_translations:
           type: mapping
           label: 'Body help text translations'
+        body_text_translations_format:
+          type: mapping
+          label: 'Body help text translations formats'
         attachments_images_text:
           type: text
           label: 'Attachments images help text'
+        attachments_images_text_format:
+          type: string
+          label: 'Attachments images help text format'
         attachments_images_translations:
           type: mapping
           label: 'Attachments images help text translations'
+        attachments_images_translations_format:
+          type: mapping
+          label: 'Attachments images help text translations formats'
         attachments_heroes_text:
           type: text
           label: 'Attachments heroes help text'
+        attachments_heroes_text_format:
+          type: string
+          label: 'Attachments heroes help text format'
         attachments_heroes_translations:
           type: mapping
           label: 'Attachments heroes help text translations'
+        attachments_heroes_translations_format:
+          type: mapping
+          label: 'Attachments heroes help text translations formats'
         promotion_text:
           type: text
           label: 'Promotion options help text'
+        promotion_text_format:
+          type: string
+          label: 'Promotion options help text format'
         promotion_translations:
           type: mapping
           label: 'Promotion options help text translations'
+        promotion_translations_format:
+          type: mapping
+          label: 'Promotion options help text translations formats'
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'

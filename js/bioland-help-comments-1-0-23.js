@@ -103,16 +103,22 @@
 
     const cookieName = 'bioland_help_body_hidden';
 
-    // Add info icon to label
+    // Create clickable wrapper for info icon (FontAwesome replaces <i> with <svg>, losing click handlers)
+    const infoIconWrapper = document.createElement('span');
+    infoIconWrapper.style.cursor = 'pointer';
+    infoIconWrapper.style.marginLeft = '8px';
+    infoIconWrapper.style.position = 'relative';
+    infoIconWrapper.style.zIndex = '10';
+    infoIconWrapper.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.setAttribute('role', 'button');
+    infoIconWrapper.setAttribute('tabindex', '0');
+    
+    // Add info icon inside wrapper
     const infoIcon = document.createElement('i');
     infoIcon.className = 'fa-solid fa-info-circle';
     infoIcon.innerHTML = '&nbsp;';
-    infoIcon.style.cursor = 'pointer';
-    infoIcon.style.marginLeft = '8px';
-    infoIcon.style.position = 'relative';
-    infoIcon.style.zIndex = '10';
-    infoIcon.setAttribute('aria-label', 'Toggle help message');
-    bodyLabel.appendChild(infoIcon);
+    infoIconWrapper.appendChild(infoIcon);
+    bodyLabel.appendChild(infoIconWrapper);
 
     // Get translated strings from Drupal settings or use defaults
     const helpTitle = Drupal.t('Help');
@@ -130,32 +136,32 @@
     // Check cookie to see if help is hidden
     if (getCookie(cookieName) === 'hidden') {
       helpMessage.style.display = 'none';
-      infoIcon.style.display = 'inline';
+      infoIconWrapper.style.display = 'inline';
       logger.log('Body field help comment is hidden by user preference');
     } else {
-      infoIcon.style.display = 'none';
+      infoIconWrapper.style.display = 'none';
     }
 
     // Add close button
-    addCloseButton(helpMessage, cookieName, infoIcon, logger);
+    addCloseButton(helpMessage, cookieName, infoIconWrapper, logger);
 
     // Insert after the label
     bodyLabel.parentElement.insertBefore(helpMessage, bodyLabel.nextSibling);
 
-    // Add click handler to info icon to toggle visibility
-    infoIcon.addEventListener('click', function(e) {
+    // Add click handler to wrapper (survives FontAwesome SVG replacement)
+    infoIconWrapper.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
       logger.log('>>> BODY INFO ICON CLICKED <<<');
       logger.log('Body info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
-        infoIcon.style.display = 'none';
+        infoIconWrapper.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
         logger.log('Body field help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
-        infoIcon.style.display = 'inline';
+        infoIconWrapper.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
         logger.log('Body field help comment HIDDEN');
       }
@@ -195,22 +201,28 @@
 
     const cookieName = 'bioland_help_attachments_hidden';
 
-    // Add info icon to legend
+    // Create clickable wrapper for info icon (FontAwesome replaces <i> with <svg>, losing click handlers)
+    const infoIconWrapper = document.createElement('span');
+    infoIconWrapper.style.cursor = 'pointer';
+    infoIconWrapper.style.marginLeft = '8px';
+    infoIconWrapper.style.position = 'relative';
+    infoIconWrapper.style.zIndex = '10';
+    infoIconWrapper.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.setAttribute('role', 'button');
+    infoIconWrapper.setAttribute('tabindex', '0');
+    
+    // Add info icon inside wrapper
     const infoIcon = document.createElement('i');
     infoIcon.className = 'fa-solid fa-info-circle';
     infoIcon.innerHTML = '&nbsp;';
-    infoIcon.style.cursor = 'pointer';
-    infoIcon.style.marginLeft = '8px';
-    infoIcon.style.position = 'relative';
-    infoIcon.style.zIndex = '10';
-    infoIcon.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.appendChild(infoIcon);
 
     // Check if legend has a span child (Drupal fieldset structure) or append directly
     const legendSpan = legend.querySelector('span');
     if (legendSpan) {
-      legendSpan.appendChild(infoIcon);
+      legendSpan.appendChild(infoIconWrapper);
     } else {
-      legend.appendChild(infoIcon);
+      legend.appendChild(infoIconWrapper);
     }
 
     // Get translated strings from Drupal settings or use defaults
@@ -239,32 +251,32 @@
     // Check cookie to see if help is hidden
     if (getCookie(cookieName) === 'hidden') {
       helpMessage.style.display = 'none';
-      infoIcon.style.display = 'inline';
+      infoIconWrapper.style.display = 'inline';
       logger.log('Attachments field help comment is hidden by user preference');
     } else {
-      infoIcon.style.display = 'none';
+      infoIconWrapper.style.display = 'none';
     }
 
     // Add close button
-    addCloseButton(helpMessage, cookieName, infoIcon, logger);
+    addCloseButton(helpMessage, cookieName, infoIconWrapper, logger);
 
     // Insert after the legend element
     legend.parentElement.insertBefore(helpMessage, legend.nextSibling);
 
-    // Add click handler to info icon to toggle visibility
-    infoIcon.addEventListener('click', function(e) {
+    // Add click handler to wrapper (survives FontAwesome SVG replacement)
+    infoIconWrapper.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
       logger.log('>>> ATTACHMENTS INFO ICON CLICKED <<<');
       logger.log('Attachments info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
-        infoIcon.style.display = 'none';
+        infoIconWrapper.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
         logger.log('Attachments field help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
-        infoIcon.style.display = 'inline';
+        infoIconWrapper.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
         logger.log('Attachments field help comment HIDDEN');
       }
@@ -321,28 +333,34 @@
     helpMessage.style.marginBottom = '16px';
     helpMessage.style.fontSize = '0.8em';
 
-    // Create info icon for toggle
+    // Create clickable wrapper for info icon (FontAwesome replaces <i> with <svg>, losing click handlers)
+    const infoIconWrapper = document.createElement('span');
+    infoIconWrapper.style.cursor = 'pointer';
+    infoIconWrapper.style.marginLeft = '8px';
+    infoIconWrapper.style.fontSize = '14px';
+    infoIconWrapper.style.position = 'relative';
+    infoIconWrapper.style.zIndex = '10';
+    infoIconWrapper.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.setAttribute('role', 'button');
+    infoIconWrapper.setAttribute('tabindex', '0');
+    
+    // Add info icon inside wrapper
     const infoIcon = document.createElement('i');
     infoIcon.className = 'fa-solid fa-info-circle';
     infoIcon.innerHTML = '&nbsp;';
-    infoIcon.style.cursor = 'pointer';
-    infoIcon.style.marginLeft = '8px';
-    infoIcon.style.fontSize = '14px';
-    infoIcon.style.position = 'relative';
-    infoIcon.style.zIndex = '10';
-    infoIcon.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.appendChild(infoIcon);
 
     // Check cookie to see if help is hidden
     if (getCookie(cookieName) === 'hidden') {
       helpMessage.style.display = 'none';
-      infoIcon.style.display = 'inline';
+      infoIconWrapper.style.display = 'inline';
       logger.log('Promotion options help comment is hidden by user preference');
     } else {
-      infoIcon.style.display = 'none';
+      infoIconWrapper.style.display = 'none';
     }
 
     // Add close button
-    addCloseButton(helpMessage, cookieName, infoIcon, logger);
+    addCloseButton(helpMessage, cookieName, infoIconWrapper, logger);
 
     // Find the parent container (claro-details__content)
     const parentContainer = promoteWrapper.parentElement;
@@ -355,24 +373,24 @@
       // Insert help message as the first child of the container
       parentContainer.insertBefore(helpMessage, parentContainer.firstChild);
       
-      // Insert info icon into the summary element (so it's visible when collapsed)
+      // Insert info icon wrapper into the summary element (so it's visible when collapsed)
       if (summaryElement) {
-        summaryElement.appendChild(infoIcon);
+        summaryElement.appendChild(infoIconWrapper);
       } else {
         // Fallback: insert after help message if summary not found
-        parentContainer.insertBefore(infoIcon, helpMessage.nextSibling);
+        parentContainer.insertBefore(infoIconWrapper, helpMessage.nextSibling);
       }
     }
 
-    // Add click handler to info icon to toggle visibility
-    infoIcon.addEventListener('click', function(e) {
+    // Add click handler to wrapper (survives FontAwesome SVG replacement)
+    infoIconWrapper.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation(); // Prevent triggering the summary toggle
       logger.log('>>> PROMOTION INFO ICON CLICKED <<<');
       logger.log('Promotion info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
-        infoIcon.style.display = 'none';
+        infoIconWrapper.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
         // Ensure the details element is open so user can see the help
         if (detailsElement && !detailsElement.open) {
@@ -381,7 +399,7 @@
         logger.log('Promotion options help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
-        infoIcon.style.display = 'inline';
+        infoIconWrapper.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
         logger.log('Promotion options help comment HIDDEN');
       }

@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Sýna/fela reiti eftir vali á innihaldstegund. Stýrir sýnileika vefslóða, dagsetninga og birtingareita."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Virkja viðbótarreiti"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Bæta við viðbótarreitum sem eru sértækir fyrir innihaldstegund (stöður viðburða, stöður verkefna o.s.frv.) byggt á samheitaorðabók innihaldstegundar."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Sýna dagsetningarsvið reiti (upphaf- og lokadagsetning) fyrir þessar tegundir efnis:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Viðbótarsviðurstýring"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Kortlagning viðbótar sviða"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Eftirfarandi efnistegundir munu hafa þessa viðbótarreiti tiltæka:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Skjalagerðir"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Þessum reitum er virkt bætt út frá völdum efnistegund og eru knúin af Vue.js hluti."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Takmarka notendur sem ekki eru stjórnandi frá því að búa til annars stigs valmyndaratriði og dýpra. Aðeins notendur með leyfi “stjórna valmyndinni” geta búið til hreiðra valmyndaratriði."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Reglur um sýnileika á sviði (Ítarlegri)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Skilgreindu sérsniðnar reglur um sýnileika á JSON sniði. Skildu tómt til að nota stillingarnar hér að ofan."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

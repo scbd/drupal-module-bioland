@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ ਦੀ ਚੋਣ ਦੇ ਅਧਾਰ ਤੇ ਫੀਲਡ ਦਿਖਾਓ/ਛੁਪਾਓ। URL, ਮਿਤੀ, ਅਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਫੀਲਡਾਂ ਦੀ ਦ੍ਰਿਸ਼ਟੀ ਨੂੰ ਨਿਯੰਤਰਿਤ ਕਰਦਾ ਹੈ।"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "ਵਾਧੂ ਫੀਲਡਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "ਥੀਸੌਰਸ ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ ਦੇ ਅਧਾਰ ਤੇ ਸਮੱਗਰੀ-ਕਿਸਮ ਦੇ ਖਾਸ ਵਾਧੂ ਫੀਲਡ (ਈਵੈਂਟ ਸਥਿਤੀਆਂ, ਪ੍ਰੋਜੈਕਟ ਸਥਿਤੀਆਂ, ਆਦਿ) ਸ਼ਾਮਲ ਕਰੋ।"
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਮਿਤੀ ਰੇਂਜ ਫੀਲਡ (ਸ਼ੁਰੂਆਤ ਅਤੇ ਅੰਤ ਦੀ ਮਿਤੀ) ਦਿਖਾਓ:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "ਵਾਧੂ ਖੇਤਰ ਨਿਯੰਤਰਣ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "ਵਾਧੂ ਖੇਤਰਾਂ ਦੀ ਮੈਪਿੰਗ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "ਹੇਠ ਲਿਖੀਆਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਵਿੱਚ ਇਹ ਵਾਧੂ ਖੇਤਰ ਉਪਲਬਧ ਹੋਣਗੇ:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "ਦਸਤਾਵੇਜ਼ ਦੀਆਂ ਕਿਸਮਾਂ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "ਇਹ ਖੇਤਰ ਚੁਣੀ ਗਈ ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ ਦੇ ਅਧਾਰ ਤੇ ਗਤੀਸ਼ੀਲ ਰੂਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਂਦੇ ਹਨ ਅਤੇ ਇੱਕ Vue.js ਕੰਪੋਨੈਂਟ ਦੁਆਰਾ ਸੰਚਾਲਿਤ ਹੁੰਦੇ ਹਨ."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "ਗੈਰ-ਪ੍ਰਸ਼ਾਸਕ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਦੂਜੇ ਪੱਧਰ ਦੇ ਮੀਨੂ ਆਈਟਮਾਂ ਬਣਾਉਣ ਅਤੇ ਡੂੰਘੇ ਸਿਰਫ “ਪ੍ਰਬੰਧਨ ਮੀਨੂ” ਇਜਾਜ਼ਤ ਵਾਲੇ ਉਪਭੋਗਤਾ ਹੀ ਨੇਸਟਡ ਮੀਨੂ ਆਈਟਮਾਂ ਬਣਾ ਸਕਦੇ ਹਨ."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "ਫੀਲਡ ਦਿੱਖ ਨਿਯਮ (ਐਡਵਾਂਸਡ)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "JSON ਫਾਰਮੈਟ ਵਿੱਚ ਕਸਟਮ ਫੀਲਡ ਦਿੱਖ ਨਿਯਮਾਂ ਨੂੰ ਪਰਿਭਾਸ਼ਤ ਕਰੋ. ਉਪਰੋਕਤ ਸੈਟਿੰਗਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ ਖਾਲੀ ਛੱਡੋ।"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

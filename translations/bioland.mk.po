@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Прикажи/сокриј полиња врз основа на изборот на тип на содржина. Контролира видливост на URL, датум и објавени полиња."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Овозможи дополнителни полиња"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Додај дополнителни полиња специфични за типот на содржина (статуси на настани, статуси на проекти, итн.) врз основа на типот на содржина на тезаурусот."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Прикажи полиња за опсег на датуми (Датум на почеток и крај) за овие типови содржини:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Дополнителни полиња за контрола"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Мапирање на дополнителни полиња"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Следниве видови содржини ќе ги имаат на располагање овие дополнителни полиња:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Видови документи"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Овие полиња динамички се додаваат врз основа на избраниот тип на содржина и се напојуваат со компонента Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Ограничете ги корисниците кои не се администратори од креирање ставки од менито од второ ниво и подлабоко. Само корисниците со дозвола за “администрирање мени” можат да креираат вгнездени ставки од менито."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Правила за видливост на теренот (Напредно)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Дефинирајте ги сопствените правила за видливост на полето во JSON формат. Оставете празно за да ги користите поставките погоре."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

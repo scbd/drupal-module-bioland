@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Nuna/ɓoye filaye dangane da zaɓin nau'in abun ciki. Yana sarrafa ganin URL, kwanan wata, da filayen da aka buga."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Kunna Ƙarin Filaye"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ƙara ƙarin filaye na musamman na nau'in abun ciki (matsayin taron, matsayin aikin, da sauransu) dangane da nau'in abun ciki na thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Nuna filayen kwanan wata (Farawa & Ƙarshen Ranar) don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Ƙarin Filayen Gudanar da"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Ƙarin Filaye Taswirar"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Nau'ikan abun ciki masu zuwa zasu sami waɗannan ƙarin filayen:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Nau'ikan Takardu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Ana ƙara waɗannan filayen da ƙarfi dangane da nau'in abun ciki da aka zaɓa kuma ana amfani da su ta ɓangaren Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Ƙuntata masu amfani da marasa gudanarwa daga ƙirƙirar abubuwa na menu na matakin biyu da zurfi. Masu amfani ne kawai tare da izinin “gudanar da menu” zasu iya ƙirƙirar abubuwan menu da aka tsara."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Dokokin Ganuwa na Filin (Advanced)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Bayyana dokokin ganuwa na filin al'ada a cikin tsarin JSON. Bar komai don amfani da saitunan da ke sama."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

@@ -296,7 +296,7 @@
   const handleContentTypeChange = function(fieldElement, logger) {
     const updatedField = getContentTypeField();
     const updatedValue = updatedField ? updatedField.value : null;
-    const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandLastValue : null;
+    const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandAdditionalLastValue : null;
     
     logger.log('handleContentTypeChange called');
     logger.log('Previous value:', lastValue);
@@ -314,7 +314,7 @@
     }
 
     // Update the stored value
-    fieldElement.dataset.biolandLastValue = updatedValue;
+    fieldElement.dataset.biolandAdditionalLastValue = updatedValue;
 
     logger.log('Content type changed, updating additional fields:', updatedValue);
     
@@ -415,7 +415,7 @@
         const deferredElement = deferredField ? deferredField.element : null;
         if (deferredValue && deferredElement) {
           logger.log('Deferred check found content type value:', deferredValue);
-          deferredElement.dataset.biolandLastValue = deferredValue;
+          deferredElement.dataset.biolandAdditionalLastValue = deferredValue;
           if (shouldMountAdditionalFields(deferredValue)) {
             mountAdditionalFields(deferredValue, logger);
           }
@@ -427,7 +427,7 @@
       
       // Store the initial value
       if (fieldElement) {
-        fieldElement.dataset.biolandLastValue = contentTypeValue;
+        fieldElement.dataset.biolandAdditionalLastValue = contentTypeValue;
       }
 
       // Check if this content type should have additional fields

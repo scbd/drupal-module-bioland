@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Uri/aħbi l-oqsma bbażati fuq l-għażla tat-tip ta' kontenut. Jikkontrolla l-viżibilità tal-URL, id-data, u l-oqsma ppubblikati."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Attiva Oqsma Addizzjonali"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Żid oqsma addizzjonali speċifiċi għat-tip ta' kontenut (status tal-avvenimenti, status tal-proġetti, eċċ.) ibbażati fuq it-tip ta' kontenut tat-teżawru."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Uri oqsma tal-Firxa tad-Data (Data tal-Bidu u tat-Tmiem) għal dawn it-tipi ta 'kontenut:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kontroll tal-Oqsma Addiz"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Immappjar Addizzjonali tal-"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "It-tipi ta' kontenut li ġejjin se jkollhom dawn l-oqsma addizzjonali disponibbli:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Tipi ta' Dokumenti"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Dawn l-oqsma huma miżjuda b'mod dinamiku bbażati fuq it-tip ta 'kontenut magħżul u huma mħaddma minn komponent Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Irrestrinġi l-utenti mhux amministratur milli joħolqu oġġetti tal-menu tat-tieni livell u aktar fil-fond. Utenti biss b'permess “jamministra menu” jistgħu joħolqu oġġetti tal-menu nested."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Regoli tal-Viżibilità fil-Qasam (Avvanzati"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Iddefinixxi regoli tal-viżibbiltà tal-qasam tad-dwana fil-format JSON. Ħalli vojt biex tuża l-issettjar ta 'hawn fuq."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

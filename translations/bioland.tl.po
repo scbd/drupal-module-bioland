@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Ipakita/itago ang mga field batay sa pagpili ng uri ng nilalaman. Kinokontrol ang visibilidad ng URL, petsa, at mga na-publish na field."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Paganahin ang mga Karagdagang Field"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Magdagdag ng mga karagdagang field na partikular sa uri ng nilalaman (mga status ng kaganapan, mga status ng proyekto, atbp.) batay sa uri ng nilalaman ng thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Ipakita ang mga patlang ng Saklaw ng Petsa (Petsa ng Pagsisimula at Pagtatapos) para sa mga uri ng nilalaman"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Karagdagang Pagkontrol sa Patlang"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Mga Karagdagang Pagmamapa ng"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Ang mga sumusunod na uri ng nilalaman ay magkakaroon ng mga karagdagang patlang na ito:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Mga Uri ng Dokumento"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Ang mga patlang na ito ay dinamiko na idinagdag batay sa napiling uri ng nilalaman at pinapatakbo ng isang bahagi ng Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Limitahan ang mga gumagamit na hindi administrator mula sa paglikha ng pangalawang antas ng mga item sa menu at mas malalim Tanging ang mga gumagamit na may pahintulot na “admin menu” ang maaaring lumikha ng mga naka-nested na item sa menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Mga Panuntunan sa Pagkakayahang Makikita sa"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Tukuyin ang mga pasadyang panuntunan sa kakayahang kakayahang Iwanan nang walang laman upang gamitin ang mga setting sa itaas."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

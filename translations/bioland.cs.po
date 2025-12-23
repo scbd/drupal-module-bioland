@@ -29,7 +29,7 @@ msgstr "Pravidla viditelnosti polí"
 msgid "Enter field visibility rules in JSON format."
 msgstr "Zadejte pravidla viditelnosti polí ve formátu JSON."
 
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Povolit další pole"
 
 msgid "Enable additional fields functionality."
@@ -235,19 +235,19 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Zobrazit pole Rozsah dat (datum zahájení a ukončení) pro tyto typy obsahu:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Ovládání dalších polí"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Přidejte další pole specifická pro typ obsahu (stavy událostí, stavy projektu atd.) na základě typu obsahu tezauru."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Mapování dalších polí"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Následující typy obsahu budou mít k dispozici tato další pole:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -279,7 +279,7 @@ msgid "Document Types"
 msgstr "Typy dokumentů"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Tato pole jsou dynamicky přidávána na základě vybraného typu obsahu a jsou poháněna komponentou Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -303,12 +303,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Omezte uživatelům, kteří nejsou administrátory, ve vytváření položek nabídky druhé úrovně a hlouběji. Vnořené položky nabídky mohou vytvářet pouze uživatelé s oprávněním „spravovat nabídku“."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Pravidla viditelnosti pole (Pokročilé)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Definujte vlastní pravidla viditelnosti pole ve formátu JSON. Chcete-li použít výše uvedená nastavení, ponechte prázdné."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

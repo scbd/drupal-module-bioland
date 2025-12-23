@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "ವಿಷಯ ಪ್ರಕಾರದ ಆಯ್ಕೆಯ ಆಧಾರದ ಮೇಲೆ ಫೀಲ್ಡ್‌ಗಳನ್ನು ತೋರಿಸಿ/ಮರೆಮಾಡಿ. URL, ದಿನಾಂಕ, ಮತ್ತು ಪ್ರಕಟಿತ ಫೀಲ್ಡ್‌ಗಳ ಗೋಚರತೆಯನ್ನು ನಿಯಂತ್ರಿಸುತ್ತದೆ."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "ಹೆಚ್ಚುವರಿ ಫೀಲ್ಡ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "ಥೆಸಾರಸ್ ವಿಷಯ ಪ್ರಕಾರದ ಆಧಾರದ ಮೇಲೆ ವಿಷಯ-ಪ್ರಕಾರದ ನಿರ್ದಿಷ್ಟ ಹೆಚ್ಚುವರಿ ಫೀಲ್ಡ್‌ಗಳನ್ನು (ಈವೆಂಟ್ ಸ್ಥಿತಿಗಳು, ಪ್ರಾಜೆಕ್ಟ್ ಸ್ಥಿತಿಗಳು, ಇತ್ಯಾದಿ) ಸೇರಿಸಿ."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "ಈ ವಿಷಯ ಪ್ರಕಾರಗಳಿಗಾಗಿ ದಿನಾಂಕ ಶ್ರೇಣಿ ಕ್ಷೇತ್ರಗಳನ್ನು ತೋರಿಸಿ (ಪ್ರಾರಂಭ ಮತ್ತು ಅಂತ್ಯ ದಿನಾಂಕ):"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "ಹೆಚ್ಚುವರಿ ಕ್ಷೇತ್ರಗಳ ನಿಯಂತ್ರಣ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "ಹೆಚ್ಚುವರಿ ಕ್ಷೇತ್ರಗಳ ಮ್ಯಾಪಿಂಗ್"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "ಕೆಳಗಿನ ವಿಷಯ ಪ್ರಕಾರಗಳು ಈ ಹೆಚ್ಚುವರಿ ಕ್ಷೇತ್ರಗಳನ್ನು ಹೊಂದಿರುತ್ತವೆ:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "ಡಾಕ್ಯುಮೆಂಟ್ ಪ್ರಕಾರಗಳು"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "ಆಯ್ದ ವಿಷಯ ಪ್ರಕಾರವನ್ನು ಆಧರಿಸಿ ಈ ಕ್ಷೇತ್ರಗಳನ್ನು ಕ್ರಿಯಾತ್ಮಕವಾಗಿ ಸೇರಿಸಲಾಗುತ್ತದೆ ಮತ್ತು Vue.js ಘಟಕದಿಂದ ನಡೆಸಲ್ಪಡುತ್ತದೆ."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "ಎರಡನೇ ಮಟ್ಟದ ಮೆನು ಐಟಂಗಳನ್ನು ರಚಿಸುವುದರಿಂದ ನಿರ್ವಾಹಕ ಅಲ್ಲದ ಬಳಕೆದಾರರು ನಿರ್ಬಂಧಿಸಲು ಮತ್ತು ಆಳವಾದ. “ನಿರ್ವಹಣೆ ಮೆನು” ಅನುಮತಿ ಹೊಂದಿರುವ ಬಳಕೆದಾರರು ಮಾತ್ರ ನೆಸ್ಟೆಡ್ ಮೆನು ಐಟಂಗಳನ್ನು ರಚಿಸಬಹುದು."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "ಕ್ಷೇತ್ರ ಗೋಚರತೆ ನಿಯಮಗಳು (ಸುಧಾರಿತ)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "JSON ರೂಪದಲ್ಲಿ ಕಸ್ಟಮ್ ಕ್ಷೇತ್ರ ಗೋಚರತೆ ನಿಯಮಗಳನ್ನು ವ್ಯಾಖ್ಯಾನಿಸಿ. ಮೇಲಿನ ಸೆಟ್ಟಿಂಗ್ಗಳನ್ನು ಬಳಸಲು ಖಾಲಿ ಬಿಡಿ."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

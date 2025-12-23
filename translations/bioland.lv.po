@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Rādīt/slēpt laukus, pamatojoties uz satura veida izvēli. Kontrolē URL, datuma un publicēto lauku redzamību."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Iespējot papildu laukus"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Pievienot satura veidam specifiskus papildu laukus (pasākumu statusi, projektu statusi utt.), pamatojoties uz tēzaura satura veidu."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Rādīt datumu diapazona laukus (sākuma un beigu datums) šādiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Papildu lauku kontrole"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Papildu lauku kartēšana"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Šie papildu lauki būs pieejami šādiem satura veidiem:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Dokumentu veidi"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Šie lauki tiek dinamiski pievienoti, pamatojoties uz izvēlēto satura tipu, un tos darbina Vue.js komponents."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Ierobežojiet lietotājiem, kas nav administratori, izveidot otrā līmeņa izvēlnes vienumus un dziļāk. Tikai lietotāji ar atļauju “administrēt izvēlni” var izveidot ligzdotus izvēlnes vienumus."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Lauka redzamības noteikumi (papildu)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Definējiet pielāgotas lauka redzamības kārtulas JSON formātā. Atstājiet tukšu, lai izmantotu iepriekš minētos iestatījumus."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

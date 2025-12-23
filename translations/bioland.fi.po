@@ -239,23 +239,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Näytä päivämäärävaihtelukentät (alkamis- ja lopetuspäivämäärä) näille sisältötyypeille:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Lisäkenttien hallinta"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Ota käyttöön lisäkentät"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Lisää sisältötyyppikohtaisia lisäkenttiä (tapahtumatilat, projektin tilat jne.) tesauruksen sisältötyypin perusteella."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Lisäkenttien kartoitus"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Seuraavat sisältötyypit sisältävät nämä lisäkentät:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -287,7 +287,7 @@ msgid "Document Types"
 msgstr "Asiakirjatyypit"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Nämä kentät lisätään dynaamisesti valitun sisältötyypin perusteella, ja ne toimivat Vue.js -komponentin avulla."
 
 #: src/Form/BiolandSettingsForm.php
@@ -315,12 +315,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Rajoita muita kuin järjestelmänvalvojan käyttäjiä luomasta toisen tason valikkokohteita ja syvempiä. Vain käyttäjät, joilla on ”hallinta-valikko” -oikeus, voivat luoda sisäkkäisiä valikkokohteita."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Kentän näkyvyyssäännöt (lisäasetukset)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Määritä mukautetut kentän näkyvyyssäännöt JSON-muodossa. Jätä tyhjäksi käyttääksesi yllä olevia asetuksia."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

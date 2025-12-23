@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Агуулгын төрлийн сонголтод үндэслэн талбаруудыг харуулах/нуух. URL, огноо, нийтлэгдсэн талбаруудын харагдацыг хянана."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Нэмэлт талбаруудыг идэвхжүүлэх"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Тезаурусын агуулгын төрөлд үндэслэн агуулгын төрөлд хамаарах нэмэлт талбаруудыг (үйл явдлын төлөв, төслийн төлөв гэх мэт) нэмэх."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Эдгээр агуулгын төрлүүдийн хувьд огноо хүрээ талбаруудыг харуулах (Эхлэх ба Төгсгөлийн огноо):"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Нэмэлт талбаруудын хяналт"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Нэмэлт талбаруудын зураглал"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Дараах агуулгын төрлүүд нь эдгээр нэмэлт талбаруудыг ашиглах боломжтой болно:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Баримт бичгийн төрөл"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Эдгээр талбарууд нь сонгосон агуулгын төрөл дээр тулгуурлан динамикаар нэмэгдсэн бөгөөд Vue.js бүрэлдэхүүн хэсгээр ажилладаг."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Администратор бус хэрэглэгчдийг хоёр дахь түвшний цэсний зүйлсийг үүсгэж, илүү гүнзгий болгохыг хязгаарлах Зөвхөн “удирдах цэс” зөвшөөрөлтэй хэрэглэгчид үүрлэсэн цэсний зүйлсийг үүсгэж болно."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Талбайн харагдах байдлын дүрэм (Нарийвчилсан)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "JSON форматаар өөрчлөн талбарын харагдах байдлын дүрмийг тодорхойлно уу. Дээрх тохиргоог ашиглахын тулд хоосон үлдээгээрэй."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

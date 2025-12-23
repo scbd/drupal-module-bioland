@@ -15,11 +15,17 @@ bioland.settings_translation_tab:
   base_route: bioland.settings
   weight: 2
 
+bioland.settings_tags_tab:
+  route_name: bioland.settings.tags
+  title: 'Tags'
+  base_route: bioland.settings
+  weight: 3
+
 bioland.settings_help_comments_tab:
   route_name: bioland.settings.help_comments
   title: 'Help Comments'
   base_route: bioland.settings
-  weight: 3
+  weight: 4
 
 bioland.settings_admin_tab:
   route_name: bioland.settings.admin

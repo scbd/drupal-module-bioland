@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "உள்ளடக்க வகை தேர்வின் அடிப்படையில் புலங்களைக் காட்டு/மறை. URL, தேதி மற்றும் வெளியிடப்பட்ட புலங்களின் தெரிவுநிலையைக் கட்டுப்படுத்துகிறது."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "கூடுதல் புலங்களை இயக்கு"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "தெசாரஸ் உள்ளடக்க வகையின் அடிப்படையில் உள்ளடக்க வகை சார்ந்த கூடுதல் புலங்களை (நிகழ்வு நிலைகள், திட்ட நிலைகள் போன்றவை) சேர்க்கவும்."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "இந்த உள்ளடக்க வகைகளுக்கான தேதி வரம்பு புலங்களை (தொடக்க மற்றும் இறுதி தேதி) காட்டு:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "கூடுதல் புலங்கள் கட்டுப்பாடு"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "கூடுதல் புலங்கள் மேப்பிங்"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "பின்வரும் உள்ளடக்க வகைகளில் இந்த கூடுதல் புலங்கள் கிடைக்கும்:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "ஆவண வகைகள்"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "இந்த புலங்கள் தேர்ந்தெடுக்கப்பட்ட உள்ளடக்க வகையின் அடிப்படையில் மாறும் முறையில் சேர்க்கப்படுகின்றன மற்றும் அவை Vue.js கூறால் இயக்கப்படுகின்றன."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "நிர்வாகி அல்லாத பயனர்களை இரண்டாவது நிலை மெனு உருப்படிகளை உருவாக்குவதிலிருந்தும் “நிர்வகிக்கும் மெனு” அனுமதியைக் கொண்ட பயனர்கள் மட்டுமே கூட்டப்பட்ட மெனு உருப்படிகளை உருவாக்க முடியும்."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "கள பார்வை விதிகள் (மேம்பட்ட)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "JSON வடிவத்தில் தனிப்பயன் புல பார்வை விதிகளை வரையறுங்கள் மேலே உள்ள அமைப்புகளைப் பயன்படுத்த காலியாக விடுங்கள்."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

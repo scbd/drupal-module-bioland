@@ -25,6 +25,15 @@ bioland.settings.translation:
   requirements:
     _permission: 'administer bioland translation settings'
 
+bioland.settings.tags:
+  path: '/admin/config/bioland/settings/tags'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Tags'
+    section: 'tags'
+  requirements:
+    _permission: 'administer bioland field settings'
+
 bioland.settings.help_comments:
   path: '/admin/config/bioland/settings/help-comments'
   defaults:

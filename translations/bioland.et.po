@@ -239,23 +239,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Kuva kuupäevavahemiku väljad (algus- ja lõppkuupäev) nende sisutüüpide jaoks:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Täiendavate väljade juhtimine"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Luba lisaväljad"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Lisage sisutüübile spetsiifilised lisaväljad (sündmuste olekud, projekti olekud jne), lähtudes tesauruse sisutüübist."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Lisaväljade kaardistamine"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Järgmistel sisutüüpidel on saadaval järgmised lisaväljad:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -287,7 +287,7 @@ msgid "Document Types"
 msgstr "Dokumendi tüübid"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Need väljad lisatakse dünaamiliselt vastavalt valitud sisutüübile ja nende toiteallikaks on komponent Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -315,12 +315,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Piirake mitte-administraatori kasutajatel teise taseme menüüüksuste loomist ja sügavamalt. Pesitatud menüüelemente saavad luua ainult kasutajad, kellel on menüü administreerimine."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Välja nähtavuse reeglid (täpsem)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Määrake kohandatud väljade nähtavuse reeglid JSON-vormingus. Ülaltoodud sätete kasutamiseks jätke tühjaks."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

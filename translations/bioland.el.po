@@ -261,23 +261,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Εμφάνιση πεδίων Εύρους ημερομηνιών (Ημερομηνία έναρξης και λήξης) για αυτούς τους τύπους περιεχομένου:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Έλεγχος πρόσθετων πεδίων"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Ενεργοποίηση πρόσθετων πεδίων"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Προσθέστε πρόσθετα πεδία συγκεκριμένου τύπου περιεχομένου (καταστάσεις συμβάντων, καταστάσεις έργου κ.λπ.) με βάση τον τύπο περιεχομένου θησαυρού."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Χαρτογράφηση πρόσθετων πεδίων"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Οι ακόλουθοι τύποι περιεχομένου θα έχουν αυτά τα πρόσθετα πεδία διαθέσιμα:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -309,7 +309,7 @@ msgid "Document Types"
 msgstr "Τύποι εγγράφων"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Αυτά τα πεδία προστίθενται δυναμικά με βάση τον επιλεγμένο τύπο περιεχομένου και τροφοδοτούνται από ένα στοιχείο Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -337,12 +337,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Περιορίστε τους χρήστες που δεν είναι διαχειριστές από τη δημιουργία στοιχείων μενού δεύτερου επιπέδου και βαθύτερα. Μόνο οι χρήστες με άδεια «διαχειριστής μενού» μπορούν να δημιουργήσουν ένθετα στοιχεία μενού."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Κανόνες ορατότητας πεδίου (για προχωρημένους)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Ορίστε προσαρμοσμένους κανόνες ορατότητας πεδίου σε μορφή JSON. Αφήστε κενό για να χρησιμοποιήσετε τις παραπάνω ρυθμίσεις."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

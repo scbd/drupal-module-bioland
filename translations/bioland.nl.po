@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Velden tonen/verbergen op basis van selectie van inhoudstype. Regelt de zichtbaarheid van URL-, datum- en publicatievelden."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Schakel extra velden in"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Voeg inhoudstype-specifieke extra velden toe (evenementstatussen, projectstatussen, etc.) op basis van het thesaurus-inhoudstype."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Datumbereikvelden weergeven (begin- en einddatum) voor deze inhoudstypen:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Beheer van aanvullende velden"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Toewijzing van aanvullende velden"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Voor de volgende inhoudstypen zijn deze extra velden beschikbaar:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Documenttypen"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Deze velden worden dynamisch toegevoegd op basis van het geselecteerde inhoudstype en worden mogelijk gemaakt door een component Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Beperk gebruikers die geen beheerder zijn, zodat ze menu-items op het tweede niveau en meer kunnen maken. Alleen gebruikers met de machtiging „menu beheren” kunnen geneste menu-items maken."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Regels voor de zichtbaarheid van velden (geavanceerd)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Definieer aangepaste regels voor de zichtbaarheid van velden in JSON-formaat. Laat dit veld leeg om de instellingen hierboven te gebruiken."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

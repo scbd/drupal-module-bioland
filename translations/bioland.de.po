@@ -261,23 +261,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Felder für den Datumsbereich (Start- und Enddatum) für diese Inhaltstypen anzeigen:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Steuerelement „Zusätzliche Felder“"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Zusätzliche Felder aktivieren"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Fügen Sie inhaltstypspezifische Zusatzfelder (Veranstaltungsstatus, Projektstatus usw.) auf der Grundlage des Thesaurus-Inhaltstyps hinzu."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Zuordnung zusätzlicher Felder"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Für die folgenden Inhaltstypen sind diese zusätzlichen Felder verfügbar:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -309,7 +309,7 @@ msgid "Document Types"
 msgstr "Arten von Dokumenten"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Diese Felder werden basierend auf dem ausgewählten Inhaltstyp dynamisch hinzugefügt und von einer Komponente Vue.js unterstützt."
 
 #: src/Form/BiolandSettingsForm.php
@@ -337,12 +337,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Schränken Sie Benutzer ohne Administratorrechte daran ein, Menüelemente der zweiten Ebene und mehr zu erstellen. Nur Benutzer mit der Berechtigung „Menü verwalten“ können verschachtelte Menüelemente erstellen."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Regeln für die Sichtbarkeit von Feldern (erweitert)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Definieren Sie benutzerdefinierte Regeln für die Sichtbarkeit von Feldern im JSON-Format. Lassen Sie das Feld leer, um die obigen Einstellungen zu verwenden."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

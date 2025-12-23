@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Tunjukkan/sembunyikan medan berdasarkan pilihan jenis kandungan. Mengawal keterlihatan URL, tarikh dan medan yang diterbitkan."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Dayakan Medan Tambahan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Tambah medan tambahan khusus jenis kandungan (status acara, status projek, dll.) berdasarkan jenis kandungan tesaurus."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Tunjukkan medan Julat Tarikh (Tarikh Mula & Akhir) untuk jenis kandungan ini:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kawalan Bidang Tambahan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Pemetaan Bidang Tambahan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Jenis kandungan berikut akan mempunyai medan tambahan ini tersedia:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Jenis Dokumen"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Medan ini ditambah secara dinamik berdasarkan jenis kandungan yang dipilih dan dikuasakan oleh komponen Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Hadkan pengguna bukan pentadbir daripada membuat item menu peringkat kedua dan lebih mendalam. Hanya pengguna dengan kebenaran “mentadbir menu” boleh membuat item menu bersarang."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Peraturan Penglihatan Lapangan (Lanjutan)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Tentukan peraturan penglihatan medan tersuai dalam format JSON. Biarkan kosong untuk menggunakan tetapan di atas."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

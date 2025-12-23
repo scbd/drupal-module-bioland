@@ -261,23 +261,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Dangos meysydd Ystod Dyddiad (Dyddiad Cychwyn a Diwedd) ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Rheoli Meysydd Ychwanegol"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Galluogi Meysydd Ychwanegol"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ychwanegwch feysydd ychwanegol penodol math cynnwys (statws digwyddiad, statws prosiect, ac ati) yn seiliedig ar fath cynnwys thesawrws."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Mapio Meysydd Ychwanegol"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Bydd gan y mathau canlynol o gynnwys y meysydd ychwanegol hyn ar gael:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -309,7 +309,7 @@ msgid "Document Types"
 msgstr "Mathau o Ddogfennau"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Mae'r meysydd hyn yn cael eu hychwanegu'n ddeinamig yn seiliedig ar y math o gynnwys a ddewiswyd ac yn cael eu pweru gan gydran Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -337,12 +337,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Cyfyngu defnyddwyr nad ydynt yn weinyddwr rhag creu eitemau dewislen ail lefel ac yn ddyfnach. Dim ond defnyddwyr sydd â chaniatâd “gweinyddu bwydlen” sy'n gallu creu eitemau dewislen nythu."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Rheolau Gwelededd Maes (Uwch)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Diffinio rheolau gwelededd maes personol mewn fformat JSON. Gadewch yn wag i ddefnyddio'r gosodiadau uchod."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

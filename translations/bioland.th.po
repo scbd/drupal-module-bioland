@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "แสดง/ซ่อนฟิลด์ตามการเลือกประเภทเนื้อหา ควบคุมการมองเห็น URL, วันที่ และฟิลด์ที่เผยแพร่"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "เปิดใช้งานฟิลด์เพิ่มเติม"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "เพิ่มฟิลด์เพิ่มเติมเฉพาะประเภทเนื้อหา (สถานะกิจกรรม, สถานะโครงการ ฯลฯ) ตามประเภทเนื้อหาของอรรถาภิธาน"
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "แสดงฟิลด์ช่วงวันที่ (วันที่เริ่มต้นและสิ้นสุด) สำหรับประเภทเนื้อหาเหล่านี้:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "การควบคุมฟิลด์เพิ่มเติม"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "การทำแผนที่ฟิลด์เพิ่มเติม"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "ประเภทเนื้อหาต่อไปนี้จะมีฟิลด์เพิ่มเติมเหล่านี้:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "ประเภทเอกสาร"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "ฟิลด์เหล่านี้จะถูกเพิ่มแบบไดนามิกตามประเภทเนื้อหาที่เลือกและขับเคลื่อนโดยองค์ประกอบ Vue.js"
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "จำกัด ผู้ใช้ที่ไม่ใช่ผู้ดูแลระบบไม่ให้สร้างรายการเมนูระดับที่สองและลึกขึ้นเฉพาะผู้ใช้ที่มีสิทธิ์ “ดูแลเมนู” เท่านั้นที่สามารถสร้างรายการเมนูที่ซ้อนกันได้"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "กฎการมองเห็นสนาม (ขั้นสูง)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "กำหนดกฎการมองเห็นฟิลด์ที่กำหนดเองในรูปแบบ JSONเว้นว่างเพื่อใช้การตั้งค่าด้านบน"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

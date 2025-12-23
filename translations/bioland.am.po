@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "በይዘት አይነት ምርጫ ላይ በመመስረት መስኮችን አሳይ/ደብቅ። የዩአርኤል፣ የቀን እና የታተሙ መስኮችን ታይነት ይቆጣጠራል።"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "ተጨማሪ መስኮችን አንቃ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "በቴሶረስ የይዘት አይነት ላይ በመመስረት ከይዘት-አይነት ጋር የተያያዙ ተጨማሪ መስኮችን (የክስተት ሁኔታዎች፣ የፕሮጀክት ሁኔታዎች፣ ወዘተ) ያክሉ።"
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "ለእነዚህ የይዘት ዓይነቶች የቀን ክልል መስኮችን (የመጀመሪያ እና የማብቂያ ቀን) አሳይ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "ተጨማሪ መስኮች ቁጥ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "ተጨማሪ መስክ ካርታ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "የሚከተሉት የይዘት ዓይነቶች እነዚህ ተጨማሪ መስኮች ይኖራቸዋል"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "የሰነድ ዓይነቶች"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "እነዚህ መስኮች በተመረጠው የይዘት ዓይነት ላይ በመመርኮዝ በተለዋዋጭ ተጨመሩ እና በ Vue.js አካል ይሠራሉ።"
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "አስተዳዳሪ ያልሆኑ ተጠቃሚዎች ሁለተኛ ደረጃ ምናሌ ንጥሎችን ከመፍጠር እና ጠ «ምናሌ አስተዳደር» ፈቃድ ያላቸው ተጠቃሚዎች ብቻ የተጣበሩ ምናሌ ንጥሎችን መፍጠር"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "የመስክ ታይታ ደንቦች (የላቀ)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "በJSON ቅርጸት ውስጥ ብጁ የመስክ ታይታ ደንቦችን ይግ ከላይ ያሉትን ቅንብሮች ለመጠቀም ባዶ ይተው።"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

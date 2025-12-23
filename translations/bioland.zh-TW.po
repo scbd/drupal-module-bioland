@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "根據內容類型選擇顯示/隱藏欄位。控制 URL、日期和已發布欄位的可見性。"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "啟用額外欄位"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "根據同義詞庫內容類型添加特定於內容類型的額外欄位（事件狀態、專案狀態等）。"
 
 #: src/Form/BiolandSettingsForm.php

@@ -140,23 +140,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Mostrar campos de Rango de Fechas (Fecha de Inicio y Fin) para estos tipos de contenido:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Control de Campos Adicionales"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Habilitar Campos Adicionales"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Agregar campos adicionales específicos del tipo de contenido (estados de eventos, estados de proyectos, etc.) basados en el tipo de contenido del tesauro."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Mapeo de Campos Adicionales"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Los siguientes tipos de contenido tendrán estos campos adicionales disponibles:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -188,7 +188,7 @@ msgid "Document Types"
 msgstr "Tipos de Documento"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Estos campos se agregan dinámicamente según el tipo de contenido seleccionado y son impulsados por un componente Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -216,12 +216,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Restringir a los usuarios no administradores de crear elementos de menú de segundo nivel y más profundos. Solo los usuarios con permiso \"administrar menú\" pueden crear elementos de menú anidados."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Reglas de Visibilidad de Campos (Avanzado)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Defina reglas personalizadas de visibilidad de campos en formato JSON. Deje vacío para usar la configuración anterior."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "ველების ჩვენება/დამალვა კონტენტის ტიპის მიხედვით. აკონტროლებს URL-ის, თარიღისა და გამოქვეყნებული ველების ხილვადობას."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "დამატებითი ველების ჩართვა"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "დაამატეთ კონტენტის ტიპის სპეციფიკური დამატებითი ველები (ღონისძიების სტატუსები, პროექტის სტატუსები და ა.შ.) თეზაურუსის კონტენტის ტიპის მიხედვით."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "თარიღის დიაპაზონის ველების ჩვენება (დაწყების და დასასრულის თარიღი) ამ შინაარსის"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "დამატებითი ველი კონტროლი"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "დამატებითი ველების რუკა"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "შემდეგი შინაარსის ტიპებს ექნებათ ეს დამატებითი ველები:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "დოკუმენტის სახეები"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "ეს ველები დინამიურად ემატება შერჩეული შინაარსის ტიპის საფუძველზე და მუშაობს Vue.js კომპონენტით."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "შეზღუდეთ არაადმინისტრატორულ მომხმარებლებს მეორე დონის მენიუს ელ მხოლოდ მომხმარებლებს, რომლებსაც აქვთ „მენიუს ადმინისტრაციის“ ნებართვა, შეუძლიათ შექმნან"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "ველის ხილვადობის წესები (მოწინავე"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "განსაზღვრეთ მორგებული ველის ხილვადობის წესები JSON დატოვეთ ცარიელი ზემოთ მოცემული პარამეტრების"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

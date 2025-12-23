@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Hiển thị/ẩn các trường dựa trên lựa chọn loại nội dung. Kiểm soát khả năng hiển thị của các trường URL, ngày tháng và đã xuất bản."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Bật các trường bổ sung"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Thêm các trường bổ sung dành riêng cho loại nội dung (trạng thái sự kiện, trạng thái dự án, v.v.) dựa trên loại nội dung từ điển đồng nghĩa."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Hiển thị trường Phạm vi ngày (Ngày bắt đầu và ngày kết thúc) cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kiểm soát trường bổ sung"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Lập bản đồ trường bổ sung"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Các loại nội dung sau sẽ có sẵn các trường bổ sung này:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Các loại tài liệu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Các trường này được thêm động dựa trên loại nội dung đã chọn và được cung cấp bởi một thành phần Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Hạn chế người dùng không phải quản trị viên tạo các mục menu cấp hai và sâu hơn. Chỉ những người dùng có quyền “quản trị menu” mới có thể tạo các mục menu lồng nhau."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Quy tắc hiển thị trường (Nâng cao)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Xác định quy tắc hiển thị trường tùy chỉnh ở định dạng JSON. Để trống để sử dụng các cài đặt ở trên."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

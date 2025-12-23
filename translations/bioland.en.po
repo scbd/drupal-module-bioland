@@ -140,24 +140,28 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Show Date Range fields (Start & End Date) for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
-msgstr "Additional Fields Control"
+msgid "Tags Settings"
+msgstr "Tags Settings"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
-msgstr "Enable Additional Fields"
+msgid "Additional Tags Control"
+msgstr "Additional Tags Control"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
-msgstr "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Enable Additional Tags"
+msgstr "Enable Additional Tags"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
-msgstr "Additional Fields Mapping"
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
+msgstr "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
-msgstr "The following content types will have these additional fields available:"
+msgid "Additional Tags Mapping"
+msgstr "Additional Tags Mapping"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The following content types will have these additional tags available:"
+msgstr "The following content types will have these additional tags available:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Statuses"
@@ -188,8 +192,8 @@ msgid "Document Types"
 msgstr "Document Types"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgstr "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -216,12 +220,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Field Visibility Rules (Advanced)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

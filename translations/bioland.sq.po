@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Shfaq/fsheh fushat bazuar në zgjedhjen e llojit të përmbajtjes. Kontrollon dukshmërinë e fushave të URL-së, datës dhe publikimit."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Aktivizo Fushat Shtesë"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Shto fusha shtesë specifike për llojin e përmbajtjes (statuset e ngjarjeve, statuset e projekteve, etj.) bazuar në llojin e përmbajtjes së tezaurit."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Shfaq fushat e intervalit të datës (Data e fillimit dhe përfundimit) për këto lloje të përmbajtjes:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kontrolli i Fushave Shtesë"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Hartimi i fushave shtesë"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Llojet e mëposhtme të përmbajtjes do të kenë në dispozicion këto fusha shtes"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Llojet e dokumenteve"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Këto fusha shtohen në mënyrë dinamike bazuar në llojin e përzgjedhur të përmbajtjes dhe mundësohen nga një komponent Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Kufizoni përdoruesit jo-administratorë nga krijimi i artikujve të menusë të nivelit të dytë Vetëm përdoruesit me leje “administrimi i menusë” mund të krijojnë artikuj të menusë të ndezur."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Rregullat e shikueshmërisë në fushë (të"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Përcaktoni rregullat e shikueshmërisë së fushës me porosi në formatin Lëreni bosh për të përdorur cilësimet e mësipërme."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

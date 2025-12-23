@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Tus/qari goobaha ku salaysan doorashada nooca nuxurka. Waxay kontarooshaa URL, taariikhda, iyo muuqashada goobaha la daabacay."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Daar Goobo Dheeraad ah"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ku dar goobo dheeraad ah oo u gaar ah nooca nuxurka (heerarka dhacdooyinka, heerarka mashaariicda, iwm.) oo ku salaysan nooca nuxurka thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Muuqda booyinka Taariikhda (Bilowga & Taariikhda dhammaadka) noocadan waxyaabaha:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Maamulka Booyinka dheeraad"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Kaarinta Booyinka dheeraad"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Noocyada waxyaabaha soo socda waxay leeyihiin doonaan booyinka dheera"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Nooca Dhaqaaqa"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Booyaani waxaa si sidii loo daray oo ku saleysan nooca waxyaabaha la doortay, waxaana la awood leeyahay qaybta Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Isticmaamiyaha aan maamul aan la xidhiin abuurta ayaabaha heerka labaad iyo Kaliya isticmaale leh “maamul menu” waxay abuuri kartaa shaqooyinka menyuu waa."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Xeerarka Muuqaalka Boolka (Advanced)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Xeerka sharciyada muuqata goobta caadiga ee qaabka JSON Ka baxo si aad u adeegsado goobta kor."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

@@ -145,7 +145,7 @@
    */
   const handleContentTypeChange = function(fieldElement, settings, logger) {
     const updatedValue = fieldElement ? fieldElement.value : null;
-    const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandLastValue : null;
+    const lastValue = fieldElement && fieldElement.dataset ? fieldElement.dataset.biolandVisibilityLastValue : null;
     
     logger.log('Visibility handleContentTypeChange called');
     logger.log('Visibility previous value:', lastValue);
@@ -161,7 +161,7 @@
       return;
     }
 
-    fieldElement.dataset.biolandLastValue = updatedValue;
+    fieldElement.dataset.biolandVisibilityLastValue = updatedValue;
 
     logger.log('Content type changed, updating field visibility:', updatedValue);
     applyFieldVisibility(updatedValue, settings, logger);
@@ -230,7 +230,7 @@
 
     const fieldElement = contentTypeField ? contentTypeField.element : null;
     if (fieldElement) {
-      fieldElement.dataset.biolandLastValue = contentTypeValue;
+      fieldElement.dataset.biolandVisibilityLastValue = contentTypeValue;
     }
 
     applyFieldVisibility(contentTypeValue, settings, logger);
@@ -246,7 +246,11 @@
       const biolandSettings = settings.bioland || {};
       const logger = window.biolandGetLogger('fieldVisibility', biolandSettings);
       
+      logger.log('>>> FIELD VISIBILITY BEHAVIOR ATTACHED <<<');
+      logger.log('enableFieldVisibility setting:', biolandSettings.enableFieldVisibility);
+      
       if (biolandSettings.enableFieldVisibility === false) {
+        logger.log('Field visibility is DISABLED, exiting');
         return;
       }
 

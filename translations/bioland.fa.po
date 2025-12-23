@@ -239,23 +239,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "نمایش فیلدهای محدوده تاریخ (تاریخ شروع و پایان) برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "کنترل فیلدهای اضافی"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "فیلدهای اضافی را فعال کنید"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "فیلدهای اضافی خاص نوع محتوا (وضعیت رویداد، وضعیت پروژه و غیره) را بر اساس نوع محتوای اصطلاحنامه اضافه کنید."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "نقشه برداری فیلدهای اضافی"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "انواع محتوای زیر این فیلدهای اضافی را در دسترس خواهند داشت:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -287,7 +287,7 @@ msgid "Document Types"
 msgstr "انواع سند"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "این فیلدها به صورت پویا بر اساس نوع محتوای انتخاب شده اضافه می شوند و توسط یک کامپوننت Vue.js تأمین می شوند."
 
 #: src/Form/BiolandSettingsForm.php
@@ -315,12 +315,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "کاربران غیر مدیر را از ایجاد موارد منو سطح دوم و عمیق تر محدود کنید. فقط کاربرانی که دارای مجوز «مدیریت منو» هستند می توانند آیتم های منو توکار ایجاد کنند."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "قوانین دید میدان (پیشرفته)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "قوانین دید فیلد سفارشی را در قالب JSON تعریف کنید. برای استفاده از تنظیمات بالا خالی بگذارید."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

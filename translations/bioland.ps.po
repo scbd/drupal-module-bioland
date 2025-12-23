@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "د منځپانګې ډول انتخاب پر بنسټ ساحې وښایاست/پټ کړئ. د URL، نیټې، او خپرو شویو ساحو لید کنټرولوي."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "اضافي ساحې فعال کړئ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "د تیسورس منځپانګې ډول پر بنسټ د منځپانګې ډول ځانګړي اضافي ساحې اضافه کړئ (د پیښې حالتونه، د پروژې حالتونه، او داسې نور)."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "د نېټې لړۍ ساحې ښودئ (پیل او پای نیټه) د دې محتوا ډولونو"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "اضافي ساحو کنټرول"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "د اضافي ساحو نقشه"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "لاندې محتوا ډولونه به دا اضافي ساحې شتون لري:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "د سند ډولونه"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "دا ساحې په متحرک ډول د ټاکل شوي منځپانګې ډول پر بنسټ اضافه کیږي او د Vue.js جزو لخوا"
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "غیر مدیر کاروونکي د دوهم کچه مینو توکي جوړولو څخه محدود کړئ او ژوره. یوازې کاروونکي چې د «مینو اداره کولو» اجازه لري کولی شي د لټیسټ مینو توکي"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "د ساحې د کتنې قوانین (پرمختللي)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "په JSON بڼه کې د دودیز ساحې د کتنې قواعد پورته ترتیبات د کارولو لپاره خالي پریږدوئ."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

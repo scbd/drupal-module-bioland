@@ -239,23 +239,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Dátumtartomány mezők megjelenítése (kezdő és befejezési dátum) ezekhez a tartalomtípusokhoz:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "További mezők vezérlése"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "További mezők engedélyezése"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Adjon hozzá tartalomtípus-specifikus további mezőket (eseményállapotok, projektállapotok stb.) a tezaurusz tartalomtípusának megfelelően."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "További mezők feltérképezése"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "A következő tartalomtípusokban ezek a további mezők állnak rendelkezésre:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -287,7 +287,7 @@ msgid "Document Types"
 msgstr "Dokumentumtípusok"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Ezeket a mezőket dinamikusan hozzáadja a kiválasztott tartalomtípus alapján, és egy Vue.js összetevő működteti őket."
 
 #: src/Form/BiolandSettingsForm.php
@@ -315,12 +315,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Korlátozza a nem rendszergazdai felhasználók számára, hogy másodszintű és mélyebb menüelemeket hozzanak létre. Csak a „menü adminisztrációja” jogosultsággal rendelkező felhasználók hozhatnak létre beágyazott menüelemeket."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Terepi láthatósági szabályok (Speciális)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Adja meg az egyéni mezőláthatósági szabályokat JSON formátumban. Hagyja üresen a fenti beállítások használatához."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

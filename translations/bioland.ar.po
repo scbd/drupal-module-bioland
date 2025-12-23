@@ -55,10 +55,10 @@ msgstr "تفعيل التحكم في رؤية الحقول"
 msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
 msgstr "إظهار/إخفاء الحقول بناءً على نوع المحتوى المحدد. يتحكم في رؤية حقول الرابط والتاريخ والنشر."
 
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "تفعيل الحقول الإضافية"
 
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "إضافة حقول إضافية خاصة بنوع المحتوى (حالات الأحداث، حالات المشاريع، وغيرها) بالاستناد إلى نوع محتوى المعجم."
 
 msgid "Enable Auto Summary"
@@ -298,13 +298,13 @@ msgstr "حقل نطاق التاريخ (تاريخ البداية والنهاي
 msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "إظهار حقول نطاق التاريخ (تاريخ البداية والنهاية) لأنواع المحتوى التالية:"
 
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "التحكم في الحقول الإضافية"
 
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "تعيين الحقول الإضافية"
 
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "ستتوفر أنواع المحتوى التالية على هذه الحقول الإضافية:"
 
 msgid "Event Statuses"
@@ -328,7 +328,7 @@ msgstr "أنواع النظم البيئية"
 msgid "Document Types"
 msgstr "أنواع الوثائق"
 
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "تُضاف هذه الحقول ديناميكياً بناءً على نوع المحتوى المحدد ويتم تشغيلها بواسطة مكون Vue.js."
 
 msgid "Enable Menu Depth Restriction"
@@ -337,11 +337,7 @@ msgstr "تفعيل تقييد عمق القائمة"
 msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
 msgstr "تقييد المستخدمين غير الإداريين من إنشاء عناصر قائمة من المستوى الثاني وما بعده. يمكن فقط للمستخدمين الذين لديهم صلاحية \"إدارة القائمة\" إنشاء عناصر قائمة متداخلة."
 
-msgid "Field Visibility Rules (Advanced)"
-msgstr "قواعد رؤية الحقول (متقدم)"
 
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "حدد قواعد مخصصة لرؤية الحقول بتنسيق JSON. اتركه فارغاً لاستخدام الإعدادات أعلاه."
 
 msgid "(Required)"
 msgstr "(مطلوب)"

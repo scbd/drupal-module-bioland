@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "Onyesha/ficha sehemu kulingana na uteuzi wa aina ya maudhui. Inadhibiti URL, tarehe, na mwonekano wa sehemu zilizochapishwa."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Wezesha Sehemu za Ziada"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ongeza sehemu za ziada maalum za aina ya maudhui (hali za matukio, hali za miradi, n.k.) kulingana na aina ya maudhui ya thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Onyesha mashamba za Tarehe (Tarehe ya Kuanza na Mwisho) kwa aina hizi za yaliyomo:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Udhibiti wa Nyanja za Ziada"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Ramani ya Nyanja za Ziada"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Aina zifuatazo za yaliyomo zitakuwa na sehemu hizi za ziada zinaz"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "Aina za Hati"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Sehemu hizi zinaongezwa kwa kasi kulingana na aina ya yaliyomo iliyochaguliwa na huendeshwa na sehemu ya Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Zuia watumiaji wasio msimamizi kuunda vitu vya orodha ya ngazi ya pili na zaidi. Watumiaji tu wenye ruhusa ya “kusimamia menyu” wanaweza kuunda vitu vya menyu vilivyowekwa."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Sheria za Uonekano wa Mashamba (Juu)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Fafanua sheria za uonekano wa uwanja wa kawaida katika muundo wa Acha tupu kutumia mipangilio hapo juu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"

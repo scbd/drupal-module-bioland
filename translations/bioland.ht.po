@@ -239,23 +239,23 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Montre Dat Range jaden (Start & Fen Dat) pou kalite kontni sa yo:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "Kontwòl jaden adisyonèl"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "Pèmèt jaden adisyonèl"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "Ajoute kontent-kalite espesifik jaden adisyonèl (status evènman, stati pwojè, elatriye) ki baze sou kalite kontni thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "Jaden adisyonèl kat"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "Kalite kontni sa yo pral gen jaden adisyonèl sa yo disponib:"
 
 #: src/Form/BiolandSettingsForm.php
@@ -287,7 +287,7 @@ msgid "Document Types"
 msgstr "Kalite dokiman"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "Jaden sa yo dinamik ajoute ki baze sou kalite a kontni chwazi epi yo patrone pa yon eleman Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
@@ -315,12 +315,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Restriksyon sou itilizatè ki pa administratè soti nan kreye atik meni dezyèm-nivo ak pi fon. Se sèlman itilizatè yo ki gen “administre meni” pèmisyon ka kreye atik meni nisted."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "Règ vizibilite jaden (avanse)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "Defini règleman vizibilite jaden koutim nan fòma JSON. Kite vid yo sèvi ak anviwònman ki anwo yo."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"

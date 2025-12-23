@@ -72,11 +72,11 @@ msgid "Show/hide fields based on content type selection. Controls URL, date, and
 msgstr "コンテンツタイプの選択に基づいてフィールドを表示/非表示にします。URL、日付、公開済みフィールドの表示を制御します。"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Additional Fields"
+msgid "Enable Additional Tags"
 msgstr "追加フィールドを有効にする"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Add content-type specific additional fields (event statuses, project statuses, etc.) based on thesaurus content type."
+msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
 msgstr "シソーラスのコンテンツタイプに基づいて、コンテンツタイプ固有の追加フィールド（イベントステータス、プロジェクトステータスなど）を追加します。"
 
 #: src/Form/BiolandSettingsForm.php
@@ -384,15 +384,15 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "次のコンテンツタイプの日付範囲フィールド (開始日と終了日) を表示:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Control"
+msgid "Additional Tags Control"
 msgstr "追加フィールドコントロール"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Fields Mapping"
+msgid "Additional Tags Mapping"
 msgstr "その他のフィールドマッピング"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional fields available:"
+msgid "The following content types will have these additional tags available:"
 msgstr "次のコンテンツタイプでは、次の追加フィールドを使用できます。"
 
 #: src/Form/BiolandSettingsForm.php
@@ -424,7 +424,7 @@ msgid "Document Types"
 msgstr "文書タイプ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "These fields are dynamically added based on the selected content type and are powered by a Vue.js component."
+msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
 msgstr "これらのフィールドは、選択したコンテンツタイプに基づいて動的に追加され、Vue.js コンポーネントによって提供されます。"
 
 #: src/Form/BiolandSettingsForm.php
@@ -436,12 +436,8 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "管理者以外のユーザーが第 2 レベル以上のメニュー項目を作成できないように制限します。ネストされたメニュー項目を作成できるのは、「管理メニュー」権限を持つユーザーだけです。"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Field Visibility Rules (Advanced)"
-msgstr "フィールド表示ルール (上級者向け)"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Define custom field visibility rules in JSON format. Leave empty to use the settings above."
-msgstr "カスタムフィールド表示ルールを JSON 形式で定義します。上記の設定を使用するには空白のままにしておきます。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
