@@ -45,8 +45,9 @@
    * 
    * @param {string|number} contentTypeValue - The content type value
    * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  const hideDates = function(contentTypeValue, settings) {
+  const hideDates = function(contentTypeValue, settings, logger) {
     if (!contentTypeValue) return;
 
     const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
@@ -57,6 +58,7 @@
 
     if (startDateWrapper) {
       startDateWrapper.style.display = shouldShowDates ? 'block' : 'none';
+      logger.log('Date fields:', shouldShowDates ? 'SHOWN' : 'HIDDEN', 'for content type', contentTypeValue);
     }
 
     if (endDateWrapper) {
@@ -69,8 +71,9 @@
    * 
    * @param {string|number} contentTypeValue - The content type value
    * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  const hideUrl = function(contentTypeValue, settings) {
+  const hideUrl = function(contentTypeValue, settings, logger) {
     if (!contentTypeValue) return;
 
     const urlWrapper = document.querySelector('#edit-field-url-wrapper');
@@ -78,12 +81,10 @@
     if (!urlWrapper) return;
 
     const urlContentTypes = settings?.urlContentTypes || [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50];
+    const shouldShow = urlContentTypes.includes(Number(contentTypeValue));
 
-    if (urlContentTypes.includes(Number(contentTypeValue))) {
-      urlWrapper.style.display = 'block';
-    } else {
-      urlWrapper.style.display = 'none';
-    }
+    urlWrapper.style.display = shouldShow ? 'block' : 'none';
+    logger.log('URL field:', shouldShow ? 'SHOWN' : 'HIDDEN', 'for content type', contentTypeValue);
   };
 
   /**
@@ -91,8 +92,9 @@
    * 
    * @param {string|number} contentTypeValue - The content type value
    * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  const hidePublished = function(contentTypeValue, settings) {
+  const hidePublished = function(contentTypeValue, settings, logger) {
     if (!contentTypeValue) return;
 
     const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
@@ -100,12 +102,10 @@
     if (!publishedWrapper) return;
 
     const publishedContentTypes = settings?.publishedContentTypes || [3, 5, 12];
+    const shouldShow = publishedContentTypes.includes(Number(contentTypeValue));
 
-    if (publishedContentTypes.includes(Number(contentTypeValue))) {
-      publishedWrapper.style.display = 'block';
-    } else {
-      publishedWrapper.style.display = 'none';
-    }
+    publishedWrapper.style.display = shouldShow ? 'block' : 'none';
+    logger.log('Published field:', shouldShow ? 'SHOWN' : 'HIDDEN', 'for content type', contentTypeValue);
   };
 
   /**
@@ -113,13 +113,14 @@
    * 
    * @param {string|number} contentTypeValue - The content type value
    * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  const hideFields = function(contentTypeValue, settings) {
+  const hideFields = function(contentTypeValue, settings, logger) {
     if (!contentTypeValue) return;
 
-    hideDates(contentTypeValue, settings);
-    hideUrl(contentTypeValue, settings);
-    hidePublished(contentTypeValue, settings);
+    hideDates(contentTypeValue, settings, logger);
+    hideUrl(contentTypeValue, settings, logger);
+    hidePublished(contentTypeValue, settings, logger);
   };
 
   /**
@@ -127,11 +128,12 @@
    *
    * @param {string|number} contentTypeValue - The content type value
    * @param {Object} settings - Bioland settings from PHP
+   * @param {Object} logger - Logger instance
    */
-  const applyFieldVisibility = function(contentTypeValue, settings) {
+  const applyFieldVisibility = function(contentTypeValue, settings, logger) {
     if (!contentTypeValue) return;
 
-    hideFields(contentTypeValue, settings);
+    hideFields(contentTypeValue, settings, logger);
   };
 
   /**
@@ -162,7 +164,7 @@
     fieldElement.dataset.biolandLastValue = updatedValue;
 
     logger.log('Content type changed, updating field visibility:', updatedValue);
-    applyFieldVisibility(updatedValue, settings);
+    applyFieldVisibility(updatedValue, settings, logger);
   };
 
   /**
@@ -186,11 +188,15 @@
 
     fieldElement.dataset.biolandFieldVisibilityInit = 'true';
 
+    logger.log('Setting up content type field listeners');
+
     fieldElement.addEventListener('change', function() {
+      logger.log('Content type CHANGE event fired');
       handleContentTypeChange(this, settings, logger);
     });
 
     fieldElement.addEventListener('keydown', function() {
+      logger.log('Content type KEYDOWN event fired');
       const element = this;
       setTimeout(function() {
         handleContentTypeChange(element, settings, logger);
@@ -227,7 +233,7 @@
       fieldElement.dataset.biolandLastValue = contentTypeValue;
     }
 
-    applyFieldVisibility(contentTypeValue, settings);
+    applyFieldVisibility(contentTypeValue, settings, logger);
     hideTextFormat();
     setupContentTypeListeners(context, settings, logger);
   };

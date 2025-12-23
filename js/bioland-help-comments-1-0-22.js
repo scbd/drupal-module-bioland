@@ -109,6 +109,8 @@
     infoIcon.innerHTML = '&nbsp;';
     infoIcon.style.cursor = 'pointer';
     infoIcon.style.marginLeft = '8px';
+    infoIcon.style.position = 'relative';
+    infoIcon.style.zIndex = '10';
     infoIcon.setAttribute('aria-label', 'Toggle help message');
     bodyLabel.appendChild(infoIcon);
 
@@ -143,16 +145,19 @@
     // Add click handler to info icon to toggle visibility
     infoIcon.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      logger.log('>>> BODY INFO ICON CLICKED <<<');
+      logger.log('Body info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
         infoIcon.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
-        logger.log('Body field help comment shown');
+        logger.log('Body field help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
         infoIcon.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
-        logger.log('Body field help comment hidden');
+        logger.log('Body field help comment HIDDEN');
       }
     });
 
@@ -196,6 +201,8 @@
     infoIcon.innerHTML = '&nbsp;';
     infoIcon.style.cursor = 'pointer';
     infoIcon.style.marginLeft = '8px';
+    infoIcon.style.position = 'relative';
+    infoIcon.style.zIndex = '10';
     infoIcon.setAttribute('aria-label', 'Toggle help message');
 
     // Check if legend has a span child (Drupal fieldset structure) or append directly
@@ -247,16 +254,19 @@
     // Add click handler to info icon to toggle visibility
     infoIcon.addEventListener('click', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      logger.log('>>> ATTACHMENTS INFO ICON CLICKED <<<');
+      logger.log('Attachments info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
         infoIcon.style.display = 'none';
         setCookie(cookieName, 'visible', 365);
-        logger.log('Attachments field help comment shown');
+        logger.log('Attachments field help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
         infoIcon.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
-        logger.log('Attachments field help comment hidden');
+        logger.log('Attachments field help comment HIDDEN');
       }
     });
 
@@ -318,6 +328,8 @@
     infoIcon.style.cursor = 'pointer';
     infoIcon.style.marginLeft = '8px';
     infoIcon.style.fontSize = '14px';
+    infoIcon.style.position = 'relative';
+    infoIcon.style.zIndex = '10';
     infoIcon.setAttribute('aria-label', 'Toggle help message');
 
     // Check cookie to see if help is hidden
@@ -356,6 +368,8 @@
     infoIcon.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation(); // Prevent triggering the summary toggle
+      logger.log('>>> PROMOTION INFO ICON CLICKED <<<');
+      logger.log('Promotion info icon clicked, current display:', helpMessage.style.display);
       if (helpMessage.style.display === 'none') {
         helpMessage.style.display = 'block';
         infoIcon.style.display = 'none';
@@ -364,12 +378,12 @@
         if (detailsElement && !detailsElement.open) {
           detailsElement.open = true;
         }
-        logger.log('Promotion options help comment shown');
+        logger.log('Promotion options help comment SHOWN');
       } else {
         helpMessage.style.display = 'none';
         infoIcon.style.display = 'inline';
         setCookie(cookieName, 'hidden', 365);
-        logger.log('Promotion options help comment hidden');
+        logger.log('Promotion options help comment HIDDEN');
       }
     });
 

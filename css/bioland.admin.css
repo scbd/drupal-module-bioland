@@ -98,5 +98,12 @@
 
 .bioland-additional-fields-mapping p {
   margin-top: 1em;
+}
+
+/* Help comment info icons */
+.fa-info-circle {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
   font-size: 0.9em;
 }
