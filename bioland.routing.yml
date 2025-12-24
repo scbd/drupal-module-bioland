@@ -43,6 +43,24 @@ bioland.settings.help_comments:
   requirements:
     _permission: 'administer bioland field settings'
 
+bioland.settings.mega_menu:
+  path: '/admin/config/bioland/settings/mega-menu'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Mega Menu'
+    section: 'mega_menu'
+  requirements:
+    _permission: 'administer bioland settings'
+
+bioland.settings.system_functions:
+  path: '/admin/config/bioland/settings/system-functions'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'System Functions'
+    section: 'system_functions'
+  requirements:
+    _role: 'administrator'
+
 bioland.settings.admin:
   path: '/admin/config/bioland/settings/admin'
   defaults:

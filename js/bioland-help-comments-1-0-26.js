@@ -409,6 +409,126 @@
   };
 
   /**
+   * Add help message for the Order Override field.
+   *
+   * @param {Object} helpCommentsSettings - Help comments settings from Drupal.
+   * @param {Object} logger - Logger instance
+   */
+  const addOrderOverrideHelp = function(helpCommentsSettings, logger) {
+    // Find the order field wrapper inside the Order Override details section
+    const orderFieldWrapper = document.querySelector('[data-drupal-selector="edit-field-order-wrapper"]') ||
+                              document.querySelector('.field--name-field-order');
+
+    if (!orderFieldWrapper) {
+      logger.log('Order field wrapper not found for help comment');
+      return;
+    }
+
+    // Prevent duplicate initialization
+    if (orderFieldWrapper.dataset.biolandHelpInit) {
+      return;
+    }
+    orderFieldWrapper.dataset.biolandHelpInit = 'true';
+
+    const cookieName = 'bioland_help_order_override_hidden';
+
+    // Get translated strings from Drupal settings or use defaults
+    const helpTitle = Drupal.t('How it Works');
+    const helpText = (helpCommentsSettings && helpCommentsSettings.orderOverrideText)
+      ? helpCommentsSettings.orderOverrideText
+      : '<b>' + Drupal.t('Content sorting priority (highest to lowest):') + '</b>' +
+        '<ol>' +
+        '<li><b>' + Drupal.t('Sticky') + '</b> – ' + Drupal.t('Items marked "Sticky at top of lists" always appear first') + '</li>' +
+        '<li><b>' + Drupal.t('Order Override') + '</b> – ' + Drupal.t('This field! Higher numbers = higher priority') + '</li>' +
+        '<li><b>' + Drupal.t('Promoted') + '</b> – ' + Drupal.t('Items marked "Promoted to front page" come next') + '</li>' +
+        '<li><b>' + Drupal.t('Start Date') + '</b> – ' + Drupal.t('Items with future start dates are prioritized') + '</li>' +
+        '<li><b>' + Drupal.t('Last Modified') + '</b> – ' + Drupal.t('Most recently edited items appear higher') + '</li>' +
+        '</ol>' +
+        '<b>' + Drupal.t('Tip:') + '</b> ' + Drupal.t('Use increments of 10 (10, 20, 30...) to leave room for inserting items later.');
+
+    // Create help message element
+    const helpMessage = document.createElement('div');
+    helpMessage.className = 'alert alert-info bioland-help-comment fieldset_description';
+    helpMessage.innerHTML = '<big><b><i class="fa-solid fa-info-circle">&nbsp;</i> ' + helpTitle + ' </b></big><br><br>' + helpText;
+    helpMessage.style.marginBottom = '16px';
+    helpMessage.style.fontSize = '0.8em';
+
+    // Create clickable wrapper for info icon (FontAwesome replaces <i> with <svg>, losing click handlers)
+    const infoIconWrapper = document.createElement('span');
+    infoIconWrapper.style.cursor = 'pointer';
+    infoIconWrapper.style.marginLeft = '8px';
+    infoIconWrapper.style.fontSize = '14px';
+    infoIconWrapper.style.position = 'relative';
+    infoIconWrapper.style.zIndex = '10';
+    infoIconWrapper.setAttribute('aria-label', 'Toggle help message');
+    infoIconWrapper.setAttribute('role', 'button');
+    infoIconWrapper.setAttribute('tabindex', '0');
+    
+    // Add info icon inside wrapper
+    const infoIcon = document.createElement('i');
+    infoIcon.className = 'fa-solid fa-info-circle';
+    infoIcon.innerHTML = '&nbsp;';
+    infoIconWrapper.appendChild(infoIcon);
+
+    // Check cookie to see if help is hidden
+    if (getCookie(cookieName) === 'hidden') {
+      helpMessage.style.display = 'none';
+      infoIconWrapper.style.display = 'inline';
+      logger.log('Order override help comment is hidden by user preference');
+    } else {
+      infoIconWrapper.style.display = 'none';
+    }
+
+    // Add close button
+    addCloseButton(helpMessage, cookieName, infoIconWrapper, logger);
+
+    // Find the parent container (claro-details__content) and details element
+    const parentContainer = orderFieldWrapper.parentElement;
+    
+    // Find the outer details element (edit-order-override-wrapper) and its summary
+    const detailsElement = parentContainer ? parentContainer.closest('details') : null;
+    const summaryElement = detailsElement ? detailsElement.querySelector('summary') : null;
+    
+    if (parentContainer) {
+      // Insert help message as the first child of the container (before the field)
+      parentContainer.insertBefore(helpMessage, parentContainer.firstChild);
+      
+      // Insert info icon wrapper into the summary element (so it's visible when collapsed)
+      if (summaryElement) {
+        summaryElement.appendChild(infoIconWrapper);
+      } else {
+        // Fallback: insert after help message if summary not found
+        parentContainer.insertBefore(infoIconWrapper, helpMessage.nextSibling);
+      }
+    }
+
+    // Add click handler to wrapper (survives FontAwesome SVG replacement)
+    infoIconWrapper.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent triggering the summary toggle
+      logger.log('>>> ORDER OVERRIDE INFO ICON CLICKED <<<');
+      logger.log('Order override info icon clicked, current display:', helpMessage.style.display);
+      if (helpMessage.style.display === 'none') {
+        helpMessage.style.display = 'block';
+        infoIconWrapper.style.display = 'none';
+        setCookie(cookieName, 'visible', 365);
+        // Ensure the details element is open so user can see the help
+        if (detailsElement && !detailsElement.open) {
+          detailsElement.open = true;
+        }
+        logger.log('Order override help comment SHOWN');
+      } else {
+        helpMessage.style.display = 'none';
+        infoIconWrapper.style.display = 'inline';
+        setCookie(cookieName, 'hidden', 365);
+        logger.log('Order override help comment HIDDEN');
+      }
+    });
+
+    logger.log('Order override help comment added');
+  };
+
+  /**
    * Initialize help comments functionality.
    *
    * @param {Element} context - The context element
@@ -442,6 +562,9 @@
 
     // Add help message to promotion options
     addPromotionOptionsHelp(helpCommentsSettings, logger);
+
+    // Add help message to order override field
+    addOrderOverrideHelp(helpCommentsSettings, logger);
   };
 
   /**

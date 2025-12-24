@@ -8,6 +8,8 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ImmutableConfig;
@@ -41,6 +43,20 @@ class BiolandSettingsFormTest extends TestCase {
   protected $translationBatchService;
 
   /**
+   * The mock database connection.
+   *
+   * @var \Drupal\Core\Database\Connection|\PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $database;
+
+  /**
+   * The mock current user.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface|\PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $currentUser;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -49,6 +65,8 @@ class BiolandSettingsFormTest extends TestCase {
     $this->languageManager = $this->createMock(LanguageManagerInterface::class);
     $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $this->translationBatchService = $this->createMock(BiolandTranslationBatchService::class);
+    $this->database = $this->createMock(Connection::class);
+    $this->currentUser = $this->createMock(AccountProxyInterface::class);
     
     // Set up default language.
     $defaultLanguage = new Language('en', 'English');
@@ -78,7 +96,9 @@ class BiolandSettingsFormTest extends TestCase {
     return new BiolandSettingsForm(
       $this->languageManager,
       $this->entityTypeManager,
-      $this->translationBatchService
+      $this->translationBatchService,
+      $this->database,
+      $this->currentUser
     );
   }
 
@@ -285,11 +305,11 @@ class BiolandSettingsFormTest extends TestCase {
     $reflection = new \ReflectionClass($form);
     
     // Create a subclass that overrides config method for testing.
-    return new class($this->languageManager, $this->entityTypeManager, $this->translationBatchService, $configObject) extends BiolandSettingsForm {
+    return new class($this->languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $configObject) extends BiolandSettingsForm {
       protected $testConfig;
       
-      public function __construct($languageManager, $entityTypeManager, $translationBatchService, $config) {
-        parent::__construct($languageManager, $entityTypeManager, $translationBatchService);
+      public function __construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser, $config) {
+        parent::__construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser);
         $this->testConfig = $config;
       }
       

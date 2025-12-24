@@ -2,6 +2,13 @@ bioland.settings_tab:
   route_name: bioland.settings
   title: 'General Settings'
   base_route: bioland.settings
+  weight: -1
+
+bioland.settings_system_functions_tab:
+  route_name: bioland.settings.system_functions
+  title: 'System Functions'
+  base_route: bioland.settings
+  weight: 0
 
 bioland.settings_field_visibility_tab:
   route_name: bioland.settings.field_visibility
@@ -26,6 +33,12 @@ bioland.settings_help_comments_tab:
   title: 'Help Comments'
   base_route: bioland.settings
   weight: 4
+
+bioland.settings_mega_menu_tab:
+  route_name: bioland.settings.mega_menu
+  title: 'Mega Menu'
+  base_route: bioland.settings
+  weight: 5
 
 bioland.settings_admin_tab:
   route_name: bioland.settings.admin

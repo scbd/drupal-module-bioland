@@ -6,8 +6,12 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\MessageCommand;
 
 /**
  * Configuration form for Drupal Module Bioland settings.
@@ -36,6 +40,20 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected $translationBatchService;
 
   /**
+   * The database connection.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  protected $database;
+
+  /**
+   * The current user.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+
+  /**
   * Constructs a new Drupal Module Bioland settings form.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -44,11 +62,17 @@ class BiolandSettingsForm extends ConfigFormBase {
    *   The entity type manager.
    * @param \Drupal\bioland\Service\BiolandTranslationBatchService $translation_batch_service
    *   The translation batch service.
+   * @param \Drupal\Core\Database\Connection $database
+   *   The database connection.
+   * @param \Drupal\Core\Session\AccountProxyInterface $current_user
+   *   The current user.
    */
-  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, BiolandTranslationBatchService $translation_batch_service) {
+  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, BiolandTranslationBatchService $translation_batch_service, Connection $database, AccountProxyInterface $current_user) {
     $this->languageManager = $language_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->translationBatchService = $translation_batch_service;
+    $this->database = $database;
+    $this->currentUser = $current_user;
   }
 
   /**
@@ -58,7 +82,9 @@ class BiolandSettingsForm extends ConfigFormBase {
     return new static(
       $container->get('language_manager'),
       $container->get('entity_type.manager'),
-      $container->get('bioland.translation_batch')
+      $container->get('bioland.translation_batch'),
+      $container->get('database'),
+      $container->get('current_user')
     );
   }
 
@@ -213,6 +239,72 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#options' => $this->getRegionOptions(),
         '#default_value' => $config->get('region') ?: 'north_america',
         '#required' => TRUE,
+      ];
+    }
+
+    if ($section === 'system_functions') {
+      $form['system_functions'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('System Functions'),
+        '#description' => $this->t('Administrative system operations. Use with caution.'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      // Wrapper for AJAX messages
+      $form['system_functions']['messages_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => ['id' => 'system-functions-messages'],
+      ];
+
+      // Cache Rebuild section
+      $form['system_functions']['cache_section'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Cache Management'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['system_functions']['cache_section']['cache_description'] = [
+        '#markup' => '<p>' . $this->t('Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site.') . '</p>',
+      ];
+
+      $form['system_functions']['cache_section']['rebuild_cache'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Rebuild Drupal Cache'),
+        '#submit' => ['::submitRebuildCache'],
+        '#ajax' => [
+          'callback' => '::ajaxRebuildCache',
+          'wrapper' => 'system-functions-messages',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => $this->t('Rebuilding cache...'),
+          ],
+        ],
+      ];
+
+      // Reset Ordering section
+      $form['system_functions']['ordering_section'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Content Ordering'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['system_functions']['ordering_section']['ordering_description'] = [
+        '#markup' => '<p>' . $this->t('Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
+      ];
+
+      $form['system_functions']['ordering_section']['reset_ordering'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Reset Ordering'),
+        '#submit' => ['::submitResetOrdering'],
+        '#ajax' => [
+          'callback' => '::ajaxResetOrdering',
+          'wrapper' => 'system-functions-messages',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => $this->t('Resetting ordering values...'),
+          ],
+        ],
       ];
     }
 
@@ -687,6 +779,19 @@ class BiolandSettingsForm extends ConfigFormBase {
       }
     }
 
+    if ($section === 'mega_menu') {
+      $form['mega_menu_settings'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Mega Menu Settings'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['mega_menu_settings']['placeholder'] = [
+        '#markup' => '<p>' . $this->t('Mega Menu settings coming soon.') . '</p>',
+      ];
+    }
+
     if ($section === 'admin') {
       $form['admin_settings'] = [
         '#type' => 'fieldset',
@@ -1138,6 +1243,125 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $batch = $this->translationBatchService->createTranslationBatch($entity_type_id);
     batch_set($batch);
+  }
+
+  /**
+   * Submit handler for cache rebuild.
+   */
+  public function submitRebuildCache(array &$form, FormStateInterface $form_state) {
+    // Rebuild cache.
+    drupal_flush_all_caches();
+    $this->messenger()->addStatus($this->t('Drupal cache has been rebuilt successfully.'));
+  }
+
+  /**
+   * AJAX callback for cache rebuild.
+   */
+  public function ajaxRebuildCache(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $response->addCommand(new MessageCommand($this->t('Drupal cache has been rebuilt successfully.'), NULL, ['type' => 'status']));
+    return $response;
+  }
+
+  /**
+   * Submit handler for reset ordering.
+   */
+  public function submitResetOrdering(array &$form, FormStateInterface $form_state) {
+    $count = $this->resetAllNodeOrdering();
+    $this->messenger()->addStatus($this->t('Successfully reset field_ordering to 1000 for @count nodes.', ['@count' => $count]));
+  }
+
+  /**
+   * AJAX callback for reset ordering.
+   */
+  public function ajaxResetOrdering(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $count = $form_state->get('reset_ordering_count') ?: 0;
+    $response->addCommand(new MessageCommand($this->t('Successfully reset field_ordering to 1000 for @count nodes.', ['@count' => $count]), NULL, ['type' => 'status']));
+    return $response;
+  }
+
+  /**
+   * Resets field_ordering to 1000 for all nodes while preserving timestamps.
+   *
+   * @return int
+   *   The number of nodes updated.
+   */
+  protected function resetAllNodeOrdering() {
+    $count = 0;
+    $node_storage = $this->entityTypeManager->getStorage('node');
+
+    // Load all nodes that have field_ordering.
+    $query = $node_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->exists('field_ordering');
+
+    $nids = $query->execute();
+
+    if (empty($nids)) {
+      return 0;
+    }
+
+    // Process nodes in batches to avoid memory issues.
+    $batch_size = 50;
+    $nid_chunks = array_chunk($nids, $batch_size);
+
+    foreach ($nid_chunks as $chunk) {
+      $nodes = $node_storage->loadMultiple($chunk);
+
+      foreach ($nodes as $node) {
+        // Check if field_ordering exists and if value is different from 1000.
+        if (!$node->hasField('field_ordering')) {
+          continue;
+        }
+
+        $current_value = $node->get('field_ordering')->value;
+        if ($current_value == 1000) {
+          // Already set to 1000, skip.
+          continue;
+        }
+
+        // Store original values.
+        $original_changed = $node->getChangedTime();
+        $original_uid = $node->getRevisionUserId();
+
+        // Set new revision.
+        $node->setNewRevision(TRUE);
+        $node->set('field_ordering', 1000);
+        $node->setRevisionLogMessage($this->t('Reset ordering'));
+        $node->setRevisionCreationTime(\Drupal::time()->getRequestTime());
+
+        // Save the node (this will trigger hooks).
+        $node->save();
+
+        // Now restore the original changed time and uid using direct database update.
+        // This preserves the "last updated" display while having proper revision history.
+        $this->database->update('node_field_data')
+          ->fields([
+            'changed' => $original_changed,
+            'uid' => $original_uid,
+          ])
+          ->condition('nid', $node->id())
+          ->execute();
+
+        // Also update for translations if any.
+        $this->database->update('node_field_data')
+          ->fields([
+            'changed' => $original_changed,
+          ])
+          ->condition('nid', $node->id())
+          ->execute();
+
+        $count++;
+      }
+    }
+
+    // Clear node cache after bulk updates.
+    $node_storage->resetCache($nids);
+
+    \Drupal::logger('bioland')->notice('Reset field_ordering to 1000 for @count nodes.', ['@count' => $count]);
+
+    return $count;
   }
 
   /**

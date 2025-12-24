@@ -927,3 +927,51 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "System Functions"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Administrative system operations. Use with caution."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Cache Management"
+msgstr "Cache Management"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site."
+msgstr "Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Rebuild Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Rebuilding cache..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Content Ordering"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Reset Ordering"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Resetting ordering values..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupal cache has been rebuilt successfully."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_ordering to 1000 for @count nodes."
+msgstr "Successfully reset field_ordering to 1000 for @count nodes."
