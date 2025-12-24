@@ -1,3 +1,140 @@
+editor.editor.full_html
+      'linkit_extension' => 
+      array (
+        'linkit_enabled' => true,
+        'linkit_profile' => 'default',
+      ),
+
+filter.format.full_html
+    'linkit' => 
+    array (
+      'id' => 'linkit',
+      'provider' => 'linkit',
+      'status' => true,
+      'weight' => 0,
+      'settings' => 
+      array (
+        'title' => true,
+        'media_substitution' => 'metadata',
+      ),
+    ),
+
+linkit.linkit_profile.default
+    array (
+  'uuid' => '2ecf31ca-ba4c-46c6-bcc5-8ec3b3e83fd3',
+  'langcode' => 'en',
+  'status' => true,
+  'dependencies' =>
+  array (
+    'module' =>
+    array (
+      0 => 'node',
+      1 => 'taxonomy',
+    ),
+  ),
+  '_core' =>
+  array (
+    'default_config_hash' => '0Jw_BFJCCtWk187tIYvME58VFpYwPaAdrc4eRtAyHH0',
+  ),
+  'label' => 'Default',
+  'id' => 'default',
+  'description' => 'A default Linkit profile',
+  'matchers' =>
+  array (
+    '556010a3-e317-48b3-b4ed-854c10f4b950' =>
+    array (
+      'id' => 'entity:node',
+      'uuid' => '556010a3-e317-48b3-b4ed-854c10f4b950',
+      'settings' =>
+      array (
+        'metadata' => '[language:prefix][node:url:path]',
+        'bundles' =>
+        array (
+          'content' => 'content',
+        ),
+        'group_by_bundle' => true,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+        'include_unpublished' => true,
+      ),
+      'weight' => -10,
+    ),
+    '33b36486-f1e5-46b3-86dc-e2a30e72030a' =>
+    array (
+      'id' => 'entity:taxonomy_term',
+      'uuid' => '33b36486-f1e5-46b3-86dc-e2a30e72030a',
+      'settings' =>
+      array (
+        'metadata' => '[language:prefix][term:url:path]',
+        'bundles' =>
+        array (
+          'system_pages' => 'system_pages',
+          'tags' => 'tags',
+        ),
+        'group_by_bundle' => true,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ),
+      'weight' => -9,
+    ),
+    'bb3ad7f0-3d71-41b6-8a3c-36a1219c86d5' =>
+    array (
+      'id' => 'entity:media',
+      'uuid' => 'bb3ad7f0-3d71-41b6-8a3c-36a1219c86d5',
+      'settings' =>
+      array (
+        'metadata' => '[language:prefix][media:url:path]',
+        'bundles' =>
+        array (
+          'document' => 'document',
+          'image' => 'image',
+          'remote_video' => 'remote_video',
+        ),
+        'group_by_bundle' => true,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ),
+      'weight' => -8,
+    ),
+    'ef16248e-964b-4932-a8d6-1b7723c0fb57' =>
+    array (
+      'id' => 'external',
+      'uuid' => 'ef16248e-964b-4932-a8d6-1b7723c0fb57',
+      'settings' =>
+      array (
+      ),
+      'weight' => -7,
+    ),
+    '8d77bb1b-e3f4-4555-bce3-e48fc83f1c11' =>
+    array (
+      'id' => 'email',
+      'uuid' => '8d77bb1b-e3f4-4555-bce3-e48fc83f1c11',
+      'settings' =>
+      array (
+      ),
+      'weight' => -6,
+    ),
+    '52c06754-70e8-4940-8247-afcf7eea44fe' =>
+    array (
+      'id' => 'entity:comment',
+      'uuid' => '52c06754-70e8-4940-8247-afcf7eea44fe',
+      'settings' =>
+      array (
+        'metadata' => '[language:prefix][comment:url:path]',
+        'bundles' =>
+        array (
+          'comment' => 'comment',
+          'comment_media' => 'comment_media',
+          'comment_taxonomy' => 'comment_taxonomy',
+        ),
+        'group_by_bundle' => false,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ),
+      'weight' => 0,
+    ),
+  ),
+)
 # Drupal Field Configuration
 
 | Field name | Entity type | Field type | Used in | Summary |
@@ -5,6 +142,9 @@
 | comment_body | comment | Text (formatted, long) | Comment_content, Comment_forum, Comment_media, Comment_taxonomy | |
 | field_description | media | Text (formatted, long) | Remote video, Document, Image, Hero | |
 | body | node | Text (formatted, long, with summary) | Site Content, Forum topic | |
+
+
+can you include
 
 
 

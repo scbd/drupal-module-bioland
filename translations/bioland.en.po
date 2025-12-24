@@ -975,3 +975,43 @@ msgstr "Drupal cache has been rebuilt successfully."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset field_order to 1000 for @count nodes."
 msgstr "Successfully reset field_order to 1000 for @count nodes."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Linkit module is not enabled; skipping profile configuration."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Created and configured default Linkit profile with all matchers."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Updated existing default Linkit profile with Bioland matchers configuration."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Linkit profile configuration completed: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit default profile @status with Bioland matchers configuration."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Required module: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Configured editor.editor.full_html with Linkit extension."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editor full_html not found; skipping Linkit editor configuration."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Configured filter.format.full_html with Linkit filter."
+
+#: bioland.install
+msgid "Filter format full_html not found; skipping Linkit filter configuration."
+msgstr "Filter format full_html not found; skipping Linkit filter configuration."

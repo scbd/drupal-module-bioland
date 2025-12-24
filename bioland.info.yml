@@ -2,7 +2,7 @@ name: Bioland
 type: module
 description: 'Handles settings for the Bioland tool including locales, countries, region, field visibility, additional fields, auto summary, and translation defaults functionality.'
 package: SCBD
-version: 1.0.28
+version: 1.0.29
 core_version_requirement: ^10 || ^11
 configure: bioland.settings
 dependencies:
@@ -18,3 +18,4 @@ dependencies:
   - drupal:auto_node_translate_amazon
   - drupal:ant_bulk
   - drupal:fontawesome
+  - drupal:linkit

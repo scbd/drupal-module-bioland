@@ -146,6 +146,9 @@ function bioland_install() {
 
   // Update existing content to use full_html format.
   _bioland_update_content_to_full_html();
+
+  // Configure the default Linkit profile.
+  _bioland_configure_linkit_profile();
 }
 
 /**
@@ -527,6 +530,7 @@ function bioland_requirements($phase) {
     // Verify contrib modules are available (composer) and enabled (Drupal).
     $contrib_modules = [
       'fontawesome' => 'drupal/fontawesome',
+      'linkit' => 'drupal/linkit',
     ];
 
     $module_handler = \Drupal::moduleHandler();
@@ -1406,4 +1410,278 @@ function bioland_update_9017(&$sandbox) {
     '@total' => $sandbox['total'],
     '@phase' => $sandbox['current_phase'],
   ]);
+}
+
+/**
+ * Configure the default Linkit profile on install or update.
+ */
+function bioland_update_9018() {
+  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
+    return t('Linkit module is not enabled; skipping profile configuration.');
+  }
+
+  $result = _bioland_configure_linkit_profile();
+  
+  if ($result['status'] === 'created') {
+    return t('Created and configured default Linkit profile with all matchers.');
+  }
+  elseif ($result['status'] === 'updated') {
+    return t('Updated existing default Linkit profile with Bioland matchers configuration.');
+  }
+  
+  return t('Linkit profile configuration completed: @message', ['@message' => $result['message'] ?? 'No changes needed.']);
+}
+
+/**
+ * Helper function to configure the default Linkit profile.
+ *
+ * Creates or updates the default Linkit profile with matchers for:
+ * - entity:node (content bundle)
+ * - entity:taxonomy_term (system_pages, tags bundles)
+ * - entity:media (document, image, remote_video bundles)
+ * - external links
+ * - email links
+ * - entity:comment (comment, comment_media, comment_taxonomy bundles)
+ *
+ * @return array
+ *   Status array with 'status' key ('created', 'updated', or 'error') and optional 'message'.
+ */
+function _bioland_configure_linkit_profile() {
+  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
+    return ['status' => 'error', 'message' => 'Linkit module is not enabled.'];
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $linkit_config = $config_factory->getEditable('linkit.linkit_profile.default');
+  
+  // Define the matchers configuration.
+  $matchers = [
+    // Node matcher - content bundle.
+    [
+      'id' => 'entity:node',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [
+        'metadata' => '[language:prefix][node:url:path]',
+        'bundles' => [
+          'content' => 'content',
+        ],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+        'include_unpublished' => TRUE,
+      ],
+      'weight' => -10,
+    ],
+    // Taxonomy term matcher - system_pages and tags bundles.
+    [
+      'id' => 'entity:taxonomy_term',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [
+        'metadata' => '[language:prefix][term:url:path]',
+        'bundles' => [
+          'system_pages' => 'system_pages',
+          'tags' => 'tags',
+        ],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => -9,
+    ],
+    // Media matcher - document, image, remote_video bundles.
+    [
+      'id' => 'entity:media',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [
+        'metadata' => '[language:prefix][media:url:path]',
+        'bundles' => [
+          'document' => 'document',
+          'image' => 'image',
+          'remote_video' => 'remote_video',
+        ],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => -8,
+    ],
+    // External link matcher.
+    [
+      'id' => 'external',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [],
+      'weight' => -7,
+    ],
+    // Email matcher.
+    [
+      'id' => 'email',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [],
+      'weight' => -6,
+    ],
+    // Comment matcher - comment, comment_media, comment_taxonomy bundles.
+    [
+      'id' => 'entity:comment',
+      'uuid' => _bioland_generate_uuid(),
+      'settings' => [
+        'metadata' => '[language:prefix][comment:url:path]',
+        'bundles' => [
+          'comment' => 'comment',
+          'comment_media' => 'comment_media',
+          'comment_taxonomy' => 'comment_taxonomy',
+        ],
+        'group_by_bundle' => FALSE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => 0,
+    ],
+  ];
+
+  // Build the matchers array keyed by UUID.
+  $matchers_config = [];
+  foreach ($matchers as $matcher) {
+    $matchers_config[$matcher['uuid']] = $matcher;
+  }
+
+  // Check if profile already exists.
+  $existing_uuid = $linkit_config->get('uuid');
+  $status = 'updated';
+
+  if (empty($existing_uuid)) {
+    // Create new profile.
+    $status = 'created';
+    $linkit_config
+      ->set('uuid', \Drupal::service('uuid')->generate())
+      ->set('langcode', 'en')
+      ->set('status', TRUE)
+      ->set('dependencies', [
+        'module' => ['node', 'taxonomy'],
+      ])
+      ->set('label', 'Default')
+      ->set('id', 'default')
+      ->set('description', 'A default Linkit profile');
+  }
+
+  // Set the matchers configuration.
+  $linkit_config->set('matchers', $matchers_config);
+  $linkit_config->save();
+
+  // Configure the editor and filter for Linkit integration.
+  _bioland_configure_linkit_editor();
+
+  \Drupal::logger('bioland')->notice('Linkit default profile @status with Bioland matchers configuration.', [
+    '@status' => $status,
+  ]);
+
+  return ['status' => $status];
+}
+
+/**
+ * Configure the Full HTML editor and filter to use Linkit.
+ *
+ * Updates:
+ * - editor.editor.full_html: Enables linkit_extension with default profile
+ * - filter.format.full_html: Adds linkit filter with title and media_substitution
+ *
+ * @return array
+ *   Status array with 'editor' and 'filter' keys indicating what was configured.
+ */
+function _bioland_configure_linkit_editor() {
+  $config_factory = \Drupal::configFactory();
+  $result = ['editor' => FALSE, 'filter' => FALSE];
+
+  // Configure editor.editor.full_html with Linkit extension.
+  if (\Drupal::moduleHandler()->moduleExists('editor')) {
+    $editor_config = $config_factory->getEditable('editor.editor.full_html');
+    
+    if ($editor_config->get('editor')) {
+      // Get existing settings or create new ones.
+      $settings = $editor_config->get('settings') ?: [];
+      
+      // Add or update the linkit_extension in plugins.
+      if (!isset($settings['plugins'])) {
+        $settings['plugins'] = [];
+      }
+      
+      $settings['plugins']['linkit_extension'] = [
+        'linkit_enabled' => TRUE,
+        'linkit_profile' => 'default',
+      ];
+      
+      $editor_config->set('settings', $settings);
+      
+      // Add linkit to dependencies if not already present.
+      $dependencies = $editor_config->get('dependencies') ?: [];
+      if (!isset($dependencies['module'])) {
+        $dependencies['module'] = [];
+      }
+      if (!in_array('linkit', $dependencies['module'])) {
+        $dependencies['module'][] = 'linkit';
+        sort($dependencies['module']);
+        $editor_config->set('dependencies', $dependencies);
+      }
+      
+      $editor_config->save();
+      $result['editor'] = TRUE;
+      
+      \Drupal::logger('bioland')->notice('Configured editor.editor.full_html with Linkit extension.');
+    }
+    else {
+      \Drupal::logger('bioland')->notice('Editor full_html not found; skipping Linkit editor configuration.');
+    }
+  }
+
+  // Configure filter.format.full_html with Linkit filter.
+  $filter_config = $config_factory->getEditable('filter.format.full_html');
+  
+  if ($filter_config->get('format')) {
+    // Get existing filters or create new array.
+    $filters = $filter_config->get('filters') ?: [];
+    
+    // Add or update the linkit filter.
+    $filters['linkit'] = [
+      'id' => 'linkit',
+      'provider' => 'linkit',
+      'status' => TRUE,
+      'weight' => 0,
+      'settings' => [
+        'title' => TRUE,
+        'media_substitution' => 'metadata',
+      ],
+    ];
+    
+    $filter_config->set('filters', $filters);
+    
+    // Add linkit to dependencies if not already present.
+    $dependencies = $filter_config->get('dependencies') ?: [];
+    if (!isset($dependencies['module'])) {
+      $dependencies['module'] = [];
+    }
+    if (!in_array('linkit', $dependencies['module'])) {
+      $dependencies['module'][] = 'linkit';
+      sort($dependencies['module']);
+      $filter_config->set('dependencies', $dependencies);
+    }
+    
+    $filter_config->save();
+    $result['filter'] = TRUE;
+    
+    \Drupal::logger('bioland')->notice('Configured filter.format.full_html with Linkit filter.');
+  }
+  else {
+    \Drupal::logger('bioland')->notice('Filter format full_html not found; skipping Linkit filter configuration.');
+  }
+
+  return $result;
+}
+
+/**
+ * Generate a UUID for Linkit matchers.
+ *
+ * @return string
+ *   A UUID string.
+ */
+function _bioland_generate_uuid() {
+  return \Drupal::service('uuid')->generate();
 }
