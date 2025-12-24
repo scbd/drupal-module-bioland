@@ -140,6 +140,254 @@ function bioland_install() {
 
   // Ensure help text is cleared for specific fields on the Content type.
   _bioland_clear_field_help_text('node', 'content', ['body', 'field_attachments']);
+
+  // Set text fields to only allow full_html format.
+  _bioland_set_full_html_only_format();
+
+  // Update existing content to use full_html format.
+  _bioland_update_content_to_full_html();
+}
+
+/**
+ * Helper function to set text fields to only allow 'full_html' format.
+ *
+ * Updates field configuration for body (node), field_description (media),
+ * and comment_body (comment) to restrict allowed text formats to only 'full_html'.
+ *
+ * @return array
+ *   An array of status messages.
+ */
+function _bioland_set_full_html_only_format() {
+  $messages = [];
+  $updated_count = 0;
+
+  // Define field configurations to update.
+  $fields_to_update = [
+    'node' => [
+      'body' => [],
+    ],
+    'media' => [
+      'field_description' => [],
+    ],
+    'comment' => [
+      'comment_body' => [],
+    ],
+  ];
+
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  foreach ($fields_to_update as $entity_type => $fields) {
+    foreach ($fields as $field_name => $bundles) {
+      // If no bundles specified, get all bundles that have this field.
+      if (empty($bundles)) {
+        $field_storage = FieldStorageConfig::loadByName($entity_type, $field_name);
+        if (!$field_storage) {
+          $messages[] = "Field storage {$entity_type}.{$field_name} does not exist.";
+          continue;
+        }
+
+        // Find all bundles using this field.
+        $field_configs = $entity_type_manager
+          ->getStorage('field_config')
+          ->loadByProperties([
+            'entity_type' => $entity_type,
+            'field_name' => $field_name,
+          ]);
+
+        foreach ($field_configs as $field_config) {
+          $bundle = $field_config->getTargetBundle();
+          $bundles[] = $bundle;
+        }
+      }
+
+      // Update each bundle's field configuration.
+      foreach ($bundles as $bundle) {
+        $field = FieldConfig::loadByName($entity_type, $bundle, $field_name);
+        if (!$field) {
+          continue;
+        }
+
+        $settings = $field->getSettings();
+        
+        // Set allowed_formats to only include 'full_html'.
+        $settings['allowed_formats'] = ['full_html'];
+        $field->setSettings($settings);
+        $field->save();
+        $updated_count++;
+        
+        $messages[] = "Set {$entity_type}.{$bundle}.{$field_name} to only allow full_html format.";
+      }
+    }
+  }
+
+  if ($updated_count > 0) {
+    \Drupal::logger('bioland')->notice('Updated @count field configuration(s) to only allow full_html format.', [
+      '@count' => $updated_count,
+    ]);
+  }
+
+  return $messages;
+}
+
+/**
+ * Helper function to update existing content to use 'full_html' format.
+ *
+ * Updates body (node), field_description (media), and comment_body (comment)
+ * field values to use 'full_html' format.
+ *
+ * @return array
+ *   An array with counts of updated and errored entities.
+ */
+function _bioland_update_content_to_full_html() {
+  $updated = 0;
+  $errors = 0;
+
+  // Update nodes with body field.
+  try {
+    $nids = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (!empty($nids)) {
+      $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+      foreach ($nodes as $node) {
+        try {
+          $changed = FALSE;
+          
+          if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
+            $body_value = $node->get('body')->getValue();
+            foreach ($body_value as &$item) {
+              if (isset($item['format']) && $item['format'] !== 'full_html') {
+                $item['format'] = 'full_html';
+                $changed = TRUE;
+              }
+            }
+            if ($changed) {
+              $node->set('body', $body_value);
+              $node->setNewRevision(FALSE);
+              $node->save();
+              $updated++;
+            }
+          }
+        }
+        catch (\Exception $e) {
+          $errors++;
+          \Drupal::logger('bioland')->error('Error updating node @nid to full_html: @message', [
+            '@nid' => $node->id(),
+            '@message' => $e->getMessage(),
+          ]);
+        }
+      }
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Error querying nodes: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+
+  // Update media with field_description.
+  if (\Drupal::moduleHandler()->moduleExists('media')) {
+    try {
+      $mids = \Drupal::entityQuery('media')
+        ->accessCheck(FALSE)
+        ->execute();
+
+      if (!empty($mids)) {
+        $media_entities = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($mids);
+        foreach ($media_entities as $media) {
+          try {
+            $changed = FALSE;
+            
+            if ($media->hasField('field_description') && !$media->get('field_description')->isEmpty()) {
+              $desc_value = $media->get('field_description')->getValue();
+              foreach ($desc_value as &$item) {
+                if (isset($item['format']) && $item['format'] !== 'full_html') {
+                  $item['format'] = 'full_html';
+                  $changed = TRUE;
+                }
+              }
+              if ($changed) {
+                $media->set('field_description', $desc_value);
+                $media->setNewRevision(FALSE);
+                $media->save();
+                $updated++;
+              }
+            }
+          }
+          catch (\Exception $e) {
+            $errors++;
+            \Drupal::logger('bioland')->error('Error updating media @mid to full_html: @message', [
+              '@mid' => $media->id(),
+              '@message' => $e->getMessage(),
+            ]);
+          }
+        }
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Error querying media: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  // Update comments with comment_body.
+  if (\Drupal::moduleHandler()->moduleExists('comment')) {
+    try {
+      $cids = \Drupal::entityQuery('comment')
+        ->accessCheck(FALSE)
+        ->execute();
+
+      if (!empty($cids)) {
+        $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
+        foreach ($comments as $comment) {
+          try {
+            $changed = FALSE;
+            
+            if ($comment->hasField('comment_body') && !$comment->get('comment_body')->isEmpty()) {
+              $body_value = $comment->get('comment_body')->getValue();
+              foreach ($body_value as &$item) {
+                if (isset($item['format']) && $item['format'] !== 'full_html') {
+                  $item['format'] = 'full_html';
+                  $changed = TRUE;
+                }
+              }
+              if ($changed) {
+                $comment->set('comment_body', $body_value);
+                $comment->save();
+                $updated++;
+              }
+            }
+          }
+          catch (\Exception $e) {
+            $errors++;
+            \Drupal::logger('bioland')->error('Error updating comment @cid to full_html: @message', [
+              '@cid' => $comment->id(),
+              '@message' => $e->getMessage(),
+            ]);
+          }
+        }
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Error querying comments: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  if ($updated > 0 || $errors > 0) {
+    \Drupal::logger('bioland')->notice('Updated @updated entities to use full_html format. Errors: @errors.', [
+      '@updated' => $updated,
+      '@errors' => $errors,
+    ]);
+  }
+
+  return [
+    'updated' => $updated,
+    'errors' => $errors,
+  ];
 }
 
 /**
@@ -906,4 +1154,256 @@ function bioland_update_9015() {
   $editable->save();
 
   return t('Added additional tags configuration with default content type mappings.');
+}
+
+/**
+ * Set field format settings to only allow 'full_html' for body, field_description, comment_body.
+ *
+ * Updates field configuration to restrict allowed text formats to only 'full_html'.
+ */
+function bioland_update_9016() {
+  $messages = _bioland_set_full_html_only_format();
+  
+  if (!empty($messages)) {
+    return t('Updated field configurations to only allow full_html format: @details', [
+      '@details' => implode(' ', $messages),
+    ]);
+  }
+
+  return t('No field configurations were updated.');
+}
+
+/**
+ * Update existing content to use 'full_html' format for body, field_description, comment_body.
+ *
+ * Processes all existing nodes, media entities, and comments to set their text
+ * format to 'full_html' for the specified fields.
+ */
+function bioland_update_9017(&$sandbox) {
+  // Initialize sandbox on first run.
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $sandbox['updated'] = 0;
+    $sandbox['errors'] = 0;
+    $sandbox['current_phase'] = 'nodes';
+    $sandbox['phase_progress'] = 0;
+
+    // Count all entities to process.
+    $node_count = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+
+    $media_count = 0;
+    if (\Drupal::moduleHandler()->moduleExists('media')) {
+      $media_count = \Drupal::entityQuery('media')
+        ->accessCheck(FALSE)
+        ->count()
+        ->execute();
+    }
+
+    $comment_count = 0;
+    if (\Drupal::moduleHandler()->moduleExists('comment')) {
+      $comment_count = \Drupal::entityQuery('comment')
+        ->accessCheck(FALSE)
+        ->count()
+        ->execute();
+    }
+
+    $sandbox['node_count'] = (int) $node_count;
+    $sandbox['media_count'] = (int) $media_count;
+    $sandbox['comment_count'] = (int) $comment_count;
+    $sandbox['total'] = $sandbox['node_count'] + $sandbox['media_count'] + $sandbox['comment_count'];
+
+    if ($sandbox['total'] === 0) {
+      $sandbox['#finished'] = 1;
+      return t('No entities found to update.');
+    }
+  }
+
+  $batch_size = 50;
+  $processed = 0;
+
+  // Process nodes.
+  if ($sandbox['current_phase'] === 'nodes') {
+    $nids = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->range($sandbox['phase_progress'], $batch_size)
+      ->execute();
+
+    if (!empty($nids)) {
+      $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
+      foreach ($nodes as $node) {
+        try {
+          $changed = FALSE;
+          
+          // Update body field if it exists.
+          if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
+            $body_value = $node->get('body')->getValue();
+            foreach ($body_value as &$item) {
+              if (isset($item['format']) && $item['format'] !== 'full_html') {
+                $item['format'] = 'full_html';
+                $changed = TRUE;
+              }
+            }
+            if ($changed) {
+              $node->set('body', $body_value);
+            }
+          }
+
+          if ($changed) {
+            // Save without creating new revision to preserve history.
+            $node->setNewRevision(FALSE);
+            $node->save();
+            $sandbox['updated']++;
+          }
+        }
+        catch (\Exception $e) {
+          $sandbox['errors']++;
+          \Drupal::logger('bioland')->error('Update 9017: Error updating node @nid: @message', [
+            '@nid' => $node->id(),
+            '@message' => $e->getMessage(),
+          ]);
+        }
+        $processed++;
+        $sandbox['phase_progress']++;
+      }
+    }
+
+    if ($sandbox['phase_progress'] >= $sandbox['node_count']) {
+      $sandbox['current_phase'] = 'media';
+      $sandbox['phase_progress'] = 0;
+    }
+  }
+
+  // Process media entities.
+  if ($sandbox['current_phase'] === 'media' && $processed < $batch_size) {
+    if (\Drupal::moduleHandler()->moduleExists('media')) {
+      $remaining = $batch_size - $processed;
+      $mids = \Drupal::entityQuery('media')
+        ->accessCheck(FALSE)
+        ->range($sandbox['phase_progress'], $remaining)
+        ->execute();
+
+      if (!empty($mids)) {
+        $media_entities = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($mids);
+        foreach ($media_entities as $media) {
+          try {
+            $changed = FALSE;
+            
+            // Update field_description if it exists.
+            if ($media->hasField('field_description') && !$media->get('field_description')->isEmpty()) {
+              $desc_value = $media->get('field_description')->getValue();
+              foreach ($desc_value as &$item) {
+                if (isset($item['format']) && $item['format'] !== 'full_html') {
+                  $item['format'] = 'full_html';
+                  $changed = TRUE;
+                }
+              }
+              if ($changed) {
+                $media->set('field_description', $desc_value);
+              }
+            }
+
+            if ($changed) {
+              $media->setNewRevision(FALSE);
+              $media->save();
+              $sandbox['updated']++;
+            }
+          }
+          catch (\Exception $e) {
+            $sandbox['errors']++;
+            \Drupal::logger('bioland')->error('Update 9017: Error updating media @mid: @message', [
+              '@mid' => $media->id(),
+              '@message' => $e->getMessage(),
+            ]);
+          }
+          $processed++;
+          $sandbox['phase_progress']++;
+        }
+      }
+    }
+
+    if ($sandbox['phase_progress'] >= $sandbox['media_count'] || $sandbox['media_count'] === 0) {
+      $sandbox['current_phase'] = 'comments';
+      $sandbox['phase_progress'] = 0;
+    }
+  }
+
+  // Process comments.
+  if ($sandbox['current_phase'] === 'comments' && $processed < $batch_size) {
+    if (\Drupal::moduleHandler()->moduleExists('comment')) {
+      $remaining = $batch_size - $processed;
+      $cids = \Drupal::entityQuery('comment')
+        ->accessCheck(FALSE)
+        ->range($sandbox['phase_progress'], $remaining)
+        ->execute();
+
+      if (!empty($cids)) {
+        $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
+        foreach ($comments as $comment) {
+          try {
+            $changed = FALSE;
+            
+            // Update comment_body if it exists.
+            if ($comment->hasField('comment_body') && !$comment->get('comment_body')->isEmpty()) {
+              $body_value = $comment->get('comment_body')->getValue();
+              foreach ($body_value as &$item) {
+                if (isset($item['format']) && $item['format'] !== 'full_html') {
+                  $item['format'] = 'full_html';
+                  $changed = TRUE;
+                }
+              }
+              if ($changed) {
+                $comment->set('comment_body', $body_value);
+              }
+            }
+
+            if ($changed) {
+              $comment->save();
+              $sandbox['updated']++;
+            }
+          }
+          catch (\Exception $e) {
+            $sandbox['errors']++;
+            \Drupal::logger('bioland')->error('Update 9017: Error updating comment @cid: @message', [
+              '@cid' => $comment->id(),
+              '@message' => $e->getMessage(),
+            ]);
+          }
+          $processed++;
+          $sandbox['phase_progress']++;
+        }
+      }
+    }
+
+    if ($sandbox['phase_progress'] >= $sandbox['comment_count'] || $sandbox['comment_count'] === 0) {
+      $sandbox['current_phase'] = 'done';
+    }
+  }
+
+  // Update overall progress.
+  $sandbox['progress'] += $processed;
+
+  // Calculate progress percentage.
+  $sandbox['#finished'] = $sandbox['total'] > 0 ? $sandbox['progress'] / $sandbox['total'] : 1;
+
+  // Return status message.
+  if ($sandbox['#finished'] >= 1 || $sandbox['current_phase'] === 'done') {
+    $sandbox['#finished'] = 1;
+    return t('Updated @updated entities to use full_html format. Processed @total total entities (nodes: @nodes, media: @media, comments: @comments). Errors: @errors.', [
+      '@updated' => $sandbox['updated'],
+      '@total' => $sandbox['total'],
+      '@nodes' => $sandbox['node_count'],
+      '@media' => $sandbox['media_count'],
+      '@comments' => $sandbox['comment_count'],
+      '@errors' => $sandbox['errors'],
+    ]);
+  }
+
+  return t('Updating entities to full_html format: @progress of @total (@phase phase)...', [
+    '@progress' => $sandbox['progress'],
+    '@total' => $sandbox['total'],
+    '@phase' => $sandbox['current_phase'],
+  ]);
 }

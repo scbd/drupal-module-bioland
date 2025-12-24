@@ -957,8 +957,8 @@ msgid "Content Ordering"
 msgstr "Content Ordering"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
@@ -973,5 +973,5 @@ msgid "Drupal cache has been rebuilt successfully."
 msgstr "Drupal cache has been rebuilt successfully."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_ordering to 1000 for @count nodes."
-msgstr "Successfully reset field_ordering to 1000 for @count nodes."
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Successfully reset field_order to 1000 for @count nodes."

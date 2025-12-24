@@ -290,7 +290,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       $form['system_functions']['ordering_section']['ordering_description'] = [
-        '#markup' => '<p>' . $this->t('Resets the field_ordering value to 1000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
+        '#markup' => '<p>' . $this->t('Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
       ];
 
       $form['system_functions']['ordering_section']['reset_ordering'] = [
@@ -1268,7 +1268,9 @@ class BiolandSettingsForm extends ConfigFormBase {
    */
   public function submitResetOrdering(array &$form, FormStateInterface $form_state) {
     $count = $this->resetAllNodeOrdering();
-    $this->messenger()->addStatus($this->t('Successfully reset field_ordering to 1000 for @count nodes.', ['@count' => $count]));
+    // Store count in form state for AJAX callback.
+    $form_state->set('reset_ordering_count', $count);
+    $this->messenger()->addStatus($this->t('Successfully reset field_order to 1000 for @count nodes.', ['@count' => $count]));
   }
 
   /**
@@ -1277,12 +1279,12 @@ class BiolandSettingsForm extends ConfigFormBase {
   public function ajaxResetOrdering(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $count = $form_state->get('reset_ordering_count') ?: 0;
-    $response->addCommand(new MessageCommand($this->t('Successfully reset field_ordering to 1000 for @count nodes.', ['@count' => $count]), NULL, ['type' => 'status']));
+    $response->addCommand(new MessageCommand($this->t('Successfully reset field_order to 1000 for @count nodes.', ['@count' => $count]), NULL, ['type' => 'status']));
     return $response;
   }
 
   /**
-   * Resets field_ordering to 1000 for all nodes while preserving timestamps.
+   * Resets field_order to 1000 for all nodes while preserving timestamps.
    *
    * @return int
    *   The number of nodes updated.
@@ -1291,10 +1293,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     $count = 0;
     $node_storage = $this->entityTypeManager->getStorage('node');
 
-    // Load all nodes that have field_ordering.
+    // Load all nodes that have field_order.
     $query = $node_storage->getQuery()
       ->accessCheck(FALSE)
-      ->exists('field_ordering');
+      ->exists('field_order');
 
     $nids = $query->execute();
 
@@ -1310,12 +1312,12 @@ class BiolandSettingsForm extends ConfigFormBase {
       $nodes = $node_storage->loadMultiple($chunk);
 
       foreach ($nodes as $node) {
-        // Check if field_ordering exists and if value is different from 1000.
-        if (!$node->hasField('field_ordering')) {
+        // Check if field_order exists and if value is different from 1000.
+        if (!$node->hasField('field_order')) {
           continue;
         }
 
-        $current_value = $node->get('field_ordering')->value;
+        $current_value = $node->get('field_order')->value;
         if ($current_value == 1000) {
           // Already set to 1000, skip.
           continue;
@@ -1327,7 +1329,7 @@ class BiolandSettingsForm extends ConfigFormBase {
 
         // Set new revision.
         $node->setNewRevision(TRUE);
-        $node->set('field_ordering', 1000);
+        $node->set('field_order', 1000);
         $node->setRevisionLogMessage($this->t('Reset ordering'));
         $node->setRevisionCreationTime(\Drupal::time()->getRequestTime());
 
@@ -1359,7 +1361,7 @@ class BiolandSettingsForm extends ConfigFormBase {
     // Clear node cache after bulk updates.
     $node_storage->resetCache($nids);
 
-    \Drupal::logger('bioland')->notice('Reset field_ordering to 1000 for @count nodes.', ['@count' => $count]);
+    \Drupal::logger('bioland')->notice('Reset field_order to 1000 for @count nodes.', ['@count' => $count]);
 
     return $count;
   }

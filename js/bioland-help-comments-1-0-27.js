@@ -439,7 +439,7 @@
       : '<b>' + Drupal.t('Content sorting priority (highest to lowest):') + '</b>' +
         '<ol>' +
         '<li><b>' + Drupal.t('Sticky') + '</b> – ' + Drupal.t('Items marked "Sticky at top of lists" always appear first') + '</li>' +
-        '<li><b>' + Drupal.t('Order Override') + '</b> – ' + Drupal.t('This field! Higher numbers = higher priority') + '</li>' +
+        '<li><b>' + Drupal.t('Order Override') + '</b> – ' + Drupal.t('This field! Lower numbers = higher priority') + '</li>' +
         '<li><b>' + Drupal.t('Promoted') + '</b> – ' + Drupal.t('Items marked "Promoted to front page" come next') + '</li>' +
         '<li><b>' + Drupal.t('Start Date') + '</b> – ' + Drupal.t('Items with future start dates are prioritized') + '</li>' +
         '<li><b>' + Drupal.t('Last Modified') + '</b> – ' + Drupal.t('Most recently edited items appear higher') + '</li>' +
