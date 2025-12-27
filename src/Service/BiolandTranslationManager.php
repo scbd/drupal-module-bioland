@@ -249,9 +249,42 @@ class BiolandTranslationManager {
     // Save the entity once after all translations are added
     if ($created_count > 0) {
       try {
+        // Preserve original timestamps to prevent batch operations from
+        // modifying the source entity's created/changed dates
+        $original_created = NULL;
+        $original_changed = NULL;
+        
+        if ($source_entity->hasField('created')) {
+          $original_created = $source_entity->get('created')->value;
+        }
+        if ($source_entity->hasField('changed')) {
+          $original_changed = $source_entity->get('changed')->value;
+        }
+        
+        // Restore original timestamps before save to prevent modification
+        if ($original_changed !== NULL && $source_entity->hasField('changed')) {
+          $source_entity->set('changed', $original_changed);
+        }
+        
+        // Use setNewRevision(FALSE) if available to prevent revision changes
+        if (method_exists($source_entity, 'setNewRevision')) {
+          $source_entity->setNewRevision(FALSE);
+        }
+        
+        // Set the syncing flag to bypass automatic timestamp updates
+        if (method_exists($source_entity, 'setSyncing')) {
+          $source_entity->setSyncing(TRUE);
+        }
+        
         $source_entity->save();
+        
+        // Clear syncing flag after save
+        if (method_exists($source_entity, 'setSyncing')) {
+          $source_entity->setSyncing(FALSE);
+        }
+        
         $this->loggerFactory->get('bioland')->info(
-          'Saved @entity_type @entity_id with @count new translations',
+          'Saved @entity_type @entity_id with @count new translations (timestamps preserved)',
           [
             '@entity_type' => $source_entity->getEntityTypeId(),
             '@entity_id' => $source_entity->id(),
@@ -318,6 +351,15 @@ class BiolandTranslationManager {
     // Copy the publication status from the source
     if ($source_entity->hasField('status')) {
       $values['status'] = $source_entity->get('status')->value;
+    }
+
+    // Preserve timestamps from source entity for translations
+    // This ensures translations have the same created/changed dates as the source
+    if ($source_entity->hasField('created')) {
+      $values['created'] = $source_entity->get('created')->value;
+    }
+    if ($source_entity->hasField('changed')) {
+      $values['changed'] = $source_entity->get('changed')->value;
     }
 
     // Always copy the body field if it exists
