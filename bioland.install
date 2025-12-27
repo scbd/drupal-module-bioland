@@ -32,6 +32,7 @@ function bioland_install() {
     'site_manager' => 'Site Manager',
     'content_manager' => 'Content Manager',
     'contributor' => 'Contributor',
+    'system' => 'System',
   ];
 
   foreach ($custom_roles as $rid => $label) {
@@ -149,6 +150,28 @@ function bioland_install() {
 
   // Configure the default Linkit profile.
   _bioland_configure_linkit_profile();
+
+  // Configure content fields: non-translatable, remove defaults, Linkit widget.
+  _bioland_configure_content_fields();
+
+  // Configure full_html format with Linkit and disable basic_html.
+  _bioland_configure_full_html_format();
+
+  // Sync scbd_staff permissions with site_manager.
+  _bioland_sync_scbd_staff_permissions();
+
+  // Block legacy @cbd.int users.
+  _bioland_block_cbd_int_users();
+
+  // Configure Search API index and facets.
+  _bioland_configure_search_api_index();
+  _bioland_configure_facets();
+
+  // Add langcode field to content form sidebar.
+  _bioland_configure_langcode_form_display();
+
+  // Provision test, training, and staff user accounts.
+  _bioland_provision_users();
 }
 
 /**
@@ -1414,6 +1437,8 @@ function bioland_update_9017(&$sandbox) {
 
 /**
  * Configure the default Linkit profile on install or update.
+ *
+ * @version 1.0.30
  */
 function bioland_update_9018() {
   if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
@@ -1684,4 +1709,1533 @@ function _bioland_configure_linkit_editor() {
  */
 function _bioland_generate_uuid() {
   return \Drupal::service('uuid')->generate();
+}
+
+/**
+ * Configure Content type fields: disable translation, remove default dates, configure Linkit widget.
+ *
+ * 1. Set field_attachments, field_components, field_type_placement, field_tags as non-translatable.
+ * 2. Remove default value (today's date) from field_published.
+ * 3. Configure field_url to use Linkit widget with auto-populate link text enabled.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9019() {
+  $messages = [];
+
+  // 1. Set specific fields as non-translatable.
+  $non_translatable_fields = [
+    'field_attachments',
+    'field_components',
+    'field_type_placement',
+    'field_tags',
+  ];
+
+  foreach ($non_translatable_fields as $field_name) {
+    $field = FieldConfig::loadByName('node', 'content', $field_name);
+    if ($field) {
+      if ($field->isTranslatable()) {
+        $field->setTranslatable(FALSE);
+        $field->save();
+        $messages[] = t('Set @field as non-translatable.', ['@field' => $field_name]);
+      }
+      else {
+        $messages[] = t('@field already non-translatable.', ['@field' => $field_name]);
+      }
+    }
+    else {
+      $messages[] = t('@field not found; skipping.', ['@field' => $field_name]);
+    }
+  }
+
+  // 2. Remove default value from field_published.
+  $field_published = FieldConfig::loadByName('node', 'content', 'field_published');
+  if ($field_published) {
+    $default_value = $field_published->getDefaultValue(NULL);
+    if (!empty($default_value)) {
+      $field_published->setDefaultValue([]);
+      $field_published->save();
+      $messages[] = t('Removed default value from field_published.');
+    }
+    else {
+      $messages[] = t('field_published already has no default value.');
+    }
+  }
+  else {
+    $messages[] = t('field_published not found; skipping default value removal.');
+  }
+
+  // 3. Configure field_url to use Linkit widget with auto-populate link text.
+  if (\Drupal::moduleHandler()->moduleExists('linkit')) {
+    $form_display = \Drupal::entityTypeManager()
+      ->getStorage('entity_form_display')
+      ->load('node.content.default');
+
+    if ($form_display) {
+      $url_component = $form_display->getComponent('field_url');
+      if ($url_component) {
+        $form_display->setComponent('field_url', [
+          'type' => 'linkit',
+          'weight' => $url_component['weight'] ?? 0,
+          'settings' => [
+            'linkit_profile' => 'default',
+            'linkit_auto_link_text' => TRUE,
+            'placeholder_url' => '',
+            'placeholder_title' => '',
+          ],
+          'third_party_settings' => $url_component['third_party_settings'] ?? [],
+        ]);
+        $form_display->save();
+        $messages[] = t('Configured field_url with Linkit widget (profile: Default, auto-populate link text: enabled).');
+      }
+      else {
+        $messages[] = t('field_url not found in form display; skipping Linkit widget configuration.');
+      }
+    }
+    else {
+      $messages[] = t('Form display node.content.default not found; skipping Linkit widget configuration.');
+    }
+  }
+  else {
+    $messages[] = t('Linkit module not enabled; skipping field_url widget configuration.');
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Helper function to configure content fields on install.
+ *
+ * Sets specific fields as non-translatable, removes field_published default,
+ * and configures field_url Linkit widget. Called during install.
+ *
+ * @return array
+ *   Array of status messages.
+ */
+function _bioland_configure_content_fields() {
+  $messages = [];
+
+  // 1. Set specific fields as non-translatable.
+  $non_translatable_fields = [
+    'field_attachments',
+    'field_components',
+    'field_type_placement',
+    'field_tags',
+  ];
+
+  foreach ($non_translatable_fields as $field_name) {
+    $field = FieldConfig::loadByName('node', 'content', $field_name);
+    if ($field && $field->isTranslatable()) {
+      $field->setTranslatable(FALSE);
+      $field->save();
+      $messages[] = "Set {$field_name} as non-translatable.";
+    }
+  }
+
+  // 2. Remove default value from field_published.
+  $field_published = FieldConfig::loadByName('node', 'content', 'field_published');
+  if ($field_published) {
+    $default_value = $field_published->getDefaultValue(NULL);
+    if (!empty($default_value)) {
+      $field_published->setDefaultValue([]);
+      $field_published->save();
+      $messages[] = "Removed default value from field_published.";
+    }
+  }
+
+  // 3. Configure field_url to use Linkit widget with auto-populate link text.
+  if (\Drupal::moduleHandler()->moduleExists('linkit')) {
+    $form_display = \Drupal::entityTypeManager()
+      ->getStorage('entity_form_display')
+      ->load('node.content.default');
+
+    if ($form_display) {
+      $url_component = $form_display->getComponent('field_url');
+      if ($url_component) {
+        $form_display->setComponent('field_url', [
+          'type' => 'linkit',
+          'weight' => $url_component['weight'] ?? 0,
+          'settings' => [
+            'linkit_profile' => 'default',
+            'linkit_auto_link_text' => TRUE,
+            'placeholder_url' => '',
+            'placeholder_title' => '',
+          ],
+          'third_party_settings' => $url_component['third_party_settings'] ?? [],
+        ]);
+        $form_display->save();
+        $messages[] = "Configured field_url with Linkit widget (auto-populate link text enabled).";
+      }
+    }
+  }
+
+  if (!empty($messages)) {
+    \Drupal::logger('bioland')->notice('Content field configuration: @messages', [
+      '@messages' => implode(' ', $messages),
+    ]);
+  }
+
+  return $messages;
+}
+
+/**
+ * Ensure custom roles exist and permissions are granted on existing installations.
+ *
+ * Creates roles: scbd_staff, site_manager, content_manager, contributor, system.
+ * Grants bioland permissions to administrator, site_manager, content_manager, scbd_staff.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9020() {
+  $messages = [];
+
+  // Ensure custom roles exist or create them if missing.
+  $custom_roles = [
+    'scbd_staff' => 'SCBD Staff',
+    'site_manager' => 'Site Manager',
+    'content_manager' => 'Content Manager',
+    'contributor' => 'Contributor',
+    'system' => 'System',
+  ];
+
+  foreach ($custom_roles as $rid => $label) {
+    if (!Role::load($rid)) {
+      $role = Role::create([
+        'id' => $rid,
+        'label' => $label,
+      ]);
+      $role->save();
+      $messages[] = t('Created role: @role', ['@role' => $label]);
+    }
+  }
+
+  // Grant permissions to roles based on standard permission matrix.
+  $permission_matrix = [
+    'administrator' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'site_manager' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'content_manager' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+    'scbd_staff' => [
+      'administer bioland settings',
+      'administer bioland field settings',
+      'administer bioland translation settings',
+    ],
+  ];
+
+  foreach ($permission_matrix as $rid => $permissions) {
+    $role = Role::load($rid);
+    if ($role) {
+      $changed = FALSE;
+      foreach ($permissions as $permission) {
+        if (!$role->hasPermission($permission)) {
+          $role->grantPermission($permission);
+          $changed = TRUE;
+        }
+      }
+      if ($changed) {
+        $role->save();
+        $messages[] = t('Granted bioland permissions to @role.', ['@role' => $rid]);
+      }
+    }
+  }
+
+  if (empty($messages)) {
+    return t('All roles and permissions already configured.');
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Provision test, training, and staff user accounts.
+ *
+ * Creates or updates users based on environment variables for E2E testing,
+ * Bioland training, staff access, and administrator accounts.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9021() {
+  return _bioland_provision_users();
+}
+
+/**
+ * Helper function to provision users from environment variables.
+ *
+ * Handles creation and management of:
+ * - E2E test users (env var: E2E_USERS)
+ * - Bioland training users (env var: BIOLAND_USERS)
+ * - Training users (env var: TRAINING_USERS)
+ * - Legacy users to block
+ * - SCBD staff users (individual env vars: AR, FV, DM, AP)
+ * - Administrator users (individual env vars: RG, RH, RE, BF, VG, SB, API_USER)
+ *
+ * @return string
+ *   Status messages about user provisioning.
+ */
+function _bioland_provision_users() {
+  $messages = [];
+  $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+
+  // 1. E2E test users - create if not exists with E2E_USERS password.
+  $e2e_password = getenv('E2E_USERS');
+  if ($e2e_password) {
+    $e2e_users = [
+      'e2e-authenticated@chm-cbd.net' => ['system'],
+      'e2e-contributor@chm-cbd.net' => ['system', 'contributor'],
+      'e2e-content-manager@chm-cbd.net' => ['system', 'content_manager'],
+      'e2e-site-manager@chm-cbd.net' => ['system', 'site_manager'],
+      'e2e-scbd-staff@chm-cbd.net' => ['system', 'scbd_staff'],
+    ];
+
+    foreach ($e2e_users as $email => $roles) {
+      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $e2e_password);
+      if ($result) {
+        $messages[] = $result;
+      }
+    }
+  }
+  else {
+    $messages[] = t('E2E_USERS env var not set; skipping E2E user creation.');
+  }
+
+  // 2. Bioland users - create if not exists with BIOLAND_USERS password.
+  $bioland_password = getenv('BIOLAND_USERS');
+  if ($bioland_password) {
+    $bioland_users = [
+      'bioland-contributor@chm-cbd.net' => ['system', 'contributor'],
+      'bioland-cm@chm-cbd.net' => ['system', 'content_manager'],
+      'bioland-sm@chm-cbd.net' => ['system', 'site_manager'],
+      'bioland-scbd@chm-cbd.net' => ['system', 'scbd_staff'],
+      'bioland@chm-cbd.net' => ['system'],
+    ];
+
+    foreach ($bioland_users as $email => $roles) {
+      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $bioland_password);
+      if ($result) {
+        $messages[] = $result;
+      }
+    }
+  }
+  else {
+    $messages[] = t('BIOLAND_USERS env var not set; skipping Bioland user creation.');
+  }
+
+  // 3. Training users - create if not exists with TRAINING_USERS password.
+  $training_password = getenv('TRAINING_USERS');
+  if ($training_password) {
+    $training_users = [
+      'training-contributor@chm-cbd.net' => ['system', 'contributor'],
+      'training-cm@chm-cbd.net' => ['system', 'content_manager'],
+      'training-sm@chm-cbd.net' => ['system', 'site_manager'],
+      'training@chm-cbd.net' => ['system'],
+    ];
+
+    foreach ($training_users as $email => $roles) {
+      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $training_password);
+      if ($result) {
+        $messages[] = $result;
+      }
+    }
+  }
+  else {
+    $messages[] = t('TRAINING_USERS env var not set; skipping training user creation.');
+  }
+
+  // 4. Legacy users to block - if exists, set to system role only and block.
+  $legacy_users_to_block = [
+    'anastasia_yb@hotmail.com',
+    'randy@houlahan.ca',
+    'support@chm-cbd.net',
+    'arafalov+cm@gmail.com',
+    'alexandre.rafalovitch@cbd.int',
+    'it@cbd.int',
+    'ray.goh@cbd.int',
+  ];
+
+  foreach ($legacy_users_to_block as $email) {
+    $result = _bioland_block_legacy_user($user_storage, $email);
+    if ($result) {
+      $messages[] = $result;
+    }
+  }
+
+  // 5. SCBD staff users - create or update with scbd_staff role.
+  $scbd_staff_users = [
+    'alexandre.rafalovitch@un.org' => 'AR',
+    'frederic.vogel@un.org' => 'FV',
+    'djessy.monnier@un.org' => 'DM',
+    'abhinav.prakash@un.org' => 'AP',
+  ];
+
+  foreach ($scbd_staff_users as $email => $env_var) {
+    $password = getenv($env_var);
+    if ($password) {
+      $result = _bioland_create_or_update_user($user_storage, $email, ['scbd_staff'], $password);
+      if ($result) {
+        $messages[] = $result;
+      }
+    }
+    else {
+      $messages[] = t('@env_var env var not set; skipping @email.', [
+        '@env_var' => $env_var,
+        '@email' => $email,
+      ]);
+    }
+  }
+
+  // 6. Administrator users - create or update with administrator role.
+  $admin_users = [
+    'ray.goh@un.org' => 'RG',
+    'randy.houlahan@un.org' => 'RH',
+    'rodrigo.elias@un.org' => 'RE',
+    'blaise.fonseca@un.org' => 'BF',
+    'vince.gopez@un.org' => 'VG',
+    'stephane.bilodeau@un.org' => 'SB',
+    'api-user@chm-cbd.net' => 'API_USER',
+  ];
+
+  foreach ($admin_users as $email => $env_var) {
+    $password = getenv($env_var);
+    if ($password) {
+      $result = _bioland_create_or_update_user($user_storage, $email, ['administrator'], $password);
+      if ($result) {
+        $messages[] = $result;
+      }
+    }
+    else {
+      $messages[] = t('@env_var env var not set; skipping @email.', [
+        '@env_var' => $env_var,
+        '@email' => $email,
+      ]);
+    }
+  }
+
+  if (empty($messages)) {
+    return t('No user provisioning actions taken.');
+  }
+
+  \Drupal::logger('bioland')->notice('User provisioning: @messages', [
+    '@messages' => implode(' ', $messages),
+  ]);
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Create a user if they don't exist.
+ *
+ * @param \Drupal\Core\Entity\EntityStorageInterface $user_storage
+ *   The user entity storage.
+ * @param string $email
+ *   The user email (also used as username and name).
+ * @param array $roles
+ *   Array of role IDs to assign.
+ * @param string $password
+ *   The password to set.
+ *
+ * @return string|null
+ *   Status message or NULL if user already exists.
+ */
+function _bioland_create_user_if_not_exists($user_storage, $email, array $roles, $password) {
+  // Check if user exists by email.
+  $existing = $user_storage->loadByProperties(['mail' => $email]);
+  if (!empty($existing)) {
+    return NULL; // User already exists, don't modify.
+  }
+
+  // Also check by username (name field).
+  $existing_by_name = $user_storage->loadByProperties(['name' => $email]);
+  if (!empty($existing_by_name)) {
+    return NULL; // User already exists by name.
+  }
+
+  // Create new user.
+  $user = $user_storage->create([
+    'name' => $email,
+    'mail' => $email,
+    'pass' => $password,
+    'status' => 1, // Active.
+  ]);
+
+  // Assign roles.
+  foreach ($roles as $role_id) {
+    if (Role::load($role_id)) {
+      $user->addRole($role_id);
+    }
+  }
+
+  $user->save();
+
+  return t('Created user @email with roles: @roles.', [
+    '@email' => $email,
+    '@roles' => implode(', ', $roles),
+  ]);
+}
+
+/**
+ * Block a legacy user and set to system role only.
+ *
+ * @param \Drupal\Core\Entity\EntityStorageInterface $user_storage
+ *   The user entity storage.
+ * @param string $email
+ *   The user email to block.
+ *
+ * @return string|null
+ *   Status message or NULL if user doesn't exist.
+ */
+function _bioland_block_legacy_user($user_storage, $email) {
+  $existing = $user_storage->loadByProperties(['mail' => $email]);
+  if (empty($existing)) {
+    return NULL; // User doesn't exist.
+  }
+
+  $user = reset($existing);
+
+  // Remove all current roles except authenticated (which is automatic).
+  $current_roles = $user->getRoles(TRUE); // TRUE excludes locked roles.
+  foreach ($current_roles as $role_id) {
+    $user->removeRole($role_id);
+  }
+
+  // Add system role.
+  if (Role::load('system')) {
+    $user->addRole('system');
+  }
+
+  // Block the user.
+  $user->block();
+  $user->save();
+
+  return t('Blocked user @email and set to system role only.', ['@email' => $email]);
+}
+
+/**
+ * Create or update a user with specific roles and password.
+ *
+ * @param \Drupal\Core\Entity\EntityStorageInterface $user_storage
+ *   The user entity storage.
+ * @param string $email
+ *   The user email (also used as username and name).
+ * @param array $roles
+ *   Array of role IDs to assign (replaces existing roles).
+ * @param string $password
+ *   The password to set.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_create_or_update_user($user_storage, $email, array $roles, $password) {
+  $existing = $user_storage->loadByProperties(['mail' => $email]);
+
+  if (!empty($existing)) {
+    // Update existing user.
+    $user = reset($existing);
+
+    // Remove all current roles except authenticated.
+    $current_roles = $user->getRoles(TRUE);
+    foreach ($current_roles as $role_id) {
+      $user->removeRole($role_id);
+    }
+
+    // Add new roles.
+    foreach ($roles as $role_id) {
+      if (Role::load($role_id)) {
+        $user->addRole($role_id);
+      }
+    }
+
+    // Update password.
+    $user->setPassword($password);
+    $user->activate(); // Ensure user is active.
+    $user->save();
+
+    return t('Updated user @email with roles: @roles.', [
+      '@email' => $email,
+      '@roles' => implode(', ', $roles),
+    ]);
+  }
+  else {
+    // Also check by username.
+    $existing_by_name = $user_storage->loadByProperties(['name' => $email]);
+    if (!empty($existing_by_name)) {
+      $user = reset($existing_by_name);
+
+      // Remove all current roles.
+      $current_roles = $user->getRoles(TRUE);
+      foreach ($current_roles as $role_id) {
+        $user->removeRole($role_id);
+      }
+
+      // Add new roles.
+      foreach ($roles as $role_id) {
+        if (Role::load($role_id)) {
+          $user->addRole($role_id);
+        }
+      }
+
+      // Update password and email.
+      $user->setPassword($password);
+      $user->set('mail', $email);
+      $user->activate();
+      $user->save();
+
+      return t('Updated user @email with roles: @roles.', [
+        '@email' => $email,
+        '@roles' => implode(', ', $roles),
+      ]);
+    }
+
+    // Create new user.
+    $user = $user_storage->create([
+      'name' => $email,
+      'mail' => $email,
+      'pass' => $password,
+      'status' => 1,
+    ]);
+
+    foreach ($roles as $role_id) {
+      if (Role::load($role_id)) {
+        $user->addRole($role_id);
+      }
+    }
+
+    $user->save();
+
+    return t('Created user @email with roles: @roles.', [
+      '@email' => $email,
+      '@roles' => implode(', ', $roles),
+    ]);
+  }
+}
+
+/**
+ * Configure full_html text format with Linkit integration and disable basic_html.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9022() {
+  return _bioland_configure_full_html_format();
+}
+
+/**
+ * Helper function to configure full_html text format.
+ *
+ * - Adds Linkit extension to editor.editor.full_html
+ * - Sets image upload max size to 250kb
+ * - Adds Linkit filter to filter.format.full_html
+ * - Grants scbd_staff access to full_html format
+ * - Disables basic_html editor
+ *
+ * @return string
+ *   Status messages about configuration.
+ */
+function _bioland_configure_full_html_format() {
+  $messages = [];
+
+  // Check if Linkit module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
+    return t('Linkit module is not enabled; skipping full_html configuration.');
+  }
+
+  $config_factory = \Drupal::configFactory();
+
+  // 1. Configure editor.editor.full_html - Add Linkit extension and update image upload.
+  $editor_config = $config_factory->getEditable('editor.editor.full_html');
+  if ($editor_config && !$editor_config->isNew()) {
+    $settings = $editor_config->get('settings') ?: [];
+
+    // Add linkit_extension to plugins.
+    if (!isset($settings['plugins']['linkit_extension'])) {
+      $settings['plugins']['linkit_extension'] = [
+        'linkit_enabled' => TRUE,
+        'linkit_profile' => 'default',
+      ];
+      $messages[] = t('Added Linkit extension to full_html editor.');
+    }
+
+    // Update image upload max size.
+    if (!isset($settings['plugins']['ckeditor5_imageUpload'])) {
+      $settings['plugins']['ckeditor5_imageUpload'] = [];
+    }
+    $settings['plugins']['ckeditor5_imageUpload']['max_size'] = '250kb';
+    $messages[] = t('Set image upload max size to 250kb.');
+
+    $editor_config->set('settings', $settings);
+    $editor_config->save();
+  }
+  else {
+    $messages[] = t('editor.editor.full_html not found; skipping editor configuration.');
+  }
+
+  // 2. Configure filter.format.full_html - Add Linkit filter and dependencies.
+  $filter_config = $config_factory->getEditable('filter.format.full_html');
+  if ($filter_config && !$filter_config->isNew()) {
+    // Add linkit to module dependencies.
+    $dependencies = $filter_config->get('dependencies') ?: [];
+    $modules = $dependencies['module'] ?? [];
+    
+    $required_modules = ['editor', 'linkit', 'media'];
+    $changed = FALSE;
+    foreach ($required_modules as $module) {
+      if (!in_array($module, $modules)) {
+        $modules[] = $module;
+        $changed = TRUE;
+      }
+    }
+    
+    if ($changed) {
+      sort($modules);
+      $dependencies['module'] = array_values($modules);
+      $filter_config->set('dependencies', $dependencies);
+      $messages[] = t('Added linkit and media to full_html dependencies.');
+    }
+
+    // Add linkit filter.
+    $filters = $filter_config->get('filters') ?: [];
+    if (!isset($filters['linkit'])) {
+      $filters['linkit'] = [
+        'id' => 'linkit',
+        'provider' => 'linkit',
+        'status' => TRUE,
+        'weight' => 0,
+        'settings' => [
+          'title' => TRUE,
+        ],
+      ];
+      $filter_config->set('filters', $filters);
+      $messages[] = t('Added Linkit filter to full_html format.');
+    }
+
+    // Add scbd_staff role permission.
+    $roles = $filter_config->get('roles') ?: [];
+    if (!in_array('scbd_staff', $roles)) {
+      $roles[] = 'scbd_staff';
+      $filter_config->set('roles', $roles);
+      $messages[] = t('Granted scbd_staff access to full_html format.');
+    }
+
+    $filter_config->save();
+  }
+  else {
+    $messages[] = t('filter.format.full_html not found; skipping filter configuration.');
+  }
+
+  // 3. Also grant permission via role entity for use text format.
+  $scbd_staff = Role::load('scbd_staff');
+  if ($scbd_staff) {
+    if (!$scbd_staff->hasPermission('use text format full_html')) {
+      $scbd_staff->grantPermission('use text format full_html');
+      $scbd_staff->save();
+      $messages[] = t('Granted "use text format full_html" permission to scbd_staff role.');
+    }
+  }
+
+  // 4. Disable basic_html editor.
+  $basic_editor = $config_factory->getEditable('editor.editor.basic_html');
+  if ($basic_editor && !$basic_editor->isNew()) {
+    $status = $basic_editor->get('status');
+    if ($status !== FALSE) {
+      $basic_editor->set('status', FALSE);
+      $basic_editor->save();
+      $messages[] = t('Disabled basic_html editor.');
+    }
+  }
+  else {
+    $messages[] = t('editor.editor.basic_html not found; skipping disable.');
+  }
+
+  if (empty($messages)) {
+    return t('full_html format already configured.');
+  }
+
+  \Drupal::logger('bioland')->notice('full_html configuration: @messages', [
+    '@messages' => implode(' ', $messages),
+  ]);
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Sync scbd_staff permissions with site_manager role.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9023() {
+  return _bioland_sync_scbd_staff_permissions();
+}
+
+/**
+ * Helper function to sync scbd_staff permissions with site_manager.
+ *
+ * Copies all permissions from site_manager role to scbd_staff role,
+ * ensuring scbd_staff has equivalent access.
+ *
+ * @return string
+ *   Status message about permissions sync.
+ */
+function _bioland_sync_scbd_staff_permissions() {
+  $site_manager = Role::load('site_manager');
+  $scbd_staff = Role::load('scbd_staff');
+
+  if (!$site_manager) {
+    return t('site_manager role not found; cannot sync permissions.');
+  }
+
+  if (!$scbd_staff) {
+    return t('scbd_staff role not found; cannot sync permissions.');
+  }
+
+  $site_manager_permissions = $site_manager->getPermissions();
+  $scbd_staff_permissions = $scbd_staff->getPermissions();
+
+  $added_count = 0;
+  foreach ($site_manager_permissions as $permission) {
+    if (!in_array($permission, $scbd_staff_permissions)) {
+      $scbd_staff->grantPermission($permission);
+      $added_count++;
+    }
+  }
+
+  if ($added_count > 0) {
+    $scbd_staff->save();
+    \Drupal::logger('bioland')->notice('Synced @count permissions from site_manager to scbd_staff.', [
+      '@count' => $added_count,
+    ]);
+    return t('Added @count permissions to scbd_staff (synced with site_manager).', ['@count' => $added_count]);
+  }
+
+  return t('scbd_staff already has all site_manager permissions.');
+}
+
+/**
+ * Block legacy @cbd.int users and configure Search API index and facets.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9024() {
+  $messages = [];
+
+  // 1. Block @cbd.int users (except randy.houlahan@cbd.int).
+  $result = _bioland_block_cbd_int_users();
+  if ($result) {
+    $messages[] = $result;
+  }
+
+  // 2. Configure Search API content index.
+  $result = _bioland_configure_search_api_index();
+  if ($result) {
+    $messages[] = $result;
+  }
+
+  // 3. Configure facets.
+  $result = _bioland_configure_facets();
+  if ($result) {
+    $messages[] = $result;
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Helper function to block @cbd.int users except excluded ones.
+ *
+ * Finds all users with @cbd.int email domain (except randy.houlahan@cbd.int),
+ * assigns them the system role, removes other roles, and blocks them.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_block_cbd_int_users() {
+  $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+  $excluded_emails = ['randy.houlahan@cbd.int'];
+
+  // Find all users with @cbd.int email.
+  $query = \Drupal::entityQuery('user')
+    ->accessCheck(FALSE)
+    ->condition('mail', '%@cbd.int', 'LIKE');
+  $uids = $query->execute();
+
+  if (empty($uids)) {
+    return t('No @cbd.int users found.');
+  }
+
+  $blocked_count = 0;
+  $users = $user_storage->loadMultiple($uids);
+
+  foreach ($users as $user) {
+    $email = $user->getEmail();
+
+    // Skip excluded emails.
+    if (in_array($email, $excluded_emails)) {
+      continue;
+    }
+
+    // Skip user 1 (super admin).
+    if ((int) $user->id() === 1) {
+      continue;
+    }
+
+    // Remove all roles except authenticated.
+    $current_roles = $user->getRoles(TRUE);
+    foreach ($current_roles as $role_id) {
+      $user->removeRole($role_id);
+    }
+
+    // Add system role.
+    if (Role::load('system')) {
+      $user->addRole('system');
+    }
+
+    // Block the user.
+    $user->block();
+    $user->save();
+    $blocked_count++;
+  }
+
+  if ($blocked_count > 0) {
+    \Drupal::logger('bioland')->notice('Blocked @count @cbd.int users.', ['@count' => $blocked_count]);
+    return t('Blocked @count @cbd.int users (set to system role).', ['@count' => $blocked_count]);
+  }
+
+  return t('No @cbd.int users needed blocking.');
+}
+
+/**
+ * Helper function to configure Search API content index.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_search_api_index() {
+  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
+    return t('Search API module not enabled; skipping index configuration.');
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('search_api.index.content');
+
+  if ($config->isNew()) {
+    return t('search_api.index.content not found; skipping.');
+  }
+
+  // Get the site's default language.
+  $default_langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
+
+  // Set langcode to default.
+  $config->set('langcode', $default_langcode);
+  $config->set('status', TRUE);
+
+  // Set dependencies.
+  $config->set('dependencies', [
+    'config' => [
+      'field.storage.node.body',
+      'field.storage.node.field_end_date',
+      'field.storage.node.field_order',
+      'field.storage.node.field_published',
+      'field.storage.node.field_start_date',
+      'field.storage.node.field_tags',
+      'field.storage.node.field_type_placement',
+      'search_api.server.file_index',
+    ],
+    'module' => ['node'],
+  ]);
+
+  // Set field settings.
+  $config->set('field_settings', [
+    'body' => [
+      'label' => 'Body',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'body',
+      'type' => 'text',
+      'boost' => 13.0,
+      'dependencies' => [
+        'config' => ['field.storage.node.body'],
+      ],
+    ],
+    'changed' => [
+      'label' => 'Changed',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'changed',
+      'type' => 'date',
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+    'field_end_date' => [
+      'label' => 'End Date',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_end_date',
+      'type' => 'date',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_end_date'],
+      ],
+    ],
+    'field_order' => [
+      'label' => 'Order',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_order',
+      'type' => 'integer',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_order'],
+      ],
+    ],
+    'field_published' => [
+      'label' => 'Published Date',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_published',
+      'type' => 'date',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_published'],
+      ],
+    ],
+    'field_start_date' => [
+      'label' => 'Start Date',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_start_date',
+      'type' => 'date',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_start_date'],
+      ],
+    ],
+    'field_tags' => [
+      'label' => 'Tags',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_tags',
+      'type' => 'text',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_tags'],
+      ],
+    ],
+    'language' => [
+      'label' => 'Language (with fallback)',
+      'property_path' => 'language_with_fallback',
+      'type' => 'string',
+    ],
+    'node_grants' => [
+      'label' => 'Node access information',
+      'property_path' => 'search_api_node_grants',
+      'type' => 'string',
+      'indexed_locked' => TRUE,
+      'type_locked' => TRUE,
+      'hidden' => TRUE,
+    ],
+    'promote' => [
+      'label' => 'Promoted to front page',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'promote',
+      'type' => 'boolean',
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+    'role_access' => [
+      'label' => 'Role-based access information',
+      'property_path' => 'search_api_role_access',
+      'type' => 'string',
+      'indexed_locked' => TRUE,
+      'type_locked' => TRUE,
+      'hidden' => TRUE,
+    ],
+    'status' => [
+      'label' => 'Boolean',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'status',
+      'type' => 'boolean',
+      'indexed_locked' => TRUE,
+      'type_locked' => TRUE,
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+    'sticky' => [
+      'label' => 'Sticky at top of lists',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'sticky',
+      'type' => 'boolean',
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+    'tid' => [
+      'label' => 'Content Type',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'field_type_placement',
+      'type' => 'integer',
+      'dependencies' => [
+        'config' => ['field.storage.node.field_type_placement'],
+      ],
+    ],
+    'title' => [
+      'label' => 'Title',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'title',
+      'type' => 'text',
+      'boost' => 21.0,
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+    'uid' => [
+      'label' => 'Entity reference',
+      'datasource_id' => 'entity:node',
+      'property_path' => 'uid',
+      'type' => 'integer',
+      'indexed_locked' => TRUE,
+      'type_locked' => TRUE,
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+    ],
+  ]);
+
+  // Get all installed languages on the site.
+  $languages = \Drupal::languageManager()->getLanguages();
+  $language_ids = array_keys($languages);
+
+  // Set datasource settings.
+  $config->set('datasource_settings', [
+    'entity:node' => [
+      'bundles' => [
+        'default' => FALSE,
+        'selected' => ['content'],
+      ],
+      'languages' => [
+        'default' => FALSE,
+        'selected' => array_values($language_ids),
+      ],
+    ],
+  ]);
+
+  // Set processor settings.
+  $config->set('processor_settings', [
+    'add_url' => [],
+    'aggregated_field' => [],
+    'content_access' => [
+      'weights' => ['preprocess_query' => -30],
+    ],
+    'custom_value' => [],
+    'entity_type' => [],
+    'html_filter' => [
+      'weights' => [
+        'preprocess_index' => -15,
+        'preprocess_query' => -15,
+      ],
+      'all_fields' => FALSE,
+      'fields' => ['body'],
+      'title' => FALSE,
+      'alt' => FALSE,
+      'tags' => [
+        'b' => 2.0,
+        'h1' => 5.0,
+        'h2' => 3.0,
+        'h3' => 2.0,
+        'strong' => 2.0,
+      ],
+    ],
+    'ignorecase' => [
+      'weights' => [
+        'preprocess_index' => -20,
+        'preprocess_query' => -20,
+      ],
+      'all_fields' => TRUE,
+      'fields' => ['body', 'field_tags', 'language', 'title'],
+    ],
+    'language_with_fallback' => [],
+    'rendered_item' => [],
+    'reverse_entity_references' => [],
+    'role_access' => [
+      'weights' => ['preprocess_query' => -30],
+    ],
+    'stemmer' => [
+      'weights' => [
+        'preprocess_index' => 0,
+        'preprocess_query' => 0,
+      ],
+      'all_fields' => TRUE,
+      'fields' => ['body', 'field_tags', 'title'],
+      'exceptions' => [
+        'mexican' => 'mexic',
+        'texan' => 'texa',
+      ],
+    ],
+    'stopwords' => [
+      'weights' => [
+        'preprocess_index' => -5,
+        'preprocess_query' => -2,
+      ],
+      'all_fields' => TRUE,
+      'fields' => ['body', 'field_tags', 'title'],
+      'stopwords' => [
+        'a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for',
+        'if', 'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or',
+        's', 'such', 't', 'that', 'the', 'their', 'then', 'there',
+        'these', 'they', 'this', 'to', 'was', 'will', 'with',
+      ],
+    ],
+    'tokenizer' => [
+      'weights' => [
+        'preprocess_index' => -6,
+        'preprocess_query' => -6,
+      ],
+      'all_fields' => TRUE,
+      'fields' => ['body', 'field_tags', 'title'],
+      'spaces' => '',
+      'ignored' => '._-',
+      'overlap_cjk' => 1,
+      'minimum_word_size' => '2',
+    ],
+    'transliteration' => [
+      'weights' => [
+        'preprocess_index' => -20,
+        'preprocess_query' => -20,
+      ],
+      'all_fields' => TRUE,
+      'fields' => ['body', 'field_tags', 'language', 'title'],
+    ],
+  ]);
+
+  // Set tracker settings.
+  $config->set('tracker_settings', [
+    'default' => [
+      'indexing_order' => 'fifo',
+    ],
+  ]);
+
+  // Set options.
+  $config->set('options', [
+    'cron_limit' => 50,
+    'delete_on_fail' => TRUE,
+    'index_directly' => TRUE,
+    'track_changes_in_references' => TRUE,
+  ]);
+
+  $config->set('server', 'file_index');
+  $config->save();
+
+  // Rebuild tracking information for the index.
+  _bioland_rebuild_search_index_tracking();
+
+  \Drupal::logger('bioland')->notice('Configured search_api.index.content with language field.');
+  return t('Configured Search API content index with language field.');
+}
+
+/**
+ * Helper function to rebuild Search API index tracking.
+ *
+ * Clears and rebuilds tracking information for the content index,
+ * marking all items for re-indexing.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_rebuild_search_index_tracking() {
+  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
+    return t('Search API module not enabled; skipping tracking rebuild.');
+  }
+
+  try {
+    $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+    $index = $index_storage->load('content');
+
+    if (!$index) {
+      return t('Search API index "content" not found; skipping tracking rebuild.');
+    }
+
+    // Clear all tracking data and rebuild.
+    $index->rebuildTracker();
+
+    \Drupal::logger('bioland')->notice('Rebuilt tracking information for Search API content index.');
+    return t('Rebuilt tracking information for Search API content index.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Error rebuilding Search API tracking: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error rebuilding tracking: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Helper function to configure facets.
+ *
+ * Configures facet source and content_type/language facets, removes others.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_facets() {
+  if (!\Drupal::moduleHandler()->moduleExists('facets')) {
+    return t('Facets module not enabled; skipping facet configuration.');
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $messages = [];
+  $default_langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
+
+  // 1. Configure facet source.
+  $facet_source = $config_factory->getEditable('facets.facet_source.jsonapi_search_api_facets__content');
+  if (!$facet_source->isNew()) {
+    $facet_source->set('langcode', $default_langcode);
+    $facet_source->set('status', TRUE);
+    $facet_source->set('id', 'jsonapi_search_api_facets__content');
+    $facet_source->set('name', 'jsonapi_search_api_facets:content');
+    $facet_source->set('filter_key', 'filter');
+    $facet_source->set('url_processor', 'json_api');
+    $facet_source->set('breadcrumb', [
+      'active' => FALSE,
+      'before' => TRUE,
+      'group' => FALSE,
+    ]);
+    $facet_source->save();
+    $messages[] = t('Configured facet source.');
+  }
+
+  // 2. Configure content_type facet.
+  $content_type_facet = $config_factory->getEditable('facets.facet.content_type');
+  $content_type_facet->set('langcode', $default_langcode);
+  $content_type_facet->set('status', TRUE);
+  $content_type_facet->set('dependencies', [
+    'module' => ['jsonapi_search_api_facets'],
+  ]);
+  $content_type_facet->set('id', 'content_type');
+  $content_type_facet->set('name', 'Content Type');
+  $content_type_facet->set('weight', 0);
+  $content_type_facet->set('min_count', 1);
+  $content_type_facet->set('missing', FALSE);
+  $content_type_facet->set('missing_label', 'others');
+  $content_type_facet->set('url_alias', 'content_type');
+  $content_type_facet->set('facet_source_id', 'jsonapi_search_api_facets:content');
+  $content_type_facet->set('field_identifier', 'tid');
+  $content_type_facet->set('query_operator', 'or');
+  $content_type_facet->set('hard_limit', 0);
+  $content_type_facet->set('exclude', FALSE);
+  $content_type_facet->set('use_hierarchy', FALSE);
+  $content_type_facet->set('keep_hierarchy_parents_active', FALSE);
+  $content_type_facet->set('hierarchy', [
+    'type' => 'taxonomy',
+    'config' => [],
+  ]);
+  $content_type_facet->set('expand_hierarchy', FALSE);
+  $content_type_facet->set('enable_parent_when_child_gets_disabled', TRUE);
+  $content_type_facet->set('widget', [
+    'type' => 'jsonapi_search_api',
+    'config' => ['show_numbers' => TRUE],
+  ]);
+  $content_type_facet->set('empty_behavior', ['behavior' => 'none']);
+  $content_type_facet->set('only_visible_when_facet_source_is_visible', FALSE);
+  $content_type_facet->set('show_only_one_result', FALSE);
+  $content_type_facet->set('show_title', FALSE);
+  $content_type_facet->set('processor_configs', [
+    'active_widget_order' => [
+      'processor_id' => 'active_widget_order',
+      'weights' => ['sort' => 20],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'count_widget_order' => [
+      'processor_id' => 'count_widget_order',
+      'weights' => ['sort' => 30],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'display_value_widget_order' => [
+      'processor_id' => 'display_value_widget_order',
+      'weights' => ['sort' => 40],
+      'settings' => ['sort' => 'ASC'],
+    ],
+    'hierarchy_processor' => [
+      'processor_id' => 'hierarchy_processor',
+      'weights' => ['build' => 100],
+      'settings' => [],
+    ],
+    'url_processor_handler' => [
+      'processor_id' => 'url_processor_handler',
+      'weights' => ['pre_query' => 50, 'build' => 15],
+      'settings' => [],
+    ],
+  ]);
+  $content_type_facet->save();
+  $messages[] = t('Configured content_type facet.');
+
+  // 3. Configure language facet.
+  $language_facet = $config_factory->getEditable('facets.facet.language');
+  $language_facet->set('langcode', $default_langcode);
+  $language_facet->set('status', TRUE);
+  $language_facet->set('dependencies', [
+    'module' => ['jsonapi_search_api_facets'],
+  ]);
+  $language_facet->set('id', 'language');
+  $language_facet->set('name', 'Language');
+  $language_facet->set('weight', 0);
+  $language_facet->set('min_count', 1);
+  $language_facet->set('missing', FALSE);
+  $language_facet->set('missing_label', 'others');
+  $language_facet->set('url_alias', 'language');
+  $language_facet->set('facet_source_id', 'jsonapi_search_api_facets:content');
+  $language_facet->set('field_identifier', 'language');
+  $language_facet->set('query_operator', 'or');
+  $language_facet->set('hard_limit', 0);
+  $language_facet->set('exclude', FALSE);
+  $language_facet->set('use_hierarchy', FALSE);
+  $language_facet->set('keep_hierarchy_parents_active', FALSE);
+  $language_facet->set('hierarchy', [
+    'type' => 'taxonomy',
+    'config' => [],
+  ]);
+  $language_facet->set('expand_hierarchy', FALSE);
+  $language_facet->set('enable_parent_when_child_gets_disabled', TRUE);
+  $language_facet->set('widget', [
+    'type' => 'jsonapi_search_api',
+    'config' => ['show_numbers' => TRUE],
+  ]);
+  $language_facet->set('empty_behavior', ['behavior' => 'none']);
+  $language_facet->set('only_visible_when_facet_source_is_visible', TRUE);
+  $language_facet->set('show_only_one_result', FALSE);
+  $language_facet->set('show_title', FALSE);
+  $language_facet->set('processor_configs', [
+    'active_widget_order' => [
+      'processor_id' => 'active_widget_order',
+      'weights' => ['sort' => 20],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'count_widget_order' => [
+      'processor_id' => 'count_widget_order',
+      'weights' => ['sort' => 30],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'display_value_widget_order' => [
+      'processor_id' => 'display_value_widget_order',
+      'weights' => ['sort' => 40],
+      'settings' => ['sort' => 'ASC'],
+    ],
+    'hierarchy_processor' => [
+      'processor_id' => 'hierarchy_processor',
+      'weights' => ['build' => 100],
+      'settings' => [],
+    ],
+    'url_processor_handler' => [
+      'processor_id' => 'url_processor_handler',
+      'weights' => ['pre_query' => 50, 'build' => 15],
+      'settings' => [],
+    ],
+  ]);
+  $language_facet->save();
+  $messages[] = t('Configured language facet.');
+
+  // 4. Remove other facets (keep only content_type and language).
+  $allowed_facets = ['content_type', 'language'];
+  $facet_configs = $config_factory->listAll('facets.facet.');
+
+  foreach ($facet_configs as $config_name) {
+    $facet_id = str_replace('facets.facet.', '', $config_name);
+    if (!in_array($facet_id, $allowed_facets)) {
+      $config_factory->getEditable($config_name)->delete();
+      $messages[] = t('Removed facet: @id.', ['@id' => $facet_id]);
+    }
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Add langcode field to content form sidebar.
+ *
+ * @version 1.0.30
+ */
+function bioland_update_9025() {
+  return _bioland_configure_langcode_form_display();
+}
+
+/**
+ * Helper function to configure langcode field on content form display.
+ *
+ * Adds the langcode field to the content node form with label "Language",
+ * placed in the sidebar (advanced group) and collapsed by default.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_langcode_form_display() {
+  $entity_form_display = \Drupal::entityTypeManager()
+    ->getStorage('entity_form_display')
+    ->load('node.content.default');
+
+  if (!$entity_form_display) {
+    return t('Form display node.content.default not found; skipping langcode configuration.');
+  }
+
+  // Add langcode field to the form display.
+  // Use the language_select widget which is the standard for langcode fields.
+  $entity_form_display->setComponent('langcode', [
+    'type' => 'language_select',
+    'weight' => 11, // After field_order (weight 10)
+    'region' => 'content',
+    'settings' => [
+      'include_locked' => TRUE,
+    ],
+    'third_party_settings' => [],
+  ]);
+
+  $entity_form_display->save();
+
+  // Now configure the field_group if the module is available.
+  // The langcode field should be in a collapsible group in the sidebar.
+  if (\Drupal::moduleHandler()->moduleExists('field_group')) {
+    $config_factory = \Drupal::configFactory();
+    $form_display_config = $config_factory->getEditable('core.entity_form_display.node.content.default');
+
+    if (!$form_display_config->isNew()) {
+      $third_party = $form_display_config->get('third_party_settings') ?: [];
+
+      // Create a language group if it doesn't exist.
+      if (!isset($third_party['field_group']['group_language'])) {
+        $third_party['field_group']['group_language'] = [
+          'label' => 'Language',
+          'children' => ['langcode'],
+          'parent_name' => '',
+          'weight' => 99, // Near the end of sidebar
+          'format_type' => 'details_sidebar',
+          'format_settings' => [
+            'classes' => '',
+            'show_empty_fields' => FALSE,
+            'id' => '',
+            'open' => FALSE, // Collapsed by default
+            'description' => '',
+            'required_fields' => FALSE,
+            'weight' => 0,
+          ],
+          'region' => 'content',
+        ];
+
+        $form_display_config->set('third_party_settings', $third_party);
+        $form_display_config->save();
+
+        \Drupal::logger('bioland')->notice('Added langcode field to content form in collapsible Language group.');
+        return t('Added langcode field to content form sidebar (collapsed Language group).');
+      }
+      else {
+        // Ensure langcode is in the group.
+        $children = $third_party['field_group']['group_language']['children'] ?? [];
+        if (!in_array('langcode', $children)) {
+          $third_party['field_group']['group_language']['children'][] = 'langcode';
+          $form_display_config->set('third_party_settings', $third_party);
+          $form_display_config->save();
+          return t('Added langcode to existing Language group.');
+        }
+        return t('Langcode already in Language group.');
+      }
+    }
+  }
+
+  \Drupal::logger('bioland')->notice('Added langcode field to content form display.');
+  return t('Added langcode field to content form display (field_group not available for sidebar placement).');
 }
