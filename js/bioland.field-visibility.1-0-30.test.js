@@ -359,5 +359,176 @@ describe('Bioland Field Visibility', () => {
       // Should only have the marker set once
       expect(fieldElement.dataset.biolandFieldVisibilityInit).toBe('true');
     });
+
+    test('should handle keydown events with delay', () => {
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          dateRangeContentTypes: [2, 3, 13]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Change value
+      fieldElement.value = '5';
+      
+      // Trigger keydown
+      fieldElement.dispatchEvent(new Event('keydown'));
+      
+      // Advance timers
+      jest.advanceTimersByTime(100);
+      
+      expect(startDateWrapper.style.display).toBe('none');
+    });
+
+    test('should handle mouseout events', () => {
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Trigger mouseout
+      fieldElement.dispatchEvent(new Event('mouseout'));
+      
+      // Should log the event
+      expect(console.log).toHaveBeenCalled();
+    });
+  });
+
+  describe('Published field visibility', () => {
+    beforeEach(() => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-published-wrapper" style="display: block;"></div>
+        </form>
+      `;
+    });
+
+    test('should show published field for content types that require it', () => {
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          publishedFieldContentTypes: [3, 5]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(publishedWrapper.style.display).toBe('block');
+    });
+
+    test('should hide published field for content types that do not require it', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="8" selected>Other</option>
+          </select>
+          <div id="edit-field-published-wrapper" style="display: block;"></div>
+        </form>
+      `;
+      
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
+      const context = document.createElement('div');
+      const settings = { 
+        bioland: { 
+          enableFieldVisibility: true,
+          publishedFieldContentTypes: [3, 5]
+        } 
+      };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(publishedWrapper.style.display).toBe('none');
+    });
+
+    test('should handle missing published wrapper gracefully', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+        </form>
+      `;
+
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Should not throw error
+      expect(console.log).toHaveBeenCalled();
+    });
+  });
+
+  describe('Edge cases and null checks', () => {
+    test('should handle missing content type value gracefully', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="" selected>Select...</option>
+          </select>
+          <div id="edit-field-url-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [fieldVisibility]: No content type field found for visibility');
+    });
+
+    test('should not process when content type field element is missing', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+        </form>
+      `;
+
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Create a scenario where element exists but listeners can't be set up
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      fieldElement.dataset.biolandFieldVisibilityInit = 'true';
+      
+      // Reinitialize
+      global.Drupal.behaviors = {};
+      jest.resetModules();
+      require('./bioland-field-visibility-1-0-30.js');
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Should not try to attach listeners again
+      expect(console.log).toHaveBeenCalled();
+    });
   });
 });

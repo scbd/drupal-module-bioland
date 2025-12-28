@@ -368,6 +368,26 @@ describe('Bioland Additional Fields', () => {
       expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Extracted field name suffix from wrapper:', 'tags');
     });
 
+    test('should extract field name from thesaurus field', () => {
+      document.body.innerHTML = `
+        <form class="node-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <input class="edit-scbd_field-thesaurus-additional" name="field_custom[0][value2]" />
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Found thesaurus field suffix for additional fields:', 'custom');
+    });
+
     test('should use default field name when extraction fails', () => {
       document.body.innerHTML = `
         <form class="node-form">
@@ -385,6 +405,179 @@ describe('Bioland Additional Fields', () => {
       Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
       
       expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: No field name found, using default');
+    });
+  });
+
+  describe('Content type mappings from settings', () => {
+    test('should build mappings from additionalTags settings', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="10" selected>Custom</option>
+          </select>
+          <div id="edit-field-tags-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = {
+        bioland: {
+          enableAdditionalFields: true,
+          additionalTags: {
+            eventStatusContentTypes: [10],
+            projectStatusContentTypes: [11],
+            organizationTypesContentTypes: [12],
+            ecosystemTypesContentTypes: [13],
+            documentTypesContentTypes: [14]
+          }
+        }
+      };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      // Should have built custom mappings
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Content types with fields:', expect.arrayContaining([10, 11, 12, 13, 14]));
+    });
+
+    test('should use defaults when additionalTags is empty', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-tags-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = {
+        bioland: {
+          enableAdditionalFields: true,
+          additionalTags: {}
+        }
+      };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      // Should use default content types
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Content types with fields:', [3, 5, 8, 9, 12]);
+    });
+  });
+
+  describe('Deferred content type check', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should check again after delay if no initial value', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="">Select...</option>
+            <option value="3">Event</option>
+          </select>
+          <div id="edit-field-tags-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: No initial content type value found, checking again shortly...');
+      
+      // Set value during deferred check
+      document.querySelector('#edit-field-type-placement').value = '3';
+      
+      // Advance timers
+      jest.advanceTimersByTime(100);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Deferred check found content type value:', '3');
+    });
+  });
+
+  describe('Vue app error handling', () => {
+    test('should handle Vue mount errors gracefully', () => {
+      global.Vue = {
+        createApp: jest.fn().mockImplementation(() => {
+          throw new Error('Mount failed');
+        })
+      };
+      global.ScbdDrupalScbdFieldJs = { default: {} };
+
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+          </select>
+          <div id="edit-field-tags-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      expect(console.error).toHaveBeenCalledWith('Bioland [additionalFields]: Error mounting additional fields Vue app:', expect.any(Error));
+    });
+  });
+
+  describe('Additional fields removal', () => {
+    test('should remove existing Vue app when changing to content type without fields', () => {
+      const mockUnmount = jest.fn();
+      const mockMount = jest.fn();
+      const mockApp = { 
+        mount: mockMount,
+        unmount: mockUnmount
+      };
+      global.Vue = {
+        createApp: jest.fn().mockReturnValue(mockApp)
+      };
+      global.ScbdDrupalScbdFieldJs = { default: {} };
+
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+            <option value="1">Other</option>
+          </select>
+          <div id="edit-field-tags-wrapper"></div>
+        </form>
+      `;
+
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      // Create a mock Vue app on the element
+      const mountElement = document.querySelector('#bl-additional-fields');
+      if (mountElement) {
+        mountElement.__vue_app__ = { unmount: mockUnmount };
+      }
+      
+      // Change to content type without fields
+      fieldElement.value = '1';
+      fieldElement.dispatchEvent(new Event('change'));
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: New content type should NOT have additional fields, removing if exists...');
     });
   });
 });

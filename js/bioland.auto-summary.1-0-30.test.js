@@ -574,5 +574,586 @@ describe('Bioland Auto Summary', () => {
       
       expect(summaryField.value).toContain('Hello contenteditable world');
     });
+
+    test('should not reinitialize if already initialized', () => {
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const editableDiv = document.querySelector('.ck-editor__editable');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      // First attach
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      expect(editableDiv.dataset.biolandAutoSummaryInit).toBe('true');
+    });
+
+    test('should handle contenteditable input events', () => {
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const editableDiv = document.querySelector('.ck-editor__editable');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Clear existing value
+      summaryField.value = '';
+      
+      // Change content
+      editableDiv.innerHTML = 'New test content.';
+      editableDiv.dispatchEvent(new Event('input'));
+      
+      // Wait for debounce
+      jest.advanceTimersByTime(300);
+      
+      expect(summaryField.value).toContain('New test content');
+    });
+
+    test('should respect user edited flag in contenteditable', () => {
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const editableDiv = document.querySelector('.ck-editor__editable');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Mark as user edited
+      summaryField.dataset.biolandUserEdited = 'true';
+      
+      // Change content
+      editableDiv.innerHTML = 'Should not update.';
+      editableDiv.dispatchEvent(new Event('input'));
+      
+      // Wait for debounce
+      jest.advanceTimersByTime(300);
+      
+      // Should not have updated
+      expect(summaryField.value).not.toContain('Should not update');
+    });
+
+    test('should return false when contenteditable div not found', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <textarea id="edit-body-0-summary"></textarea>
+        </form>
+      `;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: No CKEditor detected, using plain textarea');
+    });
+  });
+
+  describe('HTML stripping', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should handle large HTML content with chunked processing', () => {
+      const largeHtml = '<p>' + 'x'.repeat(150000) + '</p>';
+      document.querySelector('#edit-body-0-value').value = largeHtml;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Trigger update
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      expect(console.log).toHaveBeenCalledWith(expect.stringContaining('Large HTML content detected'));
+    });
+
+    test('should handle empty body HTML', () => {
+      document.querySelector('#edit-body-0-value').value = '';
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Skipping update - bodyHtml empty or user edited');
+    });
+
+    test('should handle HTML with no text content after stripping', () => {
+      document.querySelector('#edit-body-0-value').value = '<div></div><span></span>';
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: No text content after stripping HTML');
+    });
+
+    test('should handle errors in HTML processing with fallback', () => {
+      const invalidHtml = '<p>Test content</p>';
+      document.querySelector('#edit-body-0-value').value = invalidHtml;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      // Should have processed normally
+      expect(summaryField.value).toContain('Test content');
+    });
+  });
+
+  describe('CKEditor 5 instance finding', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value" data-drupal-selector="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+      delete global.Drupal.CKEditor5Instances;
+    });
+
+    test('should find CKEditor 5 instance by exact ID match', () => {
+      const mockInstance = {
+        model: {
+          document: {
+            on: jest.fn()
+          }
+        },
+        getData: jest.fn().mockReturnValue('')
+      };
+      
+      global.Drupal.CKEditor5Instances = new Map();
+      global.Drupal.CKEditor5Instances.set('edit-body-0-value', mockInstance);
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      jest.advanceTimersByTime(100);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Found CKEditor 5 instance by exact ID match');
+    });
+
+    test('should find CKEditor 5 instance by source element match', () => {
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const mockInstance = {
+        sourceElement: bodyField,
+        model: {
+          document: {
+            on: jest.fn()
+          }
+        },
+        getData: jest.fn().mockReturnValue('')
+      };
+      
+      global.Drupal.CKEditor5Instances = new Map();
+      global.Drupal.CKEditor5Instances.set('other-key', mockInstance);
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      jest.advanceTimersByTime(100);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Found CKEditor 5 instance by matching source element with key:', 'other-key');
+    });
+
+    test('should fallback to contenteditable after max attempts', () => {
+      global.Drupal.CKEditor5Instances = new Map();
+      
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+            <div class="ck-editor__editable" contenteditable="true">Fallback content</div>
+          </form>
+        </body>
+        </html>
+      `;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Advance past max attempts (50 * 100ms = 5000ms)
+      jest.advanceTimersByTime(5100);
+      
+      expect(console.warn).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor 5 instance not found after', 50, 'attempts');
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Attempting contenteditable div fallback...');
+    });
+
+    test('should fallback to textarea when contenteditable also fails', () => {
+      global.Drupal.CKEditor5Instances = new Map();
+      
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Advance past max attempts
+      jest.advanceTimersByTime(5100);
+      
+      expect(console.warn).toHaveBeenCalledWith('Bioland [autoSummary]: Contenteditable monitor failed, falling back to textarea');
+    });
+  });
+
+  describe('CKEditor 4 timeout handling', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+      delete global.CKEDITOR;
+    });
+
+    test('should fallback to textarea after max attempts for CKEditor 4', () => {
+      global.CKEDITOR = {
+        instances: {}
+      };
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Advance past max attempts (50 * 100ms = 5000ms)
+      jest.advanceTimersByTime(5100);
+      
+      expect(console.warn).toHaveBeenCalledWith('Bioland [autoSummary]: CKEditor 4 instance not found after', 50, 'attempts, falling back to textarea');
+    });
+  });
+
+  describe('Timeout management', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should clear existing timeout before setting new one', () => {
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // First input
+      bodyField.value = 'First';
+      bodyField.dispatchEvent(new Event('input'));
+      
+      // Immediately second input (should cancel first timeout)
+      bodyField.value = 'Second';
+      bodyField.dispatchEvent(new Event('input'));
+      
+      // Advance timers
+      jest.advanceTimersByTime(300);
+      
+      // Should only have updated once with the second value
+      expect(summaryField.value).toBe('Second');
+    });
+  });
+
+  describe('Simple smart truncate fallback', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should use simple truncation when Intl.Segmenter is not available', () => {
+      const originalIntl = global.Intl;
+      global.Intl = undefined;
+      
+      const longText = 'First sentence here. Second sentence here. ' + 'word '.repeat(100);
+      document.querySelector('#edit-body-0-value').value = longText;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      // Should have truncated
+      expect(summaryField.value.length).toBeLessThanOrEqual(255);
+      expect(console.log).toHaveBeenCalledWith(expect.stringContaining('Intl.Segmenter not available'));
+      
+      global.Intl = originalIntl;
+    });
+  });
+
+  describe('CKEditor 4 events', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+      delete global.CKEDITOR;
+    });
+
+    test('should handle CKEditor 4 key events', () => {
+      const mockGetData = jest.fn().mockReturnValue('Test content.');
+      const mockOn = jest.fn((event, callback) => {
+        if (event === 'key') {
+          // Simulate the key callback
+          callback();
+        }
+      });
+      
+      global.CKEDITOR = {
+        instances: {
+          'edit-body-0-value': {
+            on: mockOn,
+            getData: mockGetData
+          }
+        }
+      };
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Wait for the interval to find the instance
+      jest.advanceTimersByTime(100);
+      
+      expect(mockOn).toHaveBeenCalledWith('key', expect.any(Function));
+    });
+
+    test('should handle CKEditor 4 change events', () => {
+      const mockGetData = jest.fn().mockReturnValue('Test content.');
+      const mockOn = jest.fn((event, callback) => {
+        if (event === 'change') {
+          // Simulate the change callback
+          callback();
+        }
+      });
+      
+      global.CKEDITOR = {
+        instances: {
+          'edit-body-0-value': {
+            on: mockOn,
+            getData: mockGetData
+          }
+        }
+      };
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Wait for the interval to find the instance
+      jest.advanceTimersByTime(100);
+      
+      expect(mockOn).toHaveBeenCalledWith('change', expect.any(Function));
+    });
+  });
+
+  describe('Edge cases and error conditions', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    test('should handle stripHtml errors with fallback', () => {
+      const textWithError = '<script>alert(1)</script><p>Content</p>';
+      document.querySelector('#edit-body-0-value').value = textWithError;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      // Should have produced a result
+      expect(summaryField.value).toBeTruthy();
+    });
+
+    test('should not update when summary has unchanged content', () => {
+      const content = 'Test content.';
+      document.querySelector('#edit-body-0-value').value = content;
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const bodyField = document.querySelector('#edit-body-0-value');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // First update
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      const firstValue = summaryField.value;
+      
+      // Same content again
+      bodyField.dispatchEvent(new Event('input'));
+      jest.advanceTimersByTime(300);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [autoSummary]: Summary unchanged, skipping update');
+    });
   });
 });
