@@ -149,6 +149,13 @@ bioland.settings:
     field_visibility_rules:
       type: text
       label: 'Field visibility rules (JSON)'
+    config:
+      type: mapping
+      label: 'Configuration settings'
+      mapping:
+        promote_and_sticky_public:
+          type: boolean
+          label: 'Show Promote and Sticky flags to public users'
     enable_debug_logging:
       type: boolean
       label: 'Enable debug logging'

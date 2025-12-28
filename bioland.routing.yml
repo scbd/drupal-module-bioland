@@ -43,12 +43,39 @@ bioland.settings.help_comments:
   requirements:
     _permission: 'administer bioland field settings'
 
-bioland.settings.mega_menu:
-  path: '/admin/config/bioland/settings/mega-menu'
+bioland.settings.configuration:
+  path: '/admin/config/bioland/settings/configuration'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Configuration'
+    section: 'configuration'
+  requirements:
+    _permission: 'administer bioland settings'
+
+bioland.settings.configuration.general:
+  path: '/admin/config/bioland/settings/configuration/general'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'General'
+    section: 'configuration_general'
+  requirements:
+    _permission: 'administer bioland settings'
+
+bioland.settings.configuration.mega_menu:
+  path: '/admin/config/bioland/settings/configuration/mega-menu'
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
     _title: 'Mega Menu'
-    section: 'mega_menu'
+    section: 'configuration_mega_menu'
+  requirements:
+    _permission: 'administer bioland settings'
+
+bioland.settings.configuration.home_page:
+  path: '/admin/config/bioland/settings/configuration/home-page'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Home Page'
+    section: 'configuration_home_page'
   requirements:
     _permission: 'administer bioland settings'
 

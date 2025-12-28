@@ -937,12 +937,24 @@ msgid "Administrative system operations. Use with caution."
 msgstr "Administrative system operations. Use with caution."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Cache Management"
-msgstr "Cache Management"
+msgid "Promote and Sticky"
+msgstr "Promote and Sticky"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site."
-msgstr "Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site."
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Promote and Sticky flags on records can be seen by public or anonymous users."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Show Promote and Sticky flags to public users"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Drupal Cache Management"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Rebuild Drupal Cache"
@@ -975,6 +987,38 @@ msgstr "Drupal cache has been rebuilt successfully."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset field_order to 1000 for @count nodes."
 msgstr "Successfully reset field_order to 1000 for @count nodes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configuration"
+msgstr "Configuration"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select a tab above to configure settings."
+msgstr "Select a tab above to configure settings."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General Configuration"
+msgstr "General Configuration"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "General configuration settings coming soon."
+msgstr "General configuration settings coming soon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Mega Menu Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Mega Menu settings coming soon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Home Page Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Home Page settings coming soon."
 
 #: bioland.install
 msgid "Linkit module is not enabled; skipping profile configuration."

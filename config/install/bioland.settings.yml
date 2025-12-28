@@ -46,6 +46,8 @@ help_comments:
   attachments_heroes_text: 'Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'
   attachments_heroes_translations: {}
 field_visibility_rules: ''
+config:
+  promote_and_sticky_public: true
 enable_debug_logging: false
 debug_log_areas:
   field_visibility: true

@@ -9,41 +9,304 @@ use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\Role;
 
 /**
- * Implements hook_install().
+ * @file
+ * Install, update and uninstall functions for the Bioland module.
  */
-function bioland_install() {
-  // Validate required system roles exist before proceeding.
-  $required_system_roles = [
-    'anonymous',
-    'authenticated',
-    'administrator',
-  ];
 
-  foreach ($required_system_roles as $rid) {
-    if (!Role::load($rid)) {
-      // Throwing an exception stops installation as requested.
-      throw new \RuntimeException(sprintf('Required system role "%s" is missing. Please ensure core roles Anonymous, Authenticated, and Administrator exist before installing Bioland.', $rid));
-    }
+/*
+ * =============================================================================
+ * HELPER FUNCTIONS - Consolidated utilities to reduce code duplication
+ * =============================================================================
+ */
+
+/**
+ * Check if a module is enabled, returning skip message if not.
+ *
+ * @param string $module
+ *   The module name to check.
+ * @param string $feature
+ *   Description of the feature being skipped.
+ *
+ * @return string|null
+ *   Skip message if module not enabled, NULL if module is available.
+ */
+function _bioland_require_module($module, $feature = 'operation') {
+  if (!\Drupal::moduleHandler()->moduleExists($module)) {
+    return t('@module module is not enabled; skipping @feature.', [
+      '@module' => $module,
+      '@feature' => $feature,
+    ]);
   }
+  return NULL;
+}
 
-  // Ensure custom roles exist or create them if missing.
-  $custom_roles = [
-    'scbd_staff' => 'SCBD Staff',
-    'site_manager' => 'Site Manager',
-    'content_manager' => 'Content Manager',
-    'contributor' => 'Contributor',
-    'system' => 'System',
-  ];
-
-  foreach ($custom_roles as $rid => $label) {
+/**
+ * Ensure custom roles exist, creating them if missing.
+ *
+ * @param array $roles
+ *   Associative array of role_id => role_label.
+ *
+ * @return array
+ *   Array of status messages.
+ */
+function _bioland_ensure_roles_exist(array $roles) {
+  $messages = [];
+  foreach ($roles as $rid => $label) {
     if (!Role::load($rid)) {
       $role = Role::create([
         'id' => $rid,
         'label' => $label,
       ]);
       $role->save();
+      $messages[] = t('Created role: @role', ['@role' => $label]);
     }
   }
+  return $messages;
+}
+
+/**
+ * Grant permissions to roles based on a permission matrix.
+ *
+ * @param array $permission_matrix
+ *   Associative array of role_id => [permission1, permission2, ...].
+ *
+ * @return array
+ *   Array of status messages.
+ */
+function _bioland_grant_role_permissions(array $permission_matrix) {
+  $messages = [];
+  foreach ($permission_matrix as $rid => $permissions) {
+    $role = Role::load($rid);
+    if ($role) {
+      $changed = FALSE;
+      foreach ($permissions as $permission) {
+        if (!$role->hasPermission($permission)) {
+          $role->grantPermission($permission);
+          $changed = TRUE;
+        }
+      }
+      if ($changed) {
+        $role->save();
+        $messages[] = t('Granted bioland permissions to @role.', ['@role' => $rid]);
+      }
+    }
+  }
+  return $messages;
+}
+
+/**
+ * Manage user account: create, update, or block.
+ *
+ * @param \Drupal\Core\Entity\EntityStorageInterface $user_storage
+ *   The user entity storage.
+ * @param string $email
+ *   The user email (also used as username).
+ * @param array $roles
+ *   Array of role IDs to assign.
+ * @param string $password
+ *   The password to set.
+ * @param string $action
+ *   One of: 'create_only', 'create_or_update', 'block'.
+ *
+ * @return string|null
+ *   Status message or NULL if no action taken.
+ */
+function _bioland_manage_user($user_storage, $email, array $roles, $password, $action = 'create_or_update') {
+  // Find existing user by email or name.
+  $existing = $user_storage->loadByProperties(['mail' => $email]);
+  if (empty($existing)) {
+    $existing = $user_storage->loadByProperties(['name' => $email]);
+  }
+  $user = !empty($existing) ? reset($existing) : NULL;
+
+  // Handle block action.
+  if ($action === 'block') {
+    if (!$user) {
+      return NULL;
+    }
+    // Remove all roles except authenticated.
+    $current_roles = $user->getRoles(TRUE);
+    foreach ($current_roles as $role_id) {
+      $user->removeRole($role_id);
+    }
+    // Add system role.
+    if (Role::load('system')) {
+      $user->addRole('system');
+    }
+    $user->block();
+    $user->save();
+    return t('Blocked user @email and set to system role only.', ['@email' => $email]);
+  }
+
+  // Handle create_only action.
+  if ($action === 'create_only' && $user) {
+    return NULL;
+  }
+
+  // Create or update user.
+  if ($user) {
+    // Remove current roles.
+    $current_roles = $user->getRoles(TRUE);
+    foreach ($current_roles as $role_id) {
+      $user->removeRole($role_id);
+    }
+    // Add new roles.
+    foreach ($roles as $role_id) {
+      if (Role::load($role_id)) {
+        $user->addRole($role_id);
+      }
+    }
+    $user->setPassword($password);
+    $user->set('mail', $email);
+    $user->activate();
+    $user->save();
+    return t('Updated user @email with roles: @roles.', [
+      '@email' => $email,
+      '@roles' => implode(', ', $roles),
+    ]);
+  }
+
+  // Create new user.
+  $user = $user_storage->create([
+    'name' => $email,
+    'mail' => $email,
+    'pass' => $password,
+    'status' => 1,
+  ]);
+  foreach ($roles as $role_id) {
+    if (Role::load($role_id)) {
+      $user->addRole($role_id);
+    }
+  }
+  $user->save();
+  return t('Created user @email with roles: @roles.', [
+    '@email' => $email,
+    '@roles' => implode(', ', $roles),
+  ]);
+}
+
+/**
+ * Get the standard Bioland roles definition.
+ *
+ * @return array
+ *   Associative array of role_id => role_label.
+ */
+function _bioland_get_standard_roles() {
+  return [
+    'scbd_staff' => 'SCBD Staff',
+    'site_manager' => 'Site Manager',
+    'content_manager' => 'Content Manager',
+    'contributor' => 'Contributor',
+    'system' => 'System',
+  ];
+}
+
+/**
+ * Get the standard Bioland permission matrix.
+ *
+ * @return array
+ *   Associative array of role_id => [permissions].
+ */
+function _bioland_get_standard_permission_matrix() {
+  $permissions = [
+    'administer bioland settings',
+    'administer bioland field settings',
+    'administer bioland translation settings',
+  ];
+  return [
+    'administrator' => $permissions,
+    'site_manager' => $permissions,
+    'content_manager' => $permissions,
+    'scbd_staff' => $permissions,
+  ];
+}
+
+/**
+ * Get Linkit matcher definitions.
+ *
+ * @return array
+ *   Array of matcher definitions.
+ */
+function _bioland_get_linkit_matchers() {
+  return [
+    [
+      'id' => 'entity:node',
+      'settings' => [
+        'metadata' => '[language:prefix][node:url:path]',
+        'bundles' => ['content' => 'content'],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+        'include_unpublished' => TRUE,
+      ],
+      'weight' => -10,
+    ],
+    [
+      'id' => 'entity:taxonomy_term',
+      'settings' => [
+        'metadata' => '[language:prefix][term:url:path]',
+        'bundles' => ['system_pages' => 'system_pages', 'tags' => 'tags'],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => -9,
+    ],
+    [
+      'id' => 'entity:media',
+      'settings' => [
+        'metadata' => '[language:prefix][media:url:path]',
+        'bundles' => ['document' => 'document', 'image' => 'image', 'remote_video' => 'remote_video'],
+        'group_by_bundle' => TRUE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => -8,
+    ],
+    [
+      'id' => 'external',
+      'settings' => [],
+      'weight' => -7,
+    ],
+    [
+      'id' => 'email',
+      'settings' => [],
+      'weight' => -6,
+    ],
+    [
+      'id' => 'entity:comment',
+      'settings' => [
+        'metadata' => '[language:prefix][comment:url:path]',
+        'bundles' => ['comment' => 'comment', 'comment_media' => 'comment_media', 'comment_taxonomy' => 'comment_taxonomy'],
+        'group_by_bundle' => FALSE,
+        'substitution_type' => 'canonical',
+        'limit' => 20,
+      ],
+      'weight' => 0,
+    ],
+  ];
+}
+
+/*
+ * =============================================================================
+ * HOOK IMPLEMENTATIONS
+ * =============================================================================
+ */
+
+/**
+ * Implements hook_install().
+ */
+function bioland_install() {
+  // Validate required system roles exist before proceeding.
+  $required_system_roles = ['anonymous', 'authenticated', 'administrator'];
+  foreach ($required_system_roles as $rid) {
+    if (!Role::load($rid)) {
+      throw new \RuntimeException(sprintf('Required system role "%s" is missing. Please ensure core roles Anonymous, Authenticated, and Administrator exist before installing Bioland.', $rid));
+    }
+  }
+
+  // Ensure custom roles exist or create them if missing.
+  _bioland_ensure_roles_exist(_bioland_get_standard_roles());
 
   // Ensure required content type with machine name 'content' exists.
   if (\Drupal::moduleHandler()->moduleExists('node')) {
@@ -57,46 +320,8 @@ function bioland_install() {
     }
   }
 
-  // Grant permissions to roles based on standard permission matrix.
-  // Administrator, Site Manager, Content Manager, SCBD Staff: all 3 permissions
-  $permission_matrix = [
-    'administrator' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'site_manager' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'content_manager' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'scbd_staff' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-  ];
-
-  foreach ($permission_matrix as $rid => $permissions) {
-    $role = Role::load($rid);
-    if ($role) {
-      $changed = FALSE;
-      foreach ($permissions as $permission) {
-        if (!$role->hasPermission($permission)) {
-          $role->grantPermission($permission);
-          $changed = TRUE;
-        }
-      }
-      if ($changed) {
-        $role->save();
-      }
-    }
-  }
+  // Grant permissions to roles.
+  _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
   // Initialize configuration defaults, optionally sourcing from settings.php.
   try {
@@ -724,19 +949,8 @@ function bioland_update_9005() {
  * Ensure SCBD Staff role exists on existing installs.
  */
 function bioland_update_9006() {
-  $role = Role::load('scbd_staff');
-
-  if ($role) {
-    return t('SCBD Staff role (scbd_staff) already exists; no changes made.');
-  }
-
-  $role = Role::create([
-    'id' => 'scbd_staff',
-    'label' => 'SCBD Staff',
-  ]);
-  $role->save();
-
-  return t('Created SCBD Staff role (machine name: scbd_staff).');
+  $messages = _bioland_ensure_roles_exist(['scbd_staff' => 'SCBD Staff']);
+  return empty($messages) ? t('SCBD Staff role (scbd_staff) already exists; no changes made.') : implode(' ', $messages);
 }
 
 /**
@@ -897,8 +1111,7 @@ function bioland_update_9011() {
  * Helper function to add field_order to the Search API "content" index.
  */
 function _bioland_add_field_order_to_search_index() {
-  // Check if Search API module is enabled.
-  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
+  if (_bioland_require_module('search_api', 'field_order index addition')) {
     \Drupal::logger('bioland')->notice('Search API module is not enabled; skipping field_order index addition.');
     return;
   }
@@ -1441,8 +1654,8 @@ function bioland_update_9017(&$sandbox) {
  * @version 1.0.30
  */
 function bioland_update_9018() {
-  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
-    return t('Linkit module is not enabled; skipping profile configuration.');
+  if ($skip = _bioland_require_module('linkit', 'profile configuration')) {
+    return $skip;
   }
 
   $result = _bioland_configure_linkit_profile();
@@ -1472,101 +1685,23 @@ function bioland_update_9018() {
  *   Status array with 'status' key ('created', 'updated', or 'error') and optional 'message'.
  */
 function _bioland_configure_linkit_profile() {
-  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
-    return ['status' => 'error', 'message' => 'Linkit module is not enabled.'];
+  if ($skip = _bioland_require_module('linkit', 'Linkit profile configuration')) {
+    return ['status' => 'error', 'message' => $skip];
   }
 
   $config_factory = \Drupal::configFactory();
   $linkit_config = $config_factory->getEditable('linkit.linkit_profile.default');
-  
-  // Define the matchers configuration.
-  $matchers = [
-    // Node matcher - content bundle.
-    [
-      'id' => 'entity:node',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [
-        'metadata' => '[language:prefix][node:url:path]',
-        'bundles' => [
-          'content' => 'content',
-        ],
-        'group_by_bundle' => TRUE,
-        'substitution_type' => 'canonical',
-        'limit' => 20,
-        'include_unpublished' => TRUE,
-      ],
-      'weight' => -10,
-    ],
-    // Taxonomy term matcher - system_pages and tags bundles.
-    [
-      'id' => 'entity:taxonomy_term',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [
-        'metadata' => '[language:prefix][term:url:path]',
-        'bundles' => [
-          'system_pages' => 'system_pages',
-          'tags' => 'tags',
-        ],
-        'group_by_bundle' => TRUE,
-        'substitution_type' => 'canonical',
-        'limit' => 20,
-      ],
-      'weight' => -9,
-    ],
-    // Media matcher - document, image, remote_video bundles.
-    [
-      'id' => 'entity:media',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [
-        'metadata' => '[language:prefix][media:url:path]',
-        'bundles' => [
-          'document' => 'document',
-          'image' => 'image',
-          'remote_video' => 'remote_video',
-        ],
-        'group_by_bundle' => TRUE,
-        'substitution_type' => 'canonical',
-        'limit' => 20,
-      ],
-      'weight' => -8,
-    ],
-    // External link matcher.
-    [
-      'id' => 'external',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [],
-      'weight' => -7,
-    ],
-    // Email matcher.
-    [
-      'id' => 'email',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [],
-      'weight' => -6,
-    ],
-    // Comment matcher - comment, comment_media, comment_taxonomy bundles.
-    [
-      'id' => 'entity:comment',
-      'uuid' => _bioland_generate_uuid(),
-      'settings' => [
-        'metadata' => '[language:prefix][comment:url:path]',
-        'bundles' => [
-          'comment' => 'comment',
-          'comment_media' => 'comment_media',
-          'comment_taxonomy' => 'comment_taxonomy',
-        ],
-        'group_by_bundle' => FALSE,
-        'substitution_type' => 'canonical',
-        'limit' => 20,
-      ],
-      'weight' => 0,
-    ],
-  ];
 
-  // Build the matchers array keyed by UUID.
+  // Build matchers from data-driven definition.
   $matchers_config = [];
-  foreach ($matchers as $matcher) {
-    $matchers_config[$matcher['uuid']] = $matcher;
+  foreach (_bioland_get_linkit_matchers() as $matcher) {
+    $uuid = \Drupal::service('uuid')->generate();
+    $matchers_config[$uuid] = [
+      'id' => $matcher['id'],
+      'uuid' => $uuid,
+      'settings' => $matcher['settings'],
+      'weight' => $matcher['weight'],
+    ];
   }
 
   // Check if profile already exists.
@@ -1580,9 +1715,7 @@ function _bioland_configure_linkit_profile() {
       ->set('uuid', \Drupal::service('uuid')->generate())
       ->set('langcode', 'en')
       ->set('status', TRUE)
-      ->set('dependencies', [
-        'module' => ['node', 'taxonomy'],
-      ])
+      ->set('dependencies', ['module' => ['node', 'taxonomy']])
       ->set('label', 'Default')
       ->set('id', 'default')
       ->set('description', 'A default Linkit profile');
@@ -1703,14 +1836,6 @@ function _bioland_configure_linkit_editor() {
 
 /**
  * Generate a UUID for Linkit matchers.
- *
- * @return string
- *   A UUID string.
- */
-function _bioland_generate_uuid() {
-  return \Drupal::service('uuid')->generate();
-}
-
 /**
  * Configure Content type fields: disable translation, remove default dates, configure Linkit widget.
  *
@@ -1721,93 +1846,15 @@ function _bioland_generate_uuid() {
  * @version 1.0.30
  */
 function bioland_update_9019() {
-  $messages = [];
-
-  // 1. Set specific fields as non-translatable.
-  $non_translatable_fields = [
-    'field_attachments',
-    'field_components',
-    'field_type_placement',
-    'field_tags',
-  ];
-
-  foreach ($non_translatable_fields as $field_name) {
-    $field = FieldConfig::loadByName('node', 'content', $field_name);
-    if ($field) {
-      if ($field->isTranslatable()) {
-        $field->setTranslatable(FALSE);
-        $field->save();
-        $messages[] = t('Set @field as non-translatable.', ['@field' => $field_name]);
-      }
-      else {
-        $messages[] = t('@field already non-translatable.', ['@field' => $field_name]);
-      }
-    }
-    else {
-      $messages[] = t('@field not found; skipping.', ['@field' => $field_name]);
-    }
-  }
-
-  // 2. Remove default value from field_published.
-  $field_published = FieldConfig::loadByName('node', 'content', 'field_published');
-  if ($field_published) {
-    $default_value = $field_published->getDefaultValue(NULL);
-    if (!empty($default_value)) {
-      $field_published->setDefaultValue([]);
-      $field_published->save();
-      $messages[] = t('Removed default value from field_published.');
-    }
-    else {
-      $messages[] = t('field_published already has no default value.');
-    }
-  }
-  else {
-    $messages[] = t('field_published not found; skipping default value removal.');
-  }
-
-  // 3. Configure field_url to use Linkit widget with auto-populate link text.
-  if (\Drupal::moduleHandler()->moduleExists('linkit')) {
-    $form_display = \Drupal::entityTypeManager()
-      ->getStorage('entity_form_display')
-      ->load('node.content.default');
-
-    if ($form_display) {
-      $url_component = $form_display->getComponent('field_url');
-      if ($url_component) {
-        $form_display->setComponent('field_url', [
-          'type' => 'linkit',
-          'weight' => $url_component['weight'] ?? 0,
-          'settings' => [
-            'linkit_profile' => 'default',
-            'linkit_auto_link_text' => TRUE,
-            'placeholder_url' => '',
-            'placeholder_title' => '',
-          ],
-          'third_party_settings' => $url_component['third_party_settings'] ?? [],
-        ]);
-        $form_display->save();
-        $messages[] = t('Configured field_url with Linkit widget (profile: Default, auto-populate link text: enabled).');
-      }
-      else {
-        $messages[] = t('field_url not found in form display; skipping Linkit widget configuration.');
-      }
-    }
-    else {
-      $messages[] = t('Form display node.content.default not found; skipping Linkit widget configuration.');
-    }
-  }
-  else {
-    $messages[] = t('Linkit module not enabled; skipping field_url widget configuration.');
-  }
-
-  return implode(' ', $messages);
+  $messages = _bioland_configure_content_fields();
+  return empty($messages) ? t('Content fields already configured.') : implode(' ', $messages);
 }
 
 /**
  * Helper function to configure content fields on install.
  *
  * Sets specific fields as non-translatable, removes field_published default,
- * and configures field_url Linkit widget. Called during install.
+ * and configures field_url Linkit widget. Called during install and updates.
  *
  * @return array
  *   Array of status messages.
@@ -1828,7 +1875,7 @@ function _bioland_configure_content_fields() {
     if ($field && $field->isTranslatable()) {
       $field->setTranslatable(FALSE);
       $field->save();
-      $messages[] = "Set {$field_name} as non-translatable.";
+      $messages[] = t('Set @field as non-translatable.', ['@field' => $field_name]);
     }
   }
 
@@ -1839,7 +1886,7 @@ function _bioland_configure_content_fields() {
     if (!empty($default_value)) {
       $field_published->setDefaultValue([]);
       $field_published->save();
-      $messages[] = "Removed default value from field_published.";
+      $messages[] = t('Removed default value from field_published.');
     }
   }
 
@@ -1864,7 +1911,7 @@ function _bioland_configure_content_fields() {
           'third_party_settings' => $url_component['third_party_settings'] ?? [],
         ]);
         $form_display->save();
-        $messages[] = "Configured field_url with Linkit widget (auto-populate link text enabled).";
+        $messages[] = t('Configured field_url with Linkit widget (auto-populate link text enabled).');
       }
     }
   }
@@ -1889,72 +1936,15 @@ function _bioland_configure_content_fields() {
 function bioland_update_9020() {
   $messages = [];
 
-  // Ensure custom roles exist or create them if missing.
-  $custom_roles = [
-    'scbd_staff' => 'SCBD Staff',
-    'site_manager' => 'Site Manager',
-    'content_manager' => 'Content Manager',
-    'contributor' => 'Contributor',
-    'system' => 'System',
-  ];
+  // Ensure custom roles exist.
+  $role_messages = _bioland_ensure_roles_exist(_bioland_get_standard_roles());
+  $messages = array_merge($messages, $role_messages);
 
-  foreach ($custom_roles as $rid => $label) {
-    if (!Role::load($rid)) {
-      $role = Role::create([
-        'id' => $rid,
-        'label' => $label,
-      ]);
-      $role->save();
-      $messages[] = t('Created role: @role', ['@role' => $label]);
-    }
-  }
+  // Grant permissions.
+  $perm_messages = _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
+  $messages = array_merge($messages, $perm_messages);
 
-  // Grant permissions to roles based on standard permission matrix.
-  $permission_matrix = [
-    'administrator' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'site_manager' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'content_manager' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-    'scbd_staff' => [
-      'administer bioland settings',
-      'administer bioland field settings',
-      'administer bioland translation settings',
-    ],
-  ];
-
-  foreach ($permission_matrix as $rid => $permissions) {
-    $role = Role::load($rid);
-    if ($role) {
-      $changed = FALSE;
-      foreach ($permissions as $permission) {
-        if (!$role->hasPermission($permission)) {
-          $role->grantPermission($permission);
-          $changed = TRUE;
-        }
-      }
-      if ($changed) {
-        $role->save();
-        $messages[] = t('Granted bioland permissions to @role.', ['@role' => $rid]);
-      }
-    }
-  }
-
-  if (empty($messages)) {
-    return t('All roles and permissions already configured.');
-  }
-
-  return implode(' ', $messages);
+  return empty($messages) ? t('All roles and permissions already configured.') : implode(' ', $messages);
 }
 
 /**
@@ -2148,39 +2138,7 @@ function _bioland_provision_users() {
  *   Status message or NULL if user already exists.
  */
 function _bioland_create_user_if_not_exists($user_storage, $email, array $roles, $password) {
-  // Check if user exists by email.
-  $existing = $user_storage->loadByProperties(['mail' => $email]);
-  if (!empty($existing)) {
-    return NULL; // User already exists, don't modify.
-  }
-
-  // Also check by username (name field).
-  $existing_by_name = $user_storage->loadByProperties(['name' => $email]);
-  if (!empty($existing_by_name)) {
-    return NULL; // User already exists by name.
-  }
-
-  // Create new user.
-  $user = $user_storage->create([
-    'name' => $email,
-    'mail' => $email,
-    'pass' => $password,
-    'status' => 1, // Active.
-  ]);
-
-  // Assign roles.
-  foreach ($roles as $role_id) {
-    if (Role::load($role_id)) {
-      $user->addRole($role_id);
-    }
-  }
-
-  $user->save();
-
-  return t('Created user @email with roles: @roles.', [
-    '@email' => $email,
-    '@roles' => implode(', ', $roles),
-  ]);
+  return _bioland_manage_user($user_storage, $email, $roles, $password, 'create_only');
 }
 
 /**
@@ -2195,29 +2153,7 @@ function _bioland_create_user_if_not_exists($user_storage, $email, array $roles,
  *   Status message or NULL if user doesn't exist.
  */
 function _bioland_block_legacy_user($user_storage, $email) {
-  $existing = $user_storage->loadByProperties(['mail' => $email]);
-  if (empty($existing)) {
-    return NULL; // User doesn't exist.
-  }
-
-  $user = reset($existing);
-
-  // Remove all current roles except authenticated (which is automatic).
-  $current_roles = $user->getRoles(TRUE); // TRUE excludes locked roles.
-  foreach ($current_roles as $role_id) {
-    $user->removeRole($role_id);
-  }
-
-  // Add system role.
-  if (Role::load('system')) {
-    $user->addRole('system');
-  }
-
-  // Block the user.
-  $user->block();
-  $user->save();
-
-  return t('Blocked user @email and set to system role only.', ['@email' => $email]);
+  return _bioland_manage_user($user_storage, $email, [], '', 'block');
 }
 
 /**
@@ -2236,87 +2172,7 @@ function _bioland_block_legacy_user($user_storage, $email) {
  *   Status message.
  */
 function _bioland_create_or_update_user($user_storage, $email, array $roles, $password) {
-  $existing = $user_storage->loadByProperties(['mail' => $email]);
-
-  if (!empty($existing)) {
-    // Update existing user.
-    $user = reset($existing);
-
-    // Remove all current roles except authenticated.
-    $current_roles = $user->getRoles(TRUE);
-    foreach ($current_roles as $role_id) {
-      $user->removeRole($role_id);
-    }
-
-    // Add new roles.
-    foreach ($roles as $role_id) {
-      if (Role::load($role_id)) {
-        $user->addRole($role_id);
-      }
-    }
-
-    // Update password.
-    $user->setPassword($password);
-    $user->activate(); // Ensure user is active.
-    $user->save();
-
-    return t('Updated user @email with roles: @roles.', [
-      '@email' => $email,
-      '@roles' => implode(', ', $roles),
-    ]);
-  }
-  else {
-    // Also check by username.
-    $existing_by_name = $user_storage->loadByProperties(['name' => $email]);
-    if (!empty($existing_by_name)) {
-      $user = reset($existing_by_name);
-
-      // Remove all current roles.
-      $current_roles = $user->getRoles(TRUE);
-      foreach ($current_roles as $role_id) {
-        $user->removeRole($role_id);
-      }
-
-      // Add new roles.
-      foreach ($roles as $role_id) {
-        if (Role::load($role_id)) {
-          $user->addRole($role_id);
-        }
-      }
-
-      // Update password and email.
-      $user->setPassword($password);
-      $user->set('mail', $email);
-      $user->activate();
-      $user->save();
-
-      return t('Updated user @email with roles: @roles.', [
-        '@email' => $email,
-        '@roles' => implode(', ', $roles),
-      ]);
-    }
-
-    // Create new user.
-    $user = $user_storage->create([
-      'name' => $email,
-      'mail' => $email,
-      'pass' => $password,
-      'status' => 1,
-    ]);
-
-    foreach ($roles as $role_id) {
-      if (Role::load($role_id)) {
-        $user->addRole($role_id);
-      }
-    }
-
-    $user->save();
-
-    return t('Created user @email with roles: @roles.', [
-      '@email' => $email,
-      '@roles' => implode(', ', $roles),
-    ]);
-  }
+  return _bioland_manage_user($user_storage, $email, $roles, $password, 'create_or_update');
 }
 
 /**
@@ -2341,13 +2197,11 @@ function bioland_update_9022() {
  *   Status messages about configuration.
  */
 function _bioland_configure_full_html_format() {
-  $messages = [];
-
-  // Check if Linkit module is enabled.
-  if (!\Drupal::moduleHandler()->moduleExists('linkit')) {
-    return t('Linkit module is not enabled; skipping full_html configuration.');
+  if ($skip = _bioland_require_module('linkit', 'full_html configuration')) {
+    return $skip;
   }
 
+  $messages = [];
   $config_factory = \Drupal::configFactory();
 
   // 1. Configure editor.editor.full_html - Add Linkit extension and update image upload.
@@ -2618,8 +2472,8 @@ function _bioland_block_cbd_int_users() {
  *   Status message.
  */
 function _bioland_configure_search_api_index() {
-  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
-    return t('Search API module not enabled; skipping index configuration.');
+  if ($skip = _bioland_require_module('search_api', 'index configuration')) {
+    return $skip;
   }
 
   $config_factory = \Drupal::configFactory();
@@ -2940,8 +2794,8 @@ function _bioland_configure_search_api_index() {
  *   Status message.
  */
 function _bioland_rebuild_search_index_tracking() {
-  if (!\Drupal::moduleHandler()->moduleExists('search_api')) {
-    return t('Search API module not enabled; skipping tracking rebuild.');
+  if ($skip = _bioland_require_module('search_api', 'tracking rebuild')) {
+    return $skip;
   }
 
   try {
@@ -2975,8 +2829,8 @@ function _bioland_rebuild_search_index_tracking() {
  *   Status message.
  */
 function _bioland_configure_facets() {
-  if (!\Drupal::moduleHandler()->moduleExists('facets')) {
-    return t('Facets module not enabled; skipping facet configuration.');
+  if ($skip = _bioland_require_module('facets', 'facet configuration')) {
+    return $skip;
   }
 
   $config_factory = \Drupal::configFactory();
@@ -3001,138 +2855,58 @@ function _bioland_configure_facets() {
     $messages[] = t('Configured facet source.');
   }
 
-  // 2. Configure content_type facet.
-  $content_type_facet = $config_factory->getEditable('facets.facet.content_type');
-  $content_type_facet->set('langcode', $default_langcode);
-  $content_type_facet->set('status', TRUE);
-  $content_type_facet->set('dependencies', [
-    'module' => ['jsonapi_search_api_facets'],
-  ]);
-  $content_type_facet->set('id', 'content_type');
-  $content_type_facet->set('name', 'Content Type');
-  $content_type_facet->set('weight', 0);
-  $content_type_facet->set('min_count', 1);
-  $content_type_facet->set('missing', FALSE);
-  $content_type_facet->set('missing_label', 'others');
-  $content_type_facet->set('url_alias', 'content_type');
-  $content_type_facet->set('facet_source_id', 'jsonapi_search_api_facets:content');
-  $content_type_facet->set('field_identifier', 'tid');
-  $content_type_facet->set('query_operator', 'or');
-  $content_type_facet->set('hard_limit', 0);
-  $content_type_facet->set('exclude', FALSE);
-  $content_type_facet->set('use_hierarchy', FALSE);
-  $content_type_facet->set('keep_hierarchy_parents_active', FALSE);
-  $content_type_facet->set('hierarchy', [
-    'type' => 'taxonomy',
-    'config' => [],
-  ]);
-  $content_type_facet->set('expand_hierarchy', FALSE);
-  $content_type_facet->set('enable_parent_when_child_gets_disabled', TRUE);
-  $content_type_facet->set('widget', [
-    'type' => 'jsonapi_search_api',
-    'config' => ['show_numbers' => TRUE],
-  ]);
-  $content_type_facet->set('empty_behavior', ['behavior' => 'none']);
-  $content_type_facet->set('only_visible_when_facet_source_is_visible', FALSE);
-  $content_type_facet->set('show_only_one_result', FALSE);
-  $content_type_facet->set('show_title', FALSE);
-  $content_type_facet->set('processor_configs', [
-    'active_widget_order' => [
-      'processor_id' => 'active_widget_order',
-      'weights' => ['sort' => 20],
-      'settings' => ['sort' => 'DESC'],
-    ],
-    'count_widget_order' => [
-      'processor_id' => 'count_widget_order',
-      'weights' => ['sort' => 30],
-      'settings' => ['sort' => 'DESC'],
-    ],
-    'display_value_widget_order' => [
-      'processor_id' => 'display_value_widget_order',
-      'weights' => ['sort' => 40],
-      'settings' => ['sort' => 'ASC'],
-    ],
-    'hierarchy_processor' => [
-      'processor_id' => 'hierarchy_processor',
-      'weights' => ['build' => 100],
-      'settings' => [],
-    ],
-    'url_processor_handler' => [
-      'processor_id' => 'url_processor_handler',
-      'weights' => ['pre_query' => 50, 'build' => 15],
-      'settings' => [],
-    ],
-  ]);
-  $content_type_facet->save();
-  $messages[] = t('Configured content_type facet.');
+  // Get shared processor configs used by all facets.
+  $processor_configs = _bioland_get_facet_processor_configs();
 
-  // 3. Configure language facet.
-  $language_facet = $config_factory->getEditable('facets.facet.language');
-  $language_facet->set('langcode', $default_langcode);
-  $language_facet->set('status', TRUE);
-  $language_facet->set('dependencies', [
-    'module' => ['jsonapi_search_api_facets'],
-  ]);
-  $language_facet->set('id', 'language');
-  $language_facet->set('name', 'Language');
-  $language_facet->set('weight', 0);
-  $language_facet->set('min_count', 1);
-  $language_facet->set('missing', FALSE);
-  $language_facet->set('missing_label', 'others');
-  $language_facet->set('url_alias', 'language');
-  $language_facet->set('facet_source_id', 'jsonapi_search_api_facets:content');
-  $language_facet->set('field_identifier', 'language');
-  $language_facet->set('query_operator', 'or');
-  $language_facet->set('hard_limit', 0);
-  $language_facet->set('exclude', FALSE);
-  $language_facet->set('use_hierarchy', FALSE);
-  $language_facet->set('keep_hierarchy_parents_active', FALSE);
-  $language_facet->set('hierarchy', [
-    'type' => 'taxonomy',
-    'config' => [],
-  ]);
-  $language_facet->set('expand_hierarchy', FALSE);
-  $language_facet->set('enable_parent_when_child_gets_disabled', TRUE);
-  $language_facet->set('widget', [
-    'type' => 'jsonapi_search_api',
-    'config' => ['show_numbers' => TRUE],
-  ]);
-  $language_facet->set('empty_behavior', ['behavior' => 'none']);
-  $language_facet->set('only_visible_when_facet_source_is_visible', TRUE);
-  $language_facet->set('show_only_one_result', FALSE);
-  $language_facet->set('show_title', FALSE);
-  $language_facet->set('processor_configs', [
-    'active_widget_order' => [
-      'processor_id' => 'active_widget_order',
-      'weights' => ['sort' => 20],
-      'settings' => ['sort' => 'DESC'],
+  // Define facet configurations.
+  $facets = [
+    'content_type' => [
+      'name' => 'Content Type',
+      'field_identifier' => 'tid',
+      'only_visible_when_facet_source_is_visible' => FALSE,
     ],
-    'count_widget_order' => [
-      'processor_id' => 'count_widget_order',
-      'weights' => ['sort' => 30],
-      'settings' => ['sort' => 'DESC'],
+    'language' => [
+      'name' => 'Language',
+      'field_identifier' => 'language',
+      'only_visible_when_facet_source_is_visible' => TRUE,
     ],
-    'display_value_widget_order' => [
-      'processor_id' => 'display_value_widget_order',
-      'weights' => ['sort' => 40],
-      'settings' => ['sort' => 'ASC'],
-    ],
-    'hierarchy_processor' => [
-      'processor_id' => 'hierarchy_processor',
-      'weights' => ['build' => 100],
-      'settings' => [],
-    ],
-    'url_processor_handler' => [
-      'processor_id' => 'url_processor_handler',
-      'weights' => ['pre_query' => 50, 'build' => 15],
-      'settings' => [],
-    ],
-  ]);
-  $language_facet->save();
-  $messages[] = t('Configured language facet.');
+  ];
+
+  // Configure each facet.
+  foreach ($facets as $facet_id => $facet_settings) {
+    $facet_config = $config_factory->getEditable('facets.facet.' . $facet_id);
+    $facet_config->set('langcode', $default_langcode);
+    $facet_config->set('status', TRUE);
+    $facet_config->set('dependencies', ['module' => ['jsonapi_search_api_facets']]);
+    $facet_config->set('id', $facet_id);
+    $facet_config->set('name', $facet_settings['name']);
+    $facet_config->set('weight', 0);
+    $facet_config->set('min_count', 1);
+    $facet_config->set('missing', FALSE);
+    $facet_config->set('missing_label', 'others');
+    $facet_config->set('url_alias', $facet_id);
+    $facet_config->set('facet_source_id', 'jsonapi_search_api_facets:content');
+    $facet_config->set('field_identifier', $facet_settings['field_identifier']);
+    $facet_config->set('query_operator', 'or');
+    $facet_config->set('hard_limit', 0);
+    $facet_config->set('exclude', FALSE);
+    $facet_config->set('use_hierarchy', FALSE);
+    $facet_config->set('keep_hierarchy_parents_active', FALSE);
+    $facet_config->set('hierarchy', ['type' => 'taxonomy', 'config' => []]);
+    $facet_config->set('expand_hierarchy', FALSE);
+    $facet_config->set('enable_parent_when_child_gets_disabled', TRUE);
+    $facet_config->set('widget', ['type' => 'jsonapi_search_api', 'config' => ['show_numbers' => TRUE]]);
+    $facet_config->set('empty_behavior', ['behavior' => 'none']);
+    $facet_config->set('only_visible_when_facet_source_is_visible', $facet_settings['only_visible_when_facet_source_is_visible']);
+    $facet_config->set('show_only_one_result', FALSE);
+    $facet_config->set('show_title', FALSE);
+    $facet_config->set('processor_configs', $processor_configs);
+    $facet_config->save();
+    $messages[] = t('Configured @name facet.', ['@name' => $facet_settings['name']]);
+  }
 
   // 4. Remove other facets (keep only content_type and language).
-  $allowed_facets = ['content_type', 'language'];
+  $allowed_facets = array_keys($facets);
   $facet_configs = $config_factory->listAll('facets.facet.');
 
   foreach ($facet_configs as $config_name) {
@@ -3144,6 +2918,42 @@ function _bioland_configure_facets() {
   }
 
   return implode(' ', $messages);
+}
+
+/**
+ * Get shared processor configs for facets.
+ *
+ * @return array
+ *   Processor configuration array.
+ */
+function _bioland_get_facet_processor_configs() {
+  return [
+    'active_widget_order' => [
+      'processor_id' => 'active_widget_order',
+      'weights' => ['sort' => 20],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'count_widget_order' => [
+      'processor_id' => 'count_widget_order',
+      'weights' => ['sort' => 30],
+      'settings' => ['sort' => 'DESC'],
+    ],
+    'display_value_widget_order' => [
+      'processor_id' => 'display_value_widget_order',
+      'weights' => ['sort' => 40],
+      'settings' => ['sort' => 'ASC'],
+    ],
+    'hierarchy_processor' => [
+      'processor_id' => 'hierarchy_processor',
+      'weights' => ['build' => 100],
+      'settings' => [],
+    ],
+    'url_processor_handler' => [
+      'processor_id' => 'url_processor_handler',
+      'weights' => ['pre_query' => 50, 'build' => 15],
+      'settings' => [],
+    ],
+  ];
 }
 
 /**

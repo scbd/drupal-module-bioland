@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-help-comments-1-0-29.js
+ * Unit tests for bioland-help-comments-1-0-30.js
  */
 
 describe('Bioland Help Comments', () => {
@@ -33,13 +33,13 @@ describe('Bioland Help Comments', () => {
 
   describe('Drupal behavior registration', () => {
     test('should register biolandHelpComments behavior', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       expect(Drupal.behaviors.biolandHelpComments).toBeDefined();
       expect(typeof Drupal.behaviors.biolandHelpComments.attach).toBe('function');
     });
 
     test('should not initialize if enableHelpComments is false', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: false } };
@@ -59,7 +59,7 @@ describe('Bioland Help Comments', () => {
         </form>
       `;
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -76,7 +76,7 @@ describe('Bioland Help Comments', () => {
         </form>
       `;
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -89,7 +89,7 @@ describe('Bioland Help Comments', () => {
     test('should not initialize when form is missing', () => {
       document.body.innerHTML = '<div>No form here</div>';
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -112,7 +112,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should add help message after body field label', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -125,7 +125,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should add info icon to body field label', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -138,7 +138,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should add close button to help message', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -150,7 +150,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should prevent duplicate initialization', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -166,7 +166,7 @@ describe('Bioland Help Comments', () => {
     test('should not add help when body label is missing', () => {
       document.body.innerHTML = '<form class="node-content-form"></form>';
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -192,7 +192,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should add help message after attachments legend', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -204,7 +204,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should add info icon to attachments legend', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -226,7 +226,7 @@ describe('Bioland Help Comments', () => {
         </form>
       `;
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -252,7 +252,7 @@ describe('Bioland Help Comments', () => {
       // Set cookie before initializing
       document.cookie = 'bioland_help_body_hidden=hidden;path=/';
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -264,7 +264,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should set cookie when close button is clicked', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -278,7 +278,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should hide help message when close button is clicked', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -308,7 +308,7 @@ describe('Bioland Help Comments', () => {
     test('should show info icon when help message is hidden via cookie', () => {
       document.cookie = 'bioland_help_body_hidden=hidden;path=/';
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -324,7 +324,7 @@ describe('Bioland Help Comments', () => {
     test('should toggle help message visibility when info icon is clicked', () => {
       document.cookie = 'bioland_help_body_hidden=hidden;path=/';
 
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -361,7 +361,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should show info icon when close button is clicked', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -383,7 +383,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should have hover effect on close button', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -416,7 +416,7 @@ describe('Bioland Help Comments', () => {
     test('should use Drupal.t for translatable strings', () => {
       const tSpy = jest.spyOn(Drupal, 't');
       
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };
@@ -428,7 +428,7 @@ describe('Bioland Help Comments', () => {
     });
 
     test('should include help text about summary', () => {
-      require('./bioland-help-comments-1-0-29.js');
+      require('./bioland-help-comments-1-0-30.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableHelpComments: true } };

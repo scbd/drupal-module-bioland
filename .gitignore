@@ -81,6 +81,7 @@ failed-*
 !.github/instructions/workflow.md
 .phpunit.result.cache
 .phpunit.result*
+.php*
 .yarn/install-state.gz
 .yarn/unplugged/
 .yarn/build-state.yml

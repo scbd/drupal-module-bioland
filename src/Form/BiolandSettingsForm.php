@@ -161,7 +161,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#type' => 'text_format',
         '#title' => $this->t('Slogan'),
         '#default_value' => $site_config->get('slogan'),
-        '#format' => 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
         '#description' => $this->t('How this is used depends on your site\'s theme.'),
       ];
 
@@ -210,7 +211,8 @@ class BiolandSettingsForm extends ConfigFormBase {
                 '#type' => 'text_format',
                 '#title' => $languages[$langcode]->getName(),
                 '#default_value' => $config_override->get($translation_info['config_key']),
-                '#format' => 'basic_html',
+                '#format' => 'full_html',
+                '#allowed_formats' => ['full_html'],
               ];
             }
             else {
@@ -246,9 +248,14 @@ class BiolandSettingsForm extends ConfigFormBase {
       $form['system_functions'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('System Functions'),
-        '#description' => $this->t('Administrative system operations. Use with caution.'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
+      ];
+
+      // Description at the top
+      $form['system_functions']['description'] = [
+        '#markup' => '<p><em>' . $this->t('Administrative system operations. Use with caution.') . '</em></p>',
+        '#weight' => -100,
       ];
 
       // Wrapper for AJAX messages
@@ -257,15 +264,32 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#attributes' => ['id' => 'system-functions-messages'],
       ];
 
+      // Promote and Sticky section
+      $form['system_functions']['promote_sticky_section'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Promote and Sticky'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['system_functions']['promote_sticky_section']['promote_sticky_description'] = [
+        '#markup' => '<p>' . $this->t('Promote and Sticky flags on records can be seen by public or anonymous users.') . '</p>',
+      ];
+
+      $form['system_functions']['promote_sticky_section']['promote_and_sticky_public'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Show Promote and Sticky flags to public users'),
+        '#default_value' => $config->get('config.promote_and_sticky_public') !== FALSE,
+      ];
+
       // Cache Rebuild section
       $form['system_functions']['cache_section'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Cache Management'),
+        '#title' => $this->t('Drupal Cache Management'),
         '#collapsible' => FALSE,
       ];
 
       $form['system_functions']['cache_section']['cache_description'] = [
-        '#markup' => '<p>' . $this->t('Clears all cached data on the site. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site.') . '</p>',
+        '#markup' => '<p>' . $this->t('Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache.') . '</p>',
       ];
 
       $form['system_functions']['cache_section']['rebuild_cache'] = [
@@ -309,22 +333,14 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     if ($section === 'field_visibility') {
-      $form['field_visibility_settings'] = [
+      $form['field_visibility'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Field Visibility Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      // Field Visibility functionality - wrapped in fieldset
-      $form['field_visibility_settings']['field_visibility'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Field Visibility Control'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
-      ];
-
-      $form['field_visibility_settings']['field_visibility']['enable_field_visibility'] = [
+      $form['field_visibility']['enable_field_visibility'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Field Visibility Control'),
         '#description' => $this->t('Show/hide fields based on content type selection. Configure which fields are visible for each content type below.'),
@@ -333,7 +349,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Container for all field visibility settings
-      $form['field_visibility_settings']['field_visibility']['settings_container'] = [
+      $form['field_visibility']['settings_container'] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['bioland-field-visibility-settings', 'bioland-collapsible-hidden']],
       ];
@@ -342,7 +358,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       $content_types = $this->getContentTypeOptions();
 
       // URL Field visibility settings
-      $form['field_visibility_settings']['field_visibility']['settings_container']['url_field'] = [
+      $form['field_visibility']['settings_container']['url_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('URL Field'),
         '#collapsible' => FALSE,
@@ -353,7 +369,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility_settings']['field_visibility']['settings_container']['url_field']['url_content_types'] = [
+      $form['field_visibility']['settings_container']['url_field']['url_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show URL field for these content types:'),
         '#options' => $content_types,
@@ -361,7 +377,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Published Field visibility settings
-      $form['field_visibility_settings']['field_visibility']['settings_container']['published_field'] = [
+      $form['field_visibility']['settings_container']['published_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Published Field'),
         '#collapsible' => FALSE,
@@ -372,7 +388,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility_settings']['field_visibility']['settings_container']['published_field']['published_content_types'] = [
+      $form['field_visibility']['settings_container']['published_field']['published_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Published field for these content types:'),
         '#options' => $content_types,
@@ -380,7 +396,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Date Range Field visibility settings
-      $form['field_visibility_settings']['field_visibility']['settings_container']['date_range_field'] = [
+      $form['field_visibility']['settings_container']['date_range_field'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Date Range Field (Start & End Date)'),
         '#collapsible' => FALSE,
@@ -391,7 +407,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility_settings']['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
+      $form['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Date Range fields (Start & End Date) for these content types:'),
         '#options' => $content_types,
@@ -568,7 +584,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Body Field Help Text'),
         '#description' => $this->t('Help text displayed for the body/content field.'),
         '#default_value' => $config->get('help_comments.body_text') ?: $this->t('This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used.'),
-        '#format' => $config->get('help_comments.body_text_format') ?: 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
       ];
 
       // Body Help Translations
@@ -588,7 +605,8 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.body_text_translations.{$langcode}") ?: '',
-            '#format' => $config->get("help_comments.body_text_translations_format.{$langcode}") ?: 'basic_html',
+            '#format' => 'full_html',
+            '#allowed_formats' => ['full_html'],
           ];
         }
       }
@@ -611,7 +629,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Images Help Text'),
         '#description' => $this->t('Help text for the images section of attachments.'),
         '#default_value' => $config->get('help_comments.attachments_images_text') ?: $this->t('The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content.'),
-        '#format' => $config->get('help_comments.attachments_images_text_format') ?: 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
       ];
 
       // Images Help Translations
@@ -631,7 +650,8 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.attachments_images_translations.{$langcode}") ?: '',
-            '#format' => $config->get("help_comments.attachments_images_translations_format.{$langcode}") ?: 'basic_html',
+            '#format' => 'full_html',
+            '#allowed_formats' => ['full_html'],
           ];
         }
       }
@@ -641,7 +661,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Heroes Help Text'),
         '#description' => $this->t('Help text for the hero banners section.'),
         '#default_value' => $config->get('help_comments.attachments_heroes_text') ?: $this->t('Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'),
-        '#format' => $config->get('help_comments.attachments_heroes_text_format') ?: 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
       ];
 
       // Heroes Help Translations
@@ -661,7 +682,8 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.attachments_heroes_translations.{$langcode}") ?: '',
-            '#format' => $config->get("help_comments.attachments_heroes_translations_format.{$langcode}") ?: 'basic_html',
+            '#format' => 'full_html',
+            '#allowed_formats' => ['full_html'],
           ];
         }
       }
@@ -700,7 +722,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Promotion Options Help Text'),
         '#description' => $this->t('Help text explaining the Promoted and Sticky options.'),
         '#default_value' => $config->get('help_comments.promotion_text') ?: $default_promotion_text,
-        '#format' => $config->get('help_comments.promotion_text_format') ?: 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
       ];
 
       // Promotion Help Translations
@@ -720,7 +743,8 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.promotion_translations.{$langcode}") ?: '',
-            '#format' => $config->get("help_comments.promotion_translations_format.{$langcode}") ?: 'basic_html',
+            '#format' => 'full_html',
+            '#allowed_formats' => ['full_html'],
           ];
         }
       }
@@ -753,7 +777,8 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Order Override Help Text'),
         '#description' => $this->t('Help text explaining the Order Override field and content sorting priority.'),
         '#default_value' => $config->get('help_comments.order_override_text') ?: $default_order_override_text,
-        '#format' => $config->get('help_comments.order_override_text_format') ?: 'basic_html',
+        '#format' => 'full_html',
+        '#allowed_formats' => ['full_html'],
       ];
 
       // Order Override Help Translations
@@ -773,13 +798,40 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#type' => 'text_format',
             '#title' => $language->getName(),
             '#default_value' => $config->get("help_comments.order_override_translations.{$langcode}") ?: '',
-            '#format' => $config->get("help_comments.order_override_translations_format.{$langcode}") ?: 'basic_html',
+            '#format' => 'full_html',
+            '#allowed_formats' => ['full_html'],
           ];
         }
       }
     }
 
-    if ($section === 'mega_menu') {
+    if ($section === 'configuration') {
+      $form['configuration_settings'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Configuration'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['configuration_settings']['placeholder'] = [
+        '#markup' => '<p>' . $this->t('Select a tab above to configure settings.') . '</p>',
+      ];
+    }
+
+    if ($section === 'configuration_general') {
+      $form['configuration_general_settings'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('General Configuration'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['configuration_general_settings']['placeholder'] = [
+        '#markup' => '<p>' . $this->t('General configuration settings coming soon.') . '</p>',
+      ];
+    }
+
+    if ($section === 'configuration_mega_menu') {
       $form['mega_menu_settings'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Mega Menu Settings'),
@@ -789,6 +841,19 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       $form['mega_menu_settings']['placeholder'] = [
         '#markup' => '<p>' . $this->t('Mega Menu settings coming soon.') . '</p>',
+      ];
+    }
+
+    if ($section === 'configuration_home_page') {
+      $form['home_page_settings'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Home Page Settings'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['home_page_settings']['placeholder'] = [
+        '#markup' => '<p>' . $this->t('Home Page settings coming soon.') . '</p>',
       ];
     }
 
@@ -1223,6 +1288,11 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('translation.target_languages', array_values($target_languages))
         ->set('translation.copy_source_values', $values['copy_source_values'])
         ->set('translation.entity_types', array_values($entity_types));
+    }
+
+    if ($section === 'system_functions') {
+      $config
+        ->set('config.promote_and_sticky_public', (bool) $values['promote_and_sticky_public']);
     }
 
     $config->save();
