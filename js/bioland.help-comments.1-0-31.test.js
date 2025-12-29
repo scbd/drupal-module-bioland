@@ -853,6 +853,40 @@ describe('Bioland Help Comments', () => {
     });
   });
 
+  describe('Order override help with full functionality', () => {
+    test('should add order override help successfully', () => {
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <div>
+              <label for="edit-body-0-value">Body</label>
+            </div>
+            <details class="edit-order-override-wrapper">
+              <summary>Override Order</summary>
+              <div class="claro-details__content">
+                <div class="field--name-field-order">
+                  <input name="order_override[0][value]" id="edit-order-override-0-value" />
+                </div>
+              </div>
+            </details>
+          </form>
+        </body>
+        </html>
+      `;
+      
+      require('./bioland-help-comments-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableHelpComments: true } };
+      
+      Drupal.behaviors.biolandHelpComments.attach(context, settings);
+      
+      // Should have added help
+      expect(console.log).toHaveBeenCalledWith('Bioland [helpComments]: Order override help comment added');
+    });
+  });
+
   describe('Cookie management', () => {
     beforeEach(() => {
       document.body.innerHTML = `

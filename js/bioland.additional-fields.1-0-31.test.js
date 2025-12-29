@@ -345,6 +345,69 @@ describe('Bioland Additional Fields', () => {
       
       expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: New content type should NOT have additional fields, removing if exists...');
     });
+
+    test('should trigger handleContentTypeChange from keydown event with setTimeout', () => {
+      // Mock Vue to allow listeners to be attached
+      const mockMount = jest.fn();
+      const mockApp = { mount: mockMount };
+      global.Vue = {
+        createApp: jest.fn().mockReturnValue(mockApp)
+      };
+      global.ScbdDrupalScbdFieldJs = { default: {} };
+      
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      // Clear logs from initialization
+      console.log.mockClear();
+      
+      // Change value and trigger keydown
+      fieldElement.value = '5';
+      const keydownEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+      fieldElement.dispatchEvent(keydownEvent);
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Keydown event fired on content type field');
+      
+      // Advance past the setTimeout delay
+      jest.advanceTimersByTime(100);
+      
+      // Should have processed the change after timeout
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Content type changed, updating additional fields:', '5');
+    });
+
+    test('should trigger handleContentTypeChange from mouseout event', () => {
+      // Mock Vue to allow listeners to be attached
+      const mockMount = jest.fn();
+      const mockApp = { mount: mockMount };
+      global.Vue = {
+        createApp: jest.fn().mockReturnValue(mockApp)
+      };
+      global.ScbdDrupalScbdFieldJs = { default: {} };
+      
+      require('./bioland-additional-fields-1-0-30.js');
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAdditionalFields: true } };
+      
+      Drupal.behaviors.biolandAdditionalFields.attach(context, settings);
+      
+      // Clear logs from initialization
+      console.log.mockClear();
+      
+      // Change value and trigger mouseout
+      fieldElement.value = '8';
+      fieldElement.dispatchEvent(new Event('mouseout'));
+      
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: Mouseout event fired on content type field');
+      // The content type changed handler should be triggered
+      expect(console.log).toHaveBeenCalledWith('Bioland [additionalFields]: handleContentTypeChange called');
+    });
   });
 
   describe('Field name extraction', () => {

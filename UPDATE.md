@@ -128,6 +128,10 @@ Update hooks run in numerical order during `drush updb`:
 | stephane.bilodeau@un.org | SB |
 | api-user@chm-cbd.net | API_USER |
 
+**Auto-Role Assignment**:
+- All users with `@un.org` email addresses automatically receive `scbd_staff` role
+- Applied during user provisioning and via update hook 9023
+
 ## 9022 *(v1.0.30)*
 - `_bioland_configure_full_html_format()` - Configure full_html text format:
   - Add Linkit extension to `editor.editor.full_html` with `linkit_profile: default`
@@ -167,7 +171,73 @@ Update hooks run in numerical order during `drush updb`:
   - Configure `facets.facet.language` (field: language)
   - Remove all other facets
 
+## 9022 *(v1.0.30)*
+- Ensure all bioland users have the system role:
+  - Updates existing bioland users to add missing system role
+  - Checks and adds roles to:
+    - `bioland-contributor@chm-cbd.net` → system, contributor
+    - `bioland-cm@chm-cbd.net` → system, content_manager
+    - `bioland-sm@chm-cbd.net` → system, site_manager
+    - `bioland-scbd@chm-cbd.net` → system, scbd_staff
+    - `bioland@chm-cbd.net` → system
+
+## 9023 *(v1.0.30)*
+- Grant `scbd_staff` role to all users with `@un.org` email addresses:
+  - Automatically scans all active users for `@un.org` emails
+  - Adds `scbd_staff` role if not already present
+  - Applies to both existing and future users (via `_bioland_provision_users()`)
+  - Case-insensitive email matching
+
+## 9024 *(v1.0.30)*
+- Restrict maintenance mode access to `administrator` and `scbd_staff` roles only:
+  - **Applied on module install** via `_bioland_configure_maintenance_mode_access()`
+  - Grants `access site in maintenance mode` permission to:
+    - `administrator` role
+    - `scbd_staff` role
+  - Revokes permission from all other roles:
+    - `site_manager`
+    - `content_manager`
+    - `contributor`
+    - `system`
+    - `authenticated`
+
 ## 9025 *(v1.0.30)*
+- Grant admin/config access permissions to `scbd_staff`, `site_manager`, and `content_manager` roles:
+  - **Applied on module install** via `_bioland_get_standard_permission_matrix()`
+  - Grants permissions:
+    - `access administration pages` - Access to /admin URLs
+    - `view the administration theme` - See admin theme instead of front-end theme
+    - `access site reports` - View status reports and logs
+  - Applies to roles:
+    - `scbd_staff`
+    - `site_manager`
+    - `content_manager`
+
+## 9026 *(v1.0.30)*
+- Update all text format fields to use `full_html`:
+  - **Applied on module install** via `_bioland_update_content_to_full_html()`
+  - Updates existing records across entity types:
+    - **Nodes**: Updates `body` field format
+    - **Media**: Updates `field_description` field format
+    - **Comments**: Updates `comment_body` field format
+  - Changes any format (basic_html, plain_text, etc.) to `full_html`
+  - Prevents revision creation during format update
+  - Temporarily disables translation auto-creation to avoid errors
+  - Logs updated count and any errors to 'bioland' log channel
+
+## 9027 *(v1.0.30)*
+- Add system_pages search taxonomy terms:
+  - **Applied on module install** via `_bioland_configure_system_pages_search_terms()`
+  - Creates terms with specific IDs:
+    - **tid 52**: "Biosafety Clearing-House Search" (parent: tid 23)
+    - **tid 53**: "Access And Benefit-sharing Clearing-house Search" (parent: tid 52)
+  - Maintains parent-child hierarchy:
+    - BCH Search (52) is child of parent term (23)
+    - ABSCH Search (53) is child of BCH Search (52)
+  - Terms are created in `system_pages` vocabulary
+  - Status: Published (enabled)
+
+## 9028 *(v1.0.30)*
 - `_bioland_configure_langcode_form_display()` - Add langcode field to content form:
   - Add `langcode` field with label "Language" to content node form
   - Place in sidebar using `details_sidebar` format (if field_group module available)

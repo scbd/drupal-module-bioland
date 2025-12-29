@@ -106,6 +106,11 @@ class BiolandTranslationManager {
    *   TRUE if translations were created, FALSE otherwise.
    */
   protected function doCreateTranslations(ContentEntityInterface $entity, $operation = 'insert') {
+    // Check if translation auto-creation is temporarily disabled (e.g., during install).
+    if (\Drupal::state()->get('bioland.disable_auto_translations', FALSE)) {
+      return FALSE;
+    }
+
     $config = $this->configFactory->get('bioland.settings');
 
     $this->loggerFactory->get('bioland')->debug('createTranslations called for entity type @type, id @id, operation @op', [

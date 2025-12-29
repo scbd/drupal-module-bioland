@@ -530,5 +530,34 @@ describe('Bioland Field Visibility', () => {
       // Should not try to attach listeners again
       expect(console.log).toHaveBeenCalled();
     });
+
+    test('should handle empty content type value triggering early return', () => {
+      document.body.innerHTML = `
+        <form class="node-content-form">
+          <select id="edit-field-type-placement">
+            <option value="3" selected>Event</option>
+            <option value="">Select type</option>
+          </select>
+        </form>
+      `;
+
+      require('./bioland-field-visibility-1-0-30.js');
+      
+      const context = document.createElement('div');
+      const settings = { bioland: { enableFieldVisibility: true } };
+      
+      Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
+      
+      // Clear initialization logs
+      console.log.mockClear();
+      
+      const fieldElement = document.querySelector('#edit-field-type-placement');
+      // Change to empty value and trigger
+      fieldElement.value = '';
+      fieldElement.dispatchEvent(new Event('change'));
+      
+      // Should log the early return path
+      expect(console.log).toHaveBeenCalledWith('Bioland [fieldVisibility]: No updated value found');
+    });
   });
 });

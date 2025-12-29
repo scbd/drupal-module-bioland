@@ -309,12 +309,12 @@ class BiolandSettingsForm extends ConfigFormBase {
       // Reset Ordering section
       $form['system_functions']['ordering_section'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Content Ordering'),
+        '#title' => $this->t('Content Ordering Reset'),
         '#collapsible' => FALSE,
       ];
 
       $form['system_functions']['ordering_section']['ordering_description'] = [
-        '#markup' => '<p>' . $this->t('Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
+        '#markup' => '<p>' . $this->t('Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
       ];
 
       $form['system_functions']['ordering_section']['reset_ordering'] = [
@@ -806,16 +806,12 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     if ($section === 'configuration') {
-      $form['configuration_settings'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Configuration'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
-      ];
-
-      $form['configuration_settings']['placeholder'] = [
-        '#markup' => '<p>' . $this->t('Select a tab above to configure settings.') . '</p>',
-      ];
+      // Redirect to the first sub-tab (General) when accessing the parent Configuration tab
+      $response = new \Symfony\Component\HttpFoundation\RedirectResponse(
+        \Drupal\Core\Url::fromRoute('bioland.settings.configuration.general')->toString()
+      );
+      $response->send();
+      exit;
     }
 
     if ($section === 'configuration_general') {

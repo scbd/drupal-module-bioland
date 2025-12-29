@@ -212,6 +212,9 @@ function _bioland_get_standard_permission_matrix() {
     'administer bioland settings',
     'administer bioland field settings',
     'administer bioland translation settings',
+    'access administration pages',
+    'view the administration theme',
+    'access site reports',
   ];
   return [
     'administrator' => $permissions,
@@ -219,6 +222,41 @@ function _bioland_get_standard_permission_matrix() {
     'content_manager' => $permissions,
     'scbd_staff' => $permissions,
   ];
+}
+
+/**
+ * Configure maintenance mode access permissions.
+ *
+ * Grants 'access site in maintenance mode' to administrator and scbd_staff only.
+ * Revokes the permission from other roles.
+ *
+ * @return array
+ *   Array of status messages.
+ */
+function _bioland_configure_maintenance_mode_access() {
+  $messages = [];
+  
+  // Grant permission to administrator and scbd_staff.
+  $permission_matrix = [
+    'administrator' => ['access site in maintenance mode'],
+    'scbd_staff' => ['access site in maintenance mode'],
+  ];
+  
+  $perm_messages = _bioland_grant_role_permissions($permission_matrix);
+  $messages = array_merge($messages, $perm_messages);
+  
+  // Revoke permission from other roles if they have it.
+  $roles_to_revoke = ['site_manager', 'content_manager', 'contributor', 'system', 'authenticated'];
+  foreach ($roles_to_revoke as $rid) {
+    $role = Role::load($rid);
+    if ($role && $role->hasPermission('access site in maintenance mode')) {
+      $role->revokePermission('access site in maintenance mode');
+      $role->save();
+      $messages[] = t('Revoked maintenance mode access from @role.', ['@role' => $rid]);
+    }
+  }
+  
+  return $messages;
 }
 
 /**
@@ -323,6 +361,9 @@ function bioland_install() {
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
+  // Configure maintenance mode access (administrator and scbd_staff only).
+  _bioland_configure_maintenance_mode_access();
+
   // Initialize configuration defaults, optionally sourcing from settings.php.
   try {
     $config_factory = \Drupal::configFactory();
@@ -394,6 +435,15 @@ function bioland_install() {
 
   // Add langcode field to content form sidebar.
   _bioland_configure_langcode_form_display();
+
+  // Configure available menus for content type.
+  _bioland_configure_content_type_available_menus();
+
+  // Configure content type taxonomy terms.
+  _bioland_configure_content_types();
+
+  // Configure system_pages search terms.
+  _bioland_configure_system_pages_search_terms();
 
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
@@ -492,6 +542,12 @@ function _bioland_set_full_html_only_format() {
 function _bioland_update_content_to_full_html() {
   $updated = 0;
   $errors = 0;
+
+  // Temporarily disable translation auto-creation to prevent NULL title errors
+  // when saving nodes during format updates.
+  $state = \Drupal::state();
+  $previous_value = $state->get('bioland.disable_auto_translations', FALSE);
+  $state->set('bioland.disable_auto_translations', TRUE);
 
   // Update nodes with body field.
   try {
@@ -627,6 +683,9 @@ function _bioland_update_content_to_full_html() {
       ]);
     }
   }
+
+  // Restore previous translation auto-creation state.
+  $state->set('bioland.disable_auto_translations', $previous_value);
 
   if ($updated > 0 || $errors > 0) {
     \Drupal::logger('bioland')->notice('Updated @updated entities to use full_html format. Errors: @errors.', [
@@ -1882,7 +1941,7 @@ function _bioland_configure_content_fields() {
   // 2. Remove default value from field_published.
   $field_published = FieldConfig::loadByName('node', 'content', 'field_published');
   if ($field_published) {
-    $default_value = $field_published->getDefaultValue(NULL);
+    $default_value = $field_published->getDefaultValueLiteral();
     if (!empty($default_value)) {
       $field_published->setDefaultValue([]);
       $field_published->save();
@@ -2111,6 +2170,12 @@ function _bioland_provision_users() {
     }
   }
 
+  // 7. Grant scbd_staff role to all @un.org users.
+  $un_org_result = _bioland_grant_scbd_staff_to_un_org_users($user_storage);
+  if ($un_org_result) {
+    $messages[] = $un_org_result;
+  }
+
   if (empty($messages)) {
     return t('No user provisioning actions taken.');
   }
@@ -2139,6 +2204,54 @@ function _bioland_provision_users() {
  */
 function _bioland_create_user_if_not_exists($user_storage, $email, array $roles, $password) {
   return _bioland_manage_user($user_storage, $email, $roles, $password, 'create_only');
+}
+
+/**
+ * Grant scbd_staff role to all users with @un.org email addresses.
+ *
+ * @param \Drupal\user\UserStorageInterface $user_storage
+ *   The user storage service.
+ *
+ * @return string|null
+ *   Status message or NULL if no actions taken.
+ */
+function _bioland_grant_scbd_staff_to_un_org_users($user_storage) {
+  // Check if scbd_staff role exists.
+  if (!Role::load('scbd_staff')) {
+    return NULL;
+  }
+
+  $count = 0;
+  $updated_users = [];
+
+  // Load all active users.
+  $query = $user_storage->getQuery()
+    ->condition('status', 1)
+    ->accessCheck(FALSE);
+  $uids = $query->execute();
+
+  foreach ($user_storage->loadMultiple($uids) as $user) {
+    $email = $user->getEmail();
+    
+    // Check if email ends with @un.org.
+    if ($email && preg_match('/@un\.org$/i', $email)) {
+      if (!$user->hasRole('scbd_staff')) {
+        $user->addRole('scbd_staff');
+        $user->save();
+        $updated_users[] = $email;
+        $count++;
+      }
+    }
+  }
+
+  if ($count > 0) {
+    return t('Granted scbd_staff role to @count @un.org user(s): @users', [
+      '@count' => $count,
+      '@users' => implode(', ', $updated_users),
+    ]);
+  }
+
+  return NULL;
 }
 
 /**
@@ -2777,8 +2890,9 @@ function _bioland_configure_search_api_index() {
   $config->set('server', 'file_index');
   $config->save();
 
-  // Rebuild tracking information for the index.
-  _bioland_rebuild_search_index_tracking();
+  // Note: Tracking rebuild is intentionally NOT done here during fresh install
+  // to avoid indexing before configuration is complete. Manual reindex can be
+  // performed after install if needed via: drush sapi-rt content && drush sapi-i content
 
   \Drupal::logger('bioland')->notice('Configured search_api.index.content with language field.');
   return t('Configured Search API content index with language field.');
@@ -2970,11 +3084,25 @@ function bioland_update_9025() {
  *
  * Adds the langcode field to the content node form with label "Language",
  * placed in the sidebar (advanced group) and collapsed by default.
+ * Also enables language_alterable setting for the content node type.
  *
  * @return string
  *   Status message.
  */
 function _bioland_configure_langcode_form_display() {
+  $messages = [];
+  
+  // First, enable language_alterable for content node type.
+  $config_factory = \Drupal::configFactory();
+  $language_config = $config_factory->getEditable('language.content_settings.node.content');
+  
+  if (!$language_config->isNew()) {
+    $language_config->set('language_alterable', TRUE);
+    $language_config->save(TRUE);
+    $messages[] = 'Enabled language_alterable for content node type.';
+    \Drupal::logger('bioland')->notice('Enabled language_alterable for content node type.');
+  }
+  
   $entity_form_display = \Drupal::entityTypeManager()
     ->getStorage('entity_form_display')
     ->load('node.content.default');
@@ -2996,11 +3124,11 @@ function _bioland_configure_langcode_form_display() {
   ]);
 
   $entity_form_display->save();
+  $messages[] = 'Added langcode field to content form display.';
 
   // Now configure the field_group if the module is available.
   // The langcode field should be in a collapsible group in the sidebar.
   if (\Drupal::moduleHandler()->moduleExists('field_group')) {
-    $config_factory = \Drupal::configFactory();
     $form_display_config = $config_factory->getEditable('core.entity_form_display.node.content.default');
 
     if (!$form_display_config->isNew()) {
@@ -3028,9 +3156,8 @@ function _bioland_configure_langcode_form_display() {
 
         $form_display_config->set('third_party_settings', $third_party);
         $form_display_config->save();
-
+        $messages[] = 'Added langcode field to content form in collapsible Language group.';
         \Drupal::logger('bioland')->notice('Added langcode field to content form in collapsible Language group.');
-        return t('Added langcode field to content form sidebar (collapsed Language group).');
       }
       else {
         // Ensure langcode is in the group.
@@ -3039,13 +3166,427 @@ function _bioland_configure_langcode_form_display() {
           $third_party['field_group']['group_language']['children'][] = 'langcode';
           $form_display_config->set('third_party_settings', $third_party);
           $form_display_config->save();
-          return t('Added langcode to existing Language group.');
+          $messages[] = 'Added langcode to existing Language group.';
         }
-        return t('Langcode already in Language group.');
+        else {
+          $messages[] = 'Langcode already in Language group.';
+        }
       }
     }
   }
+  else {
+    $messages[] = 'Field_group module not available for sidebar placement.';
+  }
 
-  \Drupal::logger('bioland')->notice('Added langcode field to content form display.');
-  return t('Added langcode field to content form display (field_group not available for sidebar placement).');
+  return implode(' ', $messages);
+}
+
+/**
+ * Enable language alterable for content node type.
+ */
+function bioland_update_9026() {
+  return _bioland_configure_langcode_form_display();
+}
+
+/**
+ * Configure available menus for content type.
+ */
+function bioland_update_9027() {
+  return _bioland_configure_content_type_available_menus();
+}
+
+/**
+ * Configure content type taxonomy terms.
+ */
+function bioland_update_9028() {
+  return _bioland_configure_content_types();
+}
+
+/**
+ * Helper function to configure available menus for content type.
+ *
+ * Sets the available menus for the 'content' node type.
+ * Only applies to BL2 sites (where is_biosafety_land = false).
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_content_type_available_menus() {
+  // Only configure menus for BL2 sites (is_biosafety_land = false).
+  $config_factory = \Drupal::configFactory();
+  $bioland_config = $config_factory->get('bioland.settings');
+  $is_biosafety_land = $bioland_config->get('is_biosafety_land');
+  
+  if ($is_biosafety_land !== FALSE) {
+    return t('Skipping menu configuration - not a BL2 site.');
+  }
+  
+  $node_type_config = $config_factory->getEditable('node.type.content');
+  
+  if ($node_type_config->isNew()) {
+    return t('Content node type not found; skipping menu configuration.');
+  }
+  
+  // Available menus for BL2 sites.
+  $available_menus = [
+    'biodiversity-facts',
+    'convention-protocols',
+    'cooperation',
+    'footer',
+    'footer-credits',
+    'implementation',
+    'news-updates',
+    'resources',
+    'our-targets',
+  ];
+  
+  // Set the available menus in third_party_settings.
+  $node_type_config->set('third_party_settings.menu_ui.available_menus', $available_menus);
+  $node_type_config->save(TRUE);
+  
+  $menu_list = implode(', ', $available_menus);
+  \Drupal::logger('bioland')->notice('Configured available menus for content type (BL2): @menus', [
+    '@menus' => $menu_list,
+  ]);
+  
+  return t('Configured @count available menus for content type (BL2): @menus', [
+    '@count' => count($available_menus),
+    '@menus' => $menu_list,
+  ]);
+}
+
+/**
+ * Helper function to configure content type taxonomy terms.
+ *
+ * Creates or updates taxonomy terms in the 'tags' vocabulary to match
+ * the predefined content types. Preserves term IDs and marks new terms as disabled.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_content_types() {
+  $content_types = [
+    ['tid' => 2, 'name' => 'News', 'field_plural' => 'News', 'icon' => '📰'],
+    ['tid' => 3, 'name' => 'Event', 'field_plural' => 'Events', 'icon' => '📅'],
+    ['tid' => 4, 'name' => 'Learning Resource', 'field_plural' => 'Learning Resources', 'icon' => '🎓'],
+    ['tid' => 5, 'name' => 'Project', 'field_plural' => 'Projects', 'icon' => '📊'],
+    ['tid' => 6, 'name' => 'Basic Page', 'field_plural' => 'Basic Pages', 'icon' => '📄'],
+    ['tid' => 54, 'name' => 'Article', 'field_plural' => 'Articles', 'icon' => '📄'],
+    ['tid' => 8, 'name' => 'Government Ministry or Institute', 'field_plural' => 'Government Ministries or Institutes', 'icon' => '🏛️'],
+    ['tid' => 9, 'name' => 'Ecosystem', 'field_plural' => 'Ecosystems', 'icon' => '🌍'],
+    ['tid' => 10, 'name' => 'Protected Area', 'field_plural' => 'Protected Areas', 'icon' => '🏞️'],
+    ['tid' => 11, 'name' => 'Biodiversity Data', 'field_plural' => 'Biodiversity Data', 'icon' => '📈'],
+    ['tid' => 12, 'name' => 'Document', 'field_plural' => 'Documents', 'icon' => '📋'],
+    ['tid' => 13, 'name' => 'Related Website', 'field_plural' => 'Related Websites', 'icon' => '🔗'],
+    ['tid' => 15, 'name' => 'Other', 'field_plural' => 'Others', 'icon' => '⚙️'],
+    ['tid' => 16, 'name' => 'Image or Video', 'field_plural' => 'Images or Videos', 'icon' => '🎬'],
+    ['tid' => 55, 'name' => 'Other Resource', 'field_plural' => 'Other Resources', 'icon' => '⚙️'],
+    ['tid' => 43, 'name' => 'FAQ', 'field_plural' => 'FAQs', 'icon' => '❓'],
+    ['tid' => 44, 'name' => 'National Information', 'field_plural' => 'National Informations', 'icon' => '🏴'],
+    ['tid' => 45, 'name' => 'Status of LMO', 'field_plural' => 'Status of LMOs', 'icon' => '🧬'],
+    ['tid' => 46, 'name' => 'Field Trial', 'field_plural' => 'Field Trials', 'icon' => '🌱'],
+    ['tid' => 47, 'name' => 'National Mainstreaming Strategy', 'field_plural' => 'National Mainstreaming Strategies', 'icon' => '🗂️'],
+    ['tid' => 48, 'name' => 'Capacity Building', 'field_plural' => 'Capacity Building', 'icon' => '🔧'],
+    ['tid' => 49, 'name' => 'Announcement', 'field_plural' => 'Announcements', 'icon' => '📢'],
+    ['tid' => 50, 'name' => 'Contact', 'field_plural' => 'Contacts', 'icon' => '📞'],
+  ];
+
+  $created = 0;
+  $updated = 0;
+  $errors = 0;
+
+  foreach ($content_types as $content_type) {
+    try {
+      // Try to load existing term by tid.
+      $term = \Drupal::entityTypeManager()
+        ->getStorage('taxonomy_term')
+        ->load($content_type['tid']);
+
+      $is_new = FALSE;
+      
+      if (!$term) {
+        // Create new term with specific tid.
+        $term = \Drupal::entityTypeManager()
+          ->getStorage('taxonomy_term')
+          ->create([
+            'vid' => 'tags',
+            'tid' => $content_type['tid'],
+            'status' => 0, // Mark new terms as disabled.
+          ]);
+        $is_new = TRUE;
+      }
+
+      // Update term fields.
+      $term->setName($content_type['name']);
+      
+      // Set custom fields if they exist.
+      if ($term->hasField('field_plural')) {
+        $term->set('field_plural', $content_type['field_plural']);
+      }
+      
+      if ($term->hasField('field_icon')) {
+        $term->set('field_icon', $content_type['icon']);
+      }
+      
+      $term->save();
+      
+      if ($is_new) {
+        $created++;
+        \Drupal::logger('bioland')->notice('Created taxonomy term @tid: @name (disabled)', [
+          '@tid' => $content_type['tid'],
+          '@name' => $content_type['name'],
+        ]);
+      }
+      else {
+        $updated++;
+      }
+    }
+    catch (\Exception $e) {
+      $errors++;
+      \Drupal::logger('bioland')->error('Error configuring taxonomy term @tid (@name): @message', [
+        '@tid' => $content_type['tid'],
+        '@name' => $content_type['name'],
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  $message = t('Configured content type taxonomy terms: @created created (disabled), @updated updated, @errors errors.', [
+    '@created' => $created,
+    '@updated' => $updated,
+    '@errors' => $errors,
+  ]);
+  
+  \Drupal::logger('bioland')->notice($message);
+  
+  return $message;
+}
+
+/**
+ * Configure system_pages search taxonomy terms.
+ *
+ * Creates "Biosafety Clearing-House Search" and "Access And Benefit-sharing
+ * Clearing-house Search" terms with proper parent relationships.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_system_pages_search_terms() {
+  $messages = [];
+  $created = 0;
+  $updated = 0;
+  $errors = 0;
+  
+  // First ensure parent term exists (tid 23 should exist).
+  $parent_term = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->load(23);
+  
+  if (!$parent_term) {
+    return t('Parent term tid 23 not found. Cannot create search terms.');
+  }
+  
+  // Define the search terms with their parent relationships.
+  $search_terms = [
+    [
+      'tid' => 52,
+      'name' => 'Biosafety Clearing-House Search',
+      'parent' => 23,
+    ],
+    [
+      'tid' => 53,
+      'name' => 'Access And Benefit-sharing Clearing-house Search',
+      'parent' => 52, // Parent is the BCH Search term
+    ],
+  ];
+  
+  foreach ($search_terms as $term_data) {
+    try {
+      // Try to load existing term by tid.
+      $term = \Drupal::entityTypeManager()
+        ->getStorage('taxonomy_term')
+        ->load($term_data['tid']);
+      
+      $is_new = FALSE;
+      
+      if (!$term) {
+        // Create new term with specific tid.
+        $term = \Drupal::entityTypeManager()
+          ->getStorage('taxonomy_term')
+          ->create([
+            'vid' => 'system_pages',
+            'tid' => $term_data['tid'],
+            'status' => 1, // Published
+          ]);
+        $is_new = TRUE;
+      }
+      
+      // Update term fields.
+      $term->setName($term_data['name']);
+      
+      // Set parent relationship.
+      if (isset($term_data['parent'])) {
+        // Load parent to verify it exists.
+        $parent = \Drupal::entityTypeManager()
+          ->getStorage('taxonomy_term')
+          ->load($term_data['parent']);
+        
+        if ($parent) {
+          $term->set('parent', [['target_id' => $term_data['parent']]]);
+        }
+      }
+      
+      $term->save();
+      
+      if ($is_new) {
+        $created++;
+        $messages[] = t('Created system_pages term @tid: @name', [
+          '@tid' => $term_data['tid'],
+          '@name' => $term_data['name'],
+        ]);
+      }
+      else {
+        $updated++;
+        $messages[] = t('Updated system_pages term @tid: @name', [
+          '@tid' => $term_data['tid'],
+          '@name' => $term_data['name'],
+        ]);
+      }
+    }
+    catch (\Exception $e) {
+      $errors++;
+      $messages[] = t('Error configuring system_pages term @tid (@name): @message', [
+        '@tid' => $term_data['tid'],
+        '@name' => $term_data['name'],
+        '@message' => $e->getMessage(),
+      ]);
+      \Drupal::logger('bioland')->error('Error configuring system_pages term @tid: @message', [
+        '@tid' => $term_data['tid'],
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+  
+  $summary = t('System pages search terms: @created created, @updated updated, @errors errors.', [
+    '@created' => $created,
+    '@updated' => $updated,
+    '@errors' => $errors,
+  ]);
+  
+  if (!empty($messages)) {
+    \Drupal::logger('bioland')->notice($summary . ' ' . implode(' ', $messages));
+  }
+  
+  return $summary;
+}
+
+/**
+ * Ensure all bioland users have the system role.
+ */
+function bioland_update_9022() {
+  $messages = [];
+  $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+  
+  // Define bioland users that should have the system role.
+  $bioland_users = [
+    'bioland-contributor@chm-cbd.net' => ['system', 'contributor'],
+    'bioland-cm@chm-cbd.net' => ['system', 'content_manager'],
+    'bioland-sm@chm-cbd.net' => ['system', 'site_manager'],
+    'bioland-scbd@chm-cbd.net' => ['system', 'scbd_staff'],
+    'bioland@chm-cbd.net' => ['system'],
+  ];
+  
+  foreach ($bioland_users as $email => $expected_roles) {
+    $users = $user_storage->loadByProperties(['mail' => $email]);
+    if ($user = reset($users)) {
+      $changed = FALSE;
+      foreach ($expected_roles as $role) {
+        if (!$user->hasRole($role)) {
+          $user->addRole($role);
+          $changed = TRUE;
+        }
+      }
+      
+      if ($changed) {
+        $user->save();
+        $messages[] = t('Added missing roles to user @email', ['@email' => $email]);
+      }
+      else {
+        $messages[] = t('User @email already has all required roles', ['@email' => $email]);
+      }
+    }
+    else {
+      $messages[] = t('User @email does not exist (skipped)', ['@email' => $email]);
+    }
+  }
+  
+  return implode("\n", $messages);
+}
+
+/**
+ * Grant scbd_staff role to all users with @un.org email addresses.
+ */
+function bioland_update_9023() {
+  $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+  $result = _bioland_grant_scbd_staff_to_un_org_users($user_storage);
+  return $result ?: t('No @un.org users found or all already have scbd_staff role.');
+}
+
+/**
+ * Grant maintenance mode access to administrator and scbd_staff roles only.
+ */
+function bioland_update_9024() {
+  $messages = _bioland_configure_maintenance_mode_access();
+  
+  if (empty($messages)) {
+    return t('Maintenance mode permissions already configured correctly.');
+  }
+  
+  return implode("\n", $messages);
+}
+
+/**
+ * Grant admin/config access permissions to scbd_staff, site_manager, and content_manager.
+ */
+function bioland_update_9025() {
+  $permission_matrix = [
+    'scbd_staff' => [
+      'access administration pages',
+      'view the administration theme',
+      'access site reports',
+    ],
+    'site_manager' => [
+      'access administration pages',
+      'view the administration theme',
+      'access site reports',
+    ],
+    'content_manager' => [
+      'access administration pages',
+      'view the administration theme',
+      'access site reports',
+    ],
+  ];
+  
+  $messages = _bioland_grant_role_permissions($permission_matrix);
+  
+  if (empty($messages)) {
+    return t('Admin access permissions already granted.');
+  }
+  
+  return implode("\n", $messages);
+}
+
+/**
+ * Update all text format fields to use full_html.
+ */
+function bioland_update_9026() {
+  _bioland_update_content_to_full_html();
+  return t('Updated all text format fields to use full_html format.');
+}
+
+/**
+ * Add system_pages search terms: BCH Search and ABSCH Search.
+ */
+function bioland_update_9027() {
+  return _bioland_configure_system_pages_search_terms();
 }

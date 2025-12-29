@@ -64,6 +64,8 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
+
+
   // Change "Save (this translation)" to just "Save".
   if (isset($form['actions']['submit'])) {
     $form['actions']['submit']['#value'] = t('Save');
@@ -103,6 +105,36 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
   }
 
+  // Move langcode field to the sidebar (advanced group).
+  if (isset($form['langcode'])) {
+    // Hide the default langcode field position.
+    $form['langcode']['#access'] = FALSE;
+    
+    // Create a language selection wrapper in the sidebar.
+    $form['language_selection_wrapper'] = [
+      '#type' => 'details',
+      '#title' => t('Language'),
+      '#group' => 'advanced',
+      '#weight' => 85, // Place after revision information (usually 20) and before Order Override (90).
+      '#open' => FALSE,
+      '#optional' => TRUE,
+    ];
+
+    // Re-create the language select in the sidebar.
+    if (isset($form['langcode']['widget'][0]['value'])) {
+      $form['language_selection_wrapper']['langcode_select'] = [
+        '#type' => 'select',
+        '#title' => t('Content language'),
+        '#options' => $form['langcode']['widget'][0]['value']['#options'],
+        '#default_value' => $form['langcode']['widget'][0]['value']['#default_value'],
+        '#description' => t('Select the language for this content.'),
+      ];
+      
+      // Add a process callback to sync the values.
+      $form['#process'][] = 'bioland_langcode_process';
+    }
+  }
+
   // Move field_order to the sidebar (advanced group) and rename it.
   if (isset($form['field_order'])) {
     // Get help text from config if help comments are enabled.
@@ -140,6 +172,28 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     }
 
     $form['field_order']['#group'] = 'order_override_wrapper';
+  }
+}
+
+/**
+ * Process callback to sync langcode values between sidebar and hidden field.
+ */
+function bioland_langcode_process($element, FormStateInterface $form_state, $form) {
+  // Add a submit handler to sync the value back to the hidden langcode field.
+  array_unshift($form['actions']['submit']['#submit'], 'bioland_langcode_submit');
+  return $element;
+}
+
+/**
+ * Submit handler to sync language selection from sidebar to langcode field.
+ */
+function bioland_langcode_submit($form, FormStateInterface $form_state) {
+  // Get the value from the sidebar language select.
+  $sidebar_langcode = $form_state->getValue(['language_selection_wrapper', 'langcode_select']);
+  
+  if ($sidebar_langcode) {
+    // Set it to the actual langcode field that Drupal expects.
+    $form_state->setValue(['langcode', 0, 'value'], $sidebar_langcode);
   }
 }
 

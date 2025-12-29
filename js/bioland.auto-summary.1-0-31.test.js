@@ -1008,6 +1008,108 @@ describe('Bioland Auto Summary', () => {
     });
   });
 
+  describe('CKEditor 4 key event with timeout', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      document.body.innerHTML = `
+        <html lang="en">
+        <body>
+          <form class="node-content-form">
+            <textarea id="edit-body-0-summary"></textarea>
+            <textarea id="edit-body-0-value"></textarea>
+          </form>
+        </body>
+        </html>
+      `;
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+      delete global.CKEDITOR;
+    });
+
+    test('should handle CKEditor 4 key event with debounce timeout', () => {
+      const mockGetData = jest.fn().mockReturnValue('<p>Test content from key event.</p>');
+      let keyCallback = null;
+      const mockOn = jest.fn((event, callback) => {
+        if (event === 'key') {
+          keyCallback = callback;
+        }
+      });
+      
+      global.CKEDITOR = {
+        instances: {
+          'edit-body-0-value': {
+            on: mockOn,
+            getData: mockGetData
+          }
+        }
+      };
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Wait for interval to find CKEditor instance
+      jest.advanceTimersByTime(100);
+      
+      expect(mockOn).toHaveBeenCalledWith('key', expect.any(Function));
+      
+      // Trigger key event
+      if (keyCallback) {
+        keyCallback();
+        
+        // First key press - store timeout
+        expect(summaryField.dataset.biolandKeyTimeout).toBeDefined();
+        const firstTimeout = summaryField.dataset.biolandKeyTimeout;
+        
+        // Second key press - should clear previous timeout
+        keyCallback();
+        const secondTimeout = summaryField.dataset.biolandKeyTimeout;
+        expect(secondTimeout).not.toBe(firstTimeout);
+        
+        // Advance past debounce timeout
+        jest.advanceTimersByTime(300);
+        
+        // Should have updated summary
+        expect(mockGetData).toHaveBeenCalled();
+        expect(summaryField.value).toBe('Test content from key event.');
+      }
+    });
+
+    test('should update from CKEditor 4 initial content', () => {
+      const mockGetData = jest.fn().mockReturnValue('<p>Initial editor content.</p>');
+      const mockOn = jest.fn();
+      
+      global.CKEDITOR = {
+        instances: {
+          'edit-body-0-value': {
+            on: mockOn,
+            getData: mockGetData
+          }
+        }
+      };
+      
+      require('./bioland-auto-summary-1-0-30.js');
+      
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+      
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+      
+      // Wait for interval to find and process CKEditor instance
+      jest.advanceTimersByTime(100);
+      
+      // Should have populated summary from initial content
+      expect(summaryField.value).toBe('Initial editor content.');
+    });
+  });
+
   describe('CKEditor 4 events', () => {
     beforeEach(() => {
       jest.useFakeTimers();
