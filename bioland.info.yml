@@ -19,3 +19,4 @@ dependencies:
   - drupal:ant_bulk
   - drupal:fontawesome
   - drupal:linkit
+  - drupal:jsonapi_extras

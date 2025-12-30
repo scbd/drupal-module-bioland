@@ -171,7 +171,24 @@ Update hooks run in numerical order during `drush updb`:
   - Configure `facets.facet.language` (field: language)
   - Remove all other facets
 
-## 9022 *(v1.0.30)*
+## 9025 *(v1.0.30)*
+- `_bioland_configure_langcode_form_display()` - Add langcode field to content form:
+  - Add `langcode` field with label "Language" to content node form
+  - Enable `language_alterable` for content node type
+  - Use `language_select` widget
+  - Weight 11 (after field_order)
+
+## 9026 *(v1.0.30)*
+- Enable language alterable for content node type:
+  - Re-run of `_bioland_configure_langcode_form_display()` for updates
+
+## 9027 *(v1.0.30)*
+- `_bioland_configure_content_type_available_menus()` - Configure available menus for content type
+
+## 9028 *(v1.0.30)*
+- `_bioland_configure_content_types()` - Configure content type taxonomy terms
+
+## 9029 *(v1.0.31)*
 - Ensure all bioland users have the system role:
   - Updates existing bioland users to add missing system role
   - Checks and adds roles to:
@@ -181,14 +198,14 @@ Update hooks run in numerical order during `drush updb`:
     - `bioland-scbd@chm-cbd.net` → system, scbd_staff
     - `bioland@chm-cbd.net` → system
 
-## 9023 *(v1.0.30)*
+## 9030 *(v1.0.31)*
 - Grant `scbd_staff` role to all users with `@un.org` email addresses:
   - Automatically scans all active users for `@un.org` emails
   - Adds `scbd_staff` role if not already present
   - Applies to both existing and future users (via `_bioland_provision_users()`)
   - Case-insensitive email matching
 
-## 9024 *(v1.0.30)*
+## 9031 *(v1.0.31)*
 - Restrict maintenance mode access to `administrator` and `scbd_staff` roles only:
   - **Applied on module install** via `_bioland_configure_maintenance_mode_access()`
   - Grants `access site in maintenance mode` permission to:
@@ -201,7 +218,7 @@ Update hooks run in numerical order during `drush updb`:
     - `system`
     - `authenticated`
 
-## 9025 *(v1.0.30)*
+## 9032 *(v1.0.31)*
 - Grant admin/config access permissions to `scbd_staff`, `site_manager`, and `content_manager` roles:
   - **Applied on module install** via `_bioland_get_standard_permission_matrix()`
   - Grants permissions:
@@ -213,7 +230,7 @@ Update hooks run in numerical order during `drush updb`:
     - `site_manager`
     - `content_manager`
 
-## 9026 *(v1.0.30)*
+## 9033 *(v1.0.31)*
 - Update all text format fields to use `full_html`:
   - **Applied on module install** via `_bioland_update_content_to_full_html()`
   - Updates existing records across entity types:
@@ -225,7 +242,7 @@ Update hooks run in numerical order during `drush updb`:
   - Temporarily disables translation auto-creation to avoid errors
   - Logs updated count and any errors to 'bioland' log channel
 
-## 9027 *(v1.0.30)*
+## 9034 *(v1.0.31)*
 - Add system_pages search taxonomy terms:
   - **Applied on module install** via `_bioland_configure_system_pages_search_terms()`
   - Creates terms with specific IDs:
@@ -237,9 +254,36 @@ Update hooks run in numerical order during `drush updb`:
   - Terms are created in `system_pages` vocabulary
   - Status: Published (enabled)
 
-## 9028 *(v1.0.30)*
+## 9035 *(v1.0.31)*
 - `_bioland_configure_langcode_form_display()` - Add langcode field to content form:
   - Add `langcode` field with label "Language" to content node form
   - Place in sidebar using `details_sidebar` format (if field_group module available)
   - Collapsed by default
   - Weight 99 (near end of sidebar, after field_order)
+
+## 9036 *(v1.0.31)*
+- Disable unused JSON API resource endpoints for security:
+  - **Requires**: `jsonapi_extras` module (added to module dependencies)
+  - **Applied on module install** via `_bioland_disable_jsonapi_resources()`
+  - Creates `jsonapi_extras.jsonapi_resource_config.*` config with `disabled: TRUE`
+  - **Disabled endpoints** (15 total):
+
+| Resource Type | Entity | Description |
+|---------------|--------|-------------|
+| `facets_facet_source--facets_facet_source` | Facet Source | Facets module config entities |
+| `facets_facet--facets_facet` | Facet | Individual facet configurations |
+| `jsonapi--jsonapi` | JSON:API | Core JSON:API metadata endpoint |
+| `jsonapi--jsonapi_index` | JSON:API Index | JSON:API resource listing |
+| `language_content_settings--language_content_settings` | Language Settings | Content translation settings per bundle |
+| `linkit_profile--linkit_profile` | Linkit Profile | Linkit autocomplete profiles |
+| `view--view` | View | Views configurations |
+| `search_api_index--search_api_index` | Search Index | Search API index definitions |
+| `search_api_task--search_api_task` | Search Task | Search API pending tasks |
+| `search_api_server--search_api_server` | Search Server | Search API server connections |
+| `mailer_policy--mailer_policy` | Mailer Policy | Symfony Mailer policies |
+| `mailer_transport--mailer_transport` | Mailer Transport | Symfony Mailer transports |
+| `user_role--user_role` | User Role | User role definitions |
+| `menu--menu` | Menu | Menu definitions |
+| `user--user` | User | **User accounts** (security-sensitive) |
+
+  - **Security rationale**: These endpoints expose configuration and user data that should not be publicly accessible via JSON:API

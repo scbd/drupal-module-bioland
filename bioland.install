@@ -445,6 +445,9 @@ function bioland_install() {
   // Configure system_pages search terms.
   _bioland_configure_system_pages_search_terms();
 
+  // Disable unused JSON API resource endpoints.
+  _bioland_disable_jsonapi_resources();
+
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
 }
@@ -3483,7 +3486,7 @@ function _bioland_configure_system_pages_search_terms() {
 /**
  * Ensure all bioland users have the system role.
  */
-function bioland_update_9022() {
+function bioland_update_9029() {
   $messages = [];
   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
   
@@ -3526,7 +3529,7 @@ function bioland_update_9022() {
 /**
  * Grant scbd_staff role to all users with @un.org email addresses.
  */
-function bioland_update_9023() {
+function bioland_update_9030() {
   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
   $result = _bioland_grant_scbd_staff_to_un_org_users($user_storage);
   return $result ?: t('No @un.org users found or all already have scbd_staff role.');
@@ -3535,7 +3538,7 @@ function bioland_update_9023() {
 /**
  * Grant maintenance mode access to administrator and scbd_staff roles only.
  */
-function bioland_update_9024() {
+function bioland_update_9031() {
   $messages = _bioland_configure_maintenance_mode_access();
   
   if (empty($messages)) {
@@ -3548,7 +3551,7 @@ function bioland_update_9024() {
 /**
  * Grant admin/config access permissions to scbd_staff, site_manager, and content_manager.
  */
-function bioland_update_9025() {
+function bioland_update_9032() {
   $permission_matrix = [
     'scbd_staff' => [
       'access administration pages',
@@ -3579,7 +3582,7 @@ function bioland_update_9025() {
 /**
  * Update all text format fields to use full_html.
  */
-function bioland_update_9026() {
+function bioland_update_9033() {
   _bioland_update_content_to_full_html();
   return t('Updated all text format fields to use full_html format.');
 }
@@ -3587,6 +3590,104 @@ function bioland_update_9026() {
 /**
  * Add system_pages search terms: BCH Search and ABSCH Search.
  */
-function bioland_update_9027() {
+function bioland_update_9034() {
   return _bioland_configure_system_pages_search_terms();
+}
+
+/**
+ * Add langcode field to content form sidebar.
+ */
+function bioland_update_9035() {
+  return _bioland_configure_langcode_form_display();
+}
+
+/**
+ * Disable unused JSON API resource endpoints for security.
+ */
+function bioland_update_9036() {
+  return _bioland_disable_jsonapi_resources();
+}
+
+/**
+ * Helper function to disable unused JSON API resource endpoints.
+ *
+ * Disables sensitive configuration and user-related JSON:API endpoints
+ * via the jsonapi_extras module to prevent unauthorized access.
+ *
+ * Disabled endpoints:
+ * - facets_facet_source--facets_facet_source: Facets module config entities
+ * - facets_facet--facets_facet: Individual facet configurations
+ * - jsonapi--jsonapi: Core JSON:API metadata endpoint
+ * - jsonapi--jsonapi_index: JSON:API resource listing
+ * - language_content_settings--language_content_settings: Translation settings
+ * - linkit_profile--linkit_profile: Linkit autocomplete profiles
+ * - view--view: Views configurations
+ * - search_api_index--search_api_index: Search API index definitions
+ * - search_api_task--search_api_task: Search API pending tasks
+ * - search_api_server--search_api_server: Search API server connections
+ * - mailer_policy--mailer_policy: Symfony Mailer policies
+ * - mailer_transport--mailer_transport: Symfony Mailer transports
+ * - user_role--user_role: User role definitions
+ * - menu--menu: Menu definitions
+ * - user--user: User accounts (security-sensitive)
+ *
+ * @return string
+ *   Status message about disabled resources.
+ */
+function _bioland_disable_jsonapi_resources() {
+  // Check if jsonapi_extras module is enabled.
+  if ($skip = _bioland_require_module('jsonapi_extras', 'JSON API resource disabling')) {
+    return $skip;
+  }
+
+  // List of resource types to disable (format: entity_type--bundle).
+  $resources_to_disable = [
+    'facets_facet_source--facets_facet_source',
+    'facets_facet--facets_facet',
+    'jsonapi--jsonapi',
+    'jsonapi--jsonapi_index',
+    'language_content_settings--language_content_settings',
+    'linkit_profile--linkit_profile',
+    'view--view',
+    'search_api_index--search_api_index',
+    'search_api_task--search_api_task',
+    'search_api_server--search_api_server',
+    'mailer_policy--mailer_policy',
+    'mailer_transport--mailer_transport',
+    'user_role--user_role',
+    'menu--menu',
+    'user--user',
+  ];
+
+  $messages = [];
+  $config_factory = \Drupal::configFactory();
+
+  foreach ($resources_to_disable as $resource_type) {
+    // Config name format: jsonapi_extras.jsonapi_resource_config.{resource_type}
+    $config_id = $resource_type;
+    $config_name = 'jsonapi_extras.jsonapi_resource_config.' . $config_id;
+
+    $config = $config_factory->getEditable($config_name);
+
+    // Check if already disabled.
+    if ($config->get('disabled') === TRUE) {
+      continue;
+    }
+
+    // Set the resource as disabled.
+    $config->set('id', $config_id);
+    $config->set('disabled', TRUE);
+    $config->set('path', FALSE);
+    $config->set('resourceType', $resource_type);
+    $config->set('resourceFields', []);
+    $config->save();
+
+    $messages[] = t('Disabled JSON API resource: @resource', ['@resource' => $resource_type]);
+  }
+
+  if (empty($messages)) {
+    return t('All specified JSON API resources were already disabled.');
+  }
+
+  return implode("\n", $messages);
 }
