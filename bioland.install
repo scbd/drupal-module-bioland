@@ -545,156 +545,113 @@ function _bioland_set_full_html_only_format() {
 function _bioland_update_content_to_full_html() {
   $updated = 0;
   $errors = 0;
+  $messages = [];
+  $database = \Drupal::database();
 
-  // Temporarily disable translation auto-creation to prevent NULL title errors
-  // when saving nodes during format updates.
-  $state = \Drupal::state();
-  $previous_value = $state->get('bioland.disable_auto_translations', FALSE);
-  $state->set('bioland.disable_auto_translations', TRUE);
+  // Use direct database queries to update text format without triggering
+  // entity saves, which can cause issues with translations that have NULL titles.
 
-  // Update nodes with body field.
+  // Update node body field format.
   try {
-    $nids = \Drupal::entityQuery('node')
-      ->accessCheck(FALSE)
+    // Update node__body table (current data).
+    $node_updated = $database->update('node__body')
+      ->fields(['body_format' => 'full_html'])
+      ->condition('body_format', 'full_html', '!=')
       ->execute();
 
-    if (!empty($nids)) {
-      $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-      foreach ($nodes as $node) {
-        try {
-          $changed = FALSE;
-          
-          if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
-            $body_value = $node->get('body')->getValue();
-            foreach ($body_value as &$item) {
-              if (isset($item['format']) && $item['format'] !== 'full_html') {
-                $item['format'] = 'full_html';
-                $changed = TRUE;
-              }
-            }
-            if ($changed) {
-              $node->set('body', $body_value);
-              $node->setNewRevision(FALSE);
-              $node->save();
-              $updated++;
-            }
-          }
-        }
-        catch (\Exception $e) {
-          $errors++;
-          \Drupal::logger('bioland')->error('Error updating node @nid to full_html: @message', [
-            '@nid' => $node->id(),
-            '@message' => $e->getMessage(),
-          ]);
-        }
-      }
+    // Update node_revision__body table (revision data).
+    $node_rev_updated = $database->update('node_revision__body')
+      ->fields(['body_format' => 'full_html'])
+      ->condition('body_format', 'full_html', '!=')
+      ->execute();
+
+    if ($node_updated > 0 || $node_rev_updated > 0) {
+      $updated += $node_updated;
+      $messages[] = t('Updated @count node body fields (@rev revisions).', [
+        '@count' => $node_updated,
+        '@rev' => $node_rev_updated,
+      ]);
     }
   }
   catch (\Exception $e) {
-    \Drupal::logger('bioland')->error('Error querying nodes: @message', [
+    $errors++;
+    \Drupal::logger('bioland')->error('Error updating node body format: @message', [
       '@message' => $e->getMessage(),
     ]);
   }
 
-  // Update media with field_description.
+  // Update media field_description format.
   if (\Drupal::moduleHandler()->moduleExists('media')) {
     try {
-      $mids = \Drupal::entityQuery('media')
-        ->accessCheck(FALSE)
-        ->execute();
+      // Check if table exists.
+      if ($database->schema()->tableExists('media__field_description')) {
+        $media_updated = $database->update('media__field_description')
+          ->fields(['field_description_format' => 'full_html'])
+          ->condition('field_description_format', 'full_html', '!=')
+          ->execute();
 
-      if (!empty($mids)) {
-        $media_entities = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($mids);
-        foreach ($media_entities as $media) {
-          try {
-            $changed = FALSE;
-            
-            if ($media->hasField('field_description') && !$media->get('field_description')->isEmpty()) {
-              $desc_value = $media->get('field_description')->getValue();
-              foreach ($desc_value as &$item) {
-                if (isset($item['format']) && $item['format'] !== 'full_html') {
-                  $item['format'] = 'full_html';
-                  $changed = TRUE;
-                }
-              }
-              if ($changed) {
-                $media->set('field_description', $desc_value);
-                $media->setNewRevision(FALSE);
-                $media->save();
-                $updated++;
-              }
-            }
-          }
-          catch (\Exception $e) {
-            $errors++;
-            \Drupal::logger('bioland')->error('Error updating media @mid to full_html: @message', [
-              '@mid' => $media->id(),
-              '@message' => $e->getMessage(),
-            ]);
-          }
+        if ($media_updated > 0) {
+          $updated += $media_updated;
+          $messages[] = t('Updated @count media description fields.', ['@count' => $media_updated]);
         }
+      }
+
+      // Update revision table if exists.
+      if ($database->schema()->tableExists('media_revision__field_description')) {
+        $database->update('media_revision__field_description')
+          ->fields(['field_description_format' => 'full_html'])
+          ->condition('field_description_format', 'full_html', '!=')
+          ->execute();
       }
     }
     catch (\Exception $e) {
-      \Drupal::logger('bioland')->error('Error querying media: @message', [
+      $errors++;
+      \Drupal::logger('bioland')->error('Error updating media description format: @message', [
         '@message' => $e->getMessage(),
       ]);
     }
   }
 
-  // Update comments with comment_body.
+  // Update comment_body format.
   if (\Drupal::moduleHandler()->moduleExists('comment')) {
     try {
-      $cids = \Drupal::entityQuery('comment')
-        ->accessCheck(FALSE)
-        ->execute();
+      // Check if table exists.
+      if ($database->schema()->tableExists('comment__comment_body')) {
+        $comment_updated = $database->update('comment__comment_body')
+          ->fields(['comment_body_format' => 'full_html'])
+          ->condition('comment_body_format', 'full_html', '!=')
+          ->execute();
 
-      if (!empty($cids)) {
-        $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
-        foreach ($comments as $comment) {
-          try {
-            $changed = FALSE;
-            
-            if ($comment->hasField('comment_body') && !$comment->get('comment_body')->isEmpty()) {
-              $body_value = $comment->get('comment_body')->getValue();
-              foreach ($body_value as &$item) {
-                if (isset($item['format']) && $item['format'] !== 'full_html') {
-                  $item['format'] = 'full_html';
-                  $changed = TRUE;
-                }
-              }
-              if ($changed) {
-                $comment->set('comment_body', $body_value);
-                $comment->save();
-                $updated++;
-              }
-            }
-          }
-          catch (\Exception $e) {
-            $errors++;
-            \Drupal::logger('bioland')->error('Error updating comment @cid to full_html: @message', [
-              '@cid' => $comment->id(),
-              '@message' => $e->getMessage(),
-            ]);
-          }
+        if ($comment_updated > 0) {
+          $updated += $comment_updated;
+          $messages[] = t('Updated @count comment body fields.', ['@count' => $comment_updated]);
         }
       }
     }
     catch (\Exception $e) {
-      \Drupal::logger('bioland')->error('Error querying comments: @message', [
+      $errors++;
+      \Drupal::logger('bioland')->error('Error updating comment body format: @message', [
         '@message' => $e->getMessage(),
       ]);
     }
   }
 
-  // Restore previous translation auto-creation state.
-  $state->set('bioland.disable_auto_translations', $previous_value);
+  // Clear entity caches so entities reflect the database changes.
+  \Drupal::entityTypeManager()->getStorage('node')->resetCache();
+  if (\Drupal::moduleHandler()->moduleExists('media')) {
+    \Drupal::entityTypeManager()->getStorage('media')->resetCache();
+  }
+  if (\Drupal::moduleHandler()->moduleExists('comment')) {
+    \Drupal::entityTypeManager()->getStorage('comment')->resetCache();
+  }
 
-  if ($updated > 0 || $errors > 0) {
-    \Drupal::logger('bioland')->notice('Updated @updated entities to use full_html format. Errors: @errors.', [
-      '@updated' => $updated,
-      '@errors' => $errors,
-    ]);
+  $summary = t('Updated @updated text format fields to full_html. Errors: @errors.', [
+    '@updated' => $updated,
+    '@errors' => $errors,
+  ]);
+
+  if (!empty($messages)) {
+    \Drupal::logger('bioland')->notice($summary . ' ' . implode(' ', $messages));
   }
 
   return [
