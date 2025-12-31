@@ -335,6 +335,10 @@ function _bioland_get_linkit_matchers() {
  * Implements hook_install().
  */
 function bioland_install() {
+  // Disable search index at start to prevent indexing during install.
+  // It will be re-enabled and reindexed at the very end via _bioland_final_reindex().
+  _bioland_disable_search_index();
+
   // Validate required system roles exist before proceeding.
   $required_system_roles = ['anonymous', 'authenticated', 'administrator'];
   foreach ($required_system_roles as $rid) {
@@ -450,6 +454,11 @@ function bioland_install() {
 
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
+
+  // FINAL STEP: Rebuild search index tracking and trigger reindex.
+  // This MUST be the last operation to ensure all configuration changes
+  // are captured in the index.
+  _bioland_final_reindex();
 }
 
 /**
@@ -547,6 +556,8 @@ function _bioland_update_content_to_full_html() {
   $errors = 0;
   $messages = [];
   $database = \Drupal::database();
+
+  \Drupal::logger('bioland')->notice('Starting full_html update using DIRECT DATABASE QUERIES (no entity saves).');
 
   // Use direct database queries to update text format without triggering
   // entity saves, which can cause issues with translations that have NULL titles.
@@ -1116,14 +1127,10 @@ function bioland_update_9011() {
   $index->addField($field);
   $index->save();
 
-  // Rebuild tracking information and mark all items for reindexing.
-  $index->rebuildTracker();
-  $index->reindex();
+  // Note: Reindexing is deferred. Run 'drush sapi-rt content && drush sapi-i content'
+  // after all update hooks complete, or it will occur automatically at end of install.
 
-  // Index all items immediately (-1 means no limit).
-  $index->indexItems(-1);
-
-  return t('Added field_order to the Search API "content" index. All items have been reindexed.');
+  return t('Added field_order to the Search API "content" index. Run "drush sapi-rt content && drush sapi-i content" to reindex.');
 }
 
 /**
@@ -1164,14 +1171,11 @@ function _bioland_add_field_order_to_search_index() {
     $index->addField($field);
     $index->save();
 
-    // Rebuild tracking information and mark all items for reindexing.
-    $index->rebuildTracker();
-    $index->reindex();
+    // Note: Reindexing is NOT done here - it will be performed as the final
+    // step of installation via _bioland_final_reindex() to avoid multiple
+    // reindex operations during install.
 
-    // Index all items immediately (-1 means no limit).
-    $index->indexItems(-1);
-
-    \Drupal::logger('bioland')->notice('Added field_order to the Search API "content" index. All items have been reindexed.');
+    \Drupal::logger('bioland')->notice('Added field_order to the Search API "content" index. Reindex will occur at end of install.');
   }
   catch (\Throwable $e) {
     \Drupal::logger('bioland')->error('Failed to add field_order to Search API index: @message', [
@@ -1435,236 +1439,26 @@ function bioland_update_9016() {
 /**
  * Update existing content to use 'full_html' format for body, field_description, comment_body.
  *
- * Processes all existing nodes, media entities, and comments to set their text
- * format to 'full_html' for the specified fields.
+ * Uses direct database queries to avoid entity save issues with translations
+ * that have NULL titles.
  */
 function bioland_update_9017(&$sandbox) {
-  // Initialize sandbox on first run.
-  if (!isset($sandbox['progress'])) {
-    $sandbox['progress'] = 0;
-    $sandbox['updated'] = 0;
-    $sandbox['errors'] = 0;
-    $sandbox['current_phase'] = 'nodes';
-    $sandbox['phase_progress'] = 0;
-
-    // Count all entities to process.
-    $node_count = \Drupal::entityQuery('node')
-      ->accessCheck(FALSE)
-      ->count()
-      ->execute();
-
-    $media_count = 0;
-    if (\Drupal::moduleHandler()->moduleExists('media')) {
-      $media_count = \Drupal::entityQuery('media')
-        ->accessCheck(FALSE)
-        ->count()
-        ->execute();
-    }
-
-    $comment_count = 0;
-    if (\Drupal::moduleHandler()->moduleExists('comment')) {
-      $comment_count = \Drupal::entityQuery('comment')
-        ->accessCheck(FALSE)
-        ->count()
-        ->execute();
-    }
-
-    $sandbox['node_count'] = (int) $node_count;
-    $sandbox['media_count'] = (int) $media_count;
-    $sandbox['comment_count'] = (int) $comment_count;
-    $sandbox['total'] = $sandbox['node_count'] + $sandbox['media_count'] + $sandbox['comment_count'];
-
-    if ($sandbox['total'] === 0) {
-      $sandbox['#finished'] = 1;
-      return t('No entities found to update.');
-    }
-  }
-
-  $batch_size = 50;
-  $processed = 0;
-
-  // Process nodes.
-  if ($sandbox['current_phase'] === 'nodes') {
-    $nids = \Drupal::entityQuery('node')
-      ->accessCheck(FALSE)
-      ->range($sandbox['phase_progress'], $batch_size)
-      ->execute();
-
-    if (!empty($nids)) {
-      $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
-      foreach ($nodes as $node) {
-        try {
-          $changed = FALSE;
-          
-          // Update body field if it exists.
-          if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
-            $body_value = $node->get('body')->getValue();
-            foreach ($body_value as &$item) {
-              if (isset($item['format']) && $item['format'] !== 'full_html') {
-                $item['format'] = 'full_html';
-                $changed = TRUE;
-              }
-            }
-            if ($changed) {
-              $node->set('body', $body_value);
-            }
-          }
-
-          if ($changed) {
-            // Save without creating new revision to preserve history.
-            $node->setNewRevision(FALSE);
-            $node->save();
-            $sandbox['updated']++;
-          }
-        }
-        catch (\Exception $e) {
-          $sandbox['errors']++;
-          \Drupal::logger('bioland')->error('Update 9017: Error updating node @nid: @message', [
-            '@nid' => $node->id(),
-            '@message' => $e->getMessage(),
-          ]);
-        }
-        $processed++;
-        $sandbox['phase_progress']++;
-      }
-    }
-
-    if ($sandbox['phase_progress'] >= $sandbox['node_count']) {
-      $sandbox['current_phase'] = 'media';
-      $sandbox['phase_progress'] = 0;
-    }
-  }
-
-  // Process media entities.
-  if ($sandbox['current_phase'] === 'media' && $processed < $batch_size) {
-    if (\Drupal::moduleHandler()->moduleExists('media')) {
-      $remaining = $batch_size - $processed;
-      $mids = \Drupal::entityQuery('media')
-        ->accessCheck(FALSE)
-        ->range($sandbox['phase_progress'], $remaining)
-        ->execute();
-
-      if (!empty($mids)) {
-        $media_entities = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($mids);
-        foreach ($media_entities as $media) {
-          try {
-            $changed = FALSE;
-            
-            // Update field_description if it exists.
-            if ($media->hasField('field_description') && !$media->get('field_description')->isEmpty()) {
-              $desc_value = $media->get('field_description')->getValue();
-              foreach ($desc_value as &$item) {
-                if (isset($item['format']) && $item['format'] !== 'full_html') {
-                  $item['format'] = 'full_html';
-                  $changed = TRUE;
-                }
-              }
-              if ($changed) {
-                $media->set('field_description', $desc_value);
-              }
-            }
-
-            if ($changed) {
-              $media->setNewRevision(FALSE);
-              $media->save();
-              $sandbox['updated']++;
-            }
-          }
-          catch (\Exception $e) {
-            $sandbox['errors']++;
-            \Drupal::logger('bioland')->error('Update 9017: Error updating media @mid: @message', [
-              '@mid' => $media->id(),
-              '@message' => $e->getMessage(),
-            ]);
-          }
-          $processed++;
-          $sandbox['phase_progress']++;
-        }
-      }
-    }
-
-    if ($sandbox['phase_progress'] >= $sandbox['media_count'] || $sandbox['media_count'] === 0) {
-      $sandbox['current_phase'] = 'comments';
-      $sandbox['phase_progress'] = 0;
-    }
-  }
-
-  // Process comments.
-  if ($sandbox['current_phase'] === 'comments' && $processed < $batch_size) {
-    if (\Drupal::moduleHandler()->moduleExists('comment')) {
-      $remaining = $batch_size - $processed;
-      $cids = \Drupal::entityQuery('comment')
-        ->accessCheck(FALSE)
-        ->range($sandbox['phase_progress'], $remaining)
-        ->execute();
-
-      if (!empty($cids)) {
-        $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
-        foreach ($comments as $comment) {
-          try {
-            $changed = FALSE;
-            
-            // Update comment_body if it exists.
-            if ($comment->hasField('comment_body') && !$comment->get('comment_body')->isEmpty()) {
-              $body_value = $comment->get('comment_body')->getValue();
-              foreach ($body_value as &$item) {
-                if (isset($item['format']) && $item['format'] !== 'full_html') {
-                  $item['format'] = 'full_html';
-                  $changed = TRUE;
-                }
-              }
-              if ($changed) {
-                $comment->set('comment_body', $body_value);
-              }
-            }
-
-            if ($changed) {
-              $comment->save();
-              $sandbox['updated']++;
-            }
-          }
-          catch (\Exception $e) {
-            $sandbox['errors']++;
-            \Drupal::logger('bioland')->error('Update 9017: Error updating comment @cid: @message', [
-              '@cid' => $comment->id(),
-              '@message' => $e->getMessage(),
-            ]);
-          }
-          $processed++;
-          $sandbox['phase_progress']++;
-        }
-      }
-    }
-
-    if ($sandbox['phase_progress'] >= $sandbox['comment_count'] || $sandbox['comment_count'] === 0) {
-      $sandbox['current_phase'] = 'done';
-    }
-  }
-
-  // Update overall progress.
-  $sandbox['progress'] += $processed;
-
-  // Calculate progress percentage.
-  $sandbox['#finished'] = $sandbox['total'] > 0 ? $sandbox['progress'] / $sandbox['total'] : 1;
-
-  // Return status message.
-  if ($sandbox['#finished'] >= 1 || $sandbox['current_phase'] === 'done') {
+  // This update now uses direct database queries via _bioland_update_content_to_full_html()
+  // to avoid issues with translations that have NULL titles.
+  // The entity-based approach was causing IntegrityConstraintViolation errors
+  // when saving nodes with translations that were created without proper title values.
+  
+  if (!isset($sandbox['#finished'])) {
+    $result = _bioland_update_content_to_full_html();
     $sandbox['#finished'] = 1;
-    return t('Updated @updated entities to use full_html format. Processed @total total entities (nodes: @nodes, media: @media, comments: @comments). Errors: @errors.', [
-      '@updated' => $sandbox['updated'],
-      '@total' => $sandbox['total'],
-      '@nodes' => $sandbox['node_count'],
-      '@media' => $sandbox['media_count'],
-      '@comments' => $sandbox['comment_count'],
-      '@errors' => $sandbox['errors'],
+    
+    return t('Updated @updated text format fields to full_html using direct database queries. Errors: @errors.', [
+      '@updated' => $result['updated'],
+      '@errors' => $result['errors'],
     ]);
   }
-
-  return t('Updating entities to full_html format: @progress of @total (@phase phase)...', [
-    '@progress' => $sandbox['progress'],
-    '@total' => $sandbox['total'],
-    '@phase' => $sandbox['current_phase'],
-  ]);
+  
+  return t('Update already completed.');
 }
 
 /**
@@ -2856,6 +2650,96 @@ function _bioland_configure_search_api_index() {
 
   \Drupal::logger('bioland')->notice('Configured search_api.index.content with language field.');
   return t('Configured Search API content index with language field.');
+}
+
+/**
+ * Disable the Search API content index.
+ *
+ * Called at the start of install to prevent indexing during configuration.
+ * The index will be re-enabled by _bioland_final_reindex() at the end.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_disable_search_index() {
+  if ($skip = _bioland_require_module('search_api', 'index disable')) {
+    return $skip;
+  }
+
+  try {
+    $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+    $index = $index_storage->load('content');
+
+    if (!$index) {
+      return t('Search API index "content" not found; skipping disable.');
+    }
+
+    if ($index->status()) {
+      $index->disable()->save();
+      \Drupal::logger('bioland')->notice('Disabled Search API content index during install.');
+    }
+
+    return t('Search API content index disabled.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->warning('Could not disable Search API index: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Warning: Could not disable index: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Final reindex step - MUST be called at the end of install/update.
+ *
+ * Re-enables the search index (if disabled), rebuilds tracking information,
+ * and indexes all items. This is the ONLY place where reindexing should be
+ * triggered during install to avoid multiple redundant reindex operations.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_final_reindex() {
+  if ($skip = _bioland_require_module('search_api', 'final reindex')) {
+    return $skip;
+  }
+
+  try {
+    $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+    $index = $index_storage->load('content');
+
+    if (!$index) {
+      \Drupal::logger('bioland')->notice('Search API index "content" not found; skipping final reindex.');
+      return t('Search API index "content" not found; skipping final reindex.');
+    }
+
+    // Re-enable the index if it was disabled.
+    if (!$index->status()) {
+      $index->enable()->save();
+      \Drupal::logger('bioland')->notice('Re-enabled Search API content index.');
+    }
+
+    // Rebuild tracking information.
+    $index->rebuildTracker();
+
+    // Mark all items for reindexing.
+    $index->reindex();
+
+    // Perform the actual indexing (-1 means no limit).
+    $indexed = $index->indexItems(-1);
+
+    $message = t('Final reindex complete: re-enabled index, rebuilt tracking, and indexed @count items.', [
+      '@count' => $indexed,
+    ]);
+    \Drupal::logger('bioland')->notice($message);
+    return $message;
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Error during final reindex: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error during final reindex: @message', ['@message' => $e->getMessage()]);
+  }
 }
 
 /**
