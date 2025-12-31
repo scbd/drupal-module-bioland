@@ -2653,16 +2653,17 @@ function _bioland_configure_search_api_index() {
 }
 
 /**
- * Disable the Search API content index.
+ * Pause immediate indexing on the Search API content index.
  *
  * Called at the start of install to prevent indexing during configuration.
- * The index will be re-enabled by _bioland_final_reindex() at the end.
+ * Sets index_directly to FALSE so content changes don't trigger immediate indexing.
+ * The option will be restored by _bioland_final_reindex() at the end.
  *
  * @return string
  *   Status message.
  */
 function _bioland_disable_search_index() {
-  if ($skip = _bioland_require_module('search_api', 'index disable')) {
+  if ($skip = _bioland_require_module('search_api', 'pause indexing')) {
     return $skip;
   }
 
@@ -2671,28 +2672,29 @@ function _bioland_disable_search_index() {
     $index = $index_storage->load('content');
 
     if (!$index) {
-      return t('Search API index "content" not found; skipping disable.');
+      return t('Search API index "content" not found; skipping pause.');
     }
 
-    if ($index->status()) {
-      $index->disable()->save();
-      \Drupal::logger('bioland')->notice('Disabled Search API content index during install.');
-    }
+    // Turn off immediate indexing instead of disabling the index entirely.
+    // This avoids entity state issues when re-enabling.
+    $index->setOption('index_directly', FALSE);
+    $index->save();
+    \Drupal::logger('bioland')->notice('Paused immediate indexing on Search API content index during install.');
 
-    return t('Search API content index disabled.');
+    return t('Search API content index: immediate indexing paused.');
   }
   catch (\Exception $e) {
-    \Drupal::logger('bioland')->warning('Could not disable Search API index: @message', [
+    \Drupal::logger('bioland')->warning('Could not pause Search API indexing: @message', [
       '@message' => $e->getMessage(),
     ]);
-    return t('Warning: Could not disable index: @message', ['@message' => $e->getMessage()]);
+    return t('Warning: Could not pause indexing: @message', ['@message' => $e->getMessage()]);
   }
 }
 
 /**
  * Final reindex step - MUST be called at the end of install/update.
  *
- * Re-enables the search index (if disabled), rebuilds tracking information,
+ * Restores immediate indexing, rebuilds tracking information,
  * and indexes all items. This is the ONLY place where reindexing should be
  * triggered during install to avoid multiple redundant reindex operations.
  *
@@ -2713,11 +2715,10 @@ function _bioland_final_reindex() {
       return t('Search API index "content" not found; skipping final reindex.');
     }
 
-    // Re-enable the index if it was disabled.
-    if (!$index->status()) {
-      $index->enable()->save();
-      \Drupal::logger('bioland')->notice('Re-enabled Search API content index.');
-    }
+    // Restore immediate indexing (was paused at start of install).
+    $index->setOption('index_directly', TRUE);
+    $index->save();
+    \Drupal::logger('bioland')->notice('Restored immediate indexing on Search API content index.');
 
     // Rebuild tracking information.
     $index->rebuildTracker();
@@ -2728,7 +2729,7 @@ function _bioland_final_reindex() {
     // Perform the actual indexing (-1 means no limit).
     $indexed = $index->indexItems(-1);
 
-    $message = t('Final reindex complete: re-enabled index, rebuilt tracking, and indexed @count items.', [
+    $message = t('Final reindex complete: restored immediate indexing, rebuilt tracking, and indexed @count items.', [
       '@count' => $indexed,
     ]);
     \Drupal::logger('bioland')->notice($message);
