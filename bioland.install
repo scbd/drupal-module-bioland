@@ -3173,6 +3173,11 @@ function _bioland_configure_content_types() {
         $term->set('field_icon', $content_type['icon']);
       }
       
+      // Ensure new terms are disabled (status = 0).
+      if ($is_new) {
+        $term->set('status', 0);
+      }
+      
       $term->save();
       
       if ($is_new) {

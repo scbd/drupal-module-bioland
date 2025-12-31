@@ -120,13 +120,50 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#optional' => TRUE,
     ];
 
-    // Re-create the language select in the sidebar.
-    if (isset($form['langcode']['widget'][0]['value'])) {
+    // Try to get language options from the widget, or fall back to language manager.
+    $langcode_options = NULL;
+    $default_langcode = NULL;
+    
+    // Try structure: langcode[widget][0][value] (standard language_select widget).
+    if (isset($form['langcode']['widget'][0]['value']['#options'])) {
+      $langcode_options = $form['langcode']['widget'][0]['value']['#options'];
+      $default_langcode = $form['langcode']['widget'][0]['value']['#default_value'] ?? NULL;
+    }
+    // Try structure: langcode[widget][0] directly (some widget configurations).
+    elseif (isset($form['langcode']['widget'][0]['#options'])) {
+      $langcode_options = $form['langcode']['widget'][0]['#options'];
+      $default_langcode = $form['langcode']['widget'][0]['#default_value'] ?? NULL;
+    }
+    // Try structure: langcode[widget] directly.
+    elseif (isset($form['langcode']['widget']['#options'])) {
+      $langcode_options = $form['langcode']['widget']['#options'];
+      $default_langcode = $form['langcode']['widget']['#default_value'] ?? NULL;
+    }
+    // Fallback: get languages from the language manager.
+    else {
+      $language_manager = \Drupal::languageManager();
+      $languages = $language_manager->getLanguages();
+      $langcode_options = [];
+      foreach ($languages as $langcode => $language) {
+        $langcode_options[$langcode] = $language->getName();
+      }
+      // Get default from the entity or current language.
+      $entity = $form_state->getFormObject()->getEntity();
+      if ($entity && method_exists($entity, 'language')) {
+        $default_langcode = $entity->language()->getId();
+      }
+      else {
+        $default_langcode = $language_manager->getCurrentLanguage()->getId();
+      }
+    }
+
+    // Re-create the language select in the sidebar if we have options.
+    if (!empty($langcode_options)) {
       $form['language_selection_wrapper']['langcode_select'] = [
         '#type' => 'select',
         '#title' => t('Content language'),
-        '#options' => $form['langcode']['widget'][0]['value']['#options'],
-        '#default_value' => $form['langcode']['widget'][0]['value']['#default_value'],
+        '#options' => $langcode_options,
+        '#default_value' => $default_langcode,
         '#description' => t('Select the language for this content.'),
       ];
       
