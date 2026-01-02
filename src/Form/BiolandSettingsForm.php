@@ -264,23 +264,6 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#attributes' => ['id' => 'system-functions-messages'],
       ];
 
-      // Promote and Sticky section
-      $form['system_functions']['promote_sticky_section'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Promote and Sticky'),
-        '#collapsible' => FALSE,
-      ];
-
-      $form['system_functions']['promote_sticky_section']['promote_sticky_description'] = [
-        '#markup' => '<p>' . $this->t('Promote and Sticky flags on records can be seen by public or anonymous users.') . '</p>',
-      ];
-
-      $form['system_functions']['promote_sticky_section']['promote_and_sticky_public'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Show Promote and Sticky flags to public users'),
-        '#default_value' => $config->get('config.promote_and_sticky_public') !== FALSE,
-      ];
-
       // Cache Rebuild section
       $form['system_functions']['cache_section'] = [
         '#type' => 'fieldset',
@@ -306,27 +289,120 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      // Reset Ordering section
-      $form['system_functions']['ordering_section'] = [
+      // Translation Defaults section (moved from translation tab)
+      $form['system_functions']['translation_section'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Content Ordering Reset'),
+        '#title' => $this->t('Translation Defaults'),
+        '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
         '#collapsible' => FALSE,
       ];
 
-      $form['system_functions']['ordering_section']['ordering_description'] = [
-        '#markup' => '<p>' . $this->t('Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
+      $form['system_functions']['translation_section']['auto_create'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Automatically create translation defaults'),
+        '#description' => $this->t('When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten.'),
+        '#default_value' => $config->get('translation.auto_create') ?: FALSE,
       ];
 
-      $form['system_functions']['ordering_section']['reset_ordering'] = [
+      $form['system_functions']['translation_section']['use_all_languages'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Use all available languages'),
+        '#description' => $this->t('When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used.'),
+        '#default_value' => $config->get('translation.use_all_languages') ?: TRUE,
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Get available languages.
+      $languages = $this->languageManager->getLanguages();
+      // Filter out Lolspeak language.
+      $languages = array_filter($languages, function($language) {
+        return $language->getId() !== 'en-x-lolspeak';
+      });
+      $language_options = [];
+      foreach ($languages as $langcode => $language) {
+        $language_options[$langcode] = $language->getName();
+      }
+
+      $form['system_functions']['translation_section']['target_languages'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Target languages for translation defaults'),
+        '#description' => $this->t('Select which languages to create translation defaults for. Used only when "Use all available languages" is disabled.'),
+        '#options' => $language_options,
+        '#default_value' => array_combine(
+          $config->get('translation.target_languages') ?: [],
+          $config->get('translation.target_languages') ?: []
+        ),
+        '#states' => [
+          'visible' => [
+            ':input[name="use_all_languages"]' => ['checked' => FALSE],
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $form['system_functions']['translation_section']['copy_source_values'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Copy source field values'),
+        '#description' => $this->t('When enabled, translatable field values from the source language will be copied to new translations.'),
+        '#default_value' => $config->get('translation.copy_source_values') !== FALSE,
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Get content entity types.
+      $entity_types = $this->entityTypeManager->getDefinitions();
+      $content_entity_options = [];
+      foreach ($entity_types as $entity_type_id => $entity_type) {
+        if ($entity_type->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
+          $content_entity_options[$entity_type_id] = $entity_type->getLabel();
+        }
+      }
+
+      $form['system_functions']['translation_section']['entity_types'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Entity types') . ' ' . $this->t('(Required)'),
+        '#description' => $this->t('<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>.'),
+        '#options' => $content_entity_options,
+        '#default_value' => array_combine(
+          $config->get('translation.entity_types') ?: [],
+          $config->get('translation.entity_types') ?: []
+        ),
+        '#states' => [
+          'visible' => [
+            ':input[name="auto_create"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      // Batch Operations for translation defaults
+      $form['system_functions']['translation_section']['batch_operations'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Batch Operations'),
+        '#description' => $this->t('Process existing entities to create missing translation defaults.'),
+        '#open' => FALSE,
+      ];
+
+      $form['system_functions']['translation_section']['batch_operations']['batch_entity_type'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Entity type to process'),
+        '#options' => ['' => $this->t('- Select -')] + $content_entity_options,
+        '#description' => $this->t('Select an entity type to create translations for existing entities.'),
+      ];
+
+      $form['system_functions']['translation_section']['batch_operations']['run_batch'] = [
         '#type' => 'submit',
-        '#value' => $this->t('Reset Ordering'),
-        '#submit' => ['::submitResetOrdering'],
-        '#ajax' => [
-          'callback' => '::ajaxResetOrdering',
-          'wrapper' => 'system-functions-messages',
-          'progress' => [
-            'type' => 'throbber',
-            'message' => $this->t('Resetting ordering values...'),
+        '#value' => $this->t('Create translation defaults for existing entities'),
+        '#submit' => ['::submitBatchForm'],
+        '#states' => [
+          'visible' => [
+            ':input[name="batch_entity_type"]' => ['!value' => ''],
           ],
         ],
       ];
@@ -805,29 +881,73 @@ class BiolandSettingsForm extends ConfigFormBase {
       }
     }
 
-    if ($section === 'configuration') {
-      // Redirect to the first sub-tab (General) when accessing the parent Configuration tab
+    if ($section === 'front_end') {
+      // Redirect to the first sub-tab (Front End General) when accessing the parent Front End tab
       $response = new \Symfony\Component\HttpFoundation\RedirectResponse(
-        \Drupal\Core\Url::fromRoute('bioland.settings.configuration.general')->toString()
+        \Drupal\Core\Url::fromRoute('bioland.settings.front_end.general')->toString()
       );
       $response->send();
       exit;
     }
 
-    if ($section === 'configuration_general') {
-      $form['configuration_general_settings'] = [
+    if ($section === 'front_end_general') {
+      $form['front_end_general_settings'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('General Configuration'),
+        '#title' => $this->t('Front End General'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      $form['configuration_general_settings']['placeholder'] = [
-        '#markup' => '<p>' . $this->t('General configuration settings coming soon.') . '</p>',
+      // Promote and Sticky section (moved from system_functions)
+      $form['front_end_general_settings']['promote_sticky_section'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Promote and Sticky'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['front_end_general_settings']['promote_sticky_section']['promote_sticky_description'] = [
+        '#markup' => '<p>' . $this->t('Promote and Sticky flags on records can be seen by public or anonymous users.') . '</p>',
+      ];
+
+      $form['front_end_general_settings']['promote_sticky_section']['promote_and_sticky_public'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Show Promote and Sticky flags to public users'),
+        '#default_value' => $config->get('config.promote_and_sticky_public') !== FALSE,
+      ];
+
+      // Content Ordering Reset section (moved from system_functions)
+      $form['front_end_general_settings']['ordering_section'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Content Ordering Reset'),
+        '#collapsible' => FALSE,
+      ];
+
+      // Wrapper for AJAX messages
+      $form['front_end_general_settings']['ordering_section']['messages_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => ['id' => 'front-end-general-messages'],
+      ];
+
+      $form['front_end_general_settings']['ordering_section']['ordering_description'] = [
+        '#markup' => '<p>' . $this->t('Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message "Reset ordering". The original last updated date and user are preserved. Use this to normalize content ordering across the site.') . '</p>',
+      ];
+
+      $form['front_end_general_settings']['ordering_section']['reset_ordering'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Reset Ordering'),
+        '#submit' => ['::submitResetOrdering'],
+        '#ajax' => [
+          'callback' => '::ajaxResetOrdering',
+          'wrapper' => 'front-end-general-messages',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => $this->t('Resetting ordering values...'),
+          ],
+        ],
       ];
     }
 
-    if ($section === 'configuration_mega_menu') {
+    if ($section === 'front_end_mega_menu') {
       $form['mega_menu_settings'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Mega Menu Settings'),
@@ -840,7 +960,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
     }
 
-    if ($section === 'configuration_home_page') {
+    if ($section === 'front_end_home_page') {
       $form['home_page_settings'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Home Page Settings'),
@@ -931,124 +1051,6 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
     }
 
-    if ($section === 'translation') {
-      $form['translation'] = [
-        '#type' => 'details',
-        '#title' => $this->t('Translation Defaults'),
-        '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
-        '#open' => TRUE,
-      ];
-
-      $form['translation']['auto_create'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Automatically create translation defaults'),
-        '#description' => $this->t('When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten.'),
-        '#default_value' => $config->get('translation.auto_create') ?: FALSE,
-      ];
-
-      $form['translation']['use_all_languages'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Use all available languages'),
-        '#description' => $this->t('When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used.'),
-        '#default_value' => $config->get('translation.use_all_languages') ?: TRUE,
-        '#states' => [
-          'visible' => [
-            ':input[name="auto_create"]' => ['checked' => TRUE],
-          ],
-        ],
-      ];
-
-      // Get available languages.
-      $languages = $this->languageManager->getLanguages();
-      // Filter out Lolspeak language.
-      $languages = array_filter($languages, function($language) {
-        return $language->getId() !== 'en-x-lolspeak';
-      });
-      $language_options = [];
-      foreach ($languages as $langcode => $language) {
-        $language_options[$langcode] = $language->getName();
-      }
-
-      $form['translation']['target_languages'] = [
-        '#type' => 'checkboxes',
-        '#title' => $this->t('Target languages for translation defaults'),
-        '#description' => $this->t('Select which languages to create translation defaults for. Used only when "Use all available languages" is disabled.'),
-        '#options' => $language_options,
-        '#default_value' => array_combine(
-          $config->get('translation.target_languages') ?: [],
-          $config->get('translation.target_languages') ?: []
-        ),
-        '#states' => [
-          'visible' => [
-            ':input[name="use_all_languages"]' => ['checked' => FALSE],
-            ':input[name="auto_create"]' => ['checked' => TRUE],
-          ],
-        ],
-      ];
-
-      $form['translation']['copy_source_values'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Copy source field values'),
-        '#description' => $this->t('When enabled, translatable field values from the source language will be copied to new translations.'),
-        '#default_value' => $config->get('translation.copy_source_values') !== FALSE,
-        '#states' => [
-          'visible' => [
-            ':input[name="auto_create"]' => ['checked' => TRUE],
-          ],
-        ],
-      ];
-
-      // Get content entity types.
-      $entity_types = $this->entityTypeManager->getDefinitions();
-      $content_entity_options = [];
-      foreach ($entity_types as $entity_type_id => $entity_type) {
-        if ($entity_type->entityClassImplements('Drupal\Core\Entity\ContentEntityInterface')) {
-          $content_entity_options[$entity_type_id] = $entity_type->getLabel();
-        }
-      }
-
-      $form['translation']['entity_types'] = [
-        '#type' => 'checkboxes',
-        '#title' => $this->t('Entity types') . ' ' . $this->t('(Required)'),
-        '#description' => $this->t('<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>.'),
-        '#options' => $content_entity_options,
-        '#default_value' => array_combine(
-          $config->get('translation.entity_types') ?: [],
-          $config->get('translation.entity_types') ?: []
-        ),
-        '#states' => [
-          'visible' => [
-            ':input[name="auto_create"]' => ['checked' => TRUE],
-          ],
-        ],
-      ];
-
-      $form['translation']['batch_operations'] = [
-        '#type' => 'details',
-        '#title' => $this->t('Batch Operations'),
-        '#description' => $this->t('Process existing entities to create missing translation defaults.'),
-        '#open' => TRUE,
-      ];
-
-      $form['translation']['batch_operations']['batch_entity_type'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Entity type to process'),
-        '#options' => ['' => $this->t('- Select -')] + $content_entity_options,
-        '#description' => $this->t('Select an entity type to create translations for existing entities.'),
-      ];
-
-      $form['translation']['batch_operations']['run_batch'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Create translation defaults for existing entities'),
-        '#submit' => ['::submitBatchForm'],
-        '#states' => [
-          'visible' => [
-            ':input[name="batch_entity_type"]' => ['!value' => ''],
-          ],
-        ],
-      ];
-    }
-
     // Attach the settings toggle library
     $form['#attached']['library'][] = 'bioland/settings_toggle';
 
@@ -1066,8 +1068,8 @@ class BiolandSettingsForm extends ConfigFormBase {
 
     $section = $form_state->get('bioland_section');
 
-    if ($section === 'translation') {
-      // Validate translation settings
+    if ($section === 'system_functions') {
+      // Validate translation settings that are now in system_functions
       $auto_create = $form_state->getValue('auto_create');
       $entity_types = array_filter($form_state->getValue('entity_types') ?: []);
 
@@ -1274,21 +1276,23 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('debug_log_areas.help_comments', $values['debug_log_help_comments']);
     }
 
-    if ($section === 'translation') {
-      $target_languages = array_filter($values['target_languages']);
-      $entity_types = array_filter($values['entity_types']);
+    if ($section === 'system_functions') {
+      // Save translation settings (moved from translation section)
+      $target_languages = array_filter($values['target_languages'] ?? []);
+      $entity_types = array_filter($values['entity_types'] ?? []);
 
       $config
-        ->set('translation.auto_create', $values['auto_create'])
-        ->set('translation.use_all_languages', $values['use_all_languages'])
+        ->set('translation.auto_create', $values['auto_create'] ?? FALSE)
+        ->set('translation.use_all_languages', $values['use_all_languages'] ?? TRUE)
         ->set('translation.target_languages', array_values($target_languages))
-        ->set('translation.copy_source_values', $values['copy_source_values'])
+        ->set('translation.copy_source_values', $values['copy_source_values'] ?? FALSE)
         ->set('translation.entity_types', array_values($entity_types));
     }
 
-    if ($section === 'system_functions') {
+    if ($section === 'front_end_general') {
+      // Save Promote and Sticky settings (moved from system_functions)
       $config
-        ->set('config.promote_and_sticky_public', (bool) $values['promote_and_sticky_public']);
+        ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
     }
 
     $config->save();

@@ -10,28 +10,28 @@ bioland.settings_system_functions_tab:
   base_route: bioland.settings
   weight: 0
 
-bioland.settings_configuration_tab:
-  route_name: bioland.settings.configuration
-  title: 'Configuration'
+bioland.settings_front_end_tab:
+  route_name: bioland.settings.front_end
+  title: 'Front End'
   base_route: bioland.settings
   weight: 1
 
-bioland.settings_configuration_general_tab:
-  route_name: bioland.settings.configuration.general
-  title: 'General'
-  base_route: bioland.settings.configuration
+bioland.settings_front_end_general_tab:
+  route_name: bioland.settings.front_end.general
+  title: 'Front End General'
+  base_route: bioland.settings.front_end
   weight: 0
 
-bioland.settings_configuration_mega_menu_tab:
-  route_name: bioland.settings.configuration.mega_menu
+bioland.settings_front_end_mega_menu_tab:
+  route_name: bioland.settings.front_end.mega_menu
   title: 'Mega Menu'
-  base_route: bioland.settings.configuration
+  base_route: bioland.settings.front_end
   weight: 1
 
-bioland.settings_configuration_home_page_tab:
-  route_name: bioland.settings.configuration.home_page
+bioland.settings_front_end_home_page_tab:
+  route_name: bioland.settings.front_end.home_page
   title: 'Home Page'
-  base_route: bioland.settings.configuration
+  base_route: bioland.settings.front_end
   weight: 2
 
 bioland.settings_field_visibility_tab:
@@ -45,12 +45,6 @@ bioland.settings_tags_tab:
   title: 'Tags'
   base_route: bioland.settings
   weight: 3
-
-bioland.settings_translation_tab:
-  route_name: bioland.settings.translation
-  title: 'Translation Defaults'
-  base_route: bioland.settings
-  weight: 4
 
 bioland.settings_help_comments_tab:
   route_name: bioland.settings.help_comments

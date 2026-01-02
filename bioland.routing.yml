@@ -16,15 +16,6 @@ bioland.settings.field_visibility:
   requirements:
     _permission: 'administer bioland field settings'
 
-bioland.settings.translation:
-  path: '/admin/config/bioland/settings/translation'
-  defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
-    _title: 'Translation Defaults'
-    section: 'translation'
-  requirements:
-    _permission: 'administer bioland translation settings'
-
 bioland.settings.tags:
   path: '/admin/config/bioland/settings/tags'
   defaults:
@@ -43,39 +34,39 @@ bioland.settings.help_comments:
   requirements:
     _permission: 'administer bioland field settings'
 
-bioland.settings.configuration:
-  path: '/admin/config/bioland/settings/configuration'
+bioland.settings.front_end:
+  path: '/admin/config/bioland/settings/front-end'
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
-    _title: 'Configuration'
-    section: 'configuration'
+    _title: 'Front End'
+    section: 'front_end'
   requirements:
     _permission: 'administer bioland settings'
 
-bioland.settings.configuration.general:
-  path: '/admin/config/bioland/settings/configuration/general'
+bioland.settings.front_end.general:
+  path: '/admin/config/bioland/settings/front-end/general'
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
-    _title: 'General'
-    section: 'configuration_general'
+    _title: 'Front End General'
+    section: 'front_end_general'
   requirements:
     _permission: 'administer bioland settings'
 
-bioland.settings.configuration.mega_menu:
-  path: '/admin/config/bioland/settings/configuration/mega-menu'
+bioland.settings.front_end.mega_menu:
+  path: '/admin/config/bioland/settings/front-end/mega-menu'
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
     _title: 'Mega Menu'
-    section: 'configuration_mega_menu'
+    section: 'front_end_mega_menu'
   requirements:
     _permission: 'administer bioland settings'
 
-bioland.settings.configuration.home_page:
-  path: '/admin/config/bioland/settings/configuration/home-page'
+bioland.settings.front_end.home_page:
+  path: '/admin/config/bioland/settings/front-end/home-page'
   defaults:
     _form: '\Drupal\bioland\Form\BiolandSettingsForm'
     _title: 'Home Page'
-    section: 'configuration_home_page'
+    section: 'front_end_home_page'
   requirements:
     _permission: 'administer bioland settings'
 

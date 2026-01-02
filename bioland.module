@@ -105,21 +105,19 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
   }
 
+  // Ensure the advanced sidebar exists for our custom elements.
+  if (!isset($form['advanced'])) {
+    $form['advanced'] = [
+      '#type' => 'vertical_tabs',
+      '#weight' => 99,
+    ];
+  }
+
   // Move langcode field to the sidebar (advanced group).
   if (isset($form['langcode'])) {
     // Hide the default langcode field position.
     $form['langcode']['#access'] = FALSE;
     
-    // Create a language selection wrapper in the sidebar.
-    $form['language_selection_wrapper'] = [
-      '#type' => 'details',
-      '#title' => t('Language'),
-      '#group' => 'advanced',
-      '#weight' => 85, // Place after revision information (usually 20) and before Order Override (90).
-      '#open' => FALSE,
-      '#optional' => TRUE,
-    ];
-
     // Try to get language options from the widget, or fall back to language manager.
     $langcode_options = NULL;
     $default_langcode = NULL;
@@ -159,16 +157,30 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
     // Re-create the language select in the sidebar if we have options.
     if (!empty($langcode_options)) {
+      // Create a language selection wrapper in the sidebar.
+      $form['language_selection_wrapper'] = [
+        '#type' => 'details',
+        '#title' => t('Language'),
+        '#group' => 'advanced',
+        '#weight' => -100,
+        '#open' => FALSE,
+        '#attributes' => ['class' => ['bioland-language-wrapper']],
+      ];
+
       $form['language_selection_wrapper']['langcode_select'] = [
         '#type' => 'select',
         '#title' => t('Content language'),
         '#options' => $langcode_options,
         '#default_value' => $default_langcode,
         '#description' => t('Select the language for this content.'),
+        '#attributes' => [
+          'id' => 'bioland-langcode-select',
+          'data-current-path' => \Drupal::request()->getPathInfo(),
+        ],
       ];
       
-      // Add a process callback to sync the values.
-      $form['#process'][] = 'bioland_langcode_process';
+      // Attach the language redirect library.
+      $form['#attached']['library'][] = 'bioland/language_redirect';
     }
   }
 
@@ -210,27 +222,31 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
     $form['field_order']['#group'] = 'order_override_wrapper';
   }
-}
 
-/**
- * Process callback to sync langcode values between sidebar and hidden field.
- */
-function bioland_langcode_process($element, FormStateInterface $form_state, $form) {
-  // Add a submit handler to sync the value back to the hidden langcode field.
-  array_unshift($form['actions']['submit']['#submit'], 'bioland_langcode_submit');
-  return $element;
-}
+  // Wrap the meta section in a proper collapsible details element.
+  // The meta section contains "Last saved" and "Author" information.
+  if (isset($form['meta'])) {
+    // Create a new wrapper for the meta content.
+    $form['meta_wrapper'] = [
+      '#type' => 'details',
+      '#title' => t('Meta'),
+      '#group' => 'advanced',
+      '#weight' => isset($form['meta']['#weight']) ? $form['meta']['#weight'] : -99,
+      '#open' => FALSE,
+      '#attributes' => ['class' => ['bioland-meta-wrapper']],
+    ];
 
-/**
- * Submit handler to sync language selection from sidebar to langcode field.
- */
-function bioland_langcode_submit($form, FormStateInterface $form_state) {
-  // Get the value from the sidebar language select.
-  $sidebar_langcode = $form_state->getValue(['language_selection_wrapper', 'langcode_select']);
-  
-  if ($sidebar_langcode) {
-    // Set it to the actual langcode field that Drupal expects.
-    $form_state->setValue(['langcode', 0, 'value'], $sidebar_langcode);
+    // Move meta content into the wrapper.
+    $form['meta']['#group'] = 'meta_wrapper';
+    // Remove the accordion class that prevents proper collapse behavior.
+    if (isset($form['meta']['#attributes']['class'])) {
+      $form['meta']['#attributes']['class'] = array_filter(
+        (array) $form['meta']['#attributes']['class'],
+        function ($class) {
+          return strpos($class, 'accordion') === FALSE;
+        }
+      );
+    }
   }
 }
 

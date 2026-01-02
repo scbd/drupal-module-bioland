@@ -74,7 +74,7 @@ Update hooks run in numerical order during `drush updb`:
 ## 9021 *(v1.0.30)*
 - `_bioland_provision_users()` - Create/update users from environment variables:
 
-**E2E Test Users** (env var: `E2E_USERS` for password, create if not exists):
+**E2E Test Users** (env var: `E2E_USERS` for password, create or update):
 | Email | Roles |
 |-------|-------|
 | e2e-authenticated@chm-cbd.net | system |
@@ -83,7 +83,7 @@ Update hooks run in numerical order during `drush updb`:
 | e2e-site-manager@chm-cbd.net | system, site_manager |
 | e2e-scbd-staff@chm-cbd.net | system, scbd_staff |
 
-**Bioland Users** (env var: `BIOLAND_USERS` for password, create if not exists):
+**Bioland Users** (env var: `BIOLAND_USERS` for password, create or update):
 | Email | Roles |
 |-------|-------|
 | bioland-contributor@chm-cbd.net | system, contributor |
@@ -92,7 +92,7 @@ Update hooks run in numerical order during `drush updb`:
 | bioland-scbd@chm-cbd.net | system, scbd_staff |
 | bioland@chm-cbd.net | system |
 
-**Training Users** (env var: `TRAINING_USERS` for password, create if not exists):
+**Training Users** (env var: `TRAINING_USERS` for password, create or update):
 | Email | Roles |
 |-------|-------|
 | training-contributor@chm-cbd.net | system, contributor |

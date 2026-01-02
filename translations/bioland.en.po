@@ -989,20 +989,20 @@ msgid "Successfully reset field_order to 1000 for @count nodes."
 msgstr "Successfully reset field_order to 1000 for @count nodes."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Configuration"
-msgstr "Configuration"
+msgid "Front End"
+msgstr "Front End"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select a tab above to configure settings."
-msgstr "Select a tab above to configure settings."
+msgid "Front End General"
+msgstr "Front End General"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "General Configuration"
-msgstr "General Configuration"
+msgid "Translation Batch Operations"
+msgstr "Translation Batch Operations"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "General configuration settings coming soon."
-msgstr "General configuration settings coming soon."
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu Settings"

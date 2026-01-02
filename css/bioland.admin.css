@@ -105,5 +105,25 @@
   pointer-events: auto !important;
   cursor: pointer !important;
 }
-  font-size: 0.9em;
+
+/* Meta wrapper in sidebar - ensure content displays properly */
+.bioland-meta-wrapper .entity-meta__header {
+  padding: 0;
+  margin: 0;
+}
+
+.bioland-meta-wrapper .entity-meta__last-saved,
+.bioland-meta-wrapper .entity-meta__author {
+  margin-bottom: 0.5em;
+}
+
+.bioland-meta-wrapper .form-item__label {
+  font-weight: 600;
+  margin-bottom: 0.25em;
+}
+
+/* Ensure all sidebar details sections start collapsed */
+.bioland-language-wrapper,
+.bioland-meta-wrapper {
+  margin-bottom: 0;
 }

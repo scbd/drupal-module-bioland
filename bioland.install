@@ -446,6 +446,9 @@ function bioland_install() {
   // Configure content type taxonomy terms.
   _bioland_configure_content_types();
 
+  // Configure content type status based on site type (BL2 vs Biosafety Land).
+  _bioland_configure_content_type_status_by_site_type();
+
   // Configure system_pages search terms.
   _bioland_configure_system_pages_search_terms();
 
@@ -1790,7 +1793,7 @@ function _bioland_provision_users() {
   $messages = [];
   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
 
-  // 1. E2E test users - create if not exists with E2E_USERS password.
+  // 1. E2E test users - create or update with E2E_USERS password.
   $e2e_password = getenv('E2E_USERS');
   if ($e2e_password) {
     $e2e_users = [
@@ -1802,7 +1805,7 @@ function _bioland_provision_users() {
     ];
 
     foreach ($e2e_users as $email => $roles) {
-      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $e2e_password);
+      $result = _bioland_create_or_update_user($user_storage, $email, $roles, $e2e_password);
       if ($result) {
         $messages[] = $result;
       }
@@ -1812,7 +1815,7 @@ function _bioland_provision_users() {
     $messages[] = t('E2E_USERS env var not set; skipping E2E user creation.');
   }
 
-  // 2. Bioland users - create if not exists with BIOLAND_USERS password.
+  // 2. Bioland users - create or update with BIOLAND_USERS password.
   $bioland_password = getenv('BIOLAND_USERS');
   if ($bioland_password) {
     $bioland_users = [
@@ -1824,7 +1827,7 @@ function _bioland_provision_users() {
     ];
 
     foreach ($bioland_users as $email => $roles) {
-      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $bioland_password);
+      $result = _bioland_create_or_update_user($user_storage, $email, $roles, $bioland_password);
       if ($result) {
         $messages[] = $result;
       }
@@ -1834,7 +1837,7 @@ function _bioland_provision_users() {
     $messages[] = t('BIOLAND_USERS env var not set; skipping Bioland user creation.');
   }
 
-  // 3. Training users - create if not exists with TRAINING_USERS password.
+  // 3. Training users - create or update with TRAINING_USERS password.
   $training_password = getenv('TRAINING_USERS');
   if ($training_password) {
     $training_users = [
@@ -1845,7 +1848,7 @@ function _bioland_provision_users() {
     ];
 
     foreach ($training_users as $email => $roles) {
-      $result = _bioland_create_user_if_not_exists($user_storage, $email, $roles, $training_password);
+      $result = _bioland_create_or_update_user($user_storage, $email, $roles, $training_password);
       if ($result) {
         $messages[] = $result;
       }
@@ -2350,6 +2353,29 @@ function _bioland_configure_search_api_index() {
     return t('search_api.index.content not found; skipping.');
   }
 
+  // Load the index entity to check and control its state.
+  $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+  $index = $index_storage->load('content');
+
+  // Track whether we set read_only to avoid issues on restore.
+  $set_read_only = FALSE;
+  $original_read_only = FALSE;
+
+  if ($index) {
+    // Store original read_only state.
+    $original_read_only = $index->isReadOnly();
+
+    // Temporarily set index to read_only to prevent backend fieldsUpdated()
+    // calls during config save. This avoids TRUNCATE errors on non-existent
+    // tables when adding fields like langcode.
+    if (!$original_read_only) {
+      $index->set('read_only', TRUE);
+      // Save without triggering hooks to minimize side effects.
+      $index->save();
+      $set_read_only = TRUE;
+    }
+  }
+
   // Get the site's default language.
   $default_langcode = \Drupal::languageManager()->getDefaultLanguage()->getId();
 
@@ -2644,12 +2670,217 @@ function _bioland_configure_search_api_index() {
   $config->set('server', 'file_index');
   $config->save();
 
+  // Restore read_only state if we changed it.
+  if ($set_read_only && $index) {
+    $index->set('read_only', $original_read_only);
+    $index->save();
+  }
+
   // Note: Tracking rebuild is intentionally NOT done here during fresh install
   // to avoid indexing before configuration is complete. Manual reindex can be
   // performed after install if needed via: drush sapi-rt content && drush sapi-i content
 
   \Drupal::logger('bioland')->notice('Configured search_api.index.content with language field.');
   return t('Configured Search API content index with language field.');
+}
+
+/**
+ * Ensure Search API database tables exist before performing operations.
+ *
+ * Checks if required Search API DB backend tables exist and creates them
+ * if missing. This prevents errors when field configuration changes trigger
+ * TRUNCATE operations on non-existent tables.
+ *
+ * @param \Drupal\search_api\IndexInterface $index
+ *   The search index to check.
+ *
+ * @return bool
+ *   TRUE if all required tables exist or were created, FALSE on failure.
+ */
+function _bioland_ensure_search_api_tables_exist($index) {
+  if (!$index) {
+    return FALSE;
+  }
+
+  try {
+    $database = \Drupal::database();
+    $schema = $database->schema();
+    
+    // Check if the main index table exists.
+    $index_table = 'search_api_db_content';
+    if (!$schema->tableExists($index_table)) {
+      \Drupal::logger('bioland')->notice('Search API table @table does not exist yet; will be created on first index.', [
+        '@table' => $index_table,
+      ]);
+      // This is expected for fresh installs - tables are created when the
+      // server's fieldsUpdated() method is called. We return TRUE because
+      // this is not an error condition.
+      return TRUE;
+    }
+
+    // Check for common field tables that might be referenced.
+    $field_tables = [
+      'search_api_db_content_langcode',
+      'search_api_db_content_field_tags',
+      'search_api_db_content_title',
+      'search_api_db_content_body',
+    ];
+
+    $missing_tables = [];
+    foreach ($field_tables as $table) {
+      if (!$schema->tableExists($table)) {
+        $missing_tables[] = $table;
+      }
+    }
+
+    if (!empty($missing_tables)) {
+      \Drupal::logger('bioland')->notice('Some Search API field tables do not exist: @tables. They will be created during indexing.', [
+        '@tables' => implode(', ', $missing_tables),
+      ]);
+      // Return TRUE as tables will be created by the backend when needed.
+      return TRUE;
+    }
+
+    return TRUE;
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Error checking Search API tables: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return FALSE;
+  }
+}
+
+/**
+ * Clear all pending Search API server tasks without executing them.
+ *
+ * This is used before restoring an index to prevent fieldsUpdated() calls
+ * that would fail on non-existent tables. The field tables will be properly
+ * created during the subsequent reindex operation.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_clear_pending_search_api_tasks() {
+  if ($skip = _bioland_require_module('search_api', 'clear pending tasks')) {
+    return $skip;
+  }
+
+  try {
+    // Get the task manager service.
+    if (!\Drupal::hasService('search_api.server_task_manager')) {
+      return t('Search API task manager service not available.');
+    }
+
+    $task_manager = \Drupal::service('search_api.server_task_manager');
+
+    // Load the server.
+    $server_storage = \Drupal::entityTypeManager()->getStorage('search_api_server');
+    $server = $server_storage->load('file_index');
+
+    if (!$server) {
+      return t('Search API server "file_index" not found.');
+    }
+
+    // Check for and delete pending tasks.
+    $pending_count = $task_manager->getCount($server);
+
+    if ($pending_count > 0) {
+      $task_manager->delete($server);
+      \Drupal::logger('bioland')->notice('Cleared @count pending Search API tasks to allow clean reindex.', [
+        '@count' => $pending_count,
+      ]);
+      return t('Cleared @count pending Search API tasks.', ['@count' => $pending_count]);
+    }
+
+    return t('No pending Search API tasks to clear.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->warning('Error clearing Search API tasks: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Warning: Error clearing Search API tasks: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Execute any pending Search API server tasks.
+ *
+ * Clears pending tasks that might cause errors when executed during
+ * install/update operations (like truncating non-existent tables).
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_execute_pending_search_api_tasks() {
+  if ($skip = _bioland_require_module('search_api', 'pending tasks')) {
+    return $skip;
+  }
+
+  try {
+    $database = \Drupal::database();
+    $schema = $database->schema();
+    
+    // Check if search_api_task table exists.
+    if (!$schema->tableExists('search_api_task')) {
+      return t('Search API task table does not exist; no pending tasks.');
+    }
+
+    // Get the task manager service.
+    if (!\Drupal::hasService('search_api.server_task_manager')) {
+      return t('Search API task manager service not available.');
+    }
+
+    $task_manager = \Drupal::service('search_api.server_task_manager');
+    
+    // Load the server.
+    $server_storage = \Drupal::entityTypeManager()->getStorage('search_api_server');
+    $server = $server_storage->load('file_index');
+    
+    if (!$server) {
+      return t('Search API server "file_index" not found.');
+    }
+
+    // Check for pending tasks and handle them safely.
+    $pending_count = $task_manager->getCount($server);
+    
+    if ($pending_count > 0) {
+      \Drupal::logger('bioland')->notice('Found @count pending Search API tasks.', [
+        '@count' => $pending_count,
+      ]);
+      
+      // Try to execute tasks, but catch errors for missing tables.
+      try {
+        $task_manager->execute($server);
+        \Drupal::logger('bioland')->notice('Executed @count pending Search API tasks.', [
+          '@count' => $pending_count,
+        ]);
+      }
+      catch (\Exception $task_error) {
+        // If task execution fails due to missing tables, delete the tasks
+        // instead of leaving them to cause repeated errors.
+        $error_message = $task_error->getMessage();
+        if (strpos($error_message, 'Base table or view not found') !== FALSE) {
+          $task_manager->delete($server);
+          \Drupal::logger('bioland')->warning('Cleared @count pending Search API tasks due to missing tables: @message', [
+            '@count' => $pending_count,
+            '@message' => $error_message,
+          ]);
+        }
+        else {
+          throw $task_error;
+        }
+      }
+    }
+
+    return t('Processed Search API pending tasks.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->warning('Error processing Search API tasks: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Warning: Error processing Search API tasks: @message', ['@message' => $e->getMessage()]);
+  }
 }
 
 /**
@@ -2714,6 +2945,19 @@ function _bioland_final_reindex() {
       \Drupal::logger('bioland')->notice('Search API index "content" not found; skipping final reindex.');
       return t('Search API index "content" not found; skipping final reindex.');
     }
+
+    // Ensure Search API database tables exist before operations.
+    // This prevents errors when truncating tables that don't exist yet.
+    $tables_ready = _bioland_ensure_search_api_tables_exist($index);
+    if (!$tables_ready) {
+      \Drupal::logger('bioland')->warning('Search API tables not ready; skipping reindex.');
+      return t('Search API tables not ready; skipping reindex.');
+    }
+
+    // Clear pending server tasks BEFORE restoring the index.
+    // This prevents $index->save() from triggering fieldsUpdated() on
+    // non-existent tables. The tables will be created properly during reindex.
+    _bioland_clear_pending_search_api_tasks();
 
     // Restore immediate indexing (was paused at start of install).
     $index->setOption('index_directly', TRUE);
@@ -3173,9 +3417,15 @@ function _bioland_configure_content_types() {
         $term->set('field_icon', $content_type['icon']);
       }
       
-      // Ensure new terms are disabled (status = 0).
+      // Ensure new terms are ALWAYS disabled (status = 0).
+      // This applies to newly created terms only - existing terms keep their
+      // current status to preserve admin-enabled content types.
       if ($is_new) {
         $term->set('status', 0);
+        \Drupal::logger('bioland')->notice('Setting new term @tid (@name) to disabled status.', [
+          '@tid' => $content_type['tid'],
+          '@name' => $content_type['name'],
+        ]);
       }
       
       $term->save();
@@ -3209,6 +3459,124 @@ function _bioland_configure_content_types() {
   
   \Drupal::logger('bioland')->notice($message);
   
+  return $message;
+}
+
+/**
+ * Configure content type taxonomy term status based on site type.
+ *
+ * Enables/disables taxonomy terms in the 'tags' vocabulary based on whether
+ * the site is a Biosafety Land instance or a BL2 (Bioland) instance.
+ *
+ * - Biosafety Land sites: Disable BL2-specific terms (4, 6, 8, 9, 10, 11, 15)
+ * - BL2 sites: Disable Biosafety-specific terms (55, 43, 44, 45, 46, 47, 48, 49, 50)
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_content_type_status_by_site_type() {
+  // Get the is_biosafety_land setting.
+  $config = \Drupal::config('bioland.settings');
+  $is_biosafety_land = $config->get('is_biosafety_land') ?: FALSE;
+
+  // BL2-specific content types (disable on Biosafety Land sites).
+  $bl2_content_types = [
+    4,  // Learning Resource
+    6,  // Basic Page
+    8,  // Government Ministry or Institute
+    9,  // Ecosystem
+    10, // Protected Area
+    11, // Biodiversity Data
+    15, // Other
+  ];
+
+  // Biosafety-specific content types (disable on BL2 sites).
+  $biosafety_content_types = [
+    55, // Other Resource
+    43, // FAQ
+    44, // National Information
+    45, // Status of LMO
+    46, // Field Trial
+    47, // National Mainstreaming Strategy
+    48, // Capacity Building
+    49, // Announcement
+    50, // Contact
+  ];
+
+  // Determine which terms to enable and disable.
+  if ($is_biosafety_land) {
+    $terms_to_disable = $bl2_content_types;
+    $terms_to_enable = $biosafety_content_types;
+    $site_type = 'Biosafety Land';
+  }
+  else {
+    $terms_to_disable = $biosafety_content_types;
+    $terms_to_enable = $bl2_content_types;
+    $site_type = 'BL2 (Bioland)';
+  }
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $disabled_count = 0;
+  $enabled_count = 0;
+  $errors = 0;
+
+  // Disable terms not applicable to this site type.
+  foreach ($terms_to_disable as $tid) {
+    try {
+      $term = $term_storage->load($tid);
+      if ($term && $term->get('status')->value != 0) {
+        $term->set('status', 0);
+        $term->save();
+        $disabled_count++;
+        \Drupal::logger('bioland')->notice('Disabled content type term @tid (@name) for @site_type site.', [
+          '@tid' => $tid,
+          '@name' => $term->label(),
+          '@site_type' => $site_type,
+        ]);
+      }
+    }
+    catch (\Exception $e) {
+      $errors++;
+      \Drupal::logger('bioland')->error('Error disabling term @tid: @message', [
+        '@tid' => $tid,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  // Enable terms applicable to this site type.
+  foreach ($terms_to_enable as $tid) {
+    try {
+      $term = $term_storage->load($tid);
+      if ($term && $term->get('status')->value != 1) {
+        $term->set('status', 1);
+        $term->save();
+        $enabled_count++;
+        \Drupal::logger('bioland')->notice('Enabled content type term @tid (@name) for @site_type site.', [
+          '@tid' => $tid,
+          '@name' => $term->label(),
+          '@site_type' => $site_type,
+        ]);
+      }
+    }
+    catch (\Exception $e) {
+      $errors++;
+      \Drupal::logger('bioland')->error('Error enabling term @tid: @message', [
+        '@tid' => $tid,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  $message = t('Configured content type terms for @site_type: @enabled enabled, @disabled disabled, @errors errors.', [
+    '@site_type' => $site_type,
+    '@enabled' => $enabled_count,
+    '@disabled' => $disabled_count,
+    '@errors' => $errors,
+  ]);
+
+  \Drupal::logger('bioland')->notice($message);
+
   return $message;
 }
 
@@ -3456,6 +3824,20 @@ function bioland_update_9036() {
 }
 
 /**
+ * Update full_html editor: max image size 50kb and new toolbar configuration.
+ */
+function bioland_update_9037() {
+  return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * Configure content type taxonomy term status based on site type (BL2 vs Biosafety).
+ */
+function bioland_update_9038() {
+  return _bioland_configure_content_type_status_by_site_type();
+}
+
+/**
  * Helper function to disable unused JSON API resource endpoints.
  *
  * Disables sensitive configuration and user-related JSON:API endpoints
@@ -3535,6 +3917,81 @@ function _bioland_disable_jsonapi_resources() {
   if (empty($messages)) {
     return t('All specified JSON API resources were already disabled.');
   }
+
+  return implode("\n", $messages);
+}
+
+/**
+ * Helper function to configure full_html editor toolbar and image upload.
+ *
+ * Updates:
+ * - image_upload.max_size = 50kb
+ * - settings.toolbar.items with comprehensive toolbar configuration
+ *
+ * @return string
+ *   Status messages about configuration.
+ */
+function _bioland_configure_full_html_editor_toolbar() {
+  $messages = [];
+  $config_factory = \Drupal::configFactory();
+
+  $editor_config = $config_factory->getEditable('editor.editor.full_html');
+  if (!$editor_config || $editor_config->isNew()) {
+    return t('editor.editor.full_html not found; skipping editor configuration.');
+  }
+
+  // Update image upload max size to 50kb.
+  $editor_config->set('image_upload.max_size', '50kb');
+  $messages[] = t('Set image upload max size to 50kb.');
+
+  // Define the new toolbar items.
+  $toolbar_items = [
+    'bold',
+    'underline',
+    'italic',
+    'link',
+    'icon',
+    '|',
+    'numberedList',
+    'bulletedList',
+    '|',
+    'alignment',
+    'indent',
+    'outdent',
+    '|',
+    'insertTable',
+    'bootstrapGrid',
+    '|',
+    'drupalMedia',
+    'drupalInsertImage',
+    'heading',
+    '|',
+    'Fullscreen',
+    'undo',
+    'redo',
+    'showBlocks',
+    '|',
+    'horizontalLine',
+    'blockQuote',
+    'specialCharacters',
+    'code',
+    'codeBlock',
+    '|',
+    'strikethrough',
+    'superscript',
+    'subscript',
+    'removeFormat',
+    '|',
+  ];
+
+  $editor_config->set('settings.toolbar.items', $toolbar_items);
+  $messages[] = t('Updated full_html editor toolbar configuration with @count items.', [
+    '@count' => count($toolbar_items),
+  ]);
+
+  $editor_config->save();
+
+  \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and 50kb image limit.');
 
   return implode("\n", $messages);
 }

@@ -225,7 +225,7 @@ class BiolandSettingsFormTest extends TestCase {
     $formState = $this->createMock(FormStateInterface::class);
     $formState->method('get')
       ->with('bioland_section')
-      ->willReturn('translation');
+      ->willReturn('system_functions');
     $formState->method('getValue')
       ->willReturnMap([
         ['auto_create', NULL, TRUE],
@@ -249,7 +249,7 @@ class BiolandSettingsFormTest extends TestCase {
     $formState = $this->createMock(FormStateInterface::class);
     $formState->method('get')
       ->with('bioland_section')
-      ->willReturn('translation');
+      ->willReturn('system_functions');
     $formState->method('getValue')
       ->willReturnMap([
         ['auto_create', NULL, FALSE],
@@ -272,7 +272,7 @@ class BiolandSettingsFormTest extends TestCase {
     $formState = $this->createMock(FormStateInterface::class);
     $formState->method('get')
       ->with('bioland_section')
-      ->willReturn('translation');
+      ->willReturn('system_functions');
     $formState->method('getValue')
       ->willReturnMap([
         ['auto_create', NULL, TRUE],
