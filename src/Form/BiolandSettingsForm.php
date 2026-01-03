@@ -985,7 +985,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#type' => 'details',
         '#title' => $this->t('Content Type Menus'),
         '#open' => FALSE,
-        '#description' => $this->t('Configure automatic menu entries for each content type in the mega menu. Only content types found in menus are shown here.'),
+        '#description' => $this->t('Configure automatic menu entries for each content type in the mega menu.'),
       ];
 
       // Add rescan button
@@ -1002,14 +1002,16 @@ class BiolandSettingsForm extends ConfigFormBase {
       $content_types = $this->getContentTypeOptionsForMegaMenu();
       
       // Get content type TIDs that are actually in use in menus
-      $tids_in_use = $this->getContentTypeTidsInUse();
+      // TODO: Debug why this returns empty - for now show all content types
+      // $tids_in_use = $this->getContentTypeTidsInUse();
 
-      // Create a fieldset for each content type that is in use
+      // Create a fieldset for each content type
       foreach ($content_types as $tid => $type_name) {
+        // TODO: Re-enable this filter after debugging getContentTypeTidsInUse()
         // Only show if this content type is in use in menus
-        if (!in_array($tid, $tids_in_use)) {
-          continue;
-        }
+        // if (!in_array($tid, $tids_in_use)) {
+        //   continue;
+        // }
         
         $form['mega_menu_settings']['content_type_menus']['content_type_' . $tid] = [
           '#type' => 'details',

@@ -504,6 +504,9 @@ function bioland_install() {
   _bioland_install_comment_admin_view();
   _bioland_install_media_library_view();
 
+  // Update menu item 139 URL to /admin/content/media.
+  _bioland_update_menu_item_139();
+
   // Configure full_html editor toolbar and image upload settings.
   _bioland_configure_full_html_editor_toolbar();
 
@@ -4385,6 +4388,7 @@ function _bioland_install_user_admin_view() {
         'plugin_id' => 'field',
         'label' => 'Email',
         'exclude' => FALSE,
+        'type' => 'email_mailto',
         'alter' => [
           'alter_text' => FALSE,
           'text' => '',
@@ -4428,10 +4432,11 @@ function _bioland_install_user_admin_view() {
       ];
     }
     else {
-      // Update the existing mail field to be visible with label.
+      // Update the existing mail field to be visible with label and use email formatter.
       $fields['mail']['exclude'] = FALSE;
       $fields['mail']['label'] = 'Email';
       $fields['mail']['element_label_colon'] = TRUE;
+      $fields['mail']['type'] = 'email_mailto';
     }
     
     // Reorder fields to put email after bulk_form but before name.
@@ -4529,19 +4534,18 @@ function _bioland_install_comment_admin_view() {
       }
     }
     
-    // Add the node relationship if not present (required for title filter).
+    // Add the node relationship if not present (required for topic filter).
+    // This joins comment_field_data to node_field_data via entity_id.
     if (!isset($display['relationships'])) {
       $display['relationships'] = [];
     }
-    $display['relationships']['node'] = [
-      'id' => 'node',
+    $display['relationships']['entity_id'] = [
+      'id' => 'entity_id',
       'table' => 'comment_field_data',
       'field' => 'entity_id',
       'relationship' => 'none',
       'group_type' => 'group',
       'admin_label' => 'Content',
-      'entity_type' => 'comment',
-      'entity_field' => 'entity_id',
       'plugin_id' => 'standard',
       'required' => FALSE,
     ];
@@ -4554,11 +4558,9 @@ function _bioland_install_comment_admin_view() {
       'id' => 'type',
       'table' => 'node_field_data',
       'field' => 'type',
-      'relationship' => 'node',
+      'relationship' => 'entity_id',
       'group_type' => 'group',
-      'admin_label' => '',
-      'entity_type' => 'node',
-      'entity_field' => 'type',
+      'admin_label' => 'Topic Filter',
       'plugin_id' => 'bundle',
       'operator' => 'in',
       'value' => [],
@@ -4785,6 +4787,18 @@ function _bioland_install_optional_field_configs() {
  * Create 'Content' menu link programmatically.
  */
 function bioland_update_9048() {
+  return _bioland_create_content_menu_link();
+}
+
+/**
+ * Helper function to create the Content menu link.
+ *
+ * Creates a menu link for quickly adding Content nodes.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_create_content_menu_link() {
   // Check if MenuLinkContent entity type exists.
   $entity_type_manager = \Drupal::entityTypeManager();
   if (!$entity_type_manager->hasDefinition('menu_link_content')) {
@@ -4800,18 +4814,45 @@ function bioland_update_9048() {
     ]);
 
   if (!empty($existing_links)) {
-    return t('Content menu link already exists; skipping creation.');
+    // Menu link exists, but let's make sure it's enabled and properly configured.
+    foreach ($existing_links as $link) {
+      if (!$link->isEnabled()) {
+        $link->set('enabled', TRUE);
+        $link->save();
+      }
+    }
+    return t('Content menu link already exists; verified enabled status.');
   }
 
-  // Create the menu link in the admin toolbar under Content.
-  // Parent is the existing "Add content" menu item.
+  // Find the "Add content" parent menu link.
+  // First try to find by route name (system-provided "Add content" link).
+  $parent_plugin_id = '';
+  
+  // Try to find the "Add content" menu link that points to /node/add.
+  $add_content_links = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->loadByProperties([
+      'link__uri' => 'internal:/node/add',
+      'menu_name' => 'admin',
+    ]);
+  
+  if (!empty($add_content_links)) {
+    $parent_link = reset($add_content_links);
+    $parent_plugin_id = 'menu_link_content:' . $parent_link->uuid();
+  }
+  else {
+    // Fallback: try the standard node.add_page route plugin ID.
+    $parent_plugin_id = 'node.add_page';
+  }
+
+  // Create the menu link in the admin toolbar under "Add content".
   $menu_link = $entity_type_manager
     ->getStorage('menu_link_content')
     ->create([
       'title' => 'Content',
       'link' => ['uri' => 'internal:/node/add/content'],
       'menu_name' => 'admin',
-      'parent' => 'menu_link_content:059aed54-bd84-4699-a7c4-5358d5e7c36c',
+      'parent' => $parent_plugin_id,
       'weight' => -100,
       'expanded' => FALSE,
       'enabled' => TRUE,
@@ -4826,7 +4867,14 @@ function bioland_update_9048() {
     // Clear menu caches.
     \Drupal::cache('menu')->invalidateAll();
     
-    return t('Created "Content" menu link pointing to /node/add/content under admin Content menu.');
+    // Also clear the menu tree cache.
+    if (\Drupal::hasService('menu.link_tree')) {
+      \Drupal::service('menu.link_tree')->rebuild();
+    }
+    
+    return t('Created "Content" menu link pointing to /node/add/content (parent: @parent).', [
+      '@parent' => $parent_plugin_id,
+    ]);
   }
   catch (\Exception $e) {
     \Drupal::logger('bioland')->error('Failed to create Content menu link: @message', [
@@ -4835,3 +4883,275 @@ function bioland_update_9048() {
     return t('Error creating Content menu link: @message', ['@message' => $e->getMessage()]);
   }
 }
+
+/**
+ * Fix comment admin view topic filter configuration.
+ *
+ * Fixes the Bundle filter that was causing InvalidArgumentException
+ * by correcting the relationship and filter configuration.
+ */
+function bioland_update_9049() {
+  return _bioland_fix_comment_admin_view_filter();
+}
+
+/**
+ * Helper function to fix the comment admin view topic filter.
+ *
+ * Removes the broken 'type' filter and 'node' relationship, then re-adds
+ * them with the correct configuration.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_fix_comment_admin_view_filter() {
+  // Check if views and comment modules are enabled.
+  if ($skip = _bioland_require_module('views', 'comment admin view fix')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('comment', 'comment admin view fix')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.comment');
+  
+  if ($config->isNew()) {
+    return t('View comment not found.');
+  }
+  
+  try {
+    $view_data = $config->getRawData();
+    $display = &$view_data['display']['default']['display_options'];
+    
+    // Remove the broken 'node' relationship if it exists.
+    if (isset($display['relationships']['node'])) {
+      unset($display['relationships']['node']);
+    }
+    
+    // Remove the broken 'type' filter if it exists.
+    if (isset($display['filters']['type'])) {
+      unset($display['filters']['type']);
+    }
+    
+    // Add the correct node relationship using entity_id.
+    if (!isset($display['relationships'])) {
+      $display['relationships'] = [];
+    }
+    $display['relationships']['entity_id'] = [
+      'id' => 'entity_id',
+      'table' => 'comment_field_data',
+      'field' => 'entity_id',
+      'relationship' => 'none',
+      'group_type' => 'group',
+      'admin_label' => 'Content',
+      'plugin_id' => 'standard',
+      'required' => FALSE,
+    ];
+    
+    // Add the corrected "Topic Filter" using the entity_id relationship.
+    if (!isset($display['filters'])) {
+      $display['filters'] = [];
+    }
+    $display['filters']['type'] = [
+      'id' => 'type',
+      'table' => 'node_field_data',
+      'field' => 'type',
+      'relationship' => 'entity_id',
+      'group_type' => 'group',
+      'admin_label' => 'Topic Filter',
+      'plugin_id' => 'bundle',
+      'operator' => 'in',
+      'value' => [],
+      'group' => 1,
+      'exposed' => TRUE,
+      'expose' => [
+        'operator_id' => 'type_op',
+        'label' => 'Topic Filter',
+        'description' => 'Filter comments by content type (e.g., forum)',
+        'use_operator' => FALSE,
+        'operator' => 'type_op',
+        'identifier' => 'type',
+        'required' => FALSE,
+        'remember' => FALSE,
+        'multiple' => FALSE,
+        'reduce' => FALSE,
+      ],
+      'is_grouped' => FALSE,
+    ];
+    
+    $config->setData($view_data)->save();
+    
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+    
+    // Clear local task cache.
+    if (\Drupal::hasService('plugin.manager.menu.local_task')) {
+      \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
+    }
+    
+    \Drupal::logger('bioland')->notice('Fixed comment view: corrected topic filter configuration.');
+    return t('Fixed comment view topic filter configuration at /admin/content/comment.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to fix comment view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error fixing comment view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Fix email field formatter in user admin view to use clickable mailto links.
+ */
+function bioland_update_9050() {
+  return _bioland_fix_user_admin_email_formatter();
+}
+
+/**
+ * Helper function to fix the email field formatter.
+ *
+ * Updates the mail field to use email_mailto type for clickable links.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_fix_user_admin_email_formatter() {
+  // Check if views module is enabled.
+  if ($skip = _bioland_require_module('views', 'user admin email formatter fix')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.administerusersbyrole_people');
+  
+  if ($config->isNew()) {
+    return t('User admin people view (administerusersbyrole_people) not found.');
+  }
+  
+  try {
+    $fields = $config->get('display.default.display_options.fields') ?: [];
+    
+    if (isset($fields['mail'])) {
+      // Set the type to email_mailto for clickable mailto links.
+      $fields['mail']['type'] = 'email_mailto';
+      $config->set('display.default.display_options.fields', $fields);
+      $config->save();
+      
+      // Clear the views cache.
+      if (\Drupal::hasService('views.views_data')) {
+        \Drupal::service('views.views_data')->clear();
+      }
+      
+      \Drupal::logger('bioland')->notice('Fixed email field formatter to use mailto links.');
+      return t('Updated email field to use clickable mailto links at /admin/people.');
+    }
+    
+    return t('Email field not found in user admin view; running full install.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to fix email formatter: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error fixing email formatter: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Recreate Content menu link with correct parent discovery.
+ */
+function bioland_update_9051() {
+  // First, delete any existing broken menu links.
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if ($entity_type_manager->hasDefinition('menu_link_content')) {
+    $existing_links = $entity_type_manager
+      ->getStorage('menu_link_content')
+      ->loadByProperties([
+        'title' => 'Content',
+        'link__uri' => 'internal:/node/add/content',
+      ]);
+    
+    foreach ($existing_links as $link) {
+      $link->delete();
+    }
+  }
+  
+  // Now create fresh with proper parent discovery.
+  return _bioland_create_content_menu_link();
+}
+
+/**
+ * Update menu item ID 139 URL to /admin/content/media.
+ */
+function bioland_update_9052() {
+  $result = _bioland_update_menu_item_139();
+  
+  // Rebuild router after menu URL change (not done in helper to avoid double-rebuild during install).
+  if (\Drupal::hasService('router.builder')) {
+    \Drupal::service('router.builder')->rebuild();
+  }
+  
+  return $result;
+}
+
+/**
+ * Helper function to update menu item 139 URL.
+ *
+ * Changes the URL of menu_link_content entity with ID 139 to /admin/content/media.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_update_menu_item_139() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    return t('MenuLinkContent entity type not available; skipping menu item update.');
+  }
+  
+  try {
+    $menu_link = $entity_type_manager
+      ->getStorage('menu_link_content')
+      ->load(139);
+    
+    if (!$menu_link) {
+      return t('Menu item with ID 139 not found.');
+    }
+    
+    $old_url = $menu_link->get('link')->uri ?? 'unknown';
+    $menu_link->set('link', ['uri' => 'internal:/admin/content/media']);
+    $menu_link->save();
+    
+    // Clear menu caches only - router rebuild happens at end of install.
+    \Drupal::cache('menu')->invalidateAll();
+    
+    \Drupal::logger('bioland')->notice('Updated menu item 139 URL from @old to /admin/content/media.', [
+      '@old' => $old_url,
+    ]);
+    return t('Updated menu item 139 URL from @old to /admin/content/media.', [
+      '@old' => $old_url,
+    ]);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to update menu item 139: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error updating menu item 139: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Hide menu parent field on menu link translation forms.
+ *
+ * This update hook is a no-op (cache clear only) since the functionality
+ * is implemented via hook_form_alter() in bioland.module.
+ * The menu_parent field will now be hidden when editing translations
+ * of menu links (non-source language), ensuring menu structure is only
+ * managed from the source language.
+ */
+function bioland_update_9053() {
+  // Clear form caches to ensure the form alter takes effect.
+  \Drupal::service('cache.render')->invalidateAll();
+  
+  return t('Menu parent field will now be hidden on menu link translation forms. Menu structure should be managed from the source language only.');
+}
+

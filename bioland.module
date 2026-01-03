@@ -57,6 +57,51 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     if (isset($form['actions']['submit'])) {
       $form['actions']['submit']['#submit'][] = 'bioland_menu_link_form_submit';
     }
+    
+    // Hide menu_parent field on translation forms (non-source language).
+    // Menu structure should only be managed from the source language.
+    // This applies to:
+    // 1. Translation add forms: /fr/admin/structure/menu/item/190/edit/translations/add/en/fr
+    // 2. Editing in non-source language: /nl/admin/structure/menu/item/190/edit
+    $hide_menu_parent = FALSE;
+    
+    // Check if this is a content_translation_add form (always a translation).
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    if ($route_name && strpos($route_name, 'content_translation_add') !== FALSE) {
+      $hide_menu_parent = TRUE;
+    }
+    else {
+      // Check if we're editing in a non-source language.
+      $form_object = $form_state->getFormObject();
+      if ($form_object && method_exists($form_object, 'getEntity')) {
+        $entity = $form_object->getEntity();
+        if ($entity) {
+          // Method 1: Check isDefaultTranslation if available.
+          if (method_exists($entity, 'isDefaultTranslation') && !$entity->isDefaultTranslation()) {
+            $hide_menu_parent = TRUE;
+          }
+          // Method 2: Compare current language with entity's source language.
+          elseif (method_exists($entity, 'getUntranslated')) {
+            $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $source_langcode = $entity->getUntranslated()->language()->getId();
+            if ($current_langcode !== $source_langcode) {
+              $hide_menu_parent = TRUE;
+            }
+          }
+        }
+      }
+    }
+    
+    if ($hide_menu_parent) {
+      // Hide menu_parent dropdown.
+      if (isset($form['menu_parent'])) {
+        $form['menu_parent']['#access'] = FALSE;
+      }
+      // Hide display settings (weight, expanded checkbox).
+      if (isset($form['menu_link_display_settings'])) {
+        $form['menu_link_display_settings']['#access'] = FALSE;
+      }
+    }
   }
 
   // Only attach to node_content_form and node_content_edit_form.
