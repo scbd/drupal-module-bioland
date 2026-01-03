@@ -54,6 +54,33 @@ debug_log_areas:
   additional_fields: true
   auto_summary: true
   help_comments: true
+main_menu_lock: true
+mega_menu:
+  content_type_menus:
+    visible_content_type_menus: []
+  content_types:
+    hide_content_types: true
+  country_profiles:
+    position: 'top'
+    show_if_empty: false
+  focal_points:
+    position: 'top'
+    show_if_empty: false
+  national_targets:
+    position: 'top'
+    show_if_empty: false
+  national_report:
+    position: 'top'
+    show_if_empty: false
+  bch:
+    position: 'top'
+    show_if_empty: false
+  absch:
+    position: 'top'
+    show_if_empty: false
+  forums:
+    position: 'top'
+    show_if_empty: false
 translation:
   auto_create: true
   use_all_languages: true

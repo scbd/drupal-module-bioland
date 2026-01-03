@@ -14,3 +14,7 @@ services:
   bioland.translation_batch:
     class: Drupal\bioland\Service\BiolandTranslationBatchService
     arguments: ['@entity_type.manager', '@config.factory', '@bioland.translation_manager']
+
+  bioland.dmsm_config:
+    class: Drupal\bioland\Service\BiolandDmsmConfigService
+    arguments: ['@config.factory', '@http_client', '@logger.factory']

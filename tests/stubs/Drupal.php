@@ -118,4 +118,28 @@ class Drupal {
     static::$container = [];
   }
 
+  /**
+   * Gets the state service.
+   *
+   * @return object
+   *   The state service.
+   */
+  public static function state() {
+    return static::$container['state'] ?? new class {
+      protected $values = [];
+
+      public function get($key, $default = NULL) {
+        return $this->values[$key] ?? $default;
+      }
+
+      public function set($key, $value) {
+        $this->values[$key] = $value;
+      }
+
+      public function delete($key) {
+        unset($this->values[$key]);
+      }
+    };
+  }
+
 }

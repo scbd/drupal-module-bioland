@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-additional-fields-1-0-33.js
+ * Unit tests for bioland-additional-fields-1-0-37.js
  */
 
 describe('Bioland Additional Fields', () => {
@@ -32,13 +32,13 @@ describe('Bioland Additional Fields', () => {
 
   describe('Drupal behavior registration', () => {
     test('should register biolandAdditionalFields behavior', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       expect(Drupal.behaviors.biolandAdditionalFields).toBeDefined();
       expect(typeof Drupal.behaviors.biolandAdditionalFields.attach).toBe('function');
     });
 
     test('should not initialize if enableAdditionalFields is false', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: false } };
@@ -61,7 +61,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -74,7 +74,7 @@ describe('Bioland Additional Fields', () => {
     test('should handle missing content type field gracefully', () => {
       document.body.innerHTML = '<form class="node-content-form"></form>';
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -98,7 +98,7 @@ describe('Bioland Additional Fields', () => {
     });
 
     test('should return true for content type 3 (events)', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -112,7 +112,7 @@ describe('Bioland Additional Fields', () => {
     test('should return true for content type 5 (projects)', () => {
       document.querySelector('#edit-field-type-placement').value = '5';
       
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -133,7 +133,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
       
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -166,7 +166,7 @@ describe('Bioland Additional Fields', () => {
       global.Vue = undefined;
       global.ScbdDrupalScbdFieldJs = undefined;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -187,7 +187,7 @@ describe('Bioland Additional Fields', () => {
         default: {}
       };
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -211,7 +211,7 @@ describe('Bioland Additional Fields', () => {
         default: {}
       };
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -235,7 +235,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -254,7 +254,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -273,7 +273,7 @@ describe('Bioland Additional Fields', () => {
         </div>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -305,7 +305,7 @@ describe('Bioland Additional Fields', () => {
     });
 
     test('should set up change event listener', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -317,7 +317,7 @@ describe('Bioland Additional Fields', () => {
     });
 
     test('should not attach duplicate event listeners', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -331,7 +331,7 @@ describe('Bioland Additional Fields', () => {
     });
 
     test('should handle content type change to type without additional fields', () => {
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -355,7 +355,7 @@ describe('Bioland Additional Fields', () => {
       };
       global.ScbdDrupalScbdFieldJs = { default: {} };
       
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -389,7 +389,7 @@ describe('Bioland Additional Fields', () => {
       };
       global.ScbdDrupalScbdFieldJs = { default: {} };
       
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -421,7 +421,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -441,7 +441,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -460,7 +460,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -482,7 +482,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = {
@@ -514,7 +514,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = {
@@ -551,7 +551,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -588,7 +588,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableAdditionalFields: true } };
@@ -622,7 +622,7 @@ describe('Bioland Additional Fields', () => {
         </form>
       `;
 
-      require('./bioland-additional-fields-1-0-33.js');
+      require('./bioland-additional-fields-1-0-37.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');

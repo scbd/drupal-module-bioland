@@ -64,8 +64,6 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
-
-
   // Change "Save (this translation)" to just "Save".
   if (isset($form['actions']['submit'])) {
     $form['actions']['submit']['#value'] = t('Save');
@@ -246,6 +244,27 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
           return strpos($class, 'accordion') === FALSE;
         }
       );
+    }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form.
+ */
+function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Change field_url label from "URL" or "Link" to just "URL".
+  if (isset($form['field_url'])) {
+    // Handle link field widget structure.
+    if (isset($form['field_url']['widget'][0]['uri']['#title'])) {
+      $form['field_url']['widget'][0]['uri']['#title'] = t('URL');
+    }
+    // Also try the top-level title for the field group.
+    if (isset($form['field_url']['widget']['#title'])) {
+      $form['field_url']['widget']['#title'] = t('URL');
+    }
+    // Try setting the field label directly.
+    if (isset($form['field_url']['#title'])) {
+      $form['field_url']['#title'] = t('URL');
     }
   }
 }

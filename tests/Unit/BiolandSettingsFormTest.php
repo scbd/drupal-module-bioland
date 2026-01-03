@@ -13,6 +13,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ImmutableConfig;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Unit tests for BiolandSettingsForm.
@@ -57,6 +58,13 @@ class BiolandSettingsFormTest extends TestCase {
   protected $currentUser;
 
   /**
+   * The mock request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack|\PHPUnit\Framework\MockObject\MockObject
+   */
+  protected $requestStack;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -67,6 +75,7 @@ class BiolandSettingsFormTest extends TestCase {
     $this->translationBatchService = $this->createMock(BiolandTranslationBatchService::class);
     $this->database = $this->createMock(Connection::class);
     $this->currentUser = $this->createMock(AccountProxyInterface::class);
+    $this->requestStack = $this->createMock(RequestStack::class);
     
     // Set up default language.
     $defaultLanguage = new Language('en', 'English');
@@ -98,7 +107,8 @@ class BiolandSettingsFormTest extends TestCase {
       $this->entityTypeManager,
       $this->translationBatchService,
       $this->database,
-      $this->currentUser
+      $this->currentUser,
+      $this->requestStack
     );
   }
 
@@ -305,11 +315,11 @@ class BiolandSettingsFormTest extends TestCase {
     $reflection = new \ReflectionClass($form);
     
     // Create a subclass that overrides config method for testing.
-    return new class($this->languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $configObject) extends BiolandSettingsForm {
+    return new class($this->languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $this->requestStack, $configObject) extends BiolandSettingsForm {
       protected $testConfig;
       
-      public function __construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser, $config) {
-        parent::__construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser);
+      public function __construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser, $requestStack, $config) {
+        parent::__construct($languageManager, $entityTypeManager, $translationBatchService, $database, $currentUser, $requestStack);
         $this->testConfig = $config;
       }
       

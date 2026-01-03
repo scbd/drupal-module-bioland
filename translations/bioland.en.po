@@ -1059,3 +1059,378 @@ msgstr "Configured filter.format.full_html with Linkit filter."
 #: bioland.install
 msgid "Filter format full_html not found; skipping Linkit filter configuration."
 msgstr "Filter format full_html not found; skipping Linkit filter configuration."
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Site Email"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Auto Summary"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Biosafety Land"
+msgstr "Biosafety Land"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Main Menu Lock"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Lock Main Menu Editing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Field Visibility Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Enable"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Additional Tags Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Organization Type"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Show Organization Type tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Ecosystem Type"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Show Ecosystem Type tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Document Type"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Show Document Type tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Help Comments Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Body Field Help"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Body Field Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Help text displayed for the body/content field."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Translate Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Attachments Field Help"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Images Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Help text for the images section of attachments."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Translate Images Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Help text for the hero banners section."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Translate Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<b>Promoted to front page:</b>
+<ul>
+<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>
+<li>Useful for highlighting important or timely content</li>
+<li>Multiple items can be promoted simultaneously</li>
+</ul>
+
+<b>Sticky at top of lists:</b>
+<ul>
+<li>Content stays pinned at the top of content listings</li>
+<li>Remains at top regardless of publication date</li>
+<li>Multiple sticky items appear before non-sticky content</li>
+</ul>
+
+<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
+msgstr "<b>Promoted to front page:</b>
+<ul>
+<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>
+<li>Useful for highlighting important or timely content</li>
+<li>Multiple items can be promoted simultaneously</li>
+</ul>
+
+<b>Sticky at top of lists:</b>
+<ul>
+<li>Content stays pinned at the top of content listings</li>
+<li>Remains at top regardless of publication date</li>
+<li>Multiple sticky items appear before non-sticky content</li>
+</ul>
+
+<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Help text explaining the Promoted and Sticky options."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "<b>Content sorting priority (highest to lowest):</b>
+<ol>
+<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first</li>
+<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
+<li><b>Promoted</b> – Items marked \"Promoted to front page\" come next</li>
+<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Last Modified</b> – Finally sorted by most recently updated</li>
+</ol>
+<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "<b>Content sorting priority (highest to lowest):</b>
+<ol>
+<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first</li>
+<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
+<li><b>Promoted</b> – Items marked \"Promoted to front page\" come next</li>
+<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Last Modified</b> – Finally sorted by most recently updated</li>
+</ol>
+<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Content Ordering Reset"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Successfully reset field_order to 10000 for @count nodes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Reset ordering"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Content Type Menus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Configure automatic menu entries for each content type in the mega menu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Maximum menus to show"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Maximum number of menu entries to display for this content type."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Drupal menus position"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Top"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Bottom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Drupal menu entries will appear at the top or bottom of automatic entries."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Country Profiles Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Focal Points Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "National Targets Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "National Report Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Forums Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Menu position"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Position where menu entries will appear."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Show menu even if empty"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Display this menu section even when there are no entries."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "An error occurred while updating menu permissions. Please check the logs."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "How it Works"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Promoted to front page:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Useful for highlighting important or timely content"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Multiple items can be promoted simultaneously"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Sticky at top of lists:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Content stays pinned at the top of content listings"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Remains at top regardless of publication date"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Multiple sticky items appear before non-sticky content"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Using both:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Content can be both promoted AND sticky for maximum visibility."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Content sorting priority (highest to lowest):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Sticky"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Items marked \"Sticky at top of lists\" always appear first"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Order Override"
+msgstr "Order Override"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Promoted"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Items marked \"Promoted to front page\" come next"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Start Date"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Then sorted by start date (or published date if no start date)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Last Modified"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Finally sorted by most recently updated"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Tip:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

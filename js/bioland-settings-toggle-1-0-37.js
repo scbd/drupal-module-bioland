@@ -64,10 +64,8 @@
       const biolandSettings = settings.bioland || {};
       const logger = window.biolandGetLogger('settingsToggle', biolandSettings);
 
-      // Handle Field Visibility toggle
-      initializeToggle(context, '.bioland-toggle-visibility-settings', '.bioland-field-visibility-settings', logger);
-
-      // Handle Additional Fields toggle
+      // Handle Additional Fields toggle only
+      // Field Visibility now uses native Drupal details elements
       initializeToggle(context, '.bioland-toggle-additional-fields-settings', '.bioland-additional-fields-settings', logger);
     }
   };

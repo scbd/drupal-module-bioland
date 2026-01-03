@@ -43,46 +43,51 @@
   }
 }
 
-/* Toggle link styles */
-.bioland-toggle-visibility-settings {
-  display: inline-block;
-  margin-left: 1em;
-  font-size: 0.9em;
-  text-decoration: none;
-  color: #0073aa;
-  cursor: pointer;
+/* Field Visibility Enable checkbox in separate box */
+#edit-field-visibility #edit-enable {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
 }
 
-.bioland-toggle-visibility-settings:hover {
-  text-decoration: underline;
+/* Tags Enable checkbox in separate box */
+#edit-tags-settings #edit-enable {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
 }
 
-.bioland-toggle-visibility-settings::before {
-  content: "▼ ";
-  display: inline-block;
-  transition: transform 0.3s ease;
+/* Help Comments Enable checkbox in separate box */
+#edit-help-comments #edit-enable {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
 }
 
-.bioland-toggle-visibility-settings.expanded::before {
-  transform: rotate(-180deg);
+/* Admin Settings grey boxes */
+#edit-admin-settings #edit-site-email,
+#edit-admin-settings #edit-auto-summary,
+#edit-admin-settings #edit-biosafety-land {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
 }
 
-/* Collapsible container styles */
-.bioland-field-visibility-settings {
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+/* Field visibility details elements */
+#edit-field-visibility .details-wrapper {
+  padding: 1em;
 }
 
-.bioland-collapsible-hidden {
-  max-height: 0;
-  opacity: 0;
-  margin-top: 0;
-}
-
-.bioland-collapsible-visible {
-  max-height: 2000px;
-  opacity: 1;
-  margin-top: 1em;
+#edit-field-visibility details {
+  margin-bottom: 0.75em;
 }
 
 /* Additional fields mapping styles */
@@ -126,4 +131,14 @@
 .bioland-language-wrapper,
 .bioland-meta-wrapper {
   margin-bottom: 0;
+}
+
+/* Page title host info */
+.bioland-host-info {
+  float: right;
+  font-size: 0.5em;
+  color: #666;
+  font-weight: normal;
+  line-height: 2;
+  margin-left: 1em;
 }

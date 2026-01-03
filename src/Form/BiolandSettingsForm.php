@@ -12,6 +12,7 @@ use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Configuration form for Drupal Module Bioland settings.
@@ -54,6 +55,13 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected $currentUser;
 
   /**
+   * The request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
   * Constructs a new Drupal Module Bioland settings form.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -66,13 +74,16 @@ class BiolandSettingsForm extends ConfigFormBase {
    *   The database connection.
    * @param \Drupal\Core\Session\AccountProxyInterface $current_user
    *   The current user.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
    */
-  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, BiolandTranslationBatchService $translation_batch_service, Connection $database, AccountProxyInterface $current_user) {
+  public function __construct(LanguageManagerInterface $language_manager, EntityTypeManagerInterface $entity_type_manager, BiolandTranslationBatchService $translation_batch_service, Connection $database, AccountProxyInterface $current_user, RequestStack $request_stack) {
     $this->languageManager = $language_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->translationBatchService = $translation_batch_service;
     $this->database = $database;
     $this->currentUser = $current_user;
+    $this->requestStack = $request_stack;
   }
 
   /**
@@ -84,7 +95,8 @@ class BiolandSettingsForm extends ConfigFormBase {
       $container->get('entity_type.manager'),
       $container->get('bioland.translation_batch'),
       $container->get('database'),
-      $container->get('current_user')
+      $container->get('current_user'),
+      $container->get('request_stack')
     );
   }
 
@@ -116,12 +128,27 @@ class BiolandSettingsForm extends ConfigFormBase {
   /**
    * Gets the page title.
    *
-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|array
    *   The page title.
    */
   public function getTitle() {
     $branding = $this->getBrandingName();
-    return $this->t('@branding Settings', ['@branding' => $branding]);
+    $title = $this->t('@branding Settings', ['@branding' => $branding]);
+    
+    // Get X-Forwarded-Host if available
+    $request = $this->requestStack->getCurrentRequest();
+    $xForwardedHost = $request ? $request->headers->get('X-Forwarded-Host') : NULL;
+    
+    if ($xForwardedHost) {
+      return [
+        '#markup' => $title . ' <span class="bioland-host-info">(' . htmlspecialchars($xForwardedHost) . ')</span>',
+        '#attached' => [
+          'library' => ['bioland/admin'],
+        ],
+      ];
+    }
+    
+    return $title;
   }
 
   /**
@@ -164,14 +191,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#format' => 'full_html',
         '#allowed_formats' => ['full_html'],
         '#description' => $this->t('How this is used depends on your site\'s theme.'),
-      ];
-
-      $form['general']['site_mail'] = [
-        '#type' => 'email',
-        '#title' => $this->t('Email address'),
-        '#default_value' => $site_config->get('mail'),
-        '#description' => $this->t("The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"),
-        '#required' => TRUE,
+        '#access' => FALSE, // Hidden - change to TRUE to re-enable
       ];
 
       // Translation fields (refactored to reduce duplication)
@@ -202,6 +222,7 @@ class BiolandSettingsForm extends ConfigFormBase {
             '#title' => $translation_info['title'],
             '#open' => FALSE,
             '#tree' => TRUE,
+            '#access' => $field_name !== 'site_slogan', // Hide slogan translations - change condition to TRUE to re-enable
           ];
 
           foreach ($config_overrides as $langcode => $config_override) {
@@ -235,12 +256,21 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       $form['general']['region'] = [
-        '#type' => 'select',
+        '#type' => 'textfield',
         '#title' => $this->t('Region'),
-        '#description' => $this->t('Select the geographical region.'),
-        '#options' => $this->getRegionOptions(),
-        '#default_value' => $config->get('region') ?: 'north_america',
-        '#required' => TRUE,
+        '#description' => $this->t('Geographic region (auto-populated from DMSM API).'),
+        '#default_value' => $config->get('region') ?: '',
+        '#required' => FALSE,
+        '#access' => FALSE, // Hidden - automatically populated from DMSM API
+      ];
+
+      $form['general']['continent'] = [
+        '#type' => 'textfield',
+        '#title' => $this->t('Continent'),
+        '#description' => $this->t('Continent (auto-populated from DMSM API).'),
+        '#default_value' => $config->get('continent') ?: '',
+        '#required' => FALSE,
+        '#access' => FALSE, // Hidden - automatically populated from DMSM API
       ];
     }
 
@@ -291,10 +321,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Translation Defaults section (moved from translation tab)
       $form['system_functions']['translation_section'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Translation Defaults'),
-        '#description' => $this->t('Configure creation of translation defaults (language placeholders) for translatable entities.'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
       ];
 
       $form['system_functions']['translation_section']['auto_create'] = [
@@ -416,28 +445,28 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#collapsed' => FALSE,
       ];
 
-      $form['field_visibility']['enable_field_visibility'] = [
+      // Enable checkbox in its own box
+      $form['field_visibility']['enable'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Enable'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['field_visibility']['enable']['enable_field_visibility'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Field Visibility Control'),
         '#description' => $this->t('Show/hide fields based on content type selection. Configure which fields are visible for each content type below.'),
         '#default_value' => $config->get('enable_field_visibility') !== FALSE,
-        '#suffix' => '<a href="#" class="bioland-toggle-visibility-settings" data-target="field-visibility-settings">Show more</a>',
-      ];
-
-      // Container for all field visibility settings
-      $form['field_visibility']['settings_container'] = [
-        '#type' => 'container',
-        '#attributes' => ['class' => ['bioland-field-visibility-settings', 'bioland-collapsible-hidden']],
       ];
 
       // Get content types from taxonomy vocabulary 'tags'.
       $content_types = $this->getContentTypeOptions();
 
-      // URL Field visibility settings
-      $form['field_visibility']['settings_container']['url_field'] = [
-        '#type' => 'fieldset',
+      // URL Field visibility settings - as collapsible details
+      $form['field_visibility']['url_field'] = [
+        '#type' => 'details',
         '#title' => $this->t('URL Field'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
@@ -445,18 +474,18 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility']['settings_container']['url_field']['url_content_types'] = [
+      $form['field_visibility']['url_field']['url_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show URL field for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('field_visibility.url_content_types') ?: [2, 3, 5, 12, 13, 15, 16, 43, 44, 45, 46, 47, 48, 49, 50],
       ];
 
-      // Published Field visibility settings
-      $form['field_visibility']['settings_container']['published_field'] = [
-        '#type' => 'fieldset',
+      // Published Field visibility settings - as collapsible details
+      $form['field_visibility']['published_field'] = [
+        '#type' => 'details',
         '#title' => $this->t('Published Field'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
@@ -464,18 +493,18 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility']['settings_container']['published_field']['published_content_types'] = [
+      $form['field_visibility']['published_field']['published_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Published field for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('field_visibility.published_content_types') ?: [3, 5, 12],
       ];
 
-      // Date Range Field visibility settings
-      $form['field_visibility']['settings_container']['date_range_field'] = [
-        '#type' => 'fieldset',
+      // Date Range Field visibility settings - as collapsible details
+      $form['field_visibility']['date_range_field'] = [
+        '#type' => 'details',
         '#title' => $this->t('Date Range Field (Start & End Date)'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_field_visibility"]' => ['checked' => TRUE],
@@ -483,7 +512,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['field_visibility']['settings_container']['date_range_field']['date_range_content_types'] = [
+      $form['field_visibility']['date_range_field']['date_range_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Date Range fields (Start & End Date) for these content types:'),
         '#options' => $content_types,
@@ -494,20 +523,19 @@ class BiolandSettingsForm extends ConfigFormBase {
     if ($section === 'tags') {
       $form['tags_settings'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Tags Settings'),
+        '#title' => $this->t('Additional Tags Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      // Additional Tags functionality - wrapped in fieldset
-      $form['tags_settings']['additional_tags'] = [
+      // Enable checkbox in its own box
+      $form['tags_settings']['enable'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Additional Tags Control'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#title' => $this->t('Enable'),
+        '#collapsible' => FALSE,
       ];
 
-      $form['tags_settings']['additional_tags']['enable_additional_fields'] = [
+      $form['tags_settings']['enable']['enable_additional_fields'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Additional Tags'),
         '#description' => $this->t('Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type.'),
@@ -518,11 +546,10 @@ class BiolandSettingsForm extends ConfigFormBase {
       $content_types = $this->getContentTypeOptions();
 
       // Event Status tag settings
-      $form['tags_settings']['additional_tags']['event_status'] = [
-        '#type' => 'fieldset',
+      $form['tags_settings']['event_status'] = [
+        '#type' => 'details',
         '#title' => $this->t('Event Status'),
-        '#description' => $this->t('Content types that will have Event Status tags available.'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -530,7 +557,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['event_status']['event_status_content_types'] = [
+      $form['tags_settings']['event_status']['event_status_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Event Status tags for these content types:'),
         '#options' => $content_types,
@@ -538,11 +565,10 @@ class BiolandSettingsForm extends ConfigFormBase {
       ];
 
       // Project Status tag settings
-      $form['tags_settings']['additional_tags']['project_status'] = [
-        '#type' => 'fieldset',
+      $form['tags_settings']['project_status'] = [
+        '#type' => 'details',
         '#title' => $this->t('Project Status'),
-        '#description' => $this->t('Content types that will have Project Status and Geographic Scope tags available.'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -550,19 +576,18 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['project_status']['project_status_content_types'] = [
+      $form['tags_settings']['project_status']['project_status_content_types'] = [
         '#type' => 'checkboxes',
         '#title' => $this->t('Show Project Status tags for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('additional_tags.project_status_content_types') ?: [5],
       ];
 
-      // Organization Types tag settings
-      $form['tags_settings']['additional_tags']['organization_types'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Organization Types'),
-        '#description' => $this->t('Content types that will have Organization Types and Government Types tags available.'),
-        '#collapsible' => FALSE,
+      // Organization Type tag settings
+      $form['tags_settings']['organization_types'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Organization Type'),
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -570,19 +595,18 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['organization_types']['organization_types_content_types'] = [
+      $form['tags_settings']['organization_types']['organization_types_content_types'] = [
         '#type' => 'checkboxes',
-        '#title' => $this->t('Show Organization Types tags for these content types:'),
+        '#title' => $this->t('Show Organization Type tags for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('additional_tags.organization_types_content_types') ?: [8],
       ];
 
-      // Ecosystem Types tag settings
-      $form['tags_settings']['additional_tags']['ecosystem_types'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Ecosystem Types'),
-        '#description' => $this->t('Content types that will have Ecosystem Types tags available.'),
-        '#collapsible' => FALSE,
+      // Ecosystem Type tag settings
+      $form['tags_settings']['ecosystem_types'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Ecosystem Type'),
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -590,19 +614,18 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['ecosystem_types']['ecosystem_types_content_types'] = [
+      $form['tags_settings']['ecosystem_types']['ecosystem_types_content_types'] = [
         '#type' => 'checkboxes',
-        '#title' => $this->t('Show Ecosystem Types tags for these content types:'),
+        '#title' => $this->t('Show Ecosystem Type tags for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('additional_tags.ecosystem_types_content_types') ?: [9],
       ];
 
-      // Document Types tag settings
-      $form['tags_settings']['additional_tags']['document_types'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Document Types'),
-        '#description' => $this->t('Content types that will have Document Types tags available.'),
-        '#collapsible' => FALSE,
+      // Document Type tag settings
+      $form['tags_settings']['document_types'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Document Type'),
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
@@ -610,9 +633,9 @@ class BiolandSettingsForm extends ConfigFormBase {
         ],
       ];
 
-      $form['tags_settings']['additional_tags']['document_types']['document_types_content_types'] = [
+      $form['tags_settings']['document_types']['document_types_content_types'] = [
         '#type' => 'checkboxes',
-        '#title' => $this->t('Show Document Types tags for these content types:'),
+        '#title' => $this->t('Show Document Type tags for these content types:'),
         '#options' => $content_types,
         '#default_value' => $config->get('additional_tags.document_types_content_types') ?: [12],
       ];
@@ -630,12 +653,18 @@ class BiolandSettingsForm extends ConfigFormBase {
       $form['help_comments'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Help Comments Settings'),
-        '#description' => $this->t('Configure contextual help messages displayed for fields in the content form.'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
       ];
 
-      $form['help_comments']['enable_help_comments'] = [
+      // Enable checkbox in its own box
+      $form['help_comments']['enable'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Enable'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['help_comments']['enable']['enable_help_comments'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Field Help Comments'),
         '#description' => $this->t('Display contextual help comments for fields based on content type.'),
@@ -644,10 +673,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Body Field Help Comment
       $form['help_comments']['body_help'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Body Field Help'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_help_comments"]' => ['checked' => TRUE],
@@ -689,10 +717,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Attachments Field Help Comment - Images
       $form['help_comments']['attachments_help'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Attachments Field Help'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_help_comments"]' => ['checked' => TRUE],
@@ -766,10 +793,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Promotion Options Field Help Comment
       $form['help_comments']['promotion_help'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Promotion Options Help'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_help_comments"]' => ['checked' => TRUE],
@@ -827,10 +853,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Order Override Field Help Comment
       $form['help_comments']['order_override_help'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Order Override Help'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#open' => FALSE,
         '#states' => [
           'visible' => [
             ':input[name="enable_help_comments"]' => ['checked' => TRUE],
@@ -955,9 +980,117 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#collapsed' => FALSE,
       ];
 
-      $form['mega_menu_settings']['placeholder'] = [
-        '#markup' => '<p>' . $this->t('Mega Menu settings coming soon.') . '</p>',
+      // Content Type Menus section
+      $form['mega_menu_settings']['content_type_menus'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Content Type Menus'),
+        '#open' => FALSE,
+        '#description' => $this->t('Configure automatic menu entries for each content type in the mega menu. Only content types found in menus are shown here.'),
       ];
+
+      // Add rescan button
+      // $form['mega_menu_settings']['content_type_menus']['rescan_menus'] = [
+      //   '#type' => 'submit',
+      //   '#value' => $this->t('Rescan Menus'),
+      //   '#submit' => ['::submitRescanMenus'],
+      //   '#limit_validation_errors' => [],
+      //   '#attributes' => ['class' => ['button', 'button--small']],
+      //   '#description' => $this->t('Click to rescan all menus for content type classes.'),
+      // ];
+
+      // Get enabled content types with plural field (alphabetically sorted)
+      $content_types = $this->getContentTypeOptionsForMegaMenu();
+      
+      // Get content type TIDs that are actually in use in menus
+      $tids_in_use = $this->getContentTypeTidsInUse();
+
+      // Create a fieldset for each content type that is in use
+      foreach ($content_types as $tid => $type_name) {
+        // Only show if this content type is in use in menus
+        if (!in_array($tid, $tids_in_use)) {
+          continue;
+        }
+        
+        $form['mega_menu_settings']['content_type_menus']['content_type_' . $tid] = [
+          '#type' => 'details',
+          '#title' => $this->t('@type_name Menu', ['@type_name' => $type_name]),
+          '#open' => FALSE,
+        ];
+
+        // Maximum menus to show (1-20)
+        $form['mega_menu_settings']['content_type_menus']['content_type_' . $tid]['max_menus_' . $tid] = [
+          '#type' => 'select',
+          '#title' => $this->t('Maximum menus to show'),
+          '#options' => array_combine(range(1, 20), range(1, 20)),
+          '#default_value' => $config->get('mega_menu.content_type_menus.' . $tid . '.max_menus') ?? 6,
+          '#description' => $this->t('Maximum number of menu entries to display for this content type.'),
+        ];
+
+        // Drupal menus position (top/bottom)
+        $form['mega_menu_settings']['content_type_menus']['content_type_' . $tid]['menu_position_' . $tid] = [
+          '#type' => 'select',
+          '#title' => $this->t('Drupal menus position'),
+          '#options' => [
+            'top' => $this->t('Top'),
+            'bottom' => $this->t('Bottom'),
+          ],
+          '#default_value' => $config->get('mega_menu.content_type_menus.' . $tid . '.menu_position') ?? 'top',
+          '#description' => $this->t('Drupal menu entries will appear at the top or bottom of automatic entries.'),
+        ];
+      }
+
+      // Content Types section
+      $form['mega_menu_settings']['content_types'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Content Types'),
+        '#open' => FALSE,
+      ];
+
+      $form['mega_menu_settings']['content_types']['hide_content_types'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Hide content types in mega menu'),
+        '#default_value' => $config->get('mega_menu.content_types.hide_content_types') ?? TRUE,
+        '#description' => $this->t('When enabled, content types will be hidden in the mega menu.'),
+      ];
+
+      // Additional menu sections
+      $additional_menus = [
+        'country_profiles' => $this->t('Country Profiles Menu'),
+        'focal_points' => $this->t('Focal Points Menu'),
+        'national_targets' => $this->t('National Targets Menu'),
+        'national_report' => $this->t('National Report Menu'),
+        'bch' => $this->t('BCH Menu'),
+        'absch' => $this->t('ABSCH Menu'),
+        'forums' => $this->t('Forums Menu'),
+      ];
+
+      foreach ($additional_menus as $menu_key => $menu_title) {
+        $form['mega_menu_settings'][$menu_key] = [
+          '#type' => 'details',
+          '#title' => $menu_title,
+          '#open' => FALSE,
+        ];
+
+        // Menu position (top/bottom)
+        $form['mega_menu_settings'][$menu_key][$menu_key . '_position'] = [
+          '#type' => 'select',
+          '#title' => $this->t('Menu position'),
+          '#options' => [
+            'top' => $this->t('Top'),
+            'bottom' => $this->t('Bottom'),
+          ],
+          '#default_value' => $config->get('mega_menu.' . $menu_key . '.position') ?? 'top',
+          '#description' => $this->t('Position where menu entries will appear.'),
+        ];
+
+        // Show menu even if empty checkbox
+        $form['mega_menu_settings'][$menu_key][$menu_key . '_show_if_empty'] = [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Show menu even if empty'),
+          '#default_value' => $config->get('mega_menu.' . $menu_key . '.show_if_empty') ?? FALSE,
+          '#description' => $this->t('Display this menu section even when there are no entries.'),
+        ];
+      }
     }
 
     if ($section === 'front_end_home_page') {
@@ -981,15 +1114,44 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#collapsed' => FALSE,
       ];
 
+      // Site email configuration
+      $site_config = $this->configFactory()->getEditable('system.site');
+      $form['admin_settings']['site_email'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Site Email'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['admin_settings']['site_email']['site_mail'] = [
+        '#type' => 'email',
+        '#title' => $this->t('Email address'),
+        '#default_value' => $site_config->get('mail'),
+        '#description' => $this->t("The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"),
+        '#required' => TRUE,
+      ];
+
       // Auto Summary functionality
-      $form['admin_settings']['enable_auto_summary'] = [
+      $form['admin_settings']['auto_summary'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Auto Summary'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['admin_settings']['auto_summary']['enable_auto_summary'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Auto Summary'),
         '#description' => $this->t('Automatically generate summary from body content as user types.'),
         '#default_value' => $config->get('enable_auto_summary') !== FALSE,
       ];
 
-      $form['admin_settings']['is_biosafety_land'] = [
+      // Biosafety Land setting
+      $form['admin_settings']['biosafety_land'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Biosafety Land'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['admin_settings']['biosafety_land']['is_biosafety_land'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Is Biosafety Land?'),
         '#description' => $this->t('Indicates whether this is a Biosafety Land instance.'),
@@ -1048,6 +1210,21 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Help Comments'),
         '#description' => $this->t('Log help comment insertion and visibility changes.'),
         '#default_value' => $config->get('debug_log_areas.help_comments') !== FALSE,
+      ];
+
+      // Main Menu Lock settings
+      $form['admin_settings']['main_menu_lock'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Main Menu Lock'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+      ];
+
+      $form['admin_settings']['main_menu_lock']['main_menu_lock_enabled'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Lock Main Menu Editing'),
+        '#description' => $this->t('Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the "Administer Main navigation menu items" permission.'),
+        '#default_value' => $config->get('main_menu_lock') !== FALSE,
       ];
     }
 
@@ -1156,7 +1333,8 @@ class BiolandSettingsForm extends ConfigFormBase {
       
       $config
         ->set('countries', $countries)
-        ->set('region', $values['region']);
+        ->set('region', $values['region'])
+        ->set('continent', $values['continent']);
     }
 
     if ($section === 'field_visibility') {
@@ -1266,6 +1444,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     if ($section === 'admin') {
+      // Update system.site mail configuration
+      $site_config = $this->configFactory()->getEditable('system.site');
+      $site_config->set('mail', $values['site_mail'])->save();
+
       $config
         ->set('enable_auto_summary', $values['enable_auto_summary'])
         ->set('is_biosafety_land', $values['is_biosafety_land'])
@@ -1273,7 +1455,11 @@ class BiolandSettingsForm extends ConfigFormBase {
         ->set('debug_log_areas.field_visibility', $values['debug_log_field_visibility'])
         ->set('debug_log_areas.additional_fields', $values['debug_log_additional_fields'])
         ->set('debug_log_areas.auto_summary', $values['debug_log_auto_summary'])
-        ->set('debug_log_areas.help_comments', $values['debug_log_help_comments']);
+        ->set('debug_log_areas.help_comments', $values['debug_log_help_comments'])
+        ->set('main_menu_lock', $values['main_menu_lock_enabled']);
+
+      // Handle Main Menu Lock permission changes
+      $this->handleMainMenuLockPermissions($values['main_menu_lock_enabled']);
     }
 
     if ($section === 'system_functions') {
@@ -1293,6 +1479,46 @@ class BiolandSettingsForm extends ConfigFormBase {
       // Save Promote and Sticky settings (moved from system_functions)
       $config
         ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
+    }
+
+    if ($section === 'front_end_mega_menu') {
+      // Clear cached visible TIDs to force rescan on next load
+      $config->clear('mega_menu.content_type_menus.visible_content_type_menus');
+      
+      // Save mega menu content type settings
+      $content_types = $this->getContentTypeOptionsForMegaMenu();
+      
+      foreach ($content_types as $tid => $type_name) {
+        $max_menus_key = 'max_menus_' . $tid;
+        $menu_position_key = 'menu_position_' . $tid;
+        
+        if (isset($values[$max_menus_key])) {
+          $config->set('mega_menu.content_type_menus.' . $tid . '.max_menus', (int) $values[$max_menus_key]);
+        }
+        
+        if (isset($values[$menu_position_key])) {
+          $config->set('mega_menu.content_type_menus.' . $tid . '.menu_position', $values[$menu_position_key]);
+        }
+      }
+
+      // Save content types settings
+      $config->set('mega_menu.content_types.hide_content_types', (bool) ($values['hide_content_types'] ?? TRUE));
+
+      // Save additional menu settings
+      $additional_menus = ['country_profiles', 'focal_points', 'national_targets', 'national_report', 'bch', 'absch', 'forums'];
+      
+      foreach ($additional_menus as $menu_key) {
+        $position_key = $menu_key . '_position';
+        $show_if_empty_key = $menu_key . '_show_if_empty';
+        
+        if (isset($values[$position_key])) {
+          $config->set('mega_menu.' . $menu_key . '.position', $values[$position_key]);
+        }
+        
+        if (isset($values[$show_if_empty_key])) {
+          $config->set('mega_menu.' . $menu_key . '.show_if_empty', (bool) $values[$show_if_empty_key]);
+        }
+      }
     }
 
     $config->save();
@@ -1351,6 +1577,19 @@ class BiolandSettingsForm extends ConfigFormBase {
     $count = $form_state->get('reset_ordering_count') ?: 0;
     $response->addCommand(new MessageCommand($this->t('Successfully reset field_order to 1000 for @count nodes.', ['@count' => $count]), NULL, ['type' => 'status']));
     return $response;
+  }
+
+  /**
+   * Submit handler for rescan menus button.
+   */
+  public function submitRescanMenus(array &$form, FormStateInterface $form_state) {
+    // Clear the cached visible TIDs
+    $this->configFactory->getEditable('bioland.settings')
+      ->clear('mega_menu.content_type_menus.visible_content_type_menus')
+      ->save();
+    
+    $this->messenger()->addStatus($this->t('Menu scan cache cleared. The page will reload to show updated content types.'));
+    $form_state->setRebuild(TRUE);
   }
 
   /**
@@ -1495,7 +1734,10 @@ class BiolandSettingsForm extends ConfigFormBase {
     try {
       $terms = $this->entityTypeManager
         ->getStorage('taxonomy_term')
-        ->loadByProperties(['vid' => 'tags']);
+        ->loadByProperties([
+          'vid' => 'tags',
+          'status' => 1,
+        ]);
 
       foreach ($terms as $term) {
         $tid = (int) $term->id();
@@ -1512,6 +1754,317 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     return $options;
+  }
+
+  /**
+   * Get content type options with plural field for mega menu display.
+   *
+   * @return array
+   *   Array of content type options keyed by term ID with plural field value,
+   *   sorted alphabetically by plural name.
+   */
+  protected function getContentTypeOptionsForMegaMenu() {
+    $options = [];
+    try {
+      $terms = $this->entityTypeManager
+        ->getStorage('taxonomy_term')
+        ->loadByProperties([
+          'vid' => 'tags',
+          'status' => 1,
+        ]);
+
+      foreach ($terms as $term) {
+        $tid = (int) $term->id();
+        // Get plural field if available, fallback to label
+        $plural = $term->hasField('field_plural') && !$term->get('field_plural')->isEmpty()
+          ? $term->get('field_plural')->value
+          : $term->label();
+        $options[$tid] = $plural;
+      }
+
+      // Sort alphabetically by plural name
+      asort($options);
+    }
+    catch (\Exception $e) {
+      // Log error and return empty array if taxonomy terms cannot be loaded.
+      \Drupal::logger('bioland')->error('Failed to load content type options for mega menu: @message', ['@message' => $e->getMessage()]);
+    }
+
+    return $options;
+  }
+
+  /**
+   * Get content type reference data.
+   *
+   * This is a reference of all known content types with their metadata.
+   * Can be imported and used for configuration, validation, or frontend display.
+   *
+   * @return array
+   *   Array of content type data, each with:
+   *   - tid: Taxonomy term ID
+   *   - name: Singular name
+   *   - field_plural: Plural name
+   *   - icon: Emoji icon
+   *   - slug: Kebab-case version of singular name
+   */
+  protected static function getContentTypeReference() {
+    return [
+      ['tid' => 2, 'name' => 'News', 'field_plural' => 'News', 'icon' => '📰', 'slug' => 'news'],
+      ['tid' => 3, 'name' => 'Event', 'field_plural' => 'Events', 'icon' => '📅', 'slug' => 'event'],
+      ['tid' => 4, 'name' => 'Learning Resource', 'field_plural' => 'Learning Resources', 'icon' => '🎓', 'slug' => 'learning-resource'],
+      ['tid' => 5, 'name' => 'Project', 'field_plural' => 'Projects', 'icon' => '📊', 'slug' => 'project'],
+      ['tid' => 6, 'name' => 'Basic Page', 'field_plural' => 'Basic Pages', 'icon' => '📄', 'slug' => 'basic-page'],
+      ['tid' => 54, 'name' => 'Article', 'field_plural' => 'Articles', 'icon' => '📄', 'slug' => 'article'],
+      ['tid' => 8, 'name' => 'Government Ministry or Institute', 'field_plural' => 'Government Ministries or Institutes', 'icon' => '🏛️', 'slug' => 'government-ministry-or-institute'],
+      ['tid' => 9, 'name' => 'Ecosystem', 'field_plural' => 'Ecosystems', 'icon' => '🌍', 'slug' => 'ecosystem'],
+      ['tid' => 10, 'name' => 'Protected Area', 'field_plural' => 'Protected Areas', 'icon' => '🏞️', 'slug' => 'protected-area'],
+      ['tid' => 11, 'name' => 'Biodiversity Data', 'field_plural' => 'Biodiversity Data', 'icon' => '📈', 'slug' => 'biodiversity-data'],
+      ['tid' => 12, 'name' => 'Document', 'field_plural' => 'Documents', 'icon' => '📋', 'slug' => 'document'],
+      ['tid' => 13, 'name' => 'Related Website', 'field_plural' => 'Related Websites', 'icon' => '🔗', 'slug' => 'related-website'],
+      ['tid' => 15, 'name' => 'Other', 'field_plural' => 'Others', 'icon' => '⚙️', 'slug' => 'other'],
+      ['tid' => 16, 'name' => 'Image or Video', 'field_plural' => 'Images or Videos', 'icon' => '🎬', 'slug' => 'image-or-video'],
+      ['tid' => 55, 'name' => 'Other Resource', 'field_plural' => 'Other Resources', 'icon' => '⚙️', 'slug' => 'other-resource'],
+      ['tid' => 43, 'name' => 'FAQ', 'field_plural' => 'FAQs', 'icon' => '❓', 'slug' => 'faq'],
+      ['tid' => 44, 'name' => 'National Information', 'field_plural' => 'National Informations', 'icon' => '🏴', 'slug' => 'national-information'],
+      ['tid' => 45, 'name' => 'Status of LMO', 'field_plural' => 'Status of LMOs', 'icon' => '🧬', 'slug' => 'status-of-lmo'],
+      ['tid' => 46, 'name' => 'Field Trial', 'field_plural' => 'Field Trials', 'icon' => '🌱', 'slug' => 'field-trial'],
+      ['tid' => 47, 'name' => 'National Mainstreaming Strategy', 'field_plural' => 'National Mainstreaming Strategies', 'icon' => '🗂️', 'slug' => 'national-mainstreaming-strategy'],
+      ['tid' => 48, 'name' => 'Capacity Building', 'field_plural' => 'Capacity Building', 'icon' => '🔧', 'slug' => 'capacity-building'],
+      ['tid' => 49, 'name' => 'Announcement', 'field_plural' => 'Announcements', 'icon' => '📢', 'slug' => 'announcement'],
+      ['tid' => 50, 'name' => 'Contact', 'field_plural' => 'Contacts', 'icon' => '📞', 'slug' => 'contact'],
+    ];
+  }
+
+  /**
+   * Get content type TIDs that are in use in menus.
+   *
+   * Scans all menus (except excluded ones) for bl2-content-type-* classes
+   * and returns the TIDs of content types that are referenced.
+   *
+   * @return array
+   *   Array of taxonomy term IDs that are in use in menus.
+   */
+  protected function getContentTypeTidsInUse() {
+    $config = $this->config('bioland.settings');
+    $enable_debug = $config->get('enable_debug_logging') ?: FALSE;
+    
+    // Check if we already have saved visible content type menus
+    // $saved_tids = $config->get('mega_menu.content_type_menus.visible_content_type_menus');
+    // if (!empty($saved_tids) && is_array($saved_tids)) {
+    //   if ($enable_debug) {
+    //     \Drupal::logger('bioland')->debug('Mega Menu: Using saved visible content type TIDs: @tids', [
+    //       '@tids' => implode(', ', $saved_tids),
+    //     ]);
+    //   }
+    //   return $saved_tids;
+    // }
+    
+    $tids_in_use = [];
+    $excluded_menus = ['admin', 'footer', 'account', 'tools', 'footer-credits', 'main'];
+    
+    // Get content type reference for slug-to-tid mapping
+    $content_type_ref = self::getContentTypeReference();
+    $slug_to_tid = [];
+    foreach ($content_type_ref as $ct) {
+      $slug_to_tid[$ct['slug']] = $ct['tid'];
+    }
+
+    try {
+      // Load all menus
+      $menu_storage = $this->entityTypeManager->getStorage('menu');
+      $menus = $menu_storage->loadMultiple();
+
+      if ($enable_debug) {
+        \Drupal::logger('bioland')->debug('Mega Menu: Scanning menus for content type classes');
+      }
+
+      foreach ($menus as $menu) {
+        $menu_id = $menu->id();
+        
+        // Skip excluded menus
+        if (in_array($menu_id, $excluded_menus)) {
+          continue;
+        }
+
+        // Load ALL menu items from database for this menu to scan all levels
+        $menu_link_storage = $this->entityTypeManager->getStorage('menu_link_content');
+        $menu_links = $menu_link_storage->loadByProperties([
+          'menu_name' => $menu_id,
+          'enabled' => 1,
+        ]);
+        
+       // if ($enable_debug) {
+          \Drupal::logger('bioland')->debug('Mega Menu: Scanning menu @menu with @count links', [
+            '@menu' => $menu_id,
+            '@count' => count($menu_links),
+          ]);
+      //  }
+        
+        // Process each menu item
+        foreach ($menu_links as $menu_link) {
+          // Get link options which contain attributes
+          $link_field = $menu_link->get('link');
+          if ($link_field->isEmpty()) {
+            continue;
+          }
+          
+          $link_item = $link_field->first();
+          if (!$link_item) {
+            continue;
+          }
+          
+
+          // Get options - it may be stored as 'options' property or in the value array
+          $options = [];
+          $link_value = $link_item->getValue();
+
+           \Drupal::logger('bioland')->debug('Mega Menu link ', [
+                '@menu' => print_r($link_value, TRUE)
+          ]);
+          if (isset($link_value['options'])) {
+            $options = $link_value['options'];
+          }
+          \Drupal::logger('bioland')->debug('Mega Menu options: ', [
+                '@menu' => print_r($link_value['options'], TRUE)
+          ]);
+          // Check for classes in attributes
+          if (isset($options['attributes']['class'])) {
+            $classes = is_array($options['attributes']['class']) 
+              ? $options['attributes']['class'] 
+              : explode(' ', $options['attributes']['class']);
+            
+            if ($enable_debug && !empty($classes)) {
+              \Drupal::logger('bioland')->debug('Mega Menu: Found classes in menu @menu item "@title": @classes', [
+                '@menu' => $menu_id,
+                '@title' => $menu_link->label(),
+                '@classes' => implode(', ', $classes),
+              ]);
+            }
+                            
+                if ($enable_debug) {
+                  \Drupal::logger('bioland')->debug('Mega Menu: classes raw @class', [
+                    '@class' => implode(', ', $classes)
+                    ]);
+                  }
+            // Extract bl2-content-type-* classes
+            foreach ($classes as $class) {
+                              
+
+              if (strpos($class, 'bl2-content-type-') === 0) {
+                // Remove prefix to get slug
+                $slug = substr($class, strlen('bl2-content-type-'));
+                                            
+                if ($enable_debug) {
+                  \Drupal::logger('bioland')->debug('Mega Menu: class @class', [
+                    '@clas' => $class
+                    ]);
+                  }
+                if ($enable_debug) {
+                  \Drupal::logger('bioland')->debug('Mega Menu: Found bl2-content-type class: @class (slug: @slug) in item "@title"', [
+                    '@class' => $class,
+                    '@slug' => $slug,
+                    '@title' => $menu_link->label(),
+                  ]);
+                }
+                
+                // Match to TID
+                if (isset($slug_to_tid[$slug])) {
+                  $tids_in_use[] = $slug_to_tid[$slug];
+                  if ($enable_debug) {
+                    \Drupal::logger('bioland')->debug('Mega Menu: Matched slug @slug to TID @tid', [
+                      '@slug' => $slug,
+                      '@tid' => $slug_to_tid[$slug],
+                    ]);
+                  }
+                } else {
+                  if ($enable_debug) {
+                    \Drupal::logger('bioland')->debug('Mega Menu: No TID match found for slug: @slug', [
+                      '@slug' => $slug,
+                    ]);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // Return unique TIDs
+      $unique_tids = array_unique($tids_in_use);
+      
+      if ($enable_debug) {
+        \Drupal::logger('bioland')->debug('Mega Menu: Final visible content type TIDs: @tids', [
+          '@tids' => implode(', ', $unique_tids),
+        ]);
+      }
+      
+      // Save the visible TIDs to config for future use
+      \Drupal::configFactory()->getEditable('bioland.settings')
+        ->set('mega_menu.content_type_menus.visible_content_type_menus', array_values($unique_tids))
+        ->save();
+      
+      return $unique_tids;
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Failed to scan menus for content types: @message', ['@message' => $e->getMessage()]);
+      return [];
+    }
+  }
+
+  /**
+   * Handle Main Menu Lock permission changes.
+   *
+   * @param bool $lock_enabled
+   *   TRUE if main menu lock is enabled, FALSE if disabled.
+   */
+  protected function handleMainMenuLockPermissions($lock_enabled) {
+    $permission = 'administer main menu items';
+    $roles_to_manage = ['scbd_staff', 'site_manager'];
+
+    try {
+      $role_storage = $this->entityTypeManager->getStorage('user_role');
+
+      foreach ($roles_to_manage as $role_id) {
+        /** @var \Drupal\user\RoleInterface $role */
+        $role = $role_storage->load($role_id);
+        
+        if ($role) {
+          if ($lock_enabled) {
+            // Lock enabled: Remove permission
+            if ($role->hasPermission($permission)) {
+              $role->revokePermission($permission);
+              $role->save();
+              \Drupal::logger('bioland')->info('Removed "@permission" permission from @role role.', [
+                '@permission' => $permission,
+                '@role' => $role_id,
+              ]);
+            }
+          }
+          else {
+            // Lock disabled: Grant permission
+            if (!$role->hasPermission($permission)) {
+              $role->grantPermission($permission);
+              $role->save();
+              \Drupal::logger('bioland')->info('Granted "@permission" permission to @role role.', [
+                '@permission' => $permission,
+                '@role' => $role_id,
+              ]);
+            }
+          }
+        }
+        else {
+          \Drupal::logger('bioland')->warning('Role @role not found when managing main menu lock permissions.', [
+            '@role' => $role_id,
+          ]);
+        }
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Failed to manage main menu lock permissions: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      $this->messenger()->addError($this->t('An error occurred while updating menu permissions. Please check the logs.'));
+    }
   }
 
 }

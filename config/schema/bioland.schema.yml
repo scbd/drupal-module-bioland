@@ -11,6 +11,9 @@ bioland.settings:
     region:
       type: string
       label: 'Geographic region'
+    continent:
+      type: string
+      label: 'Continent'
     is_biosafety_land:
       type: boolean
       label: 'Is Biosafety Land'
@@ -175,6 +178,100 @@ bioland.settings:
         help_comments:
           type: boolean
           label: 'Log help comments'
+    main_menu_lock:
+      type: boolean
+      label: 'Lock main menu editing'
+    mega_menu:
+      type: mapping
+      label: 'Mega menu settings'
+      mapping:
+        content_type_menus:
+          type: mapping
+          label: 'Content type menu configurations'
+          mapping:
+            visible_content_type_menus:
+              type: sequence
+              label: 'Cached visible content type menu TIDs'
+              sequence:
+                type: integer
+                label: 'Content type TID'
+        content_types:
+          type: mapping
+          label: 'Content types settings'
+          mapping:
+            hide_content_types:
+              type: boolean
+              label: 'Hide content types in mega menu'
+        country_profiles:
+          type: mapping
+          label: 'Country Profiles Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        focal_points:
+          type: mapping
+          label: 'Focal Points Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        national_targets:
+          type: mapping
+          label: 'National Targets Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        national_report:
+          type: mapping
+          label: 'National Report Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        bch:
+          type: mapping
+          label: 'BCH Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        absch:
+          type: mapping
+          label: 'ABSCH Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
+        forums:
+          type: mapping
+          label: 'Forums Menu settings'
+          mapping:
+            position:
+              type: string
+              label: 'Menu position'
+            show_if_empty:
+              type: boolean
+              label: 'Show menu even if empty'
     translation:
       type: mapping
       label: 'Translation settings'

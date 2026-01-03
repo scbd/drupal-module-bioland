@@ -325,6 +325,31 @@ function _bioland_get_linkit_matchers() {
   ];
 }
 
+/**
+ * Fetch and update countries from DMSM API based on hostname.
+ *
+ * @param string|null $hostname
+ *   Optional hostname to parse. If NULL, uses current request host.
+ *
+ * @return string|null
+ *   Status message about the operation, or NULL on success.
+ */
+function _bioland_update_countries_from_dmsm($hostname = null) {
+  try {
+    $dmsm_service = \Drupal::service('bioland.dmsm_config');
+    $result = $dmsm_service->updateCountriesFromDmsm($hostname);
+    
+    if ($result['success']) {
+      return NULL; // Success
+    } else {
+      return t('Failed to fetch countries from DMSM API: @message', ['@message' => $result['message']]);
+    }
+  }
+  catch (\Exception $e) {
+    return t('Error fetching countries from DMSM API: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
 /*
  * =============================================================================
  * HOOK IMPLEMENTATIONS
@@ -362,6 +387,10 @@ function bioland_install() {
     }
   }
 
+  // Install optional field configs early (creates database tables via entity API).
+  // This MUST happen before any code that references field_order or other optional fields.
+  _bioland_install_optional_field_configs();
+
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
@@ -388,6 +417,15 @@ function bioland_install() {
   }
   catch (\Throwable $e) {
     // Swallow errors to avoid failing installation; values will remain defaults.
+  }
+
+  // Fetch and update countries from DMSM API based on hostname.
+  try {
+    _bioland_update_countries_from_dmsm();
+  }
+  catch (\Throwable $e) {
+    // Log but don't fail installation if DMSM API is unavailable.
+    \Drupal::logger('bioland')->warning('Could not fetch countries from DMSM API during install: @message', ['@message' => $e->getMessage()]);
   }
 
   // Import translations from PO files.
@@ -455,8 +493,25 @@ function bioland_install() {
   // Disable unused JSON API resource endpoints.
   _bioland_disable_jsonapi_resources();
 
+  // Enable Main Menu Lock and remove permissions from specific roles.
+  _bioland_enable_main_menu_lock();
+
+  // Set content type weights for /node/add page ordering.
+  _bioland_configure_content_type_weights();
+
+  // Install custom views with enhanced functionality.
+  _bioland_install_user_admin_view();
+  _bioland_install_comment_admin_view();
+  _bioland_install_media_library_view();
+
+  // Configure full_html editor toolbar and image upload settings.
+  _bioland_configure_full_html_editor_toolbar();
+
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
+
+  // Rebuild router to register view routes and local tasks.
+  \Drupal::service('router.builder')->rebuild();
 
   // FINAL STEP: Rebuild search index tracking and trigger reindex.
   // This MUST be the last operation to ensure all configuration changes
@@ -1539,7 +1594,7 @@ function _bioland_configure_linkit_profile() {
 
   // Set the matchers configuration.
   $linkit_config->set('matchers', $matchers_config);
-  $linkit_config->save();
+  $linkit_config->save(TRUE);
 
   // Configure the editor and filter for Linkit integration.
   _bioland_configure_linkit_editor();
@@ -1596,7 +1651,7 @@ function _bioland_configure_linkit_editor() {
         $editor_config->set('dependencies', $dependencies);
       }
       
-      $editor_config->save();
+      $editor_config->save(TRUE);
       $result['editor'] = TRUE;
       
       \Drupal::logger('bioland')->notice('Configured editor.editor.full_html with Linkit extension.');
@@ -1638,7 +1693,7 @@ function _bioland_configure_linkit_editor() {
       $filter_config->set('dependencies', $dependencies);
     }
     
-    $filter_config->save();
+    $filter_config->save(TRUE);
     $result['filter'] = TRUE;
     
     \Drupal::logger('bioland')->notice('Configured filter.format.full_html with Linkit filter.');
@@ -1773,6 +1828,35 @@ function bioland_update_9020() {
  */
 function bioland_update_9021() {
   return _bioland_provision_users();
+}
+
+/**
+ * Fetch and update countries from DMSM API based on hostname.
+ */
+function bioland_update_9023() {
+  $result = _bioland_update_countries_from_dmsm();
+  
+  if ($result === NULL) {
+    return t('Successfully updated countries from DMSM API.');
+  }
+  
+  // Update must fail if countries could not be fetched.
+  throw new \RuntimeException($result);
+}
+
+/**
+ * Update field_url label from 'Url' to 'URL'.
+ */
+function bioland_update_9024() {
+  $field_config = FieldConfig::loadByName('node', 'content', 'field_url');
+  
+  if ($field_config) {
+    $field_config->setLabel('URL');
+    $field_config->save();
+    return t('Updated field_url label to "URL".');
+  }
+  
+  return t('field_url does not exist, skipping update.');
 }
 
 /**
@@ -2096,7 +2180,7 @@ function _bioland_configure_full_html_format() {
     $messages[] = t('Set image upload max size to 250kb.');
 
     $editor_config->set('settings', $settings);
-    $editor_config->save();
+    $editor_config->save(TRUE);
   }
   else {
     $messages[] = t('editor.editor.full_html not found; skipping editor configuration.');
@@ -2149,7 +2233,7 @@ function _bioland_configure_full_html_format() {
       $messages[] = t('Granted scbd_staff access to full_html format.');
     }
 
-    $filter_config->save();
+    $filter_config->save(TRUE);
   }
   else {
     $messages[] = t('filter.format.full_html not found; skipping filter configuration.');
@@ -2195,7 +2279,7 @@ function _bioland_configure_full_html_format() {
  *
  * @version 1.0.30
  */
-function bioland_update_9023() {
+function bioland_update_9045() {
   return _bioland_sync_scbd_staff_permissions();
 }
 
@@ -2243,11 +2327,56 @@ function _bioland_sync_scbd_staff_permissions() {
 }
 
 /**
+ * Update region and continent from DMSM API.
+ *
+ * Fetches and populates region and continent config values from DMSM API
+ * based on the current hostname.
+ *
+ * @version 1.0.36
+ */
+function bioland_update_9046() {
+  try {
+    // Use the existing helper function to update from DMSM API.
+    $result = _bioland_update_countries_from_dmsm();
+    
+    if ($result) {
+      // If there was an error message, return it.
+      return $result;
+    }
+    
+    // Get the config to check what was populated.
+    $config = \Drupal::config('bioland.settings');
+    $region = $config->get('region');
+    $continent = $config->get('continent');
+    
+    $updates = [];
+    if ($region) {
+      $updates[] = t('region: @region', ['@region' => $region]);
+    }
+    if ($continent) {
+      $updates[] = t('continent: @continent', ['@continent' => $continent]);
+    }
+    
+    if (!empty($updates)) {
+      return t('Successfully updated from DMSM API: @updates', ['@updates' => implode(', ', $updates)]);
+    }
+    
+    return t('DMSM API call succeeded but region/continent not found in response.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->warning('Could not update region/continent from DMSM API: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Could not fetch region/continent from DMSM API: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
  * Block legacy @cbd.int users and configure Search API index and facets.
  *
  * @version 1.0.30
  */
-function bioland_update_9024() {
+function bioland_update_9025() {
   $messages = [];
 
   // 1. Block @cbd.int users (except randy.houlahan@cbd.int).
@@ -2668,7 +2797,7 @@ function _bioland_configure_search_api_index() {
   ]);
 
   $config->set('server', 'file_index');
-  $config->save();
+  $config->save(TRUE);
 
   // Restore read_only state if we changed it.
   if ($set_read_only && $index) {
@@ -2938,6 +3067,11 @@ function _bioland_final_reindex() {
   }
 
   try {
+    // Clear caches to ensure all field definitions are loaded.
+    // This is critical when fields were just created during install.
+    \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+    drupal_flush_all_caches();
+
     $index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
     $index = $index_storage->load('content');
 
@@ -3054,7 +3188,7 @@ function _bioland_configure_facets() {
       'before' => TRUE,
       'group' => FALSE,
     ]);
-    $facet_source->save();
+    $facet_source->save(TRUE);
     $messages[] = t('Configured facet source.');
   }
 
@@ -3104,7 +3238,7 @@ function _bioland_configure_facets() {
     $facet_config->set('show_only_one_result', FALSE);
     $facet_config->set('show_title', FALSE);
     $facet_config->set('processor_configs', $processor_configs);
-    $facet_config->save();
+    $facet_config->save(TRUE);
     $messages[] = t('Configured @name facet.', ['@name' => $facet_settings['name']]);
   }
 
@@ -3164,7 +3298,7 @@ function _bioland_get_facet_processor_configs() {
  *
  * @version 1.0.30
  */
-function bioland_update_9025() {
+function bioland_update_9026() {
   return _bioland_configure_langcode_form_display();
 }
 
@@ -3244,7 +3378,7 @@ function _bioland_configure_langcode_form_display() {
         ];
 
         $form_display_config->set('third_party_settings', $third_party);
-        $form_display_config->save();
+        $form_display_config->save(TRUE);
         $messages[] = 'Added langcode field to content form in collapsible Language group.';
         \Drupal::logger('bioland')->notice('Added langcode field to content form in collapsible Language group.');
       }
@@ -3254,7 +3388,7 @@ function _bioland_configure_langcode_form_display() {
         if (!in_array('langcode', $children)) {
           $third_party['field_group']['group_language']['children'][] = 'langcode';
           $form_display_config->set('third_party_settings', $third_party);
-          $form_display_config->save();
+          $form_display_config->save(TRUE);
           $messages[] = 'Added langcode to existing Language group.';
         }
         else {
@@ -3273,21 +3407,21 @@ function _bioland_configure_langcode_form_display() {
 /**
  * Enable language alterable for content node type.
  */
-function bioland_update_9026() {
+function bioland_update_9027() {
   return _bioland_configure_langcode_form_display();
 }
 
 /**
  * Configure available menus for content type.
  */
-function bioland_update_9027() {
+function bioland_update_9028() {
   return _bioland_configure_content_type_available_menus();
 }
 
 /**
  * Configure content type taxonomy terms.
  */
-function bioland_update_9028() {
+function bioland_update_9029() {
   return _bioland_configure_content_types();
 }
 
@@ -3701,7 +3835,7 @@ function _bioland_configure_system_pages_search_terms() {
 /**
  * Ensure all bioland users have the system role.
  */
-function bioland_update_9029() {
+function bioland_update_9030() {
   $messages = [];
   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
   
@@ -3744,7 +3878,7 @@ function bioland_update_9029() {
 /**
  * Grant scbd_staff role to all users with @un.org email addresses.
  */
-function bioland_update_9030() {
+function bioland_update_9031() {
   $user_storage = \Drupal::entityTypeManager()->getStorage('user');
   $result = _bioland_grant_scbd_staff_to_un_org_users($user_storage);
   return $result ?: t('No @un.org users found or all already have scbd_staff role.');
@@ -3753,7 +3887,7 @@ function bioland_update_9030() {
 /**
  * Grant maintenance mode access to administrator and scbd_staff roles only.
  */
-function bioland_update_9031() {
+function bioland_update_9032() {
   $messages = _bioland_configure_maintenance_mode_access();
   
   if (empty($messages)) {
@@ -3766,7 +3900,7 @@ function bioland_update_9031() {
 /**
  * Grant admin/config access permissions to scbd_staff, site_manager, and content_manager.
  */
-function bioland_update_9032() {
+function bioland_update_9033() {
   $permission_matrix = [
     'scbd_staff' => [
       'access administration pages',
@@ -3797,7 +3931,7 @@ function bioland_update_9032() {
 /**
  * Update all text format fields to use full_html.
  */
-function bioland_update_9033() {
+function bioland_update_9034() {
   _bioland_update_content_to_full_html();
   return t('Updated all text format fields to use full_html format.');
 }
@@ -3805,35 +3939,35 @@ function bioland_update_9033() {
 /**
  * Add system_pages search terms: BCH Search and ABSCH Search.
  */
-function bioland_update_9034() {
+function bioland_update_9035() {
   return _bioland_configure_system_pages_search_terms();
 }
 
 /**
  * Add langcode field to content form sidebar.
  */
-function bioland_update_9035() {
+function bioland_update_9036() {
   return _bioland_configure_langcode_form_display();
 }
 
 /**
  * Disable unused JSON API resource endpoints for security.
  */
-function bioland_update_9036() {
+function bioland_update_9037() {
   return _bioland_disable_jsonapi_resources();
 }
 
 /**
  * Update full_html editor: max image size 50kb and new toolbar configuration.
  */
-function bioland_update_9037() {
+function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
 }
 
 /**
  * Configure content type taxonomy term status based on site type (BL2 vs Biosafety).
  */
-function bioland_update_9038() {
+function bioland_update_9039() {
   return _bioland_configure_content_type_status_by_site_type();
 }
 
@@ -3909,7 +4043,7 @@ function _bioland_disable_jsonapi_resources() {
     $config->set('path', FALSE);
     $config->set('resourceType', $resource_type);
     $config->set('resourceFields', []);
-    $config->save();
+    $config->save(TRUE);
 
     $messages[] = t('Disabled JSON API resource: @resource', ['@resource' => $resource_type]);
   }
@@ -3940,58 +4074,764 @@ function _bioland_configure_full_html_editor_toolbar() {
     return t('editor.editor.full_html not found; skipping editor configuration.');
   }
 
-  // Update image upload max size to 50kb.
-  $editor_config->set('image_upload.max_size', '50kb');
-  $messages[] = t('Set image upload max size to 50kb.');
+  try {
+    // Get current values for debugging
+    $current_max_size = $editor_config->get('image_upload.max_size');
+    $current_toolbar = $editor_config->get('settings.toolbar.items');
+    
+    // Update image upload max size to 50kb.
+    $editor_config->set('image_upload.max_size', '50kb');
+    $messages[] = t('Set image upload max size to 50kb (was: @old).', [
+      '@old' => $current_max_size ?: 'not set',
+    ]);
 
-  // Define the new toolbar items.
-  $toolbar_items = [
-    'bold',
-    'underline',
-    'italic',
-    'link',
-    'icon',
-    '|',
-    'numberedList',
-    'bulletedList',
-    '|',
-    'alignment',
-    'indent',
-    'outdent',
-    '|',
-    'insertTable',
-    'bootstrapGrid',
-    '|',
-    'drupalMedia',
-    'drupalInsertImage',
-    'heading',
-    '|',
-    'Fullscreen',
-    'undo',
-    'redo',
-    'showBlocks',
-    '|',
-    'horizontalLine',
-    'blockQuote',
-    'specialCharacters',
-    'code',
-    'codeBlock',
-    '|',
-    'strikethrough',
-    'superscript',
-    'subscript',
-    'removeFormat',
-    '|',
-  ];
+    // Define the new toolbar items.
+    $toolbar_items = [
+      'bold',
+      'underline',
+      'italic',
+      'link',
+      'icon',
+      '|',
+      'numberedList',
+      'bulletedList',
+      '|',
+      'alignment',
+      'indent',
+      'outdent',
+      '|',
+      'insertTable',
+      'bootstrapGrid',
+      '|',
+      'drupalMedia',
+      'drupalInsertImage',
+      'heading',
+      '|',
+      'Fullscreen',
+      'undo',
+      'redo',
+      'showBlocks',
+      '|',
+      'horizontalLine',
+      'blockQuote',
+      'specialCharacters',
+      'code',
+      'codeBlock',
+      '|',
+      'strikethrough',
+      'superscript',
+      'subscript',
+      'removeFormat',
+      '|',
+      'sourceEditing'
+    ];
 
-  $editor_config->set('settings.toolbar.items', $toolbar_items);
-  $messages[] = t('Updated full_html editor toolbar configuration with @count items.', [
-    '@count' => count($toolbar_items),
-  ]);
+    $editor_config->set('settings.toolbar.items', $toolbar_items);
+    $messages[] = t('Updated full_html editor toolbar configuration with @count items (was: @old).', [
+      '@count' => count($toolbar_items),
+      '@old' => is_array($current_toolbar) ? count($current_toolbar) : 'not set',
+    ]);
 
-  $editor_config->save();
-
-  \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and 50kb image limit.');
+    // Save with TRUE to rebuild cache
+    $editor_config->save(TRUE);
+    
+    // Clear render cache and plugin cache to ensure changes take effect
+    \Drupal::service('plugin.manager.ckeditor5.plugin')->clearCachedDefinitions();
+    \Drupal::cache('render')->invalidateAll();
+    
+    // Verify the save worked by reloading
+    $editor_config_verify = $config_factory->get('editor.editor.full_html');
+    $saved_max_size = $editor_config_verify->get('image_upload.max_size');
+    $saved_toolbar = $editor_config_verify->get('settings.toolbar.items');
+    
+    if ($saved_max_size === '50kb' && is_array($saved_toolbar) && count($saved_toolbar) === count($toolbar_items)) {
+      $messages[] = t('✓ Verified: Changes saved successfully.');
+      \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and 50kb image limit - VERIFIED.');
+    }
+    else {
+      $messages[] = t('⚠ Warning: Save verification failed. Max size: @size, Toolbar items: @items', [
+        '@size' => $saved_max_size ?: 'not saved',
+        '@items' => is_array($saved_toolbar) ? count($saved_toolbar) : 'not saved',
+      ]);
+      \Drupal::logger('bioland')->warning('editor.editor.full_html changes may not have persisted. Max size: @size, Toolbar: @toolbar', [
+        '@size' => $saved_max_size,
+        '@toolbar' => is_array($saved_toolbar) ? count($saved_toolbar) : 'null',
+      ]);
+    }
+  }
+  catch (\Exception $e) {
+    $error_msg = t('Error saving editor configuration: @message', ['@message' => $e->getMessage()]);
+    $messages[] = $error_msg;
+    \Drupal::logger('bioland')->error('Failed to configure editor.editor.full_html: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
 
   return implode("\n", $messages);
+}
+
+/**
+ * Helper function to enable Main Menu Lock and remove permissions.
+ *
+ * Sets main_menu_lock to TRUE and removes "administer main menu items"
+ * permission from scbd_staff and site_manager roles.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_enable_main_menu_lock() {
+  $messages = [];
+  
+  // Set main_menu_lock to TRUE in config.
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $config->set('main_menu_lock', TRUE);
+  $config->save(TRUE);
+  $messages[] = t('Enabled Main Menu Lock in configuration.');
+  
+  // Remove "administer main menu items" permission from specific roles.
+  $permission = 'administer main menu items';
+  $roles_to_lock = ['scbd_staff', 'site_manager'];
+  
+  try {
+    $role_storage = \Drupal::entityTypeManager()->getStorage('user_role');
+    
+    foreach ($roles_to_lock as $role_id) {
+      $role = $role_storage->load($role_id);
+      
+      if ($role) {
+        if ($role->hasPermission($permission)) {
+          $role->revokePermission($permission);
+          $role->save();
+          $messages[] = t('Removed "@permission" permission from @role role.', [
+            '@permission' => $permission,
+            '@role' => $role_id,
+          ]);
+          \Drupal::logger('bioland')->info('Main Menu Lock: Removed "@permission" from @role.', [
+            '@permission' => $permission,
+            '@role' => $role_id,
+          ]);
+        }
+        else {
+          $messages[] = t('Role @role does not have "@permission" permission (already removed).', [
+            '@role' => $role_id,
+            '@permission' => $permission,
+          ]);
+        }
+      }
+      else {
+        $messages[] = t('Role @role not found, skipping permission removal.', [
+          '@role' => $role_id,
+        ]);
+        \Drupal::logger('bioland')->warning('Main Menu Lock: Role @role not found.', [
+          '@role' => $role_id,
+        ]);
+      }
+    }
+  }
+  catch (\Exception $e) {
+    $messages[] = t('Error managing Main Menu Lock permissions: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    \Drupal::logger('bioland')->error('Main Menu Lock error: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+  
+  return implode("\n", $messages);
+}
+
+/**
+ * Enable Main Menu Lock feature and remove main menu permissions from specific roles.
+ */
+function bioland_update_9040() {
+  return _bioland_enable_main_menu_lock();
+}
+
+/**
+ * Helper function to configure content type weights for /node/add page ordering.
+ *
+ * Sets weight values to control the order of content types on the /node/add page.
+ * Lower weight values appear first.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_content_type_weights() {
+  $messages = [];
+  $config_factory = \Drupal::configFactory();
+
+  // Define content type weights (lower = appears first on /node/add)
+  $weights = [
+    'content' => -10,  // Site Content - appears first
+    'forum' => 0,      // Forum topic - appears second
+  ];
+
+  foreach ($weights as $type => $weight) {
+    $config = $config_factory->getEditable('node.type.' . $type);
+    
+    if (!$config->isNew()) {
+      $config->set('weight', $weight);
+      $config->save(TRUE);
+      $messages[] = t('Set weight @weight for @type content type.', [
+        '@weight' => $weight,
+        '@type' => $type,
+      ]);
+    }
+    else {
+      $messages[] = t('Content type @type not found, skipping weight configuration.', [
+        '@type' => $type,
+      ]);
+    }
+  }
+
+  if (empty($messages)) {
+    return t('No content type weights configured.');
+  }
+
+  return implode("\n", $messages);
+}
+
+/**
+ * Configure content type weights for /node/add page ordering.
+ */
+function bioland_update_9041() {
+  return _bioland_configure_content_type_weights();
+}
+
+/**
+ * Install custom user admin view with email as first sortable column.
+ */
+function bioland_update_9042() {
+  return _bioland_install_user_admin_view();
+}
+
+/**
+ * Install custom comment admin view with topic filter.
+ */
+function bioland_update_9043() {
+  return _bioland_install_comment_admin_view();
+}
+
+/**
+ * Install custom media library view with sortable columns.
+ */
+function bioland_update_9044() {
+  return _bioland_install_media_library_view();
+}
+
+/**
+ * Install optional field configurations and rebuild router.
+ *
+ * Ensures field_url has correct label 'URL' and view routes are registered.
+ */
+function bioland_update_9047() {
+  $messages = [];
+  
+  // Install/update optional field configurations.
+  $result = _bioland_install_optional_field_configs();
+  if ($result) {
+    $messages[] = $result;
+  }
+  
+  // Configure full_html editor toolbar.
+  $result = _bioland_configure_full_html_editor_toolbar();
+  if ($result) {
+    $messages[] = $result;
+  }
+  
+  // Rebuild router to register view routes and fix local task warnings.
+  \Drupal::service('router.builder')->rebuild();
+  $messages[] = t('Rebuilt router to register view routes.');
+  
+  return implode("\n", $messages);
+}
+
+/**
+ * Helper function to install custom user admin view.
+ *
+ * Modifies the views.view.user_admin_people configuration to show
+ * email address as the first sortable column at /admin/people.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_install_user_admin_view() {
+  // Check if views module is enabled.
+  if ($skip = _bioland_require_module('views', 'user admin view installation')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.administerusersbyrole_people');
+  
+  if ($config->isNew()) {
+    return t('User admin people view (administerusersbyrole_people) not found.');
+  }
+  
+  try {
+    // Get existing fields.
+    $fields = $config->get('display.default.display_options.fields') ?: [];
+    
+    // Add the mail field if it doesn't exist.
+    if (!isset($fields['mail'])) {
+      $fields['mail'] = [
+        'id' => 'mail',
+        'table' => 'users_field_data',
+        'field' => 'mail',
+        'relationship' => 'none',
+        'group_type' => 'group',
+        'admin_label' => '',
+        'entity_type' => 'user',
+        'entity_field' => 'mail',
+        'plugin_id' => 'field',
+        'label' => 'Email',
+        'exclude' => FALSE,
+        'alter' => [
+          'alter_text' => FALSE,
+          'text' => '',
+          'make_link' => FALSE,
+          'path' => '',
+          'absolute' => FALSE,
+          'external' => FALSE,
+          'replace_spaces' => FALSE,
+          'path_case' => 'none',
+          'trim_whitespace' => FALSE,
+          'alt' => '',
+          'rel' => '',
+          'link_class' => '',
+          'prefix' => '',
+          'suffix' => '',
+          'target' => '',
+          'nl2br' => FALSE,
+          'max_length' => 0,
+          'word_boundary' => TRUE,
+          'ellipsis' => TRUE,
+          'more_link' => FALSE,
+          'more_link_text' => '',
+          'more_link_path' => '',
+          'strip_tags' => FALSE,
+          'trim' => FALSE,
+          'preserve_tags' => '',
+          'html' => FALSE,
+        ],
+        'element_type' => '',
+        'element_class' => '',
+        'element_label_type' => '',
+        'element_label_class' => '',
+        'element_label_colon' => TRUE,
+        'element_wrapper_type' => '',
+        'element_wrapper_class' => '',
+        'element_default_classes' => TRUE,
+        'empty' => '',
+        'hide_empty' => FALSE,
+        'empty_zero' => FALSE,
+        'hide_alter_empty' => TRUE,
+      ];
+    }
+    else {
+      // Update the existing mail field to be visible with label.
+      $fields['mail']['exclude'] = FALSE;
+      $fields['mail']['label'] = 'Email';
+      $fields['mail']['element_label_colon'] = TRUE;
+    }
+    
+    // Reorder fields to put email after bulk_form but before name.
+    // Order: user_bulk_form, mail, name, status, roles_target_id, created, access, operations
+    $reordered = [];
+    if (isset($fields['user_bulk_form'])) {
+      $reordered['user_bulk_form'] = $fields['user_bulk_form'];
+      unset($fields['user_bulk_form']);
+    }
+    if (isset($fields['mail'])) {
+      $reordered['mail'] = $fields['mail'];
+      unset($fields['mail']);
+    }
+    // Add remaining fields in their original order.
+    $reordered = array_merge($reordered, $fields);
+    
+    $config->set('display.default.display_options.fields', $reordered);
+    
+    // Also update the table style info to make mail sortable.
+    $style_info = $config->get('display.default.display_options.style.options.info') ?: [];
+    $style_info['mail'] = [
+      'sortable' => TRUE,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => FALSE,
+      'responsive' => '',
+    ];
+    $config->set('display.default.display_options.style.options.info', $style_info);
+    
+    // Add mail to columns.
+    $columns = $config->get('display.default.display_options.style.options.columns') ?: [];
+    $columns['mail'] = 'mail';
+    $config->set('display.default.display_options.style.options.columns', $columns);
+    
+    $config->save();
+    
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+    
+    // Clear local task cache so menu tabs are discovered.
+    if (\Drupal::hasService('plugin.manager.menu.local_task')) {
+      \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
+    }
+    
+    \Drupal::logger('bioland')->notice('Updated user admin view with email as first sortable column.');
+    return t('Added email column as first sortable column at /admin/people.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to update user admin view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error updating user admin view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Helper function to install custom comment admin view.
+ *
+ * Installs the views.view.comment_admin configuration which overrides
+ * the default comment admin pages to add topic/forum filter.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_install_comment_admin_view() {
+  // Check if views and comment modules are enabled.
+  if ($skip = _bioland_require_module('views', 'comment admin view installation')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('comment', 'comment admin view installation')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.comment');
+  
+  if ($config->isNew()) {
+    return t('View comment not found.');
+  }
+  
+  try {
+    $view_data = $config->getRawData();
+    $display = &$view_data['display']['default']['display_options'];
+    
+    // Remove exposed sort options.
+    if (isset($display['exposed_form']['options'])) {
+      $display['exposed_form']['options']['expose_sort_order'] = FALSE;
+    }
+    
+    if (isset($display['sorts'])) {
+      foreach ($display['sorts'] as $sort_id => &$sort) {
+        $sort['exposed'] = FALSE;
+      }
+    }
+    
+    // Add the node relationship if not present (required for title filter).
+    if (!isset($display['relationships'])) {
+      $display['relationships'] = [];
+    }
+    $display['relationships']['node'] = [
+      'id' => 'node',
+      'table' => 'comment_field_data',
+      'field' => 'entity_id',
+      'relationship' => 'none',
+      'group_type' => 'group',
+      'admin_label' => 'Content',
+      'entity_type' => 'comment',
+      'entity_field' => 'entity_id',
+      'plugin_id' => 'standard',
+      'required' => FALSE,
+    ];
+    
+    // Add "Topic Filter" (node bundle/type dropdown) to filter by commented content type.
+    if (!isset($display['filters'])) {
+      $display['filters'] = [];
+    }
+    $display['filters']['type'] = [
+      'id' => 'type',
+      'table' => 'node_field_data',
+      'field' => 'type',
+      'relationship' => 'node',
+      'group_type' => 'group',
+      'admin_label' => '',
+      'entity_type' => 'node',
+      'entity_field' => 'type',
+      'plugin_id' => 'bundle',
+      'operator' => 'in',
+      'value' => [],
+      'group' => 1,
+      'exposed' => TRUE,
+      'expose' => [
+        'operator_id' => 'type_op',
+        'label' => 'Topic Filter',
+        'description' => 'Filter comments by content type (e.g., forum)',
+        'use_operator' => FALSE,
+        'operator' => 'type_op',
+        'identifier' => 'type',
+        'required' => FALSE,
+        'remember' => FALSE,
+        'multiple' => FALSE,
+        'reduce' => FALSE,
+      ],
+      'is_grouped' => FALSE,
+    ];
+    
+    $config->setData($view_data)->save();
+    
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+    
+    // Clear local task cache so menu tabs are discovered.
+    if (\Drupal::hasService('plugin.manager.menu.local_task')) {
+      \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
+    }
+    
+    \Drupal::logger('bioland')->notice('Updated comment view: removed exposed sort, added Entity Filter.');
+    return t('Updated comment view: removed exposed sort, added "Entity Filter" at /admin/content/comment.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to update comment view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error updating comment view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Helper function to install custom media library view.
+ *
+ * Updates the views.view.media configuration to make columns sortable
+ * and remove exposed sort dropdowns.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_install_media_library_view() {
+  // Check if views and media modules are enabled.
+  if ($skip = _bioland_require_module('views', 'media library view installation')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('media', 'media library view installation')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.media');
+  
+  if ($config->isNew()) {
+    return t('View media not found.');
+  }
+  
+  try {
+    $view_data = $config->getRawData();
+    $display = &$view_data['display']['default']['display_options'];
+    
+    // Fields to make sortable.
+    $sortable_fields = ['name', 'bundle', 'status', 'changed', 'uid'];
+    
+    // Update table style info to enable sorting on column headers.
+    if (isset($display['style']['options']['info'])) {
+      foreach ($sortable_fields as $field_id) {
+        if (isset($display['style']['options']['info'][$field_id])) {
+          $display['style']['options']['info'][$field_id]['sortable'] = TRUE;
+          if (!isset($display['style']['options']['info'][$field_id]['default_sort_order'])) {
+            $display['style']['options']['info'][$field_id]['default_sort_order'] = 'asc';
+          }
+        }
+      }
+    }
+    
+    // Remove exposed "Sort by" and "Order" dropdowns.
+    if (isset($display['exposed_form']['options'])) {
+      $display['exposed_form']['options']['expose_sort_order'] = FALSE;
+    }
+    
+    // Un-expose all sort criteria.
+    if (isset($display['sorts'])) {
+      foreach ($display['sorts'] as $sort_id => &$sort) {
+        $sort['exposed'] = FALSE;
+      }
+    }
+    
+    $config->setData($view_data)->save();
+    
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+    
+    // Clear local task cache so menu tabs are discovered.
+    if (\Drupal::hasService('plugin.manager.menu.local_task')) {
+      \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
+    }
+    
+    \Drupal::logger('bioland')->notice('Updated media view: enabled column sorting and removed Sort by/Order dropdowns.');
+    return t('Updated media view: enabled column sorting and removed Sort by/Order dropdowns.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to update media view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error updating media view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Helper function to install optional field configurations.
+ *
+ * Installs field storage and field configs from config/optional that may not
+ * be auto-imported due to dependency resolution timing.
+ *
+ * @return string
+ *   Status messages about configuration.
+ */
+function _bioland_install_optional_field_configs() {
+  $messages = [];
+  $config_path = \Drupal::service('extension.list.module')->getPath('bioland') . '/config/optional';
+  $source = new \Drupal\Core\Config\FileStorage($config_path);
+
+  // List of optional field storage configs to install (in dependency order).
+  $field_storages = [
+    'field.storage.node.field_order',
+  ];
+
+  // List of optional field instance configs to install.
+  $field_configs = [
+    'field.field.node.content.field_order',
+    'field.field.node.content.field_url',
+  ];
+
+  // Install field storages first using entity API (creates database tables).
+  foreach ($field_storages as $config_name) {
+    try {
+      // Extract field name from config name (e.g., 'field.storage.node.field_order' -> 'field_order').
+      $parts = explode('.', $config_name);
+      $field_name = end($parts);
+      $entity_type = $parts[2]; // 'node'
+
+      // Check if field storage already exists.
+      $existing_storage = \Drupal\field\Entity\FieldStorageConfig::loadByName($entity_type, $field_name);
+      if (!$existing_storage) {
+        $config_data = $source->read($config_name);
+        if ($config_data) {
+          // Create field storage entity (this creates the database table).
+          $field_storage = \Drupal\field\Entity\FieldStorageConfig::create($config_data);
+          $field_storage->save();
+          $messages[] = t('Created field storage @config.', ['@config' => $config_name]);
+        }
+      }
+      else {
+        $messages[] = t('Field storage @config already exists.', ['@config' => $config_name]);
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->warning('Could not install field storage @config: @message', [
+        '@config' => $config_name,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  // Install field instance configs using entity API.
+  foreach ($field_configs as $config_name) {
+    try {
+      // Extract field name and bundle from config name.
+      // e.g., 'field.field.node.content.field_order' -> entity_type='node', bundle='content', field_name='field_order'
+      $parts = explode('.', $config_name);
+      $entity_type = $parts[2]; // 'node'
+      $bundle = $parts[3]; // 'content'
+      $field_name = $parts[4]; // 'field_order'
+
+      // Check if field config already exists.
+      $existing_field = \Drupal\field\Entity\FieldConfig::loadByName($entity_type, $bundle, $field_name);
+      if (!$existing_field) {
+        $config_data = $source->read($config_name);
+        if ($config_data) {
+          // Create field config entity.
+          $field_config = \Drupal\field\Entity\FieldConfig::create($config_data);
+          $field_config->save();
+          $messages[] = t('Created field config @config.', ['@config' => $config_name]);
+        }
+      }
+      else {
+        $messages[] = t('Field config @config already exists.', ['@config' => $config_name]);
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->warning('Could not install field config @config: @message', [
+        '@config' => $config_name,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  // Clear field cache to pick up changes.
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+
+  if (!empty($messages)) {
+    \Drupal::logger('bioland')->notice('Installed optional field configs: @configs', [
+      '@configs' => implode(', ', array_merge($field_storages, $field_configs)),
+    ]);
+  }
+
+  return implode("\n", $messages);
+}
+
+/**
+ * Create 'Content' menu link programmatically.
+ */
+function bioland_update_9048() {
+  // Check if MenuLinkContent entity type exists.
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    return t('MenuLinkContent entity type not available; skipping menu link creation.');
+  }
+
+  // Check if a menu link already exists to avoid duplicates.
+  $existing_links = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->loadByProperties([
+      'title' => 'Content',
+      'link__uri' => 'internal:/node/add/content',
+    ]);
+
+  if (!empty($existing_links)) {
+    return t('Content menu link already exists; skipping creation.');
+  }
+
+  // Create the menu link in the admin toolbar under Content.
+  // Parent is the existing "Add content" menu item.
+  $menu_link = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->create([
+      'title' => 'Content',
+      'link' => ['uri' => 'internal:/node/add/content'],
+      'menu_name' => 'admin',
+      'parent' => 'menu_link_content:059aed54-bd84-4699-a7c4-5358d5e7c36c',
+      'weight' => -100,
+      'expanded' => FALSE,
+      'enabled' => TRUE,
+    ]);
+  
+  try {
+    $menu_link->save();
+    
+    // Rebuild the menu router to pick up the new link.
+    \Drupal::service('router.builder')->rebuild();
+    
+    // Clear menu caches.
+    \Drupal::cache('menu')->invalidateAll();
+    
+    return t('Created "Content" menu link pointing to /node/add/content under admin Content menu.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to create Content menu link: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error creating Content menu link: @message', ['@message' => $e->getMessage()]);
+  }
 }
