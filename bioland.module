@@ -10,6 +10,24 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
+ * Implements hook_page_attachments().
+ *
+ * Attaches the bulk actions hiding JS for contributor role users.
+ */
+function bioland_page_attachments(array &$attachments) {
+  $current_user = \Drupal::currentUser();
+  
+  // Check if user is a contributor
+  if ($current_user->hasRole('contributor')) {
+    // Attach the library
+    $attachments['#attached']['library'][] = 'bioland/hide_bulk_actions';
+    
+    // Pass the contributor status to JavaScript
+    $attachments['#attached']['drupalSettings']['bioland']['isContributor'] = TRUE;
+  }
+}
+
+/**
  * Implements hook_form_alter().
  *
  * Adds comprehensive SCBD field functionality based on settings.
@@ -637,13 +655,64 @@ function bioland_views_pre_render(\Drupal\views\ViewExecutable $view) {
     return;
   }
   
-  // Remove bulk operations field from footer
-  if (isset($view->field['views_bulk_operations_bulk_form'])) {
-    unset($view->field['views_bulk_operations_bulk_form']);
+  // Remove bulk operations field from the view
+  // Check multiple possible field IDs for VBO
+  $vbo_field_ids = [
+    'views_bulk_operations_bulk_form',
+    'views_bulk_operations',
+    'operations',
+    'bulk_form'
+  ];
+  
+  foreach ($vbo_field_ids as $field_id) {
+    if (isset($view->field[$field_id])) {
+      // Remove the field from the display
+      unset($view->field[$field_id]);
+      
+      // Also remove from result if present
+      if (isset($view->result)) {
+        foreach ($view->result as $row) {
+          if (isset($row->{$field_id})) {
+            unset($row->{$field_id});
+          }
+        }
+      }
+    }
+    
+    // Also check and remove from header/footer areas if present
+    if (isset($view->header[$field_id])) {
+      unset($view->header[$field_id]);
+    }
+    
+    if (isset($view->footer[$field_id])) {
+      unset($view->footer[$field_id]);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Adds role-based body classes for CSS targeting.
+ */
+function bioland_preprocess_html(&$variables) {
+  $current_user = \Drupal::currentUser();
+  
+  // Add contributor role class to body
+  if ($current_user->hasRole('contributor')) {
+    $variables['attributes']['class'][] = 'role--contributor';
   }
   
-  // Also check and remove from header if present
-  if (isset($view->header['views_bulk_operations_bulk_form'])) {
-    unset($view->header['views_bulk_operations_bulk_form']);
+  // Add other role classes as needed
+  $role_classes = [
+    'site_manager' => 'role--site-manager',
+    'content_manager' => 'role--content-manager',
+    'scbd_staff' => 'role--scbd-staff',
+  ];
+  
+  foreach ($role_classes as $role => $class) {
+    if ($current_user->hasRole($role)) {
+      $variables['attributes']['class'][] = $class;
+    }
   }
 }

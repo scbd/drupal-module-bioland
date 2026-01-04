@@ -196,7 +196,8 @@ function _bioland_configure_content_types() {
  * the site is a Biosafety Land instance or a BL2 (Bioland) instance.
  *
  * - Biosafety Land sites: Disable BL2-specific terms (4, 6, 8, 9, 10, 11, 15)
- * - BL2 sites: Disable Biosafety-specific terms (55, 43, 44, 45, 46, 47, 48, 49, 50)
+ * - BL2 sites: Disable Biosafety-specific terms (55, 44, 45, 46, 47, 48, 49, 50)
+ * - Term 43 (FAQ) is kept enabled on both BL2 and Biosafety Land sites
  *
  * @return string
  *   Status message.
@@ -215,12 +216,13 @@ function _bioland_configure_content_type_status_by_site_type() {
     10, // Protected Area
     11, // Biodiversity Data
     15, // Other
+    43, // FAQ (enabled on both site types)
   ];
 
   // Biosafety-specific content types (disable on BL2 sites).
+  // Note: Term 43 (FAQ) is included in both arrays to ensure it's explicitly enabled on both site types.
   $biosafety_content_types = [
     55, // Other Resource
-    43, // FAQ
     44, // National Information
     45, // Status of LMO
     46, // Field Trial
@@ -228,6 +230,7 @@ function _bioland_configure_content_type_status_by_site_type() {
     48, // Capacity Building
     49, // Announcement
     50, // Contact
+    43, // FAQ (enabled on both site types)
   ];
 
   // Determine which terms to enable and disable.

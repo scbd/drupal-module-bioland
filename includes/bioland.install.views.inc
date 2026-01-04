@@ -166,8 +166,7 @@ function _bioland_install_user_admin_view() {
 /**
  * Helper function to install custom comment admin view.
  *
- * Installs the views.view.comment_admin configuration which overrides
- * the default comment admin pages to add topic/forum filter.
+ * Updates the views.view.comment configuration to remove exposed sort options.
  *
  * @return string
  *   Status message.
@@ -202,63 +201,6 @@ function _bioland_install_comment_admin_view() {
       }
     }
     
-    // Add the node relationship if not present (required for topic filter).
-    // This joins comment_field_data to node_field_data via the 'node' relationship handler.
-    if (!isset($display['relationships'])) {
-      $display['relationships'] = [];
-    }
-    // Remove any broken entity_id relationship.
-    if (isset($display['relationships']['entity_id'])) {
-      unset($display['relationships']['entity_id']);
-    }
-    $display['relationships']['node'] = [
-      'id' => 'node',
-      'table' => 'comment_field_data',
-      'field' => 'node',
-      'relationship' => 'none',
-      'group_type' => 'group',
-      'admin_label' => 'Content',
-      'plugin_id' => 'standard',
-      'required' => FALSE,
-    ];
-    
-    // Add "Topic Filter" (node bundle/type dropdown) to filter by commented content type.
-    if (!isset($display['filters'])) {
-      $display['filters'] = [];
-    }
-    // Remove any broken type filter first.
-    if (isset($display['filters']['type'])) {
-      unset($display['filters']['type']);
-    }
-    $display['filters']['type'] = [
-      'id' => 'type',
-      'table' => 'node_field_data',
-      'field' => 'type',
-      'relationship' => 'node',
-      'group_type' => 'group',
-      'admin_label' => 'Topic Filter',
-      'entity_type' => 'node',
-      'entity_field' => 'type',
-      'plugin_id' => 'bundle',
-      'operator' => 'in',
-      'value' => [],
-      'group' => 1,
-      'exposed' => TRUE,
-      'expose' => [
-        'operator_id' => 'type_op',
-        'label' => 'Topic Filter',
-        'description' => 'Filter comments by content type (e.g., forum)',
-        'use_operator' => FALSE,
-        'operator' => 'type_op',
-        'identifier' => 'type',
-        'required' => FALSE,
-        'remember' => FALSE,
-        'multiple' => FALSE,
-        'reduce' => FALSE,
-      ],
-      'is_grouped' => FALSE,
-    ];
-    
     $config->setData($view_data)->save();
     
     // Clear the views cache so the updated view is recognized.
@@ -271,8 +213,8 @@ function _bioland_install_comment_admin_view() {
       \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
     }
     
-    \Drupal::logger('bioland')->notice('Updated comment view: removed exposed sort, added Entity Filter.');
-    return t('Updated comment view: removed exposed sort, added "Entity Filter" at /admin/content/comment.');
+    \Drupal::logger('bioland')->notice('Updated comment view: removed exposed sort options.');
+    return t('Updated comment view: removed exposed sort options at /admin/content/comment.');
   }
   catch (\Exception $e) {
     \Drupal::logger('bioland')->error('Failed to update comment view: @message', [
@@ -361,10 +303,10 @@ function _bioland_install_media_library_view() {
 }
 
 /**
- * Helper function to fix the comment admin view topic filter.
+ * Helper function to clean up broken comment admin view configurations.
  *
- * Removes the broken 'type' filter and 'node' relationship, then re-adds
- * them with the correct configuration.
+ * Removes any broken 'entity_id' relationships and 'type' filters that may
+ * have been added by previous updates.
  *
  * @return string
  *   Status message.
@@ -398,54 +340,6 @@ function _bioland_fix_comment_admin_view_filter() {
       unset($display['filters']['type']);
     }
     
-    // Add the correct node relationship.
-    if (!isset($display['relationships'])) {
-      $display['relationships'] = [];
-    }
-    $display['relationships']['node'] = [
-      'id' => 'node',
-      'table' => 'comment_field_data',
-      'field' => 'node',
-      'relationship' => 'none',
-      'group_type' => 'group',
-      'admin_label' => 'Content',
-      'plugin_id' => 'standard',
-      'required' => FALSE,
-    ];
-    
-    // Add the corrected "Topic Filter" using the node relationship.
-    if (!isset($display['filters'])) {
-      $display['filters'] = [];
-    }
-    $display['filters']['type'] = [
-      'id' => 'type',
-      'table' => 'node_field_data',
-      'field' => 'type',
-      'relationship' => 'node',
-      'group_type' => 'group',
-      'admin_label' => 'Topic Filter',
-      'entity_type' => 'node',
-      'entity_field' => 'type',
-      'plugin_id' => 'bundle',
-      'operator' => 'in',
-      'value' => [],
-      'group' => 1,
-      'exposed' => TRUE,
-      'expose' => [
-        'operator_id' => 'type_op',
-        'label' => 'Topic Filter',
-        'description' => 'Filter comments by content type (e.g., forum)',
-        'use_operator' => FALSE,
-        'operator' => 'type_op',
-        'identifier' => 'type',
-        'required' => FALSE,
-        'remember' => FALSE,
-        'multiple' => FALSE,
-        'reduce' => FALSE,
-      ],
-      'is_grouped' => FALSE,
-    ];
-    
     $config->setData($view_data)->save();
     
     // Clear the views cache so the updated view is recognized.
@@ -458,8 +352,8 @@ function _bioland_fix_comment_admin_view_filter() {
       \Drupal::service('plugin.manager.menu.local_task')->clearCachedDefinitions();
     }
     
-    \Drupal::logger('bioland')->notice('Fixed comment view: corrected topic filter configuration.');
-    return t('Fixed comment view topic filter configuration at /admin/content/comment.');
+    \Drupal::logger('bioland')->notice('Fixed comment view: removed broken relationships and filters.');
+    return t('Fixed comment view: removed broken relationships and filters at /admin/content/comment.');
   }
   catch (\Exception $e) {
     \Drupal::logger('bioland')->error('Failed to fix comment view: @message', [
@@ -545,10 +439,10 @@ function bioland_update_9044() {
 }
 
 /**
- * Fix comment admin view topic filter configuration.
+ * Clean up broken comment admin view configuration.
  *
- * Fixes the Bundle filter that was causing InvalidArgumentException
- * by correcting the relationship and filter configuration.
+ * Removes broken relationships and filters that may have been added
+ * by previous updates.
  */
 function bioland_update_9049() {
   return _bioland_fix_comment_admin_view_filter();

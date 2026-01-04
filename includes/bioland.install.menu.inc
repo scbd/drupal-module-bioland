@@ -106,117 +106,26 @@ function _bioland_create_content_menu_link() {
     return t('MenuLinkContent entity type not available; skipping menu link creation.');
   }
 
-  // Check if a menu link already exists to avoid duplicates.
-  try {
-    $existing_links = $entity_type_manager
-      ->getStorage('menu_link_content')
-      ->loadByProperties([
-        'title' => 'Content',
-        'link__uri' => 'internal:/node/add/content',
-      ]);
-  }
-  catch (\Exception $e) {
-    $logger->error('Failed to query existing menu links: @message', [
-      '@message' => $e->getMessage(),
-    ]);
-    return t('Error querying existing menu links: @message', ['@message' => $e->getMessage()]);
-  }
-
-  if (!empty($existing_links)) {
-    // Menu link exists, but let's make sure it's enabled and properly configured.
-    $link_ids = array_keys($existing_links);
-    $logger->info('Content menu link already exists (IDs: @ids); verifying enabled status.', [
-      '@ids' => implode(', ', $link_ids),
-    ]);
-    foreach ($existing_links as $link) {
-      if (!$link->isEnabled()) {
-        $link->set('enabled', TRUE);
-        try {
-          $link->save();
-          $logger->info('Enabled existing Content menu link (ID: @id).', ['@id' => $link->id()]);
-        }
-        catch (\Exception $e) {
-          $logger->error('Failed to enable existing Content menu link (ID: @id): @message', [
-            '@id' => $link->id(),
-            '@message' => $e->getMessage(),
-          ]);
-        }
-      }
-    }
-    return t('Content menu link already exists; verified enabled status.');
-  }
-
-  // Try to find the "Add content" parent menu link dynamically first.
-  $parent_plugin_id = NULL;
-  $parent_discovery_method = 'none';
-
-  // Method 1: Try to find by known UUID (most reliable if it exists).
+  // Use hardcoded parent UUID.
   $known_uuid = '60d958d0-9261-4161-95a9-2ee1970c38c0';
-  try {
-    $parent_by_uuid = $entity_type_manager
-      ->getStorage('menu_link_content')
-      ->loadByProperties(['uuid' => $known_uuid]);
-    if (!empty($parent_by_uuid)) {
-      $parent_plugin_id = 'menu_link_content:' . $known_uuid;
-      $parent_discovery_method = 'uuid';
-      $logger->info('Found parent menu link by UUID: @uuid', ['@uuid' => $known_uuid]);
-    }
-    else {
-      $logger->notice('Parent menu link not found by UUID: @uuid. Will try alternative methods.', [
-        '@uuid' => $known_uuid,
-      ]);
-    }
-  }
-  catch (\Exception $e) {
-    $logger->warning('Error searching for parent by UUID @uuid: @message', [
-      '@uuid' => $known_uuid,
-      '@message' => $e->getMessage(),
-    ]);
-  }
+  $parent_plugin_id = 'menu_link_content:' . $known_uuid;
 
-  // Method 2: Try to find "Add content" link by title in admin menu.
-  if ($parent_plugin_id === NULL) {
-    try {
-      $add_content_links = $entity_type_manager
-        ->getStorage('menu_link_content')
-        ->loadByProperties([
-          'title' => 'Add content',
-          'menu_name' => 'admin',
-        ]);
-      if (!empty($add_content_links)) {
-        $first_link = reset($add_content_links);
-        $parent_plugin_id = 'menu_link_content:' . $first_link->uuid();
-        $parent_discovery_method = 'title_search';
-        $logger->info('Found parent menu link by title search. UUID: @uuid, ID: @id', [
-          '@uuid' => $first_link->uuid(),
-          '@id' => $first_link->id(),
-        ]);
-      }
-      else {
-        $logger->notice('No "Add content" menu link found by title search in admin menu.');
-      }
-    }
-    catch (\Exception $e) {
-      $logger->warning('Error searching for parent by title: @message', [
-        '@message' => $e->getMessage(),
-      ]);
-    }
-  }
-
-  // Method 3: Try system menu link (Drupal core "Add content").
-  if ($parent_plugin_id === NULL) {
-    $system_parent = 'system.admin_content';
-    $logger->notice('No custom parent found; using system parent: @parent', [
-      '@parent' => $system_parent,
-    ]);
-    $parent_plugin_id = $system_parent;
-    $parent_discovery_method = 'system_fallback';
-  }
-
-  $logger->info('Creating Content menu link with parent: @parent (method: @method)', [
-    '@parent' => $parent_plugin_id,
-    '@method' => $parent_discovery_method,
+  $logger->info('Creating Content menu link with hardcoded parent UUID: @uuid', [
+    '@uuid' => $known_uuid,
   ]);
+
+  // Verify parent exists before creating the link.
+  $parent_link = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->loadByProperties(['uuid' => $known_uuid]);
+  
+  if (empty($parent_link)) {
+    $logger->error('Parent menu link with UUID @uuid not found. Cannot create Content menu link.', [
+      '@uuid' => $known_uuid,
+    ]);
+    return t('Error: Parent menu link (UUID: @uuid) not found.', ['@uuid' => $known_uuid]);
+  }
+  $logger->info('Parent menu link found and verified.');
 
   // Create the menu link in the admin toolbar.
   $menu_link = $entity_type_manager
@@ -252,31 +161,17 @@ function _bioland_create_content_menu_link() {
       return t('Error: Content menu link was not persisted to database after save (ID: @id).', ['@id' => $saved_id]);
     }
 
-    // Double-check by querying with properties.
-    $verified_by_props = $entity_type_manager
-      ->getStorage('menu_link_content')
-      ->loadByProperties([
-        'title' => 'Content',
-        'link__uri' => 'internal:/node/add/content',
-      ]);
+    $logger->info('VERIFICATION PASSED: Content menu link confirmed in database.');
 
-    if (empty($verified_by_props)) {
-      $logger->error('VERIFICATION FAILED: Content menu link not found by properties query after save. ID load succeeded but property search failed. Possible data corruption.', [
-        '@id' => $saved_id,
-        '@uuid' => $saved_uuid,
-      ]);
-      return t('Error: Content menu link verification by properties failed (ID: @id).', ['@id' => $saved_id]);
-    }
-
-    $logger->info('VERIFICATION PASSED: Content menu link confirmed in database. Found @count matching link(s).', [
-      '@count' => count($verified_by_props),
+    $logger->info('Successfully created Content menu link with ID: @id, UUID: @uuid', [
+      '@id' => $saved_id,
+      '@uuid' => $saved_uuid,
     ]);
   }
   catch (\Exception $e) {
-    $logger->error('Failed to save Content menu link: @message. Parent was: @parent (method: @method)', [
+    $logger->error('Failed to save Content menu link: @message. Parent was: @parent', [
       '@message' => $e->getMessage(),
       '@parent' => $parent_plugin_id,
-      '@method' => $parent_discovery_method,
     ]);
     return t('Error saving Content menu link: @message', ['@message' => $e->getMessage()]);
   }
@@ -308,16 +203,104 @@ function _bioland_create_content_menu_link() {
     }
   }
 
-  return t('Created "Content" menu link pointing to /node/add/content (parent: @parent, method: @method).', [
+  return t('Created "Content" menu link pointing to /node/add/content (parent: @parent).', [
     '@parent' => $parent_plugin_id,
-    '@method' => $parent_discovery_method,
   ]);
+}
+
+/**
+ * Helper function to disable auto_node_translate menu items.
+ *
+ * Disables translation-related admin menu items that should not be accessible.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_disable_translation_menus() {
+  $messages = [];
+  $logger = \Drupal::logger('bioland');
+  $logger->info('Starting translation menu disable process.');
+  
+  // Menu items to disable (by route name).
+  $menus_to_disable = [
+    'auto_node_translate.translators',
+    'auto_node_translate_amazon.settings',
+    'auto_node_translate_deepl',
+    'auto_node_translate.my_memory_settings',
+  ];
+  
+  $entity_type_manager = \Drupal::entityTypeManager();
+  
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    $message = t('MenuLinkContent entity type not available; skipping menu disable.');
+    $logger->warning('MenuLinkContent entity type not available.');
+    return $message;
+  }
+  
+  $storage = $entity_type_manager->getStorage('menu_link_content');
+  
+  foreach ($menus_to_disable as $route_name) {
+    try {
+      // Search for menu links with this route.
+      $uri = 'route:' . $route_name;
+      $menu_links = $storage->loadByProperties(['link__uri' => $uri]);
+      
+      if (!empty($menu_links)) {
+        foreach ($menu_links as $menu_link) {
+          $menu_link->set('enabled', FALSE);
+          $menu_link->save();
+          $message = t('Disabled menu link: @route', ['@route' => $route_name]);
+          $messages[] = $message;
+          $logger->info('Disabled menu link: @route (ID: @id)', [
+            '@route' => $route_name,
+            '@id' => $menu_link->id(),
+          ]);
+        }
+      }
+      else {
+        // Menu link not found as content entity - may be system menu link.
+        $logger->info('Menu link not found as content entity: @route (may be system menu link)', [
+          '@route' => $route_name,
+        ]);
+      }
+    }
+    catch (\Exception $e) {
+      $message = t('Error processing menu @route: @message', [
+        '@route' => $route_name,
+        '@message' => $e->getMessage(),
+      ]);
+      $messages[] = $message;
+      $logger->error('Error processing menu @route: @message', [
+        '@route' => $route_name,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+  
+  // Clear menu caches.
+  try {
+    \Drupal::cache('menu')->invalidateAll();
+    if (\Drupal::hasService('menu.link_tree')) {
+      \Drupal::service('menu.link_tree')->rebuild();
+    }
+    $logger->info('Menu caches cleared after translation menu disable process.');
+  }
+  catch (\Exception $e) {
+    $logger->warning('Failed to clear menu caches: @message', ['@message' => $e->getMessage()]);
+  }
+  
+  $summary = !empty($messages) 
+    ? implode("\n", $messages) 
+    : t('Completed translation menu disable process. No content menu links found (system menu links cannot be disabled programmatically).');
+  
+  $logger->info('Translation menu disable process completed.');
+  return $summary;
 }
 
 /**
  * Helper function to update menu item 139 URL.
  *
- * Changes the URL of menu_link_content entity with ID 139 to /admin/content/media.
+ * Changes the URL of menu_link_content entity with ID 139 to /en/media/add.
  *
  * @return string
  *   Status message.
@@ -329,34 +312,82 @@ function _bioland_update_menu_item_139() {
     return t('MenuLinkContent entity type not available; skipping menu item update.');
   }
   
+  $messages = [];
+  
   try {
+    // Update menu item 139
     $menu_link = $entity_type_manager
       ->getStorage('menu_link_content')
       ->load(139);
     
     if (!$menu_link) {
-      return t('Menu item with ID 139 not found.');
+      $messages[] = t('Menu item with ID 139 not found.');
+    }
+    else {
+      $old_url = $menu_link->get('link')->uri ?? 'unknown';
+      $menu_link->set('link', ['uri' => 'internal:/en/media/add']);
+      $menu_link->save();
+      
+      \Drupal::logger('bioland')->notice('Updated menu item 139 URL from @old to /en/media/add.', [
+        '@old' => $old_url,
+      ]);
+      $messages[] = t('Updated menu item 139 URL from @old to /en/media/add.', [
+        '@old' => $old_url,
+      ]);
     }
     
-    $old_url = $menu_link->get('link')->uri ?? 'unknown';
-    $menu_link->set('link', ['uri' => 'internal:/admin/content/media']);
-    $menu_link->save();
+    // Update menu item 133
+    $menu_link_133 = $entity_type_manager
+      ->getStorage('menu_link_content')
+      ->load(133);
+    
+    if (!$menu_link_133) {
+      $messages[] = t('Menu item with ID 133 not found.');
+    }
+    else {
+      $old_url_133 = $menu_link_133->get('link')->uri ?? 'unknown';
+      $menu_link_133->set('link', ['uri' => 'internal:/admin/content/media']);
+      $menu_link_133->save();
+      
+      \Drupal::logger('bioland')->notice('Updated menu item 133 URL from @old to /admin/content/media.', [
+        '@old' => $old_url_133,
+      ]);
+      $messages[] = t('Updated menu item 133 URL from @old to /admin/content/media.', [
+        '@old' => $old_url_133,
+      ]);
+    }
+    
+    // Update menu item 136
+    $menu_link_136 = $entity_type_manager
+      ->getStorage('menu_link_content')
+      ->load(136);
+    
+    if (!$menu_link_136) {
+      $messages[] = t('Menu item with ID 136 not found.');
+    }
+    else {
+      $old_url_136 = $menu_link_136->get('link')->uri ?? 'unknown';
+      $menu_link_136->set('link', ['uri' => 'internal:/admin/content/forum-topics']);
+      $menu_link_136->save();
+      
+      \Drupal::logger('bioland')->notice('Updated menu item 136 URL from @old to /admin/content/forum-topics.', [
+        '@old' => $old_url_136,
+      ]);
+      $messages[] = t('Updated menu item 136 URL from @old to /admin/content/forum-topics.', [
+        '@old' => $old_url_136,
+      ]);
+    }
     
     // Clear menu caches only - router rebuild happens at end of install.
     \Drupal::cache('menu')->invalidateAll();
     
-    \Drupal::logger('bioland')->notice('Updated menu item 139 URL from @old to /admin/content/media.', [
-      '@old' => $old_url,
-    ]);
-    return t('Updated menu item 139 URL from @old to /admin/content/media.', [
-      '@old' => $old_url,
-    ]);
+    return implode(' ', $messages);
   }
   catch (\Exception $e) {
-    \Drupal::logger('bioland')->error('Failed to update menu item 139: @message', [
+    \Drupal::logger('bioland')->error('Failed to update menu items: @message', [
       '@message' => $e->getMessage(),
     ]);
-    return t('Error updating menu item 139: @message', ['@message' => $e->getMessage()]);
+    return t('Error updating menu items: @message', ['@message' => $e->getMessage()]);
   }
 }
 
@@ -422,4 +453,18 @@ function bioland_update_9052() {
   }
   
   return $result;
+}
+
+/**
+ * Create Content menu link with fixed parent - retry without duplicate checks.
+ */
+function bioland_update_9057() {
+  return _bioland_create_content_menu_link();
+}
+
+/**
+ * Disable auto_node_translate admin menu items.
+ */
+function bioland_update_9058() {
+  return _bioland_disable_translation_menus();
 }

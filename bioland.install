@@ -208,6 +208,12 @@ function bioland_install() {
   // Enable Main Menu Lock and remove permissions from specific roles.
   _bioland_enable_main_menu_lock();
 
+  // Create Content menu link in admin toolbar.
+  _bioland_create_content_menu_link();
+
+  // Disable auto_node_translate admin menu items.
+  _bioland_disable_translation_menus();
+
   // Set content type weights for /node/add page ordering.
   _bioland_configure_content_type_weights();
 

@@ -43,6 +43,14 @@
   }
 }
 
+/* Hide bulk actions for contributor role */
+body.role--contributor .views-bulk-actions__item--preceding-actions,
+body.role--contributor .views-bulk-actions__item.form-actions,
+body.role--contributor select[name="action"],
+body.role--contributor input[value="Apply to selected items"] {
+  display: none !important;
+}
+
 /* Field Visibility Enable checkbox in separate box */
 #edit-field-visibility #edit-enable {
   background-color: #f5f5f5;

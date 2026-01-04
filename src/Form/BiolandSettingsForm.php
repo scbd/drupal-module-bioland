@@ -262,7 +262,7 @@ class BiolandSettingsForm extends ConfigFormBase {
       $form['general']['timezone'] = [
         '#type' => 'details',
         '#title' => $this->t('Time zones'),
-        '#open' => TRUE,
+        '#open' => FALSE,
       ];
 
       $form['general']['timezone']['date_default_timezone'] = [
@@ -272,29 +272,13 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#options' => $this->getTimezoneOptions(),
       ];
 
-      $form['general']['timezone']['configurable_timezones'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Users may set their own time zone'),
-        '#default_value' => $system_date_config->get('timezone.user.configurable') ? 1 : 0,
-      ];
-
-      $form['general']['timezone']['configurable_timezones_wrapper'] = [
-        '#type' => 'container',
-        '#states' => [
-          'invisible' => [
-            ':input[name="configurable_timezones"]' => ['checked' => FALSE],
-          ],
-        ],
-      ];
-
-      $form['general']['timezone']['configurable_timezones_wrapper']['empty_timezone_message'] = [
+      $form['general']['timezone']['empty_timezone_message'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Remind users at login if their time zone is not set'),
-        '#description' => $this->t('Only applied if users may set their own time zone.'),
         '#default_value' => $system_date_config->get('timezone.user.warn') ? 1 : 0,
       ];
 
-      $form['general']['timezone']['configurable_timezones_wrapper']['user_default_timezone'] = [
+      $form['general']['timezone']['user_default_timezone'] = [
         '#type' => 'radios',
         '#title' => $this->t('Time zone for new users'),
         '#default_value' => $system_date_config->get('timezone.user.default') ?: 0,
