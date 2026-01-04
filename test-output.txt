@@ -1,0 +1,41 @@
+PHPUnit 9.6.0 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.11
+Configuration: /Users/randyhoulahan/projects/@bl2/drupal-module-bioland/phpunit.xml.dist
+
+.........................................................F....... 65 / 81 ( 80%)
+...SSS..........                                                  81 / 81 (100%)
+
+Time: 00:00.096, Memory: 8.00 MB
+
+There was 1 failure:
+
+1) Drupal\Tests\bioland\Unit\InstallDuplicateFunctionsTest::testUpdateHooksAreUnique
+Found duplicate update hook numbers:
+bioland_update_9028 (found in: bioland.install.content_types.inc, bioland.install.menu.inc)
+
+Each update hook must have a unique number.
+
+/Users/randyhoulahan/projects/@bl2/drupal-module-bioland/tests/Unit/InstallDuplicateFunctionsTest.php:130
+
+--
+
+There were 3 skipped tests:
+
+1) Drupal\Tests\bioland\Unit\Service\BiolandDmsmConfigServiceTest::testUpdateCountriesFromDmsmWithRuntimeCountries
+Requires Drupal bootstrap - integration test
+
+/Users/randyhoulahan/projects/@bl2/drupal-module-bioland/tests/Unit/Service/BiolandDmsmConfigServiceTest.php:124
+
+2) Drupal\Tests\bioland\Unit\Service\BiolandDmsmConfigServiceTest::testUpdateCountriesFromDmsmWithCountryFallback
+Requires Drupal bootstrap - integration test
+
+/Users/randyhoulahan/projects/@bl2/drupal-module-bioland/tests/Unit/Service/BiolandDmsmConfigServiceTest.php:132
+
+3) Drupal\Tests\bioland\Unit\Service\BiolandDmsmConfigServiceTest::testUpdateCountriesFromDmsmApiFailure
+Requires Drupal bootstrap - integration test
+
+/Users/randyhoulahan/projects/@bl2/drupal-module-bioland/tests/Unit/Service/BiolandDmsmConfigServiceTest.php:140
+
+FAILURES!
+Tests: 81, Assertions: 153, Failures: 1, Skipped: 3.

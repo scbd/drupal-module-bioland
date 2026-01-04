@@ -104,14 +104,18 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     }
   }
 
+  // Change "Save (this translation)" to just "Save" for all node content forms.
+  // This needs to be checked before the form_id filter below because translation
+  // forms might have different form IDs but still show "Save (this translation)".
+  if (strpos($form_id, 'node_content_') === 0 || $form_id === 'node_content_form') {
+    if (isset($form['actions']['submit'])) {
+      $form['actions']['submit']['#value'] = t('Save');
+    }
+  }
+
   // Only attach to node_content_form and node_content_edit_form.
   if (!in_array($form_id, ['node_content_form', 'node_content_edit_form'])) {
     return;
-  }
-
-  // Change "Save (this translation)" to just "Save".
-  if (isset($form['actions']['submit'])) {
-    $form['actions']['submit']['#value'] = t('Save');
   }
 
   // Add custom submit handler to redirect with query parameter.
@@ -585,5 +589,61 @@ function bioland_search_api_index_items_alter(\Drupal\search_api\IndexInterface 
         $item->getField('field_order')->addValue($order_value ?? 10000);
       }
     }
+  }
+}
+
+/**
+ * Implements hook_user_cancel_methods_alter().
+ *
+ * Removes destructive user cancellation options to prevent accidental
+ * deletion of user accounts and their content.
+ */
+function bioland_user_cancel_methods_alter(&$methods) {
+  // Remove the "Delete and make content belong to Anonymous" option.
+  unset($methods['user_cancel_reassign']);
+
+  // Remove the "Delete account and its content" option.
+  unset($methods['user_cancel_delete']);
+}
+
+/**
+ * Implements hook_form_user_cancel_form_alter().
+ *
+ * Hides the "Require email confirmation" checkbox on the user cancel form.
+ */
+function bioland_form_user_cancel_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Hide the "Require email confirmation" checkbox.
+  if (isset($form['user_cancel_confirm'])) {
+    $form['user_cancel_confirm']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Hides bulk action dropdown from footer for contributor role on content views.
+ */
+function bioland_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  // Only process specific views
+  $target_views = ['content', 'unpublished_content'];
+  
+  if (!in_array($view->id(), $target_views)) {
+    return;
+  }
+  
+  // Check if current user has contributor role
+  $current_user = \Drupal::currentUser();
+  if (!$current_user->hasRole('contributor')) {
+    return;
+  }
+  
+  // Remove bulk operations field from footer
+  if (isset($view->field['views_bulk_operations_bulk_form'])) {
+    unset($view->field['views_bulk_operations_bulk_form']);
+  }
+  
+  // Also check and remove from header if present
+  if (isset($view->header['views_bulk_operations_bulk_form'])) {
+    unset($view->header['views_bulk_operations_bulk_form']);
   }
 }

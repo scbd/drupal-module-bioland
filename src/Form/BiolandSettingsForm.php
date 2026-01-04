@@ -177,7 +177,14 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#collapsed' => FALSE,
       ];
 
-      $form['general']['site_name'] = [
+      // Site name in collapsible box (same style as Field Visibility)
+      $form['general']['site_name_section'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Site Name'),
+        '#open' => FALSE,
+      ];
+
+      $form['general']['site_name_section']['site_name'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Site name'),
         '#default_value' => $site_config->get('name'),
@@ -217,7 +224,9 @@ class BiolandSettingsForm extends ConfigFormBase {
         }
 
         foreach ($translatable_fields as $field_name => $translation_info) {
-          $form['general']["{$field_name}_translations"] = [
+          // Put site_name translations inside site_name_section
+          $parent_key = $field_name === 'site_name' ? 'site_name_section' : 'general';
+          $form['general'][$parent_key]["{$field_name}_translations"] = [
             '#type' => 'details',
             '#title' => $translation_info['title'],
             '#open' => FALSE,
@@ -227,8 +236,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
           foreach ($config_overrides as $langcode => $config_override) {
             // Use text_format for slogan, textfield for others
+            $parent_key = $field_name === 'site_name' ? 'site_name_section' : 'general';
             if ($field_name === 'site_slogan') {
-              $form['general']["{$field_name}_translations"][$langcode] = [
+              $form['general'][$parent_key]["{$field_name}_translations"][$langcode] = [
                 '#type' => 'text_format',
                 '#title' => $languages[$langcode]->getName(),
                 '#default_value' => $config_override->get($translation_info['config_key']),
@@ -237,7 +247,7 @@ class BiolandSettingsForm extends ConfigFormBase {
               ];
             }
             else {
-              $form['general']["{$field_name}_translations"][$langcode] = [
+              $form['general'][$parent_key]["{$field_name}_translations"][$langcode] = [
                 '#type' => 'textfield',
                 '#title' => $languages[$langcode]->getName(),
                 '#default_value' => $config_override->get($translation_info['config_key']),
@@ -247,12 +257,52 @@ class BiolandSettingsForm extends ConfigFormBase {
         }
       }
 
-      $form['general']['countries'] = [
-        '#type' => 'textarea',
-        '#title' => $this->t('Countries'),
-        '#description' => $this->t('Enter one country code per line.'),
-        '#default_value' => implode("\n", (array) ($config->get('countries') ?: ['lk'])),
-        '#required' => TRUE,
+      // Timezone configuration
+      $system_date_config = $this->config('system.date');
+      $form['general']['timezone'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Time zones'),
+        '#open' => TRUE,
+      ];
+
+      $form['general']['timezone']['date_default_timezone'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Default time zone'),
+        '#default_value' => $system_date_config->get('timezone.default') ?: date_default_timezone_get(),
+        '#options' => $this->getTimezoneOptions(),
+      ];
+
+      $form['general']['timezone']['configurable_timezones'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Users may set their own time zone'),
+        '#default_value' => $system_date_config->get('timezone.user.configurable') ? 1 : 0,
+      ];
+
+      $form['general']['timezone']['configurable_timezones_wrapper'] = [
+        '#type' => 'container',
+        '#states' => [
+          'invisible' => [
+            ':input[name="configurable_timezones"]' => ['checked' => FALSE],
+          ],
+        ],
+      ];
+
+      $form['general']['timezone']['configurable_timezones_wrapper']['empty_timezone_message'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Remind users at login if their time zone is not set'),
+        '#description' => $this->t('Only applied if users may set their own time zone.'),
+        '#default_value' => $system_date_config->get('timezone.user.warn') ? 1 : 0,
+      ];
+
+      $form['general']['timezone']['configurable_timezones_wrapper']['user_default_timezone'] = [
+        '#type' => 'radios',
+        '#title' => $this->t('Time zone for new users'),
+        '#default_value' => $system_date_config->get('timezone.user.default') ?: 0,
+        '#options' => [
+          0 => $this->t('Default time zone'),
+          1 => $this->t('Empty time zone'),
+          2 => $this->t('Users may set their own time zone at registration'),
+        ],
       ];
 
       $form['general']['region'] = [
@@ -1160,6 +1210,21 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#default_value' => $config->get('is_biosafety_land') ?: FALSE,
       ];
 
+      // Countries configuration
+      $form['admin_settings']['countries'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Countries'),
+        '#collapsible' => FALSE,
+      ];
+
+      $form['admin_settings']['countries']['countries'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Countries'),
+        '#description' => $this->t('Enter one country code per line.'),
+        '#default_value' => implode("\n", (array) ($config->get('countries') ?: ['lk'])),
+        '#required' => TRUE,
+      ];
+
       // Debug Logging settings
       $form['admin_settings']['debug_logging'] = [
         '#type' => 'fieldset',
@@ -1275,8 +1340,10 @@ class BiolandSettingsForm extends ConfigFormBase {
       $site_config = $this->configFactory()->getEditable('system.site');
       $site_config_changed = FALSE;
 
-      if ($site_config->get('name') !== $values['site_name']) {
-        $site_config->set('name', $values['site_name']);
+      // Get site_name from nested site_name_section
+      $site_name = $values['site_name_section']['site_name'] ?? $values['site_name'];
+      if ($site_config->get('name') !== $site_name) {
+        $site_config->set('name', $site_name);
         $site_config_changed = TRUE;
       }
       // Extract slogan value from text_format array
@@ -1310,7 +1377,13 @@ class BiolandSettingsForm extends ConfigFormBase {
           $override_changed = FALSE;
 
           foreach ($translatable_fields as $config_key => $form_key) {
-            $field_value = $values[$form_key][$langcode] ?? '';
+            // Get site_name translations from nested site_name_section
+            if ($form_key === 'site_name_translations') {
+              $field_value = $values['site_name_section'][$form_key][$langcode] ?? '';
+            }
+            else {
+              $field_value = $values[$form_key][$langcode] ?? '';
+            }
             // Extract value from text_format array for slogan field
             if ($config_key === 'slogan' && is_array($field_value)) {
               $new_value = $field_value['value'] ?? '';
@@ -1330,11 +1403,16 @@ class BiolandSettingsForm extends ConfigFormBase {
         }
       }
 
-      // Normalize textarea inputs (one per line) to arrays
-      $countries = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) $values['countries']))));
-      
+      // Save timezone configuration to system.date
+      $date_config = $this->configFactory()->getEditable('system.date');
+      $date_config->set('timezone.default', $values['date_default_timezone']);
+      // Set user.configurable to FALSE to disable user timezone selection
+      $date_config->set('timezone.user.configurable', FALSE);
+      $date_config->set('timezone.user.warn', $values['empty_timezone_message'] ? 1 : 0);
+      $date_config->set('timezone.user.default', (int) $values['user_default_timezone']);
+      $date_config->save();
+
       $config
-        ->set('countries', $countries)
         ->set('region', $values['region'])
         ->set('continent', $values['continent']);
     }
@@ -1450,9 +1528,13 @@ class BiolandSettingsForm extends ConfigFormBase {
       $site_config = $this->configFactory()->getEditable('system.site');
       $site_config->set('mail', $values['site_mail'])->save();
 
+      // Handle countries field - normalize textarea input
+      $countries = array_filter(array_map('trim', explode("\n", $values['countries'])));
+
       $config
         ->set('enable_auto_summary', $values['enable_auto_summary'])
         ->set('is_biosafety_land', $values['is_biosafety_land'])
+        ->set('countries', array_values($countries))
         ->set('enable_debug_logging', $values['enable_debug_logging'])
         ->set('debug_log_areas.field_visibility', $values['debug_log_field_visibility'])
         ->set('debug_log_areas.additional_fields', $values['debug_log_additional_fields'])
@@ -1759,6 +1841,33 @@ class BiolandSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Get timezone options grouped by region.
+   *
+   * @return array
+   *   Array of timezone options grouped by region.
+   */
+  protected function getTimezoneOptions() {
+    $zones = \DateTimeZone::listIdentifiers();
+    $grouped_zones = [];
+
+    foreach ($zones as $zone) {
+      // Split timezone into region and city
+      $parts = explode('/', $zone, 2);
+      if (count($parts) === 2) {
+        $region = str_replace('_', ' ', $parts[0]);
+        $city = str_replace('_', ' ', $parts[1]);
+        $grouped_zones[$region][$zone] = $city . ' (' . $zone . ')';
+      }
+      else {
+        // Handle special cases like UTC
+        $grouped_zones['Other'][$zone] = $zone;
+      }
+    }
+
+    return $grouped_zones;
+  }
+
+  /**
    * Get content type options with plural field for mega menu display.
    *
    * @return array
@@ -1920,13 +2029,13 @@ class BiolandSettingsForm extends ConfigFormBase {
           $options = [];
           $link_value = $link_item->getValue();
 
-           \Drupal::logger('bioland')->debug('Mega Menu link ', [
+           \Drupal::logger('bioland')->debug('Mega Menu link @menu', [
                 '@menu' => print_r($link_value, TRUE)
           ]);
           if (isset($link_value['options'])) {
             $options = $link_value['options'];
           }
-          \Drupal::logger('bioland')->debug('Mega Menu options: ', [
+          \Drupal::logger('bioland')->debug('Mega Menu options: @menu', [
                 '@menu' => print_r($link_value['options'], TRUE)
           ]);
           // Check for classes in attributes

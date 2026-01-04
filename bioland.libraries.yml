@@ -1,34 +1,34 @@
 debug_logger:
   js:
-    js/bioland-debug-logger-1-0-38.js: {}
+    js/bioland-debug-logger-1-0-39.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings
 
 field_visibility:
   js:
-    js/bioland-field-visibility-1-0-38.js: {}
+    js/bioland-field-visibility-1-0-39.js: {}
   dependencies:
     - core/drupal
     - bioland/debug_logger
 
 additional_fields:
   js:
-    js/bioland-additional-fields-1-0-38.js: {}
+    js/bioland-additional-fields-1-0-39.js: {}
   dependencies:
     - core/drupal
     - bioland/debug_logger
 
 auto_summary:
   js:
-    js/bioland-auto-summary-1-0-38.js: {}
+    js/bioland-auto-summary-1-0-39.js: {}
   dependencies:
     - core/drupal
     - bioland/debug_logger
 
 help_comments:
   js:
-    js/bioland-help-comments-1-0-38.js: {}
+    js/bioland-help-comments-1-0-39.js: {}
   css:
     theme:
       css/bioland.admin.css: {}
@@ -38,9 +38,9 @@ help_comments:
 
 comprehensive_fields:
   js:
-    js/bioland-field-visibility-1-0-38.js: {}
-    js/bioland-additional-fields-1-0-38.js: {}
-    js/bioland-auto-summary-1-0-38.js: {}
+    js/bioland-field-visibility-1-0-39.js: {}
+    js/bioland-additional-fields-1-0-39.js: {}
+    js/bioland-auto-summary-1-0-39.js: {}
   dependencies:
     - core/drupal
     - bioland/debug_logger
@@ -54,7 +54,7 @@ admin:
 
 settings_toggle:
   js:
-    js/bioland-settings-toggle-1-0-38.js: {}
+    js/bioland-settings-toggle-1-0-39.js: {}
   css:
     theme:
       css/bioland.admin.css: {}
@@ -64,6 +64,6 @@ settings_toggle:
 
 language_redirect:
   js:
-    js/bioland-language-redirect-1-0-38.js: {}
+    js/bioland-language-redirect-1-0-39.js: {}
   dependencies:
     - core/drupal
