@@ -107,7 +107,7 @@ function _bioland_create_content_menu_link() {
   }
 
   // Use hardcoded parent UUID.
-  $known_uuid = '60d958d0-9261-4161-95a9-2ee1970c38c0';
+  $known_uuid = '059aed54-bd84-4699-a7c4-5358d5e7c36c';
   $parent_plugin_id = 'menu_link_content:' . $known_uuid;
 
   $logger->info('Creating Content menu link with hardcoded parent UUID: @uuid', [
@@ -193,9 +193,10 @@ function _bioland_create_content_menu_link() {
     $logger->warning('Failed to invalidate menu cache: @message', ['@message' => $e->getMessage()]);
   }
 
-  if (\Drupal::hasService('menu.link_tree')) {
+  // Clear menu cache to ensure the new link appears
+  if (\Drupal::hasService('plugin.manager.menu.link')) {
     try {
-      \Drupal::service('menu.link_tree')->rebuild();
+      \Drupal::service('plugin.manager.menu.link')->rebuild();
       $logger->info('Menu link tree rebuilt.');
     }
     catch (\Exception $e) {
@@ -211,89 +212,54 @@ function _bioland_create_content_menu_link() {
 /**
  * Helper function to disable auto_node_translate menu items.
  *
- * Disables translation-related admin menu items that should not be accessible.
+ * Hides translation-related admin menu items via hook_menu_links_discovered_alter().
+ * System menu links cannot be disabled programmatically, so we use the hook
+ * to remove them from menu discovery.
  *
  * @return string
  *   Status message.
  */
 function _bioland_disable_translation_menus() {
-  $messages = [];
   $logger = \Drupal::logger('bioland');
   $logger->info('Starting translation menu disable process.');
   
-  // Menu items to disable (by route name).
-  $menus_to_disable = [
+  // System-defined menu items to hide are handled by hook_menu_links_discovered_alter()
+  // in bioland.module. This function just rebuilds the menu cache to apply the changes.
+  $menus_to_hide = [
     'auto_node_translate.translators',
     'auto_node_translate_amazon.settings',
-    'auto_node_translate_deepl',
+    'auto_node_translate_deepl.settings',
     'auto_node_translate.my_memory_settings',
   ];
   
-  $entity_type_manager = \Drupal::entityTypeManager();
+  $logger->info('Hiding auto_node_translate menu items via hook_menu_links_discovered_alter(): @items', [
+    '@items' => implode(', ', $menus_to_hide),
+  ]);
   
-  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
-    $message = t('MenuLinkContent entity type not available; skipping menu disable.');
-    $logger->warning('MenuLinkContent entity type not available.');
-    return $message;
-  }
-  
-  $storage = $entity_type_manager->getStorage('menu_link_content');
-  
-  foreach ($menus_to_disable as $route_name) {
-    try {
-      // Search for menu links with this route.
-      $uri = 'route:' . $route_name;
-      $menu_links = $storage->loadByProperties(['link__uri' => $uri]);
-      
-      if (!empty($menu_links)) {
-        foreach ($menu_links as $menu_link) {
-          $menu_link->set('enabled', FALSE);
-          $menu_link->save();
-          $message = t('Disabled menu link: @route', ['@route' => $route_name]);
-          $messages[] = $message;
-          $logger->info('Disabled menu link: @route (ID: @id)', [
-            '@route' => $route_name,
-            '@id' => $menu_link->id(),
-          ]);
-        }
-      }
-      else {
-        // Menu link not found as content entity - may be system menu link.
-        $logger->info('Menu link not found as content entity: @route (may be system menu link)', [
-          '@route' => $route_name,
-        ]);
-      }
-    }
-    catch (\Exception $e) {
-      $message = t('Error processing menu @route: @message', [
-        '@route' => $route_name,
-        '@message' => $e->getMessage(),
-      ]);
-      $messages[] = $message;
-      $logger->error('Error processing menu @route: @message', [
-        '@route' => $route_name,
-        '@message' => $e->getMessage(),
-      ]);
-    }
-  }
-  
-  // Clear menu caches.
+  // Clear menu caches and rebuild menu links.
   try {
+    // Clear the menu cache.
     \Drupal::cache('menu')->invalidateAll();
-    if (\Drupal::hasService('menu.link_tree')) {
-      \Drupal::service('menu.link_tree')->rebuild();
+    
+    // Rebuild menu links to apply hook_menu_links_discovered_alter().
+    if (\Drupal::hasService('plugin.manager.menu.link')) {
+      \Drupal::service('plugin.manager.menu.link')->rebuild();
     }
-    $logger->info('Menu caches cleared after translation menu disable process.');
+    
+    // Clear router cache to ensure menu routes are updated.
+    if (\Drupal::hasService('router.builder')) {
+      \Drupal::service('router.builder')->rebuild();
+    }
+    
+    $logger->info('Menu caches cleared and menu links rebuilt successfully.');
   }
   catch (\Exception $e) {
-    $logger->warning('Failed to clear menu caches: @message', ['@message' => $e->getMessage()]);
+    $logger->error('Failed to rebuild menu links: @message', ['@message' => $e->getMessage()]);
+    return t('Failed to hide translation menus: @message', ['@message' => $e->getMessage()]);
   }
   
-  $summary = !empty($messages) 
-    ? implode("\n", $messages) 
-    : t('Completed translation menu disable process. No content menu links found (system menu links cannot be disabled programmatically).');
-  
-  $logger->info('Translation menu disable process completed.');
+  $summary = t('Translation menu items hidden successfully. Menu links have been rebuilt.');
+  $logger->info('Translation menu disable process completed successfully.');
   return $summary;
 }
 

@@ -10,21 +10,35 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
+ * Implements hook_menu_links_discovered_alter().
+ *
+ * Hides auto_node_translate menu items from the admin menu.
+ */
+function bioland_menu_links_discovered_alter(&$links) {
+  // Menu items to hide (system-defined menu links).
+  $menus_to_hide = [
+    'auto_node_translate.translators',
+    'auto_node_translate_amazon.settings',
+    'auto_node_translate_deepl.settings',
+    'auto_node_translate.my_memory_settings',
+  ];
+  
+  foreach ($menus_to_hide as $menu_id) {
+    if (isset($links[$menu_id])) {
+      // Remove the menu link from discovery.
+      unset($links[$menu_id]);
+    }
+  }
+}
+
+/**
  * Implements hook_page_attachments().
  *
  * Attaches the bulk actions hiding JS for contributor role users.
  */
 function bioland_page_attachments(array &$attachments) {
-  $current_user = \Drupal::currentUser();
-  
-  // Check if user is a contributor
-  if ($current_user->hasRole('contributor')) {
-    // Attach the library
-    $attachments['#attached']['library'][] = 'bioland/hide_bulk_actions';
-    
-    // Pass the contributor status to JavaScript
-    $attachments['#attached']['drupalSettings']['bioland']['isContributor'] = TRUE;
-  }
+  // Always attach the library - JavaScript will check user roles and hide appropriately
+  $attachments['#attached']['library'][] = 'bioland/hide_bulk_actions';
 }
 
 /**
@@ -640,8 +654,11 @@ function bioland_form_user_cancel_form_alter(&$form, FormStateInterface $form_st
  * Implements hook_views_pre_render().
  *
  * Hides bulk action dropdown from footer for contributor role on content views.
+ * DISABLED: This implementation was hiding action buttons for all roles.
  */
 function bioland_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  // DISABLED - Uncomment to re-enable bulk actions removal for contributors
+  /*
   // Only process specific views
   $target_views = ['content', 'unpublished_content'];
   
@@ -688,14 +705,18 @@ function bioland_views_pre_render(\Drupal\views\ViewExecutable $view) {
       unset($view->footer[$field_id]);
     }
   }
+  */
 }
 
 /**
  * Implements hook_preprocess_html().
  *
  * Adds role-based body classes for CSS targeting.
+ * DISABLED: This implementation was hiding action buttons for all roles.
  */
 function bioland_preprocess_html(&$variables) {
+  // DISABLED - Uncomment to re-enable role-based CSS classes
+  /*
   $current_user = \Drupal::currentUser();
   
   // Add contributor role class to body
@@ -715,4 +736,5 @@ function bioland_preprocess_html(&$variables) {
       $variables['attributes']['class'][] = $class;
     }
   }
+  */
 }

@@ -135,19 +135,6 @@ class BiolandSettingsForm extends ConfigFormBase {
     $branding = $this->getBrandingName();
     $title = $this->t('@branding Settings', ['@branding' => $branding]);
     
-    // Get X-Forwarded-Host if available
-    $request = $this->requestStack->getCurrentRequest();
-    $xForwardedHost = $request ? $request->headers->get('X-Forwarded-Host') : NULL;
-    
-    if ($xForwardedHost) {
-      return [
-        '#markup' => $title . ' <span class="bioland-host-info">(' . htmlspecialchars($xForwardedHost) . ')</span>',
-        '#attached' => [
-          'library' => ['bioland/admin'],
-        ],
-      ];
-    }
-    
     return $title;
   }
 

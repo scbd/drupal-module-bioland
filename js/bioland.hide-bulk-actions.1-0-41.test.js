@@ -18,8 +18,8 @@ describe('Bioland Hide Bulk Actions', () => {
 
     // Reset drupalSettings
     global.drupalSettings = {
-      bioland: {
-        isContributor: false
+      user: {
+        roles: []
       }
     };
 
@@ -32,7 +32,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('behavior is registered', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     expect(behavior).toBeDefined();
@@ -40,7 +40,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('does nothing when user is not contributor', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -51,7 +51,7 @@ describe('Bioland Hide Bulk Actions', () => {
       <input type="submit" value="Apply to selected items">
     `;
 
-    global.drupalSettings.bioland.isContributor = false;
+    global.drupalSettings.user.roles = [];
     
     behavior.attach(context, global.drupalSettings);
 
@@ -63,63 +63,61 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('hides action dropdown when user is contributor', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
-    const select = document.createElement('select');
-    select.name = 'action';
-    select.id = 'edit-action';
-    context.appendChild(select);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'views-bulk-actions__item--preceding-actions';
+    context.appendChild(wrapper);
 
-    global.drupalSettings.bioland.isContributor = true;
+    global.drupalSettings.user.roles = ['contributor'];
     
     behavior.attach(context, global.drupalSettings);
 
-    expect(select.style.display).toBe('none');
-    expect(select.dataset.biolandBulkHidden).toBe('true');
+    expect(wrapper.style.display).toBe('none');
+    expect(wrapper.dataset.biolandBulkHidden).toBe('true');
   });
 
   test('hides submit button when user is contributor', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
-    const submit = document.createElement('input');
-    submit.type = 'submit';
-    submit.value = 'Apply to selected items';
-    context.appendChild(submit);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'views-bulk-actions__item form-actions';
+    context.appendChild(wrapper);
 
-    global.drupalSettings.bioland.isContributor = true;
+    global.drupalSettings.user.roles = ['contributor'];
     
     behavior.attach(context, global.drupalSettings);
 
-    expect(submit.style.display).toBe('none');
-    expect(submit.dataset.biolandBulkHidden).toBe('true');
+    expect(wrapper.style.display).toBe('none');
+    expect(wrapper.dataset.biolandBulkHidden).toBe('true');
   });
 
   test('does not re-process already hidden elements', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
-    const select = document.createElement('select');
-    select.name = 'action';
-    select.dataset.biolandBulkHidden = 'true';
-    select.style.display = 'none';
-    context.appendChild(select);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'views-bulk-actions__item--preceding-actions';
+    wrapper.dataset.biolandBulkHidden = 'true';
+    wrapper.style.display = 'none';
+    context.appendChild(wrapper);
 
-    global.drupalSettings.bioland.isContributor = true;
+    global.drupalSettings.user.roles = ['contributor'];
     
     // Mock to verify it doesn't get called again
-    const originalDisplay = select.style.display;
+    const originalDisplay = wrapper.style.display;
     behavior.attach(context, global.drupalSettings);
 
-    expect(select.style.display).toBe(originalDisplay);
+    expect(wrapper.style.display).toBe(originalDisplay);
   });
 
   test('handles missing drupalSettings gracefully', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -131,11 +129,11 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('logs success message for contributors', () => {
-    require('./bioland-hide-bulk-actions-1-0-40.js');
+    require('./bioland-hide-bulk-actions-1-0-41.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
-    global.drupalSettings.bioland.isContributor = true;
+    global.drupalSettings.user.roles = ['contributor'];
     
     const consoleSpy = jest.spyOn(console, 'log');
     

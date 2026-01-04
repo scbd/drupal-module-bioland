@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-settings-toggle-1-0-40.js
+ * Unit tests for bioland-settings-toggle-1-0-41.js
  */
 
 describe('Bioland Settings Toggle', () => {
@@ -24,7 +24,7 @@ describe('Bioland Settings Toggle', () => {
 
   describe('Drupal behavior registration', () => {
     test('should register biolandSettingsToggle behavior', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       expect(Drupal.behaviors.biolandSettingsToggle).toBeDefined();
       expect(typeof Drupal.behaviors.biolandSettingsToggle.attach).toBe('function');
     });
@@ -32,7 +32,7 @@ describe('Bioland Settings Toggle', () => {
 
   describe('Field Visibility toggle', () => {
     test('should skip field visibility toggle (now using native details)', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -60,7 +60,7 @@ describe('Bioland Settings Toggle', () => {
     });
 
     test('should initialize toggle for additional fields settings', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -71,7 +71,7 @@ describe('Bioland Settings Toggle', () => {
     });
 
     test('should show additional fields settings when toggle is clicked', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -105,7 +105,7 @@ describe('Bioland Settings Toggle', () => {
     });
 
     test('should initialize additional fields toggle only', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -117,7 +117,7 @@ describe('Bioland Settings Toggle', () => {
     });
 
     test('should toggle additional fields section', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -156,7 +156,7 @@ describe('Bioland Settings Toggle', () => {
     });
 
     test('should initialize toggles within specific context', () => {
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document.querySelector('#section1');
       const settings = {};
@@ -181,7 +181,7 @@ describe('Bioland Settings Toggle', () => {
         </form>
       `;
 
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -195,7 +195,7 @@ describe('Bioland Settings Toggle', () => {
     test('should handle no toggle links in context', () => {
       document.body.innerHTML = '<form><p>No toggles here</p></form>';
 
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
@@ -216,7 +216,7 @@ describe('Bioland Settings Toggle', () => {
         </form>
       `;
 
-      require('./bioland-settings-toggle-1-0-40.js');
+      require('./bioland-settings-toggle-1-0-41.js');
       
       const context = document;
       const settings = {};
