@@ -113,29 +113,83 @@ function _bioland_configure_content_types() {
 
   foreach ($content_types as $content_type) {
     try {
-      // Try to load existing term by tid.
-      $term = \Drupal::entityTypeManager()
-        ->getStorage('taxonomy_term')
-        ->load($content_type['tid']);
-
+      $database = \Drupal::database();
+      $tid = $content_type['tid'];
+      
+      // Check if term exists in database directly (more reliable than entity load)
+      $existing_data = $database->select('taxonomy_term_data', 't')
+        ->fields('t', ['tid', 'revision_id', 'langcode'])
+        ->condition('tid', $tid)
+        ->execute()
+        ->fetchAssoc();
+      
       $is_new = FALSE;
       
-      if (!$term) {
-        // Create new term with specific tid.
+      if ($existing_data) {
+        // Term exists - load it and update
+        $term = \Drupal::entityTypeManager()
+          ->getStorage('taxonomy_term')
+          ->load($tid);
+          
+        if (!$term) {
+          // Orphaned entry in database - delete it and recreate
+          \Drupal::logger('bioland')->warning('Found orphaned taxonomy_term_data entry for tid @tid - cleaning up', ['@tid' => $tid]);
+          $database->delete('taxonomy_term_data')->condition('tid', $tid)->execute();
+          $database->delete('taxonomy_term_field_data')->condition('tid', $tid)->execute();
+          $database->delete('taxonomy_term_field_revision')->condition('tid', $tid)->execute();
+          $existing_data = FALSE;
+        }
+      }
+      
+      if (!$existing_data) {
+        // Create new term with specific tid
+        // CRITICAL: Must set langcode='en' to create in English, not current UI language
+        // CRITICAL: Must set revision_id=tid to avoid duplicate key constraint violations
+        // CRITICAL: Set name and status in create() to avoid issues with automatic translation
         $term = \Drupal::entityTypeManager()
           ->getStorage('taxonomy_term')
           ->create([
             'vid' => 'tags',
-            'tid' => $content_type['tid'],
-            'status' => 0, // Mark new terms as disabled.
+            'tid' => $tid,
+            'revision_id' => $tid, // Use same ID as tid to avoid conflicts
+            'langcode' => 'en', // Always create in English
+            'name' => $content_type['name'], // Set name during creation
+            'status' => 0, // Mark new terms as disabled
+            'content_translation_source' => 'und', // Prevent auto-translation
+            'content_translation_outdated' => FALSE,
           ]);
         $is_new = TRUE;
+      } else {
+        // Update existing term name
+        $term->setName($content_type['name']);
+        
+        // Fix any broken translations on existing terms before saving.
+        // Translations may have NULL values for required fields like name/status.
+        if ($term->isTranslatable()) {
+          $source_name = $term->getName();
+          $source_status = $term->get('status')->value;
+          
+          foreach ($term->getTranslationLanguages(FALSE) as $langcode => $language) {
+            if ($term->hasTranslation($langcode)) {
+              $translation = $term->getTranslation($langcode);
+              
+              // Ensure name is set (copy from source if empty).
+              $trans_name = $translation->get('name')->value;
+              if (empty($trans_name)) {
+                $translation->set('name', $source_name);
+              }
+              
+              // Ensure status is set (copy from source if NULL).
+              $trans_status = $translation->get('status')->value;
+              if ($trans_status === NULL || $trans_status === '') {
+                $translation->set('status', $source_status);
+              }
+            }
+          }
+        }
       }
 
-      // Update term fields.
-      $term->setName($content_type['name']);
-      
-      // Set custom fields if they exist.
+      // Set custom fields if they exist (for both new and existing).
       if ($term->hasField('field_plural')) {
         $term->set('field_plural', $content_type['field_plural']);
       }
@@ -144,11 +198,8 @@ function _bioland_configure_content_types() {
         $term->set('field_icon', $content_type['icon']);
       }
       
-      // Ensure new terms are ALWAYS disabled (status = 0).
-      // This applies to newly created terms only - existing terms keep their
-      // current status to preserve admin-enabled content types.
+      // Log status for new terms
       if ($is_new) {
-        $term->set('status', 0);
         \Drupal::logger('bioland')->notice('Setting new term @tid (@name) to disabled status.', [
           '@tid' => $content_type['tid'],
           '@name' => $content_type['name'],
@@ -250,12 +301,43 @@ function _bioland_configure_content_type_status_by_site_type() {
   $enabled_count = 0;
   $errors = 0;
 
+  // Helper function to fix broken translations before saving.
+  $fix_term_translations = function ($term) {
+    if (!$term->isTranslatable()) {
+      return;
+    }
+    
+    $source_name = $term->getName();
+    $source_status = $term->get('status')->value;
+    
+    // Iterate through all translations and ensure required fields are set.
+    foreach ($term->getTranslationLanguages(FALSE) as $langcode => $language) {
+      if ($term->hasTranslation($langcode)) {
+        $translation = $term->getTranslation($langcode);
+        
+        // Ensure name is set (copy from source if empty).
+        $trans_name = $translation->get('name')->value;
+        if (empty($trans_name)) {
+          $translation->set('name', $source_name);
+        }
+        
+        // Ensure status is set (copy from source if NULL).
+        $trans_status = $translation->get('status')->value;
+        if ($trans_status === NULL || $trans_status === '') {
+          $translation->set('status', $source_status);
+        }
+      }
+    }
+  };
+
   // Disable terms not applicable to this site type.
   foreach ($terms_to_disable as $tid) {
     try {
       $term = $term_storage->load($tid);
       if ($term && $term->get('status')->value != 0) {
         $term->set('status', 0);
+        // Fix any broken translations before saving.
+        $fix_term_translations($term);
         $term->save();
         $disabled_count++;
         \Drupal::logger('bioland')->notice('Disabled content type term @tid (@name) for @site_type site.', [
@@ -280,6 +362,8 @@ function _bioland_configure_content_type_status_by_site_type() {
       $term = $term_storage->load($tid);
       if ($term && $term->get('status')->value != 1) {
         $term->set('status', 1);
+        // Fix any broken translations before saving.
+        $fix_term_translations($term);
         $term->save();
         $enabled_count++;
         \Drupal::logger('bioland')->notice('Enabled content type term @tid (@name) for @site_type site.', [
