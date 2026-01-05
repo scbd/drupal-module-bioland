@@ -250,7 +250,10 @@ function _bioland_v2_delete_unwanted_facets() {
 }
 
 /**
- * Re-enable immediate indexing and perform full reindex.
+ * Re-enable indexing and trigger a full reindex using disable/enable approach.
+ *
+ * This approach forces Search API DB to rebuild its field tables, which
+ * resolves issues with missing tables like search_api_db_content_langcode.
  *
  * @return string
  *   Status message.
@@ -271,26 +274,34 @@ function _bioland_v2_reindex_search() {
       return t('Search API index "content" not found; skipping reindex.');
     }
 
-    // Restore immediate indexing
+    // Step 1: Disable the index (clears field tracking in server config)
+    if ($index->status()) {
+      $index->disable()->save();
+      \Drupal::logger('bioland')->notice('Disabled Search API content index for field table rebuild.');
+    }
+
+    // Step 2: Re-enable the index (triggers fieldsUpdated() to create tables)
+    $index->enable();
     $index->setOption('index_directly', TRUE);
     $index->save();
+    \Drupal::logger('bioland')->notice('Re-enabled Search API content index with immediate indexing.');
 
-    // Rebuild tracking
+    // Step 3: Rebuild tracking and mark for reindex
     $index->rebuildTracker();
-
-    // Mark all items for reindexing
     $index->reindex();
 
-    // Perform indexing
+    // Step 4: Perform indexing (-1 = no limit)
     $indexed = $index->indexItems(-1);
 
-    return t('Restored immediate indexing and indexed @count items.', ['@count' => $indexed]);
+    $message = t('Search index reset complete: disabled, re-enabled (rebuilt field tables), and indexed @count items.', ['@count' => $indexed]);
+    \Drupal::logger('bioland')->notice($message);
+    return $message;
   }
   catch (\Exception $e) {
-    \Drupal::logger('bioland')->error('Error during reindex: @message', [
+    \Drupal::logger('bioland')->error('Error during search index reset: @message', [
       '@message' => $e->getMessage(),
     ]);
-    return t('Error during reindex: @message', ['@message' => $e->getMessage()]);
+    return t('Error during search index reset: @message', ['@message' => $e->getMessage()]);
   }
 }
 
@@ -349,4 +360,16 @@ function _bioland_v2_update_search_and_facets_config() {
  */
 function bioland_update_9059() {
   return _bioland_v2_update_search_and_facets_config();
+}
+
+/**
+ * Reset Search API index by disabling/enabling to rebuild field tables.
+ *
+ * This fixes missing database tables like search_api_db_content_langcode
+ * and search_api_db_content_field_tags.
+ *
+ * @version 1.0.45
+ */
+function bioland_update_9060() {
+  return _bioland_v2_reindex_search();
 }
