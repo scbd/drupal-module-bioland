@@ -178,10 +178,9 @@ function bioland_install() {
   // Block legacy @cbd.int users.
   _bioland_block_cbd_int_users();
 
-  // Configure Search API index and facets.
-  // COMMENTED OUT: Search API and Facets functionality disabled
-  // _bioland_configure_search_api_index();
-  // _bioland_configure_facets();
+  // Configure Search API index and facets using v2 serialized production config.
+  require_once __DIR__ . '/includes/bioland.install.search.v2.inc';
+  _bioland_v2_update_search_and_facets_config();
 
   // Add langcode field to content form sidebar.
   _bioland_configure_langcode_form_display();

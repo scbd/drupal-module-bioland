@@ -14,11 +14,13 @@
    */
   Drupal.behaviors.biolandHideBulkActions = {
     attach: function (context, settings) {
-      // Check if user has the contributor role
+      // Check if user has the contributor role but not any elevated roles
       const userRoles = settings.user && settings.user.roles ? settings.user.roles : [];
-      const isContributor = userRoles.includes('contributor');
+      const elevatedRoles = ['administrator', 'site_manager', 'content_manager', 'scbd_staff'];
+      const hasElevatedRole = elevatedRoles.some(role => userRoles.includes(role));
+      const isContributor = userRoles.includes('contributor') && !hasElevatedRole;
 
-      console.log('Bioland: Hide bulk actions - user roles:', userRoles, 'isContributor:', isContributor);
+      console.log('Bioland: Hide bulk actions - user roles:', userRoles, 'hasElevatedRole:', hasElevatedRole, 'isContributor:', isContributor);
 
       if (!isContributor) {
         console.log('Bioland: User is not contributor, bulk actions remain visible');
