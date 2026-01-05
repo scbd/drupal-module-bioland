@@ -143,12 +143,10 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   }
 
   // Change "Save (this translation)" to just "Save" for all node content forms.
-  // This needs to be checked before the form_id filter below because translation
-  // forms might have different form IDs but still show "Save (this translation)".
+  // Uses #after_build to ensure this runs after content_translation module
+  // sets the button text, which happens after hook_form_alter.
   if (strpos($form_id, 'node_content_') === 0 || $form_id === 'node_content_form') {
-    if (isset($form['actions']['submit'])) {
-      $form['actions']['submit']['#value'] = t('Save');
-    }
+    $form['#after_build'][] = 'bioland_form_after_build_save_button';
   }
 
   // Only attach to node_content_form and node_content_edit_form.
@@ -478,6 +476,27 @@ function bioland_theme() {
       'template' => 'bioland-settings-summary',
     ],
   ];
+}
+
+/**
+ * After build callback to change "Save (this translation)" to just "Save".
+ *
+ * This runs after content_translation module sets the button text,
+ * ensuring our change takes effect.
+ *
+ * @param array $form
+ *   The form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ *
+ * @return array
+ *   The modified form array.
+ */
+function bioland_form_after_build_save_button(array $form, FormStateInterface $form_state) {
+  if (isset($form['actions']['submit']['#value'])) {
+    $form['actions']['submit']['#value'] = t('Save');
+  }
+  return $form;
 }
 
 /**
