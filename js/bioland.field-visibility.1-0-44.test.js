@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-field-visibility-1-0-43.js
+ * Unit tests for bioland-field-visibility-1-0-44.js
  */
 
 describe('Bioland Field Visibility', () => {
@@ -28,13 +28,13 @@ describe('Bioland Field Visibility', () => {
 
   describe('Drupal behavior registration', () => {
     test('should register biolandFieldVisibility behavior', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       expect(Drupal.behaviors.biolandFieldVisibility).toBeDefined();
       expect(typeof Drupal.behaviors.biolandFieldVisibility.attach).toBe('function');
     });
 
     test('should not initialize if enableFieldVisibility is false', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: false } };
@@ -67,7 +67,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should initialize field visibility when content type field exists', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
@@ -80,7 +80,7 @@ describe('Bioland Field Visibility', () => {
     test('should not initialize when content type field is missing', () => {
       document.body.innerHTML = '<form class="node-content-form"></form>';
       
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
@@ -104,7 +104,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should show URL field for content types that require it', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const urlWrapper = document.querySelector('#edit-field-url-wrapper');
       const context = document.createElement('div');
@@ -123,7 +123,7 @@ describe('Bioland Field Visibility', () => {
     test('should hide URL field for content types that do not require it', () => {
       document.querySelector('#edit-field-type-placement').value = '1';
       
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const urlWrapper = document.querySelector('#edit-field-url-wrapper');
       const context = document.createElement('div');
@@ -153,7 +153,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should show published field for content types that require it', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
       const context = document.createElement('div');
@@ -172,7 +172,7 @@ describe('Bioland Field Visibility', () => {
     test('should hide published field for content types that do not require it', () => {
       document.querySelector('#edit-field-type-placement').value = '1';
       
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
       const context = document.createElement('div');
@@ -203,7 +203,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should show date fields for content types that require them', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
       const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
@@ -224,7 +224,7 @@ describe('Bioland Field Visibility', () => {
     test('should hide date fields for content types that do not require them', () => {
       document.querySelector('#edit-field-type-placement').value = '5';
       
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
       const endDateWrapper = document.querySelector('#edit-field-end-date-wrapper');
@@ -257,7 +257,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should hide text format label and help link', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const label = document.querySelector('label[for="edit-body-0-format--2"]');
       const helpLink = document.querySelector('#edit-body-0-format-help-about');
@@ -294,7 +294,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should set up change event listener', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -306,7 +306,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should update visibility when content type changes', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
@@ -331,7 +331,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should not update visibility when value is unchanged', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -346,7 +346,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should not attach duplicate event listeners', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -361,7 +361,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should handle keydown events with delay', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const startDateWrapper = document.querySelector('#edit-field-start-date-wrapper');
@@ -388,7 +388,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should handle mouseout events', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const fieldElement = document.querySelector('#edit-field-type-placement');
       const context = document.createElement('div');
@@ -417,7 +417,7 @@ describe('Bioland Field Visibility', () => {
     });
 
     test('should show published field for content types that require it', () => {
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
       const context = document.createElement('div');
@@ -443,7 +443,7 @@ describe('Bioland Field Visibility', () => {
         </form>
       `;
       
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const publishedWrapper = document.querySelector('#edit-field-published-wrapper');
       const context = document.createElement('div');
@@ -468,7 +468,7 @@ describe('Bioland Field Visibility', () => {
         </form>
       `;
 
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
@@ -491,7 +491,7 @@ describe('Bioland Field Visibility', () => {
         </form>
       `;
 
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
@@ -510,7 +510,7 @@ describe('Bioland Field Visibility', () => {
         </form>
       `;
 
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
@@ -524,7 +524,7 @@ describe('Bioland Field Visibility', () => {
       // Reinitialize
       global.Drupal.behaviors = {};
       jest.resetModules();
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       Drupal.behaviors.biolandFieldVisibility.attach(context, settings);
       
       // Should not try to attach listeners again
@@ -541,7 +541,7 @@ describe('Bioland Field Visibility', () => {
         </form>
       `;
 
-      require('./bioland-field-visibility-1-0-43.js');
+      require('./bioland-field-visibility-1-0-44.js');
       
       const context = document.createElement('div');
       const settings = { bioland: { enableFieldVisibility: true } };
