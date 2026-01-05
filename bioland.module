@@ -39,6 +39,12 @@ function bioland_menu_links_discovered_alter(&$links) {
 function bioland_page_attachments(array &$attachments) {
   // Always attach the library - JavaScript will check user roles and hide appropriately
   $attachments['#attached']['library'][] = 'bioland/hide_bulk_actions';
+  
+  // Pass current user roles to JavaScript
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  
+  $attachments['#attached']['drupalSettings']['user']['roles'] = $roles;
 }
 
 /**

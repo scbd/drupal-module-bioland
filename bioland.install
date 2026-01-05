@@ -43,6 +43,7 @@ require_once __DIR__ . '/includes/bioland.install.helpers.inc';
 require_once __DIR__ . '/includes/bioland.install.roles.inc';
 require_once __DIR__ . '/includes/bioland.install.users.inc';
 require_once __DIR__ . '/includes/bioland.install.search.inc';
+require_once __DIR__ . '/includes/bioland.install.search.v2.inc';
 require_once __DIR__ . '/includes/bioland.install.editor.inc';
 require_once __DIR__ . '/includes/bioland.install.linkit.inc';
 require_once __DIR__ . '/includes/bioland.install.content_types.inc';
@@ -66,7 +67,8 @@ require_once __DIR__ . '/includes/bioland.install.dmsm.inc';
 function bioland_install() {
   // Disable search index at start to prevent indexing during install.
   // It will be re-enabled and reindexed at the very end via _bioland_final_reindex().
-  _bioland_disable_search_index();
+  // COMMENTED OUT: Search API functionality disabled
+  // _bioland_disable_search_index();
 
   // Validate required system roles exist before proceeding.
   $required_system_roles = ['anonymous', 'authenticated', 'administrator'];
@@ -149,7 +151,8 @@ function bioland_install() {
   }
 
   // Add field_order to Search API "content" index if it exists.
-  _bioland_add_field_order_to_search_index();
+  // COMMENTED OUT: Search API functionality disabled
+  // _bioland_add_field_order_to_search_index();
 
   // Ensure help text is cleared for specific fields on the Content type.
   _bioland_clear_field_help_text('node', 'content', ['body', 'field_attachments']);
@@ -176,8 +179,9 @@ function bioland_install() {
   _bioland_block_cbd_int_users();
 
   // Configure Search API index and facets.
-  _bioland_configure_search_api_index();
-  _bioland_configure_facets();
+  // COMMENTED OUT: Search API and Facets functionality disabled
+  // _bioland_configure_search_api_index();
+  // _bioland_configure_facets();
 
   // Add langcode field to content form sidebar.
   _bioland_configure_langcode_form_display();
@@ -237,7 +241,8 @@ function bioland_install() {
   // FINAL STEP: Rebuild search index tracking and trigger reindex.
   // This MUST be the last operation to ensure all configuration changes
   // are captured in the index.
-  _bioland_final_reindex();
+  // COMMENTED OUT: Search API functionality disabled
+  // _bioland_final_reindex();
 }
 
 /**
