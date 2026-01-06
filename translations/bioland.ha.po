@@ -1391,3 +1391,91 @@ msgstr "Bar komai don amfani da rarraba tsoho. Yi amfani da ƙari na 10 (misali,
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Sunan Shafin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Sake sake inganta abun ciki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Yana cire duk tutocin da aka inganta daga kowane shigarwar abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Sake Haɓaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Sake sake saita tutocin da aka inganta..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Samun nasarar sake saita tutar da aka inganta zuwa 0 don shigarwar abun ciki na @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Sake sake saita abun ciki mai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Yana cire duk tutoci masu ɗanɗewa daga kowane shigarwar abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Sake saita Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Sake saita tutoci mai ɗanɗano..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Samun nasarar sake saita tutar mai laushi zuwa 0 don shigarwar abun ciki na @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Gaba-ƙarshe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Haɓaka da Ganin Alamar Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menu na nau'in abun ciki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Ƙididdigar nau'in abun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Game da Jaruman Shafin Gida"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Jarumai sune manyan hotunan banner da aka nuna a saman shafin gida. Tunda ba za a iya gyara shimfidar shafin gida kai tsaye ba, wannan shine inda kuke saita banner gwarzo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Jaruman suna juyawa ta atomatik kowace awa, yana ba ku damar nuna saƙonni da hotuna daban-daban a duk rana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Idan kun fi son nuna jarumi ɗaya kawai, kawai ku buga ɗayan jarumin (s) ta amfani da maɓallin Gyara da ke ƙasa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "An buga"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Ba a buga"

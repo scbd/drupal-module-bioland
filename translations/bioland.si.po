@@ -1391,3 +1391,91 @@ msgstr "පෙරනිමි වර්ග කිරීම භාවිතා �
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "වෙබ් අඩවියේ නම"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "ප්රවර්ධන අන්තර්ගතය නැවත සකසන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "සෑම අන්තර්ගත ඇතුළත් කිරීමකින්ම සියලුම ප්රවර්ධනය කරන ලද කොඩි ඉවත් කරයි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "උසස් කරන ලද නැවත සකසන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "ප්රවර්ධනය කරන ලද කොඩි නැවත සකස් කිරීම..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count අන්තර්ගත ඇතුළත් කිරීම් සඳහා ප්රවර්ධනය කරන ලද ධජය සාර්ථකව 0 දක්වා නැවත සකසන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "ඇලෙන සුළු අන්තර්ගතය නැවත"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "සෑම අන්තර්ගත ඇතුළත් කිරීමකින්ම සියලුම ඇලෙන සුළු ධජ ඉවත් කරයි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "ඇලෙන සුළු සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "ඇලෙන සුළු කොඩි නැවත සකස් කිරීම..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count අන්තර්ගත ඇතුළත් කිරීම් සඳහා ඇලෙන සුළු ධජය සාර්ථකව 0 දක්වා නැවත සකසන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ඉදිරිපස අවසානය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "පරිපාලක"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "ප්රවර්ධනය සහ ඇලෙන සුළු අයිකන දෘ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "අන්තර්ගත වර්ගයේ මෙනු"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "අන්තර්ගත වර්ග සංඛ්යාලේඛන"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "මුල් පිටුව වීරයන් ගැන"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "වීරයන් යනු මුල් පිටුවේ ඉහළින් ප්රදර්ශනය වන විශාල බැනර් රූප වේ. මුල් පිටු සැකැස්ම සෘජුවම සංස්කරණය කළ නොහැකි බැවින්, ඔබ වීර බැනර් වින්යාස කරන්නේ මෙයයි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "වීරයන් සෑම පැයකටම ස්වයංක්රීයව භ්රමණය වන අතර දවස පුරා විවිධ පණිවිඩ සහ රූප ප්රදර්ශනය කිරීමට ඉඩ සලසයි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "ඔබ එක් වීරයෙකු පමණක් ප්රදර්ශනය කිරීමට කැමති නම්, සරලව පහත සංස්කරණය බොත්තම භාවිතා කරමින් අනෙක් වීරයා (es) unpublish කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "ප්රකාශයට පත් කරන ලදී"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "ප්රකාශයට පත් නොකළ"

@@ -1391,3 +1391,91 @@ msgstr "Standart tartiblashdan foydalanish uchun bo'sh qoldiring. Keyinchalik na
 #: bioland.module
 msgid "URL"
 msgstr "URL MANZILI"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Sayt nomi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Targ'ib qilingan tarkibni tiklash"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Har bir kontent yozuvidan barcha targ'ib qilingan bayroqlarni olib tashlaydi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Targ'ib qilingan tiklash"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Targ'ib qilingan bayroqlarni qayta tiklash..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count kontent yozuvlari uchun targ'ib qilingan bayroqni 0 ga muvaffaqiyatli tiklash."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Yopqoq tarkibni tiklash"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Har bir kontent kiritidan barcha yopishqoq bayroqlarni olib tashlaydi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Yopishqoqni tiklash"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Yopishqoq bayroqlarni tiklash..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count kontent yozuvlari uchun yopishqoq bayroqni 0 ga muvaffaqiyatli tiklash."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Belgilarning ko'rinishini reklama qilish va yopishqoq"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Kontent turi menyulari"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Kontent turlari statistikasi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Bosh sahifa qahramonlari haqida"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Qahramonlar - bu asosiy sahifaning yuqori qismida ko'rsatilgan katta banner tasvirlari. Bosh sahifa tartibini to'g'ridan-to'g'ri tahrirlash mumkin emasligi sababli, bu erda siz qahramon bannerlarini sozlaysiz."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Qahramonlar har soatda avtomatik ravishda aylanib, kun davomida turli xabarlar va tasvirlarni namoyish qilish imkonini beradi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Agar siz faqat bitta qahramonni ko'rsatishni ma'qul ko'rsangiz, quyidagi Tartibga solish tugmasi yordamida boshqa qahramon (lar) ni nashr etishni bekor qiling."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Nashr etilgan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Nashr etilmagan"

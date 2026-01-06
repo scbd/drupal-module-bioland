@@ -1391,3 +1391,91 @@ msgstr "Để trống để sử dụng sắp xếp mặc định. Sử dụng g
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Tên trang web"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Đặt lại nội dung quảng cáo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Xóa tất cả các cờ quảng cáo khỏi mọi mục nhập nội dung."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Đặt lại chương trình khuyến mãi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Đặt lại cờ quảng cáo..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Đặt lại thành công cờ quảng cáo thành 0 cho các mục nội dung @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Đặt lại nội dung dính"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Xóa tất cả các cờ dính khỏi mọi mục nhập nội dung."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Đặt lại Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Đặt lại cờ dính..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Đặt lại thành công cờ dính thành 0 cho các mục nội dung @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Quản trị viên"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Quảng bá và hiển thị biểu tượng dính"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menu loại nội dung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Thống kê các loại nội dung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Giới thiệu về Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Anh hùng là hình ảnh biểu ngữ lớn được hiển thị ở đầu trang chủ. Vì bố cục trang chủ không thể được chỉnh sửa trực tiếp, đây là nơi bạn định cấu hình các biểu ngữ anh hùng."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Các anh hùng xoay tự động mỗi giờ, cho phép bạn hiển thị các tin nhắn và hình ảnh khác nhau trong suốt cả ngày."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Nếu bạn chỉ muốn hiển thị một anh hùng, chỉ cần hủy xuất bản (các) anh hùng khác bằng cách sử dụng nút Chỉnh sửa bên dưới."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Đã xuất bản"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Chưa công bố"

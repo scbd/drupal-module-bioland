@@ -1391,3 +1391,91 @@ msgstr "ડિફોલ્ટ સૉર્ટિંગનો ઉપયોગ ક
 #: bioland.module
 msgid "URL"
 msgstr "યુઆરએલ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "સાઇટનું નામ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "પ્રમોટેડ સામગ્રી ફરીથી સેટ કરો"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "દરેક સામગ્રી એન્ટ્રીમાંથી તમામ પ્રમોટેડ ફ્લેગ્સ દૂર કરે છે."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "પ્રમોટેડ રીસેટ કરો"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "પ્રમોટેડ ફ્લેગ્સ રીસેટ કરી રહ્યા છીએ..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count સામગ્રી એન્ટ્રીઝ માટે સફળતાપૂર્વક પ્રમોટેડ ફ્લેગને 0 પર ફરીથી સેટ કરો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "સ્ટીકી સામગ્રી ફરીથી સેટ કરો"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "દરેક સામગ્રી એન્ટ્રીમાંથી તમામ સ્ટીકી ફ્લેગ્સ દૂર કરે છે."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "સ્ટીકી રીસેટ કરો"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "સ્ટીકી ફ્લેગ્સ રીસેટ કરી રહ્યા છીએ..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count સામગ્રી એન્ટ્રીઝ માટે સફળતાપૂર્વક સ્ટીકી ફ્લેગને 0 પર ફરીથી સેટ કરો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ફ્રન્ટ એન્ડ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "એડમિન"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "પ્રોત્સાહન અને સ્ટીકી ચિહ્ન દૃશ્યતા"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "સામગ્રી પ્રકાર મેનુઓ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "સામગ્રી પ્રકારો આંકડા"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "હોમ પેજ હીરોઝ વિશે"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "હીરોઝ હોમ પેજની ટોચ પર પ્રદર્શિત મોટી બેનર છબીઓ છે. હોમ પેજ લેઆઉટને સીધી રીતે સંપાદિત કરી શકાતું નથી, આ તે છે જ્યાં તમે હીરો બેનરોને ગોઠવો છો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "હીરો દર કલાકે આપમેળે ફેરવે છે, જેનાથી તમે સમગ્ર દિવસ દરમિયાન વિવિધ સંદેશાઓ અને છબીઓ પ્રદર્શિત કરી શકો છો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "જો તમે માત્ર એક હીરો પ્રદર્શિત કરવાનું પસંદ કરો છો, તો ફક્ત નીચે સંપાદિત કરો બટનનો ઉપયોગ કરીને અન્ય હીરો (ઓ) ને અનપબ્લિશ કરો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "પ્રકાશિત"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "અપ્રકાશિત"

@@ -1466,3 +1466,91 @@ msgstr "Az alapértelmezett rendezés használatához hagyja üresen. Használjo
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Webhely neve"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Promóciós tartalom visszaállítása"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Eltávolítja az összes reklámozott zászlót minden tartalombejegyzésből."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Promóciós visszaállítás"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "A népszerűsített zászlók visszaállítása..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Sikeresen állította vissza a promóciós zászlót 0-ra a @count tartalombejegyzésekhez."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Ragadós tartalom visszaállítása"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Eltávolítja az összes ragadós zászlót minden tartalombejegyzésből."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Sticky visszaállítása"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Ragadós zászlók visszaállítása..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Sikeresen állítsa vissza a ragadós jelzőt 0 értékre a @count tartalombejegyzésekhez."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Rendszergazda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Támogatás és ragadós ikon láthatósága"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Tartalomtípus-menük"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Tartalomtípusok Statisztika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "A Home Page Heroes bemutatása"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "A hősök a kezdőlap tetején megjelenő nagy banner képek. Mivel a kezdőlap elrendezését nem lehet közvetlenül szerkeszteni, itt konfigurálhatja a hős bannereket."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "A hősök óránként automatikusan forognak, így különböző üzenetek és képek jeleníthetők meg a nap folyamán."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Ha csak egy hőst szeretne megjeleníteni, egyszerűen törölje a másik hős (ek) közzétételét az alábbi Szerkesztés gomb segítségével."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Megjelent"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Közzétetlen"

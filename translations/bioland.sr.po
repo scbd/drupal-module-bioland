@@ -1391,3 +1391,91 @@ msgstr "Ostavite prazno da biste koristili podrazumevano sortiranje. Koristite k
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Naziv sajta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Resetujte promovisani sadržaj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Uklanja sve promovisane zastave iz svakog unosa sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Resetovanje promovisano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Resetovanje promovisanih zastava..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Uspešno resetujte promovisanu zastavu na 0 za unose sadržaja @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Resetujte lepljivi sadržaj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Uklanja sve lepljive zastavice iz svakog unosa sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Resetujte lepljivo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Resetovanje lepljivih zastava..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Uspešno resetujte lepljivu zastavicu na 0 za unose sadržaja @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Promovišite i lepljivu vidljivost ikona"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Meniji tipa sadržaja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Vrste sadržaja Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "O početnoj stranici Heroji"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Heroji su velike slike banera prikazane na vrhu početne stranice. Pošto se izgled početne stranice ne može direktno uređivati, ovde konfigurišete banere heroja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Junaci se automatski rotiraju svakih sat vremena, omogućavajući vam da prikazujete različite poruke i slike tokom dana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Ako više volite da prikažete samo jednog heroja, jednostavno poništite objavljivanje drugog heroja pomoću dugmeta Uredi ispod."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Objavljeno"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Neobjavljeno"

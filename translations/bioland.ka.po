@@ -1391,3 +1391,91 @@ msgstr "დატოვეთ ცარიელი ნაგულისხმ�
 #: bioland.module
 msgid "URL"
 msgstr "იურლ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "საიტის სახელი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "დაახლოებული შინაარსის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "შლის ყველა პოპულარიზებულ დროშას ყველა შინაარსის ჩანაწერიდან"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "პოპულარიზირებული"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "დაწინაურებული დროშების გადატვირთვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "წარმატებით გადაადგინეთ პოპულარიზებული დროშა 0-მდე @count შინაარსის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "წებოვანი შინაარსის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "წაშლის ყველა წებოვან დროშას ყველა შინაარსის ჩანაწერიდან."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "წებოვანი აღდგენა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "წებოვანი დროშების გადატვირთვა..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "წარმატებით გადაადგინეთ წებოვანი დროშა 0-ზე @count შინაარსის ჩანა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ფრონტენდი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "ადმინისტრაცია"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "პოპულარიზაცია და წებოვანი ხატ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "შინაარსის ტიპის მენ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "შინაარსის სახეების სტატ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "მთავარი გვერდის გმირების შესახებ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "გმირები არის დიდი ბანერის სურათები, რომლებიც ნაჩვენებია მთავარი გვერდის ზედა ნაწილში. ვინაიდან მთავარი გვერდის განლაგების პირდაპირ რედაქტირება შეუძლებელია, სწორედ აქ თქვენ კონფიგურირებთ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "გმირები ავტომატურად ბრუნავენ ყოველ საათში, რაც საშუალებას გაძლევთ აჩვენოთ სხვადასხვა შეტყობინებები და სურ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "თუ გირჩევნიათ მხოლოდ ერთი გმირის ჩვენება, უბრალოდ გაუქმეთ მეორე გმირის (გმირების) გამოქვეყნება ქვემოთ მოცემული რედაქტირების"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "გამოქვეყნებულია"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "გამოუქვეყნებელი"

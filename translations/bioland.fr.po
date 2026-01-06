@@ -1391,3 +1391,91 @@ msgstr "Laissez ce champ vide pour utiliser le tri par défaut. Utilisez des inc
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Nom du site"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Réinitialiser le contenu sponsorisé"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Supprime tous les drapeaux sponsorisés de chaque entrée de contenu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Réinitialiser la promotion"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Réinitialisation des drapeaux sponsorisés..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Réinitialisation réussie de l'indicateur sponsorisé à 0 pour les entrées de contenu @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Réinitialiser le contenu collant"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Supprime tous les drapeaux adhésifs de chaque entrée de contenu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Reset Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Réinitialisation des drapeaux adhésifs..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Réinitialisation réussie de l'indicateur permanent à 0 pour les entrées de contenu @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Administrateur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Promouvoir et coller la visibilité des icônes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menus de type de contenu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Statistiques sur les types de contenu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "À propos de Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Les héros sont les grandes images de bannière affichées en haut de la page d'accueil. Comme la mise en page de la page d'accueil ne peut pas être modifiée directement, c'est ici que vous configurez les bannières des héros."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Les héros changent automatiquement toutes les heures, ce qui vous permet d'afficher différents messages et images tout au long de la journée."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Si vous préférez n'afficher qu'un seul héros, annulez simplement la publication des autres héros à l'aide du bouton Modifier ci-dessous."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Publié"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Inédit"

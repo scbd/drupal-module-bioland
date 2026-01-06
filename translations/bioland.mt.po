@@ -1391,3 +1391,91 @@ msgstr "Ħalli vojt biex tuża l-issortjar default. Uża inkrementi ta' 10 (eż.
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Isem tas-Sit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Irrisettja l-kontenut promoss"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Tneħħi l-bnadar kollha promossi minn kull dħul tal-kontenut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Irrisettja Promozott"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Irrisettjar tal-bnadar promossi..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Irrisettja b'suċċess bandiera promossa għal 0 għall-entrati tal-kontenut @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Irrisettja l-Kontenut li"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Tneħħi l-bnadar kollha li jwaħħlu minn kull dħul tal-kontenut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Irrisettja Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Irrisettjar tal-bnadar li jwaħħlu..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Irrisettja b'suċċess il-bandiera twaħħal għal 0 għall-entrati tal-kontenut @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Amministratur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Tippromwovi u l-Viżibilità tal-Ikona"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menus tat-Tip tal-Kontenut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Tipi tal-Kontenut Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Dwar Home Page Eroj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Eroj huma l-immaġini kbar tal-banner murija fin-naħa ta 'fuq tal-paġna ewlenija. Peress li t-tqassim tal-paġna ewlenija ma jistax jiġi editjat direttament, dan huwa fejn tikkonfigura l-banners eroj."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "L-eroj jduru awtomatikament kull siegħa, li jippermettilek li turi messaġġi u immaġini differenti matul il-ġurnata."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Jekk tippreferi li turi eroj wieħed biss, sempliċiment unpublish l-eroj (i) l-oħra billi tuża l-buttuna Editja hawn taħt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Ippubblikat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Mhux ippubblikat"

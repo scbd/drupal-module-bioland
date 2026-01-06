@@ -1391,3 +1391,91 @@ msgstr "இயல்புநிலை வரிசைப்படுத்த�
 #: bioland.module
 msgid "URL"
 msgstr "யூஆர்எல்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "தள பெயர்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "ஊக்குவிக்கப்பட்ட உள்ளடக்கத்தை"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "ஒவ்வொரு உள்ளடக்க உள்ளீட்டிலிருந்து விளம்பரப்படுத்தப்பட்ட அனைத்து கொடிகளையும் நீக்குகிறது."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "பதவி உயர்த்தப்பட்ட"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "ஊக்குவிக்கப்பட்ட கொடிகளை மீட்டமைக்க"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count உள்ளடக்க உள்ளீடுகளுக்கு விளம்பரப்படுத்தப்பட்ட கொடியை வெற்றிகரமாக 0 ஆக"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "ஒட்டும் உள்ளடக்கத்தை மீட்ட"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "ஒவ்வொரு உள்ளடக்க உள்ளீட்டிலிருந்தும் அனைத்து ஒட்டப்பட்ட கொடிகளையும் நீக்குகிறது."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "ஸ்டிக் மீட்டமைக்கவும்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "ஒட்டப்பட்ட கொடிகளை மீட்டமைத்தல்..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count உள்ளடக்க உள்ளீடுகளுக்கு ஒட்டப்பட்ட கொடியை வெற்றிகரமாக 0 ஆக மீட்ட"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ஃப்ரண்ட் எண்ட்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "நிர்வாகம்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "மேம்படுத்தவும் ஒட்டவும் ஐகான் பார்வைய"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "உள்ளடக்க வகை மெனுக்கள்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "உள்ளடக்க வகைகள் புள்ளியியல்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "முகப்பு பக்கம் ஹீரோக்கள் பற்றி"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "ஹீரோக்கள் என்பது முகப்புப் பக்கத்தின் மேலே காட்டப்படும் பெரிய பேனர் படங்கள். முகப்புப் பக்க தளவமைப்பை நேரடியாக திருத்த முடியாது என்பதால், நீங்கள் ஹீரோ பேனர்களை உள்ளமைக்கிறீர்கள்."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "ஹீரோக்கள் ஒவ்வொரு மணி நேரமும் தானாகவே சுழலும், நாள் முழுவதும் வெவ்வேறு செய்திகளையும் படங்களையும் காட்ட உங்களை அனும"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "நீங்கள் ஒரு ஹீரோவை மட்டுமே காட்ட விரும்பினால், கீழே உள்ள திருத்து பொத்தானைப் பயன்படுத்தி மற்ற ஹீரோவை (கள்) வெளியிடுவதை நீக்கவும்."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "வெளியிடப்பட்டது"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "வெளியிடப்படாத"

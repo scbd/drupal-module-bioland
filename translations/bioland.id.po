@@ -1391,3 +1391,91 @@ msgstr "Biarkan kosong untuk menggunakan penyortiran default. Gunakan kenaikan 1
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Nama Situs"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Atur Ulang Konten Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Menghapus semua bendera promosi dari setiap entri konten."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Atur Ulang Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Mengatur ulang bendera promosi..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Berhasil mengatur ulang bendera promosi ke 0 untuk entri konten @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Setel ulang Konten Lengket"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Menghapus semua tanda lengket dari setiap entri konten."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Setel ulang Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Mengatur ulang bendera lengket..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Berhasil mengatur ulang tanda lengket ke 0 untuk entri konten @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Promosikan dan Visibilitas Ikon Lengket"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menu Jenis Konten"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Statistik Jenis Konten"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Tentang Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Pahlawan adalah gambar spanduk besar yang ditampilkan di bagian atas halaman beranda. Karena tata letak halaman beranda tidak dapat diedit secara langsung, di sinilah Anda mengonfigurasi spanduk pahlawan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Para pahlawan berputar secara otomatis setiap jam, memungkinkan Anda untuk menampilkan pesan dan gambar yang berbeda sepanjang hari."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Jika Anda lebih suka menampilkan hanya satu pahlawan, cukup batalkan publikasi pahlawan lainnya menggunakan tombol Edit di bawah ini."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Diterbitkan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Tidak dipublikasikan"

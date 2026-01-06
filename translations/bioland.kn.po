@@ -1391,3 +1391,91 @@ msgstr "ಡೀಫಾಲ್ಟ್ ವಿಂಗಡಣೆಯನ್ನು ಬಳಸ�
 #: bioland.module
 msgid "URL"
 msgstr "ಯುಆರ್ಎಲ್"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "ಸೈಟ್ ಹೆಸರು"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "ಪ್ರಚಾರ ಮಾಡಿದ ವಿಷಯವನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "ಪ್ರತಿ ವಿಷಯ ನಮೂದಿಯಿಂದ ಎಲ್ಲಾ ಪ್ರಚಾರ ಮಾಡಿದ ಧ್ವಜಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "ಪ್ರಚಾರವನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "ಪ್ರಚಾರ ಮಾಡಿದ ಧ್ವಜಗಳನ್ನು ಮರುಹೊಂದಿಸುವುದು..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count ವಿಷಯ ನಮೂದುಗಳಿಗಾಗಿ ಪ್ರಚಾರ ಮಾಡಿದ ಧ್ವಜವನ್ನು 0 ಗೆ ಯಶಸ್ವಿಯಾಗಿ ಮರುಹೊಂದಿಸಿ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "ಸ್ಟಿಕಿ ವಿಷಯವನ್ನು ಮರುಹೊಂದಿಸಿ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "ಪ್ರತಿ ವಿಷಯ ನಮೂದಿಯಿಂದ ಎಲ್ಲಾ ಜಿಗುಟಾದ ಧ್ವಜಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "ಸ್ಟಿಕಿ ಮರುಹೊಂದಿಸಿ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "ಜಿಗುಟಾದ ಧ್ವಜಗಳನ್ನು ಮರುಹೊಂದಿಸುವುದು..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count ವಿಷಯ ನಮೂದುಗಳಿಗಾಗಿ ಜಿಗುಟಾದ ಧ್ವಜವನ್ನು 0 ಗೆ ಯಶಸ್ವಿಯಾಗಿ ಮರುಹೊಂದಿಸಿ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ಫ್ರಂಟ್-ಎಂಡ್"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "ನಿರ್ವಹಣೆ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "ಪ್ರಚಾರ ಮತ್ತು ಸ್ಟಿಕಿ ಐಕಾನ್ ಗೋಚರತೆಯನ್ನು"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "ವಿಷಯ ಪ್ರಕಾರ ಮೆನುಗಳು"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "ವಿಷಯ ಪ್ರಕಾರಗಳು ಅಂಕಿಅಂಶಗಳು"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "ಮುಖಪುಟ ಹೀರೋಗಳ ಬಗ್ಗೆ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "ಹೀರೋಗಳು ಮುಖಪುಟದ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾದ ದೊಡ್ಡ ಬ್ಯಾನರ್ ಚಿತ್ರಗಳಾಗಿವೆ. ಮುಖಪುಟದ ಲೇಔಟ್ ಅನ್ನು ನೇರವಾಗಿ ಸಂಪಾದಿಸಲು ಸಾಧ್ಯವಾಗದ ಕಾರಣ, ನೀವು ನಾಯಕ ಬ್ಯಾನರ್ಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡುವ ಸ್ಥಳವಾಗಿದೆ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "ನಾಯಕರು ಪ್ರತಿ ಗಂಟೆಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತಿರುಗುತ್ತವೆ, ದಿನವಿಡೀ ವಿಭಿನ್ನ ಸಂದೇಶಗಳು ಮತ್ತು ಚಿತ್ರಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು ನಿಮಗೆ ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "ನೀವು ಕೇವಲ ಒಂದು ನಾಯಕನನ್ನು ಪ್ರದರ್ಶಿಸಲು ಬಯಸಿದರೆ, ಕೆಳಗಿನ ಸಂಪಾದಿಸಿ ಬಟನ್ ಬಳಸಿ ಇತರ ನಾಯಕ (ಗಳು) ಅನ್ನು ಸರಳವಾಗಿ ಪ್ರಕಟಿಸದಿರಿ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "ಪ್ರಕಟಿಸಲಾಗಿದೆ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "ಅಪ್ರಕಟಿತ"

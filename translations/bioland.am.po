@@ -1391,3 +1391,91 @@ msgstr "ነባሪ መደርደሪያ ለመጠቀም ባዶ ይተው። በኋ�
 #: bioland.module
 msgid "URL"
 msgstr "ዩአርኤል"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "የጣቢያ ስም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "የተሻሻለ ይዘት ዳግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "ከእያንዳንዱ የይዘት ማስገባት ሁሉንም የተተዋወቁ ባንዲራ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "ተሻሽሎ ዳግም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "የተተዋወቁ ባንዲራዎችን ዳግም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "ለ@count ይዘት ማስገባዎች የተተዋወቁ ባንዲራን ወደ 0 በተሳካ ሁኔታ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "ተጣጣፊ ይዘት ዳግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "ከእያንዳንዱ የይዘት መግቢያ ሁሉንም ተጣጣፊ ባንዲራ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "ተጣጣፊ ዳግም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "ተጣጣፊ ባንዲራዎችን ዳግም ማስ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "ለ@count ይዘት ማስገባዎች ተጣጣፊ ባንዲራ ወደ 0 በተሳካ ሁኔታ ዳግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "የፊት መጨረሻ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "አስተዳዳሪ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "ያስተዋውቁ እና ተጣጣፊ አዶን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "የይዘት አይነት ምናሎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "የይዘት ዓይነቶች ስ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "ስለ መነሻ ገጽ ጀግኖች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "ጀግኖች በመነሻ ገጹ አናት ላይ የሚታዩት ትልቅ ሰንደቅ ምስሎች ናቸው። የመነሻ ገጽ አቀማመጥ በቀጥታ ሊስተካከል ስለማይችል የጀግና ሰንደሮችን የሚያዋቅሩበት ይህ ነው።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "ጀግኖቹ በየሰዓቱ በራስ-ሰር ይዞራሉ፣ ይህም በቀን ውስጥ የተለያዩ መልዕክቶችን እና ምስሎችን እንዲያሳዩ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "አንድ ጀግና ብቻ ለማሳየት ከፈለጉ ከዚህ በታች ያለውን የአርትዖት ቁልፍን በመጠቀም ሌላኛውን ጀግና (ዎች) አታተም።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "ታተመ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "ያልታተመ"

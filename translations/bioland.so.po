@@ -1391,3 +1391,91 @@ msgstr "Bax banaan si aad u isticmaalaan xaabka default. Isticmaalo kordhin 10 (
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Magaca Goobta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Dib u dib u dhigeeyay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Ka saaraya dhamaan calanka la hormariyay oo laga soo galay wax wax wax wax ka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Dib u soo dhigay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Dib u dhacanta calanka la hormariyo..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Si guul ah dib u dib u dhigay calanka la hormariyay 0 oo lagu soo dhigay @count"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Dib u dib u dhigay Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Saareeysa dhammaan calanada leh oo laga soo saaray galinta wax kasta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Dib u dhigay Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Dib u dib u dhigga calanka ah..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Si guul ah dib u dib u dib u dhigay calanka leh 0 for @count content."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Dhamada hore"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Hormariyo iyo Muuqaalka Icon Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Nooca Content Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Tiimaadka Nooca Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "About Home Page Geesiyaasha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Geesiyaasha waa sawirada bannerka waaweyn ee lagu muujiyay sare ee bogga hooyinka. Maadaama barka bogga hooyinka ayaa si toos ah loo sameeyo karin, tani waa halka aad sameeyaan banneraha geesiga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Geesiyaasha ayaa si toos ah saac kasta u dhacay, iyaga oo aad u ogolaanayaan inay maalintii kala duwan muujiyaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Haddii aad u doonaan inaad muujiyaan hal geey kaliya, si fudud aan daabacin geesiga kale (es) oo isticmaalaya badhanka Edit ee hoose."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Baahiyay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Aan daabacay"

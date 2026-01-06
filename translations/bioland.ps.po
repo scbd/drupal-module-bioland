@@ -1391,3 +1391,91 @@ msgstr "د ډیفالټ ترتیب کولو کارولو لپاره خالي د 
 #: bioland.module
 msgid "URL"
 msgstr "یو آر ایل"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "د سایټ نوم"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "تبلیغ شوي محتوا بیا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "د هر محتوا د ننوتلو څخه ټول ترڅنګ لرې کول."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "ترڅنګ بیا کړئ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "د وده کړی شوي پرچم بیا بیا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "په بریالیتوب سره د @count د منځپانګې د ننوښتونو لپاره د 0 ته د"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "چسپي محتوا بیا تر"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "د هر محتوا د ننوتلو څخه ټول چسپي جګړې لر"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "سټیکي بیا کړئ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "د چسپي پرچم بیا بیا کول..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "په بریالیتوب سره د @count د منځپانګې داخلونو لپاره 0 ته د چټکی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "مخکې پای"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "مدیر"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "وده ورکړئ او چټکی آیکون کتنې"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "د محتوا ډول مینو"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "د منځپانګې ډول"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "د کور پاڼې هیلانو په اړه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "هیروان د کور پاڼې په سر کې ښودل شوي لوی بینر انځورونه دي. ځکه چې د کور پاڼې ترتیب نشي نشي مستقیم ترمیم شي، دا هغه ځای دی چې تاسو د هیرو بینرونو تنظیم کړئ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "قهرمانان هر ساعت په اتومات ډول چرخي، تاسو ته اجازه ورکوي چې په ټول ورځ کې مختلف پیغامونه او انځورونه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "که تاسو غوره کوئ چې یوازې یو هېرو ښودل کړئ، په ساده ډول د لاندې د سمبالول تڼۍ په کارولو سره د نور هېرو"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "خپور شوی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "غیر خپره شوی"

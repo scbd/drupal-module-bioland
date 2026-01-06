@@ -1458,3 +1458,91 @@ msgstr "Chcete-li použít výchozí třídění, ponechte prázdné. Použijte 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Název webu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Obnovit propagovaný obsah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Odstraní všechny propagované příznaky z každého záznamu obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Obnovit propagaci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Resetování propagovaných příznaků..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Úspěšně resetujte propagovaný příznak na 0 pro položky obsahu @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Obnovit Sticky Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Odstraní všechny lepivé příznaky z každé položky obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Obnovit Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Resetování lepivých příznaků..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Úspěšně resetujte příznak lepicí na 0 pro položky obsahu @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "administrátor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Propagujte a lepte viditelnost ikon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Nabídky typu obsahu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Statistiky typů obsahu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "O Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Hrdinové jsou velké bannerové obrázky zobrazené v horní části domovské stránky. Vzhledem k tomu, že rozložení domovské stránky nelze přímo upravovat, zde nakonfigurujete bannery hrdinů."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Hrdinové se otáčejí automaticky každou hodinu, což vám umožní zobrazit různé zprávy a obrázky po celý den."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Pokud dáváte přednost zobrazení pouze jednoho hrdiny, jednoduše zrušte publikování druhého hrdinu pomocí tlačítka Upravit níže."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Zveřejněno"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Nepublikováno"

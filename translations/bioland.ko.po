@@ -1391,3 +1391,91 @@ msgstr "기본 정렬을 사용하려면 비워 두십시오.10씩 (예: 10, 20,
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "사이트 이름"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "프로모션 콘텐츠 초기화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "모든 콘텐츠 항목에서 모든 프로모션 플래그를 제거합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "리셋 프로모션"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "승격된 플래그 재설정 중..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count 콘텐츠 항목의 프로모션 플래그를 0으로 성공적으로 재설정했습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "스티커 콘텐츠 초기화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "모든 콘텐츠 항목에서 모든 고정 플래그를 제거합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "스티커 재설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "고정 플래그 재설정 중..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count 콘텐츠 항목의 고정 플래그를 0으로 성공적으로 재설정했습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "프런트엔드"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "관리자"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "홍보 및 고정 아이콘 가시성"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "콘텐츠 유형 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "콘텐츠 유형 통계"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "홈페이지 히어로즈 소개"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "영웅은 홈페이지 상단에 표시되는 대형 배너 이미지입니다.홈 페이지 레이아웃은 직접 편집할 수 없으므로 여기에서 히어로 배너를 구성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "영웅은 매시간 자동으로 회전하므로 하루 종일 다양한 메시지와 이미지를 표시할 수 있습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "한 영웅만 표시하고 싶다면 아래 편집 버튼을 사용하여 다른 영웅의 게시를 취소하면 됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "게시되었습니다"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "게시되지 않음"

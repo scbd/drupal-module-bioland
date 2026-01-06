@@ -259,23 +259,6 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#options' => $this->getTimezoneOptions(),
       ];
 
-      $form['general']['timezone']['empty_timezone_message'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Remind users at login if their time zone is not set'),
-        '#default_value' => $system_date_config->get('timezone.user.warn') ? 1 : 0,
-      ];
-
-      $form['general']['timezone']['user_default_timezone'] = [
-        '#type' => 'radios',
-        '#title' => $this->t('Time zone for new users'),
-        '#default_value' => $system_date_config->get('timezone.user.default') ?: 0,
-        '#options' => [
-          0 => $this->t('Default time zone'),
-          1 => $this->t('Empty time zone'),
-          2 => $this->t('Users may set their own time zone at registration'),
-        ],
-      ];
-
       $form['general']['region'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Region'),
@@ -886,13 +869,14 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       $default_order_override_text = $this->t('<b>Content sorting priority (highest to lowest):</b>
 <ol>
-<li><b>Sticky</b> – Items marked "Sticky at top of lists" always appear first</li>
-<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
-<li><b>Promoted</b> – Items marked "Promoted to front page" come next</li>
-<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Sticky</b> – Items marked "Sticky at top of lists" always appear first followed by:</li>
+<li><b>Promoted</b> – Items marked "Promoted to front page" but sort above the other fields, followed by</li>
+<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>
+<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>
+<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>
 <li><b>Last Modified</b> – Finally sorted by most recently updated</li>
 </ol>
-<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later.');
+<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later.');
 
       $form['help_comments']['order_override_help']['help_order_override_text'] = [
         '#type' => 'text_format',
@@ -946,9 +930,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Promote and Sticky section (moved from system_functions)
       $form['front_end_general_settings']['promote_sticky_section'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Promote and Sticky'),
-        '#collapsible' => FALSE,
+        '#type' => 'details',
+        '#title' => $this->t('Promote and Sticky Icon Visibility'),
+        '#open' => FALSE,
       ];
 
       $form['front_end_general_settings']['promote_sticky_section']['promote_sticky_description'] = [
@@ -963,9 +947,9 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Content Ordering Reset section (moved from system_functions)
       $form['front_end_general_settings']['ordering_section'] = [
-        '#type' => 'fieldset',
+        '#type' => 'details',
         '#title' => $this->t('Content Ordering Reset'),
-        '#collapsible' => FALSE,
+        '#open' => FALSE,
       ];
 
       // Wrapper for AJAX messages
@@ -991,6 +975,56 @@ class BiolandSettingsForm extends ConfigFormBase {
           ],
         ],
       ];
+
+      // Reset Promoted Content section
+      $form['front_end_general_settings']['promoted_section'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Reset Promoted Content'),
+        '#open' => FALSE,
+      ];
+
+      $form['front_end_general_settings']['promoted_section']['promoted_description'] = [
+        '#markup' => '<p>' . $this->t('Removes all the promoted flags from every content entry.') . '</p>',
+      ];
+
+      $form['front_end_general_settings']['promoted_section']['reset_promoted'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Reset Promoted'),
+        '#submit' => ['::submitResetPromoted'],
+        '#ajax' => [
+          'callback' => '::ajaxResetPromoted',
+          'wrapper' => 'front-end-general-messages',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => $this->t('Resetting promoted flags...'),
+          ],
+        ],
+      ];
+
+      // Reset Sticky Content section
+      $form['front_end_general_settings']['sticky_section'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Reset Sticky Content'),
+        '#open' => FALSE,
+      ];
+
+      $form['front_end_general_settings']['sticky_section']['sticky_description'] = [
+        '#markup' => '<p>' . $this->t('Removes all the sticky flags from every content entry.') . '</p>',
+      ];
+
+      $form['front_end_general_settings']['sticky_section']['reset_sticky'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Reset Sticky'),
+        '#submit' => ['::submitResetSticky'],
+        '#ajax' => [
+          'callback' => '::ajaxResetSticky',
+          'wrapper' => 'front-end-general-messages',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => $this->t('Resetting sticky flags...'),
+          ],
+        ],
+      ];
     }
 
     if ($section === 'front_end_mega_menu') {
@@ -999,6 +1033,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Mega Menu Settings'),
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
+        '#tree' => TRUE,
       ];
 
       // Content Type Menus section
@@ -1007,6 +1042,7 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#title' => $this->t('Content Type Menus'),
         '#open' => FALSE,
         '#description' => $this->t('Configure automatic menu entries for each content type in the mega menu.'),
+        '#tree' => TRUE,
       ];
 
       // Add rescan button
@@ -1060,12 +1096,20 @@ class BiolandSettingsForm extends ConfigFormBase {
           '#default_value' => $config->get('mega_menu.content_type_menus.' . $tid . '.menu_position') ?? 'top',
           '#description' => $this->t('Drupal menu entries will appear at the top or bottom of automatic entries.'),
         ];
+
+        // Show menu even if empty checkbox
+        $form['mega_menu_settings']['content_type_menus']['content_type_' . $tid]['show_if_empty_' . $tid] = [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Show menu even if empty'),
+          '#default_value' => $config->get('mega_menu.content_type_menus.' . $tid . '.show_if_empty') ?? FALSE,
+          '#description' => $this->t('Display this menu section even when there are no entries.'),
+        ];
       }
 
-      // Content Types section
+      // Content Types Statistics section
       $form['mega_menu_settings']['content_types'] = [
         '#type' => 'details',
-        '#title' => $this->t('Content Types'),
+        '#title' => $this->t('Content Types Statistics'),
         '#open' => FALSE,
       ];
 
@@ -1117,16 +1161,8 @@ class BiolandSettingsForm extends ConfigFormBase {
     }
 
     if ($section === 'front_end_home_page') {
-      $form['home_page_settings'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Home Page Settings'),
-        '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
-      ];
-
-      $form['home_page_settings']['placeholder'] = [
-        '#markup' => '<p>' . $this->t('Home Page settings coming soon.') . '</p>',
-      ];
+      // Load heroes and display each in its own fieldset
+      $this->buildHeroSections($form);
     }
 
     if ($section === 'admin') {
@@ -1379,8 +1415,6 @@ class BiolandSettingsForm extends ConfigFormBase {
       $date_config->set('timezone.default', $values['date_default_timezone']);
       // Set user.configurable to FALSE to disable user timezone selection
       $date_config->set('timezone.user.configurable', FALSE);
-      $date_config->set('timezone.user.warn', $values['empty_timezone_message'] ? 1 : 0);
-      $date_config->set('timezone.user.default', (int) $values['user_default_timezone']);
       $date_config->save();
 
       $config
@@ -1540,38 +1574,68 @@ class BiolandSettingsForm extends ConfigFormBase {
       // Clear cached visible TIDs to force rescan on next load
       $config->clear('mega_menu.content_type_menus.visible_content_type_menus');
       
+      // Get mega_menu_settings values - with #tree => TRUE, values are nested
+      $mega_menu_values = $values['mega_menu_settings'] ?? [];
+      $content_type_menus = $mega_menu_values['content_type_menus'] ?? [];
+      
+      // Debug: Log only keys to understand structure without memory issues
+      \Drupal::logger('bioland')->debug('Mega Menu submit - top-level keys: @keys', [
+        '@keys' => implode(', ', array_keys($values)),
+      ]);
+      \Drupal::logger('bioland')->debug('Mega Menu submit - mega_menu_values keys: @keys', [
+        '@keys' => is_array($mega_menu_values) ? implode(', ', array_keys($mega_menu_values)) : 'NOT AN ARRAY',
+      ]);
+      \Drupal::logger('bioland')->debug('Mega Menu submit - content_type_menus keys: @keys', [
+        '@keys' => is_array($content_type_menus) ? implode(', ', array_keys($content_type_menus)) : 'NOT AN ARRAY',
+      ]);
+      
       // Save mega menu content type settings
+      // Form values are nested: $values['mega_menu_settings']['content_type_menus']['content_type_X']['max_menus_X']
       $content_types = $this->getContentTypeOptionsForMegaMenu();
       
       foreach ($content_types as $tid => $type_name) {
+        $content_type_key = 'content_type_' . $tid;
         $max_menus_key = 'max_menus_' . $tid;
         $menu_position_key = 'menu_position_' . $tid;
+        $show_if_empty_key = 'show_if_empty_' . $tid;
         
-        if (isset($values[$max_menus_key])) {
-          $config->set('mega_menu.content_type_menus.' . $tid . '.max_menus', (int) $values[$max_menus_key]);
+        // Values are nested under content_type_menus -> content_type_X
+        $content_type_values = $content_type_menus[$content_type_key] ?? [];
+        
+        if (isset($content_type_values[$max_menus_key])) {
+          $config->set('mega_menu.content_type_menus.' . $tid . '.max_menus', (int) $content_type_values[$max_menus_key]);
         }
         
-        if (isset($values[$menu_position_key])) {
-          $config->set('mega_menu.content_type_menus.' . $tid . '.menu_position', $values[$menu_position_key]);
+        if (isset($content_type_values[$menu_position_key])) {
+          $config->set('mega_menu.content_type_menus.' . $tid . '.menu_position', $content_type_values[$menu_position_key]);
+        }
+        
+        if (isset($content_type_values[$show_if_empty_key])) {
+          $config->set('mega_menu.content_type_menus.' . $tid . '.show_if_empty', (bool) $content_type_values[$show_if_empty_key]);
         }
       }
 
-      // Save content types settings
-      $config->set('mega_menu.content_types.hide_content_types', (bool) ($values['hide_content_types'] ?? TRUE));
+      // Save content types settings (nested under mega_menu_settings -> content_types)
+      $content_types_settings = $mega_menu_values['content_types'] ?? [];
+      $config->set('mega_menu.content_types.hide_content_types', (bool) ($content_types_settings['hide_content_types'] ?? TRUE));
 
       // Save additional menu settings
+      // Form values are nested: $values['mega_menu_settings']['country_profiles']['country_profiles_position']
       $additional_menus = ['country_profiles', 'focal_points', 'national_targets', 'national_report', 'bch', 'absch', 'forums'];
       
       foreach ($additional_menus as $menu_key) {
         $position_key = $menu_key . '_position';
         $show_if_empty_key = $menu_key . '_show_if_empty';
         
-        if (isset($values[$position_key])) {
-          $config->set('mega_menu.' . $menu_key . '.position', $values[$position_key]);
+        // Values are nested under mega_menu_settings -> menu_key
+        $menu_values = $mega_menu_values[$menu_key] ?? [];
+        
+        if (isset($menu_values[$position_key])) {
+          $config->set('mega_menu.' . $menu_key . '.position', $menu_values[$position_key]);
         }
         
-        if (isset($values[$show_if_empty_key])) {
-          $config->set('mega_menu.' . $menu_key . '.show_if_empty', (bool) $values[$show_if_empty_key]);
+        if (isset($menu_values[$show_if_empty_key])) {
+          $config->set('mega_menu.' . $menu_key . '.show_if_empty', (bool) $menu_values[$show_if_empty_key]);
         }
       }
     }
@@ -1631,6 +1695,46 @@ class BiolandSettingsForm extends ConfigFormBase {
     $response = new AjaxResponse();
     $count = $form_state->get('reset_ordering_count') ?: 0;
     $response->addCommand(new MessageCommand($this->t('Successfully reset field_order to 1000 for @count nodes.', ['@count' => $count]), NULL, ['type' => 'status']));
+    return $response;
+  }
+
+  /**
+   * Submit handler for reset promoted.
+   */
+  public function submitResetPromoted(array &$form, FormStateInterface $form_state) {
+    $count = $this->resetAllPromotedFlags();
+    // Store count in form state for AJAX callback.
+    $form_state->set('reset_promoted_count', $count);
+    $this->messenger()->addStatus($this->t('Successfully reset promoted flag to 0 for @count content entries.', ['@count' => $count]));
+  }
+
+  /**
+   * AJAX callback for reset promoted.
+   */
+  public function ajaxResetPromoted(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $count = $form_state->get('reset_promoted_count') ?: 0;
+    $response->addCommand(new MessageCommand($this->t('Successfully reset promoted flag to 0 for @count content entries.', ['@count' => $count]), NULL, ['type' => 'status']));
+    return $response;
+  }
+
+  /**
+   * Submit handler for reset sticky.
+   */
+  public function submitResetSticky(array &$form, FormStateInterface $form_state) {
+    $count = $this->resetAllStickyFlags();
+    // Store count in form state for AJAX callback.
+    $form_state->set('reset_sticky_count', $count);
+    $this->messenger()->addStatus($this->t('Successfully reset sticky flag to 0 for @count content entries.', ['@count' => $count]));
+  }
+
+  /**
+   * AJAX callback for reset sticky.
+   */
+  public function ajaxResetSticky(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $count = $form_state->get('reset_sticky_count') ?: 0;
+    $response->addCommand(new MessageCommand($this->t('Successfully reset sticky flag to 0 for @count content entries.', ['@count' => $count]), NULL, ['type' => 'status']));
     return $response;
   }
 
@@ -1787,6 +1891,7 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected function getContentTypeOptions() {
     $options = [];
     try {
+      $current_language = $this->languageManager->getCurrentLanguage()->getId();
       $terms = $this->entityTypeManager
         ->getStorage('taxonomy_term')
         ->loadByProperties([
@@ -1795,6 +1900,10 @@ class BiolandSettingsForm extends ConfigFormBase {
         ]);
 
       foreach ($terms as $term) {
+        // Load translated version of the term if available
+        if ($term->hasTranslation($current_language)) {
+          $term = $term->getTranslation($current_language);
+        }
         $tid = (int) $term->id();
         $name = $term->label();
         $options[$tid] = $this->t('@name (@tid)', ['@name' => $name, '@tid' => $tid]);
@@ -1848,6 +1957,7 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected function getContentTypeOptionsForMegaMenu() {
     $options = [];
     try {
+      $current_language = $this->languageManager->getCurrentLanguage()->getId();
       $terms = $this->entityTypeManager
         ->getStorage('taxonomy_term')
         ->loadByProperties([
@@ -1856,6 +1966,10 @@ class BiolandSettingsForm extends ConfigFormBase {
         ]);
 
       foreach ($terms as $term) {
+        // Load translated version of the term if available
+        if ($term->hasTranslation($current_language)) {
+          $term = $term->getTranslation($current_language);
+        }
         $tid = (int) $term->id();
         // Get plural field if available, fallback to label
         $plural = $term->hasField('field_plural') && !$term->get('field_plural')->isEmpty()
@@ -2146,6 +2260,273 @@ class BiolandSettingsForm extends ConfigFormBase {
         '@message' => $e->getMessage(),
       ]);
       $this->messenger()->addError($this->t('An error occurred while updating menu permissions. Please check the logs.'));
+    }
+  }
+
+  /**
+   * Resets promoted flag to 0 for all content nodes.
+   *
+   * @return int
+   *   The number of nodes updated.
+   */
+  protected function resetAllPromotedFlags() {
+    try {
+      // Use direct database update for efficiency.
+      $count = $this->database->update('node_field_data')
+        ->fields(['promoted' => 0])
+        ->condition('type', 'content')
+        ->condition('promoted', 1)
+        ->execute();
+
+      \Drupal::logger('bioland')->info('Reset promoted flag for @count content entries.', ['@count' => $count]);
+      return $count;
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Failed to reset promoted flags: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      $this->messenger()->addError($this->t('An error occurred while resetting promoted flags. Please check the logs.'));
+      return 0;
+    }
+  }
+
+  /**
+   * Resets sticky flag to 0 for all content nodes.
+   *
+   * @return int
+   *   The number of nodes updated.
+   */
+  protected function resetAllStickyFlags() {
+    try {
+      // Use direct database update for efficiency.
+      $count = $this->database->update('node_field_data')
+        ->fields(['sticky' => 0])
+        ->condition('type', 'content')
+        ->condition('sticky', 1)
+        ->execute();
+
+      \Drupal::logger('bioland')->info('Reset sticky flag for @count content entries.', ['@count' => $count]);
+      return $count;
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Failed to reset sticky flags: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      $this->messenger()->addError($this->t('An error occurred while resetting sticky flags. Please check the logs.'));
+      return 0;
+    }
+  }
+
+  /**
+   * Build hero sections for the Home Hero(s) tab.
+   *
+   * @param array &$form
+   *   The form array to add hero sections to.
+   */
+  protected function buildHeroSections(array &$form) {
+    try {
+      // Query field_attachments_target_id from taxonomy_term__field_attachments
+      // where bundle = 'system_pages' and entity_id = 20
+      $query = $this->database->select('taxonomy_term__field_attachments', 'fa')
+        ->fields('fa', ['field_attachments_target_id'])
+        ->condition('fa.bundle', 'system_pages')
+        ->condition('fa.entity_id', 20);
+      $results = $query->execute()->fetchCol();
+
+      if (empty($results)) {
+        $form['no_heroes'] = [
+          '#markup' => '<p>' . $this->t('No attachments found for taxonomy term 20.') . '</p>',
+        ];
+        return;
+      }
+
+      // Create outer wrapper fieldset
+      $form['home_page_heroes'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Home Page Heros'),
+        '#collapsible' => TRUE,
+        '#collapsed' => FALSE,
+        '#attributes' => ['class' => ['bioland-heroes-wrapper']],
+      ];
+
+      // Add description explaining how heroes work
+      $form['home_page_heroes']['description'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => ['class' => ['bioland-heroes-description'], 'style' => 'margin-bottom: 20px; padding: 15px; background: #fff; border-left: 4px solid #0073aa; border-radius: 4px;'],
+        '#value' => '<p style="margin: 0 0 10px 0;"><strong>' . $this->t('About Home Page Heroes') . '</strong></p>' .
+          '<p style="margin: 0 0 10px 0;">' . $this->t('Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners.') . '</p>' .
+          '<p style="margin: 0 0 10px 0;">' . $this->t('The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day.') . '</p>' .
+          '<p style="margin: 0;">' . $this->t('If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below.') . '</p>',
+      ];
+
+      // Add global styles
+      $form['home_page_heroes']['hero_styles'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'style',
+        '#value' => '
+          .bioland-heroes-wrapper {
+            background: #f5f5f5;
+            padding: 15px;
+          }
+          .bioland-hero-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 15px;
+            background: #e8e8e8;
+            border-radius: 4px;
+          }
+          .bioland-hero-image {
+            flex: 0 0 200px;
+          }
+          .bioland-hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+          }
+          .bioland-hero-status {
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+          }
+          .bioland-hero-status.published {
+            background: #d4edda;
+            color: #155724;
+          }
+          .bioland-hero-status.unpublished {
+            background: #f8d7da;
+            color: #721c24;
+          }
+          .bioland-hero-description {
+            flex: 1;
+            padding: 0 15px;
+          }
+          .bioland-hero-actions {
+            flex: 0 0 auto;
+            margin-left: auto;
+          }
+          .bioland-hero-edit-btn {
+            padding: 8px 16px;
+            background: #0073aa;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+          }
+          .bioland-hero-edit-btn:hover {
+            background: #005177;
+            color: white !important;
+          }
+        ',
+      ];
+
+      // Load each media entity by ID
+      $media_storage = $this->entityTypeManager->getStorage('media');
+      $hero_index = 0;
+      
+      foreach ($results as $target_id) {
+        $entity = $media_storage->load($target_id);
+        if (!$entity) {
+          continue;
+        }
+
+        $hero_index++;
+        $title = $entity->label() ?: $this->t('Hero @num', ['@num' => $hero_index]);
+
+        // Create a fieldset for each hero with its title inside the wrapper
+        $form['home_page_heroes']['hero_' . $target_id] = [
+          '#type' => 'fieldset',
+          '#title' => $title,
+          '#collapsible' => TRUE,
+          '#collapsed' => FALSE,
+        ];
+
+        // Build the content markup
+        $content = '<div class="bioland-hero-content">';
+
+        // Image section
+        $content .= '<div class="bioland-hero-image">';
+        $image_url = NULL;
+        
+        // Try field_media_image first (common for media entities)
+        if ($entity->hasField('field_media_image') && !$entity->get('field_media_image')->isEmpty()) {
+          $image = $entity->get('field_media_image')->entity;
+          if ($image) {
+            $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($image->getFileUri());
+          }
+        }
+        // Try field_image as fallback
+        elseif ($entity->hasField('field_image') && !$entity->get('field_image')->isEmpty()) {
+          $image = $entity->get('field_image')->entity;
+          if ($image) {
+            $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($image->getFileUri());
+          }
+        }
+
+        if ($image_url) {
+          $content .= '<img src="' . htmlspecialchars($image_url) . '" alt="' . htmlspecialchars($title) . '" />';
+        }
+        else {
+          $content .= '<div style="width: 200px; height: 120px; background: #ccc; display: flex; align-items: center; justify-content: center; border-radius: 4px;">No Image</div>';
+        }
+        
+        // Add published/unpublished status
+        $is_published = $entity->isPublished();
+        $status_class = $is_published ? 'published' : 'unpublished';
+        $status_text = $is_published ? $this->t('Published') : $this->t('Unpublished');
+        $content .= '<div class="bioland-hero-status ' . $status_class . '">' . $status_text . '</div>';
+        
+        $content .= '</div>';
+
+        // Description section
+        $content .= '<div class="bioland-hero-description">';
+        $description = '';
+        
+        // Try different field names for description/body
+        if ($entity->hasField('field_description') && !$entity->get('field_description')->isEmpty()) {
+          $description = $entity->get('field_description')->value;
+        }
+        elseif ($entity->hasField('field_body') && !$entity->get('field_body')->isEmpty()) {
+          $description = $entity->get('field_body')->value;
+        }
+        elseif ($entity->hasField('body') && !$entity->get('body')->isEmpty()) {
+          $description = $entity->get('body')->value;
+        }
+
+        if ($description) {
+          $content .= '<div>' . $description . '</div>';
+        }
+        else {
+          $content .= '<p><em>' . $this->t('No description available') . '</em></p>';
+        }
+        $content .= '</div>';
+
+        // Edit button section
+        $content .= '<div class="bioland-hero-actions">';
+        $edit_url = $entity->toUrl('edit-form')->toString();
+        $content .= '<a href="' . htmlspecialchars($edit_url) . '" class="bioland-hero-edit-btn">' . $this->t('Edit') . '</a>';
+        $content .= '</div>';
+
+        $content .= '</div>'; // Close hero-content
+
+        $form['home_page_heroes']['hero_' . $target_id]['content'] = [
+          '#type' => 'inline_template',
+          '#template' => '{{ content|raw }}',
+          '#context' => ['content' => $content],
+        ];
+      }
+    }
+    catch (\Exception $e) {
+      \Drupal::logger('bioland')->error('Failed to load heroes: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      $form['error'] = [
+        '#markup' => '<p>' . $this->t('An error occurred while loading heroes. Please check the logs.') . '</p>',
+      ];
     }
   }
 

@@ -1391,3 +1391,91 @@ msgstr "Әдепкі сұрыптауды пайдалану үшін бос қ�
 #: bioland.module
 msgid "URL"
 msgstr "URL МЕКЕН-ЖАЙЫ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Сайт атауы"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Жарнамалық мазмұнды қалпына келтіру"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Әрбір мазмұн жазбасынан барлық жарнамалық жалаушаларды алып тастайды."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Промоцияланған қалпына келтіру"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Промоцияланған жалаушаларды қалпына келтіру..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count мазмұн жазбалары үшін жылжытылған жалаушаны 0-ге сәтті қалпына келтіріңіз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Жабысқақ мазмұнды қалпына келтіру"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Әр мазмұн жазбасының барлық жабысқақ жалаушаларын алып тастайды."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Жабысқақ қалпына келтіру"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Жабысқақ жалаушаларды қалпына келтіру..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count мазмұн жазбалары үшін жабысқақ жалаушаны 0-ге сәтті қалпына келтіріңіз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Алдыңғы жағы"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Әкімші"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Белгіше көрінуін насихаттау және жабысқақ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Мазмұн түрі мәзірлері"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Мазмұн түрлерінің статистикасы"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Басты бет кейіпкерлері туралы"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Батырлар - бұл басты беттің жоғарғы жағында көрсетілетін үлкен баннер суреттері. Басты бет орналасуын тікелей редакциялауға болмайтындықтан, бұл жерде кейіпкер баннерлерін конфигурациялаңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Кейіпкерлер сағат сайын автоматты түрде айналады, бұл күн бойы әртүрлі хабарлар мен суреттерді көрсетуге мүмкіндік береді."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Егер сіз тек бір кейіпкерді көрсетуді қаласаңыз, төмендегі Өңдеу түймесін пайдаланып, басқа кейіпкерді (лерді) жариялаудан бас тартыңыз."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Жарияланған"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Жарияланбаған"

@@ -1391,3 +1391,91 @@ msgstr "Iwanan nang walang laman upang gamitin ang default na pag-uuri. Gumamit 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Pangalan ng Site"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "I-reset ang Nilalaman na Itin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Tinatanggal ang lahat ng mga itinusulong watawat mula sa bawat entry ng nilalaman."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "I-reset ang Isinusulong"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Pag-reset ng mga itinusulong na watawat..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Matagumpay na i-reset ang promosyong bandila sa 0 para sa mga entry sa nilalaman ng @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "I-reset ang Malagkit na nilalaman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Tinatanggal ang lahat ng malagkit na watawat mula sa bawat entry ng nilalaman."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "I-reset ang Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Pag-reset ng malagkit na watawat..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Matagumpay na i-reset ang stick flag sa 0 para sa mga entry sa nilalaman ng @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front End"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Itaguyod at Sticky Icon Visibility"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Mga Menu ng Uri ng Nilalaman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Mga Uri ng Nilalaman Istatistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Tungkol sa Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Ang mga bayani ay ang malalaking imahe ng banner na ipinapakita sa tuktok ng home page. Dahil hindi direktang mai-edit ang layout ng home page, dito mo i-configure ang mga banner ng bayani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Awtomatikong umiikot ang mga bayani bawat oras, na pinapayagan kang magpakita ng iba't ibang mga mensahe at imahe sa buong araw."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Kung mas gusto mong ipakita lamang ang isang bayani, huwag lamang i-publish ang iba pang bayani gamit ang pindutang I-edit sa ibaba."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Inilathala"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Hindi nai-publish"

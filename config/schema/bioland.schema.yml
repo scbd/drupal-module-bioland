@@ -195,6 +195,19 @@ bioland.settings:
               sequence:
                 type: integer
                 label: 'Content type TID'
+            '*':
+              type: mapping
+              label: 'Content type menu settings'
+              mapping:
+                max_menus:
+                  type: integer
+                  label: 'Maximum menus to show'
+                menu_position:
+                  type: string
+                  label: 'Menu position'
+                show_if_empty:
+                  type: boolean
+                  label: 'Show menu even if empty'
         content_types:
           type: mapping
           label: 'Content types settings'

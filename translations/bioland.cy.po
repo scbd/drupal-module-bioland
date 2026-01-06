@@ -1480,3 +1480,91 @@ msgstr "Gadewch yn wag i ddefnyddio didoli diofyn. Defnyddiwch gynydd o 10 (ee, 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Enw'r Safle"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Ailosod Cynnwys Hyrwyddedig"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Yn dileu'r holl faneri a hyrwyddir o bob cofnod cynnwys."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Ailosod Hyrwyddedig"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Ailosod baneri wedi'u hyrwyddo..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Ailosod baner wedi'i hyrwyddo yn llwyddiannus i 0 ar gyfer cofnodion cynnwys @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Ailosod Cynnwys Gludiog"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Yn dileu'r holl faneri gludiog o bob cofnod cynnwys."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Ailosod Gludiog"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Ailosod baneri gludiog..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Ailosod baner gludiog yn llwyddiannus i 0 ar gyfer cofnodion cynnwys @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Pen-blaen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Gweinyddiaeth"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Hyrwyddo Gwelededd Eicon Gludiog"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Bwydlenni Math o Gynnwys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Ystadegau Mathau o Gynnwys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Ynglŷn ag Arwyr Tudalen Hafan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Arwyr yw'r delweddau baner mawr sy'n cael eu harddangos ar frig y dudalen gartref. Gan na ellir golygu cynllun y dudalen gartref yn uniongyrchol, dyma lle rydych chi'n ffurfweddu'r baneri arwr."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Mae'r arwyr yn cylchdroi yn awtomatig bob awr, gan eich galluogi i arddangos gwahanol negeseuon a delweddau trwy gydol y dydd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Os yw'n well gennych arddangos un arwr yn unig, dim ond dadgyhoeddi'r arwr (au) arall gan ddefnyddio'r botwm Golygu isod."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Cyhoeddwyd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Heb ei gyhoeddi"

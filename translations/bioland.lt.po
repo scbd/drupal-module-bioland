@@ -1391,3 +1391,91 @@ msgstr "Palikite tuščią, kad galėtumėte naudoti numatytąjį rūšiavimą. 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Svetainės pavadinimas"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Iš naujo nustatyti reklamuojamą turinį"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Pašalina visas reklamuojamas vėliavas iš kiekvieno turinio įrašo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Reklamuotas iš naujo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Reklamuotų vėliavų nustatymas iš naujo..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Sėkmingai iš naujo nustatykite reklamuojamą vėliavėlę į 0 @count turinio įrašams."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Iš naujo nustatyti lipnų turinį"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Pašalina visas lipnias vėliavas iš kiekvieno turinio įrašo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Iš naujo nustatyti “Sticky”"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Lipnių vėliavėlių nustatymas iš naujo..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Sėkmingai atstatykite lipnią vėliavėlę į 0 @count turinio įrašams."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Priekinė dalis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Administratorius"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Reklamuokite ir lipnios piktogramos matomumą"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Turinio tipo meniu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Turinio tipai Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Apie “Home Page Heroes”"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Herojai yra dideli reklamjuostės vaizdai, rodomi pagrindinio puslapio viršuje. Kadangi pagrindinio puslapio išdėstymo negalima tiesiogiai redaguoti, čia konfigūruojate herojų antraštes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Herojai sukasi automatiškai kas valandą, todėl visą dieną galėsite rodyti skirtingus pranešimus ir vaizdus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Jei norite rodyti tik vieną herojų, tiesiog panaikinkite kito herojaus (-ų) paskelbimą naudodami žemiau esantį mygtuką Redaguoti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Paskelbta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Neskelbiama"

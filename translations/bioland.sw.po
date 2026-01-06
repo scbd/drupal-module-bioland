@@ -1391,3 +1391,91 @@ msgstr "Acha tupu ili kutumia upangaji wa default. Tumia ongezeko la 10 (mfano, 
 #: bioland.module
 msgid "URL"
 msgstr "KISARA"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Jina la Tovuti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Weka upya Maudhui Yali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Huondoa bendera zote zilizotengenezwa kutoka kwa kila ingia ya maudhui"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Rudisha Iliyopangwa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Kuweka upya bendera iliyopangwa..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Kwa mafanikio kuweka upya bendera iliyoendelezwa hadi 0 kwa maingizo ya @count"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Weka upya yaliyomo ya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Huondoa bendera zote zinazoweka kutoka kwa kila ingia ya maudhui."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Weka upya Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Kuweka upya bendera zenye nguvu..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Kwa mafanikio kuweka upya bendera ya ngumu hadi 0 kwa maingizo ya maudhui @count"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Mwisho wa mbele"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Msimamizi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Kukuza na Uonekano wa Ikono ya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menyu ya Aina ya Maudhui"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Takwimu za aina za yaliyom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Kuhusu Mashujaa wa Ukurasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Mashujaa ni picha kubwa za bendera zinazoonyeshwa juu ya ukurasa wa nyumbani. Kwa kuwa mpangilio wa ukurasa wa nyumbani hauwezi kuhariri moja kwa moja, hapa ndipo unasanidi mabango ya shujaa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Mashujaa huzunguka moja kwa moja kila saa, na hukuruhusu kuonyesha ujumbe na picha tofauti siku nzima."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Ikiwa unapendelea kuonyesha shujaa mmoja tu, ondoa tu shujaa mwingine kwa kutumia kitufe cha Hariri hapa chini."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Imechapishwa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Haijawapishwa"

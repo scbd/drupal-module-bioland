@@ -1391,3 +1391,91 @@ msgstr "留空以使用默认排序。使用 10 的增量（例如 10、20、30�
 #: bioland.module
 msgid "URL"
 msgstr "网址"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "站点名称"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "重置推广内容"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "移除每个内容条目中的所有推广标志。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "重置推广"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "正在重置推广标志..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "成功将 @count 内容条目的升级标志重置为 0。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "重置置置顶内容"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "移除每个内容条目中的所有粘性标记。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "重置置粘贴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "正在重置粘性标志..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "成功将 @count 内容条目的粘性标志重置为 0。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "前端"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "管理员"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "宣传和粘贴图标的知名度"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "内容类型菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "内容类型统计"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "关于主页英雄"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "英雄是显示在主页顶部的大型横幅图片。由于无法直接编辑主页布局，因此您可以在此处配置英雄横幅。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "英雄每小时自动轮换一次，让您可以全天显示不同的消息和图像。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "如果你只想显示一个英雄，只需使用下面的编辑按钮取消发布其他英雄即可。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "已出版"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "未发表"

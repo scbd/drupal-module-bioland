@@ -1391,3 +1391,91 @@ msgstr "डीफॉल्ट सॉर्टिंग वापरण्या�
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "साइटचे नाव"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "प्रचार केलेली सामग्र"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "प्रत्येक सामग्री एंट्रीमधून सर्व प्रचार केलेले"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "प्रमोशन रीसेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "प्रचार केलेले ध्वज रीसेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count सामग्री नोंदींसाठी प्रमोशन केलेले ध्वज यश"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "स्टिक सामग्री रीसेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "प्रत्येक सामग्री एंट्रीमधून सर्व चिकट झ्"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "स्टिकी रीसेट करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "स्टिकी ध्वज रीसेट करणे..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count सामग्री प्रवेशांसाठी स्टिकी फ्लॅग यशस्वीरित्या"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "फ्रंट एंड"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "प्रशासन"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "प्रोत्साहन आणि स्टिकी आयक"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "सामग्री प्रकार मेन"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "सामग्री प्रकार सां"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "मुख्य पृष्ठ नायक"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "हिरो मुख्य पृष्ठाच्या शीर्षस्थानी दर्शविलेल्या मोठ्या बॅन मुख्य पृष्ठ लेआउट थेट संपादित केले जाऊ शकत नसल्याने, येथे आपण हिरो बॅनर"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "नायक दर तासात स्वयंचलितपणे फिरतात, ज्यामुळे आपल्याला दिवसभर भिन्न संदेश"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "आपण केवळ एक नायक प्रदर्शित करण्यास प्राधान्य दिल्यास, खालील संपादन बटणाचा वापर करून फक्त दुसरा नायक"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "प्रकाशित"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "अप्रकाशित"

@@ -1391,3 +1391,91 @@ msgstr "Анхдагч эрэмбэлэхийг ашиглахын тулд хо
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Сайтын нэр"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Сурталчилсан агуулгыг дахин тохируулах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Бүх сурталчилгаа бүхий л тугуудыг агуулгын оруулгаас устгадаг."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Дахин тохируулах сурталчилгаа"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Дэмжих тугуудыг дахин тохируулах..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count агуулгын оруулгуудад зориулж сурталчилсан тугийг 0 болгон амжилттай дахин тохируулна."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Наалттай агуулгыг дахин тохируулах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Агуулгын оруулга бүрээс бүх наалттай тугуудыг устгадаг."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Наалдамхай дахин тохируулах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Наалттай тугуудыг дахин тохируулах..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count агуулгын оруулгуудад зориулж наалттай тугийг 0 болгон амжилттай дахин тохируулна уу."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Урд талын хэсэг"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Админ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Дүрсийн харагдах байдлыг дэмжих, наалдуулах"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Агуулгын төрөл цэснүүд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Агуулгын төрөл Статистик"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Нүүр хуудасны баатруудын тухай"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Баатрууд бол нүүр хуудасны дээд хэсэгт харуулсан том баннерын зургууд юм. Нүүр хуудасны байршлыг шууд засварлах боломжгүй тул та баатрын хошууг тохируулах газар юм."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Баатрууд цаг тутамд автоматаар эргэлддэг бөгөөд өдрийн туршид өөр өөр зурвас, зургийг харуулах боломжийг олгодог."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Хэрэв та зөвхөн нэг баатрыг харуулахыг илүүд үзэж байгаа бол доорх засварлах товчийг ашиглан бусад баатар (es) -ийг хэвлэн нийтлэхийг зүгээр л цуцлаарай."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Нийтэлсэн"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Хэвлэгдээгүй"

@@ -1391,3 +1391,91 @@ msgstr "Standart çeşidləmədən istifadə etmək üçün boş buraxın. Daha 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Saytın adı"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Təqdimat edilən məzmunu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Hər məzmun girişindən bütün təbliğ olunan bayraqları silir."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Təbliğ edilmiş yenidən"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Təbliğ olunan bayraqların yenidən qurulması..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count məzmun girişləri üçün təbliğ olunan bayrağı 0 səviyyəsinə uğurla yenidən"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Yapışqan məzmunu yeniləyin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Hər məzmun girişindən bütün yapışqan bayraqları çıxarır."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Yapışqan yenidən qurun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Yapışqan bayraqların yenidən qurulması..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count məzmun girişləri üçün yapışqan bayrağı uğurla 0 səviyyəsinə sıfır"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Ön tərəf"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "İdarəetmə"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Təbliğ edin və yapışqan simvolun görünür"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Məzmun növü menyuları"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Məzmun növləri Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Ana Səhifə Qəhrəmanları haqqında"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Qəhrəmanlar ana səhifənin yuxarı hissəsində göstərilən böyük banner şəkilləridir. Ana səhifə düzeni birbaşa redaktə edilə bilməyəcəyi üçün qəhrəman bannerlərini konfiqurasiya etdiyiniz yerdir."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Qəhrəmanlar hər saat avtomatik olaraq dönür və gün ərzində fərqli mesaj və şəkillər göstərməyə imkan verir."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Yalnız bir qəhrəmanı göstərməyi üstün tutursunuzsa, aşağıdakı Düzəliş düyməsini istifadə edərək digər qəhrəmanı dərc etməyi ləğv edin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Nəşr edilmişdir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Nəşr olunmamışdır"

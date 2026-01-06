@@ -1466,3 +1466,91 @@ msgstr "Jätä tyhjäksi, jos haluat käyttää oletuslajittelua. Käytä 10: n 
 #: bioland.module
 msgid "URL"
 msgstr "VERKKO-OSOITE"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Sivuston nimi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Nollaa mainostettu sisältö"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Poistaa kaikki mainostetut liput jokaisesta sisältömerkinnästä."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Nollaa mainostettu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Mainostettujen lippujen nollaaminen..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Nollaa @count -sisältömerkintöjen mainoslippu arvoon 0 onnistuneesti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Nollaa tarttuva sisältö"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Poistaa kaikki tarttuvat liput jokaisesta sisältömerkinnästä."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Nollaa Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Sticky -lippujen nollaaminen..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Nollaa tarttuva lippu arvoon 0 onnistuneesti @count -sisältömerkinnöille."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Etupää"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Ylläpitäjä"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Mainosta ja tarttuvaa kuvakkeiden näkyvyyttä"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Sisältötyyppivalikot"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Sisältötyyppien tilastot"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Tietoja Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Sankarit ovat suuret bannerikuvat, jotka näkyvät kotisivun yläosassa. Koska kotisivun asettelua ei voi muokata suoraan, tässä määritetään sankaribannerit."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Sankarit pyörivät automaattisesti tunnin välein, jolloin voit näyttää erilaisia viestejä ja kuvia koko päivän ajan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Jos haluat näyttää vain yhden sankarin, poista toisen sankarin julkaiseminen alla olevalla Muokkaa-painikkeella."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Julkaistu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Julkaisematon"

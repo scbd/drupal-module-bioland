@@ -1391,3 +1391,91 @@ msgstr "Lämna tomt för att använda standardsortering. Använd steg om 10 (t.e
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Webbplatsens namn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Återställ marknadsfört innehåll"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Tar bort alla marknadsförda flaggor från varje innehållspost."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Återställ marknadsförd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Återställer marknadsförda flaggor..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Återställ befordrad flagga till 0 för @count -innehållsposter."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Återställ klibbigt innehåll"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Tar bort alla klibbiga flaggor från varje innehållspost."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Återställ Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Återställer klibbiga flaggor..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Återställ klibbig flagga till 0 för @count -innehållsposter."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Administratör"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Marknadsför och klibbig ikon synlighet"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menyer för innehållstyp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Innehållstyper Statistik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Om Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Hjältar är de stora bannerbilderna som visas högst upp på hemsidan. Eftersom hemsidans layout inte kan redigeras direkt är det här du konfigurerar hjältebanderollerna."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Hjältarna roterar automatiskt varje timme, så att du kan visa olika meddelanden och bilder under hela dagen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Om du föredrar att bara visa en hjälte, avpublicera helt enkelt den eller de andra hjältarna med knappen Redigera nedan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Publicerad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Opublicerad"

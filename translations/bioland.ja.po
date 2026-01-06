@@ -1391,3 +1391,91 @@ msgstr "デフォルトのソートを使用するには空のままにします
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "サイト名"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "プロモートコンテンツをリセット"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "すべてのコンテンツエントリからすべてのプロモートフラグを削除します。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "リセットプロモート"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "プロモートフラグをリセット中..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count コンテンツエントリのプロモートフラグが 0 に正常にリセットされました。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "スティッキーコンテンツをリセット"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "すべてのコンテンツエントリからすべてのスティッキーフラグを削除します。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "スティッキーをリセット"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "スティッキーフラグをリセット中..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count コンテンツエントリのスティッキーフラグが 0 に正常にリセットされました。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "フロントエンド"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "管理者"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "プロモートとスティッキーアイコンの可視性"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "コンテンツタイプメニュー"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "コンテンツタイプ統計"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "ホーム・ページ・ヒーローズについて"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "ヒーローは、ホームページの上部に表示される大きなバナー画像です。ホームページのレイアウトは直接編集できないため、ここでヒーローバナーを設定します。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "ヒーローは1時間ごとに自動的に回転するので、1日を通してさまざまなメッセージや画像を表示できます。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "1人のヒーローのみを表示したい場合は、下の [編集] ボタンを使用して他のヒーローを非公開にしてください。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "公開済み"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "未発行"

@@ -1391,3 +1391,91 @@ msgstr "Fág folamh chun sórtáil réamhshocraithe a úsáid. Úsáid increimea
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Ainm an Láithreáin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Athshocraigh Ábhar Cinn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Baineann sé na bratacha cur chun cinn go léir ó gach iontráil ábhair."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Athshocraigh chun cinn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Bratacha cur chun cinn a athshocrú..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Athshocraigh go rathúil bratach chun cinn go 0 le haghaidh iontrálacha ábhar @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Athshocraigh Ábhar Gream"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Baineann sé na bratacha greamaitheacha go léir ó gach iontráil ábhair."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Athshocraigh Greamaigh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Bratacha greamaitheacha a athshocrú..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Athshocraigh bratach greamaitheach go rathúil go 0 le haghaidh iontrálacha ábhair @count"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Ceann tosaigh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Riarachán"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Infheictheacht deilbhín greamaitheach"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Biachláir cineál ábhair"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Staitisticí Cineálacha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Maidir le Laochra Leathanach Baile"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Is iad laochra na híomhánna meirge móra a thaispeántar ag barr an leathanaigh bhaile. Ós rud é nach féidir leagan amach an leathanaigh bhaile a chur in eagar go díreach, seo an áit a chumraíonn tú na meirgí laoch."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Rothlaíonn na laochra go huathoibríoch gach uair an chloig, rud a ligeann duit teachtaireachtaí agus íomhánna éagsúla"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Más fearr leat ach laoch amháin a thaispeáint, níl ort ach na laoch eile a dhífhoilsiú ag baint úsáide as an gcnaipe Athraigh thíos."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Foilsithe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Neamhfhoilsithe"

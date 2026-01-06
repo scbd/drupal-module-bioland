@@ -30,7 +30,7 @@ bioland.settings_front_end_mega_menu_tab:
 
 bioland.settings_front_end_home_page_tab:
   route_name: bioland.settings.front_end.home_page
-  title: 'Home Page'
+  title: 'Home Hero(s)'
   base_route: bioland.settings.front_end
   weight: 2
 

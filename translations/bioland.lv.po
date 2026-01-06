@@ -1391,3 +1391,91 @@ msgstr "Atstājiet tukšu, lai izmantotu noklusējuma šķirošanu. Izmantojiet 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Vietnes nosaukums"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Atjaunot reklamēto saturu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Noņem visus reklamētos karodziņus no katra satura ieraksta."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Atjaunotā atjaunošana"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Reklamēto karogu atiestatīšana..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Veiksmīgi atiestatīt reklamēto karodziņu uz 0 @count satura ierakstiem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Atiestatīt lipīgo saturu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Noņem visus lipīgos karodziņus no katra satura ieraksta."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Atiestatīt Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Lipīgo karogu atiestatīšana..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Veiksmīgi atiestatīt uzlīmēto karodziņu uz 0 @count satura ierakstiem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Priekšpuse"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Administrators"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Veicināt un uzlīmēt ikonu redzamību"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Satura tipa izvēlnes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Satura veidi Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Par mājas lapas varoņiem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Varoņi ir lielie reklāmkarogu attēli, kas parādīti mājas lapas augšdaļā. Tā kā mājas lapas izkārtojumu nevar tieši rediģēt, šeit jūs konfigurējat varoņu reklāmkarogus."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Varoņi automātiski rotē katru stundu, ļaujot jums parādīt dažādus ziņojumus un attēlus visas dienas garumā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Ja vēlaties parādīt tikai vienu varoni, vienkārši atvienojiet otru varoni (-us) publicēšanu, izmantojot zemāk esošo pogu Rediģēt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Publicēts"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Nepublicēts"

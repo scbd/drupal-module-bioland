@@ -1391,3 +1391,91 @@ msgstr "Թողեք դատարկ ՝ կանխադրված տեսակավորում
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Կայքի անվանումը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Վերականգնել խթանված բովանդակությունը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Հեռացնում է բոլոր խթանված դրոշները բովանդակության յուրաքանչյուր գրառումից:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Վերականգնել խթանված"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Խթանված դրոշների վերականգնում..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Հաջողությամբ վերականգնել խթանված դրոշը 0- ի համար @count բովանդակության գրառումների համար:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Վերականգնել կպչուն բովանդակությունը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Հեռացնում է բոլոր կպչուն դրոշները բովանդակության յուրաքանչյուր գրառումից:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Վերականգնել կպչուն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Կպչուն դրոշների վերականգնում..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Հաջողությամբ վերականգնել կպչուն դրոշը 0- ի համար @count բովանդակության գրառումների համար:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Ադմին"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Խթանել և կպչուն պատկերակների տեսանելիությունը"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Բովանդակության տեսակի ընտրացանկեր"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Բովանդակության տեսակների վիճակագրություն"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Գլխավոր էջի հերոսների մասին"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Հերոսները գլխավոր էջի վերևում ցուցադրվող խոշոր դրոշի պատկերներն են: Քանի որ գլխավոր էջի դասավորությունը չի կարող ուղղակիորեն խմբագրվել, այստեղ դուք կարգավորում եք հերոսի վահանակները:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Հերոսները պտտվում են ավտոմատ կերպով ամեն ժամ, թույլ տալով ցուցադրել տարբեր հաղորդագրություններ և պատկերներ ամբողջ օրվա ընթացքում։"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Եթե նախընտրում եք ցուցադրել միայն մեկ հերոս, պարզապես չհրապարակեք մյուս հերոսը (ները) ՝ օգտագործելով ստորև նշված Խմբագրել կոճակը:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Հրապարակված"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Չհրապարակված"

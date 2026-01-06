@@ -1466,3 +1466,91 @@ msgstr "Kite vid pou sèvi ak klasman default. Sèvi ak increments nan 10 (egzan
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Non sit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Reyajiste kontni ankouraje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Retire tout drapo yo ankouraje soti nan chak antre kontni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Reyajiste ankouraje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Resetting drapo ankouraje..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Aksè Reyajiste ankouraje drapo nan 0 pou antre kontni @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Reyajiste kontni kolan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Retire tout drapo yo kolan nan chak antre kontni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Reyajiste kolan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Resetting drapo kolan..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Aksè Reyajiste drapo kolan nan 0 pou antre kontni @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Devan-fen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Ankouraje ak kolan Icon Vizibilite"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menys Kalite Kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Kalite kontni Estatistik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Konsènan Ewo Paj Kay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Ewo yo se imaj yo banyè gwo parèt nan tèt la nan paj lakay la. Depi Layout paj lakay la pa ka dirèkteman edit, sa a se kote ou konfigirasyon banyè yo ewo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Ewo yo Thorne otomatikman chak èdtan, sa ki pèmèt ou montre mesaj diferan ak imaj pandan tout jounen an."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Si ou ta pito montre sèlman yon sèl ewo, tou senpleman unpublish ewo a lòt (es) lè l sèvi avèk bouton an Edit anba a."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Pibliye"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Ki pa pibliye"

@@ -24,6 +24,10 @@ msgid "General Settings"
 msgstr "General Settings"
 
 #: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Site Name"
+
+#: src/Form/BiolandSettingsForm.php
 msgid "Site name"
 msgstr "Site name"
 
@@ -938,7 +942,7 @@ msgstr "Administrative system operations. Use with caution."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promote and Sticky"
-msgstr "Promote and Sticky"
+msgstr "Promote and Sticky Icon Visibility"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
@@ -987,6 +991,46 @@ msgstr "Drupal cache has been rebuilt successfully."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset field_order to 1000 for @count nodes."
 msgstr "Successfully reset field_order to 1000 for @count nodes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Reset Promoted Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Removes all the promoted flags from every content entry."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Reset Promoted"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Resetting promoted flags..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Successfully reset promoted flag to 0 for @count content entries."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Reset Sticky Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Removes all the sticky flags from every content entry."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Reset Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Resetting sticky flags..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Successfully reset sticky flag to 0 for @count content entries."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
@@ -1218,22 +1262,24 @@ msgstr "Help text explaining the Promoted and Sticky options."
 #: src/Form/BiolandSettingsForm.php
 msgid "<b>Content sorting priority (highest to lowest):</b>
 <ol>
-<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first</li>
-<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
-<li><b>Promoted</b> – Items marked \"Promoted to front page\" come next</li>
-<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>
+<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>
+<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>
+<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>
+<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>
 <li><b>Last Modified</b> – Finally sorted by most recently updated</li>
 </ol>
-<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
 msgstr "<b>Content sorting priority (highest to lowest):</b>
 <ol>
-<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first</li>
-<li><b>Order Override</b> – Lower numbers appear before higher numbers (e.g., 10 appears before 20)</li>
-<li><b>Promoted</b> – Items marked \"Promoted to front page\" come next</li>
-<li><b>Start Date</b> – Then sorted by start date (or published date if no start date)</li>
+<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>
+<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>
+<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>
+<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>
+<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>
 <li><b>Last Modified</b> – Finally sorted by most recently updated</li>
 </ol>
-<b>Tip:</b> Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Ordering Reset"
@@ -1434,3 +1480,47 @@ msgstr "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Promote and Sticky Icon Visibility"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Content Type Menus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Content Types Statistics"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "About Home Page Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Published"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Unpublished"

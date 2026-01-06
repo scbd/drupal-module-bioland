@@ -1391,3 +1391,91 @@ msgstr "Залиште порожнім, щоб використовувати �
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Назва сайту"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Скинути рекламний контент"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Видаляє всі рекламні прапори з кожного запису вмісту."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Скинути просунутий"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Скидання рекламних прапорів..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Успішно скинути рекламний прапор до 0 для записів вмісту @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Скинути липкий вміст"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Видаляє всі липкі прапорці з кожного запису вмісту."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Скинути липкий"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Скидання клейких прапорців..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Успішно скинути липкий прапор до 0 для записів вмісту @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Фронт-енд"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Адміністратор"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Видимість реклами та липкої піктограми"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Меню типу вмісту"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Статистика типів вмісту"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Про головну сторінку героїв"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Герої - це великі банерні зображення, що відображаються у верхній частині домашньої сторінки. Оскільки макет домашньої сторінки не може бути безпосередньо редагований, саме тут ви налаштовуєте банери героїв."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Герої обертаються автоматично кожну годину, дозволяючи відображати різні повідомлення та зображення протягом дня."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Якщо ви віддаєте перевагу відображати лише одного героя, просто скасуйте публікацію іншого героя (ів) за допомогою кнопки Редагувати нижче."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Опубліковано"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Неопубліковано"

@@ -1391,3 +1391,91 @@ msgstr "ਡਿਫੌਲਟ ਸੋਰਟਿੰਗ ਦੀ ਵਰਤੋਂ ਕਰ�
 #: bioland.module
 msgid "URL"
 msgstr "ਯੂਆਰਐਲ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "ਸਾਈਟ ਦਾ ਨਾਮ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "ਪ੍ਰਚਾਰ ਕੀਤੀ ਸਮੱਗਰੀ ਨੂੰ ਰੀਸੈਟ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "ਹਰ ਸਮੱਗਰੀ ਐਂਟਰੀ ਤੋਂ ਸਾਰੇ ਪ੍ਰਚਾਰ ਕੀਤੇ ਝੰਡੇ ਹਟਾਉਂਦਾ ਹੈ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "ਰੀਸੈਟ ਪ੍ਰੋਮੋਟਿਡ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "ਪ੍ਰਚਾਰ ਕੀਤੇ ਝੰਡੇ ਰੀਸੈਟ ਕਰਨਾ..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "@count ਸਮੱਗਰੀ ਐਂਟਰੀਆਂ ਲਈ ਪ੍ਰਚਾਰ ਕੀਤੇ ਫਲੈਗ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ 0 ਤੇ ਰੀਸੈ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "ਸਟਿੱਕੀ ਸਮੱਗਰੀ ਰੀਸੈਟ ਕਰੋ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "ਹਰ ਸਮੱਗਰੀ ਐਂਟਰੀ ਤੋਂ ਸਾਰੇ ਸਟਿੱਕੀ ਝੰਡੇ ਹਟਾਉਂਦਾ ਹੈ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "ਸਟਿੱਕੀ ਰੀਸੈਟ ਕਰੋ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "ਸਟਿੱਕੀ ਝੰਡੇ ਰੀਸੈਟ ਕਰਨਾ..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "@count ਸਮੱਗਰੀ ਐਂਟਰੀਆਂ ਲਈ ਸਟੀਕੀ ਫਲੈਗ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ 0 ਤੇ ਰੀਸੈਟ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "ਫਰੰਟ-ਐਂਡ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "ਐਡਮਿਨ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "ਸਟਿੱਕੀ ਆਈਕਨ ਦਿੱਖ ਨੂੰ ਉਤਸ਼ਾਹਤ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ ਮੀਨੂ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "ਸਮੱਗਰੀ ਦੀਆਂ ਕਿਸਮਾਂ ਅੰਕੜੇ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "ਹੋਮ ਪੇਜ ਹੀਰੋਜ਼ ਬਾਰੇ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "ਹੀਰੋਜ਼ ਮੁੱਖ ਪੰਨੇ ਦੇ ਸਿਖਰ 'ਤੇ ਪ੍ਰਦਰਸ਼ਿਤ ਵੱਡੇ ਬੈਨਰ ਚਿੱਤਰ ਹਨ। ਕਿਉਂਕਿ ਹੋਮ ਪੇਜ ਲੇਆਉਟ ਨੂੰ ਸਿੱਧਾ ਸੰਪਾਦਿਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ, ਇਸ ਲਈ ਤੁਸੀਂ ਹੀਰੋ ਬੈਨਰਾਂ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰਦੇ ਹੋ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "ਹੀਰੋ ਹਰ ਘੰਟੇ ਆਪਣੇ ਆਪ ਘੁੰਮਦੇ ਹਨ, ਜਿਸ ਨਾਲ ਤੁਸੀਂ ਦਿਨ ਭਰ ਵੱਖੋ ਵੱਖਰੇ ਸੰਦੇਸ਼ ਅਤੇ ਚਿੱਤਰ ਪ੍ਰਦਰਸ਼ਤ ਕਰ ਸਕਦੇ ਹੋ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "ਜੇਕਰ ਤੁਸੀਂ ਸਿਰਫ਼ ਇੱਕ ਹੀਰੋ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨਾ ਪਸੰਦ ਕਰਦੇ ਹੋ, ਤਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਸੰਪਾਦਨ ਬਟਨ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਦੂਜੇ ਹੀਰੋ (ਜ਼) ਨੂੰ ਅਣਪ੍ਰਕਾਸ਼ਤ ਕਰੋ।"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "ਪ੍ਰਕਾਸ਼ਿਤ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "ਅਪ੍ਰਕਾਸ਼ਿਤ"

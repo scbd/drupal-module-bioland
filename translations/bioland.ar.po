@@ -1278,3 +1278,91 @@ msgstr "اتركه فارغًا لاستخدام الفرز الافتراضي. 
 #: bioland.module
 msgid "URL"
 msgstr "رابط"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "اسم الموقع"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "إعادة تعيين المحتوى المروج"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "يزيل جميع العلامات المروجة من كل إدخال محتوى."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "تمت إعادة تعيين الترويج"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "إعادة تعيين العلامات المروجة..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "تمت إعادة تعيين العلامة المروجة بنجاح إلى 0 لإدخالات محتوى @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "إعادة تعيين المحتوى الثابت"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "يزيل جميع العلامات اللاصقة من كل إدخال محتوى."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "إعادة ضبط الملصق"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "إعادة تعيين العلامات اللاصقة..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "تمت إعادة تعيين العلامة اللاصقة بنجاح إلى 0 لإدخالات محتوى @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "الواجهة الأمامية"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "مشرف"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "تعزيز رؤية الأيقونة واللصق عليها"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "قوائم نوع المحتوى"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "إحصائيات أنواع المحتوى"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "حول أبطال الصفحة الرئيسية"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "الأبطال هم صور البانر الكبيرة المعروضة في الجزء العلوي من الصفحة الرئيسية. نظرًا لأنه لا يمكن تحرير تخطيط الصفحة الرئيسية مباشرةً، فهذا هو المكان الذي تقوم فيه بتكوين الشعارات الرئيسية."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "يتم تدوير الأبطال تلقائيًا كل ساعة، مما يسمح لك بعرض رسائل وصور مختلفة على مدار اليوم."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "إذا كنت تفضل عرض بطل واحد فقط، فما عليك سوى إلغاء نشر البطل (الأبطال) الآخر باستخدام زر التحرير أدناه."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "تم نشره"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "غير منشورة"

@@ -1391,3 +1391,91 @@ msgstr "Lëreni bosh për të përdorur klasifikimin e parazgjedhur. Përdorni r
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Emri i faqes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Rivendosja e përmbajtjes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Heq të gjithë flamujt e promovuar nga çdo hyrje në përmbajtje."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Rivendosni promovuar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Rivendosja e flamujve të promovuar..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Rivendosni me sukses flamurin e promovuar në 0 për hyrjet e përmbajtjes @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Rivendosni përmbajtjen ngj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Heq të gjithë flamujt ngjitës nga çdo hyrje në përmbajtje."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Rivendosni ngjitës"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Rivendosja e flamujve ngjitës..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Rivendosni me sukses flamurin ngjitës në 0 për hyrjet e përmbajtjes @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Front"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Promovoni dhe shikueshmërinë e ikonave"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Menut e llojit të përmbajt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Llojet e përmbajtjes Statistikat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Rreth Heronjve të Faqes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Heronjtë janë imazhet e banderolave të mëdha të shfaqura në krye të faqes kryesore. Meqenëse paraqitja e faqes kryesore nuk mund të redaktohet drejtpërdrejt, këtu konfiguroni banderolët e heroit."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Heronjtë rrotullohen automatikisht çdo orë, duke ju lejuar të shfaqni mesazhe dhe imazhe të ndryshme gjatë gjithë ditës."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Nëse preferoni të shfaqni vetëm një hero, thjesht çpublikoni heroin (et) të tjerë duke përdorur butonin Redakto më poshtë."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Publikuar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "I pabotuar"

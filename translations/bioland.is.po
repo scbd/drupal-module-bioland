@@ -1391,3 +1391,91 @@ msgstr "Látið vera tómt til að nota sjálfgefna flokkun. Notaðu þrepum 10 
 #: bioland.module
 msgid "URL"
 msgstr "VEFSLÓÐ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Nafn vefsvæðis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Endurstilla kynnt efni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Fjarlægir alla kynnta fána úr öllum efnisfærslum."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Endurstilla kynnt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Að endurstilla kynnta fána..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Endurstilla kynnt fána með góðum árangri í 0 fyrir @count efnisfærslur."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Endurstilla Sticky Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Fjarlægir alla klístraða fána úr hverri efnisfærslu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Endurstilla Sticky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Að endurstilla klístraða fána..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Endurstilla klímfána með góðum árangri í 0 fyrir @count efnisfærslur."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Framhlið"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Stjórnandi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Efla og Sticky Icon Sýnileika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Matseðlar um efnisgerð"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Tölfræði um efnistegundir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Um heimasíðuhetjur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Hetjur eru stóru borðarmyndirnar sem birtast efst á heimasíðunni. Þar sem ekki er hægt að breyta heimasíðuskipulaginu beint er þetta þar sem þú stillir hetjuborðana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Hetjurnar snúast sjálfkrafa á klukkutíma fresti, sem gerir þér kleift að birta mismunandi skilaboð og myndir yfir daginn."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Ef þú kýst að birta aðeins eina hetju skaltu einfaldlega afbirta hina hetjuna með því að nota Breyta hnappinn hér að neðan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Birt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Óbirt"

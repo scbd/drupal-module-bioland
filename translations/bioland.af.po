@@ -1391,3 +1391,91 @@ msgstr "Laat leeg om standaard sortering te gebruik. Gebruik inkremente van 10 (
 #: bioland.module
 msgid "URL"
 msgstr "BA"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "webwerf Naam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Herstel bevorderde inhoud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Verwyder al die bevorderde vlae uit elke inhoudsinskrywing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Herstel bevorder"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Herstel van bevorderde vlae..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Stel die bevorderde vlag suksesvol terug na 0 vir @count -inhoudinskrywings."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Stel klewerige inhoud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Verwyder al die klewerige vlae uit elke inhoudsinskrywing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Stel Sticky terug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Herstel taai vlae..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Stel kleefvlag suksesvol terug na 0 vir @count -inhoudinskrywings."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Voorkant"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Bevorder en taai ikoonsigbaarheid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Inhoudstipe spyskaarte"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Inhoudstipes Statistiek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Oor tuisblad Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Helde is die groot banierbeelde wat bo-aan die tuisblad vertoon word. Aangesien die tuisbladsyuitleg nie direk geredigeer kan word nie, is dit waar u die heldbaniere opstel."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Die helde draai outomaties elke uur, sodat u verskillende boodskappe en beelde deur die dag kan vertoon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "As u verkies om slegs een held te vertoon, moet u die ander held (s) eenvoudig uitpubliseer deur die Wysig-knoppie hieronder te gebruik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Gepubliseer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Ongepubliseer"

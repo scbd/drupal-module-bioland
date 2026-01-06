@@ -438,13 +438,14 @@
       ? helpCommentsSettings.orderOverrideText
       : '<b>' + Drupal.t('Content sorting priority (highest to lowest):') + '</b>' +
         '<ol>' +
-        '<li><b>' + Drupal.t('Sticky') + '</b> – ' + Drupal.t('Items marked "Sticky at top of lists" always appear first') + '</li>' +
-        '<li><b>' + Drupal.t('Order Override') + '</b> – ' + Drupal.t('This field! Lower numbers = higher priority') + '</li>' +
-        '<li><b>' + Drupal.t('Promoted') + '</b> – ' + Drupal.t('Items marked "Promoted to front page" come next') + '</li>' +
-        '<li><b>' + Drupal.t('Start Date') + '</b> – ' + Drupal.t('Items with future start dates are prioritized') + '</li>' +
-        '<li><b>' + Drupal.t('Last Modified') + '</b> – ' + Drupal.t('Most recently edited items appear higher') + '</li>' +
+        '<li><b>' + Drupal.t('Sticky') + '</b> – ' + Drupal.t('Items marked "Sticky at top of lists" always appear first followed by:') + '</li>' +
+        '<li><b>' + Drupal.t('Promoted') + '</b> – ' + Drupal.t('Items marked "Promoted to front page" but sort above the other fields, followed by') + '</li>' +
+        '<li><b>' + Drupal.t('Order Override') + '</b> – ' + Drupal.t('A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).') + '</li>' +
+        '<li><b>' + Drupal.t('Start Date') + '</b> – ' + Drupal.t('Then sorted by start date if it exists, followed by') + '</li>' +
+        '<li><b>' + Drupal.t('Published Date') + '</b> – ' + Drupal.t('Then sorted by publish date if it exists, followed by') + '</li>' +
+        '<li><b>' + Drupal.t('Last Modified') + '</b> – ' + Drupal.t('Finally sorted by most recently updated') + '</li>' +
         '</ol>' +
-        '<b>' + Drupal.t('Tip:') + '</b> ' + Drupal.t('Use increments of 10 (10, 20, 30...) to leave room for inserting items later.');
+        '<b>' + Drupal.t('Tip:') + '</b> ' + Drupal.t('Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later.');
 
     // Create help message element
     const helpMessage = document.createElement('div');

@@ -1466,3 +1466,91 @@ msgstr "Vaikimisi sortimise kasutamiseks jätke tühjaks. Kasutage samme 10 (nt 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Saidi nimi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Lähtesta reklaamitud sisu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Eemaldab kõik reklaamitud lipud igast sisukirstest."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Lähtesta reklaamitud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Reklaamitud lippude lähtestamine..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Lähtestage reklaamitud lipp edukalt väärtusele 0 @count sisukirjete jaoks."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Lähtesta kleepuv sisu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Eemaldab igast sisukirstest kõik kleepuvad lipud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Lähtesta kleepuv"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Kleepuvate lippude lähtestamine..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Lähtestage @count sisukirjete jaoks kleepuv lipp edukalt väärtusele 0."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Esikülg"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Administraator"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Reklaamimine ja kleepuva ikooni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Sisutüübi menüüd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Sisutüübid Statistika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Kodulehe kangelaste kohta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Kangelased on avalehe ülaosas kuvatavad suured bänneripildid. Kuna avalehe paigutust ei saa otse redigeerida, konfigureerite siin kangelase bännerid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Kangelased pöörlevad automaatselt iga tunni tagant, võimaldades teil kogu päeva jooksul kuvada erinevaid sõnumeid ja pilte."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Kui eelistate kuvada ainult ühte kangelast, tühistage teine kangelane (id) avaldamine, kasutades allolevat nuppu Redigeeri."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Avaldatud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Avaldamata"

@@ -1480,3 +1480,91 @@ msgstr "Αφήστε κενό για να χρησιμοποιήσετε την 
 #: bioland.module
 msgid "URL"
 msgstr "URL"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Name"
+msgstr "Όνομα τοποθεσίας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted Content"
+msgstr "Επαναφορά προωθούμενου περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the promoted flags from every content entry."
+msgstr "Καταργεί όλες τις προωθημένες σημαίες από κάθε καταχώρηση περιεχομένου."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Promoted"
+msgstr "Επαναφορά Προωθούμενης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting promoted flags..."
+msgstr "Επαναφορά προωθημένων σημαιών..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset promoted flag to 0 for @count content entries."
+msgstr "Επαναφέρετε επιτυχώς την προωθημένη σημαία σε 0 για καταχωρήσεις περιεχομένου @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky Content"
+msgstr "Επαναφορά κολλώδους περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Removes all the sticky flags from every content entry."
+msgstr "Καταργεί όλες τις κολλώδεις σημαίες από κάθε καταχώρηση περιεχομένου."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Sticky"
+msgstr "Επαναφορά κολλώδους"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting sticky flags..."
+msgstr "Επαναφορά κολλωδών σημαιών..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset sticky flag to 0 for @count content entries."
+msgstr "Επαναφέρετε επιτυχώς την αυτοκόλλητη σημαία στο 0 για καταχωρήσεις περιεχομένου @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front-end"
+msgstr "Μπροστινό άκρο"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin"
+msgstr "Διαχειριστής"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky Icon Visibility"
+msgstr "Προώθηση και ορατότητα κολλώδους εικονιδίων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Type Menus"
+msgstr "Μενού τύπου περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics"
+msgstr "Στατιστικά Τύποι Περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroes"
+msgstr "Σχετικά με την Αρχική Σελίδα Ήρωες"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
+msgstr "Οι ήρωες είναι οι μεγάλες εικόνες πανό που εμφανίζονται στο επάνω μέρος της αρχικής σελίδας. Δεδομένου ότι η διάταξη της αρχικής σελίδας δεν μπορεί να επεξεργαστεί άμεσα, εδώ διαμορφώνετε τα πανό του ήρωα."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
+msgstr "Οι ήρωες περιστρέφονται αυτόματα κάθε ώρα, επιτρέποντάς σας να εμφανίζετε διαφορετικά μηνύματα και εικόνες όλη την ημέρα."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
+msgstr "Εάν προτιμάτε να εμφανίζετε μόνο έναν ήρωα, απλώς καταργήστε τη δημοσίευση του άλλου ήρωα χρησιμοποιώντας το κουμπί Επεξεργασία παρακάτω."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Published"
+msgstr "Δημοσιεύθηκε"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Unpublished"
+msgstr "Αδημοσίευτο"
