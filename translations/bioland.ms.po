@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Hadkan pengguna bukan pentadbir daripada membuat item menu peringkat kedua dan lebih mendalam. Hanya pengguna dengan kebenaran “mentadbir menu” boleh membuat item menu bersarang."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Diperlukan)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Tetapan Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Tetapan Pentadbir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Gagal memuatkan pilihan jenis kandungan daripada perbendaharaan kata tag: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Bantuan Pilihan Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Teks Bantuan Pilihan Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Teks bantuan menerangkan pilihan Promosikan dan Melekat. HTML dibenarkan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Terjemah Teks Bantuan Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Pembalakan Debug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Dayakan Pembalakan Debug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Dayakan output console.log untuk ciri JavaScript Bioland. Berguna untuk debugging."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Kawasan Log Debug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Pilih kawasan mana yang harus mengeluarkan log debug. Hanya berkesan apabila Debug Logging diaktifkan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Penglihatan Lapangan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Penglihatan medan log menunjuk/menyembunyikan operasi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Log pemasangan medan tambahan dan perubahan jenis kandungan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Log penjanaan ringkasan automatik dan sambungan CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Komen Bantuan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Log membantu penyisipan komen dan perubahan keterlihatan."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Pilihan Promosi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Fungsi Sistem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operasi sistem pentadbiran. Gunakan dengan berhati-hati."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Mempromosikan dan melekit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Bendera promosi dan melekit pada rekod boleh dilihat oleh pengguna awam atau tanpa nama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Tunjukkan bendera Promosikan dan Sticky kepada pengguna awam"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Pengurusan Cache Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Membersihkan semua data cache dari Drupal. Ini termasuk cache halaman, cache render, dan templat yang disusun. Gunakan ini apabila anda melihat kandungan yang ketinggalan zaman atau selepas membuat perubahan konfigurasi yang tidak dicerminkan di laman web ini. Perhatikan, ini tidak menjejaskan cache CDN, cache pelayar, atau cache pembungkus API middleware."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Membina semula Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Membina semula cache..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Pesanan Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Menetapkan semula nilai field_order kepada 1000 untuk semua nod. Ini mewujudkan semakan baru untuk setiap nod dengan mesej semakan “Tetapkan semula pesanan”. Tarikh asal yang terakhir dikemas kini dan pengguna dipelihara. Gunakan ini untuk menormalkan pesanan kandungan di seluruh laman web."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Tetapkan semula Pesanan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Menetapkan semula nilai pesanan..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Cache Drupal telah berjaya dibina semula."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Berjaya menetapkan semula field_order kepada 1000 untuk nod @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Hujung Depan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Umum Akhir Depan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Operasi Kumpulan Terjemahan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Memproses entiti sedia ada untuk membuat default terjemahan yang hilang. Konfigurasikan tetapan lalai terjemahan dalam tab Fungsi Sistem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Tetapan Menu Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Tetapan Menu Mega akan datang tidak lama lagi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Tetapan Laman Utama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Tetapan Laman Utama akan datang tidak lama lagi."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Modul Linkit tidak didayakan; melangkau konfigurasi profil."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Dicipta dan dikonfigurasikan profil Linkit lalai dengan semua padcher."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Dikemaskini profil Linkit lalai sedia ada dengan konfigurasi pemadanan Bioland."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Konfigurasi profil Linkit selesai: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit profil lalai @status dengan konfigurasi perpadanan Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Modul yang diperlukan: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Editor.editor.full_html dikonfigurasikan dengan sambungan Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editor full_html tidak dijumpai; melangkau konfigurasi editor Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Filter.format.full_html dikonfigurasikan dengan penapis Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "E-mel Laman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Ringkasan Auto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Kunci Menu Utama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Kunci Penyuntingan Menu Utama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Menghalang scbd_staff, site_manager dan content_manager daripada mengedit menu utama. Apabila tidak ditandakan, peranan ini akan diberikan kebenaran “Mentadbir item menu navigasi utama”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Tetapan Penglihatan Medan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Dayakan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Tetapan Tag Tambahan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Jenis Organisasi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Tunjukkan tag Jenis Organisasi untuk jenis kandungan ini:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Jenis Ekosistem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Tunjukkan tag Jenis Ekosistem untuk jenis kandungan ini:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Jenis Dokumen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Tunjukkan tag Jenis Dokumen untuk jenis kandungan ini:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Tetapan Komen Bantuan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Bantuan Medan Badan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Teks Bantuan Medan Badan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Teks bantuan dipaparkan untuk medan badan/kandungan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Ini akan menjadi kandungan utama kandungan laman web baru anda. Ringkasan boleh digunakan untuk memaparkan penerangan ringkas mengenai kandungan anda. Selanjutnya, ringkasan akan dipaparkan dalam senarai dan paparan kad rekod anda di laman web. Sebagai alternatif, beberapa ayat pertama dari kandungan utama akan digunakan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Terjemah Teks Bantuan Body"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Bantuan Medan Lampiran"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Teks Bantuan Imej"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Teks bantuan untuk bahagian imej lampiran."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Imej pertama mengikut urutan kiri ke kanan di sini, akan menjadi imej utama rekod anda yang dipaparkan di halaman dan dalam imej kecil dalam senarai dan paparan kad. Semua imej lain akan dipaparkan di bawah kandungan utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Terjemah Teks Bantuan Imej"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Teks Bantuan Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Teks bantuan untuk bahagian sepanduk wira."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Mana-mana jenis halaman/kandungan boleh mempunyai pelbagai sepanduk wira. Sekiranya terdapat lebih daripada satu, mereka akan diputar setiap jam."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Terjemah Teks Bantuan Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“<b>Dipromosikan ke halaman depan:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Teks bantuan menerangkan pilihan Promosikan dan Melekat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“Ke <b>utamaan menyusun kandungan (tertinggi hingga terendah):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Reset Pesanan Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Menetapkan semula nilai field_order kepada 10000 untuk semua nod. Ini mewujudkan semakan baru untuk setiap nod dengan mesej semakan “Tetapkan semula pesanan”. Tarikh asal yang terakhir dikemas kini dan pengguna dipelihara. Gunakan ini untuk menormalkan pesanan kandungan di seluruh laman web."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Berjaya menetapkan semula field_order kepada 10000 untuk nod @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Tetapkan semula pesanan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Menu Jenis Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Konfigurasikan entri menu automatik untuk setiap jenis kandungan dalam menu mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Menu maksimum untuk dipaparkan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Bilangan maksimum entri menu untuk dipaparkan untuk jenis kandungan ini."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Kedudukan menu Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Teratas"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Bawah"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Entri menu Drupal akan muncul di bahagian atas atau bawah entri automatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menu Profil Negara"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Menu Titik Fokus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu Sasaran Negara"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menu Laporan Kebangsaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Menu BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Menu ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Menu Forum"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Kedudukan menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Kedudukan di mana entri menu akan muncul."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Tunjukkan menu walaupun kosong"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Paparkan bahagian menu ini walaupun tiada entri."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Ralat berlaku semasa mengemas kini keizinan menu. Sila semak log."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Bagaimana ia berfungsi"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Dipromosikan ke halaman depan:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Kandungan muncul dalam senarai pilihan, blok laman utama, atau pandangan “dipromosikan”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Berguna untuk menonjolkan kandungan penting atau tepat pada masanya"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Pelbagai item boleh dipromosikan secara serentak"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Melekit di bahagian atas senarai:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Kandungan kekal disematkan di bahagian atas senarai kandungan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Kekal di atas tanpa mengira tarikh penerbitan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Pelbagai item melekit muncul sebelum kandungan yang tidak melekit"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Menggunakan kedua-duanya:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Kandungan boleh dipromosikan DAN melekit untuk penglihatan maksimum."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Keutamaan menyusun kandungan (tertinggi hingga terendah):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Melekit"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Item yang ditandakan “Melekit di atas senarai” sentiasa muncul terlebih dahulu"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Nombor yang lebih rendah muncul sebelum nombor yang lebih tinggi (mis., 10 muncul sebelum 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Dipromosikan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Item yang ditandakan “Dipromosikan ke halaman depan” akan datang seterusnya"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Tarikh mula"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Kemudian disusun mengikut tarikh mula (atau tarikh yang diterbitkan jika tiada tarikh mula)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Terakhir Diubahsuai"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Akhirnya disusun mengikut kemas kini yang paling baru"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Petua:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Biarkan kosong untuk menggunakan penyortiran lalai. Gunakan kenaikan 10 (mis., 10, 20, 30) untuk meninggalkan ruang untuk memasukkan item kemudian."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

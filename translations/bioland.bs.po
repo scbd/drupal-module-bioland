@@ -303,10 +303,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Ograničite korisnike koji nisu administratori da stvaraju stavke izbornika drugog nivoa i dublje. Samo korisnici s dozvolom “administriraj izbornik” mogu kreirati ugniježđene stavke menija."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Zadane vrijednosti prijevoda"
 
@@ -929,3 +925,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Postavke oznaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Administratorske postavke"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Nije uspjelo učitati opcije tipa sadržaja iz rječnika oznaka: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Pomoć za opcije promocije"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Opcije promocije Tekst pomoći"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Tekst pomoći koji objašnjava opcije Promoted i Sticky. HTML je dozvoljen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Prevedi tekst pomoći za promociju"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Evidencija pogrešaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Omogući evidentiranje pogrešaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Omogućite izlaz console.log za Bioland JavaScript značajke. Korisno za otklanjanje pogrešaka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Područja dnevnika otklanjanja pogrešaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Odaberite koja područja treba da izlaze dnevnike otklanjanja pogrešaka. Učinkovito samo kada je omogućeno evidentiranje pogrešaka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Vidljivost polja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Vidljivost polja dnevnika prikazuj/sakrij operacije."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Zabilježite dodatna polja za montažu i promjene vrste sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Zabilježite generiranje automatskog sažetka i veze CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Komentari pomoći"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Prijavite pomoć za umetanje komentara i promjene vidljivosti."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Opcije promocije"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Funkcije sistema"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operacije administrativnog sistema. Koristite s oprezom."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Promovirajte i ljepljivo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Promovirajte i ljepljive zastave na zapisima mogu vidjeti javni ili anonimni korisnici."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Prikaži promotivne i ljepljive zastave javnim korisnicima"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Upravljanje predmemorijom Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Briše sve keširane podatke iz Drupala. To uključuje predmemorije stranica, predmemorije za renderiranje i kompilirane predloške. Koristite ovo kada vidite zastarjeli sadržaj ili nakon unošenja promjena konfiguracije koje se ne odražavaju na web mjestu. Napomena, ovo ne utječe na CDN predmemoriju, predmemoriju preglednika ili međusoftver API omotača predmemorije."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Obnovite Drupal predmemoriju"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Obnova predmemorije..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Naručivanje sadržaja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Poništava vrijednost field_order na 1000 za sve čvorove. Ovo stvara novu reviziju za svaki čvor s revizijskom porukom “Reset order”. Izvorni zadnji datum ažuriranja i korisnik su sačuvani. Koristite ovo za normalizaciju redoslijeda sadržaja na cijeloj web lokaciji."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Resetujte naručivanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Poništavanje vrijednosti naručivanja..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupal keš je uspješno obnovljen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Uspješno resetirajte field_order na 1000 za @count čvorove."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Prednji kraj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Front End General"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Operacije prevođenja serije"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Obradite postojeće entitete kako biste stvorili nedostajuće podrazumevane postavke prijevoda. Konfigurirajte zadane postavke prijevoda na kartici Funkcije sustava."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Postavke Mega izbornika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Postavke Mega menija uskoro dolaze."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Postavke početne stranice"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Postavke početne stranice uskoro dolaze."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Linkit modul nije omogućen; preskakanje konfiguracije profila."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Stvoren i konfiguriran zadani Linkit profil sa svim podudaranjima."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Ažuriran postojeći zadani Linkit profil sa konfiguracijom Bioland matchers."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Konfiguracija Linkit profila završena: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Povežite zadani profil @status sa konfiguracijom Bioland matchers."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Potreban modul: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Konfigurirani editor.editor.full_html sa Linkit ekstenzijom."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editor full_html nije pronađen; preskakanje konfiguracije Linkit editora."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Konfigurirani filter.format.full_html sa Linkit filterom."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Email sajta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Automatski sažetak"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Zaključavanje glavnog izbornika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Zaključajte uređivanje glavnog izbornika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Sprječava scbd_staff, site_manager i content_manager da uređuju glavni izbornik. Kada se ne označi, ove uloge dobit će dozvolu “Administriraj stavke glavnog navigacijskog menija”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Postavke vidljivosti polja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Omogući"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Dodatne postavke oznaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Vrsta organizacije"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Prikaži oznake tipa organizacije za ove vrste sadržaja:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Vrsta ekosistema"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Prikaži oznake tipa ekosistema za ove vrste sadržaja:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Vrsta dokumenta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Prikaži oznake tipa dokumenta za ove vrste sadržaja:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Pomoć Postavke komentara"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Pomoć za tijelo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Tekst pomoći za polje tijela"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Tekst pomoći prikazan za polje tijelo/sadržaj."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Ovo će biti glavni sadržaj vašeg novog sadržaja stranice. Sažetak se može koristiti za prikaz kratkog sažetog opisa vašeg sadržaja. Nadalje, sažetak će biti prikazan u prikazima popisa i kartica vašeg zapisa na web stranici. Alternativno, upotrijebit će se prvih nekoliko rečenica iz glavnog sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Prevedi Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Pomoć za polje za priloge"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Tekst pomoći za slike"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Tekst pomoći za odjeljak slika priloga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Prva slika redoslijedom slijeva nadesno ovdje će biti glavna slika vašeg zapisa prikazana na stranici i u sličicama u prikazima popisa i kartica. Sve ostale slike bit će prikazane ispod glavnog sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Tekst pomoći za prijevod slika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Tekst pomoći za heroje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Tekst pomoći za odjeljak banera heroja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Bilo koja stranica/vrsta sadržaja može imati više banera heroja. Ako ih ima više od jednog, oni će se rotirati po satu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Prevedi tekst pomoći za Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“Pro <b>movirano na naslovnu stranicu:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Tekst pomoći koji objašnjava opcije Promoted i Sticky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“<b>Prioritet sortiranja sadržaja (od najviših do najnižih):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Resetovanje naručivanja sadržaja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Poništava vrijednost field_order na 10000 za sve čvorove. Ovo stvara novu reviziju za svaki čvor s revizijskom porukom “Reset order”. Izvorni zadnji datum ažuriranja i korisnik su sačuvani. Koristite ovo za normalizaciju redoslijeda sadržaja na cijeloj web lokaciji."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Uspješno resetirajte field_order na 10000 za @count čvorove."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Resetujte naručivanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Izbornici vrste sadržaja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Konfigurirajte automatske unose menija za svaku vrstu sadržaja u mega meniju."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Izbornik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Maksimalni izbornici za prikaz"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Maksimalni broj unosa menija za prikaz za ovu vrstu sadržaja."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Položaj izbornika Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Vrh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Dno"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Unosi Drupal menija pojavit će se na vrhu ili dnu automatskih unosa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Izbornik profila zemalja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Izbornik žarišnih tačaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Izbornik nacionalnih ciljeva"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Izbornik nacionalnog izvještaja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH izbornik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH izbornik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Izbornik foruma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Položaj izbornika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Položaj na kojem će se pojaviti unosi menija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Prikaži meni čak i ako je prazan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Prikažite ovaj odjeljak izbornika čak i kada nema unosa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Došlo je do pogreške prilikom ažuriranja dozvola izbornika. Molimo provjerite dnevnike."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Kako to funkcionira"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Promovirano na naslovnu stranicu:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Sadržaj se pojavljuje u istaknutim oglasima, blokovima početne stranice ili “promoviranim” prikazima"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Korisno za isticanje važnog ili pravovremenog sadržaja"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Više predmeta može se promovirati istovremeno"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Ljepljivo na vrhu popisa:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Sadržaj ostaje zakačen na vrhu popisa sadržaja"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Ostaje na vrhu bez obzira na datum objavljivanja"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Više ljepljivih predmeta pojavljuje se prije neljepljivog sadržaja"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Koristeći oba:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Sadržaj može biti promoviran I ljepljiv za maksimalnu vidljivost."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Prioritet sortiranja sadržaja (od najviših do najnižih):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Ljepljiv"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Stavke označene sa “Ljepljivo na vrhu popisa” uvijek se pojavljuju prvi"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Niži brojevi pojavljuju se prije viših brojeva (npr. 10 se pojavljuje prije 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Promoviran"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Predmeti s oznakom “Promovirani na naslovnu stranicu” dolaze sljedeće"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Datum početka"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Zatim sortirano prema datumu početka (ili datumu objavljivanja ako nema datuma početka)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Posljednja izmjena"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Konačno sortirano prema najnovijem ažuriranju"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Savjet:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Ostavite prazno da biste koristili zadano sortiranje. Koristite korake od 10 (npr. 10, 20, 30) da biste kasnije ostavili prostor za umetanje predmeta."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

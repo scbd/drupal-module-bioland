@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Zuia watumiaji wasio msimamizi kuunda vitu vya orodha ya ngazi ya pili na zaidi. Watumiaji tu wenye ruhusa ya “kusimamia menyu” wanaweza kuunda vitu vya menyu vilivyowekwa."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Inahitajika)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Mipangilio ya Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Mipangilio ya Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Imeshindwa kupakia chaguzi za aina ya yaliyomo kutoka kwa msamiati wa lebo @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Chaguzi za Uendelezaji"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Chaguzi za Ukuzaji Maandishi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Msaada wa maandishi kuelezea chaguzi zinazoendelezwa na za HTML inaruhusiwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Tafsiri Maandishi ya Msaada wa Promo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Udhibiti wa kuhusu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Wezesha Uingizaji wa Utatuzi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Wezesha pato la console.log kwa huduma za Bioland JavaScript. Muhimu kwa ajili ya kufuta."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Maeneo ya Kumbukumbu za Ubu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Chagua ni maeneo gani yanapaswa kutoa kumbukumbu za utatuaji Inafaa tu wakati Uingizaji wa Debug umewezeshwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Uonekano wa uwanja"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Uonekano wa uwanja wa kumbukumbu onyesha/kuficha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Ingiza maeneo ya ziada za kuongezeka na mabadiliko ya aina ya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Ingiza kizazi cha muhtasari wa kiotomatiki na viunganisho vya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Maoni ya Msaada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Kumbuka husaidia kuingiza maoni na mabadiliko ya kuonekana"
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Chaguzi za kukuza"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Kazi za Mfumo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Shughuli za mfumo wa utawala. Tumia kwa tahadhari."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Kukuza na Kuweka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Bendera za kukuza na kuweka kwenye rekodi zinaweza kuonekana na watumiaji wa umma au wasiojulikana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Onyesha bendera za Promoze na Sticky kwa watumiaji wa umma"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Usimamizi wa Cache ya Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Inafuta data zote zilizohifadhiwa kutoka Drupal. Hii ni pamoja na kesi za ukurasa, cache za kutoa, na templeti zilizokusanywa. Tumia hii unapoona maudhui ya zamani au baada ya kufanya mabadiliko ya usanidi ambayo hayaonekani kwenye wavuti. Kumbuka, hii haiathiri cache ya CDN, cache ya kivinjari, au cache ya kufunga API ya kati."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Ujenga upya Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Kujenga upya cache..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Kuagiza Yaliyomo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Huweka upya thamani ya field_order hadi 1000 kwa nodi zote. Hii inaunda marekebisho mpya kwa kila node na ujumbe wa marekebisho “Weka upya kuagiza”. Tarehe ya awali iliyosasishwa na mtumiaji huhifadhiwa. Tumia hii kuimarisha kuagiza yaliyomo kwenye tovuti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Weka upya Agizo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Kuweka upya maadili ya kuagiza..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Cache ya Drupal imejengwa kwa mafanikio."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Kwa mafanikio kuweka upya field_order hadi 1000 kwa nodi za @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Mwisho wa mbele"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Mwisho Mkuu wa Mbele"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Shughuli za Kundi la Tafsiri"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Shinikisha vyombo vilivyopo ili kuunda chaguzi za tafsiri zilizopotea. Sanidi mipangilio ya default ya tafsiri kwenye kichupo cha Kazi za Mfumo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Mipangilio ya Menu ya Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Mipangilio ya Mega Menu inakuja hivi karibuni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Mipangilio ya ukurasa wa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Mipangilio ya Ukurasa wa Nyumbani inakuja"
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Moduli ya Linkit haiwezeshwa; kuzuia usanidi wa wasifu."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Iliundwa na kusanidiwa wasifu wa Linkit default na pamoja wote."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Imesasishwa wasifu wa Linkit default uliopo na usanidi wa matchers Bioland."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Usanidi wa wasifu wa Linkit umekamilika: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit default wasifu @status na usanidi wa matchers Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Moduli inayohitajika: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Kusanidiwa editor.editor.full_html na ugani wa Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Mhariri ful_html haipatikani; kuzuia usanidi wa mhariri wa Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Kichujio uliowekwa. format.full_html na kichujio cha Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Barua pepe ya Tovuti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Muhtasari wa Auto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Kufunga Menyu Kuu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Kufunga Uhariri wa Menyu Kuu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Inazuia scbd_staff, site_manager na content_manager kuhariri orodha kuu. Wakati haijaangaliwa, majukumu haya yatapewa ruhusa ya “Kusimamia vitu kuu vya menyu ya urambazaji”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Mipangilio ya Mwonekano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Wezesha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Mipangilio ya Tag za ziada"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Aina ya Shirika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Onyesha lebo za Aina ya Shirika kwa aina hizi za yaliyomo:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Aina ya mazingira"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Onyesha lebo za Aina ya Mazingira kwa aina hizi za maudhui:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Aina ya Hati"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Onyesha lebo za Aina ya Hati kwa aina hizi za yaliyomo:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Mipangilio ya Maoni ya M"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Msaada wa uwanja wa mwili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Maandishi ya Msaada wa Uwanja wa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Maandishi ya msaada linaonyeshwa kwa uwanja wa mwili/yaliyomo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Hii itakuwa yaliyomo kuu ya yaliyomo mpya ya tovuti yako. Muhtasari unaweza kutumika kuonyesha maelezo mafupi ya maudhui yako. Zaidi ya hayo, muhtasari utaonyeshwa katika orodha na maoni ya kadi ya rekodi yako kwenye wavuti. Vinginevyo, sentensi chache za kwanza kutoka kwa yaliyomo kuu zitatumika."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Tafsiri Maandishi ya Msaada wa Bili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Msaada wa uwanja wa viambatish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Maandishi ya Msaada wa Picha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Maandishi ya msaada kwa sehemu ya picha ya viambatisho."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Picha ya kwanza kwa utaratibu wa kushoto hadi kulia hapa, itakuwa picha kuu ya rekodi yako inayoonyeshwa kwenye ukurasa na kwenye picha ndogo katika orodha na maoni ya kadi. Picha nyingine zote zitaonyeshwa chini ya yaliyomo kuu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Tafsiri Maandishi ya Msaada wa Picha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Maandishi ya Usaidizi wa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Maandishi ya msaada kwa sehemu ya mabango ya shujaa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Aina yoyote ya ukura/yaliyomo inaweza kuwa na mabango nyingi za shujaa. Ikiwa kuna zaidi ya moja watazunguka kwa saa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Tafsiri Maandishi ya Msaada wa Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“Ili <b>yopangwa kwenye ukurasa wa mbele:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Msaada wa maandishi kuelezea chaguzi zinazoendelezwa na za"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“Ki <b>paumbele cha kuchagua yaliyomo (ya juu hadi chini):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Rudisha Kuagiza Maudhui"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Huweka upya thamani ya field_order hadi 10000 kwa nodi zote. Hii inaunda marekebisho mpya kwa kila node na ujumbe wa marekebisho “Weka upya kuagiza”. Tarehe ya awali iliyosasishwa na mtumiaji huhifadhiwa. Tumia hii kuimarisha kuagiza yaliyomo kwenye tovuti."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Kwa mafanikio kuweka upya field_order hadi 10000 kwa nodi za @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Weka upya kuagiza"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Menyu ya Aina ya Maudhui"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Sanidi maingizo ya orodha ya moja kwa moja kwa kila aina ya yaliyomo kwenye orodha ya mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "Menyu ya @type_name"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Menyu ya juu za kuonyesha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Idadi kubwa ya maingizo ya menyu ya kuonyesha kwa aina hii ya yaliyomo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Nafasi ya menyu ya Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Juu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Chini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Maingizo ya menyu ya Drupal yataonekana juu au chini ya maingizo ya kiotomatiki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menyu ya Profaili ya Nchi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Menyu ya Vidokezo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menyu ya Malengo ya Taifa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menyu ya Ripoti ya Kitaifa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Menyu ya BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Menyu ya ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Menyu ya Vijukwaa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Nafasi ya menyu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Nafasi ambapo maingizo ya menyu yataonekana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Onyesha orodha hata ikiwa tupu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Onyesha sehemu hii ya menyu hata wakati hakuna maingizo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Hitilafu ilitokea wakati wa kusasisha ruhusa za menyu. Tafadhali angalia kumbukumbu."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Jinsi inavyofanya kazi"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Iliyopangwa kwenye ukurasa wa mbele:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Yaliyomo yanaonekana katika orodha zilizoangaziwa, vitalu vya ukurasa wa nyumbani, au maoni"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Muhimu kwa kuonyesha yaliyomo muhimu au kwa wakati"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Vitu vingi vinaweza kukuza wakati huo huo"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Kuweka juu ya orodha:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Maudhui yanakaa kufungwa juu ya orodha ya yaliyomo"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Inabaki juu bila kujali tarehe ya uchapishaji"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Vitu vingi vya kuvutia vinaonekana kabla ya yaliyomo"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Kutumia zote mbili:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Yaliyomo yanaweza kukuza na kuvutia kwa kuonekana kiwango cha juu."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Kipaumbele cha kuchagua yaliyomo (ya juu hadi chini):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Nguvu"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Vitu vilivyowekwa alama “Shinda juu ya orodha” daima huonekana kwanza"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Nambari za chini zinaonekana kabla ya nambari za juu (mfano, 10 inaonekana kabla ya 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Iliyopangwa"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Vitu vinavyowekwa alama “Iliyopangwa kwenye ukurasa wa mbele”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Tarehe ya Kuanza"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Kisha panga kwa tarehe ya kuanza (au tarehe iliyochapishwa ikiwa hakuna tarehe ya kuanza"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Iliyorekebishwa"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Mwishowe iliyopangwa na iliyosasishwa"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Kidokezo:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Acha tupu ili kutumia upangaji wa default. Tumia ongezeko la 10 (mfano, 10, 20, 30) ili kuacha nafasi ya kuingiza vitu baadaye."
+
+#: bioland.module
+msgid "URL"
+msgstr "KISARA"

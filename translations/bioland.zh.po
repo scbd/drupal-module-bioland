@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "限制非管理员用户创建二级菜单项及更深层次的菜单项。只有拥有 “管理菜单” 权限的用户才能创建嵌套菜单项。"
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "（必填）"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "标签设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "管理员设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "无法从标签词汇表中加载内容类型选项：@message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "促销选项帮助"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "促销选项帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "说明 “推广” 和 “置顶” 选项的帮助文本。允许使用 HTML。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "翻译促销帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "调试日志"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "启用调试日志"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "启用 Bioland JavaScript 功能的 console.log 输出。对调试很有用。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "调试日志区域"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "选择应输出调试日志的区域。仅在启用调试日志记录时有效。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "现场可见性"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "记录字段可见性显示/隐藏操作。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "记录其他字段挂载和内容类型更改。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "记录自动生成摘要和 CKEditor 连接。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "帮助评论"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "日志帮助注释插入和可见性更改。"
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "促销选项"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "系统函数"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "管理系统操作。谨慎使用。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "推广和粘贴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "公开或匿名用户可以看到记录上的 “推广” 和 “置顶” 标志。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "向公众用户显示 “推广” 和 “粘贴” 标志"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Drupal 缓存管理"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "清除 Drupal 中的所有缓存数据。这包括页面缓存、渲染缓存和已编译的模板。当您看到过时的内容或进行了未反映在网站上的配置更改后，请使用此选项。请注意，这不会影响 CDN 缓存、浏览器缓存或中间件 API 包装器缓存。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "重建 Drupal 缓存"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "正在重建缓存..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "内容订购"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "将所有节点的 field_order 值重置为 1000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "重置订单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "正在重置排序值..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupal 缓存已成功重建。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "成功将 @count 节点的 field_order 重置为 1000。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "前端"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "前端通用"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "翻译批量操作"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "处理现有实体以创建缺失的翻译默认值。在 “系统功能” 选项卡中配置翻译默认设置。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "超级菜单设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "超级菜单设置即将推出。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "主页设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "主页设置即将推出。"
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Linkit 模块未启用；正在跳过配置文件配置。"
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "使用所有匹配器创建并配置了默认 Linkit 配置文件。"
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "使用 Bioland 匹配器配置更新了现有的默认 Linkit 配置文件。"
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Linkit 配置文件配置已完成：@message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "将默认配置文件 @status 与 Bioland 匹配器配置关联起来。"
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "必填模块：@module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "使用 Linkit 扩展名配置了 editor.editor.full_html。"
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "找不到编辑器 full_html；正在跳过 Linkit 编辑器配置。"
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "使用 Linkit 过滤器配置 filter.format.full_html。"
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "网站电子邮件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "自动摘要"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "主菜单锁"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "锁定主菜单编辑"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "防止 scbd_staff、site_manager 和 content_manager 编辑主菜单。如果未选中，这些角色将被授予 “管理主导航菜单项目” 权限。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "字段可见性设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "启用"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "其他标签设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "组织类型"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "显示以下内容类型的组织类型标签："
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "生态系统类型"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "显示以下内容类型的生态系统类型标签："
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "文件类型"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "显示以下内容类型的文档类型标签："
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "帮助评论设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "身体区域帮助"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "正文字段帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "正文/内容字段显示的帮助文本。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "这将是你新网站内容的主要内容。摘要可用于显示内容的简短描述。此外，摘要将显示在您在网站上的记录的列表和卡片视图中。或者，将使用主要内容的前几句话。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "翻译正文帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "“附件” 字段帮助"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "图片帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "附件图片部分的帮助文本。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "按从左到右的顺序排列，第一张图像将是显示在页面上以及列表视图和卡片视图的缩略图中的记录的主图像。所有其他图像将显示在主要内容下方。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "翻译图片帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "英雄帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "英雄旗帜部分的帮助文本。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "任何页面/内容类型都可以有多个英雄旗帜。如果有多个，则每小时轮换一次。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "翻译英雄帮助文本"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“已<b>晋升到头版：</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "说明 “推广” 和 “置顶” 选项的帮助文本。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“<b>内容排序优先级（从高到低）：</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "内容订购重置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "将所有节点的 field_order 值重置为 10000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "成功将 @count 节点的 field_order 重置为 10000。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "重置订单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ 内容类型菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "为超级菜单中的每种内容类型配置自动菜单条目。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name 菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "要显示的最大菜单数"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "此内容类型要显示的最大菜单条目数。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Drupal 菜单位置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "顶部"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "底部"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Drupal 菜单条目将出现在自动条目的顶部或底部。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "国家概况菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "焦点菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "国家目标菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "国家报告菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH 菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH 菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "论坛菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "菜单位置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "菜单条目出现的位置。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "即使菜单为空也显示菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "即使没有条目，也要显示此菜单部分。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "更新菜单权限时出错。请检查日志。"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "它是如何运作的"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "晋升到头版："
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "内容出现在精选列表、主页区块或 “推广” 视图中"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "可用于突出显示重要或及时的内容"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "可以同时升级多个物品"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "置于列表顶部："
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "内容保持固定在内容列表的顶部"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "无论发布日期如何，都保持在最前面"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "在非粘性内容之前出现多个粘性项目"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "两者都使用："
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "内容既可以推广，也可以粘贴，以最大限度地提高知名度。"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "内容排序优先级（从高到低）："
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "粘性的"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "标记为 “置于列表顶部” 的项目始终排在最前面"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "较低的数字出现在较高的数字之前（例如，10 出现在 20 之前）"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "晋升"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "接下来是标有 “晋升到头版” 的项目"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "开始日期"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "然后按开始日期（如果没有开始日期，则按发布日期）排序"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "上次修改时间"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "最后按最近更新的顺序排序"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "提示："
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "留空以使用默认排序。使用 10 的增量（例如 10、20、30）为以后插入项目留出空间。"
+
+#: bioland.module
+msgid "URL"
+msgstr "网址"

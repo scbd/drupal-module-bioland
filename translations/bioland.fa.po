@@ -315,10 +315,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "کاربران غیر مدیر را از ایجاد موارد منو سطح دوم و عمیق تر محدود کنید. فقط کاربرانی که دارای مجوز «مدیریت منو» هستند می توانند آیتم های منو توکار ایجاد کنند."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "پیش فرض ترجمه"
 
@@ -945,3 +941,528 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "تنظیمات برچسب ها"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "تنظیمات مدیر"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "بارگذاری گزینه های نوع محتوا از واژگان برچسب ها شکست خورد: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "راهنمای گزینه های تبلیغاتی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "گزینه های تبلیغاتی متن راهنما"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "متن راهنما برای توضیح گزینه های تبلیغاتی و Sticky. HTML مجاز است"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "ترجمه متن راهنمای تبلیغاتی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "ثبت اشکال زدایی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "فعال کردن ثبت اشکال زدایی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "خروجی console.log را برای ویژگی های جاوا اسکریپت Bioland فعال کنید. مفید برای اشکال زدایی."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "مناطق گزارش اشکال زدایی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "انتخاب کنید که کدام مناطق باید گزارش های اشکال زدایی را تولید کنند. فقط زمانی موثر است که Debug Logging فعال باشد."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "نمایش مشاهده فیلد لاگ عملیات نمایش/پنهان کردن."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "نصب فیلدهای اضافی و تغییرات نوع محتوا را ثبت کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "ثبت تولید خلاصه خودکار و اتصالات CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "نظرات راهنما"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "ثبت تغییرات درج نظرات و قابلیت مشاهده کمک."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "گزینه های ارتقاء"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "توابع سیستم"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "عملیات سیستم اداری با احتیاط استفاده کنید"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "ترویج و چسبنده"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "پرچم‌های تبلیغاتی و چسبناک بر روی سوابق توسط کاربران عمومی یا ناشناس قابل مشاهده است."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "نمایش پرچم های تبلیغاتی و چسبناک به کاربران عمومی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "مدیریت کش دروپال"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "تمام داده های حافظه پنهان را از دروپال پاک می کند. این شامل حافظه پنهان صفحه، حافظه پنهان رندر و قالب های کامپایل شده است. هنگامی که محتوای قدیمی را می بینید یا پس از ایجاد تغییرات پیکربندی که در سایت منعکس نمی شود، از این استفاده کنید. توجه داشته باشید، این بر حافظه پنهان CDN، حافظه پنهان مرورگر یا حافظه پنهان بسته بندی API میانه تأثیر نمی گذارد."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "بازسازی کش دروپال"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "بازسازی حافظه پنهان..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "سفارش محتوا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "مقدار field_order را برای همه گره ها به 1000 تنظیم می کند. این یک بازنگری جدید برای هر گره با پیام بازنگری «تنظیم مجدد سفارش» ایجاد می کند. آخرین تاریخ به روز رسانی اصلی و کاربر حفظ می شود. از این برای عادی سازی سفارش محتوا در سراسر سایت استفاده کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "تنظیم مجدد سفارش"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "تنظیم مجدد مقادیر سفارش..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "حافظه پنهان دروپال با موفقیت بازسازی شده است."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "با موفقیت field_order را برای گره های @count به 1000 تنظیم کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "بخش جلو"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "جلو انتد عمومی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "عملیات دسته ای ترجمه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "فرایند موجود را برای ایجاد پیش فرض ترجمه از دست رفته پردازش کنید. تنظیمات پیش فرض ترجمه را در برگه توابع سیستم پیکربندی کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "تنظیمات مگا منو"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "تنظیمات مگا منو به زودی ارائه می شود."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "تنظیمات صفحه اصلی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "تنظیمات صفحه اصلی به زودی"
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "ماژول Linkit فعال نیست؛ از پیکربندی پروفایل عبور می کند."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "پروفایل پیش فرض Linkit با تمام تطبیق ها ایجاد و پیکربندی شده است."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "پروفایل پیش فرض Linkit موجود با پیکربندی مطابقت های Bioland به روز شد."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "پیکربندی پروفایل لینکیت تکمیل شد: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "نمایه پیش فرض Linkit @status با پیکربندی مطابقت های Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "ماژول مورد نیاز: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "پیکربندی editor.editor.full_html با افزونه لینکیت."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "ویرایشگر full_html یافت نشد؛ حذف پیکربندی ویرایشگر Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "فیلتر پیکربندی شده.format.full_html با فیلتر لینکیت."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "ایمیل سایت"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "قفل منوی اصلی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "قفل ویرایش منوی اصلی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "مانع از ویرایش منوی اصلی scbd_staff، site_manager و content_manager می شود. در صورت عدم علامت گذاری، به این نقش ها مجوز «مدیریت موارد منوی اصلی ناوبری» اعطا می شود."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "تنظیمات دید میدان"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "فعال کردن"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "تنظیمات برچسب های اضافی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "نوع سازمان"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "نمایش برچسب های نوع سازمان برای این انواع محتوا:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "نوع اکوسیستم"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "نمایش برچسب های نوع اکوسیستم برای این انواع محتوا:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "نوع سند"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "نمایش برچسب های نوع سند برای این انواع محتوا:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "تنظیمات نظرات راهنما"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "کمک میدان بدن"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "متن راهنمای میدان بدن"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "متن راهنما برای قسمت بدن/محتوا نمایش داده می شود."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "این محتوای اصلی محتوای سایت جدید شما خواهد بود. خلاصه را می توان برای نمایش یک توضیح مختصر مختصر از محتوای شما استفاده کرد. علاوه بر این، خلاصه در نمایش لیست و کارت رکورد شما در وب سایت نمایش داده می شود. متناوباً، چند جمله اول از محتوای اصلی استفاده خواهد شد."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "ترجمه متن راهنمای بدنه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "راهنمای فیلد پیوست ها"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "متن راهنمای تصاویر"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "متن راهنما برای بخش تصاویر پیوست ها."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "اولین تصویر به ترتیب از چپ به راست در اینجا، تصویر اصلی رکورد شما خواهد بود که در صفحه و در تصاویر کوچک در نماهای لیست و کارت نمایش داده می شود. تمام تصاویر دیگر در زیر محتوای اصلی نمایش داده می شود."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "ترجمه تصاویر متن راهنما"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "متن راهنمای قهرمانان"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "متن راهنما برای بخش بنرهای قهرمان."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "هر نوع صفحه/محتوا می تواند چندین بنر قهرمان داشته باشد. اگر بیش از یک مورد وجود داشته باشد، آنها به صورت ساعتی چرخش می شوند."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "ترجمه متن راهنمای قهرمانان"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "«<b>ارتقا به صفحه اول:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "متن راهنما برای توضیح گزینه های تبلیغاتی و Sticky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "«او <b>لویت مرتب‌سازی محتوا (بالاترین تا کمترین):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "تنظیم مجدد سفارش محتوا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "مقدار field_order را برای همه گره ها به 10000 تنظیم می کند. این یک بازنگری جدید برای هر گره با پیام بازنگری «تنظیم مجدد سفارش» ایجاد می کند. آخرین تاریخ به روز رسانی اصلی و کاربر حفظ می شود. از این برای عادی سازی سفارش محتوا در سراسر سایت استفاده کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "با موفقیت field_order را برای گره های @count به 10000 تنظیم مجدد کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "تنظیم مجدد سفارش"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ منوهای نوع محتوا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "ورودی های منوی خودکار را برای هر نوع محتوا در مگا منوی پیکربندی کنید."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "منو @type_name"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "حداکثر منوها برای نمایش"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "حداکثر تعداد ورودی های منو برای نمایش برای این نوع محتوا."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "موقعیت منوهای دروپال"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "بالا"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "پایین"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "ورودی های منوی دروپال در بالا یا پایین ورودی های خودکار ظاهر می شوند."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "منوی پروفایل کشور"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "منوی نقاط کانونی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "منوی اهداف ملی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "منوی گزارش ملی"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "منوی BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "منوی ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "منوی انجمن"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "موقعیت منو"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "موقعیتی که ورودی های منو ظاهر می شوند."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "نمایش منو حتی اگر خالی باشد"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "نمایش این بخش منو حتی زمانی که هیچ ورودی وجود ندارد."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "هنگام به روزرسانی مجوزهای منو خطایی رخ داد. لطفا گزارش ها را بررسی کنید."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "چگونه کار می کند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "ارتقا به صفحه اول:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "محتوا در لیست های ویژه، بلوک های صفحه اصلی یا نمایش های «تبلیغ شده» ظاهر می شود"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "مفید برای برجسته کردن محتوای مهم یا به موقع"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "چندین مورد را می توان به طور همزمان تبلیغ کرد"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "چسبناک در بالای لیست ها:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "محتوا در بالای لیست محتوا پین می ماند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "صرف نظر از تاریخ انتشار در بالا باقی می ماند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "چندین مورد چسبنده قبل از محتوای غیر چسبنده ظاهر می شوند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "با استفاده از هر دو:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "محتوا می تواند هم تبلیغ شود و هم چسبنده باشد تا حداکثر دید شود."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "اولویت مرتب‌سازی محتوا (بالاترین تا کمترین):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "چسبنده"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "موارد دارای علامت «چسبناک در بالای لیست» همیشه ابتدا ظاهر می شوند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "اعداد پایین تر قبل از اعداد بالاتر ظاهر می شوند (به عنوان مثال، 10 قبل از 20 ظاهر می شود)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "ارتقا یافته"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "موارد دارای علامت «ارتقا یافته به صفحه اول» بعدی هستند"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "تاریخ شروع"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "سپس مرتب شده بر اساس تاریخ شروع (یا تاریخ انتشار در صورت عدم تاریخ شروع)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "آخرین اصلاح شده"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "در نهایت طبق آخرین به روز شده مرتب شده"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "نکته:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "برای استفاده از مرتب سازی پیش فرض خالی بگذارید. از افزایش 10 (به عنوان مثال، 10، 20، 30) استفاده کنید تا فضایی برای قرار دادن موارد بعداً باقی بگذارید."
+
+#: bioland.module
+msgid "URL"
+msgstr "آدرس اینترنتی"

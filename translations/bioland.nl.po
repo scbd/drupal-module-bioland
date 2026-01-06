@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Beperk gebruikers die geen beheerder zijn, zodat ze menu-items op het tweede niveau en meer kunnen maken. Alleen gebruikers met de machtiging „menu beheren” kunnen geneste menu-items maken."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Verplicht)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Instellingen voor tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Admin-instellingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Kon de opties voor het inhoudstype niet laden uit de woordenschat van de tags: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Hulp bij promotieopties"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Help-tekst voor promotieopties"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Helptekst waarin de opties Promoted en Sticky worden uitgelegd. HTML is toegestaan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Helptekst voor de promotie vertalen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Loggen voor foutopsporing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Debugregistratie inschakelen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Schakel de uitvoer van console.log in voor Bioland JavaScript-functies. Handig voor foutopsporing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Debug loggebieden"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Selecteer in welke gebieden de debuglogboeken moeten worden uitgevoerd. Alleen effectief als Debug Logging is ingeschakeld."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Zichtbaarheid in het"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Zichtbaarheid van logboekvelden toont of verbergt bewerkingen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Registreer de montage van extra velden en wijzigingen in het inhoudstype."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Automatisch genereren van logboeksamenvattingen en CKEditor-verbindingen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Help-opmerkingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Log helpt bij het invoegen van opmerkingen en wijzigingen in de zichtbaarheid."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Promotiemogelijkheden"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Functies van het systeem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operaties van het administratieve systeem. Voorzichtig gebruiken."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Promoten en plakken"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Promotie- en plakvlaggen op records kunnen worden gezien door openbare of anonieme gebruikers."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Promotie- en plakvlaggen tonen aan openbare gebruikers"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Drupal cachebeheer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Verwijdert alle gegevens in het cachegeheugen van Drupal. Dit omvat paginacaches, rendercaches en gecompileerde sjablonen. Gebruik dit wanneer u verouderde inhoud ziet of nadat u configuratiewijzigingen hebt aangebracht die niet op de site worden weergegeven. Let op, dit heeft geen invloed op de CDN-cache, browsercache of middleware API-wrappercache."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Drupal Cache opnieuw opbouwen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Cache opnieuw opbouwen..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Bestellen van inhoud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Stelt de waarde field_order opnieuw in op 1000 voor alle knooppunten. Dit creëert een nieuwe revisie voor elk knooppunt met het revisiebericht „Bestelling opnieuw instellen”. De oorspronkelijke datum van de laatste update en de gebruiker blijven behouden. Gebruik dit om de volgorde van inhoud op de hele site te normaliseren."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Bestelling opnieuw instellen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Bestelwaarden opnieuw instellen..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "De Drupal-cache is succesvol opnieuw opgebouwd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "De field_order is succesvol teruggezet naar 1000 voor @count nodes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Front-end"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Front-end algemeen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Batchbewerkingen voor vertalingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Bestaande entiteiten verwerken om ontbrekende standaardinstellingen voor vertalingen te creëren. Configureer de standaardinstellingen voor vertalingen op het tabblad Systeemfuncties."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Mega Menu-instellingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Mega Menu-instellingen komen binnenkort."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Instellingen voor de startpagina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "De instellingen voor de startpagina zijn binnenkort beschikbaar."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "De Linkit-module is niet ingeschakeld; de profielconfiguratie wordt overgeslagen."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Er is een standaard Linkit-profiel gemaakt en geconfigureerd met alle matchers."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Bestaand standaard Linkit-profiel bijgewerkt met Bioland Matchers-configuratie."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "De configuratie van het Linkit-profiel is voltooid: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit standaardprofiel @status met Bioland Matchers-configuratie."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Vereiste module: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Editor.editor.full_html geconfigureerd met de Linkit-extensie."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editor full_html niet gevonden; de configuratie van de Linkit editor wordt overgeslagen."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Filter.format.full_html met Linkit-filter geconfigureerd."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "E-mail van de site"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Automatische samenvatting"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Vergrendeling van het hoofdmenu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Bewerken van het hoofdmenu vergrendelen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Voorkomt dat scbd_staff, site_manager en content_manager het hoofdmenu bewerken. Als deze rollen niet zijn aangevinkt, krijgen ze de machtiging „Hoofdnavigatiemenu beheren”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Instellingen voor de zichtbaarheid van het veld"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Inschakelen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Aanvullende instellingen voor tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Soort organisatie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Tags voor organisatietype tonen voor deze inhoudstypen:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Soort ecosysteem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Toon ecosysteemtypetags voor deze inhoudstypen:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Documenttype"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Documenttypetags tonen voor deze inhoudstypen:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Instellingen voor Help-opmerkingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Hulp bij het lichaamsveld"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Helptekst voor het lichaamsveld"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Helptekst die wordt weergegeven voor het veld voor de hoofd/inhoud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Dit wordt de hoofdinhoud van de inhoud van uw nieuwe site. De samenvatting kan worden gebruikt om een korte, beknopte beschrijving van uw inhoud weer te geven. Verder wordt de samenvatting weergegeven in lijst- en kaartweergaven van uw dossier op de website. Als alternatief worden de eerste paar zinnen uit de hoofdinhoud gebruikt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Body Help-tekst vertalen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Hulp bij het veld Bijlagen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Help-tekst voor afbeeldingen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Helptekst voor het gedeelte met afbeeldingen in de bijlagen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "De eerste afbeelding in de volgorde van links naar rechts is de hoofdafbeelding van uw record die op de pagina en in miniaturen in lijst- en kaartweergaven wordt weergegeven. Alle andere afbeeldingen worden onder de hoofdinhoud weergegeven."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Help-tekst voor afbeeldingen vertalen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Help-tekst voor helden"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Helptekst voor de sectie Hero-banners."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Elk pagina/inhoudstype kan meerdere hero-banners hebben. Als er meer dan één is, worden ze op uurbasis gerouleerd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Help-tekst van Heroes vertalen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "„<b>Gepromoveerd naar de voorpagina:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Helptekst waarin de opties Promoted en Sticky worden uitgelegd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "„<b>Prioriteit voor het sorteren van inhoud (van hoog naar laag):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Bestelling van inhoud opnieuw instellen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Stelt de waarde field_order opnieuw in op 10000 voor alle knooppunten. Dit creëert een nieuwe revisie voor elk knooppunt met het revisiebericht „Bestelling opnieuw instellen”. De oorspronkelijke datum van de laatste update en de gebruiker blijven behouden. Gebruik dit om de volgorde van inhoud op de hele site te normaliseren."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "De field_order is succesvol teruggezet naar 10000 voor @count nodes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Bestelling opnieuw instellen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Menu's voor inhoudstype"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Configureer automatische menu-items voor elk inhoudstype in het megamenu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menukaart"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Maximaal aantal menu's om weer te geven"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Maximaal aantal menu-items dat moet worden weergegeven voor dit inhoudstype."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Positie van het Drupal menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Bovenkant"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Onderkant"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Drupal-menu-items verschijnen aan de boven- of onderkant van automatische items."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menu Landprofielen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Menu Focal Points"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu Nationale doelen"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menu Nationaal rapport"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH-menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH-menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Menu Forums"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Menupositie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Positie waar menu-items zullen verschijnen."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Menu weergeven, zelfs als het leeg is"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Geef dit menusectie weer, zelfs als er geen items zijn."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Er is een fout opgetreden tijdens het updaten van de menumachtigingen. Controleer alstublieft de logboeken."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Hoe het werkt"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Gepromoveerd naar de voorpagina:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Inhoud wordt weergegeven in aanbevolen advertenties, blokken op de startpagina of 'gepromote' weergaven"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Handig voor het benadrukken van belangrijke of actuele inhoud"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Meerdere items kunnen tegelijkertijd worden gepromoot"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Sticky bovenaan de lijsten:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Inhoud blijft bovenaan de inhoudslijst staan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Blijft bovenaan staan, ongeacht de publicatiedatum"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Er verschijnen meerdere kleverige items vóór niet-plakkerige inhoud"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Met behulp van beide:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Inhoud kan zowel worden gepromoot als plakkerig voor maximale zichtbaarheid."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Prioriteit voor het sorteren van inhoud (van hoog naar laag):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Kleverig"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Items gemarkeerd met 'Sticky at top of list' worden altijd als eerste weergegeven"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Lagere cijfers worden vóór hogere getallen weergegeven (bijvoorbeeld 10 vóór 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Gepromoveerd"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Items gemarkeerd met „Gepromoveerd naar voorpagina” komen als volgende"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Begin datum"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Vervolgens gesorteerd op startdatum (of gepubliceerde datum indien er geen startdatum is)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Laatst gewijzigd"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Eindelijk gesorteerd op meest recent bijgewerkt"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Tip:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Laat dit veld leeg om de standaardsortering te gebruiken. Gebruik stappen van 10 (bijvoorbeeld 10, 20, 30) om ruimte vrij te maken voor het later invoegen van items."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "አስተዳዳሪ ያልሆኑ ተጠቃሚዎች ሁለተኛ ደረጃ ምናሌ ንጥሎችን ከመፍጠር እና ጠ «ምናሌ አስተዳደር» ፈቃድ ያላቸው ተጠቃሚዎች ብቻ የተጣበሩ ምናሌ ንጥሎችን መፍጠር"
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(አስፈላጊ)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "መለያዎች ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "የአዳሚ ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "ከመለያዎች የይዘት ዓይነት አማራጮችን መጫን አልተሳካም: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "የማስታወቂያ አማራጮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "የማስተዋወቂያ አማራጮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "የተሻሻሉ እና ተጣጣፊ አማራጮችን የሚያብራራ የእርዳታ ኤችቲኤምኤል የተፈቀደ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "የማስተዋወቂያ ዕርዳት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "የማረም መዝገብ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "የማረም መዝገብ ያስችሉ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "ለ Bioland ጃቫስክሪፕት ባህሪዎች የ console.log ውፅዓትን ያንቁ። ለማረም ጠቃሚ ነው።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "የማረም መዝገብ አካባቢዎችን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "የትኞቹ አካባቢዎች የማረም መዝገቦችን ማውጣት እንዳለ ውጤታማ ማረሚያ መዝገብ ሲነቃ ብቻ ነው።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "የመስክ ታይነት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "የማስታወሻ መስክ ታይታ ስራዎችን ያሳያ/ደብቅ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "ተጨማሪ መስኮች መጫን እና የይዘት ዓይነት ለውጦ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "ራስ-ሰር ማጠቃለያ ትውልድ እና የ CKeditor ግንኙነቶ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "የእርዳታ አስተያየቶች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "ማስታወሻ እርዳታ አስተያየት ማስገባት እና የታይታ ለውጦ"
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "የማስተዋወቂያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "የስርዓት ተግባራት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "አስተዳደር ስርዓት ስራዎች። በጥንቃቄ ይጠቀሙ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "ያስተዋውቁ እና ተጣጣ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "በሪኮርዶች ላይ ማስተዋወቅ እና ተጣጣፊ ባንዲራዎች በህዝብ ወይም በማይታወቁ ተጠቃሚ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "ለህዝብ ተጠቃሚዎች የማስተዋወቂያ እና ተጣጣፊ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "የድሩፓል መሸጫ አስተዳደር"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "ሁሉንም የተቀመጠው ውሂብ ከድሩፓል ያጸዳል። ይህ የገጽ መሸጎጫዎችን፣ የመቅረቢያ መሸጎጫዎችን እና የተጠናቀቁ አብነቶችን ያ ጊዜ ያለፈበት ይዘት ሲያዩ ወይም በጣቢያው ላይ የማይንፀባረቁ የውቅር ለውጦችን ካደረጉ በኋላ ይህንን ይጠቀሙ። ልብ ይበሉ፣ ይህ በሲዲኤን መሸጎጫ፣ የአሳሽ መሸጎጫ ወይም መካከለኛ መሸጫ ኤፒአይ መሸጊያ መሸጎጫ ላይ ተ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "የድሩፓል መሸጎጫ እንደገ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "መሸጎጫ እንደገና መገንባ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "የይዘት ማዘዝ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "ለሁሉም ኖዶች FIELD_order እሴቱን ወደ 1000 ዳግም ያስቀምጣል። ይህ «ቅደም ተከተል እንደገና ያስጀምሩ» በሚለው የክለሳ መልእክት ለእያንዳንዱ ንጥፍ አዲስ ክለ የመጀመሪያው የመጨረሻ የተሻሻለው ቀን እና ተጠቃሚ ተጠብቀዋል። በመላው ጣቢያው የይዘት ቅደም ተከተል ለማመደብ ይህንን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "ትዕዛዝ ዳግም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "የትዕዛዝ እሴቶችን እንደገና ማስጀመ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "የድሩፓል መሸጫ በተሳካ ሁኔታ እንደገና ተገን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "ለ@count ኖዶች Field_order ወደ 1000 በተሳካ ሁኔታ ዳግም ያስጀምሩ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "የፊት መጨረሻ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "የፊት መጨረሻ አጠቃላይ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "የትርጉም ቡድን ስራ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "የጎደሉ የትርጉም ነባሪዎችን ለመፍጠር ነባር አካላት ያካሂዱ በስርዓት ተግባራት ትር ውስጥ የትርጉም ነባሪ ቅንብሮችን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "ሜጋ ምናሌ ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "ሜጋ ምናሌ ቅንብሮች በቅርቡ ይመጡ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "የመነሻ ገጽ ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "የመነሻ ገጽ ቅንብሮች በቅርብ ጊዜ ይመ"
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "የሊንኪት ሞዱል አልነቃም; የመገለጫ ውቅርን መዝለል።"
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "ከሁሉም ግጥሚዎች ጋር የተፈጠረ እና የተዋቀረ ነባሪ የLinkit መገለጫ።"
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "ነባር ነባር የሊንኪት መገለጫ ከባዮላንድ ማጣጣሚዎች ውቅር ጋር የዘመነ"
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "የሊንኪት መገለጫ ውቅር ተጠናቅቋል @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "ሊንኪት ነባሪ መገለጫ @status ከባዮላንድ ግጥሚያዎች ውቅር ጋር።"
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "አስፈላጊ ሞዱል: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "የተዋቀረ አርታኢተር.editor.full_html ከሊንኪት ቅጥያ ጋር።"
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "አርታኢ full_html አልተገኘም; የሊንኪት አርታኢ ውቅር መዝለል።"
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "የተዋቀረ ማጣሪያ.format.full_html ከሊንኪት ማጣሪያ ጋር።"
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "ጣቢያ ኢሜይል"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "ራስ ማጠቃለያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "ዋና ምናሌ መቆለፊያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "የቁልፍ ዋና ምናሌ አርት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "scbd_staff፣ ጣቢያ_አስተዳዳሪ እና የይዘት_አስተዳዳሪ ዋናውን ምናሌ እንዳያርትሙ ይከላከላል። ካልተመረተበት ጊዜ እነዚህ ሚናዎች «ዋና የአሰሳ ምናሌ ንጥሎችን አስተዳደር» ፈቃድ ይሰጣሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "የመስክ ታይነት ቅንብ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "ያንቁ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "ተጨማሪ መለያ ቅንብ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "የድርጅት ዓይነት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "ለእነዚህ የይዘት ዓይነቶች የድርጅት ዓይነት መለያዎችን አ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "የሥነ ምህዳር ዓ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "ለእነዚህ የይዘት ዓይነቶች የኢኮስተም አይነት መለያዎችን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "የሰነድ ዓይነት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "ለእነዚህ የይዘት ዓይነቶች የሰነድ ዓይነት መለያዎችን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "እርዳታ አስተያየቶች ቅንብ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "የሰውነት መስክ እርዳታ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "የሰውነት መስክ እገዛ ጽሑፍ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "ለአካል/የይዘት መስክ የሚታየው የእርዳታ ጽሑፍ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "ይህ የአዲሱ የጣቢያ ይዘትዎ ዋና ይዘት ይሆናል። ማጠቃለያው የይዘትዎን አጭር አጭር መግለጫ ለማሳየት ጥቅም ላይ ሊውል ይችላል። በተጨማሪም ማጠቃለያው በድር ጣቢያው ላይ በመዝገብዎ ዝርዝር እና በካርድ እይታዎች ይታያል። በአማራጭ፣ ከዋናው ይዘት የመጀመሪያዎቹ ጥቂት ዓረፍተ ነገሮች ይጠቀማሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "አካል እርዳታ ጽሑፍ ተርጉ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "ተያያዮች የመስክ እ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "ምስሎች እርዳታ ጽሑፍ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "ለተያያዮች ምስሎች ክፍል የእርዳታ ጽሑፍ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "እዚህ ከግራ ወደ ቀኝ ቅደም ተከተል የመጀመሪያው ምስል፣ በገጹ ላይ እና በዝርዝር እና በካርድ እይታዎች ውስጥ በትንሽ ምስሎች ውስጥ የሚታየው የመዝገብዎ ዋና ምስል ይሆናል። ሁሉም ሌሎች ምስሎች ከዋናው ይዘት በታች ይታያሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "ምስሎችን የእርዳታ ጽሑፍ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "የጀግኖች የእርዳታ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "ለጀግና ሰንደቅ ክፍል የእርዳታ ጽሑፍ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "ማንኛውም ገጽ/የይዘት ዓይነት በርካታ የጀግና ሰንደሎች ከአንድ በላይ ካለ በሰዓት መሠረት ይዞራሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "ጀግኖች እርዳታ ጽሑፍን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "«ወደ <b>ፊት ገጽ ያስተዋውቃል</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "የተሻሻሉ እና ተጣጣፊ አማራጮችን የሚያብራራ የእርዳታ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "«የይ <b>ዘት መደርደር ቅድሚያ (ከከፍተኛ እስከ ዝቅተኛ)</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "የይዘት ትዕዛዝ ዳ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "ለሁሉም ኖዶች FIELD_order እሴቱን ወደ 10000 ዳግም ያስቀምጣል። ይህ «ቅደም ተከተል እንደገና ያስጀምሩ» በሚለው የክለሳ መልእክት ለእያንዳንዱ ንጥፍ አዲስ ክለ የመጀመሪያው የመጨረሻ የተሻሻለው ቀን እና ተጠቃሚ ተጠብቀዋል። በመላው ጣቢያው የይዘት ቅደም ተከተል ለማመደብ ይህንን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "ለ@count ኖዶች Field_order ወደ 10000 በተሳካ ሁኔታ ዳግም ያስጀምሩ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "ትዕዛዝ ዳግም"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ የይዘት አይነት ምናሌዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "በሜጋ ምናሌ ውስጥ ለእያንዳንዱ የይዘት ዓይነት ራስ-ሰር ምናሌ ገጽ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "ለማሳየት ከፍተኛው ምናሌዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "ለዚህ የይዘት ዓይነት ለማሳየት ከፍተኛው የምናሌ ማስገባዎች ብዛት።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "የድሩፓል ምናሌዎች ቦታ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "ከላይ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "ከታች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "የድሩፓል ምናሌ ማስገባዎች በራስ-ሰር መግቢያዎች አናት ወይም ከታች ይታያሉ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "የአገር መገለጫዎች ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "የትኩረት ነጥቦች ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "ብሔራዊ ኢላማዎች ምና"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "ብሔራዊ ሪፖርት ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "መድረኮች ምናሌ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "የምናሌ አቀማመጥ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "የምናሌ መግቢያዎች የሚታዩበት ቦታ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "ባዶ ቢሆንም ምናሌን አሳይ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "ምንም መግቢያዎች በሌሉበት ጊዜ እንኳን ይህንን የምናሌ ክፍል ያሳይ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "የምናሌ ፈቃዶችን በማዘመን ስህተት ተከሰተ። እባክዎ መዝገቦችን ይፈትሹ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "እንዴት እንደሚሰራ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "ወደ ፊት ገጽ ያስተዋውቃል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "ይዘት በተለዩ ዝርዝሮች፣ በመነሻ ገጽ ማገዶች ወይም «በማስተዋወቂያ» እ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "አስፈላጊ ወይም ወቅታዊ ይዘትን ለማጉላት ጠቃሚ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "ብዙ ዕቃዎች በአንድ ጊዜ ሊያስተዋውቁ ይችላሉ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "በዝርዝሮች አናት ላይ ተጣጣፊ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "ይዘት በይዘት ዝርዝሮች አናት ላይ ይቆያል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "የህትመት ቀን ምንም ይሁን ምን ከላይ ይቆያል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "የማይጣበቅ ይዘት በፊት በርካታ ተጣጣፊ ዕቃ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "ሁለቱንም በመጠቀም"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "ለከፍተኛው ታይታ ይዘት በሁለቱም ማስተዋወቅ እና ተጣጣፊ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "የይዘት መደርደር ቅድሚያ (ከከፍተኛ እስከ ዝቅተኛ)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "ተጣጣፊ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "«በዝርዝሮች አናት ላይ ተጣጣፊ» ምልክት የተደረጉ ዕቃዎች ሁልጊዜ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "ዝቅተኛ ቁጥሮች ከከፍተኛ ቁጥሮች በፊት ይታያሉ (ለምሳሌ 10 ከ 20 በፊት ይታያል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "ተሻሽሏል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "«ወደ ፊት ገጽ ተሻሽሏል» የሚል ምልክት የተደረጉ ዕቃዎች"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "የመጀመሪያ ቀን"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "ከዚያ በጅምር ቀን ተደርጎ (ወይም የጅምር ቀን ካልተተተ የታተመ ቀን)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "ለመጨረሻ የተሻሻለ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "በመጨረሻም በቅርቡ ተዘምኗል"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "ጠቃሚ ምክር:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "ነባሪ መደርደሪያ ለመጠቀም ባዶ ይተው። በኋላ ዕቃዎችን ለማስገባት ቦታ ለመተው የ 10 ጭማሪዎችን (ለምሳሌ 10፣ 20፣ 30) ይጠቀሙ።"
+
+#: bioland.module
+msgid "URL"
+msgstr "ዩአርኤል"

@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Restricționați utilizatorii care nu sunt administratori să creeze elemente de meniu de nivel secundar și mai profunde. Numai utilizatorii cu permisiunea de „administrare meniu” pot crea elemente de meniu imbricate."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Necesar)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Setări etichete"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Setări Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Nu s-a putut încărca opțiunile de tip de conținut din vocabularul etichetelor: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Opțiuni de promovare Ajutor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Opțiuni de promovare Text de ajutor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Text de ajutor care explică opțiunile Promovate și Sticky. HTML este permis."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Traduceți textul de ajutor pentru promovare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Înregistrare de depanare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Activați înregistrarea în jurnal de depanare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Activați ieșirea console.log pentru caracteristicile Bioland JavaScript. Util pentru depanare."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Zonele jurnalului de depanare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Selectați ce zone ar trebui să afișeze jurnale de depanare. Eficient numai atunci când Debug Logging este activată."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Vizibilitatea câmpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Vizibilitatea câmpului jurnal de afișare/ascundere a operațiunilor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Înregistrați montarea câmpurilor suplimentare și modificările tipului de conținut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Generarea automată a rezumatului jurnal și conexiunile CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Ajutor Comentarii"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Ajutor în jurnal inserarea comentariilor și modificările de vizibilitate."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Opțiuni de promovare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Funcțiile sistemului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operațiuni ale sistemului administrativ. Utilizați cu prudență."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Promovează și lipicios"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Steagurile promovate și lipicioase pe înregistrări pot fi văzute de utilizatori publici sau anonimi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Afișați steagurile Promovează și Sticky utilizatorilor publici"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Gestionarea cache-ului Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Șterge toate datele cache din Drupal. Aceasta include cache-uri de pagini, cache-uri de randare și șabloane compilate. Utilizați acest lucru atunci când vedeți conținut învechit sau după efectuarea modificărilor de configurare care nu sunt reflectate pe site. Rețineți, acest lucru nu afectează memoria cache CDN, memoria cache a browserului sau memoria cache a ambalajului API middleware."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Reconstruiți memoria cache Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Reconstruirea cache-ului..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Comandarea conținutului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resetează valoarea field_order la 1000 pentru toate nodurile. Aceasta creează o nouă revizuire pentru fiecare nod cu mesajul de revizuire „Resetare comandă”. Data inițială a ultimei actualizări și utilizatorul sunt păstrate. Utilizați acest lucru pentru a normaliza ordonarea conținutului pe site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Resetați comanda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Resetarea valorilor de comandă..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Cache-ul Drupal a fost reconstruit cu succes."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Resetați cu succes field_order la 1000 pentru nodurile @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Capătul frontal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Front End General"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Operațiuni de lot de traducere"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Procesați entitățile existente pentru a crea valorile implicite de traducere lipsă. Configurați setările implicite ale traducerii în fila Funcții sistem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Setări meniu Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Setările Mega Menu vor veni în curând."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Setările paginii de pornire"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Setările paginii de pornire vor veni în curând."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Modulul Linkit nu este activat; omite configurarea profilului."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Creat și configurat profilul Linkit implicit cu toate potrivirile."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Actualizat profilul Linkit implicit existent cu configurația Bioland matchers."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Configurarea profilului Linkit finalizată: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Profilul implicit Linkit @status cu configurația Bioland matchers."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Modulul necesar: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Configurat editor.editor.full_html cu extensia Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editorul full_html nu a fost găsit; omite configurația editorului Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Configurat filter.format.full_html cu filtru Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Adresa de e-mail a site-ului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Rezumat automat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Blocarea meniului principal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Blocați editarea meniului principal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Împiedică scbd_staff, site_manager și content_manager să editeze meniul principal. Când este debifat, acestor roluri li se va acorda permisiunea „Administrați elementele principale de meniu de navigare”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Setări de vizibilitate a câmpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Activează"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Setări suplimentare pentru etichete"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Tipul organizației"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Afișați etichetele Tip organizație pentru aceste tipuri de conținut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Tipul ecosistemului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Afișați etichetele Ecosystem Type pentru aceste tipuri de conținut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Tipul documentului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Afișați etichetele Tip document pentru aceste tipuri de conținut:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Ajutor Setări comentarii"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Ajutor pentru câmpul corpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Text de ajutor pentru câmpul corpului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Textul de ajutor afișat pentru corp/câmpul conținut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Acesta va fi conținutul principal al conținutului noului dvs. site. Rezumatul poate fi utilizat pentru a afișa o scurtă descriere concisă a conținutului dvs. Mai mult, rezumatul va fi afișat în vizualizările de listă și card ale înregistrării dvs. pe site. Alternativ, vor fi utilizate primele câteva propoziții din conținutul principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Traducere Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Ajutor câmp Atașamente"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Text de ajutor pentru imagini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Text de ajutor pentru secțiunea de imagini din atașamente."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Prima imagine în ordinea de la stânga la dreapta aici, va fi imaginea principală a înregistrării dvs. afișată pe pagină și în miniaturi în vizualizările de listă și cărți. Toate celelalte imagini vor fi afișate sub conținutul principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Traducere Imagini Text de ajutor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Textul de ajutor pentru eroi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Text de ajutor pentru secțiunea bannere erou."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Orice tip de pagină/conținut poate avea mai multe bannere eroi. Dacă există mai mult de unul, acestea vor fi rotite pe oră."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Traducere Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "„<b>Promovat pe prima pagină:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Text de ajutor care explică opțiunile Promovate și Sticky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "„<b>Prioritate de sortare a conținutului (de la cea mai mare la cea mai mică):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Resetarea comenzii conținutului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resetează valoarea field_order la 10000 pentru toate nodurile. Aceasta creează o nouă revizuire pentru fiecare nod cu mesajul de revizuire „Resetare comandă”. Data inițială a ultimei actualizări și utilizatorul sunt păstrate. Utilizați acest lucru pentru a normaliza ordonarea conținutului pe site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Resetați cu succes field_order la 10000 pentru nodurile @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Resetați comanda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Meniuri tip conținut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Configurați intrările automate de meniu pentru fiecare tip de conținut din meniul mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Meniu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Meniuri maxime de afișat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Numărul maxim de intrări de meniu de afișat pentru acest tip de conținut."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Poziția meniurilor Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Sus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Partea de jos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Intrările din meniul Drupal vor apărea în partea de sus sau de jos a intrărilor automate."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Meniul profiluri de țară"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Meniul Puncte Focale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Meniul țintelor naționale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Meniul Raportului Național"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Meniu BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Meniu ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Meniul Forumurilor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Poziția meniului"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Poziția în care vor apărea intrările de meniu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Afișați meniul chiar dacă este gol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Afișați această secțiune de meniu chiar și atunci când nu există intrări."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "A apărut o eroare la actualizarea permisiunilor de meniu. Vă rugăm să verificați jurnalele."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Cum funcţionează"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Promovat pe prima pagină:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Conținutul apare în listări recomandate, blocuri de pagină de pornire sau vizualizări „promovate”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Util pentru evidențierea conținutului important sau în timp util"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Mai multe articole pot fi promovate simultan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Lipicios în partea de sus a listelor:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Conținutul rămâne fixat în partea de sus a listărilor de conținut"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Rămâne în partea de sus indiferent de data publicării"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Mai multe elemente lipicioase apar înaintea conținutului non-lipicios"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Folosind ambele:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Conținutul poate fi atât promovat, cât și lipicios pentru vizibilitate maximă."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Prioritatea de sortare a conținutului (de la cea mai mare la cea mai mică):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Lipicioasă"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Articolele marcate cu „Lipicios în partea de sus a listelor” apar întotdeauna primele"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Numerele mai mici apar înaintea numerelor mai mari (de exemplu, 10 apare înainte de 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Promovat"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Următoarele sunt articolele marcate cu „Promovat pe prima pagină”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Data de începere"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Apoi sortate după data de începere (sau data publicării dacă nu există dată de începere)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Ultima modificare"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "În cele din urmă sortat după cele mai recente actualizări"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Sfat:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Lăsați gol pentru a utiliza sortarea implicită. Utilizați incremente de 10 (de exemplu, 10, 20, 30) pentru a lăsa loc pentru introducerea articolelor mai târziu."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

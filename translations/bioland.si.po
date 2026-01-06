@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "පරිපාලක නොවන පරිශීලකයන් දෙවන මට්ටමේ මෙනු අයිතම නිර්මාණය කිරීම සහ ගැඹුරු සිට සීමා කරන්න. “පරිපාලනය මෙනුව” අවසරය ඇති පරිශීලකයින්ට පමණක් නෙස්ටඩ් මෙනු අයිතම නිර්මාණය කළ හැකිය."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(අවශ්ය)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "ටැග් සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "පරිපාලක සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "ටැග් වාග් මාලාවෙන් අන්තර්ගත වර්ගයේ විකල්ප පැටවීමට අසමත් විය: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "ප්රවර්ධන විකල්ප උපකාරය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "ප්රවර්ධන විකල්ප උපකාරක පෙළ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "ප්රවර්ධනය කරන ලද සහ ඇලෙන සුළු විකල්ප පැහැදිලි කරන උපකාර පෙළ. HTML වලට අවසර ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "ප්රවර්ධන උපකාරක පෙළ පරිවර්තනය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "නිදොස් ලොග් කිරීම"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "නිදොස් ලොග් කිරීම සක්රීය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "බයෝලන්ඩ් JavaScript විශේෂාංග සඳහා console.log ප්රතිදානය සක්රීය කරන්න. නිදොස් කිරීම සඳහා ප්රයෝජනවත් වේ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "ලොග් ප්රදේශ නිදොස් කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "නිදොස්කරණ ලඝු-සටහන් ප්රතිදානය කළ යුතු ප්රදේශයන් තෝරන්න. ඵලදායී වන්නේ නිදොස් ලොග් කිරීම සක්රීය කළ විට පමණි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "ක්ෂේත්ර දෘශ්යතාව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "ලොග් ක්ෂේත්ර දෘශ්යතාව මෙහෙයුම් පෙන්වන්න/සැඟවීම."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "අතිරේක ක්ෂේත්ර සවි කිරීම සහ අන්තර්ගත වර්ගයේ වෙනස්කම් ලොග් කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "ස්වයංක්රීය සාරාංශ උත්පාදනය සහ CKeditor සම්බන්ධතා ලොග් කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "උපකාරක අදහස්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "ලොග් උදව් අදහස් ඇතුළත් කිරීම සහ දෘශ්යතාව වෙනස්වීම්."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "ප්රවර්ධන විකල්ප"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "පද්ධති කාර්යයන්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "පරිපාලන පද්ධති මෙහෙයුම්. ප්රවේශමෙන් භාවිතා කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "ප්රවර්ධනය සහ ඇලෙන සුළු"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "වාර්තා මත ප්රවර්ධනය සහ ඇලෙන සුළු කොඩි මහජන හෝ නිර්නාමික පරිශීලකයින් විසින් දැකිය හැකිය."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "ප්රවර්ධන සහ ඇලෙන සුළු ධජ පොදු පරිශීලකයින්ට පෙන්වන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "ඩ්රුපල් හැඹිලි කළමනාකරණය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "ඩ්රුපල් වෙතින් සියළුම සංකේතනය කර ඇති දත්ත ඉවත් කරයි. මෙයට පිටු කැච්, රෙන්ඩර් කැච් සහ සම්පාදනය කරන ලද සැකිලි ඇතුළත් වේ. ඔබ යල් පැන ගිය අන්තර්ගතයන් දකින විට හෝ වෙබ් අඩවියේ පිළිබිඹු නොවන වින්යාස වෙනස්කම් කිරීමෙන් පසුව මෙය භාවිතා කරන්න. සටහන් කරන්න, මෙය CDN හැඹිලි, බ්රවුසර් හැඹිලි හෝ මිඩ්ල්වෙයාර් API රැවුම් හැඹිලි කෙරෙහි බලපාන්නේ නැත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "ඩ්රුපල් හැඹිලි නැවත ගොඩ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "හැඹිලි නැවත ගොඩනැගීම..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "අන්තර්ගත ඇණවුම් කිරීම"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "සියලුම නෝඩ් සඳහා field_order අගය 1000 දක්වා නැවත සකසයි. මෙය “නැවත ඇණවුම් කිරීම” යන සංශෝධන පණිවිඩය සමඟ එක් එක් නෝඩ් සඳහා නව සංශෝධනයක් නිර්මාණය කරයි. මුල් අවසන් යාවත්කාලීන කරන ලද දිනය සහ පරිශීලකයා සංරක්ෂණය කර ඇත. වෙබ් අඩවිය පුරා අන්තර්ගත ඇණවුම් කිරීම සාමාන්යකරණය කිරීමට මෙය භාවිතා කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "ඇණවුම් නැවත සකස් කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "ඇණවුම් කිරීමේ අගයන් නැවත සැකසීම..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "ඩ්රුපල් හැඹිලි සාර්ථකව නැවත ගොඩනඟා ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "@count නෝඩ් සඳහා field_order 1000 දක්වා සාර්ථකව යළි පිහිටුවන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "ඉදිරිපස අවසානය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "ෆ්රන්ට් එන්ඩ් ජෙනර"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "පරිවර්තන කණ්ඩායම් මෙහෙයුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "අතුරුදහන් වූ පරිවර්තන පෙරනිමිති නිර්මාණය කිරීම සඳහා පවතින ආයතන ක්රියාවට නැංවීම. පද්ධති කාර්යයන් පටිත්තෙහි පරිවර්තන පෙරනිමි සැකසුම් වින්යාස කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "මෙගා මෙනු සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "මෙගා මෙනු සැකසුම් ළඟදීම පැමිණේ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "මුල් පිටුව සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "මුල් පිටුවේ සැකසුම් ළඟදීම පැමිණේ."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "ලින්කිට් මොඩියුලය සක්රීය කර නැත; පැතිකඩ වින්යාසය මඟ හැරීම."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "සියලු ගැලපීම් සමඟ පෙරනිමි ලින්කිට් පැතිකඩ නිර්මාණය කර වින්යාස කර ඇත."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Bioland Matchers වින්යාසය සමඟ පවත්නා පෙරනිමි ලින්කිට් පැතිකඩ යාවත්කාලීන කරන ලදී."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "ලින්කිට් පැතිකඩ වින්යාසය සම්පූර්ණ විය: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "බියොලන්ඩ් මැචර්ස් වින්යාසය සමඟ ලින්කිට් පෙරනිමි පැතිකඩ @status."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "අවශ්ය මොඩියුලය: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "ලින්කිට් දිගුව සමඟ වින්යාසගත සංස්කාරක.editor.full_html."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "සංස්කාරකය full_html සොයාගත නොමැත; ලින්කිට් සංස්කාරක වින්යාසය මඟ හැරීම."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "ලින්කිට් පෙරහන සමඟ වින්යාසගත කරන ලද ෆිල්ටර්.format.full_html."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "වෙබ් අඩවි විද්යුත් තැපැල්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "වාහන සාරාංශය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "ප්රධාන මෙනු අගුල"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "ප්රධාන මෙනු සංස්කරණය ලොක් කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "scbd_staff, site_manager සහ content_manager ප්රධාන මෙනුව සංස්කරණය කිරීමෙන් වළක්වයි. පරීක්ෂා නොකළ විට, මෙම භූමිකාවන්ට “ප්රධාන සංචලනය මෙනු අයිතම පරිපාලනය කරන්න” අවසරය ලබා දෙනු ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "ක්ෂේත්ර දෘශ්යතා සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "සක්රීය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "අතිරේක ටැග් සැකසුම්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "සංවිධාන වර්ගය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "මෙම අන්තර්ගත වර්ග සඳහා සංවිධාන වර්ගයේ ටැග් පෙන්වන්න:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "පරිසර පද්ධති වර්ගය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "මෙම අන්තර්ගත වර්ග සඳහා පරිසර පද්ධති වර්ගයේ ටැග් පෙන්වන්න:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "ලේඛන වර්ගය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "මෙම අන්තර්ගත වර්ග සඳහා ලේඛන වර්ගයේ ටැග් පෙන්වන්න:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "අදහස් සැකසුම් සඳහා උදව් කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "ශරීර ක්ෂේත්ර උපකාරය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "ශරීර ක්ෂේත්ර උපකාරක පෙළ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "ශරීරය/අන්තර්ගත ක්ෂේත්රය සඳහා උපකාරක පෙළ පෙන්වයි."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "ඔබේ නව වෙබ් අඩවි අන්තර්ගතයේ ප්රධාන අන්තර්ගතය මෙය වනු ඇත. සාරාංශය ඔබේ අන්තර්ගතය පිළිබඳ කෙටි සංක්ෂිප්ත විස්තරයක් පෙන්වීමට භාවිතා කළ හැකිය. තවද, සාරාංශය වෙබ් අඩවියේ ඔබේ වාර්තාවේ ලැයිස්තුව සහ කාඩ් දර්ශනවල ප්රදර්ශනය කරනු ඇත. විකල්පයක් ලෙස, ප්රධාන අන්තර්ගතයේ පළමු වාක්ය කිහිපය භාවිතා කරනු ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "ශරීර උපකාරක පෙළ පරිවර්තනය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "ඇමුණුම් ක්ෂේත්ර උපකාරය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "පින්තූර උපකාරක පෙළ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "ඇමුණුම්වල පින්තූර කොටස සඳහා උපකාරක පෙළ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "මෙහි වමේ සිට දකුණට අනුපිළිවෙලින් පළමු රූපය, පිටුවේ සහ ලැයිස්තුව සහ කාඩ් දර්ශනවල සිඟිති පින්තූරවල ප්රදර්ශනය වන ඔබේ වාර්තාවේ ප්රධාන රූපය වනු ඇත. අනෙකුත් සියලුම පින්තූර ප්රධාන අන්තර්ගතයට පහළින් ප්රදර්ශනය වනු ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "රූප උපකාරක පෙළ පරිවර්තනය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "වීරයන්ගේ උපකාරක පෙළ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "වීර බැනර් කොටස සඳහා උපකාරක පෙළ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "ඕනෑම පිටුව/අන්තර්ගත වර්ගයකට වීර බැනර් කිහිපයක් තිබිය හැකිය. එකකට වඩා වැඩි සංඛ්යාවක් තිබේ නම් ඒවා පැයකට පදනම්ව භ්රමණය කරනු ලැබේ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "වීරයන්ගේ උපකාරක පෙළ පරිවර්තනය කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“මුල් <b>පිටුවට ප්රවර්ධනය කර ඇත:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "ප්රවර්ධනය කරන ලද සහ ඇලෙන සුළු විකල්ප පැහැදිලි කරන උපකාර පෙළ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“<b>අන්තර්ගත වර්ග කිරීමේ ප්රමුඛතාව (ඉහළම සිට අඩුම දක්වා):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "අන්තර්ගත ඇණවුම් නැවත සකස් කිරීම"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "සියලුම නෝඩ් සඳහා field_order අගය 10000 දක්වා නැවත සකසයි. මෙය “නැවත ඇණවුම් කිරීම” යන සංශෝධන පණිවිඩය සමඟ එක් එක් නෝඩ් සඳහා නව සංශෝධනයක් නිර්මාණය කරයි. මුල් අවසන් යාවත්කාලීන කරන ලද දිනය සහ පරිශීලකයා සංරක්ෂණය කර ඇත. වෙබ් අඩවිය පුරා අන්තර්ගත ඇණවුම් කිරීම සාමාන්යකරණය කිරීමට මෙය භාවිතා කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "@count නෝඩ් සඳහා field_order 10000 දක්වා සාර්ථකව යළි පිහිටුවන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "ඇණවුම් නැවත සකස් කරන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ අන්තර්ගත වර්ගයේ මෙනු"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "මෙගා මෙනුවේ එක් එක් අන්තර්ගත වර්ගය සඳහා ස්වයංක්රීය මෙනු ඇතුළත් කිරීම් වින්යාස කරන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "පෙන්වීමට උපරිම මෙනු"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "මෙම අන්තර්ගත වර්ගය සඳහා ප්රදර්ශනය කළ යුතු උපරිම මෙනු ඇතුළත් කිරීම් සංඛ්යාව."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "ඩ්රුපල් මෙනු පිහිටීම"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "ඉහළට"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "පහළ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "ඩ්රුපල් මෙනු ඇතුළත් කිරීම් ස්වයංක්රීය ඇතුළත් කිරීම්වල ඉහළට හෝ පහළට දිස්වනු ඇත."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "රටේ පැතිකඩ මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "නාභීය ස්ථාන මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "ජාතික ඉලක්ක මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "ජාතික වාර්තා මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "සංසදයේ මෙනුව"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "මෙනු තත්ත්වය"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "මෙනු ඇතුළත් කිරීම් දිස්වන ස්ථානය."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "හිස් වුවද මෙනුව පෙන්වන්න"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "ඇතුළත් කිරීම් නොමැති විට පවා මෙම මෙනු කොටස පෙන්වන්න."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "මෙනු අවසර යාවත්කාලීන කිරීමේදී දෝෂයක් සිදු විය. කරුණාකර ලඝු-සටහන් පරීක්ෂා කරන්න."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "එය ක්රියා කරන්නේ කෙසේද"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "මුල් පිටුවට ප්රවර්ධනය කිරීම:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "විශේෂාංග ලැයිස්තුගත කිරීම්, මුල් පිටු කුට්ටි හෝ “ප්රවර්ධනය කරන ලද” දර්ශනවල අන්තර්ගතය දිස්වේ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "වැදගත් හෝ කාලෝචිත අන්තර්ගතයන් ඉස්මතු කිරීම සඳහා ප්රයෝජනවත්"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "බහු භාණ්ඩ එකවර ප්රවර්ධනය කළ හැකිය"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "ලැයිස්තු ඉහළින් ඇලෙන සුළු:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "අන්තර්ගත ලැයිස්තුගත කිරීම්වල ඉහළට අන්තර්ගතය පින් කර ඇත"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "ප්රකාශන දිනය නොසලකා ඉහළින් පවතී"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "ඇලෙන සුළු නොවන අන්තර්ගතයට පෙර බහු ඇලෙන සුළු භාණ්ඩ"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "දෙකම භාවිතා කිරීම:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "උපරිම දෘශ්යතාව සඳහා අන්තර්ගතය ප්රවර්ධනය කළ හැකි සහ ඇලෙන සුළු විය හැකිය."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "අන්තර්ගත වර්ග කිරීමේ ප්රමුඛතාව (ඉහළම සිට අඩුම දක්වා):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "ඇලෙන සුළු"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "“ලැයිස්තු මුදුනේ ඇලෙන සුළු” යනුවෙන් සලකුණු කර ඇති අයිතම සැමවිටම පළමුව"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "ඉහළ සංඛ්යා පෙර පහළ සංඛ්යා දිස්වේ (උදා: 10 20 ට පෙර දිස්වේ)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "උසස් කරන ලදි"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "“මුල් පිටුවට ප්රවර්ධනය” යනුවෙන් සලකුණු කර ඇති අයිතම ඊළඟට එයි"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "ආරම්භක දිනය"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "ඉන්පසු ආරම්භක දිනය අනුව වර්ග කර ඇත (හෝ ආරම්භක දිනය නොමැති නම් ප්රකාශයට පත් කරන දිනය)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "අවසන් වරට වෙනස් කරන ලදි"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "අවසාන වශයෙන් වඩාත්ම මෑතකදී යාවත්කාලීන"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "ඉඟිය:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "පෙරනිමි වර්ග කිරීම භාවිතා කිරීමට හිස්ව තබන්න. පසුව භාණ්ඩ ඇතුල් කිරීම සඳහා ඉඩක් ඉතිරි කිරීම සඳහා 10 ක වර්ධක (උදා: 10, 20, 30) භාවිතා කරන්න."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

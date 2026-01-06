@@ -315,10 +315,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Piirake mitte-administraatori kasutajatel teise taseme menüüüksuste loomist ja sügavamalt. Pesitatud menüüelemente saavad luua ainult kasutajad, kellel on menüü administreerimine."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Tõlke vaikesätted"
 
@@ -945,3 +941,528 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Siltide seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Administraatori seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Sisutüübi valikute laadimine ei õnnestunud siltide sõnavarast: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Reklaamivõimaluste abi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Reklaamimisvalikute abistekst"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Abitekst, mis selgitab reklaamitud ja kleepuvaid valikuid. HTML on lubatud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Tõlgi reklaami abiteksti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Silumislogimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Luba silumislogimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Luba Biolandi JavaScripti funktsioonide jaoks console.log väljund. Kasulik silumiseks."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Silumislogipiirkonnad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Valige, millised alad peaksid silumislogid väljastama. Efektiivne ainult siis, kui silumislogimine on lubatud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Logivälja nähtavus näita/peita toiminguid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Logige täiendavate väljade paigaldamine ja sisutüübi muudatused."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Logi automaatse kokkuvõtte genereerimine ja CKEditori ühendused."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Abi kommentaarid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Logi abi kommentaaride sisestamise ja nähtavuse muutuste kohta."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Reklaamimisvõimalused"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Süsteemi funktsioonid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Haldussüsteemi toimingud. Kasutage ettevaatlikult."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Reklaamige ja kleepuv"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Reklaami- ja kleepuvaid lippe kirjetel võivad näha avalikud või anonüümsed kasutajad."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Näita avalikele kasutajatele reklaami- ja kleepulippe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Drupali vahemälu haldamine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Kustutab kõik vahemällu salvestatud andmed Drupalist. See hõlmab lehekülje vahemälu, renderdamise vahemälu ja koostatud malle. Kasutage seda, kui näete vananenud sisu või pärast konfiguratsioonimuudatuste tegemist, mida saidil ei kajasta. Pange tähele, et see ei mõjuta CDN-i vahemälu, brauseri vahemälu ega vahevara API ümbrise vahemälu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Taasehitage Drupali vahemälu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Vahemälu taastamine..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Sisu tellimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Lähtestab välja_järjekorra väärtuse väärtuseks 1000 kõigi sõlmede puhul. See loob iga sõlme jaoks uue redaktsiooni koos redaktsiooniteatega „Lähtesta tellimus”. Algne viimati värskendatud kuupäev ja kasutaja säilivad. Kasutage seda sisu tellimise normaliseerimiseks kogu saidil."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Lähtesta tellimus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Tellimisväärtuste lähtestamine..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupali vahemälu on edukalt ümber ehitatud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Lähtestage edukalt field_order väärtusele 1000 @count sõlmede jaoks."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Esiots"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Üldine esiosa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Tõlkepartii toimingud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Töötle olemasolevaid olemeid puuduvate tõlke vaikesätete loomiseks. Konfigureerige tõlke vaikesätted vahekaardil Süsteemifunktsioonid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Megamenüü seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Megamenüü seaded on varsti saadaval."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Avalehekülje seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Avalehe seaded on varsti saadaval."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Linkiti moodul pole lubatud; profiili konfiguratsiooni vahele jätmine."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Loodud ja konfigureeritud Vaikimisi Linkiti profiil kõigi sobitajatega."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Uuendatud olemasolev Linkiti vaikeprofiil Biolandi matchers konfiguratsiooniga."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Linkiti profiili seadistamine on lõpule viidud: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkiti vaikeprofiil @status koos Biolandi matchers konfiguratsiooniga."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Nõutav moodul: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Konfigureeritud editor.editor.full_html koos Linkit laiendiga."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Redaktorit full_html ei leitud; Linkiti redaktori konfiguratsiooni vahele jätmine."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Konfigureeritud filter.format.full_html koos Linkiti filtriga."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Saidi e-post"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Peamenüü lukk"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Lukusta peamenüü redigeerimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Takistab scbd_staff, site_manager ja content_manager peamenüü redigeerimast. Kui see pole märgitud, antakse neile rollidele luba „Peamine navigeerimismenüü üksuste administreerimine”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Välja nähtavuse seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Luba"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Täiendavad siltide seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Organisatsiooni tüüp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Kuva organisatsioonitüübi sildid nende sisutüüpide jaoks:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Ökosüsteemi tüüp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Näita ökosüsteemi tüübi silte nende sisutüüpide jaoks:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Dokumendi tüüp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Kuva dokumendi tüübi sildid nende sisutüüpide jaoks:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Abi kommentaaride seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Kehavälja abi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Kehavälja abistekst"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Abitekst kuvatakse keha/sisuväljale."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "See on teie uue saidi sisu peamine sisu. Kokkuvõtte abil saate kuvada teie sisu lühikese kokkuvõtte kirjeldust. Lisaks kuvatakse kokkuvõte veebisaidil teie kirje loendi- ja kaardivaadetes. Teise võimalusena kasutatakse põhisisu esimesi lauseid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Keha abisteksti tõlkimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Manuste väljade abi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Piltide abistekst"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Manuste piltide jaotise abitekst."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Esimene pilt vasakult paremale järjekorras on teie kirje põhipilt, mis kuvatakse lehel ning loendi- ja kaardivaadete pisipiltidel. Kõik muud pildid kuvatakse põhisisu all."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Piltide abisteksti tõlkimine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Kangelaste abistekst"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Kangelasbännerite jaotise abistekst."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Igal lehele/sisutüübil võib olla mitu kangelase bännerit. Kui neid on rohkem kui üks, pööratakse neid tunni kaupa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Tõlgi kangelaste abistekst"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "„E <b>silehele reklaamitud:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Abitekst, mis selgitab reklaamitud ja kleepuvaid valikuid."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "„S <b>isu sortimise prioriteet (kõrgeimast madalaimani):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Sisu tellimise lähtestamine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Lähtestab field_order väärtuse väärtuseks 10000 kõigi sõlmede puhul. See loob iga sõlme jaoks uue redaktsiooni koos redaktsiooniteatega „Lähtesta tellimus”. Algne viimati värskendatud kuupäev ja kasutaja säilivad. Kasutage seda sisu tellimise normaliseerimiseks kogu saidil."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Lähtestage edukalt field_order väärtusele 10000 @count sõlmede jaoks."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Lähtesta tellimus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Sisutüübi menüüd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Konfigureerige automaatsed menüükirjed iga sisutüübi jaoks megamenüüs."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Maksimaalne kuvatav menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Selle sisutüübi jaoks kuvatavate menüükirjete maksimaalne arv."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Drupali menüüde asukoht"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Ülaosa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Alumine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Drupali menüükirjed kuvatakse automaatsete kirjete ülaosas või allosas."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Riikide profiilide menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Fookuspunktide menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Riiklikud sihtmärkide menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Riikliku aruande menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH Menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Foorumite menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Menüü asukoht"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Asukoht, kus menüükirjed kuvatakse."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Kuva menüü, isegi kui see on tühi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Kuvage see menüüjaotis isegi siis, kui kirjeid pole."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Menüüõiguste värskendamisel ilmnes tõrge. Palun kontrollige loge."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Kuidas see töötab"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Esilehel reklaamitud:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Sisu kuvatakse esiletõstetud loendites, kodulehtede plokkides või reklaamitud vaadetes"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Kasulik olulise või õigeaegse sisu esiletõstmiseks"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Samaaegselt saab reklaamida mitut eset"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Kleepuv loendite ülaosas:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Sisu jääb sisuloendite ülaosas kinnitatud"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Jääb ülaosas sõltumata avaldamise kuupäevast"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Enne mittekleepuvat sisu ilmub mitu kleepuvat eset"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Kasutades mõlemat:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Maksimaalse nähtavuse tagamiseks saab sisu nii reklaamida KUI ka kleepuvat."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Sisu sortimise prioriteet (kõrgeimast madalaimani):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Kleepuv"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Üksused, millele on märgitud „Kleepuv loendite ülaosas”, ilmuvad alati"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Madalamad numbrid ilmuvad enne suuremaid numbreid (nt 10 ilmub enne 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Reklaamitud"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Järgmisena tulevad esemed sildiga „Esilehel edutatud”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Alguskuupäev"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Seejärel sorteeritakse alguskuupäeva järgi (või avaldamise kuupäev, kui alguskuupäeva pole)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Viimati muudetud"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Lõpuks sorteeritud viimati uuendatud järgi"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Näpunäide:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Vaikimisi sortimise kasutamiseks jätke tühjaks. Kasutage samme 10 (nt 10, 20, 30), et jätta ruumi esemete hilisemaks sisestamiseks."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

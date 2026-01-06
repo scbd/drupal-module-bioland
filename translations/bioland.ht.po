@@ -315,10 +315,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Restriksyon sou itilizatè ki pa administratè soti nan kreye atik meni dezyèm-nivo ak pi fon. Se sèlman itilizatè yo ki gen “administre meni” pèmisyon ka kreye atik meni nisted."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Defaults tradiksyon"
 
@@ -945,3 +941,528 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Tags Anviwònman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Anviwònman admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Echwe nan chaje opsyon kalite kontni soti nan Tags vokabilè: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Opsyon Pwomosyon Ede"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Opsyon Pwomosyon èd tè"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Ede tèks ki eksplike opsyon ankouraje ak kolan yo. HTML pèmèt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Tradui Pwomosyon Èd Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Debug Log"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Pèmèt Debug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Pèmèt pwodiksyon console.log pou karakteristik Bioland JavaScript. Itil pou debogaj."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Debug Log Zòn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Chwazi ki zòn yo ta dwe pwodiksyon mòso bwa debug. Se sèlman efikas lè Debug Logging pèmèt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Log jaden vizibilite montre/kache operasyon yo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Log jaden adisyonèl aliye ak chanjman kalite kontni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Log jenerasyon rezime oto ak koneksyon CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Kòmantè èd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Log ede kòmantè ensèsyon ak chanjman vizibilite."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Opsyon Pwomosyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Fonksyon sistèm"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operasyon sistèm administratif. Sèvi ak prekosyon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Ankouraje ak kolan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Ankouraje ak drapo kolan sou dosye ka wè pa itilizatè piblik oswa anonim."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Montre drapo ankouraje ak kolan nan itilizatè piblik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Jesyon kachèt Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Netwaye tout done cached soti nan Drupal. Sa gen ladan caches paj, rann caches, ak modèl konpile. Sèvi ak sa a lè ou wè kontni demode oswa apre yo fin fè chanjman konfigirasyon ki pa reflete sou sit la. Remak byen, sa a pa afekte CDN kachèt, kachèt navigatè, oswa middleware API wrapper kachèt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Rekonstwi Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Rekonstwi kachèt..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Kòmande kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resete valè field_order a 1000 pou tout nœuds. Sa a kreye yon nouvo revizyon pou chak ne ak mesaj revizyon an “Reyajiste kòmande”. Orijinal dènye dat la mete ajou ak itilizatè yo konsève. Sèvi ak sa a nòmalize kòmande kontni atravè sit la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Reyajiste lòd"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Reyajiste valè kòmande..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupal kachèt te rebati avèk siksè."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Aksè Reyajiste field_order nan 1000 pou nœuds @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Fen devan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Front Fen Jeneral"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Operasyon pakèt tradiksyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Pwosesis antite ki deja egziste deja pou kreye defaults tradiksyon ki manke. Configure tradiksyon default anviwònman nan tab la Fonksyon Sistèm."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Anviwònman Mega Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Anviwònman Mega Menu vini byento."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Anviwònman paj kay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Anviwònman Paj Kay vini byento."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Modil Linkit pa pèmèt; sote konfigirasyon pwofil."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Te kreye ak configuré default Linkit pwofil ak tout matchers."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Mete ajou ki deja egziste deja default Linkit pwofil ak konfigirasyon Matchers Bioland."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Konfigirasyon pwofil Linkit konplete: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit default pwofil @status ak konfigirasyon Matchers Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Modil obligatwa: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Configure editor.editor.full_html ak ekstansyon Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editè full_html pa jwenn; sote Linkit editè konfigirasyon."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Configure filter.format.full_html ak filtre Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Sit Imèl"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Fèmen Menu Prensipal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Fèmen koreksyon meni prensipal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Anpeche scbd_staff, site_manager ak content_manager soti nan koreksyon meni prensipal la. Lè san tcheke, wòl sa yo pral akòde pèmisyon an “Administre atik meni Navigasyon Main”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Anviwònman vizibilite"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Pèmèt"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Anviwònman Tags anplis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Kalite òganizasyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Montre Tags Kalite Òganizasyon pou kalite kontni sa yo:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Kalite Ekosistèm"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Montre Ekosistèm Kalite Tags pou kalite kontni sa yo:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Kalite Dokiman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Montre Tags Kalite Dokiman pou kalite kontni sa yo:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Anviwònman kòmantè"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Ed nan jaden kò"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Tèks èd jaden kò"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Ede tèks parèt pou jaden kò/kontni an."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Sa a pral kontni prensipal la nan nouvo kontni sit ou. Rezime a ka itilize pou montre yon deskripsyon kout kout kontni ou. Pli lwen, rezime a pral parèt nan lis ak opinyon kat nan dosye ou sou sit entènèt la. Altènativman, yo pral premye fraz yo kèk soti nan kontni prensipal la dwe itilize."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Tradui Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Ed jaden atachman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Imaj èd tèks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Ede tèks pou seksyon imaj nan atachman yo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Premye imaj la nan lòd de bò gòch a dwa isit la, yo pral imaj prensipal la nan dosye ou parèt sou paj la ak nan thumbnails nan lis ak opinyon kat. Tout lòt imaj yo pral parèt anba a kontni prensipal la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Tradui imaj èd tèks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Ewo èd tèks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Tèks èd pou seksyon banyè ewo yo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Nenpòt ki kalite paj/kontni ka gen banyè ewo miltip. Si gen plis pase yon sèl yo pral vire sou yon baz èdtan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Tradui Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“An <b>kouraje nan devan paj:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Ede tèks ki eksplike opsyon ankouraje ak kolan yo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“Pri <b>yorite klasman kontni (pi wo a pi ba):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Reyajiste kòmand kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Resete valè field_order a 10000 pou tout nœuds. Sa a kreye yon nouvo revizyon pou chak ne ak mesaj revizyon an “Reyajiste kòmande”. Orijinal dènye dat la mete ajou ak itilizatè yo konsève. Sèvi ak sa a nòmalize kòmande kontni atravè sit la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Aksè Reyajiste field_order nan 10000 pou nœuds @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Reyajiste kòmande"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Menys Kalite Kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Configure antre meni otomatik pou chak kalite kontni nan meni an mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Meni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Meni maksimòm yo montre"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Maksimòm kantite antre meni yo montre pou kalite kontni sa a."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Pozisyon meni Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Top"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Anba"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Antre meni Drupal yo pral parèt nan tèt la oswa anba nan antre otomatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menu Peyi Profiles"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Meni pwen fokal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu Objektif Nasyonal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Meni Rapò Nasyonal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Meni BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Meni ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Meni fowòm"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Pozisyon meni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Pozisyon kote antre meni yo pral parèt."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Montre meni menm si vid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Montre seksyon meni sa a menm lè pa gen okenn antre."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Yon erè ki te fèt pandan y ap mete ajou otorizasyon meni. Tanpri tcheke mòso bwa yo."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Kijan li fonksyone"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Ankouraje nan devan paj:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Kontni parèt nan lis chin an tap, blòk paj dakèy, oswa opinyon “ankouraje”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Itil pou mete aksan sou kontni enpòtan oswa alè"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Ka atik miltip dwe ankouraje ansanm"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Kolan nan tèt lis:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Kontni rete piche nan tèt la nan lis kontni"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Rete nan tèt kèlkeswa dat piblikasyon"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Plizyè atik kolan parèt anvan kontni ki pa kolan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Sèvi ak tou de:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Kontni kapab tou de ankouraje AK kolan pou vizibilite maksimòm."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Priyorite klasman kontni (pi wo a pi ba):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Kolan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Atik ki make “kolan nan tèt lis” toujou parèt premye"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Nimewo ki pi ba parèt anvan nimewo ki pi wo (egzanp, 10 parèt anvan 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Ankouraje"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Atik ki make “Ankouraje nan paj devan” vini pwochen"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Dat Kòmanse"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Lè sa a, klase pa dat kòmanse (oswa dat pibliye si pa gen okenn dat kòmanse)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Dènye modifye"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Finalman klase pa pi dènyèman mete ajou"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Ide:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Kite vid pou sèvi ak klasman default. Sèvi ak increments nan 10 (egzanp, 10, 20, 30) yo kite plas pou mete atik pita."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Ƙuntata masu amfani da marasa gudanarwa daga ƙirƙirar abubuwa na menu na matakin biyu da zurfi. Masu amfani ne kawai tare da izinin “gudanar da menu” zasu iya ƙirƙirar abubuwan menu da aka tsara."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Ana buƙata)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Saitunan Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Saitunan Gudanarwa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "An kasa loda zaɓuɓɓukan nau'in abun ciki daga ƙamus ɗin alamun: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Taimakon Zaɓuɓɓuka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Zaɓuɓɓukan Taimako Rubutun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Taimakawa rubutu da ke bayanin zaɓuɓɓukan ingantaccen da An ba da izinin HTML."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Fassara Rubutun Taimakon Haɓaka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Bug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Kunna Bug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Kunna fitowar console.log don fasalulluka na Bioland JavaScript. Da amfani don ƙwaƙwalwa."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Yankunan Log na Debug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Zaɓi waɗanne yankuna ya kamata ya fitar da rajistan ɓarna. Yana tasiri kawai lokacin da aka kunna Debug Logging."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Ganuwa na Filin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Bayanin filin shiga nuna/ɓoye ayyukan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Shiga ƙarin filayen hawa da canje-canje nau'in abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Shiga ƙirƙirar taƙaitaccen atomatik da haɗin CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Taimako Sharhi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Log taimakon shigar da sharhi da canje-canje ganuwa."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Zaɓuɓɓɓukan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Ayyukan Tsarin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Ayyukan tsarin gudanarwa. Yi amfani da taka tsantsan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Haɓaka da ɗanɗano"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Haɓakawa da tutoci Sticky akan rikodin za a iya ganin jama'a ko masu amfani da marasa sani ba."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Nuna Haɓakawa da Tutoci mai ɗanɗano ga masu amfani da"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Gudanar da Cache na Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Yana share duk bayanan da aka keɓe daga Drupal. Wannan ya haɗa da keɓaɓɓun shafin, keɓaɓɓun keɓaɓɓu, da samfuran Yi amfani da wannan lokacin da kuka ga abun ciki na tsoho ko bayan yin canje-canje na daidaitawa waɗanda ba a nuna su akan rukunin yanar gizon ba. Lura, wannan baya shafar cache na CDN, cache mai bincike, ko cache na API na tsakiya."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Sake gina Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Sake gina cache..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Tsarin abun ciki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Sake saita ƙimar field_order zuwa 1000 don duk nodes. Wannan yana haifar da sabon bita ga kowane node tare da saƙon bita “Sake yin oda”. An kiyaye asalin ranar da aka sabunta na ƙarshe da mai amfani. Yi amfani da wannan don daidaita oda abun ciki a duk faɗin rukunin yanar gizon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Sake tsara oda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Sake saita ƙimar oda..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "An sake gina cache na Drupal cikin nasara."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Samun nasarar sake saita field_order zuwa 1000 don nodes @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Ƙarshen gaba"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Babban Ƙarshen Babban"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Ayyuka na Fassara"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Gudanar da ƙungiyoyin da ke akwai don ƙirƙirar tsoffin fassarar da suka ɓace Saita saitunan tsoho na fassara a cikin shafin Ayyukan Tsarin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Saitunan Menu na Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Saitunan Menu na Mega zuwa nan ba da jimawa ba."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Saitunan Shafin Gida"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Saitunan Shafin Gida suna zuwa nan da jimawa ba."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Ba a kunna tsarin Linkit ba; tsallake daidaitaccen bayanan martaba."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "An ƙirƙira da kuma saita tsoho bayanin Linkit tare da duk matchers."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "An sabunta bayanin martaba Linkit na yanzu tare da tsarin matchers na Bioland."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "An kammala tsarin bayanin martaba Linkit: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit tsoho bayanin martaba @status tare da tsarin matchers na Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Tsarin da ake buƙata: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "An daidaita editor.editor.full_html tare da tsawaita Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editan full_html ba a samu ba; tsallake daidaiton Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "An daidaita tace.format.full_html tare da tace Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Imel na Yanar Gizo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Takaitaccen atomatik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Babban Menu Kulle"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Kulle Babban Shirye-shiryen Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Yana hana scbd_staff, site_manager da content_manager daga gyara babban menu. Lokacin da ba a bincika ba, waɗannan matsayi za a ba da izinin “Gudanar da Babban abubuwan menu na kewayawa”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Saitunan Ganuwa na Filin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Kunna"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Ƙarin Saitunan Alamar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Nau'in ƙungiya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Nuna alamun Nau'in Ƙungiya don waɗannan nau'ikan abun ciki:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Nau'in Tsarin Halitta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Nuna alamun Nau'in Tsarin Halitta don waɗannan nau'ikan abun ciki:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Nau'in Takardu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Nuna alamun Nau'in Takardu don waɗannan nau'ikan abun ciki:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Taimako Saitunan Sharhi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Taimakon Filin Jiki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Rubutun Taimakon Filin Jiki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Rubutun taimako da aka nuna don jikin/filin abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Wannan zai zama babban abun ciki na sabon abun cikin rukunin yanar gizon ku. Ana iya amfani da taƙaitaccen taƙaitaccen bayanin abun cikin ku. Bugu da ƙari, za a nuna taƙaitaccen a cikin jerin da ra'ayoyin katin rikodin ku akan gidan yanar gizon. A madadin haka, za a yi amfani da jumloli na farko daga babban abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Fassara Rubutun Taimakon Jiki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Taimakon Filin da aka haɗa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Hotunan Taimakon Rubutu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Taimakawa rubutu don sashin hotuna na haɗe-haɗe."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Hoton farko a cikin tsari na hagu zuwa dama anan, zai zama babban hoton rikodin ku da aka nuna akan shafin kuma a cikin ƙananan hotuna a cikin jerin da ra'ayoyin katin. Duk sauran hotuna za a nuna a ƙasa da babban abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Fassara Hotunan Taimakon Rubutun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Rubutun Taimakon Jarumai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Rubutun taimako don ɓangaren bannerin gwarzo."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Duk wani shafi/nau'in abun ciki na iya samun banner gwarzo da yawa. Idan akwai fiye da ɗaya za a juya su a kan sa'a ɗaya."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Fassara Rubutun Taimako na Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“An <b>haɓaka zuwa shafin gaba:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Taimakawa rubutu da ke bayanin zaɓuɓɓukan ingantaccen da"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“Fifik <b>on rarraba abun ciki (mafi girma zuwa mafi ƙanƙanci):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Sake tsara Abun ciki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Sake saita ƙimar field_order zuwa 10000 don duk nodes. Wannan yana haifar da sabon bita ga kowane node tare da saƙon bita “Sake yin oda”. An kiyaye asalin ranar da aka sabunta na ƙarshe da mai amfani. Yi amfani da wannan don daidaita oda abun ciki a duk faɗin rukunin yanar gizon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Samun nasarar sake saita field_order zuwa 10000 don nodes @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Sake yin oda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Menu na nau'in abun ciki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Saita shigarwar menu ta atomatik don kowane nau'in abun ciki a cikin menu na mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Matsakaicin menu don nunawa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Matsakaicin adadin shigarwar menu don nunawa don wannan nau'in abun ciki."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Matsayin menu na Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Sama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "ƙasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Shigarwar menu na Drupal za su bayyana a saman ko kasan shigarwar atomatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menu na Bayanan Ƙasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Menu na Focal Points"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu na Makasudan Kasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menu na Rahoton Kasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Menu na BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Menu na Dandalin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Matsayi na menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Matsayi inda shigarwar menu za su bayyana."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Nuna menu koda kuwa komai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Nuna wannan ɓangaren menu koda lokacin da babu shigarwar."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Kuskuren ya faru yayin sabunta izinin menu. Da fatan za a duba rajistan ayyukan."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Yadda Ake Aiki"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "An haɓaka zuwa shafin gaba:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Abun ciki yana bayyana a cikin jerin abubuwan da aka nuna, tubalan shafin yanar gizo, ko ra'ayoyin “inganta"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Da amfani don haskaka abubuwa masu mahimmanci ko na lokaci"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Ana iya inganta abubuwa da yawa lokaci guda"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Mai ɗanɗewa a saman jerin jerin:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Abubuwan da ke ciki yana tsayawa a saman jerin abubuwan da ke ciki"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Ya kasance a saman ba tare da la'akari da ranar buga"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Abubuwa masu ɗanɗewa da yawa suna bayyana kafin abun ciki marasa"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Amfani da duka biyu:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Ana iya inganta abun ciki kuma mai ɗanɗano don iyakar ganuwa."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Fifikon rarraba abun ciki (mafi girma zuwa mafi ƙanƙanci):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Mai ɗanɗano"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Abubuwan da aka yiwa alama “Sticky a saman jerin” koyaushe suna bayyana da farko"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Ƙananan lambobi suna bayyana kafin lambobi mafi girma (misali, 10 sun bayyana kafin 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "An haɓaka"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Abubuwan da aka yiwa alama “An haɓaka zuwa shafin gaba” sun zo na gaba"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Kwanan Farawa"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Sannan an tsara ta ranar farawa (ko ranar buga idan babu ranar farawa)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "An gyara na ƙarshe"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "A ƙarshe an tsara ta hanyar sabunta kwanan nan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Tukwici:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Bar komai don amfani da rarraba tsoho. Yi amfani da ƙari na 10 (misali, 10, 20, 30) don barin ɗaki don saka abubuwa daga baya."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

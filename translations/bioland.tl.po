@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Limitahan ang mga gumagamit na hindi administrator mula sa paglikha ng pangalawang antas ng mga item sa menu at mas malalim Tanging ang mga gumagamit na may pahintulot na “admin menu” ang maaaring lumikha ng mga naka-nested na item sa menu"
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(Kinakailangan)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Mga Setting ng Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Mga Setting ng Admin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Nabigong mag-load ng mga pagpipilian sa uri ng nilalaman mula sa bokabularyo ng mga tag @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Tulong sa Mga Pagpipilian sa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Teksto ng Tulong ng Mga Pagpipilian"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Teksto ng tulong na nagpapaliwanag ng mga pagpipilian na Promoted at Pinapayagan ang HTML."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Isalin ang Promotion Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Pag-log sa pag-debug"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Paganahin ang Debug Logging"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Paganahin ang output ng console.log para sa mga tampok ng Bioland JavaScript. Kapaki-pakinabang para sa pag-debug."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Mga Lugar ng Debug Log"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Piliin kung aling mga lugar ang dapat i-output ng mga log ng debug. Epektibo lamang kapag pinagana ang Debug Logging."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Pagkakikita sa Patlang"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Ipinapakita/itago ang mga operasyon ng pagkakikita sa log field."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "I-log ang mga karagdagang patlang sa pag-mount at mga pagbabago sa uri ng nil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "I-log ang pagbuo ng awtomatikong buod at mga koneksyon sa CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Mga Komento sa Tulong"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Tulong sa log ang pagsasok ng komento at pagbabago sa kakayah"
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Pagpipilian sa Promosyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Mga Pag-andar ng System"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Mga operasyon ng administratibong sistema. Gamitin nang may pag-iingat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Itaguyod at Malagkit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Makikita ng mga pampubliko o hindi kilalang mga gumagamit ng mga pampubliko o hindi nagpapakilalang mga watawat sa mga tala"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Ipakita ang Promote at Sticky na watawat sa mga pampublikong gumagamit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Pamamahala ng Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Nililinis ang lahat ng naka-cache na data mula sa Drupal. Kasama dito ang mga cache ng pahina, render cache, at pinagsama-sama-sama na mga template. Gamitin ito kapag nakakita ka ng hindi napapanahong nilalaman o pagkatapos gumawa ng mga pagbabago sa pagsasaayos na hindi makikita sa site. Tandaan, hindi ito nakakaapekto sa cache ng CDN, cache ng browser, o middleware API wrapper cache."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Muling itayo ang Drupal Cache"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Muling pagtatayo ng cache..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Pag-order ng Nilalaman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "I-reset ang halaga ng field_order sa 1000 para sa lahat ng mga node. Lumilikha ito ng isang bagong pagbabago para sa bawat node na may mensahe ng pagbabago na “I-reset ang pag-order”. Ang orihinal na huling na-update na petsa at gumagamit ay napanatili. Gamitin ito upang gawing normal ang pag-order ng nilalaman sa buong site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "I-reset ang Pag-order"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Pag-reset ng mga halaga ng pag-order..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Matagumpay na itinayo ang cache ng Drupal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Matagumpay na i-reset ang field_order sa 1000 para sa mga node @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Harap na dulo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Pangkalahatang Front End"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Operasyon ng Batch ng Pagsasalin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Iproseso ang mga umiiral na entidad upang lumikha ng nawawalang default sa pagsasalin. I-configure ang mga default na setting ng pagsasalin sa tab na Mga Function ng System."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Mga Setting ng Mega Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Malapit na ang mga setting ng Mega Menu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Mga Setting ng Home Page"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Malapit na ang mga setting ng Home Page."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Hindi pinagana ang module ng Linkit; laktawan ang pagsasaayos ng profile."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Nilikha at naka-configure ang default na Linkit profile sa lahat ng mga matcher."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Nai-update ang umiiral na default na profile ng Linkit na may pagsasaayos ng Bioland matchers."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Nakumpleto ang pagsasaayos ng profile ng Linkit: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Linkit default na profile @status na may pagsasaayos ng Bioland matchers."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Kinakailangang module: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Naka-configure na editor.editor.full_html na may extension ng Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Hindi natagpuan ang editor full_html; laktawan ang pagsasaayos ng editor ng Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Naka-configure na filter.format.full_html na may Linkit filter."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Email Site"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Buod ng Auto"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Pangunahing Lock ng Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "I-lock ang Pag-edit ng Pangunahing Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Pinipigilan ang scbd_staff, site_manager at content_manager mula sa pag-edit ng pangunahing menu. Kapag hindi naka-check, bibigyan ang mga tungkulin na ito ng pahintulot na “Administrate Main navigation menu items”."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Mga Setting ng Pagkakayahang"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Paganahin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Mga Setting ng Karagdagang Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Uri ng Organisasyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Ipakita ang mga tag ng uri ng organisasyon para sa mga uri ng nilalaman na ito:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Uri ng Ecosystem"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Ipakita ang mga tag ng uri ng Ecosystem para sa mga uri ng nilalaman na ito:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Uri ng Dokumento"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Ipakita ang mga tag ng uri ng dokumento para sa mga uri ng nilalaman na ito:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Mga Setting ng Mga Puna ng Tul"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Tulong sa Patlang ng Katawan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Teksto ng Tulong sa Patlang ng Katawan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Ipinapakita ang teksto ng tulong para sa patlang ng katawan/nilalaman."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Ito ang magiging pangunahing nilalaman ng iyong bagong nilalaman ng site. Maaaring gamitin ang buod upang magpakita ng isang maikling maikling paglalarawan ng iyong nilalaman. Dagdag pa, ang buod ay ipapakita sa listahan at mga view ng card ng iyong rekord sa website. Bilang kahalili, ang unang ilang mga pangungusap mula sa pangunahing nilalaman ay gagamitin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Isalin ang Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Tulong sa Patlang ng Mga Attach"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Teksto ng Tulong ng Mga Larawan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Teksto ng tulong para sa seksyon ng mga imahe ng mga attachment."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Ang unang imahe sa pagkakasunud-sunod ng kaliwa hanggang kanan dito, ang magiging pangunahing imahe ng iyong rekord na ipinapakita sa pahina at sa mga thumbnail sa listahan at mga view ng card. Ang lahat ng iba pang mga imahe ay ipapakita sa ibaba ng pangunahing nilalaman."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Isalin ang Teksto ng Tulong ng Mga"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Teksto ng Tulong sa Bayani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Teksto ng tulong para sa seksyon ng mga banner ng bayani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Ang anumang uri ng pahina/nilalaman ay maaaring magkaroon ng maraming mga banner ng bayani. Kung mayroong higit sa isa ay maiikot sila sa isang oras na batayan."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Isalin ang Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“I <b>sinusulong sa front page:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Teksto ng tulong na nagpapaliwanag ng mga pagpipilian na Promoted at"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“Priy <b>oridad sa pag-uuri ng nilalaman (pinakamataas hanggang pinakamababa):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "I-reset ang pag-order ng nilalaman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "I-reset ang halaga ng field_order sa 10000 para sa lahat ng mga node. Lumilikha ito ng isang bagong pagbabago para sa bawat node na may mensahe ng pagbabago na “I-reset ang pag-order”. Ang orihinal na huling na-update na petsa at gumagamit ay napanatili. Gamitin ito upang gawing normal ang pag-order ng nilalaman sa buong site."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Matagumpay na i-reset ang field_order sa 10000 para sa mga node @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "I-reset ang pag-order"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Mga Menu ng Uri ng Nilalaman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "I-configure ang mga awtomatikong entry sa menu para sa bawat uri ng nilalaman sa mega menu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Pinakamataas na mga menu upang ipakita"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Pinakamataas na bilang ng mga entry sa menu na ipapakita para sa uri ng nilalaman na ito."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Posisyon ng mga menu ng Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Nangungunang"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Ibaba"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Lilitaw ang mga entry sa menu ng Drupal sa tuktok o ibaba ng mga awtomatikong entry."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Menu ng Mga Profile ng Bansa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Menu ng Focal Points"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu ng Pambansang Target"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menu ng Pambansang Ulat"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "ABSCH Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Menu ng Mga Forum"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Posisyon ng menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Posisyon kung saan lilitaw ang mga entry sa menu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Ipakita ang menu kahit walang laman"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Ipakita ang seksyon ng menu na ito kahit na walang mga entry."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Naganap ang error habang nag-update ng mga pahintulot sa menu. Mangyaring suriin ang mga log."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Paano ito gumagana"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Itinaguyod sa front page:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Lumilitaw ang nilalaman sa mga itinatampok na listahan, mga bloke ng homepage, o “na-promosyon” na mga view"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Kapaki-pakinabang para sa pag-highlight ng mahalaga o napap"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Maramihang mga item ay maaaring isulong nang sabay-sabay"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Malagkit sa tuktok ng mga listahan:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Ang nilalaman ay mananatiling naka-pin sa tuktok ng mga listahan ng nilalaman"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Nananatili sa itaas anuman ang petsa ng paglalathala"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Lumilitaw ang maraming malagkit na item bago ang hindi malagkit na nilalaman"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Paggamit ng pareho:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Ang nilalaman ay maaaring parehong itaguyod AT malagkit para sa maximum na kakayahang makita."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Priyoridad sa pag-uuri ng nilalaman (pinakamataas hanggang pinakamababa)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Malagkit"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Palaging lumilitaw muna ang mga item na minarkahan na “Malagkit sa tuktok ng mga listahan"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Lumilitaw ang mas mababang numero bago ang mas mataas na numero (hal., 10 lumilitaw bago 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Itinaguyod"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Susunod ang mga item na minarkahan na “Itinaguyod sa front page”"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Petsa ng Pagsisimula"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Pagkatapos ay iniuri ayon sa petsa ng pagsisimula (o petsa ng nai-publish kung walang petsa ng pagsisim"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Huling Binago"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Sa wakas ay nai-uri ayon sa pinakakailang na-update"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Tip:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Iwanan nang walang laman upang gamitin ang default na pag-uuri. Gumamit ng mga pagtaas ng 10 (hal., 10, 20, 30) upang mag-iwan ng puwang para sa pagpasok ng mga item sa ibang pagkakataon."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

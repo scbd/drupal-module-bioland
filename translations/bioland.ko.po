@@ -436,10 +436,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "관리자가 아닌 사용자가 2단계 이상의 메뉴 항목을 만들지 못하도록 제한합니다.“메뉴 관리” 권한이 있는 사용자만 중첩된 메뉴 항목을 만들 수 있습니다."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
 msgstr "(필수)"
 
@@ -862,3 +858,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "태그 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "관리자 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "태그 어휘에서 콘텐츠 유형 옵션을 로드하지 못했습니다: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "프로모션 옵션 도움말"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "프로모션 옵션 도움말 텍스트"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "프로모션 및 고정 옵션을 설명하는 도움말 텍스트입니다.HTML은 허용됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "프로모션 도움말 텍스트 번역"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "디버그 로깅"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "디버그 로깅 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "바이오랜드 자바스크립트 기능의 console.log 출력을 활성화합니다.디버깅에 유용합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "디버그 로그 영역"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "디버그 로그를 출력할 영역을 선택합니다.디버그 로깅이 활성화된 경우에만 유효합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "현장 가시성"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "로그 필드 가시성 표시/숨기기 작업"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "추가 필드 마운팅 및 콘텐츠 유형 변경을 기록합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "자동 요약 생성 및 CKEditor 연결을 기록합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "도움말 댓글"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "도움말 설명 삽입 및 가시성 변경을 기록합니다."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "프로모션 옵션"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "시스템 함수"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "관리 시스템 운영.주의해서 사용하세요."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "홍보 및 고정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "레코드의 프로모션 및 스티커 플래그는 일반 사용자 또는 익명 사용자가 볼 수 있습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "공개 사용자에게 프로모션 및 고정 플래그 표시"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "드루팔 캐시 관리"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Drupal에서 캐시된 모든 데이터를 지웁니다.여기에는 페이지 캐시, 렌더링 캐시, 컴파일된 템플릿이 포함됩니다.오래된 콘텐츠를 보거나 사이트에 반영되지 않은 구성을 변경한 후에 사용하세요.참고로, 이는 CDN 캐시, 브라우저 캐시 또는 미들웨어 API 래퍼 캐시에는 영향을 주지 않습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "드루팔 캐시 재구축"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "캐시 재구축 중..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "콘텐츠 주문"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "모든 노드에 대해 필드_오더 값을 1000으로 재설정합니다.그러면 각 노드에 대해 “Reset order”라는 수정 메시지와 함께 새 개정이 생성됩니다.원래의 최종 업데이트 날짜 및 사용자는 보존됩니다.이를 사용하여 사이트 전체에서 콘텐츠 순서를 표준화할 수 있습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "주문 재설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "주문 값 재설정 중..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Drupal 캐시가 성공적으로 재구축되었습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "@count 노드의 필드_주문을 1000으로 성공적으로 재설정했습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "프런트엔드"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "프론트엔드 일반"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "번역 배치 작업"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "기존 엔티티를 처리하여 누락된 번역 기본값을 생성합니다.시스템 함수 탭에서 번역 기본 설정을 구성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "메가 메뉴 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "메가 메뉴 설정이 곧 제공됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "홈 페이지 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "홈 페이지 설정이 곧 제공될 예정입니다."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Linkit 모듈이 활성화되지 않았습니다. 프로필 구성을 건너뛰는 중입니다."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "모든 매처를 사용하여 기본 Linkit 프로필을 만들고 구성했습니다."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "기존 기본 Linkit 프로필을 Bioland 매처 구성으로 업데이트했습니다."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "링크킷 프로필 구성 완료: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "기본 프로필 @status 를 바이오랜드 매처 구성과 연결합니다."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "필수 모듈: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "편집기.editor.full_html을 링크킷 확장자로 구성했습니다."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "편집기의 full_html을 찾을 수 없습니다. Linkit 편집기 구성을 건너뛰는 중입니다."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "링킷 필터를 사용하여 filter.format.full_html을 구성했습니다."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "사이트 이메일"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "자동 요약"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "메인 메뉴 잠금"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "메인 메뉴 편집 잠금"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "scbd_staff, site_manager 및 content_manager가 기본 메뉴를 편집하지 못하도록 합니다.선택을 취소하면 이러한 역할에 “기본 탐색 메뉴 항목 관리” 권한이 부여됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "필드 가시성 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "추가 태그 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "조직 유형"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "다음 콘텐츠 유형에 조직 유형 태그를 표시합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "에코시스템 유형"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "다음 콘텐츠 유형에 대한 에코시스템 유형 태그를 표시합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "문서 유형"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "다음 콘텐츠 유형에 대한 문서 유형 태그를 표시합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "도움말 댓글 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "바디 필드 도움말"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "본문 필드 도움말 텍스트"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "본문/콘텐츠 필드에 도움말 텍스트가 표시됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "새 사이트 콘텐츠의 기본 콘텐츠가 됩니다.요약은 콘텐츠에 대한 간략한 설명을 표시하는 데 사용할 수 있습니다.또한, 요약은 웹 사이트에 있는 사용자 레코드의 목록 및 카드 보기에 표시됩니다.또는 기본 콘텐츠의 처음 몇 문장을 사용할 수도 있습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "본문 도움말 텍스트 번역"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "첨부 파일 필드 도움말"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "이미지 도움말 텍스트"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "첨부 파일의 이미지 섹션에 대한 도움말 텍스트입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "여기서 왼쪽에서 오른쪽 순서로 표시된 첫 번째 이미지는 페이지 및 목록 및 카드 보기의 썸네일에 표시되는 레코드의 기본 이미지입니다.다른 모든 이미지는 기본 콘텐츠 아래에 표시됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "이미지 번역 도움말 텍스트"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "히어로즈 도움말 텍스트"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "히어로 배너 섹션의 도움말 텍스트입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "모든 페이지/콘텐츠 유형에는 여러 개의 히어로 배너가 있을 수 있습니다.두 개 이상인 경우 시간 단위로 회전됩니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "히어로즈 도움말 텍스트 번역하기"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "“<b>첫 페이지로 승격:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "프로모션 및 고정 옵션을 설명하는 도움말 텍스트입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "“<b>콘텐츠 정렬 우선 순위 (가장 높은 것부터 가장 낮은 것까지):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "콘텐츠 주문 재설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "모든 노드에 대해 필드_오더 값을 10000으로 재설정합니다.그러면 각 노드에 대해 “Reset order”라는 수정 메시지와 함께 새 개정이 생성됩니다.원래의 최종 업데이트 날짜 및 사용자는 보존됩니다.이를 사용하여 사이트 전체에서 콘텐츠 순서를 표준화할 수 있습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "@count 노드의 필드_주문을 10000으로 성공적으로 재설정했습니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "주문 재설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ 콘텐츠 유형 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "메가 메뉴의 각 콘텐츠 유형에 대한 자동 메뉴 항목을 구성합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "표시할 최대 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "이 콘텐츠 유형에 대해 표시할 최대 메뉴 항목 수입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "드루팔 메뉴 위치"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "탑"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "하단"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Drupal 메뉴 항목은 자동 항목의 상단 또는 하단에 나타납니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "국가 프로필 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "포컬 포인트 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "내셔널 타겟 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "내셔널 리포트 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "BCH 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "앱쉬 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "포럼 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "메뉴 위치"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "메뉴 항목이 표시될 위치입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "비어있는 경우에도 메뉴 표시"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "항목이 없는 경우에도 이 메뉴 섹션을 표시합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "메뉴 권한을 업데이트하는 동안 오류가 발생했습니다.로그를 확인해 주세요."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "작동 원리"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "첫 페이지로 승격:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "추천 목록, 홈페이지 블록 또는 '프로모션' 보기에 콘텐츠가 표시됨"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "중요하거나 시기적절한 콘텐츠를 강조할 때 유용합니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "여러 아이템을 동시에 프로모션할 수 있습니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "목록 상단에 고정:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "콘텐츠는 콘텐츠 목록 상단에 고정됩니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "발행일에 관계없이 최상위에 유지"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "고정되지 않는 콘텐츠 앞에 여러 개의 고정 항목이 표시됨"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "둘 다 사용:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "콘텐츠는 홍보할 수도 있고 고정할 수도 있어 가시성을 극대화할 수 있습니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "콘텐츠 정렬 우선 순위 (가장 높은 것부터 가장 낮은 것까지):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "끈적끈적한"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "'목록 상단에 고정됨'으로 표시된 항목이 항상 먼저 표시됩니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "낮은 숫자가 높은 숫자보다 먼저 나타납니다 (예: 10은 20 앞에 나타남)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "승진"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "“프론트 페이지로 승격됨”으로 표시된 항목은 다음과 같습니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "시작일"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "그런 다음 시작 날짜 (또는 시작 날짜가 없는 경우 게시된 날짜) 별로 정렬합니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "최종 수정"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "마지막으로 가장 최근에 업데이트된 순으로 정렬되었습니다."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "팁:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "기본 정렬을 사용하려면 비워 두십시오.10씩 (예: 10, 20, 30) 씩 늘려 나중에 항목을 삽입할 수 있는 공간을 확보하세요."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

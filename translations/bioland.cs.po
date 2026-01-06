@@ -303,10 +303,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Omezte uživatelům, kteří nejsou administrátory, ve vytváření položek nabídky druhé úrovně a hlouběji. Vnořené položky nabídky mohou vytvářet pouze uživatelé s oprávněním „spravovat nabídku“."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Výchozí nastavení překladu"
 
@@ -929,3 +925,536 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Nastavení značek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Nastavení administrátora"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Nepodařilo se načíst volby typu obsahu ze slovní zásoby značek: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Nápověda k možnostem propagace"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Text nápovědy k možnostem propagace"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Text nápovědy vysvětlující možnosti Promoted a Sticky. HTML je povoleno."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Přeložte text nápovědy k propagaci"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Protokolování ladění"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Povolit protokolování ladění"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Povolit výstup console.log pro funkce JavaScriptu Bioland. Užitečné pro ladění."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Oblasti protokolu ladění"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Vyberte oblasti, které by měly vydávat protokoly ladění. Účinné pouze v případě, že je povoleno protokolování ladění."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility"
+msgstr "Viditelnost pole"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Viditelnost pole protokolu zobrazovat/skrýt operace."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Zaznamenejte dodatečné změny připojení polí a typu obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Automatické generování souhrnu protokolů a připojení CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Komentáře k nápovědě"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Zaznamenejte vkládání komentářů a změny viditelnosti nápovědy."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Možnosti propagace"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Systémové funkce"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Operace administrativního systému. Používejte s opatrností."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Propagujte a lepte"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Propagační a lepicí vlajky na záznamech mohou vidět veřejní nebo anonymní uživatelé."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Zobrazit vlajky Propagujte a Sticky veřejným uživatelům"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Správa mezipaměti Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Vymaže všechna data uložená v mezipaměti z Drupalu. To zahrnuje mezipaměti stránek, vykreslovací mezipaměti a kompilované šablony. Použijte to, když vidíte zastaralý obsah nebo po provedení změn konfigurace, které se na webu neodrážejí. Všimněte si, že to nemá vliv na mezipaměť CDN, mezipaměť prohlížeče ani mezipaměť obalu rozhraní API middleware."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Znovu sestavit mezipaměť Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Obnovení mezipaměti..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Objednávání obsahu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Obnoví hodnotu field_order na 1000 pro všechny uzly. Tím se vytvoří nová revize pro každý uzel se zprávou revize „Obnovit pořadí“. Původní datum poslední aktualizace a uživatel jsou zachovány. To slouží k normalizaci pořadí obsahu napříč webem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Obnovit objednávání"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Obnovení objednávkových hodnot..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Mezipaměť Drupal byla úspěšně přestavěna."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Úspěšně resetujte field_order na 1000 pro uzly @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Přední konec"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Front End Obecné"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Dávkové operace překladu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Zpracováním existujících entit vytvoříte chybějící výchozí hodnoty překladu. Nakonfigurujte výchozí nastavení překladu na kartě Systémové funkce."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Nastavení nabídky Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Nastavení Mega Menu již brzy."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Nastavení domovské stránky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Nastavení domovské stránky již brzy."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Modul Linkit není povolen; přeskakuje se konfigurace profilu."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Vytvořen a nakonfigurován výchozí profil Linkit se všemi porovnávači."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Aktualizován stávající výchozí profil Linkit s konfigurací Bioland matchers."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Konfigurace profilu Linkit dokončena: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Výchozí profil Linkit @status s konfigurací Bioland matchers."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Požadovaný modul: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Nakonfigurovaný editor.editor.full_html s příponou Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Editor full_html nebyl nalezen; přeskočí konfiguraci editoru Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Nakonfigurovaný filter.format.full_html s filtrem Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "E-mail webu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Auto Summary"
+msgstr "Automatické shrnutí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Zámek hlavní nabídky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Uzamknout úpravy hlavní nabídky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Zabraňuje editaci hlavní nabídky scbd_staff, site_manager a content_manager. Pokud není zaškrtnuto, budou těmto rolím uděleno oprávnění „Spravovat hlavní položky navigačního menu“."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Field Visibility Settings"
+msgstr "Nastavení viditelnosti pole"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Povolit"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Další nastavení značek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Typ organizace"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Zobrazit tagy typu organizace pro tyto typy obsahu:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Typ ekosystému"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Zobrazit tagy typu ekosystému pro tyto typy obsahu:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Typ dokumentu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Zobrazit tagy typu dokumentu pro tyto typy obsahu:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Nastavení komentářů k nápovědě"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Nápověda k tělesnému poli"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Text nápovědy k poli těla"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Text nápovědy zobrazený pro pole tělo/obsah."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Toto bude hlavní obsah vašeho nového obsahu webu. Souhrn lze použít k zobrazení stručného stručného popisu vašeho obsahu. Dále se souhrn zobrazí v zobrazeních seznamu a karet vašeho záznamu na webových stránkách. Alternativně bude použito prvních několik vět z hlavního obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Přeložte Body Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Nápověda k poli Přílohy"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Text nápovědy k obrázkům"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Text nápovědy pro část obrázků v přílohách."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "První obrázek v pořadí zleva doprava zde bude hlavním obrázkem vašeho záznamu zobrazeného na stránce a v miniaturách v zobrazení seznamu a karet. Všechny ostatní obrázky se zobrazí pod hlavním obsahem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Text nápovědy pro překlad obrázků"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Text nápovědy Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Text nápovědy pro sekci bannerů hrdinů."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Jakýkoli typ stránky/obsahu může mít více bannerů hrdinů. Pokud je jich více než jeden, budou střídány každou hodinu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Přeložte Heroes Help Text"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "„Pov <b>ýšen na titulní stránku:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Text nápovědy vysvětlující možnosti Promoted a Sticky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "„<b>Priorita třídění obsahu (nejvyšší po nejnižší):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Obnovit pořadí obsahu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Obnoví hodnotu field_order na 10000 pro všechny uzly. Tím se vytvoří nová revize pro každý uzel se zprávou revize „Obnovit pořadí“. Původní datum poslední aktualizace a uživatel jsou zachovány. To slouží k normalizaci pořadí obsahu napříč webem."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Úspěšně resetujte field_order na 10000 pro uzly @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Obnovit objednávání"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Nabídky typu obsahu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Nakonfigurujte automatické položky nabídky pro každý typ obsahu v mega menu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Nabídka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Maximální počet zobrazených nabídek"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Maximální počet položek nabídky, které se mají zobrazit pro tento typ obsahu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Pozice nabídek Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Vrchol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Spodní"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Položky nabídky Drupal se zobrazí v horní nebo dolní části automatických záznamů."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Nabídka profilů zemí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Nabídka kontaktních bodů"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Menu národních cílů"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Menu národní zprávy"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Nabídka BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Nabídka ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Nabídka fóra"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Pozice nabídky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Umístění, kde se zobrazí položky nabídky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Zobrazit nabídku, i když je prázdná"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Zobrazte tuto sekci nabídky, i když nejsou žádné položky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Při aktualizaci oprávnění nabídky došlo k chybě. Zkontrolujte prosím protokoly."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Jak to funguje"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Povýšena na titulní stranu:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Obsah se zobrazuje v doporučených seznamech, blocích domovské stránky nebo v „propagovaných“ zobrazeních"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Užitečné pro zvýraznění důležitého nebo včasného obsahu"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Více položek lze propagovat současně"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Lepkavé v horní části seznamů:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Obsah zůstane připnutý v horní části výpisů obsahu"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Zůstává nahoře bez ohledu na datum zveřejnění"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Před nelepivým obsahem se zobrazí více lepivých položek"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Používání obou:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Obsah může být propagován a lepkavý pro maximální viditelnost."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Priorita třídění obsahu (nejvyšší až nejnižší):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Lepkavý"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Položky označené jako „Lepkavé v horní části seznamů“ se vždy zobrazí jako první"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Nižší čísla se objeví před vyššími čísly (např. 10 se objeví před 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Propagováno"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Položky označené jako „Povýšeno na titulní stránku“ následují"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Datum zahájení"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Poté seřazeno podle data zahájení (nebo data zveřejnění, pokud není datum zahájení)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Naposledy upraveno"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Nakonec seřazeno podle naposledy aktualizovaných"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Tip:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Chcete-li použít výchozí třídění, ponechte prázdné. Použijte přírůstky po 10 (např. 10,20,30), abyste ponechali prostor pro pozdější vkládání položek."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"

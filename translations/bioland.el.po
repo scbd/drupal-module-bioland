@@ -337,10 +337,6 @@ msgid "Restrict non-administrator users from creating second-level menu items an
 msgstr "Περιορίστε τους χρήστες που δεν είναι διαχειριστές από τη δημιουργία στοιχείων μενού δεύτερου επιπέδου και βαθύτερα. Μόνο οι χρήστες με άδεια «διαχειριστής μενού» μπορούν να δημιουργήσουν ένθετα στοιχεία μενού."
 
 #: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Προεπιλογές μετάφρασης"
 
@@ -963,3 +959,524 @@ msgstr "Content types that will have Document Types tags available."
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Types tags for these content types:"
 msgstr "Show Document Types tags for these content types:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Tags Settings"
+msgstr "Ρυθμίσεις ετικετών"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Admin Settings"
+msgstr "Ρυθμίσεις διαχειριστή"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@name (@tid)"
+msgstr "@name (@tid)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Failed to load content type options from tags vocabulary: @message"
+msgstr "Αποτυχία φόρτωσης επιλογών τύπου περιεχομένου από λεξιλόγιο ετικετών: @message"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help"
+msgstr "Βοήθεια επιλογών προώθησης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promotion Options Help Text"
+msgstr "Επιλογές προώθησης Κείμενο βοήθειας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
+msgstr "Κείμενο βοήθειας που εξηγεί τις επιλογές Promoted και Sticky. Επιτρέπεται η HTML."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Promotion Help Text"
+msgstr "Μετάφραση κειμένου βοήθειας προώθησης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Logging"
+msgstr "Καταγραφή εντοπισμού σφαλμάτων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Debug Logging"
+msgstr "Ενεργοποίηση καταγραφής εντοπισμού σφαλμάτων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
+msgstr "Ενεργοποιήστε την έξοδο console.log για τις δυνατότητες JavaScript της Bioland. Χρήσιμο για τον εντοπισμό σφαλμάτων."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Debug Log Areas"
+msgstr "Εντοπισμός εντοπισμού σφαλμάτων σε περιοχές καταγραφής"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
+msgstr "Επιλέξτε ποιες περιοχές θα πρέπει να εξάγουν αρχεία καταγραφής εντοπισμού σφαλμάτων. Ισχύει μόνο όταν είναι ενεργοποιημένη η καταγραφή εντοπισμού σφαλμάτων."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log field visibility show/hide operations."
+msgstr "Λειτουργίες εμφάνισης/απόκρυψης ορατότητας πεδίου καταγραφής."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log additional fields mounting and content type changes."
+msgstr "Καταγραφή πρόσθετων πεδίων συναρμολόγησης και αλλαγών τύπου περιεχομένου."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log auto summary generation and CKEditor connections."
+msgstr "Δημιουργία αυτόματης περίληψης καταγραφής και συνδέσεις CKEditor."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments"
+msgstr "Σχόλια βοήθειας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Log help comment insertion and visibility changes."
+msgstr "Βοήθεια καταγραφής εισαγωγής σχολίων και αλλαγών ορατότητας."
+
+#: js/bioland-help-comments-1-0-21.js
+msgid "Promotion Options"
+msgstr "Επιλογές προώθησης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "System Functions"
+msgstr "Λειτουργίες Συστήματος"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Administrative system operations. Use with caution."
+msgstr "Λειτουργίες διοικητικού συστήματος. Χρησιμοποιήστε με προσοχή."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky"
+msgstr "Προωθήστε και κολλήστε"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
+msgstr "Οι σημαίες προώθησης και κολλώδους στα αρχεία μπορούν να προβληθούν από δημόσιους ή ανώνυμους χρήστες."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Promote and Sticky flags to public users"
+msgstr "Εμφάνιση σημαιών Προώθησης και Sticky σε δημόσιους χρήστες"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal Cache Management"
+msgstr "Διαχείριση προσωρινής μνήμης Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
+msgstr "Διαγράφει όλα τα αποθηκευμένα δεδομένα από το Drupal. Αυτό περιλαμβάνει προσωρινές μνήμες σελίδων, κρυφές μνήμες απόδοσης και μεταγλωττισμένα πρότυπα. Χρησιμοποιήστε αυτό όταν βλέπετε ξεπερασμένο περιεχόμενο ή αφού κάνετε αλλαγές διαμόρφωσης που δεν αντικατοπτρίζονται στον ιστότοπο. Σημειώστε ότι αυτό δεν επηρεάζει την προσωρινή μνήμη CDN, την προσωρινή μνήμη του προγράμματος περιήγησης ή την προσωρινή μνήμη περιτυλίγματος API ενδιάμεσου λογισμικού."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuild Drupal Cache"
+msgstr "Ανακατασκευάστε την προσωρινή μνήμη Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Rebuilding cache..."
+msgstr "Ανακατασκευή προσωρινής μνήμης..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering"
+msgstr "Παραγγελία περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Επαναφέρει την τιμή field_order σε 1000 για όλους τους κόμβους. Αυτό δημιουργεί μια νέα αναθεώρηση για κάθε κόμβο με το μήνυμα αναθεώρησης «Επαναφορά παραγγελίας». Η αρχική ημερομηνία τελευταίας ενημέρωσης και ο χρήστης διατηρούνται. Χρησιμοποιήστε αυτό για να ομαλοποιήσετε την παραγγελία περιεχομένου σε ολόκληρο τον ιστότοπο."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset Ordering"
+msgstr "Επαναφορά παραγγελίας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resetting ordering values..."
+msgstr "Επαναφορά τιμών παραγγελίας..."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal cache has been rebuilt successfully."
+msgstr "Η προσωρινή μνήμη Drupal έχει ξαναχτιστεί με επιτυχία."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 1000 for @count nodes."
+msgstr "Επαναφέρετε επιτυχώς το field_order σε 1000 για κόμβους @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End"
+msgstr "Μπροστινό άκρο"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Front End General"
+msgstr "Γενικό μπροστινό άκρο"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translation Batch Operations"
+msgstr "Λειτουργίες παρτίδας μετάφρασης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
+msgstr "Επεξεργαστείτε υπάρχουσες οντότητες για να δημιουργήσετε προεπιλογές μετάφρασης που λείπουν. Διαμορφώστε τις προεπιλεγμένες ρυθμίσεις μετάφρασης στην καρτέλα Λειτουργίες συστήματος."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Settings"
+msgstr "Ρυθμίσεις μενού Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu settings coming soon."
+msgstr "Οι ρυθμίσεις Mega Menu έρχονται σύντομα."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Settings"
+msgstr "Ρυθμίσεις αρχικής σελίδας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page settings coming soon."
+msgstr "Οι ρυθμίσεις της αρχικής σελίδας έρχονται σύντομα."
+
+#: bioland.install
+msgid "Linkit module is not enabled; skipping profile configuration."
+msgstr "Η μονάδα Linkit δεν είναι ενεργοποιημένη. Παραλείπεται η διαμόρφωση προφίλ."
+
+#: bioland.install
+msgid "Created and configured default Linkit profile with all matchers."
+msgstr "Δημιουργήθηκε και διαμορφώθηκε το προεπιλεγμένο προφίλ Linkit με όλους τους ταιριαστές."
+
+#: bioland.install
+msgid "Updated existing default Linkit profile with Bioland matchers configuration."
+msgstr "Ενημερώθηκε το υπάρχον προεπιλεγμένο προφίλ Linkit με διαμόρφωση Bioland matchers."
+
+#: bioland.install
+msgid "Linkit profile configuration completed: @message"
+msgstr "Ολοκληρώθηκε η διαμόρφωση προφίλ Linkit: @message"
+
+#: bioland.install
+msgid "Linkit default profile @status with Bioland matchers configuration."
+msgstr "Προεπιλεγμένο προφίλ Linkit @status με διαμόρφωση αντιστοίχισης Bioland."
+
+#: bioland.install
+msgid "Required module: @module"
+msgstr "Απαιτούμενη ενότητα: @module"
+
+#: bioland.install
+msgid "Configured editor.editor.full_html with Linkit extension."
+msgstr "Διαμορφωμένος επεξεργαστής.editor.full_html με επέκταση Linkit."
+
+#: bioland.install
+msgid "Editor full_html not found; skipping Linkit editor configuration."
+msgstr "Ο επεξεργαστής full_html δεν βρέθηκε. Παραλείπεται η διαμόρφωση του επεξεργαστή Linkit."
+
+#: bioland.install
+msgid "Configured filter.format.full_html with Linkit filter."
+msgstr "Διαμορφωμένο φίλτρο.format.full_html με φίλτρο Linkit."
+
+#: bioland.install
+#: src/Form/BiolandSettingsForm.php
+msgid "Site Email"
+msgstr "Ηλεκτρονικό ταχυδρομείο ιστότοπου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Main Menu Lock"
+msgstr "Κλείδωμα κύριου μενού"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Lock Main Menu Editing"
+msgstr "Κλείδωμα επεξεργασίας κύριου μενού"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
+msgstr "Αποτρέπει την επεξεργασία του κύριου μενού των scbd_staff, site_manager και content_manager. Όταν δεν είναι επιλεγμένο, σε αυτούς τους ρόλους θα δοθεί η άδεια «Διαχείριση κύριων στοιχείων μενού πλοήγησης»."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable"
+msgstr "Ενεργοποίηση"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Additional Tags Settings"
+msgstr "Πρόσθετες ρυθμίσεις ετικετών"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Organization Type"
+msgstr "Τύπος Οργανισμού"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Organization Type tags for these content types:"
+msgstr "Εμφάνιση ετικετών τύπου οργανισμού για αυτούς τους τύπους περιεχομένου:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Ecosystem Type"
+msgstr "Τύπος οικοσυστήματος"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Ecosystem Type tags for these content types:"
+msgstr "Εμφάνιση ετικετών τύπου οικοσυστήματος για αυτούς τους τύπους περιεχομένου:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Document Type"
+msgstr "Τύπος εγγράφου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show Document Type tags for these content types:"
+msgstr "Εμφάνιση ετικετών τύπου εγγράφου για αυτούς τους τύπους περιεχομένου:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help Comments Settings"
+msgstr "Ρυθμίσεις σχολίων βοήθειας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help"
+msgstr "Βοήθεια πεδίου σώματος"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Body Field Help Text"
+msgstr "Κείμενο βοήθειας πεδίου σώματος"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text displayed for the body/content field."
+msgstr "Το κείμενο βοήθειας εμφανίζεται για το πεδίο σώματος/περιεχομένου."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
+msgstr "Αυτό θα είναι το κύριο περιεχόμενο του νέου περιεχομένου του ιστότοπού σας. Η περίληψη μπορεί να χρησιμοποιηθεί για να εμφανίσει μια σύντομη συνοπτική περιγραφή του περιεχομένου σας. Επιπλέον, η περίληψη θα εμφανίζεται σε προβολές λίστας και κάρτας της εγγραφής σας στον ιστότοπο. Εναλλακτικά, θα χρησιμοποιηθούν οι πρώτες προτάσεις από το κύριο περιεχόμενο."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Body Help Text"
+msgstr "Μετάφραση κειμένου βοήθειας σώματος"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Attachments Field Help"
+msgstr "Βοήθεια πεδίου συνημμένων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Images Help Text"
+msgstr "Κείμενο βοήθειας εικόνων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the images section of attachments."
+msgstr "Κείμενο βοήθειας για την ενότητα εικόνων των συνημμένων."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
+msgstr "Η πρώτη εικόνα με σειρά από αριστερά προς τα δεξιά εδώ, θα είναι η κύρια εικόνα της εγγραφής σας που εμφανίζεται στη σελίδα και σε μικρογραφίες σε προβολές λίστας και κάρτας. Όλες οι άλλες εικόνες θα εμφανίζονται κάτω από το κύριο περιεχόμενο."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Images Help Text"
+msgstr "Μετάφραση εικόνων Κείμενο βοήθειας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heroes Help Text"
+msgstr "Κείμενο βοήθειας ηρώων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text for the hero banners section."
+msgstr "Κείμενο βοήθειας για την ενότητα πανό ήρωων."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
+msgstr "Οποιοσδήποτε τύπος σελίδας/περιεχομένου μπορεί να έχει πολλαπλά πανό ηρώων. Εάν υπάρχουν περισσότερα από ένα, θα εναλλάσσονται σε ωριαία βάση."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Translate Heroes Help Text"
+msgstr "Μετάφραση κειμένου βοήθειας Heroes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Promoted to front page:</b>"
+msgstr "«<b>Προωθείται στην πρώτη σελίδα:</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Help text explaining the Promoted and Sticky options."
+msgstr "Κείμενο βοήθειας που εξηγεί τις επιλογές Promoted και Sticky."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "\"<b>Content sorting priority (highest to lowest):</b>"
+msgstr "«Προ <b>τεραιότητα ταξινόμησης περιεχομένου (υψηλότερη προς χαμηλότερη):</b>"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Ordering Reset"
+msgstr "Επαναφορά παραγγελίας περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
+msgstr "Επαναφέρει την τιμή field_order σε 10000 για όλους τους κόμβους. Αυτό δημιουργεί μια νέα αναθεώρηση για κάθε κόμβο με το μήνυμα αναθεώρησης «Επαναφορά παραγγελίας». Η αρχική ημερομηνία τελευταίας ενημέρωσης και ο χρήστης διατηρούνται. Χρησιμοποιήστε αυτό για να ομαλοποιήσετε την παραγγελία περιεχομένου σε ολόκληρο τον ιστότοπο."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Successfully reset field_order to 10000 for @count nodes."
+msgstr "Επαναφέρετε επιτυχώς το field_order σε 10000 για κόμβους @count."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Reset ordering"
+msgstr "Επαναφορά παραγγελίας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "🗂️ Content Type Menus"
+msgstr "🗂️ Μενού τύπου περιεχομένου"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Configure automatic menu entries for each content type in the mega menu."
+msgstr "Διαμορφώστε τις αυτόματες καταχωρήσεις μενού για κάθε τύπο περιεχομένου στο μενού mega."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "@type_name Menu"
+msgstr "@type_name Μενού"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum menus to show"
+msgstr "Μέγιστα μενού για εμφάνιση"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Maximum number of menu entries to display for this content type."
+msgstr "Μέγιστος αριθμός καταχωρήσεων μενού που θα εμφανίζονται για αυτόν τον τύπο περιεχομένου."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menus position"
+msgstr "Θέση μενού Drupal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Top"
+msgstr "Κορυφή"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Bottom"
+msgstr "Κατώτατο σημείο"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
+msgstr "Οι καταχωρήσεις μενού Drupal θα εμφανιστούν στο επάνω ή στο κάτω μέρος των αυτόματων καταχωρήσεων."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country Profiles Menu"
+msgstr "Μενού προφίλ χώρας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Focal Points Menu"
+msgstr "Μενού εστιακών σημείων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Menu"
+msgstr "Μενού Εθνικών Στόχων"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Report Menu"
+msgstr "Εθνικό Μενού Αναφορών"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "BCH Menu"
+msgstr "Μενού BCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "ABSCH Menu"
+msgstr "Μενού ABSCH"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Forums Menu"
+msgstr "Μενού φόρουμ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Menu position"
+msgstr "Θέση μενού"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries will appear."
+msgstr "Θέση όπου θα εμφανιστούν οι καταχωρήσεις μενού."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Show menu even if empty"
+msgstr "Εμφάνιση μενού ακόμα και αν είναι κενό"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Display this menu section even when there are no entries."
+msgstr "Εμφάνιση αυτής της ενότητας μενού ακόμα και όταν δεν υπάρχουν καταχωρήσεις."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "An error occurred while updating menu permissions. Please check the logs."
+msgstr "Παρουσιάστηκε σφάλμα κατά την ενημέρωση των δικαιωμάτων μενού. Παρακαλώ ελέγξτε τα αρχεία καταγραφής."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "How it Works"
+msgstr "Πώς λειτουργεί"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted to front page:"
+msgstr "Προωθείται στην πρώτη σελίδα:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
+msgstr "Το περιεχόμενο εμφανίζεται σε επιλεγμένες καταχωρίσεις, μπλοκ αρχικής σελίδας ή προβολές «προωθούμενων»"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Useful for highlighting important or timely content"
+msgstr "Χρήσιμο για την επισήμανση σημαντικού ή έγκαιρου περιεχομένου"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple items can be promoted simultaneously"
+msgstr "Πολλά αντικείμενα μπορούν να προωθηθούν ταυτόχρονα"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky at top of lists:"
+msgstr "Κολλώδες στην κορυφή των λιστών:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content stays pinned at the top of content listings"
+msgstr "Το περιεχόμενο παραμένει καρφιτσωμένο στην κορυφή των καταχωρίσεων περιεχομένου"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Remains at top regardless of publication date"
+msgstr "Παραμένει στην κορυφή ανεξάρτητα από την ημερομηνία δημοσίευσης"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Multiple sticky items appear before non-sticky content"
+msgstr "Εμφανίζονται πολλά κολλώδη στοιχεία πριν από το μη κολλώδες περιεχόμενο"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Using both:"
+msgstr "Χρησιμοποιώντας και τα δύο:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content can be both promoted AND sticky for maximum visibility."
+msgstr "Το περιεχόμενο μπορεί να προωθηθεί και να κολλήσει για μέγιστη ορατότητα."
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Content sorting priority (highest to lowest):"
+msgstr "Προτεραιότητα ταξινόμησης περιεχομένου (υψηλότερη προς χαμηλότερη):"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Sticky"
+msgstr "Κολλώδες"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Sticky at top of lists\" always appear first"
+msgstr "Τα στοιχεία με την ένδειξη «Κολλώδες στην κορυφή των λιστών» εμφανίζονται πάντα πρώτα"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
+msgstr "Οι χαμηλότεροι αριθμοί εμφανίζονται πριν από τους υψηλότερους αριθμούς (π.χ., το 10 εμφανίζεται πριν από το 20)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Promoted"
+msgstr "Προωθείται"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Items marked \"Promoted to front page\" come next"
+msgstr "Τα στοιχεία με την ένδειξη «Προωθείται στην πρώτη σελίδα» έρχονται στη συνέχεια"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Start Date"
+msgstr "Ημερομηνία έναρξης"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Then sorted by start date (or published date if no start date)"
+msgstr "Στη συνέχεια ταξινομείται κατά ημερομηνία έναρξης (ή ημερομηνία δημοσίευσης εάν δεν υπάρχει ημερομηνία έναρξης)"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Last Modified"
+msgstr "Τελευταία τροποποίηση"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Finally sorted by most recently updated"
+msgstr "Τελικά ταξινομήθηκε κατά την πιο πρόσφατη ενημέρωση"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Tip:"
+msgstr "Συμβουλή:"
+
+#: js/bioland-help-comments-1-0-36.js
+msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr "Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη ταξινόμηση. Χρησιμοποιήστε προσαυξήσεις των 10 (π.χ. 10, 20, 30) για να αφήσετε χώρο για την εισαγωγή αντικειμένων αργότερα."
+
+#: bioland.module
+msgid "URL"
+msgstr "URL"
