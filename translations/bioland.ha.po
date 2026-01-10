@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Gudanar da ƙungiyoyin da ke akwai don ƙirƙirar tsoffin fassarar da suka ɓace Saita saitunan tsoho na fassara a cikin shafin Ayyukan Tsarin."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Saitunan Menu na Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Saitunan Menu na Mega zuwa nan ba da jimawa ba."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Matsayi na menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Matsayi inda shigarwar menu za su bayyana."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Nuna menu koda kuwa komai"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Menu na nau'in abun ciki"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Ƙididdigar nau'in abun"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Game da Jaruman Shafin Gida"
 
@@ -1479,3 +1467,309 @@ msgstr "An buga"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Ba a buga"
+
+# Content Types
+msgid "News"
+msgstr "Labarai"
+
+msgid "Event"
+msgstr "Taron"
+
+msgid "Events"
+msgstr "Abubuwan"
+
+msgid "Learning Resource"
+msgstr "Albarkatun Koyarwa"
+
+msgid "Learning Resources"
+msgstr "Albarkatun Koyo"
+
+msgid "Project"
+msgstr "Aiki"
+
+msgid "Projects"
+msgstr "Ayyuka"
+
+msgid "Basic Page"
+msgstr "Shafin Asali"
+
+msgid "Basic Pages"
+msgstr "Shafuka na asali"
+
+msgid "Article"
+msgstr "Maƙala"
+
+msgid "Articles"
+msgstr "Abubuwa"
+
+msgid "Government Ministry or Institute"
+msgstr "Ma'aikatar Gwamnati ko Cibiyar"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ma'aikatun Gwamnati ko Cibiyoyin"
+
+msgid "Ecosystem"
+msgstr "Yanayin yanayi"
+
+msgid "Ecosystems"
+msgstr "Yanayin halittu"
+
+msgid "Protected Area"
+msgstr "Yanki mai kariya"
+
+msgid "Protected Areas"
+msgstr "Yankunan tsaro"
+
+msgid "Biodiversity Data"
+msgstr "Bayanan Halittu"
+
+msgid "Document"
+msgstr "Takarda"
+
+msgid "Documents"
+msgstr "Takardu"
+
+msgid "Related Website"
+msgstr "Yanar Gizo Mai Alaka"
+
+msgid "Related Websites"
+msgstr "Shafukan yanar gizon da"
+
+msgid "Other"
+msgstr "Sauran"
+
+msgid "Others"
+msgstr "Wasu"
+
+msgid "Image or Video"
+msgstr "Hoton ko Bidiyo"
+
+msgid "Images or Videos"
+msgstr "Hotunan ko Bidiyo"
+
+msgid "Other Resource"
+msgstr "Sauran Albarkatun"
+
+msgid "Other Resources"
+msgstr "Sauran Albarkatu"
+
+msgid "FAQ"
+msgstr "TAMBAYA"
+
+msgid "FAQs"
+msgstr "Tambayoyi"
+
+msgid "National Information"
+msgstr "Bayanin Kasa"
+
+msgid "National Informations"
+msgstr "Bayanan Kasa"
+
+msgid "Status of LMO"
+msgstr "Matsayi na LMO"
+
+msgid "Status of LMOs"
+msgstr "Matsayi na LMOs"
+
+msgid "Field Trial"
+msgstr "Gwajin Filin"
+
+msgid "Field Trials"
+msgstr "Gwajin Filin"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Dabarun Haɓaka Ƙasa"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Dabarun Haɓaka Ƙasa"
+
+msgid "Capacity Building"
+msgstr "Ginin Ƙarfin"
+
+msgid "Announcement"
+msgstr "Sanarwa"
+
+msgid "Announcements"
+msgstr "Sanarwa"
+
+msgid "Contact"
+msgstr "Tuntuɓi"
+
+msgid "Contacts"
+msgstr "Lambobin sadarwa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Saitunan Kayan Menu na Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Matsayi inda shigarwar menu da aka ƙirƙira da hannu a cikin drupal zai bayyana kusa da ɓangaren atomatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Menu na Ƙididdiga na Abubuwan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Saitunan Widget na Gida"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Kunna GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Kunna widget din GBIF (Global Biodiversity Information Facility) akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Ƙasa: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Tsoho da aka riga aka saita: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Abubuwan Zuƙowa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Matakin zuƙowa don taswirar (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Tsoho da aka riga aka saita: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Tsoho da aka riga aka saita: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Matsayin Tsakiya - Longitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Daidaitawar longitud don wurin tsakiyar taswira. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Matsayin Tsakiya - Latitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Daidaitawar Latitude don wurin tsakiyar taswira. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Sabbin Labarai da Sabuntawa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Kunna Sabbin Labarai da Sabuntawa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Kunna Sabbin Labarai da Sabuntawa widget din akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Maƙasudin Ƙasa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Kunna Widget na Ƙasashen Ƙasa"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Kunna widget ɗin Tarbiyyar Ƙasa akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Kunna Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Kunna widget din Panorama Solutions akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Kunna E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Kunna widget din E-Learning akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Aiwatarwa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Kunna Aiwatarwa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Kunna widget din Aiwatarwa akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget na Haɗin gwiwar Fasaha da Kimiyya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Kunna Widget na Fasaha da na Kimiyya"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Kunna widget ɗin Haɗin gwiwar Fasaha & Kimiyya akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Sabbin Tattaunawa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Kunna Sabbin Tattaunawa Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Kunna sabuwar Tattaunawa widget din akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget na Kididdigar Abun"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Kunna Widget na Ƙididdigar Abu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Kunna widget din Ƙididdigar abun ciki akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Kunna GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Kunna widget din GEOBON akan shafin gida."

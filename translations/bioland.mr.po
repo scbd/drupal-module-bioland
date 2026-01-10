@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "गमावलेले भाषांतर डिफॉल्ट तयार करण्यासाठी विद्यमान सिस्टम फंक्शन्स टॅबमध्ये भाषांतर डीफॉल्ट"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "मेगा मेनू सेटिंग"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "मेगा मेनू सेटिंग्ज लवकरच"
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "मेनू स्थिती"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "मेनू नोंदी दिसणाऱ्या स्थान."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "रिक्त असूनही मेनू दर्श"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "सामग्री प्रकार मेन"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "सामग्री प्रकार सां"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "मुख्य पृष्ठ नायक"
 
@@ -1479,3 +1467,309 @@ msgstr "प्रकाशित"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "अप्रकाशित"
+
+# Content Types
+msgid "News"
+msgstr "बातम्या"
+
+msgid "Event"
+msgstr "कार्यक्रम"
+
+msgid "Events"
+msgstr "कार्यक्रम"
+
+msgid "Learning Resource"
+msgstr "शिक्षण संसाधन"
+
+msgid "Learning Resources"
+msgstr "शिक्षण संसाधने"
+
+msgid "Project"
+msgstr "प्रकल्प"
+
+msgid "Projects"
+msgstr "प्रकल्प"
+
+msgid "Basic Page"
+msgstr "मूळ पृष्ठ"
+
+msgid "Basic Pages"
+msgstr "मूळ पृष्ठे"
+
+msgid "Article"
+msgstr "लेख"
+
+msgid "Articles"
+msgstr "लेख"
+
+msgid "Government Ministry or Institute"
+msgstr "सरकारी मंत्रालय किंवा संस्था"
+
+msgid "Government Ministries or Institutes"
+msgstr "सरकारी मंत्रालये किंवा संस्था"
+
+msgid "Ecosystem"
+msgstr "इकोसिस्टम"
+
+msgid "Ecosystems"
+msgstr "परिसंस्था"
+
+msgid "Protected Area"
+msgstr "संरक्षित क्षेत्र"
+
+msgid "Protected Areas"
+msgstr "संरक्षित क्षेत्रे"
+
+msgid "Biodiversity Data"
+msgstr "जैवविविधता डेटा"
+
+msgid "Document"
+msgstr "दस्तऐवज"
+
+msgid "Documents"
+msgstr "कागदपत्रे"
+
+msgid "Related Website"
+msgstr "संबंधित वेबसाइट"
+
+msgid "Related Websites"
+msgstr "संबंधित वेबसाइट्स"
+
+msgid "Other"
+msgstr "इतर"
+
+msgid "Others"
+msgstr "इतर"
+
+msgid "Image or Video"
+msgstr "प्रतिमा किंवा व्हिडिओ"
+
+msgid "Images or Videos"
+msgstr "प्रतिमा किंवा व्हिडिओ"
+
+msgid "Other Resource"
+msgstr "इतर संसाधने"
+
+msgid "Other Resources"
+msgstr "इतर संसाधने"
+
+msgid "FAQ"
+msgstr "प्रश्न"
+
+msgid "FAQs"
+msgstr "सामान्य प्रश्न"
+
+msgid "National Information"
+msgstr "राष्ट्रिक माहिती"
+
+msgid "National Informations"
+msgstr "राष्ट्रीय माहिती"
+
+msgid "Status of LMO"
+msgstr "एलएमओची स्थिती"
+
+msgid "Status of LMOs"
+msgstr "एलएमओची स्थिती"
+
+msgid "Field Trial"
+msgstr "फील्ड ट्रायल"
+
+msgid "Field Trials"
+msgstr "फील्ड ट्रायल"
+
+msgid "National Mainstreaming Strategy"
+msgstr "राष्ट्रीय मुख्य मुख्य"
+
+msgid "National Mainstreaming Strategies"
+msgstr "राष्ट्रीय मुख्य मुख्य"
+
+msgid "Capacity Building"
+msgstr "क्षमता बांधणे"
+
+msgid "Announcement"
+msgstr "घोषणा"
+
+msgid "Announcements"
+msgstr "घोषणा"
+
+msgid "Contact"
+msgstr "संपर्क"
+
+msgid "Contacts"
+msgstr "संपर्क"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "मेगा मेनू घटक सेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "ड्रुपलमध्ये स्वयंचलितपणे तयार केलेल्या मेनू एंट्री स्वयंचलित विभागाच्या"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "सामग्री प्रकार आकडे"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "मुख्य पृष्ठ विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "जीबीआयएफ विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "GBIF विजेट सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "मुख्य पृष्ठावर जीबीआयएफ (जागतिक जैवैविधता माहिती सुविधा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "देश: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(प्रीसेट डीफॉल्ट: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "झूम फॅक्टर"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "नकाशासाठी झूम पातळी (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(प्रीसेट डीफॉल्ट: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(प्रीसेट डीफॉल्ट: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "सेंटर बिंदू - रेखांशिप"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "नकाशा केंद्र बिंदूसाठी रेखांशिप सं @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "सेंटर पॉइंट - अक्ष"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "नकाशा केंद्र बिंदूसाठी अक्षांश @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "ताज्या बातम्या आणि अद्यतने"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "नवीनतम बातमी आणि अद्यतने"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "मुख्यपृष्ठावर नवीनतम बातम्या आणि अद्यतने विजे"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "राष्ट्रीय लक्ष्य"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "राष्ट्रीय लक्ष्ये विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "मुख्यपृष्ठावर राष्ट्रीय लक्ष्ये विजेट सक्षम"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "पॅनोरामा सो"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "पॅनोरामा सोल्य"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "मुख्यपृष्ठावर पॅनोरामा सोल्यूशन्"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "ई-लर्निंग विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "ई-शिक्षण विजेट सक्षम"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "मुख्यपृष्ठावर ई-लर्निंग विजेट सक्षम करा."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "अंमलबजाव"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "अंमलबजावणी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "होम पेजवर अंमलबजावणी विजेट सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "तांत्रिक आणि वैज्ञानिक"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "तांत्रिक आणि वैज्ञानिक सह"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "मुख्यपृष्ठावर तांत्रिक आणि वैज्ञानिक सहकार्य"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "नवीन चर्चा विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "नवीनतम चर्चा विजे"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "मुख्यपृष्ठावरील नवीनतम चर्चा विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "सामग्री सांखिकी"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "सामग्री आकडेवारीचा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "मुख्य पृष्ठावर सामग्री आकडेवारी विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "जीओबॉन विजेट"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "जीओबॉन विजेट सक्षम करा"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "मुख्य पृष्ठावर जीओबॉन विजेट सक्षम करा."

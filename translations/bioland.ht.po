@@ -1095,10 +1095,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Pwosesis antite ki deja egziste deja pou kreye defaults tradiksyon ki manke. Configure tradiksyon default anviwònman nan tab la Fonksyon Sistèm."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Anviwònman Mega Menu"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Anviwònman Mega Menu vini byento."
 
@@ -1356,10 +1352,6 @@ msgid "Menu position"
 msgstr "Pozisyon meni"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Pozisyon kote antre meni yo pral parèt."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Montre meni menm si vid"
 
@@ -1528,10 +1520,6 @@ msgid "Content Type Menus"
 msgstr "Menys Kalite Kontni"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Kalite kontni Estatistik"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Konsènan Ewo Paj Kay"
 
@@ -1554,3 +1542,309 @@ msgstr "Pibliye"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Ki pa pibliye"
+
+# Content Types
+msgid "News"
+msgstr "Nouvèl"
+
+msgid "Event"
+msgstr "Evènman"
+
+msgid "Events"
+msgstr "Evènman"
+
+msgid "Learning Resource"
+msgstr "Resous Aprantisaj"
+
+msgid "Learning Resources"
+msgstr "Resous Aprantisaj"
+
+msgid "Project"
+msgstr "Pwojè"
+
+msgid "Projects"
+msgstr "Pwojè"
+
+msgid "Basic Page"
+msgstr "Paj debaz"
+
+msgid "Basic Pages"
+msgstr "Paj debaz yo"
+
+msgid "Article"
+msgstr "Atik"
+
+msgid "Articles"
+msgstr "Atik"
+
+msgid "Government Ministry or Institute"
+msgstr "Ministè oswa Enstiti Gouvènman an"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ministè Gouvènman oswa Enstiti"
+
+msgid "Ecosystem"
+msgstr "Ekosistèm"
+
+msgid "Ecosystems"
+msgstr "Ekosistèm yo"
+
+msgid "Protected Area"
+msgstr "Zòn Pwoteje"
+
+msgid "Protected Areas"
+msgstr "Zòn Pwoteje yo"
+
+msgid "Biodiversity Data"
+msgstr "Done divèsite biyolojik"
+
+msgid "Document"
+msgstr "Dokiman"
+
+msgid "Documents"
+msgstr "Dokiman yo"
+
+msgid "Related Website"
+msgstr "Sit wèb ki gen rapò"
+
+msgid "Related Websites"
+msgstr "Sit wèb ki gen rapò"
+
+msgid "Other"
+msgstr "Lòt"
+
+msgid "Others"
+msgstr "Lòt moun"
+
+msgid "Image or Video"
+msgstr "Imaj oswa Videyo"
+
+msgid "Images or Videos"
+msgstr "Imaj oswa Videyo"
+
+msgid "Other Resource"
+msgstr "Lòt resous"
+
+msgid "Other Resources"
+msgstr "Lòt Resous"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "FAQ"
+
+msgid "National Information"
+msgstr "Enfòmasyon Nasyonal"
+
+msgid "National Informations"
+msgstr "Enfòmasyon Nasyonal"
+
+msgid "Status of LMO"
+msgstr "Estati LMO"
+
+msgid "Status of LMOs"
+msgstr "Estati LMO"
+
+msgid "Field Trial"
+msgstr "Jijman jaden"
+
+msgid "Field Trials"
+msgstr "Essè jaden"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Estrateji Nasyonal Mainstream"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Estrateji Nasyonal Mainstream"
+
+msgid "Capacity Building"
+msgstr "Konstriksyon kapasite"
+
+msgid "Announcement"
+msgstr "Anons"
+
+msgid "Announcements"
+msgstr "Anons"
+
+msgid "Contact"
+msgstr "Kontakte"
+
+msgid "Contacts"
+msgstr "Kontak"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Anviwònman Eleman Menu mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Pozisyon kote antre meni manyèlman kreye nan drupal ap parèt akote seksyon an otomatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Kalite kontni Estatistik Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Paj Kay Widget Anviwòn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Pèmèt Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Pèmèt widje GBIF (Global Divèsite Enfòmasyon Entablisman) nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Peyi: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Prereglaj default: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Faktè Zoom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Nivo rale pou kat jeyografik la (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Prereglaj default: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Prereglaj default: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Sant Point - Lonjitid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Lonjitid kowòdone pou pwen sant kat jeyografik. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Sant Point - Latitid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Kowòdone latitid pou pwen sant kat jeyografik. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Dènye nouvèl ak Updates Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Pèmèt Dènye Nouvèl ak Updates Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Pèmèt Dènye nouvèl ak Updates widje a nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget Objektif Nasyonal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Pèmèt Widget Objektif Nasyonal"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Pèmèt widje Objektif Nasyonal la nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Pèmèt Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Pèmèt widget la Panorama Solutions nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget E-Aprantisaj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Pèmèt e-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Pèmèt widget la E-Learning nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget aplikasyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Pèmèt Widget aplikasyon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Pèmèt widget la Aplikasyon nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Teknik & Syantifik Koperasyon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Pèmèt Teknik & Syantifik Koperasyon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Pèmèt widget la Teknik & Syantifik Koperasyon nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Dènye Diskisyon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Pèmèt Dènye Diskisyon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Pèmèt widget la Dènye Diskisyon nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget Estatistik Kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Pèmèt Widget Estatistik Kontni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Pèmèt widget la Estatistik Content nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Pèmèt GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Pèmèt widje GEOBON a nan paj lakay la."

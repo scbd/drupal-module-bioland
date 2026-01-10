@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "የጎደሉ የትርጉም ነባሪዎችን ለመፍጠር ነባር አካላት ያካሂዱ በስርዓት ተግባራት ትር ውስጥ የትርጉም ነባሪ ቅንብሮችን"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "ሜጋ ምናሌ ቅንብሮች"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "ሜጋ ምናሌ ቅንብሮች በቅርቡ ይመጡ"
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "የምናሌ አቀማመጥ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "የምናሌ መግቢያዎች የሚታዩበት ቦታ።"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "ባዶ ቢሆንም ምናሌን አሳይ"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "የይዘት አይነት ምናሎች"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "የይዘት ዓይነቶች ስ"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "ስለ መነሻ ገጽ ጀግኖች"
 
@@ -1479,3 +1467,309 @@ msgstr "ታተመ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "ያልታተመ"
+
+# Content Types
+msgid "News"
+msgstr "ዜና"
+
+msgid "Event"
+msgstr "ክስተት"
+
+msgid "Events"
+msgstr "ክስተቶች"
+
+msgid "Learning Resource"
+msgstr "የመማሪያ ምንጭ"
+
+msgid "Learning Resources"
+msgstr "የመማሪያ መርጃዎች"
+
+msgid "Project"
+msgstr "ፕሮጀክት"
+
+msgid "Projects"
+msgstr "ፕሮጀክቶች"
+
+msgid "Basic Page"
+msgstr "መሰረታዊ ገጽ"
+
+msgid "Basic Pages"
+msgstr "መሰረታዊ ገጾች"
+
+msgid "Article"
+msgstr "አንቀጽ"
+
+msgid "Articles"
+msgstr "መጣጥፎች"
+
+msgid "Government Ministry or Institute"
+msgstr "የመንግስት ሚኒስቴር ወይም ተቋም"
+
+msgid "Government Ministries or Institutes"
+msgstr "የመንግስት ሚኒስቴሮች ወይም ተቋማት"
+
+msgid "Ecosystem"
+msgstr "ሥነ ምህዳር"
+
+msgid "Ecosystems"
+msgstr "ስነ-ምህዳሮች"
+
+msgid "Protected Area"
+msgstr "የተጠበቀ አካባቢ"
+
+msgid "Protected Areas"
+msgstr "የተጠበቁ ቦታዎች"
+
+msgid "Biodiversity Data"
+msgstr "የብዝሃ ሕይወት መረጃ"
+
+msgid "Document"
+msgstr "ሰነድ"
+
+msgid "Documents"
+msgstr "ሰነዶች"
+
+msgid "Related Website"
+msgstr "ተዛማጅ ድር ጣቢያ"
+
+msgid "Related Websites"
+msgstr "ተዛማጅ ድር ጣቢያዎች"
+
+msgid "Other"
+msgstr "ሌላ"
+
+msgid "Others"
+msgstr "ሌሎች"
+
+msgid "Image or Video"
+msgstr "ምስል ወይም ቪዲዮ"
+
+msgid "Images or Videos"
+msgstr "ምስሎች ወይም ቪዲዮዎች"
+
+msgid "Other Resource"
+msgstr "ሌላ ሀብት"
+
+msgid "Other Resources"
+msgstr "ሌሎች ሀብቶች"
+
+msgid "FAQ"
+msgstr "ተደጋግመው የሚነሱ ጥያቄዎች"
+
+msgid "FAQs"
+msgstr "ተዘውትረው የሚጠየቁ ጥያቄዎች"
+
+msgid "National Information"
+msgstr "ብሔራዊ መረጃ"
+
+msgid "National Informations"
+msgstr "ብሔራዊ መረጃዎች"
+
+msgid "Status of LMO"
+msgstr "የ LMO ሁኔታ"
+
+msgid "Status of LMOs"
+msgstr "የኤልኤምኦዎች ሁኔታ"
+
+msgid "Field Trial"
+msgstr "የመስክ ሙከራ"
+
+msgid "Field Trials"
+msgstr "የመስክ ሙከራዎች"
+
+msgid "National Mainstreaming Strategy"
+msgstr "ብሔራዊ ዋና ማስተካከያ ስትራቴጂ"
+
+msgid "National Mainstreaming Strategies"
+msgstr "ብሔራዊ ዋና ዋና ማስተካከያ ስልቶች"
+
+msgid "Capacity Building"
+msgstr "አቅም ግንባታ"
+
+msgid "Announcement"
+msgstr "ማስታወቂያ"
+
+msgid "Announcements"
+msgstr "ማስታወቂያዎች"
+
+msgid "Contact"
+msgstr "እውቂያ"
+
+msgid "Contacts"
+msgstr "እውቂያዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "ሜጋ ምናሌ አካል ቅንብሮች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "በድሩፓል ውስጥ በእጅ የተፈጠሩበት ምናሌ ማስገባዎች ከአውቶማቲክ ክፍሉ አጠገብ የሚታየበት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "የይዘት ዓይነቶች ስታቲ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "መነሻ ገጽ መግቢያ ቅን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "ጂቢኤፍ መግቢያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "የ GBIF መግቢያ ያንቁ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የ GBIF (ዓለም አቀፍ የባሕዝነት መረጃ ተቋም) መግብርን ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "አገር: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(ቅድመ የተቀመጠ ነባሪ: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "ማጉላት ፋይል"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "ለካርታው የማጉላት ደረጃ (1-255)። @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(ቅድመ የተቀመጠ ነባሪ: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(ቅድመ የተቀመጠ ነባሪ: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "ማዕከላዊ ነጥብ - ሎጂድ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "ለካርታ ማዕከላዊ ነጥብ ሎጂድ አስተባባሪ @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "ማዕከላዊ ነጥብ - ላቲ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "ለካርታ ማዕከላዊ ነጥብ የላቲቲድ @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "የቅርብ ጊዜ ዜና እና ዝማኔዎች መግለ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "የቅርብ ጊዜ ዜና እና ዝማኔዎች መግብርን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የቅርብ ጊዜ ዜና እና ዝማኔዎች መግቢያ ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "ብሔራዊ ኢላማዎች መግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "ብሔራዊ ኢላማዎችን መግቢያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የብሔራዊ ኢላማዎችን መግቢያ ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "ፓኖራማ መፍትሔዎች"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "ፓኖራማ መፍትሄዎች መግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የፓኖራማ መፍትሄዎችን መግቢያ ያንቁ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "ኢ-ትምህርት መግቢያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "የኢ-ትምህርት መግብርን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የኢ-ትምህርት መግቢያ ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "የአተገባበር መግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "የአተገባበር መግቢያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የአተገባበር መግብርን ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "የቴክኒክ እና ሳይንሳዊ ትብብር"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "የቴክኒክ እና ሳይንሳዊ ትብብር መግ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የቴክኒክ እና ሳይንሳዊ ትብብር መግቢያ ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "የቅርብ ጊዜ የውይይት"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "የቅርብ ጊዜ ውይይቶች መግብ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የቅርብ ጊዜ ውይይቶች መግቢያ ያንቁ።"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "የይዘት ስታቲክስ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "የይዘት ስታቲስቲክስ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የይዘት ስታቲስቲክስ መግቢያ ያን"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "ጂኦቦን መግቢያ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "ጂኦቦን መግቢያ ያንቁ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "በመነሻ ገጹ ላይ የ GEOBON መግቢያ ያንቁ።"

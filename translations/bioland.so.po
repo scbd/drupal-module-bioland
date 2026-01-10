@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Hanaanka hay'adaha jira si loo abuuro degaarka tarjimada la maqan. Soo saabuurta tarjumada deegaanka ee tabka Hawlaha Nidaamka."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Deegaanka Menu Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Qalabka Mega Menu oo dhawaan imaanaya."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Xaalka menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Xaalka halkaas ay soo muuqan doono galinta menu."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Tugga menu xitaa haddii wax badan"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Nooca Content Menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Tiimaadka Nooca Content"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "About Home Page Geesiyaasha"
 
@@ -1479,3 +1467,309 @@ msgstr "Baahiyay"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Aan daabacay"
+
+# Content Types
+msgid "News"
+msgstr "War"
+
+msgid "Event"
+msgstr "Munaasabadda"
+
+msgid "Events"
+msgstr "Dhacdooyinka"
+
+msgid "Learning Resource"
+msgstr "Kheyraadka Barashada"
+
+msgid "Learning Resources"
+msgstr "Khayraadka Barashada"
+
+msgid "Project"
+msgstr "Mashruuc"
+
+msgid "Projects"
+msgstr "Mashaariic"
+
+msgid "Basic Page"
+msgstr "Bogga Asaaca"
+
+msgid "Basic Pages"
+msgstr "Bogga asaasiga"
+
+msgid "Article"
+msgstr "Qodob xeer"
+
+msgid "Articles"
+msgstr "Maqaalo"
+
+msgid "Government Ministry or Institute"
+msgstr "Wasaaradda Dowladda ama Hay'adda"
+
+msgid "Government Ministries or Institutes"
+msgstr "Wasaaradaha Dowladda ama Maamulada"
+
+msgid "Ecosystem"
+msgstr "Ekoodsiga"
+
+msgid "Ecosystems"
+msgstr "Xoogga"
+
+msgid "Protected Area"
+msgstr "Deegaanka ilaalinta"
+
+msgid "Protected Areas"
+msgstr "Deegaanada ilaalinta"
+
+msgid "Biodiversity Data"
+msgstr "Xogta Biodivertii"
+
+msgid "Document"
+msgstr "Warqad"
+
+msgid "Documents"
+msgstr "Dukumiintiyo"
+
+msgid "Related Website"
+msgstr "Website la xiriira"
+
+msgid "Related Websites"
+msgstr "Website la xiriira"
+
+msgid "Other"
+msgstr "Kale"
+
+msgid "Others"
+msgstr "Kale"
+
+msgid "Image or Video"
+msgstr "Sawirka ama Video"
+
+msgid "Images or Videos"
+msgstr "Sawirada ama Videos"
+
+msgid "Other Resource"
+msgstr "Kheyraadka Kale"
+
+msgid "Other Resources"
+msgstr "Khayraadka kale"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "Su'aalaha la isweydiiyo"
+
+msgid "National Information"
+msgstr "Warfaafinta Qaranka"
+
+msgid "National Informations"
+msgstr "Warfaafinta Qaran"
+
+msgid "Status of LMO"
+msgstr "Xaaladda LMO"
+
+msgid "Status of LMOs"
+msgstr "Xaaladda LMOs"
+
+msgid "Field Trial"
+msgstr "Maxkamad Boolka"
+
+msgid "Field Trials"
+msgstr "Imtixaanada Boolka"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Istiraatiijiyada Qaranka"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Istiraatiijiyada Qaranka"
+
+msgid "Capacity Building"
+msgstr "Dhismaha Awoodda"
+
+msgid "Announcement"
+msgstr "Dhawaaqsi"
+
+msgid "Announcements"
+msgstr "dhawaaqyo"
+
+msgid "Contact"
+msgstr "Soo xiriir"
+
+msgid "Contacts"
+msgstr "Xariiro"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Deegaanka Qeybta Mega Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Xaalka halkaas oo goobta menu si gaar ah loo sameeyay drupal ayaa muuqan doono ku soo xigga qeybta otom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Nooca Content Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Home Page Widget Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Hawl Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Hawollo GBIF (Global Biodiversity Information Facility) widgetka ee bogga hooyinka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Dalka: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Dib u saabsan: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Zoom Factor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Heerka Zoom ee Khariidadda (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Dib u saabsan: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Dib u saabsan: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Center Point - Longitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Isbaarinta Longitude ee goobta xarunta khariirada. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Center Point - Latitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Islaabta Latitude ee bartamaha khariiradda. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Wararkii ugu dambeeyay iyo Cusboon"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Hawlo Wararkii Ugu Danbeeyay Iyo Cus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Hawollo Wararkii Ugu Danbeeyay iyo Cusboonayaasha widget bogga hooyinka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget Barareedaha Qaranka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Hawlo Widget Barbeedaha Qaranka"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Oollo widgetka Bartilmaameedka Qaranka ee bogga hooyinka."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Hawl Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Hawlo widget Panorama Solutions ee bogga guriga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Hawlo Widget E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Hawlo widget E-Learning ee bogga guriga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget Hirgelinta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Hawlo Widget Hirgelinta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Oollo widget Hirgelinta ee bogga guriga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget Iskaashiga Farsamo & Sayniska"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Waqoojiyo Widget Iskaashiga Farsamada &"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Oogolaan widgetka Iskaashiga Farsamo & Saymiyeedka ee bogga guriga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Wadahadaha ugu dambeeyay"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Hawlow Widget Wadahadaha ugu dambe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Hawlo widgetka Wadahadaha ugu dambeeyay ee bogga guriga."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget Statirka Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Hawl Widget Statirka Content"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Hawollo widget Tiimaadka Content page on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Hawl Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Waxo widgetka GEOBON ee bogga guriga."

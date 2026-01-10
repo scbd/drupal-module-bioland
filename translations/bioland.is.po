@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Vinna úr núverandi aðilum til að búa til vanskilgildi þýðingar sem vantar. Stilltu sjálfgefnar stillingar þýðingar í flipanum Kerfisaðgerðir."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega valmyndarstillingar"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Mega Menu stillingar koma fljótlega."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Staða matseðils"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Staða þar sem valmyndarfærslur birtast."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Sýna valmyndina jafnvel þótt tóm"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Matseðlar um efnisgerð"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Tölfræði um efnistegundir"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Um heimasíðuhetjur"
 
@@ -1479,3 +1467,309 @@ msgstr "Birt"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Óbirt"
+
+# Content Types
+msgid "News"
+msgstr "Fréttir"
+
+msgid "Event"
+msgstr "Viðburður"
+
+msgid "Events"
+msgstr "Viðburðir"
+
+msgid "Learning Resource"
+msgstr "Námsefni"
+
+msgid "Learning Resources"
+msgstr "Námsefni"
+
+msgid "Project"
+msgstr "Verkefni"
+
+msgid "Projects"
+msgstr "Verkefni"
+
+msgid "Basic Page"
+msgstr "Grunnsíða"
+
+msgid "Basic Pages"
+msgstr "Grunnsíður"
+
+msgid "Article"
+msgstr "Grein"
+
+msgid "Articles"
+msgstr "Greinar"
+
+msgid "Government Ministry or Institute"
+msgstr "Ráðuneyti eða stofnun ríkisins"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ráðuneyti eða stofnanir ríkisins"
+
+msgid "Ecosystem"
+msgstr "Vistkerfi"
+
+msgid "Ecosystems"
+msgstr "Vistkerfi"
+
+msgid "Protected Area"
+msgstr "Friðlýst svæði"
+
+msgid "Protected Areas"
+msgstr "Friðlýst svæði"
+
+msgid "Biodiversity Data"
+msgstr "Gögn um líffræðilegan fjölbreytileika"
+
+msgid "Document"
+msgstr "Skjal"
+
+msgid "Documents"
+msgstr "Skjöl"
+
+msgid "Related Website"
+msgstr "Tengd vefsíða"
+
+msgid "Related Websites"
+msgstr "Tengdar vefsíður"
+
+msgid "Other"
+msgstr "Annað"
+
+msgid "Others"
+msgstr "Aðrir"
+
+msgid "Image or Video"
+msgstr "Mynd eða myndband"
+
+msgid "Images or Videos"
+msgstr "Myndir eða myndbönd"
+
+msgid "Other Resource"
+msgstr "Önnur auðlind"
+
+msgid "Other Resources"
+msgstr "Aðrar auðlindir"
+
+msgid "FAQ"
+msgstr "ALGENGAR SPURNINGAR"
+
+msgid "FAQs"
+msgstr "Algengar spurningar"
+
+msgid "National Information"
+msgstr "Upplýsingar á landsvísu"
+
+msgid "National Informations"
+msgstr "Upplýsingar á landsvísu"
+
+msgid "Status of LMO"
+msgstr "Staða LMO"
+
+msgid "Status of LMOs"
+msgstr "Staða LMO"
+
+msgid "Field Trial"
+msgstr "Vettvangspróf"
+
+msgid "Field Trials"
+msgstr "Vettvangsrannsóknir"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Þjóðarstefna um máttarstólpa"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Innlendar aðferðir við máttarstólpa"
+
+msgid "Capacity Building"
+msgstr "Uppbygging getu"
+
+msgid "Announcement"
+msgstr "Tilkynning"
+
+msgid "Announcements"
+msgstr "Tilkynningar"
+
+msgid "Contact"
+msgstr "Hafðu samband"
+
+msgid "Contacts"
+msgstr "Tengiliðir"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Stillingar Mega Valmyndarhluta"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Staða þar sem valmyndarfærslur handvirkt búnar til í drupal birtast við hliðina á sjálfvirka hlutanum."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Tölfræðivalmynd efnistegunda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Heimasíðu búnaðarstillingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF búnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Virkja GBIF búnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Virkja GBIF (Global Biodiversity Information Facility) búnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Land: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Forstillt sjálfgefið: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Aðdráttarþáttur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Aðdráttarstig fyrir kortið (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Forstillt sjálfgefið: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Forstillt sjálfgefið: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Miðpunktur - Lengdargráða"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Lengdarhnit fyrir miðpunkt korts. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Miðpunktur - breiddargráða"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Breiddarhnit fyrir miðpunkt korts. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Nýjustu fréttir og uppfærslur búnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Virkja nýjustu fréttir og uppfærslur búnaðinn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Virkja nýjustu fréttir og uppfærslur búnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Þjóðarmarkmiðbúnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Virkja innlenda markmiðbúnaðinn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Virkja búnaðinn National Targets á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama Solutions búnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Virkja Panorama Solutions búnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Virkja Panorama Solutions búnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Rafnámstæki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Virkja E-Learning búnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Virkja E-Learning búnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Framkvæmdarbúnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Virkja innleiðingarbúnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Virkja innleiðingarbúnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Tæknileg og vísindaleg samvinnubúnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Virkja tæknilega og vísindalega samvinnu búnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Virkja tæknilega og vísindalega samvinnu búnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Nýjustu umræður búnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Virkja nýjustu umræðubúnaðinn"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Virkja nýjustu umræðubúnaðinn á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Innihaldstölfræðibúnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Virkja búnað fyrir tölfræði innihalds"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Virkja búnaðinn Content Statistics á heimasíðunni."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON búnaður"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Virkja GEOBON búnað"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Virkja GEOBON búnaðinn á heimasíðunni."

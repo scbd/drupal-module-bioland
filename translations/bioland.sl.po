@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Obdelajte obstoječe entitete, da ustvarite manjkajoče privzete nastavitve prevajanja. Konfigurirajte privzete nastavitve prevajanja na zavihku Sistemske funkcije."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Nastavitve Mega menija"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Nastavitve Mega menija prihajajo kmalu."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Položaj menija"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Položaj, kjer se bodo prikazali vnosi v meniju."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Pokaži meni, tudi če je prazen"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Meniji vrste vsebine"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Vrste vsebine Statistika"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "O domači strani Heroji"
 
@@ -1479,3 +1467,309 @@ msgstr "Objavljeno"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Neobjavljeno"
+
+# Content Types
+msgid "News"
+msgstr "Novice"
+
+msgid "Event"
+msgstr "Dogodek"
+
+msgid "Events"
+msgstr "Dogodki"
+
+msgid "Learning Resource"
+msgstr "Učni vir"
+
+msgid "Learning Resources"
+msgstr "Učni viri"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects"
+msgstr "Projekti"
+
+msgid "Basic Page"
+msgstr "Osnovna stran"
+
+msgid "Basic Pages"
+msgstr "Osnovne strani"
+
+msgid "Article"
+msgstr "Člen"
+
+msgid "Articles"
+msgstr "Članki"
+
+msgid "Government Ministry or Institute"
+msgstr "Vladno ministrstvo ali inštitut"
+
+msgid "Government Ministries or Institutes"
+msgstr "Vladna ministrstva ali inštituti"
+
+msgid "Ecosystem"
+msgstr "Ekosistem"
+
+msgid "Ecosystems"
+msgstr "Ekosistemi"
+
+msgid "Protected Area"
+msgstr "Zaščiteno območje"
+
+msgid "Protected Areas"
+msgstr "Zavarovana območja"
+
+msgid "Biodiversity Data"
+msgstr "Podatki o biotski raznovrstnosti"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Related Website"
+msgstr "Sorodno spletno mesto"
+
+msgid "Related Websites"
+msgstr "Povezana spletna mesta"
+
+msgid "Other"
+msgstr "drugo"
+
+msgid "Others"
+msgstr "drugi"
+
+msgid "Image or Video"
+msgstr "Slika ali Video"
+
+msgid "Images or Videos"
+msgstr "Slike ali videoposnetki"
+
+msgid "Other Resource"
+msgstr "Drugi viri"
+
+msgid "Other Resources"
+msgstr "Drugi viri"
+
+msgid "FAQ"
+msgstr "POGOSTA VPRAŠANJA"
+
+msgid "FAQs"
+msgstr "Pogosta vprašanja"
+
+msgid "National Information"
+msgstr "Nacionalne informacije"
+
+msgid "National Informations"
+msgstr "Nacionalne informacije"
+
+msgid "Status of LMO"
+msgstr "Status LMO"
+
+msgid "Status of LMOs"
+msgstr "Status LMO"
+
+msgid "Field Trial"
+msgstr "Terensko preskušanje"
+
+msgid "Field Trials"
+msgstr "Terenski poskusi"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Nacionalna strategija vključevanja"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Nacionalne strategije vključevanja"
+
+msgid "Capacity Building"
+msgstr "Krepitev zmogljivosti"
+
+msgid "Announcement"
+msgstr "Obvestilo"
+
+msgid "Announcements"
+msgstr "Obvestila"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Nastavitve komponente Mega menija"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Položaj, kjer se bodo poleg avtomatiziranega razdelka prikazali vnosi menija, ročno ustvarjeni v drupalu."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Vrste vsebine Statistični meni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Nastavitve pripomočka za domačo stran"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Pripomoček GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Omogoči pripomoček GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Omogočite pripomoček GBIF (Global Biodiversity Information Facility) na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Država: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Prednastavljena privzeta: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Faktor povečave"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Stopnja povečave za zemljevid (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Prednastavljena privzeta: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Prednastavljena privzeta: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Središnja točka - zemljepisna dolžina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Koordinata zemljepisne dolžine za osrednjo točko zemljevida. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Sredinska točka - zemljepisna širina"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Koordinata zemljepisne širine za osrednjo točko zemljevida. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Najnovejše novice in posodobitve Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Omogoči widget za najnovejše novice in posodobitve"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Omogočite pripomoček Najnovejše novice in posodobitve na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Pripomoček za nacionalne cilje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Omogoči pripomoček za nacionalne cilje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Omogočite pripomoček Nacionalni cilji na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Pripomoček Panorama Solutions"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Omogoči pripomoček Panorama Solutions"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Omogočite pripomoček Panorama Solutions na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Pripomoček za e-učenje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Omogoči pripomoček za e-učenje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Omogočite pripomoček za e-učenje na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Pripomoček za izvajanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Omogoči pripomoček za izvajanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Omogočite pripomoček za izvajanje na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Pripomoček za tehnično in znanstveno sodelovanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Omogoči pripomoček za tehnično in znanstveno sodelovanje"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Omogočite pripomoček Tehnično in znanstveno sodelovanje na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Najnovejše razprave Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Omogoči widget za najnovejše razprave"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Omogočite pripomoček Najnovejše razprave na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Pripomoček za statistiko vsebine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Omogoči pripomoček za statistiko vsebine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Omogočite pripomoček Statistika vsebine na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Pripomoček GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Omogoči pripomoček GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Omogočite pripomoček GEOBON na domači strani."

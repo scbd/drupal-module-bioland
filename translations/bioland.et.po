@@ -1095,10 +1095,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Töötle olemasolevaid olemeid puuduvate tõlke vaikesätete loomiseks. Konfigureerige tõlke vaikesätted vahekaardil Süsteemifunktsioonid."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Megamenüü seaded"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Megamenüü seaded on varsti saadaval."
 
@@ -1356,10 +1352,6 @@ msgid "Menu position"
 msgstr "Menüü asukoht"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Asukoht, kus menüükirjed kuvatakse."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Kuva menüü, isegi kui see on tühi"
 
@@ -1528,10 +1520,6 @@ msgid "Content Type Menus"
 msgstr "Sisutüübi menüüd"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Sisutüübid Statistika"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Kodulehe kangelaste kohta"
 
@@ -1554,3 +1542,309 @@ msgstr "Avaldatud"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Avaldamata"
+
+# Content Types
+msgid "News"
+msgstr "Uudised"
+
+msgid "Event"
+msgstr "Sündmus"
+
+msgid "Events"
+msgstr "Sündmused"
+
+msgid "Learning Resource"
+msgstr "Õppematerjal"
+
+msgid "Learning Resources"
+msgstr "Õppematerjalid"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects"
+msgstr "Projektid"
+
+msgid "Basic Page"
+msgstr "Põhileht"
+
+msgid "Basic Pages"
+msgstr "Põhilehed"
+
+msgid "Article"
+msgstr "Artikkel"
+
+msgid "Articles"
+msgstr "Artiklid"
+
+msgid "Government Ministry or Institute"
+msgstr "Valitsuse ministeerium või instituut"
+
+msgid "Government Ministries or Institutes"
+msgstr "Valitsuse ministeeriumid või instituudid"
+
+msgid "Ecosystem"
+msgstr "Ökosüsteem"
+
+msgid "Ecosystems"
+msgstr "Ökosüsteemid"
+
+msgid "Protected Area"
+msgstr "Kaitseala"
+
+msgid "Protected Areas"
+msgstr "Kaitsealad"
+
+msgid "Biodiversity Data"
+msgstr "Bioloogilise mitmekesisuse andmed"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Documents"
+msgstr "Dokumendid"
+
+msgid "Related Website"
+msgstr "Seotud veebisait"
+
+msgid "Related Websites"
+msgstr "Seotud veebisaidid"
+
+msgid "Other"
+msgstr "muud"
+
+msgid "Others"
+msgstr "teised"
+
+msgid "Image or Video"
+msgstr "Pilt või video"
+
+msgid "Images or Videos"
+msgstr "Pildid või videod"
+
+msgid "Other Resource"
+msgstr "Muu ressurss"
+
+msgid "Other Resources"
+msgstr "Muud ressursid"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "KKK"
+
+msgid "National Information"
+msgstr "Riiklik teave"
+
+msgid "National Informations"
+msgstr "Riiklik teave"
+
+msgid "Status of LMO"
+msgstr "LMO staatus"
+
+msgid "Status of LMOs"
+msgstr "LMOde staatus"
+
+msgid "Field Trial"
+msgstr "Välikatse"
+
+msgid "Field Trials"
+msgstr "Välikatsed"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Riiklik süvalaiendamise strateegia"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Riiklikud süvalaiendamise strateegiad"
+
+msgid "Capacity Building"
+msgstr "Suutlikkuse suurendamine"
+
+msgid "Announcement"
+msgstr "Teade"
+
+msgid "Announcements"
+msgstr "Teated"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontaktid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Megamenüü komponendi seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Automatiseeritud jaotise kõrval kuvatakse asukoht, kus drupalis käsitsi loodud menüükirjed kuvatakse."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Sisutüübid Statistika menüü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Avalehekülje vidina seaded"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Luba GBIF vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Lubage avalehel vidin GBIF (Global Biodiversity Information Facility)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Riik: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Eelseadistatud vaikimisi: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Suumitegur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Kaardi suumitase (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Eelseadistatud vaikimisi: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Eelseadistatud vaikimisi: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Keskpunkt - pikkus"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Kaardi keskpunkti pikkuskraadi koordinaat. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Keskpunkt - laiuskraad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Kaardi keskpunkti laiuskoordinaat. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Viimaste uudiste ja värskenduste vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Luba viimaste uudiste ja värskenduste vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Lubage avalehel viimaste uudiste ja värskenduste vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Riiklike sihtmärkide vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Luba riiklike sihtmärkide vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Lubage avalehel riiklikud sihtmärgid vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama lahenduste vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Luba Panoramaalahenduste vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Lubage avalehel Panorama Solutions vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-õppe vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Luba e-õppe vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Lubage avalehel e-õppe vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Rakendusvidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Luba rakendusvidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Luba avalehel rakendamise vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Tehnilise ja teadusliku koostöö vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Luba tehnilise ja teadusliku koostöö vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Lubage avalehel tehnilise ja teadusliku koostöö vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Viimaste arutelude vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Luba viimaste arutelude vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Lubage avalehel vidin Viimased arutelud."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Sisustatistika vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Luba sisustatistika vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Lubage kodulehel sisustatistika vidin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Luba GEOBON vidin"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Luba kodulehel GEOBON vidin."

@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "기존 엔티티를 처리하여 누락된 번역 기본값을 생성합니다.시스템 함수 탭에서 번역 기본 설정을 구성합니다."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "메가 메뉴 설정"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "메가 메뉴 설정이 곧 제공됩니다."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "메뉴 위치"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "메뉴 항목이 표시될 위치입니다."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "비어있는 경우에도 메뉴 표시"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "콘텐츠 유형 메뉴"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "콘텐츠 유형 통계"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "홈페이지 히어로즈 소개"
 
@@ -1479,3 +1467,309 @@ msgstr "게시되었습니다"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "게시되지 않음"
+
+# Content Types
+msgid "News"
+msgstr "소식"
+
+msgid "Event"
+msgstr "이벤트"
+
+msgid "Events"
+msgstr "이벤트"
+
+msgid "Learning Resource"
+msgstr "학습 자료"
+
+msgid "Learning Resources"
+msgstr "학습 자료"
+
+msgid "Project"
+msgstr "프로젝트"
+
+msgid "Projects"
+msgstr "프로젝트"
+
+msgid "Basic Page"
+msgstr "기본 페이지"
+
+msgid "Basic Pages"
+msgstr "기본 페이지"
+
+msgid "Article"
+msgstr "조"
+
+msgid "Articles"
+msgstr "기사"
+
+msgid "Government Ministry or Institute"
+msgstr "정부 부처 또는 연구소"
+
+msgid "Government Ministries or Institutes"
+msgstr "정부 부처 또는 연구소"
+
+msgid "Ecosystem"
+msgstr "생태계"
+
+msgid "Ecosystems"
+msgstr "생태계"
+
+msgid "Protected Area"
+msgstr "보호지역"
+
+msgid "Protected Areas"
+msgstr "보호지역"
+
+msgid "Biodiversity Data"
+msgstr "생물다양성 데이터"
+
+msgid "Document"
+msgstr "문서"
+
+msgid "Documents"
+msgstr "서류"
+
+msgid "Related Website"
+msgstr "관련사이트"
+
+msgid "Related Websites"
+msgstr "관련 웹사이트"
+
+msgid "Other"
+msgstr "다른"
+
+msgid "Others"
+msgstr "기타"
+
+msgid "Image or Video"
+msgstr "이미지 또는 비디오"
+
+msgid "Images or Videos"
+msgstr "이미지 또는 비디오"
+
+msgid "Other Resource"
+msgstr "기타 리소스"
+
+msgid "Other Resources"
+msgstr "기타 리소스"
+
+msgid "FAQ"
+msgstr "자주 묻는 질문"
+
+msgid "FAQs"
+msgstr "자주 묻는 질문"
+
+msgid "National Information"
+msgstr "국가 정보"
+
+msgid "National Informations"
+msgstr "내셔널 인포메이션"
+
+msgid "Status of LMO"
+msgstr "LMO 현황"
+
+msgid "Status of LMOs"
+msgstr "LMO 현황"
+
+msgid "Field Trial"
+msgstr "필드 트라이얼"
+
+msgid "Field Trials"
+msgstr "현장 시험"
+
+msgid "National Mainstreaming Strategy"
+msgstr "국가 메인스트리밍 전략"
+
+msgid "National Mainstreaming Strategies"
+msgstr "국가 메인스트리밍 전략"
+
+msgid "Capacity Building"
+msgstr "역량 강화"
+
+msgid "Announcement"
+msgstr "공지사항"
+
+msgid "Announcements"
+msgstr "공지 사항"
+
+msgid "Contact"
+msgstr "연락처"
+
+msgid "Contacts"
+msgstr "연락처"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "메가 메뉴 구성 요소 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "drupal에서 수동으로 만든 메뉴 항목이 자동화 섹션 옆에 표시되는 위치입니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "콘텐츠 유형 통계 메뉴"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "홈페이지 위젯 설정"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GIF 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "GBIF 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "홈페이지에서 GBIF (글로벌 생물다양성 정보 시설) 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "국가: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(프리셋 기본값: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "줌 팩터"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "맵의 확대/축소 레벨 (1-255).@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(프리셋 기본값: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(프리셋 기본값: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "중심점 - 경도"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "맵 중심점의 경도 좌표입니다.@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "중심점 - 위도"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "맵 중심점의 위도 좌표입니다.@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "최신 뉴스 및 업데이트 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "최신 뉴스 및 업데이트 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "홈 페이지에서 최신 뉴스 및 업데이트 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "국가 목표 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "국가 대상 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "홈 페이지에서 국가 목표 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "파노라마 솔루션 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "파노라마 솔루션 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "홈 페이지에서 파노라마 솔루션 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-러닝 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "E-러닝 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "홈 페이지에서 E-러닝 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "구현 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "구현 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "홈 페이지에서 구현 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "기술 및 과학 협력 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "기술 및 과학 협력 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "홈페이지에서 기술 및 과학 협력 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "최신 토론 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "최신 토론 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "홈 페이지에서 최신 토론 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "콘텐츠 통계 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "콘텐츠 통계 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "홈 페이지에서 콘텐츠 통계 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "지오본 위젯"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "지오본 위젯 활성화"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "홈 페이지에서 GEOBON 위젯을 활성화합니다."

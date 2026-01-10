@@ -59,6 +59,7 @@ mega_menu:
   content_type_menus:
     visible_content_type_menus: []
   content_types:
+    position: 'top'
     hide_content_types: true
   country_profiles:
     position: 'top'
@@ -88,3 +89,24 @@ translation:
   copy_source_values: true
   entity_types:
     - node
+home_widgets:
+  gbif_widget:
+    enable: true
+  latest_news_widget:
+    enable: true
+  national_targets_widget:
+    enable: true
+  panorama_solutions_widget:
+    enable: true
+  elearning_widget:
+    enable: true
+  implementation_widget:
+    enable: true
+  technical_cooperation_widget:
+    enable: true
+  latest_discussions_widget:
+    enable: true
+  content_statistics_widget:
+    enable: true
+  geobon_widget:
+    enable: true

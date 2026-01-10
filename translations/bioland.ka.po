@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "დამუშავეთ არსებული ობიექტები დაკარგული თარგმანის ნაგულისხმევ თარგმანის ნაგულისხმევი პარამეტრების კონფიგურაცია"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "მეგა მენიუს პარა"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "მეგა მენიუს პარამეტრები მალე"
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "მენიუ პოზიცია"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "პოზიცია, სადაც მენიუს ჩანაწერები"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "მენიუს ჩვენება ცარიელიც კი"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "შინაარსის ტიპის მენ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "შინაარსის სახეების სტატ"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "მთავარი გვერდის გმირების შესახებ"
 
@@ -1479,3 +1467,309 @@ msgstr "გამოქვეყნებულია"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "გამოუქვეყნებელი"
+
+# Content Types
+msgid "News"
+msgstr "სიახლეები"
+
+msgid "Event"
+msgstr "ღონისძიება"
+
+msgid "Events"
+msgstr "Ივენთი"
+
+msgid "Learning Resource"
+msgstr "სასწავლო რესურსი"
+
+msgid "Learning Resources"
+msgstr "სასწავლო რესურსები"
+
+msgid "Project"
+msgstr "პროექტი"
+
+msgid "Projects"
+msgstr "პროექტები"
+
+msgid "Basic Page"
+msgstr "ძირითადი გვერდი"
+
+msgid "Basic Pages"
+msgstr "ძირითადი გვერდები"
+
+msgid "Article"
+msgstr "მუხლი"
+
+msgid "Articles"
+msgstr "სტატიები"
+
+msgid "Government Ministry or Institute"
+msgstr "მთავრობის სამინისტრო ან ინსტიტუტი"
+
+msgid "Government Ministries or Institutes"
+msgstr "სამთავრობო სამინისტროები ან ინსტიტუტები"
+
+msgid "Ecosystem"
+msgstr "ეკოსისტემა"
+
+msgid "Ecosystems"
+msgstr "ეკოსისტემები"
+
+msgid "Protected Area"
+msgstr "დაცული ტერიტორია"
+
+msgid "Protected Areas"
+msgstr "დაცული ტერიტორიები"
+
+msgid "Biodiversity Data"
+msgstr "ბიომრავალფეროვნების მონაცემები"
+
+msgid "Document"
+msgstr "დოკუმენტი"
+
+msgid "Documents"
+msgstr "დოკუმენტები"
+
+msgid "Related Website"
+msgstr "დაკავშირებული საიტი"
+
+msgid "Related Websites"
+msgstr "დაკავშირებული ვებსაიტები"
+
+msgid "Other"
+msgstr "სხვა"
+
+msgid "Others"
+msgstr "სხვები"
+
+msgid "Image or Video"
+msgstr "სურათი ან ვიდეო"
+
+msgid "Images or Videos"
+msgstr "სურათები ან ვიდეოები"
+
+msgid "Other Resource"
+msgstr "სხვა რესურსი"
+
+msgid "Other Resources"
+msgstr "სხვა რესურსები"
+
+msgid "FAQ"
+msgstr "კითხვები"
+
+msgid "FAQs"
+msgstr "ხშირი კითხვები"
+
+msgid "National Information"
+msgstr "ეროვნული ინფორმაცია"
+
+msgid "National Informations"
+msgstr "ეროვნული ინფორმაცია"
+
+msgid "Status of LMO"
+msgstr "LMO-ს სტატუსი"
+
+msgid "Status of LMOs"
+msgstr "LMO-ების სტატუსი"
+
+msgid "Field Trial"
+msgstr "საველე საცდელი"
+
+msgid "Field Trials"
+msgstr "საველე ცდები"
+
+msgid "National Mainstreaming Strategy"
+msgstr "მაინსტრეიმინგის ეროვნული სტრატ"
+
+msgid "National Mainstreaming Strategies"
+msgstr "მაინსტრეიმინგის ეროვნული სტრატ"
+
+msgid "Capacity Building"
+msgstr "შესაძლებლობების განვითარება"
+
+msgid "Announcement"
+msgstr "განცხადება"
+
+msgid "Announcements"
+msgstr "განცხადებები"
+
+msgid "Contact"
+msgstr "კონტაქტი"
+
+msgid "Contacts"
+msgstr "კონტაქტები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "მეგა მენიუს კომპონენტის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "პოზიცია, სადაც დრუპალში ხელით შექმნილი მენიუს ჩანაწერები გამოჩნდება ავტომატური"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "შინაარსის სახეები სტატისტიკ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "მთავარი გვერდის ვიჯეტის პარა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF ვიჯეტი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "ჩართეთ GBIF ვიჯეტი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "ჩართეთ GBIF (გლობალური ბიომრავალფეროვნების საინფორმაციო საშუალება) ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "ქვეყანა: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(წინასწარ დაყენებული სტანდარტული: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "ზუმის ფაქტორი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "რუკის მასშტაბის დონე (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(წინასწარ დაყენებული სტანდარტული: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(წინასწარ დაყენებული სტანდარტული: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "ცენტრალური წერტილი - გრძედი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "გრძის კოორდინატი რუკის ცენტრალური წერტილისთვის. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "ცენტრალური წერტილი - განედი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "განედის კოორდინატი რუკის ცენტრალური წერტ @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "უახლესი სიახლეები და განახლებები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "ჩართეთ უახლესი ამბები და განახლებები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "ჩართეთ უახლესი ამბების და განახლებების ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "ეროვნული მიზნების ვიჯ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "ეროვნული მიზნების ვიჯეტის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "ჩართეთ ეროვნული მიზნების ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "პანორამის გადაწყვეტ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "პანორამული გადაწყვეტილებ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "ჩართეთ Panorama Solutions ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "ელექტრონული სწავლების ვი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "ელექტრონული სწავლების ვიჯეტ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "ჩართეთ ელექტრონული სწავლების ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "განხორციელების ვი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "დანერგვის ვიჯეტის"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "ჩართეთ განხორციელების ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "ტექნიკური და სამეცნიერო თანამ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "ჩართეთ ტექნიკური და სამეცნიერო"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "ჩართეთ ტექნიკური და სამეცნიერო თანამშრომლობის ვიჯეტი მთავარ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "უახლესი დისკუსიების"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "ჩართეთ უახლესი დისკუსი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "ჩართეთ უახლესი დისკუსიების ვიჯეტი მთავარ გვერდზე."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "კონტენტის სტატისტიკა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "ჩართეთ შინაარსის სტატ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "ჩართეთ კონტენტის სტატისტიკის ვიჯეტი მთავარ გვერდზე"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "ჯეობონ ვიჯეტი"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "GEOBON ვიჯეტის ჩართვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "ჩართეთ GEOBON ვიჯეტი მთავარ გვერდზე."

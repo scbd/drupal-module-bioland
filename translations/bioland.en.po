@@ -1049,8 +1049,8 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega Menu Settings"
+msgid "Mega Menu Component Settings"
+msgstr "Mega Menu Component Settings"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
@@ -1366,8 +1366,8 @@ msgid "Menu position"
 msgstr "Menu position"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Position where menu entries will appear."
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Position where menu entries manually created in drupal will appear next to the automated section."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
@@ -1498,8 +1498,8 @@ msgid "Content Type Menus"
 msgstr "Content Type Menus"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Content Types Statistics"
+msgid "Content Types Statistics Menu"
+msgstr "Content Types Statistics Menu"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
@@ -1524,3 +1524,297 @@ msgstr "Published"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Unpublished"
+
+# Content Types
+msgid "News"
+msgstr "News"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Events"
+msgstr "Events"
+
+msgid "Learning Resource"
+msgstr "Learning Resource"
+
+msgid "Learning Resources"
+msgstr "Learning Resources"
+
+msgid "Project"
+msgstr "Project"
+
+msgid "Projects"
+msgstr "Projects"
+
+msgid "Basic Page"
+msgstr "Basic Page"
+
+msgid "Basic Pages"
+msgstr "Basic Pages"
+
+msgid "Article"
+msgstr "Article"
+
+msgid "Articles"
+msgstr "Articles"
+
+msgid "Government Ministry or Institute"
+msgstr "Government Ministry or Institute"
+
+msgid "Government Ministries or Institutes"
+msgstr "Government Ministries or Institutes"
+
+msgid "Ecosystem"
+msgstr "Ecosystem"
+
+msgid "Ecosystems"
+msgstr "Ecosystems"
+
+msgid "Protected Area"
+msgstr "Protected Area"
+
+msgid "Protected Areas"
+msgstr "Protected Areas"
+
+msgid "Biodiversity Data"
+msgstr "Biodiversity Data"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Related Website"
+msgstr "Related Website"
+
+msgid "Related Websites"
+msgstr "Related Websites"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Others"
+msgstr "Others"
+
+msgid "Image or Video"
+msgstr "Image or Video"
+
+msgid "Images or Videos"
+msgstr "Images or Videos"
+
+msgid "Other Resource"
+msgstr "Other Resource"
+
+msgid "Other Resources"
+msgstr "Other Resources"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "FAQs"
+
+msgid "National Information"
+msgstr "National Information"
+
+msgid "National Informations"
+msgstr "National Informations"
+
+msgid "Status of LMO"
+msgstr "Status of LMO"
+
+msgid "Status of LMOs"
+msgstr "Status of LMOs"
+
+msgid "Field Trial"
+msgstr "Field Trial"
+
+msgid "Field Trials"
+msgstr "Field Trials"
+
+msgid "National Mainstreaming Strategy"
+msgstr "National Mainstreaming Strategy"
+
+msgid "National Mainstreaming Strategies"
+msgstr "National Mainstreaming Strategies"
+
+msgid "Capacity Building"
+msgstr "Capacity Building"
+
+msgid "Announcement"
+msgstr "Announcement"
+
+msgid "Announcements"
+msgstr "Announcements"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Contacts"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Home Page Widget Settings"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Enable GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Country: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Preset default: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Zoom Factor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Zoom level for the map (1-255).@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Preset default: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Preset default: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Center Point - Longitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Longitude coordinate for map center point.@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Center Point - Latitude"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Latitude coordinate for map center point.@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Latest News and Updates Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Enable Latest News and Updates Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Enable the Latest News and Updates widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "National Targets Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Enable National Targets Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Enable the National Targets widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Enable Panorama Solutions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Enable the Panorama Solutions widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Enable E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Enable the E-Learning widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Implementation Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Enable Implementation Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Enable the Implementation widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Technical & Scientific Cooperation Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Enable Technical & Scientific Cooperation Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Enable the Technical & Scientific Cooperation widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Latest Discussions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Enable Latest Discussions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Enable the Latest Discussions widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Content Statistics Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Enable Content Statistics Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Enable the Content Statistics widget on the home page."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Enable GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Enable the GEOBON widget on the home page."

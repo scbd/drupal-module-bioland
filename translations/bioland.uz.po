@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Yo'qolgan tarjima ko'rsatkichlarini yaratish uchun mavjud shaxslarni qayta ishlash. Tizim funktsiyalari ko'rinishida tarjima standart sozlamalarini sozlang."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega menyu sozlamalari"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Mega menyu sozlamalari tez orada keladi."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Menyu pozitsiyasi"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Menyu yozuvlari paydo bo'ladigan joy."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Menyuni bo'sh bo'lsa ham ko'rsatish"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Kontent turi menyulari"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Kontent turlari statistikasi"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Bosh sahifa qahramonlari haqida"
 
@@ -1479,3 +1467,309 @@ msgstr "Nashr etilgan"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Nashr etilmagan"
+
+# Content Types
+msgid "News"
+msgstr "Yangiliklar"
+
+msgid "Event"
+msgstr "Tadbir"
+
+msgid "Events"
+msgstr "Voqealar"
+
+msgid "Learning Resource"
+msgstr "O'quv manbasi"
+
+msgid "Learning Resources"
+msgstr "O'quv manbalari"
+
+msgid "Project"
+msgstr "Loyiha"
+
+msgid "Projects"
+msgstr "Loyihalar"
+
+msgid "Basic Page"
+msgstr "Asosiy sahifa"
+
+msgid "Basic Pages"
+msgstr "Asosiy sahifalar"
+
+msgid "Article"
+msgstr "Maqola"
+
+msgid "Articles"
+msgstr "Maqolalar"
+
+msgid "Government Ministry or Institute"
+msgstr "Hukumat vazirligi yoki instituti"
+
+msgid "Government Ministries or Institutes"
+msgstr "Hukumat vazirliklari yoki institutlari"
+
+msgid "Ecosystem"
+msgstr "Ekotizim"
+
+msgid "Ecosystems"
+msgstr "Ekotizimlar"
+
+msgid "Protected Area"
+msgstr "Himoyalangan hudud"
+
+msgid "Protected Areas"
+msgstr "Himoyalangan hududlar"
+
+msgid "Biodiversity Data"
+msgstr "Bioxilma-xillik"
+
+msgid "Document"
+msgstr "Hujjat"
+
+msgid "Documents"
+msgstr "Hujjatlar"
+
+msgid "Related Website"
+msgstr "Tegishli veb-sayt"
+
+msgid "Related Websites"
+msgstr "Tegishli veb-saytlar"
+
+msgid "Other"
+msgstr "Boshqa"
+
+msgid "Others"
+msgstr "Boshqalar"
+
+msgid "Image or Video"
+msgstr "Rasm yoki video"
+
+msgid "Images or Videos"
+msgstr "Rasmlar yoki videolar"
+
+msgid "Other Resource"
+msgstr "Boshqa manbalar"
+
+msgid "Other Resources"
+msgstr "Boshqa manbalar"
+
+msgid "FAQ"
+msgstr "TSS"
+
+msgid "FAQs"
+msgstr "Tez-tez beriladigan savollar"
+
+msgid "National Information"
+msgstr "Milliy ma'lumot"
+
+msgid "National Informations"
+msgstr "Milliy maʼlumotlar"
+
+msgid "Status of LMO"
+msgstr "LMO holati"
+
+msgid "Status of LMOs"
+msgstr "LMOlarning holati"
+
+msgid "Field Trial"
+msgstr "Dala sinovi"
+
+msgid "Field Trials"
+msgstr "Dala sinovlari"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Milliy asosiy yo'nalish strategiyasi"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Milliy asosiy strategiyalar"
+
+msgid "Capacity Building"
+msgstr "Imkoniyatlarni oshirish"
+
+msgid "Announcement"
+msgstr "E'lon"
+
+msgid "Announcements"
+msgstr "E'lonlar"
+
+msgid "Contact"
+msgstr "Aloqa"
+
+msgid "Contacts"
+msgstr "Kontaktlar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Mega menyu komponentlari sozlamalari"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Drupalda qo'lda yaratilgan menyu yozuvlari avtomatlashtirilgan bo'lim yonida paydo bo'ladigan pozitsiya."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Kontent turlari Statistika menyusi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Bosh sahifa Vidjet sozlamalari"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "GBIF vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Bosh sahifada GBIF (Global Bioxilma-xillik Information Facility) vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Mamlakat: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Oldindan belgilangan standart: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Kattalashtirish omili"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Xarita uchun kattalashtirish darajasi (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Oldindan belgilangan standart: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Oldindan belgilangan standart: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Markaziy nuqta - uzunlik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Xarita markazi nuqtasi uchun uzunlik koordinatasi. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Markaziy nuqta - kenglik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Xarita markazi nuqtasi uchun kenglik koordinatasi. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "So'nggi yangiliklar va yangilanishlar vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "So'nggi yangiliklar va yangilanishlar vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Bosh sahifada So'nggi yangiliklar va yangilanishlar vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Milliy maqsadlar vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Milliy maqsadlar vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Bosh sahifada Milliy maqsadlar vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorama echimlari vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Panorama Solutions vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Bosh sahifada Panorama Solutions vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Elektron ta'lim vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Elektron ta'lim vidjetini yoqish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Asosiy sahifada E-Learning vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Amalga oshirish vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Amalga oshirish vidjetini yoqish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Asosiy sahifada amalga oshirish vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Texnik va ilmiy hamkorlik vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Texnik va ilmiy hamkorlik vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Bosh sahifada Texnik va ilmiy hamkorlik vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "So'nggi munozaralar vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Oxirgi munozaralar vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Bosh sahifada So'nggi munozaralar vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Kontent statistikasi vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Kontent statistikasi vidjetini yoqish"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Bosh sahifada Kontent statistikasi vidjetini yoqing."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON vidjeti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "GEOBON vidjetini yoqing"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Bosh sahifada GEOBON vidjetini yoqing."

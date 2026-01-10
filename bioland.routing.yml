@@ -70,6 +70,15 @@ bioland.settings.front_end.home_page:
   requirements:
     _permission: 'administer bioland settings'
 
+bioland.settings.front_end.home_widgets:
+  path: '/admin/config/bioland/settings/front-end/home-widgets'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _title: 'Home Widgets'
+    section: 'front_end_home_widgets'
+  requirements:
+    _permission: 'administer bioland settings'
+
 bioland.settings.system_functions:
   path: '/admin/config/bioland/settings/system-functions'
   defaults:

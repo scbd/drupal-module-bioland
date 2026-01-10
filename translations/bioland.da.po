@@ -1083,10 +1083,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Behandle eksisterende objekter for at oprette manglende oversættelsesstandarder. Konfigurer standardindstillinger for oversættelse under fanen Systemfunktioner."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega Menu Indstillinger"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Mega Menu-indstillinger kommer snart."
 
@@ -1348,10 +1344,6 @@ msgid "Menu position"
 msgstr "Menuposition"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Placering, hvor menuindtastninger vises."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Vis menu, selvom den er tom"
 
@@ -1520,10 +1512,6 @@ msgid "Content Type Menus"
 msgstr "Menuer til indholdstype"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Indholdstyper Statistik"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Om Home Page Heroes"
 
@@ -1546,3 +1534,309 @@ msgstr "Udgivet"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Ikke-publiceret"
+
+# Content Types
+msgid "News"
+msgstr "Nyheder"
+
+msgid "Event"
+msgstr "Begivenhed"
+
+msgid "Events"
+msgstr "Begivenheder"
+
+msgid "Learning Resource"
+msgstr "Læringsressource"
+
+msgid "Learning Resources"
+msgstr "Læringsressourcer"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects"
+msgstr "Projekter"
+
+msgid "Basic Page"
+msgstr "Grundlæggende side"
+
+msgid "Basic Pages"
+msgstr "Grundlæggende sider"
+
+msgid "Article"
+msgstr "Artikel"
+
+msgid "Articles"
+msgstr "Artikler"
+
+msgid "Government Ministry or Institute"
+msgstr "Ministerium eller Institut"
+
+msgid "Government Ministries or Institutes"
+msgstr "Regeringsministerier eller -institutter"
+
+msgid "Ecosystem"
+msgstr "Økosystem"
+
+msgid "Ecosystems"
+msgstr "Økosystemer"
+
+msgid "Protected Area"
+msgstr "Beskyttet område"
+
+msgid "Protected Areas"
+msgstr "Beskyttede områder"
+
+msgid "Biodiversity Data"
+msgstr "Biodiversitetsdata"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Documents"
+msgstr "Dokumenter"
+
+msgid "Related Website"
+msgstr "Relateret hjemmeside"
+
+msgid "Related Websites"
+msgstr "Relaterede websteder"
+
+msgid "Other"
+msgstr "Andet"
+
+msgid "Others"
+msgstr "Andre"
+
+msgid "Image or Video"
+msgstr "Billede eller video"
+
+msgid "Images or Videos"
+msgstr "Billeder eller videoer"
+
+msgid "Other Resource"
+msgstr "Anden ressource"
+
+msgid "Other Resources"
+msgstr "Andre ressourcer"
+
+msgid "FAQ"
+msgstr "OFTE STILLEDE SPØRGSMÅL"
+
+msgid "FAQs"
+msgstr "FAQ"
+
+msgid "National Information"
+msgstr "Nationale oplysninger"
+
+msgid "National Informations"
+msgstr "Nationale oplysninger"
+
+msgid "Status of LMO"
+msgstr "Status for LMO"
+
+msgid "Status of LMOs"
+msgstr "Status for LMO'er"
+
+msgid "Field Trial"
+msgstr "Feltforsøg"
+
+msgid "Field Trials"
+msgstr "Feltforsøg"
+
+msgid "National Mainstreaming Strategy"
+msgstr "National mainstreaming-strategi"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Nationale strategier for mainstreaming"
+
+msgid "Capacity Building"
+msgstr "Kapacitetsopbygning"
+
+msgid "Announcement"
+msgstr "Bekendtgørelse"
+
+msgid "Announcements"
+msgstr "Meddelelser"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Mega Menu Komponentindstillinger"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Placering, hvor menuindgange, der er oprettet manuelt i drupal, vises ved siden af det automatiserede afsnit."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Indholdstyper Statistikmenu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Startside Widget Indstillinger"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF-widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Aktivér GBIF-widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Aktivér widgeten GBIF (Global Biodiversity Information Facility) på hjemmesiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Land: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Forudindstillet standard: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Zoomfaktor"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Zoomniveau for kortet (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Forudindstillet standard: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Forudindstillet standard: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Centerpunkt - Længdegrad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Længdekoordinat for kortets midtpunkt. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Centerpunkt - Breddegrad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Breddegrad koordinat for kortets midtpunkt. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Seneste nyheder og opdateringer Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Aktivér Widget for seneste nyheder og opdateringer"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Aktivér widgeten Seneste nyheder og opdateringer på hjemmesiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget til nationale mål"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Aktivér widget til nationale mål"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Aktivér widgeten Nationale mål på hjemmesiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Widget til Panorama-løsninger"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Aktivér widget til Panorama-løsninger"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Aktivér widgeten Panorama Solutions på startsiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Aktivér E-Learning Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Aktivér e-Learning-widgeten på startsiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Implementeringswidget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Aktivér implementeringswidget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Aktivér Implementeringswidgeten på startsiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget til teknisk og videnskabeligt samarbejde"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Aktivér widget til teknisk og videnskabeligt samarbejde"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Aktivér widgeten Teknisk og videnskabeligt samarbejde på hjemmesiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Seneste Diskussioner Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Aktivér Widget for seneste diskussioner"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Aktivér widgeten Seneste diskussioner på startsiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget til indholdsstatistik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Aktivér widget til indholdsstatistik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Aktivér widgeten Indholdsstatistik på startsiden."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Aktivér GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Aktivér GEOBON-widgeten på startsiden."

@@ -1113,10 +1113,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Processar les entitats existents per crear valors predeterminats de traducció que falten. Configura la configuració predeterminada de traducció a la pestanya Funcions del sistema."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Configuració de Mega Menú"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "La configuració del Mega Menu arribarà aviat."
 
@@ -1370,10 +1366,6 @@ msgid "Menu position"
 msgstr "Posició del menú"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Posició on apareixeran les entrades del menú."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Mostra el menú encara que estigui buit"
 
@@ -1542,10 +1534,6 @@ msgid "Content Type Menus"
 msgstr "Menús tipus de contingut"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Tipus de contingut Estadístiques"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Sobre Home Page Heroes"
 
@@ -1568,3 +1556,309 @@ msgstr "Publicat"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Inèdit"
+
+# Content Types
+msgid "News"
+msgstr "Notícies"
+
+msgid "Event"
+msgstr "Esdeveniment"
+
+msgid "Events"
+msgstr "Esdeveniments"
+
+msgid "Learning Resource"
+msgstr "Recurs d'aprenentatge"
+
+msgid "Learning Resources"
+msgstr "Recursos d'aprenentatge"
+
+msgid "Project"
+msgstr "Projecte"
+
+msgid "Projects"
+msgstr "Projectes"
+
+msgid "Basic Page"
+msgstr "Pàgina bàsica"
+
+msgid "Basic Pages"
+msgstr "Pàgines bàsiques"
+
+msgid "Article"
+msgstr "Article"
+
+msgid "Articles"
+msgstr "Articles"
+
+msgid "Government Ministry or Institute"
+msgstr "Ministeri o Institut del Govern"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ministeris o instituts governamentals"
+
+msgid "Ecosystem"
+msgstr "Ecosistema"
+
+msgid "Ecosystems"
+msgstr "Ecosistemes"
+
+msgid "Protected Area"
+msgstr "Àrea Protegida"
+
+msgid "Protected Areas"
+msgstr "Àrees protegides"
+
+msgid "Biodiversity Data"
+msgstr "Dades de biodiversitat"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Related Website"
+msgstr "Lloc web relacionat"
+
+msgid "Related Websites"
+msgstr "Llocs web relacionats"
+
+msgid "Other"
+msgstr "Altres"
+
+msgid "Others"
+msgstr "Altres"
+
+msgid "Image or Video"
+msgstr "Imatge o vídeo"
+
+msgid "Images or Videos"
+msgstr "Imatges o vídeos"
+
+msgid "Other Resource"
+msgstr "Altres recursos"
+
+msgid "Other Resources"
+msgstr "Altres recursos"
+
+msgid "FAQ"
+msgstr "PMF"
+
+msgid "FAQs"
+msgstr "Preguntes freqüents"
+
+msgid "National Information"
+msgstr "Informació Nacional"
+
+msgid "National Informations"
+msgstr "Informació Nacional"
+
+msgid "Status of LMO"
+msgstr "Estat de LMO"
+
+msgid "Status of LMOs"
+msgstr "Estat de les LMO"
+
+msgid "Field Trial"
+msgstr "Assaig de camp"
+
+msgid "Field Trials"
+msgstr "Assaigs de camp"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Estratègia nacional d'integració"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Estratègies nacionals de transversalitat"
+
+msgid "Capacity Building"
+msgstr "Creació de capacitats"
+
+msgid "Announcement"
+msgstr "Anunci"
+
+msgid "Announcements"
+msgstr "Anuncis"
+
+msgid "Contact"
+msgstr "Contacte"
+
+msgid "Contacts"
+msgstr "Contactes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Configuració del component de Mega Menú"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Posició on apareixeran entrades de menú creades manualment en drupal al costat de l'apartat automatitzat."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Tipus de contingut Menú Estadístiques"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Configuració del giny de la pàgina d'inici"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Activa el Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Habilitar el giny GBIF (Global Biodiversity Information Facility) a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "País: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Predefinit predeterminat: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Factor de zoom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Nivell de zoom per al mapa (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Predefinit predeterminat: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Predefinit predeterminat: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Punt central - Longitud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Coordenada de longitud per al punt central del mapa. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Punt central - Latitud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Coordenada de latitud per al punt central del mapa. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Darreres Notícies i Actualitzacions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Activa el giny de notícies i actualitzacions més recents"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Activeu el giny Últimes notícies i actualitzacions a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget d'objectius nacionals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Activa el widget d'objectius nacionals"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Activa el giny Objectius Nacionals a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Widget de solucions panoràmiques"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Activa el giny de solucions panoràmiques"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Activa el giny Panorama Solutions a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget d'aprenentatge electrònic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Activa el widget d'aprenentatge electrònic"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Activa el giny E-Learning a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget d'implementació"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Activa Widget d'implementació"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Activa el giny Implementació a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget de Cooperació Tècnica i Científica"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Habilitar Widget de Cooperació Tècnica i Científica"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Habilita el giny de Cooperació Tècnica i Científica a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Darreres Discussions Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Activa el giny de discussions més recents"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Activa el giny Darreres discussions a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget d'estadístiques de contingut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Activa el giny d'estadístiques de contingut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Activa el giny Estadístiques de contingut a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Activa el giny GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Activa el giny GEOBON a la pàgina principal."

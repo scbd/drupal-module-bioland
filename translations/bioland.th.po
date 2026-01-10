@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "ประมวลผลเอนทิตีที่มีอยู่เพื่อสร้างค่าเริ่มต้นการแปลที่ขาดหายไปกำหนดค่าการตั้งค่าเริ่มต้นการแปลในแท็บฟังก์ชันระบบ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "การตั้งค่าเมนูเมกะ"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "การตั้งค่าเมนูเมก้าจะมาเร็ว ๆ นี้"
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "ตำแหน่งเมนู"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "ตำแหน่งที่รายการเมนูจะปรากฏขึ้น"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "แสดงเมนูแม้ว่าว่างเปล่า"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "เมนูประเภทเนื้อหา"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "ประเภทเนื้อหา สถิติ"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "เกี่ยวกับโฮมเพจฮีโร่"
 
@@ -1479,3 +1467,309 @@ msgstr "เผยแพร่"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "ยังไม่เผยแพร่"
+
+# Content Types
+msgid "News"
+msgstr "ข่าว"
+
+msgid "Event"
+msgstr "เหตุการณ์"
+
+msgid "Events"
+msgstr "กิจกรรม"
+
+msgid "Learning Resource"
+msgstr "แหล่งเรียนรู้"
+
+msgid "Learning Resources"
+msgstr "แหล่งเรียนรู้"
+
+msgid "Project"
+msgstr "โครงการ"
+
+msgid "Projects"
+msgstr "โครงการ"
+
+msgid "Basic Page"
+msgstr "หน้าพื้นฐาน"
+
+msgid "Basic Pages"
+msgstr "หน้าพื้นฐาน"
+
+msgid "Article"
+msgstr "บทความ"
+
+msgid "Articles"
+msgstr "บทความ"
+
+msgid "Government Ministry or Institute"
+msgstr "กระทรวงหรือสถาบัน"
+
+msgid "Government Ministries or Institutes"
+msgstr "กระทรวงหรือสถาบันของรัฐ"
+
+msgid "Ecosystem"
+msgstr "ระบบนิเวศ"
+
+msgid "Ecosystems"
+msgstr "ระบบนิเวศ"
+
+msgid "Protected Area"
+msgstr "พื้นที่คุ้มครอง"
+
+msgid "Protected Areas"
+msgstr "พื้นที่คุ้มครอง"
+
+msgid "Biodiversity Data"
+msgstr "ข้อมูลความหลากหลายทางชีวภาพ"
+
+msgid "Document"
+msgstr "เอกสาร"
+
+msgid "Documents"
+msgstr "เอกสาร"
+
+msgid "Related Website"
+msgstr "เว็บไซต์ที่เกี่ยวข้อง"
+
+msgid "Related Websites"
+msgstr "เว็บไซต์ที่เกี่ยวข้อง"
+
+msgid "Other"
+msgstr "อื่น"
+
+msgid "Others"
+msgstr "คนอื่น"
+
+msgid "Image or Video"
+msgstr "รูปภาพหรือวิดีโอ"
+
+msgid "Images or Videos"
+msgstr "รูปภาพหรือวิดีโอ"
+
+msgid "Other Resource"
+msgstr "ทรัพยากรอื่น ๆ"
+
+msgid "Other Resources"
+msgstr "ทรัพยากรอื่น ๆ"
+
+msgid "FAQ"
+msgstr "คำถามที่พบบ่อย"
+
+msgid "FAQs"
+msgstr "คำถามที่พบบ่อย"
+
+msgid "National Information"
+msgstr "ข้อมูลแห่งชาติ"
+
+msgid "National Informations"
+msgstr "ข้อมูลระดับชาติ"
+
+msgid "Status of LMO"
+msgstr "สถานะของ LMO"
+
+msgid "Status of LMOs"
+msgstr "สถานะของ LMO"
+
+msgid "Field Trial"
+msgstr "การทดลองภาคสนาม"
+
+msgid "Field Trials"
+msgstr "การทดลองภาคสนาม"
+
+msgid "National Mainstreaming Strategy"
+msgstr "กลยุทธ์การแพร่กระจายหลักแห่งชาติ"
+
+msgid "National Mainstreaming Strategies"
+msgstr "กลยุทธ์การรวมหลักระดับประเทศ"
+
+msgid "Capacity Building"
+msgstr "การสร้างกำลังการผลิต"
+
+msgid "Announcement"
+msgstr "ประกาศ"
+
+msgid "Announcements"
+msgstr "ประกาศ"
+
+msgid "Contact"
+msgstr "ติดต่อ"
+
+msgid "Contacts"
+msgstr "ผู้ติดต่อ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "การตั้งค่าส่วนประกอบเมนูเมกะ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "ตำแหน่งที่รายการเมนูที่สร้างขึ้นด้วยตนเองใน drupal จะปรากฏถัดจากส่วนอัตโนมัติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "ประเภทเนื้อหา เมนูสถิติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "การตั้งค่าวิดเจ็ตหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "วิดเจ็ต GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "เปิดใช้งานวิดเจ็ต GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ต GBIF (สิ่งอำนวยความสะดวกข้อมูลความหลากหลายทางชีวภาพทั่วโลก) บนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "ประเทศ: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(ค่าเริ่มต้นที่ตั้งไว้ล่วงหน้า: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "ปัจจัยซูม"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "ระดับซูมสำหรับแผนที่ (1-255)@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(ค่าเริ่มต้นที่ตั้งไว้ล่วงหน้า: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(ค่าเริ่มต้นที่ตั้งไว้ล่วงหน้า: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "จุดศูนย์กลาง - ลองจิจูด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "พิกัดลองจิจูดสำหรับจุดศูนย์กลางแผนที่@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "จุดศูนย์กลาง - ละติจูด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "พิกัดละติจูดสำหรับจุดศูนย์กลางแผนที่@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "วิดเจ็ตข่าวสารและอัปเดตล่าสุด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "เปิดใช้งานวิดเจ็ตข่าวล่าสุดและการอัปเดต"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตข่าวล่าสุดและการอัปเดตบนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "วิดเจ็ตเป้าหมายแห่งชาติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "เปิดใช้งานวิดเจ็ตเป้าหมายระดับชาติ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตเป้าหมายแห่งชาติในหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "เครื่องมือโซลูชั่นพาโนรามา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "เปิดใช้งานเครื่องมือโซลูชันพาโนรามา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตโซลูชันพาโนรามาในหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "วิดเจ็ตอีเลิร์นนิ่ง"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "เปิดใช้งานวิดเจ็ตอีเลิร์นนิ่ง"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ต E-Learning บนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "วิดเจ็ตการใช้งาน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "เปิดใช้งานวิดเจ็ตการใช้งาน"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตการดำเนินการบนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "วิดเจ็ตความร่วมมือทางเทคนิคและวิทยาศาสตร์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "เปิดใช้งานวิดเจ็ตความร่วมมือทางเทคนิคและวิทยาศาสตร์"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตความร่วมมือทางเทคนิคและวิทยาศาสตร์ในหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "วิดเจ็ตการสนทนาล่าสุด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "เปิดใช้งานวิดเจ็ตการสนทนาล่าสุด"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตการสนทนาล่าสุดบนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "วิดเจ็ตสถิติเนื้อหา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "เปิดใช้งานวิดเจ็ตสถิติเนื้อหา"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ตสถิติเนื้อหาบนหน้าแรก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "วิดเจ็ต GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "เปิดใช้งานวิดเจ็ต GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "เปิดใช้งานวิดเจ็ต GEOBON บนหน้าแรก"

@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Xử lý các thực thể hiện có để tạo các mặc định dịch còn thiếu. Định cấu hình cài đặt mặc định dịch trong tab Chức năng hệ thống."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Cài đặt Mega Menu"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Cài đặt Mega Menu sắp ra mắt."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Vị trí menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Vị trí nơi các mục menu sẽ xuất hiện."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Hiển thị menu ngay cả khi trống"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Menu loại nội dung"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Thống kê các loại nội dung"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Giới thiệu về Home Page Heroes"
 
@@ -1479,3 +1467,309 @@ msgstr "Đã xuất bản"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Chưa công bố"
+
+# Content Types
+msgid "News"
+msgstr "Tin tức"
+
+msgid "Event"
+msgstr "Sự kiện"
+
+msgid "Events"
+msgstr "Sự kiện"
+
+msgid "Learning Resource"
+msgstr "Tài nguyên học tập"
+
+msgid "Learning Resources"
+msgstr "Tài nguyên học tập"
+
+msgid "Project"
+msgstr "Dự án"
+
+msgid "Projects"
+msgstr "Dự án"
+
+msgid "Basic Page"
+msgstr "Trang cơ bản"
+
+msgid "Basic Pages"
+msgstr "Trang cơ bản"
+
+msgid "Article"
+msgstr "Bài báo"
+
+msgid "Articles"
+msgstr "Bài viết"
+
+msgid "Government Ministry or Institute"
+msgstr "Bộ hoặc Viện Chính phủ"
+
+msgid "Government Ministries or Institutes"
+msgstr "Các Bộ hoặc Viện Chính phủ"
+
+msgid "Ecosystem"
+msgstr "Hệ sinh thái"
+
+msgid "Ecosystems"
+msgstr "Hệ sinh thái"
+
+msgid "Protected Area"
+msgstr "Khu bảo tồn"
+
+msgid "Protected Areas"
+msgstr "Khu vực được bảo vệ"
+
+msgid "Biodiversity Data"
+msgstr "Dữ liệu đa dạng sinh học"
+
+msgid "Document"
+msgstr "Tài liệu"
+
+msgid "Documents"
+msgstr "Các tài liệu"
+
+msgid "Related Website"
+msgstr "Trang web liên quan"
+
+msgid "Related Websites"
+msgstr "Trang web liên quan"
+
+msgid "Other"
+msgstr "Khác"
+
+msgid "Others"
+msgstr "Người khác"
+
+msgid "Image or Video"
+msgstr "Hình ảnh hoặc Video"
+
+msgid "Images or Videos"
+msgstr "Hình ảnh hoặc Video"
+
+msgid "Other Resource"
+msgstr "Tài nguyên khác"
+
+msgid "Other Resources"
+msgstr "Tài nguyên khác"
+
+msgid "FAQ"
+msgstr "CÂU HỎI THƯỜNG GẶP"
+
+msgid "FAQs"
+msgstr "Câu hỏi thường gặp"
+
+msgid "National Information"
+msgstr "Thông tin quốc gia"
+
+msgid "National Informations"
+msgstr "Thông tin quốc gia"
+
+msgid "Status of LMO"
+msgstr "Tình trạng của LMO"
+
+msgid "Status of LMOs"
+msgstr "Tình trạng của LMO"
+
+msgid "Field Trial"
+msgstr "Thử nghiệm thực địa"
+
+msgid "Field Trials"
+msgstr "Thử nghiệm thực địa"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Chiến lược lồng ghép quốc gia"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Chiến lược lồng ghép quốc gia"
+
+msgid "Capacity Building"
+msgstr "Nâng cao năng lực"
+
+msgid "Announcement"
+msgstr "Thông báo"
+
+msgid "Announcements"
+msgstr "Thông báo"
+
+msgid "Contact"
+msgstr "Liên hệ"
+
+msgid "Contacts"
+msgstr "Danh bạ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Cài đặt thành phần Mega Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Vị trí nơi các mục menu được tạo thủ công trong drupal sẽ xuất hiện bên cạnh phần tự động."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Menu Thống kê các loại nội dung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Cài đặt Widget Trang chủ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Tiện ích GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Kích hoạt Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Kích hoạt tiện ích GBIF (Cơ sở thông tin đa dạng sinh học toàn cầu) trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Quốc gia: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Đặt trước mặc định: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Hệ số thu phóng"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Mức thu phóng cho bản đồ (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Đặt trước mặc định: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Đặt trước mặc định: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Điểm trung tâm - Kinh độ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Tọa độ kinh độ cho điểm trung tâm bản đồ. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Điểm trung tâm - Vĩ độ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Tọa độ vĩ độ cho điểm trung tâm bản đồ. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Tin tức mới nhất và cập nhật Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Kích hoạt Widget Tin tức và Cập nhật mới nhất"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Bật tiện ích Tin tức và Cập nhật mới nhất trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget mục tiêu quốc gia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Kích hoạt Widget Mục tiêu Quốc gia"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Bật tiện ích Mục tiêu quốc gia trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Tiện ích giải pháp toàn cảnh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Kích hoạt Widget Giải pháp Toàn cảnh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Bật tiện ích Giải pháp toàn cảnh trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Tiện ích học tập trực tuyến"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Kích hoạt Widget E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Kích hoạt tiện ích E-Learning trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Tiện ích triển khai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Kích hoạt Widget triển khai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Kích hoạt tiện ích triển khai trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget hợp tác kỹ thuật và khoa học"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Kích hoạt Widget hợp tác kỹ thuật và khoa học"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Kích hoạt tiện ích Hợp tác Kỹ thuật & Khoa học trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Widget thảo luận mới nhất"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Kích hoạt Widget thảo luận mới nhất"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Bật tiện ích Thảo luận mới nhất trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget thống kê nội dung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Kích hoạt Widget thống kê nội dung"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Bật tiện ích Thống kê nội dung trên trang chủ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Tiện ích GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Kích hoạt Widget GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Kích hoạt tiện ích GEOBON trên trang chủ."

@@ -19,6 +19,29 @@
  */
 
 /**
+ * Normalize Drupal language codes to match translation file naming.
+ *
+ * Maps Drupal's language codes to the codes used in .po filenames.
+ * For example: zh-hans (Drupal) → zh (.po file)
+ *
+ * @param string $langcode
+ *   The Drupal language code.
+ *
+ * @return string
+ *   The normalized language code for translation files.
+ */
+function _bioland_normalize_langcode_for_translation($langcode) {
+  // Map Drupal language codes to translation file naming convention.
+  $language_map = [
+    'zh-hans' => 'zh',  // Simplified Chinese
+    'zh-hant' => 'zh',  // Traditional Chinese (also maps to zh)
+    // Add other mappings as needed
+  ];
+  
+  return $language_map[$langcode] ?? $langcode;
+}
+
+/**
  * Helper function to configure available menus for content type.
  *
  * Sets the available menus for the 'content' node type.
@@ -82,34 +105,45 @@ function _bioland_configure_content_type_available_menus() {
  */
 function _bioland_configure_content_types() {
   $content_types = [
-    ['tid' => 2, 'name' => 'News', 'field_plural' => 'News', 'icon' => '📰'],
-    ['tid' => 3, 'name' => 'Event', 'field_plural' => 'Events', 'icon' => '📅'],
-    ['tid' => 4, 'name' => 'Learning Resource', 'field_plural' => 'Learning Resources', 'icon' => '🎓'],
-    ['tid' => 5, 'name' => 'Project', 'field_plural' => 'Projects', 'icon' => '📊'],
-    ['tid' => 6, 'name' => 'Basic Page', 'field_plural' => 'Basic Pages', 'icon' => '📄'],
-    ['tid' => 54, 'name' => 'Article', 'field_plural' => 'Articles', 'icon' => '📄'],
-    ['tid' => 8, 'name' => 'Government Ministry or Institute', 'field_plural' => 'Government Ministries or Institutes', 'icon' => '🏛️'],
-    ['tid' => 9, 'name' => 'Ecosystem', 'field_plural' => 'Ecosystems', 'icon' => '🌍'],
-    ['tid' => 10, 'name' => 'Protected Area', 'field_plural' => 'Protected Areas', 'icon' => '🏞️'],
-    ['tid' => 11, 'name' => 'Biodiversity Data', 'field_plural' => 'Biodiversity Data', 'icon' => '📈'],
-    ['tid' => 12, 'name' => 'Document', 'field_plural' => 'Documents', 'icon' => '📋'],
-    ['tid' => 13, 'name' => 'Related Website', 'field_plural' => 'Related Websites', 'icon' => '🔗'],
-    ['tid' => 15, 'name' => 'Other', 'field_plural' => 'Others', 'icon' => '⚙️'],
-    ['tid' => 16, 'name' => 'Image or Video', 'field_plural' => 'Images or Videos', 'icon' => '🎬'],
-    ['tid' => 55, 'name' => 'Other Resource', 'field_plural' => 'Other Resources', 'icon' => '⚙️'],
-    ['tid' => 43, 'name' => 'FAQ', 'field_plural' => 'FAQs', 'icon' => '❓'],
-    ['tid' => 44, 'name' => 'National Information', 'field_plural' => 'National Informations', 'icon' => '🏴'],
-    ['tid' => 45, 'name' => 'Status of LMO', 'field_plural' => 'Status of LMOs', 'icon' => '🧬'],
-    ['tid' => 46, 'name' => 'Field Trial', 'field_plural' => 'Field Trials', 'icon' => '🌱'],
-    ['tid' => 47, 'name' => 'National Mainstreaming Strategy', 'field_plural' => 'National Mainstreaming Strategies', 'icon' => '🗂️'],
-    ['tid' => 48, 'name' => 'Capacity Building', 'field_plural' => 'Capacity Building', 'icon' => '🔧'],
-    ['tid' => 49, 'name' => 'Announcement', 'field_plural' => 'Announcements', 'icon' => '📢'],
-    ['tid' => 50, 'name' => 'Contact', 'field_plural' => 'Contacts', 'icon' => '📞'],
+    ['tid' => 2, 'name' => 'News', 'field_plural' => 'News'],
+    ['tid' => 3, 'name' => 'Event', 'field_plural' => 'Events'],
+    ['tid' => 4, 'name' => 'Learning Resource', 'field_plural' => 'Learning Resources'],
+    ['tid' => 5, 'name' => 'Project', 'field_plural' => 'Projects'],
+    ['tid' => 6, 'name' => 'Basic Page', 'field_plural' => 'Basic Pages'],
+    ['tid' => 54, 'name' => 'Article', 'field_plural' => 'Articles'],
+    ['tid' => 8, 'name' => 'Government Ministry or Institute', 'field_plural' => 'Government Ministries or Institutes'],
+    ['tid' => 9, 'name' => 'Ecosystem', 'field_plural' => 'Ecosystems'],
+    ['tid' => 10, 'name' => 'Protected Area', 'field_plural' => 'Protected Areas'],
+    ['tid' => 11, 'name' => 'Biodiversity Data', 'field_plural' => 'Biodiversity Data'],
+    ['tid' => 12, 'name' => 'Document', 'field_plural' => 'Documents'],
+    ['tid' => 13, 'name' => 'Related Website', 'field_plural' => 'Related Websites'],
+    ['tid' => 15, 'name' => 'Other', 'field_plural' => 'Others'],
+    ['tid' => 16, 'name' => 'Image or Video', 'field_plural' => 'Images or Videos'],
+    ['tid' => 55, 'name' => 'Other Resource', 'field_plural' => 'Other Resources'],
+    ['tid' => 43, 'name' => 'FAQ', 'field_plural' => 'FAQs'],
+    ['tid' => 44, 'name' => 'National Information', 'field_plural' => 'National Informations'],
+    ['tid' => 45, 'name' => 'Status of LMO', 'field_plural' => 'Status of LMOs'],
+    ['tid' => 46, 'name' => 'Field Trial', 'field_plural' => 'Field Trials'],
+    ['tid' => 47, 'name' => 'National Mainstreaming Strategy', 'field_plural' => 'National Mainstreaming Strategies'],
+    ['tid' => 48, 'name' => 'Capacity Building', 'field_plural' => 'Capacity Building'],
+    ['tid' => 49, 'name' => 'Announcement', 'field_plural' => 'Announcements'],
+    ['tid' => 50, 'name' => 'Contact', 'field_plural' => 'Contacts'],
   ];
+
+  // Get all installed languages (excluding English as source).
+  $language_manager = \Drupal::languageManager();
+  $languages = $language_manager->getLanguages();
+  $target_languages = [];
+  foreach ($languages as $langcode => $language) {
+    if ($langcode !== 'en') {
+      $target_languages[] = $langcode;
+    }
+  }
 
   $created = 0;
   $updated = 0;
   $errors = 0;
+  $translations_added = 0;
 
   foreach ($content_types as $content_type) {
     try {
@@ -145,7 +179,7 @@ function _bioland_configure_content_types() {
         // Create new term with specific tid
         // CRITICAL: Must set langcode='en' to create in English, not current UI language
         // CRITICAL: Must set revision_id=tid to avoid duplicate key constraint violations
-        // CRITICAL: Set name and status in create() to avoid issues with automatic translation
+        // CRITICAL: Set name, status, and field_plural in create() to avoid issues with automatic translation
         $term = \Drupal::entityTypeManager()
           ->getStorage('taxonomy_term')
           ->create([
@@ -154,6 +188,7 @@ function _bioland_configure_content_types() {
             'revision_id' => $tid, // Use same ID as tid to avoid conflicts
             'langcode' => 'en', // Always create in English
             'name' => $content_type['name'], // Set name during creation
+            'field_plural' => $content_type['field_plural'], // Set plural during creation
             'status' => 0, // Mark new terms as disabled
             'content_translation_source' => 'und', // Prevent auto-translation
             'content_translation_outdated' => FALSE,
@@ -194,10 +229,6 @@ function _bioland_configure_content_types() {
         $term->set('field_plural', $content_type['field_plural']);
       }
       
-      if ($term->hasField('field_icon')) {
-        $term->set('field_icon', $content_type['icon']);
-      }
-      
       // Log status for new terms
       if ($is_new) {
         \Drupal::logger('bioland')->notice('Setting new term @tid (@name) to disabled status.', [
@@ -218,6 +249,78 @@ function _bioland_configure_content_types() {
       else {
         $updated++;
       }
+      
+      // Add translations for all installed languages.
+      if (!empty($target_languages) && $term->isTranslatable()) {
+        foreach ($target_languages as $langcode) {
+          try {
+            // Check if translation already exists.
+            if (!$term->hasTranslation($langcode)) {
+              // Use Drupal's translation service to get translated strings from .po files.
+              // Normalize langcode for .po file lookup (e.g., zh-hans → zh).
+              $po_langcode = _bioland_normalize_langcode_for_translation($langcode);
+              $translation_service = \Drupal::service('string_translation');
+              $translated_name = $translation_service->translate($content_type['name'], [], ['langcode' => $po_langcode])->render();
+              $translated_plural = $translation_service->translate($content_type['field_plural'], [], ['langcode' => $po_langcode])->render();
+              
+              // Create translation.
+              $translation = $term->addTranslation($langcode, [
+                'name' => $translated_name,
+                'status' => $term->get('status')->value,
+              ]);
+              
+              // Set custom fields for translation.
+              if ($translation->hasField('field_plural')) {
+                $translation->set('field_plural', $translated_plural);
+              }
+              
+              $term->save();
+              $translations_added++;
+              
+              \Drupal::logger('bioland')->info('Added @langcode translation for term @tid: @name → @translated', [
+                '@langcode' => $langcode,
+                '@tid' => $content_type['tid'],
+                '@name' => $content_type['name'],
+                '@translated' => $translated_name,
+              ]);
+            }
+            else {
+              // Translation exists - only fix broken fields if needed, don't overwrite content.
+              $translation = $term->getTranslation($langcode);
+              $needs_save = FALSE;
+              
+              // Only fix if name is completely empty (NULL or empty string).
+              $trans_name = $translation->get('name')->value;
+              if ($trans_name === NULL || $trans_name === '') {
+                // Normalize langcode for .po file lookup (e.g., zh-hans → zh).
+                $po_langcode = _bioland_normalize_langcode_for_translation($langcode);
+                $translation_service = \Drupal::service('string_translation');
+                $translated_name = $translation_service->translate($content_type['name'], [], ['langcode' => $po_langcode])->render();
+                $translation->set('name', $translated_name);
+                $needs_save = TRUE;
+              }
+              
+              // Only fix if status is NULL or empty.
+              $trans_status = $translation->get('status')->value;
+              if ($trans_status === NULL || $trans_status === '') {
+                $translation->set('status', $term->get('status')->value);
+                $needs_save = TRUE;
+              }
+              
+              if ($needs_save) {
+                $term->save();
+              }
+            }
+          }
+          catch (\Exception $e) {
+            \Drupal::logger('bioland')->warning('Error adding @langcode translation for term @tid: @message', [
+              '@langcode' => $langcode,
+              '@tid' => $content_type['tid'],
+              '@message' => $e->getMessage(),
+            ]);
+          }
+        }
+      }
     }
     catch (\Exception $e) {
       $errors++;
@@ -229,9 +332,10 @@ function _bioland_configure_content_types() {
     }
   }
 
-  $message = t('Configured content type taxonomy terms: @created created (disabled), @updated updated, @errors errors.', [
+  $message = t('Configured content type taxonomy terms: @created created (disabled), @updated updated, @translations translations added, @errors errors.', [
     '@created' => $created,
     '@updated' => $updated,
+    '@translations' => $translations_added,
     '@errors' => $errors,
   ]);
   

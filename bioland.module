@@ -34,17 +34,26 @@ function bioland_menu_links_discovered_alter(&$links) {
 /**
  * Implements hook_page_attachments().
  *
- * Attaches the bulk actions hiding JS for contributor role users.
+ * Attaches the bulk actions hiding JS for contributor role users
+ * and home widget settings to all pages.
  */
 function bioland_page_attachments(array &$attachments) {
   // Always attach the library - JavaScript will check user roles and hide appropriately
   $attachments['#attached']['library'][] = 'bioland/hide_bulk_actions';
+  
+  // Attach home widgets library to make settings available frontend-wide
+  $attachments['#attached']['library'][] = 'bioland/home_widgets';
   
   // Pass current user roles to JavaScript
   $current_user = \Drupal::currentUser();
   $roles = $current_user->getRoles();
   
   $attachments['#attached']['drupalSettings']['user']['roles'] = $roles;
+  
+  // Attach home widget settings (with country map defaults) to all pages
+  $settingsManager = \Drupal::service('bioland.settings_manager');
+  $homeWidgetSettings = $settingsManager->getHomeWidgetSettings();
+  $attachments['#attached']['drupalSettings']['bioland']['homeWidgets'] = $homeWidgetSettings;
 }
 
 /**

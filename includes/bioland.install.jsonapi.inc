@@ -35,9 +35,7 @@ function _bioland_disable_jsonapi_resources() {
     'search_api_server--search_api_server',
     'mailer_policy--mailer_policy',
     'mailer_transport--mailer_transport',
-    'user_role--user_role',
     'menu--menu',
-    'user--user',
   ];
 
   $messages = [];

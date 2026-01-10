@@ -1095,10 +1095,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "A meglévő entitások feldolgozása hiányzó fordítási alapbeállítások létrehozásához. Konfigurálja a fordítás alapértelmezett beállításait a Rendszerfunkciók lapon."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega menü beállítások"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "A mega menü beállításai hamarosan megjelennek."
 
@@ -1356,10 +1352,6 @@ msgid "Menu position"
 msgstr "Menü pozíció"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Pozíció, ahol a menübejegyzések megjelennek."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "A menü megjelenítése még akkor is, ha üres"
 
@@ -1528,10 +1520,6 @@ msgid "Content Type Menus"
 msgstr "Tartalomtípus-menük"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Tartalomtípusok Statisztika"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "A Home Page Heroes bemutatása"
 
@@ -1554,3 +1542,309 @@ msgstr "Megjelent"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Közzétetlen"
+
+# Content Types
+msgid "News"
+msgstr "hírek"
+
+msgid "Event"
+msgstr "Esemény"
+
+msgid "Events"
+msgstr "Események"
+
+msgid "Learning Resource"
+msgstr "Tanulási forrás"
+
+msgid "Learning Resources"
+msgstr "Tanulási források"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Projects"
+msgstr "Projektek"
+
+msgid "Basic Page"
+msgstr "Alapoldal"
+
+msgid "Basic Pages"
+msgstr "Alapoldalak"
+
+msgid "Article"
+msgstr "Cikk"
+
+msgid "Articles"
+msgstr "Cikkek"
+
+msgid "Government Ministry or Institute"
+msgstr "Kormányminisztérium vagy intézet"
+
+msgid "Government Ministries or Institutes"
+msgstr "kormányzati minisztériumok vagy intézetek"
+
+msgid "Ecosystem"
+msgstr "Ökoszisztéma"
+
+msgid "Ecosystems"
+msgstr "Ökoszisztémák"
+
+msgid "Protected Area"
+msgstr "Védett terület"
+
+msgid "Protected Areas"
+msgstr "Védett területek"
+
+msgid "Biodiversity Data"
+msgstr "Biodiverzitási adatok"
+
+msgid "Document"
+msgstr "Dokumentum"
+
+msgid "Documents"
+msgstr "Dokumentumok"
+
+msgid "Related Website"
+msgstr "Kapcsolódó weboldal"
+
+msgid "Related Websites"
+msgstr "Kapcsolódó webhelyek"
+
+msgid "Other"
+msgstr "Egyéb"
+
+msgid "Others"
+msgstr "Mások"
+
+msgid "Image or Video"
+msgstr "Kép vagy videó"
+
+msgid "Images or Videos"
+msgstr "Képek vagy videók"
+
+msgid "Other Resource"
+msgstr "Egyéb erőforrás"
+
+msgid "Other Resources"
+msgstr "Egyéb források"
+
+msgid "FAQ"
+msgstr "GYIK"
+
+msgid "FAQs"
+msgstr "GYIK"
+
+msgid "National Information"
+msgstr "Nemzeti Információ"
+
+msgid "National Informations"
+msgstr "Országos Információk"
+
+msgid "Status of LMO"
+msgstr "Az LMO állapota"
+
+msgid "Status of LMOs"
+msgstr "Az LMO-k állapota"
+
+msgid "Field Trial"
+msgstr "Terepi próba"
+
+msgid "Field Trials"
+msgstr "Terepi kísérletek"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Nemzeti általános érvényesítési stratégia"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Nemzeti integrációs stratégiák"
+
+msgid "Capacity Building"
+msgstr "Kapacitásépítés"
+
+msgid "Announcement"
+msgstr "Közlemény"
+
+msgid "Announcements"
+msgstr "Közlemények"
+
+msgid "Contact"
+msgstr "Kapcsolat"
+
+msgid "Contacts"
+msgstr "Kapcsolatok"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Mega menü komponens beállításai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Az automatizált szakasz mellett megjelenik a pozíció, ahol a drupalban manuálisan létrehozott menübejegyzések jelennek meg."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Tartalomtípusok Statisztika menü"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Kezdőlap Widget beállításai"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Engedélyezze a GBIF Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Engedélyezze a GBIF (Global Biodiversity Information Facility) widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Ország: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Alapértelmezett beállítás: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Zoom tényező"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "A térkép nagyítási szintje (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Alapértelmezett beállítás: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Alapértelmezett beállítás: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Központi pont - Hosszúság"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "A térkép középpontjának hosszúsági koordinátája. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Középpont - szélesség"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "A térkép középpontjának szélességi koordinátája. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Legfrissebb hírek és frissítések widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Legfrissebb hírek és frissítések widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Engedélyezze a legfrissebb hírek és frissítések widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Nemzeti célok widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Nemzeti célok widgetének engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Engedélyezze a nemzeti célok widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panoráma megoldások widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Panorama Solutions widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Engedélyezze a Panorama Solutions widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-tanulási widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "E-Learning Widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Engedélyezze az E-Learning widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Implementációs widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Implementációs widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Engedélyezze a Megvalósítás widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Műszaki és tudományos együttműködési widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Műszaki és tudományos együttműködési widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Engedélyezze a műszaki és tudományos együttműködés widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Legfrissebb beszélgetések widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Legújabb beszélgetések widgetének engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Engedélyezze a legújabb beszélgetések widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Tartalomstatisztikai widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Tartalomstatisztikai widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Engedélyezze a Tartalomstatisztikák widgetet a kezdőlapon."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "A GEOBON Widget engedélyezése"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Engedélyezze a GEOBON widgetet a kezdőlapon."

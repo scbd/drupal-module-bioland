@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "处理现有实体以创建缺失的翻译默认值。在 “系统功能” 选项卡中配置翻译默认设置。"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "超级菜单设置"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "超级菜单设置即将推出。"
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "菜单位置"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "菜单条目出现的位置。"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "即使菜单为空也显示菜单"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "内容类型菜单"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "内容类型统计"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "关于主页英雄"
 
@@ -1479,3 +1467,309 @@ msgstr "已出版"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "未发表"
+
+# Content Types
+msgid "News"
+msgstr "消息"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "Events"
+msgstr "活动"
+
+msgid "Learning Resource"
+msgstr "学习资源"
+
+msgid "Learning Resources"
+msgstr "学习资源"
+
+msgid "Project"
+msgstr "项目"
+
+msgid "Projects"
+msgstr "项目"
+
+msgid "Basic Page"
+msgstr "基本页面"
+
+msgid "Basic Pages"
+msgstr "基本页面"
+
+msgid "Article"
+msgstr "文章"
+
+msgid "Articles"
+msgstr "文章"
+
+msgid "Government Ministry or Institute"
+msgstr "政府部委或机构"
+
+msgid "Government Ministries or Institutes"
+msgstr "政府部门或机构"
+
+msgid "Ecosystem"
+msgstr "生态系统"
+
+msgid "Ecosystems"
+msgstr "生态系统"
+
+msgid "Protected Area"
+msgstr "保护区"
+
+msgid "Protected Areas"
+msgstr "保护区"
+
+msgid "Biodiversity Data"
+msgstr "生物多样性数据"
+
+msgid "Document"
+msgstr "文档"
+
+msgid "Documents"
+msgstr "文件"
+
+msgid "Related Website"
+msgstr "相关网站"
+
+msgid "Related Websites"
+msgstr "相关网站"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Others"
+msgstr "其他的"
+
+msgid "Image or Video"
+msgstr "图片或视频"
+
+msgid "Images or Videos"
+msgstr "图片或视频"
+
+msgid "Other Resource"
+msgstr "其他资源"
+
+msgid "Other Resources"
+msgstr "其他资源"
+
+msgid "FAQ"
+msgstr "常见问题"
+
+msgid "FAQs"
+msgstr "常见问题解答"
+
+msgid "National Information"
+msgstr "国家信息"
+
+msgid "National Informations"
+msgstr "国家信息"
+
+msgid "Status of LMO"
+msgstr "LMO 的状态"
+
+msgid "Status of LMOs"
+msgstr "LMO 的现状"
+
+msgid "Field Trial"
+msgstr "实地试验"
+
+msgid "Field Trials"
+msgstr "实地试验"
+
+msgid "National Mainstreaming Strategy"
+msgstr "国家主流化战略"
+
+msgid "National Mainstreaming Strategies"
+msgstr "国家主流化战略"
+
+msgid "Capacity Building"
+msgstr "能力建设"
+
+msgid "Announcement"
+msgstr "公告"
+
+msgid "Announcements"
+msgstr "公告"
+
+msgid "Contact"
+msgstr "联系我们"
+
+msgid "Contacts"
+msgstr "联系人"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "超级菜单组件设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "在 drupal 中手动创建的菜单条目将出现在自动化部分旁边的位置。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "内容类型统计菜单"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "主页小工具设置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF 小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "启用 GBIF 控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "在主页上启用 GBIF（全球生物多样性信息设施）控件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "国家：@country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "（默认预设：@zoom）"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "缩放系数"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "地图的缩放级别 (1-255)。@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "（默认预设：@lng）"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "（默认预设：@lat）"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "中心点-经度"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "地图中心点的经度坐标。@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "中心点-纬度"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "地图中心点的纬度坐标。@info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "最新新闻和更新小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "启用最新新闻和更新控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "在主页上启用 “最新新闻和更新” 控件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "国家目标小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "启用国家目标控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "在主页上启用 “国家目标” 控件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "全景解决方案小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "启用全景解决方案控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "在主页上启用 “全景解决方案” 插件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "电子学习小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "启用电子学习小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "在主页上启用电子学习插件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "实现控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "启用实现控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "在主页上启用 “实施” 控件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "技术和科学合作小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "启用技术和科学合作小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "在主页上启用 “技术与科学合作” 插件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "最新讨论小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "启用 “最新讨论” 控件"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "在主页上启用 “最新讨论” 控件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "内容统计小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "启用内容统计小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "在主页上启用 “内容统计” 小组件。"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON 小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "启用 GEOBON 小工具"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "在主页上启用 GEOBON 控件。"

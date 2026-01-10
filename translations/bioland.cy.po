@@ -1113,10 +1113,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Prosesu endidau presennol i greu rhagosodiadau cyfieithu sydd ar goll. Ffurfweddu gosodiadau diofyn cyfieithu yn y tab Swyddogaethau System."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Gosodiadau Dewislen Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Gosodiadau Dewislen Mega yn dod yn fuan."
 
@@ -1370,10 +1366,6 @@ msgid "Menu position"
 msgstr "Safle dewislen"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Safle lle bydd cofnodion dewislen yn ymddangos."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Dangos y ddewislen hyd yn oed os yw'n wag"
 
@@ -1542,10 +1534,6 @@ msgid "Content Type Menus"
 msgstr "Bwydlenni Math o Gynnwys"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Ystadegau Mathau o Gynnwys"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Ynglŷn ag Arwyr Tudalen Hafan"
 
@@ -1568,3 +1556,309 @@ msgstr "Cyhoeddwyd"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Heb ei gyhoeddi"
+
+# Content Types
+msgid "News"
+msgstr "Newyddion"
+
+msgid "Event"
+msgstr "Digwyddiad"
+
+msgid "Events"
+msgstr "Digwyddiadau"
+
+msgid "Learning Resource"
+msgstr "Adnodd Dysgu"
+
+msgid "Learning Resources"
+msgstr "Adnoddau Dysgu"
+
+msgid "Project"
+msgstr "Prosiect"
+
+msgid "Projects"
+msgstr "Prosiectau"
+
+msgid "Basic Page"
+msgstr "Tudalen Sylfaenol"
+
+msgid "Basic Pages"
+msgstr "Tudalennau Sylfaenol"
+
+msgid "Article"
+msgstr "Erthygl"
+
+msgid "Articles"
+msgstr "Erthyglau"
+
+msgid "Government Ministry or Institute"
+msgstr "Gweinidogaeth neu Sefydliad y Llywodraeth"
+
+msgid "Government Ministries or Institutes"
+msgstr "Gweinidogaethau neu Athrofeydd y Llywodraeth"
+
+msgid "Ecosystem"
+msgstr "Ecosystem"
+
+msgid "Ecosystems"
+msgstr "Ecosystemau"
+
+msgid "Protected Area"
+msgstr "Ardal Warchodedig"
+
+msgid "Protected Areas"
+msgstr "Ardaloedd Gwarchodedig"
+
+msgid "Biodiversity Data"
+msgstr "Data Bioamrywiaeth"
+
+msgid "Document"
+msgstr "Dogfen"
+
+msgid "Documents"
+msgstr "Dogfennau"
+
+msgid "Related Website"
+msgstr "Gwefan Gysylltiedig"
+
+msgid "Related Websites"
+msgstr "Gwefannau Cysylltiedig"
+
+msgid "Other"
+msgstr "Arall"
+
+msgid "Others"
+msgstr "Eraill"
+
+msgid "Image or Video"
+msgstr "Delwedd neu Fideo"
+
+msgid "Images or Videos"
+msgstr "Delweddau neu Fideos"
+
+msgid "Other Resource"
+msgstr "Adnoddau Eraill"
+
+msgid "Other Resources"
+msgstr "Adnoddau Eraill"
+
+msgid "FAQ"
+msgstr "CWESTIYNAU CYFFREDIN"
+
+msgid "FAQs"
+msgstr "Cwestiynau Cyffredin"
+
+msgid "National Information"
+msgstr "Gwybodaeth Genedlaethol"
+
+msgid "National Informations"
+msgstr "Gwybodaeth Genedlaethol"
+
+msgid "Status of LMO"
+msgstr "Statws LMO"
+
+msgid "Status of LMOs"
+msgstr "Statws LMOs"
+
+msgid "Field Trial"
+msgstr "Treial Maes"
+
+msgid "Field Trials"
+msgstr "Treialon Maes"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Strategaeth Brif Ffrydio Genedlaethol"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Strategaethau Prif Ffrydio Cenedlaethol"
+
+msgid "Capacity Building"
+msgstr "Adeiladu Capasiti"
+
+msgid "Announcement"
+msgstr "Cyhoeddiad"
+
+msgid "Announcements"
+msgstr "Cyhoeddiadau"
+
+msgid "Contact"
+msgstr "Cysylltwch"
+
+msgid "Contacts"
+msgstr "Cysylltiadau"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Gosodiadau Cydran Dewislen Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Safle lle bydd cofnodion dewislen a grëwyd â llaw yn drupal yn ymddangos wrth ymyl yr adran awtomataidd."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Dewislen Ystadegau Mathau o Gynnwys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Gosodiadau Widget Tudalen Hafan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Teclyn GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Galluogi Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Galluogi teclyn GBIF (Cyfleuster Gwybodaeth Bioamrywiaeth Byd-eang) ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Gwlad: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Rhagosodiad rhagosodedig: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Ffactor Chwyddo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Lefel chwyddo ar gyfer y map (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Rhagosodiad rhagosodedig: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Rhagosodiad rhagosodedig: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Pwynt Canol - Hydred"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Cyfesuryn hydred ar gyfer pwynt canol map. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Pwynt Canol - Lledred"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Cyfesuryn lledred ar gyfer pwynt canol map. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Widget Newyddion a Diweddariadau Diweddaraf"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Galluogi Widget Newyddion a Diweddariadau diweddaraf"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Galluogi'r teclyn Newyddion a Diweddariadau Diweddaraf ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Teclyn Targedau Cenedlaethol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Galluogi Teclyn Targedau Cenedlaethol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Galluogi'r teclyn Targedau Cenedlaethol ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Teclyn Datrysiadau Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Galluogi Widget Datrysiadau Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Galluogi'r teclyn Panorama Solutions ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Teclyn E-ddysgu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Galluogi Widget E-ddysgu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Galluogi'r teclyn E-Dysgu ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Teclyn Gweithredu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Galluogi Widget Gweithredu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Galluogi'r teclyn Gweithredu ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Teclyn Cydweithredu Technegol a Gwyddonol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Galluogi Teclyn Cydweithredu Technegol a Gwyddonol"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Galluogi'r teclyn Cydweithrediad Technegol a Gwyddonol ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Widget Trafodaethau Diweddaraf"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Galluogi Widget Trafodaethau diweddaraf"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Galluogi'r teclyn Trafodaethau Diweddaraf ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget Ystadegau Cynnwys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Galluogi Widget Ystadegau Cynnwys"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Galluogi'r teclyn Ystadegau Cynnwys ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Teclyn GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Galluogi Widget GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Galluogi'r teclyn GEOBON ar y dudalen gartref."

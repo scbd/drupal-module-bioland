@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Procesați entitățile existente pentru a crea valorile implicite de traducere lipsă. Configurați setările implicite ale traducerii în fila Funcții sistem."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Setări meniu Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Setările Mega Menu vor veni în curând."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Poziția meniului"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Poziția în care vor apărea intrările de meniu."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Afișați meniul chiar dacă este gol"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Meniuri tip conținut"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Statistici tipuri de conținut"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Despre Home Page Heroes"
 
@@ -1479,3 +1467,309 @@ msgstr "Publicat"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Nepublicat"
+
+# Content Types
+msgid "News"
+msgstr "Știri"
+
+msgid "Event"
+msgstr "Eveniment"
+
+msgid "Events"
+msgstr "Evenimente"
+
+msgid "Learning Resource"
+msgstr "Resursa de invatare"
+
+msgid "Learning Resources"
+msgstr "Resurse de învățare"
+
+msgid "Project"
+msgstr "Proiect"
+
+msgid "Projects"
+msgstr "Proiecte"
+
+msgid "Basic Page"
+msgstr "Pagina de bază"
+
+msgid "Basic Pages"
+msgstr "Pagini de bază"
+
+msgid "Article"
+msgstr "Articol"
+
+msgid "Articles"
+msgstr "Articole"
+
+msgid "Government Ministry or Institute"
+msgstr "Ministerul sau Institutul Guvernului"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ministerele sau institutele guvernamentale"
+
+msgid "Ecosystem"
+msgstr "Ecosistem"
+
+msgid "Ecosystems"
+msgstr "Ecosisteme"
+
+msgid "Protected Area"
+msgstr "Zonă protejată"
+
+msgid "Protected Areas"
+msgstr "Arii Protejate"
+
+msgid "Biodiversity Data"
+msgstr "Date despre biodiversitate"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Documents"
+msgstr "Documente"
+
+msgid "Related Website"
+msgstr "Site conex"
+
+msgid "Related Websites"
+msgstr "Site-uri web conexe"
+
+msgid "Other"
+msgstr "Alte"
+
+msgid "Others"
+msgstr "Alții"
+
+msgid "Image or Video"
+msgstr "Imagine sau Video"
+
+msgid "Images or Videos"
+msgstr "Imagini sau videoclipuri"
+
+msgid "Other Resource"
+msgstr "Alte resurse"
+
+msgid "Other Resources"
+msgstr "Alte resurse"
+
+msgid "FAQ"
+msgstr "ÎNTREBĂRI FRECVENTE"
+
+msgid "FAQs"
+msgstr "Întrebări frecvente"
+
+msgid "National Information"
+msgstr "Informaţii naţionale"
+
+msgid "National Informations"
+msgstr "Informatii Nationale"
+
+msgid "Status of LMO"
+msgstr "Statutul LMO"
+
+msgid "Status of LMOs"
+msgstr "Statutul OMG-urilor"
+
+msgid "Field Trial"
+msgstr "Încercare pe teren"
+
+msgid "Field Trials"
+msgstr "Încercări pe teren"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Strategia națională de integrare"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Strategii naționale de integrare"
+
+msgid "Capacity Building"
+msgstr "Consolidarea capacităților"
+
+msgid "Announcement"
+msgstr "Anunț"
+
+msgid "Announcements"
+msgstr "Anunțuri"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Contacte"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Setări componente Mega Menu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Poziția în care intrările de meniu create manual în drupal vor apărea lângă secțiunea automată."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Meniul Statistici Tipuri de conținut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Setări widget pentru pagina de pornire"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Activați widgetul GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Activați widgetul GBIF (Facilitatea globală de informații despre biodiversitate) pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Țară: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Presetare implicită: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Factor de zoom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Nivelul de zoom pentru hartă (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Presetare implicită: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Presetare implicită: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Punct central - Longitudine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Coordonată longitudine pentru punctul central al hărții. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Punct central - Latitudine"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Coordonată de latitudine pentru punctul central al hărții. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Ultimele știri și actualizări Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Activați widgetul Ultimele știri și actualizări"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Activați widgetul Ultimele știri și actualizări de pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget ținte naționale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Activați widgetul ținte naționale"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Activați widgetul Ținte naționale de pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Widget Soluții Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Activați widgetul Soluții Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Activați widgetul Soluții panoramice pe pagina de pornire."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Activați widgetul E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Activați widgetul E-Learning pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget de implementare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Activați widgetul de implementare"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Activați widgetul Implementare pe pagina de pornire."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget de cooperare tehnică și științifică"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Activați widgetul de cooperare tehnică și științifică"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Activați widgetul Cooperare tehnică și științifică de pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Ultimele Discuții Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Activați widgetul Ultimele Discuții"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Activați widgetul Ultimele discuții de pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget pentru statistici de conținut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Activați widgetul Statistici de conținut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Activați widgetul Statistici de conținut pe pagina principală."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Activați widgetul GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Activați widgetul GEOBON pe pagina de pornire."

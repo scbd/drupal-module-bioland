@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Apstrādājiet esošās entītijas, lai izveidotu trūkstošos tulkošanas noklusējuma iestatījumus. Konfigurējiet tulkošanas noklusējuma iestatījumus cilnē Sistēmas funkcijas."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Mega izvēlnes iestatījumi"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Drīzumā būs pieejami mega izvēlnes iestatījumi."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Izvēlnes pozīcija"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Pozīcija, kur parādīsies izvēlnes ieraksti."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Rādīt izvēlni, pat ja tā ir tukša"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Satura tipa izvēlnes"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Satura veidi Statistika"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Par mājas lapas varoņiem"
 
@@ -1479,3 +1467,309 @@ msgstr "Publicēts"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Nepublicēts"
+
+# Content Types
+msgid "News"
+msgstr "Jaunumi"
+
+msgid "Event"
+msgstr "Pasākums"
+
+msgid "Events"
+msgstr "Pasākumi"
+
+msgid "Learning Resource"
+msgstr "Mācību resurss"
+
+msgid "Learning Resources"
+msgstr "Mācību resursi"
+
+msgid "Project"
+msgstr "Projekts"
+
+msgid "Projects"
+msgstr "Projekti"
+
+msgid "Basic Page"
+msgstr "Pamatlapa"
+
+msgid "Basic Pages"
+msgstr "Pamatlapas"
+
+msgid "Article"
+msgstr "Raksts"
+
+msgid "Articles"
+msgstr "Raksti"
+
+msgid "Government Ministry or Institute"
+msgstr "Valdības ministrija vai institūts"
+
+msgid "Government Ministries or Institutes"
+msgstr "Valdības ministrijas vai institūti"
+
+msgid "Ecosystem"
+msgstr "Ekosistēma"
+
+msgid "Ecosystems"
+msgstr "Ekosistēmas"
+
+msgid "Protected Area"
+msgstr "Aizsargājamā teritorija"
+
+msgid "Protected Areas"
+msgstr "Aizsargājamās teritorijas"
+
+msgid "Biodiversity Data"
+msgstr "Dati par bioloģisko daudzveidību"
+
+msgid "Document"
+msgstr "Dokuments"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Related Website"
+msgstr "Saistītā vietne"
+
+msgid "Related Websites"
+msgstr "Saistītās tīmekļa vietnes"
+
+msgid "Other"
+msgstr "Cits"
+
+msgid "Others"
+msgstr "Citi"
+
+msgid "Image or Video"
+msgstr "Attēls vai video"
+
+msgid "Images or Videos"
+msgstr "Attēli vai video"
+
+msgid "Other Resource"
+msgstr "Citi resursi"
+
+msgid "Other Resources"
+msgstr "Citi resursi"
+
+msgid "FAQ"
+msgstr "BUJ"
+
+msgid "FAQs"
+msgstr "BUJ"
+
+msgid "National Information"
+msgstr "Valsts informācija"
+
+msgid "National Informations"
+msgstr "Nacionālā informācija"
+
+msgid "Status of LMO"
+msgstr "LMO statuss"
+
+msgid "Status of LMOs"
+msgstr "LMO statuss"
+
+msgid "Field Trial"
+msgstr "Lauka izmēģinājums"
+
+msgid "Field Trials"
+msgstr "Lauka izmēģinājumi"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Nacionālā integrācijas stratēģija"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Valstu integrācijas stratēģijas"
+
+msgid "Capacity Building"
+msgstr "Spēju veidošana"
+
+msgid "Announcement"
+msgstr "Paziņojums"
+
+msgid "Announcements"
+msgstr "Paziņojumi"
+
+msgid "Contact"
+msgstr "Sazināties"
+
+msgid "Contacts"
+msgstr "Kontakti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Mega izvēlnes komponentu iestatījumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Blakus automatizētajai sadaļai parādīsies pozīcija, kurā izvēlnes ieraksti, kas manuāli izveidoti drupal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Satura veidi Statistikas izvēlne"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Mājas lapas logrīka iestatījumi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "GBIF logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Iespējot GBIF logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Sākumlapā iespējojiet logrīku GBIF (Globālā bioloģiskās daudzveidības informācijas instruments)."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Valsts: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Iepriekš iestatīts noklusējums: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Tālummaiņas faktors"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Kartes tālummaiņas līmenis (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Iepriekš iestatīts noklusējums: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Iepriekš iestatīts noklusējums: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Centrālais punkts - garums"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Kartes centra punkta garuma koordināta. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Centrālais punkts - platums"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Kartes centra punkta platuma koordināta. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Jaunāko ziņu un atjauninājumu logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Iespējot jaunāko ziņu un atjauninājumu logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Sākumlapā iespējojiet logrīku Jaunākās ziņas un atjauninājumi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Nacionālo mērķu logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Iespējot nacionālo mērķu logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Sākumlapā iespējojiet logrīku Nacionālie mērķi."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Panorāmas risinājumu logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Iespējot Panorama Solutions logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Iespējojiet logrīku Panorama Solutions sākumlapā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "E-mācību logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Iespējot e-mācību logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Iespējojiet e-mācību logrīku mājas lapā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Īstenošanas logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Iespējot ieviešanas logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Iespējojiet ieviešanas logrīku sākumlapā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Tehniskās un zinātniskās sadarbības logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Iespējot tehniskās un zinātniskās sadarbības logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Sākumlapā iespējojiet tehniskās un zinātniskās sadarbības logrīku."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Jaunāko diskusiju logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Iespējot jaunāko diskusiju logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Sākumlapā iespējojiet logrīku Jaunākās diskusijas."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Satura statistikas logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Iespējot satura statistikas logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Iespējojiet logrīku Satura statistikas sākumlapā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "GEOBON logrīks"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Iespējot GEOBON logrīku"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Iespējojiet GEOBON logrīku mājas lapā."

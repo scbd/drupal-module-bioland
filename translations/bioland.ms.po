@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Memproses entiti sedia ada untuk membuat default terjemahan yang hilang. Konfigurasikan tetapan lalai terjemahan dalam tab Fungsi Sistem."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Tetapan Menu Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Tetapan Menu Mega akan datang tidak lama lagi."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Kedudukan menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Kedudukan di mana entri menu akan muncul."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Tunjukkan menu walaupun kosong"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Menu Jenis Kandungan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Statistik Jenis Kandungan"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Mengenai Home Page Heroes"
 
@@ -1479,3 +1467,309 @@ msgstr "Diterbitkan"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Tidak diterbitkan"
+
+# Content Types
+msgid "News"
+msgstr "Berita"
+
+msgid "Event"
+msgstr "Peristiwa"
+
+msgid "Events"
+msgstr "Peristiwa"
+
+msgid "Learning Resource"
+msgstr "Sumber Pembelajaran"
+
+msgid "Learning Resources"
+msgstr "Sumber Pembelajaran"
+
+msgid "Project"
+msgstr "Projek"
+
+msgid "Projects"
+msgstr "Projek"
+
+msgid "Basic Page"
+msgstr "Halaman Asas"
+
+msgid "Basic Pages"
+msgstr "Halaman Asas"
+
+msgid "Article"
+msgstr "Artikel"
+
+msgid "Articles"
+msgstr "Artikel"
+
+msgid "Government Ministry or Institute"
+msgstr "Kementerian atau Institut Kerajaan"
+
+msgid "Government Ministries or Institutes"
+msgstr "Kementerian atau Institut Kerajaan"
+
+msgid "Ecosystem"
+msgstr "Ekosistem"
+
+msgid "Ecosystems"
+msgstr "Ekosistem"
+
+msgid "Protected Area"
+msgstr "Kawasan Terlindung"
+
+msgid "Protected Areas"
+msgstr "Kawasan Terlindung"
+
+msgid "Biodiversity Data"
+msgstr "Data Biodiversiti"
+
+msgid "Document"
+msgstr "Dokumen"
+
+msgid "Documents"
+msgstr "Dokumen"
+
+msgid "Related Website"
+msgstr "Laman Web Berkaitan"
+
+msgid "Related Websites"
+msgstr "Laman Web Berkaitan"
+
+msgid "Other"
+msgstr "Lain-lain"
+
+msgid "Others"
+msgstr "Lain-lain"
+
+msgid "Image or Video"
+msgstr "Imej atau Video"
+
+msgid "Images or Videos"
+msgstr "Imej atau Video"
+
+msgid "Other Resource"
+msgstr "Sumber Lain"
+
+msgid "Other Resources"
+msgstr "Sumber Lain"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "Soalan Lazim"
+
+msgid "National Information"
+msgstr "Maklumat Negara"
+
+msgid "National Informations"
+msgstr "Maklumat Kebangsaan"
+
+msgid "Status of LMO"
+msgstr "Status LMO"
+
+msgid "Status of LMOs"
+msgstr "Status LMO"
+
+msgid "Field Trial"
+msgstr "Percubaan Lapangan"
+
+msgid "Field Trials"
+msgstr "Percubaan Lapangan"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Strategi Penampilan Utama Negara"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Strategi Penggabungan Utama Negara"
+
+msgid "Capacity Building"
+msgstr "Pembinaan Kapasiti"
+
+msgid "Announcement"
+msgstr "Pengumuman"
+
+msgid "Announcements"
+msgstr "Pengumuman"
+
+msgid "Contact"
+msgstr "Hubungi"
+
+msgid "Contacts"
+msgstr "Kenalan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Tetapan Komponen Menu Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Kedudukan di mana entri menu dibuat secara manual dalam drupal akan muncul di sebelah bahagian automatik."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Menu Statistik Jenis Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Laman Utama Tetapan Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Dayakan Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Dayakan widget GBIF (Kemudahan Maklumat Biodiversiti Global) di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Negara: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Pratetap lalai: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Faktor Zoom"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Tahap zoom untuk peta (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Pratetap lalai: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Pratetap lalai: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Titik Pusat - Longitud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Koordinat garis bujur untuk titik pusat peta. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Titik Pusat - Latitud"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Koordinat latitud untuk titik pusat peta. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Widget Berita dan Kemas Kini Terkini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Dayakan Widget Berita dan Kemas Kini Terkini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Dayakan widget Berita dan Kemas Kini Terkini di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget Sasaran Negara"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Dayakan Widget Sasaran Nasional"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Dayakan widget Sasaran Nasional di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Widget Penyelesaian Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Dayakan Widget Penyelesaian Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Dayakan widget Penyelesaian Panorama di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget E-Pembelajaran"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Dayakan Widget E-Pembelajaran"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Dayakan widget E-Learning di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget Pelaksanaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Dayakan Widget Pelaksanaan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Dayakan widget Pelaksanaan di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget Kerjasama Teknikal & Saintifik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Dayakan Widget Kerjasama Teknikal & Saintifik"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Dayakan widget Kerjasama Teknikal & Saintifik di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Widget Perbincangan Terkini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Dayakan Widget Perbincangan Terkini"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Dayakan widget Perbincangan Terkini di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget Statistik Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Dayakan Widget Statistik Kandungan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Dayakan widget Statistik Kandungan di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Geobon Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Dayakan Widget GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Dayakan widget GEOBON di halaman utama."

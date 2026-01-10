@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Próiseáil aonáin atá ann cheana chun réamhshocruithe aistriúcháin atá in easnamh Cumraigh socruithe réamhshocraithe aistriúcháin sa chluaisín Fei"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Socruithe Roghchlár Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Socruithe Mega Menu ag teacht go luath."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Suíomh roghchlár"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Suíomh ina mbeidh iontrálacha roghchlár le feiceáil"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Taispeáin roghchlár fiú má tá sé fol"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Biachláir cineál ábhair"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Staitisticí Cineálacha"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Maidir le Laochra Leathanach Baile"
 
@@ -1479,3 +1467,309 @@ msgstr "Foilsithe"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Neamhfhoilsithe"
+
+# Content Types
+msgid "News"
+msgstr "Nuacht"
+
+msgid "Event"
+msgstr "Imeacht"
+
+msgid "Events"
+msgstr "Imeachtaí"
+
+msgid "Learning Resource"
+msgstr "Acmhainn Foghlama"
+
+msgid "Learning Resources"
+msgstr "Acmhainní Foghlama"
+
+msgid "Project"
+msgstr "Tionscadal"
+
+msgid "Projects"
+msgstr "Tionscadail"
+
+msgid "Basic Page"
+msgstr "Leathanach Bunúsach"
+
+msgid "Basic Pages"
+msgstr "Leathanaigh Bunúsacha"
+
+msgid "Article"
+msgstr "Airteagal"
+
+msgid "Articles"
+msgstr "Airteagail"
+
+msgid "Government Ministry or Institute"
+msgstr "Aireacht nó Institiúid an Rialtais"
+
+msgid "Government Ministries or Institutes"
+msgstr "Aireachtaí nó Institiúidí Rialtais"
+
+msgid "Ecosystem"
+msgstr "Éiceachóras"
+
+msgid "Ecosystems"
+msgstr "Éiceachórais"
+
+msgid "Protected Area"
+msgstr "Limistéar faoi Chosaint"
+
+msgid "Protected Areas"
+msgstr "Limistéir faoi Chosaint"
+
+msgid "Biodiversity Data"
+msgstr "Sonraí Bithéagsúlachta"
+
+msgid "Document"
+msgstr "Doiciméad"
+
+msgid "Documents"
+msgstr "Doiciméid"
+
+msgid "Related Website"
+msgstr "Láithreán Gréasáin Gaolmhar"
+
+msgid "Related Websites"
+msgstr "Suímh Ghréasáin Ghaolmhara"
+
+msgid "Other"
+msgstr "Eile"
+
+msgid "Others"
+msgstr "Daoine eile"
+
+msgid "Image or Video"
+msgstr "Íomhá nó Físeán"
+
+msgid "Images or Videos"
+msgstr "Íomhánna nó Físeáin"
+
+msgid "Other Resource"
+msgstr "Acmhainn Eile"
+
+msgid "Other Resources"
+msgstr "Acmhainní Eile"
+
+msgid "FAQ"
+msgstr "COITIANTA"
+
+msgid "FAQs"
+msgstr "Ceisteanna Coitianta"
+
+msgid "National Information"
+msgstr "Faisnéis Náisiúnta"
+
+msgid "National Informations"
+msgstr "Faisnéis Náisiúnta"
+
+msgid "Status of LMO"
+msgstr "Stádas LMO"
+
+msgid "Status of LMOs"
+msgstr "Stádas na LMOs"
+
+msgid "Field Trial"
+msgstr "Triail Allamuigh"
+
+msgid "Field Trials"
+msgstr "Trialacha Allamuigh"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Straitéis Náisiúnta Príomhshruthú"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Straitéisí Náisiúnta Príomhshruthaithe"
+
+msgid "Capacity Building"
+msgstr "Tógáil Cumas"
+
+msgid "Announcement"
+msgstr "Fógra"
+
+msgid "Announcements"
+msgstr "Fógraí"
+
+msgid "Contact"
+msgstr "Déan teagmháil"
+
+msgid "Contacts"
+msgstr "Teagmhálacha"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Socruithe Comhpháirteanna Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Suíomh ina mbeidh iontrálacha roghchláir a cruthaíodh de láimh i drupal le feiceáil in aice leis an chuid uathoi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Cineálacha Ábhar Roghchlár"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Socruithe Giuirléid Leathanach Bail"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Giuirléid GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Cumasaigh Giuirléid GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Cumasaigh giuirléid GBIF (Saoráid Faisnéise Domhanda um Bithéagsúlacht) ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Tír: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Réamhshocrú réamhshocraithe: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Fachtóir Súmáil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Leibhéal súmáil don léarscáil (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Réamhshocrú réamhshocraithe: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Réamhshocrú réamhshocraithe: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Ionad Pointe - Fadmhéad"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Comhordanú domhlaidh don lárphointe léarscáileála @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Lárphointe - Domhnacht"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Comhordanú domhanleithead do lárphointe léarsc @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "Giuirléid Nuachta agus Nuashonruithe"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Cumasaigh Giuirléid Nuachta agus Nuashonru"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Cumasaigh an giuirléid Nuachta agus Nuashonruithe is Déanaí ar an leathanach baile"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Giuirléid Spriocanna"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Cumasaigh Giuirléid Sprioc"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Cumasaigh an giuirléid Spriocanna Náisiúnta ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Giuirléid Réitigh Pan"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Cumasaigh Giuirléid Réitigh"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Cumasaigh an giuirléid Panorama Solutions ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Giuirléid R-Foghlama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Cumasaigh Giuirléid Ríomh-"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Cumasaigh an giuirléid Ríomhfhoghlama ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Giuirléid Cur"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Cumasaigh Giuirléid C"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Cumasaigh an giuirléid Feidhme ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Giuirléid um Chomhar Teicniúil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Cumasaigh Giuirléid Chomhar Teicniúil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Cumasaigh an giuirléid Comhar Teicniúil & Eolaíochta ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "Giuirléid na bplé"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Cumasaigh Giuirléid Díosp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Cumasaigh an giuirléid Díospóireachtaí is Déanaí ar an leathanach"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Giorléid Staitisticí"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Cumasaigh Giuirléid Staitis"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Cumasaigh giuirléid Staitisticí Ábhar ar an leathanach baile."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Giuirléid GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Cumasaigh Giuirléid GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Cumasaigh an giuirléid GEOBON ar an leathanach baile."

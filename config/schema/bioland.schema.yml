@@ -212,6 +212,9 @@ bioland.settings:
           type: mapping
           label: 'Content types settings'
           mapping:
+            position:
+              type: string
+              label: 'Menu position'
             hide_content_types:
               type: boolean
               label: 'Hide content types in mega menu'
@@ -285,6 +288,97 @@ bioland.settings:
             show_if_empty:
               type: boolean
               label: 'Show menu even if empty'
+    home_widgets:
+      type: mapping
+      label: 'Home page widget settings'
+      mapping:
+        gbif_widget:
+          type: mapping
+          label: 'GBIF Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable GBIF Widget'
+            countries:
+              type: mapping
+              label: 'Country-specific GBIF settings'
+              mapping:
+                '*':
+                  type: mapping
+                  label: 'Country GBIF settings'
+                  mapping:
+                    zoom_level:
+                      type: integer
+                      label: 'Map zoom level'
+                    longitude:
+                      type: float
+                      label: 'Center point longitude'
+                    latitude:
+                      type: float
+                      label: 'Center point latitude'
+        latest_news_widget:
+          type: mapping
+          label: 'Latest News and Updates Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Latest News and Updates Widget'
+        national_targets_widget:
+          type: mapping
+          label: 'National Targets Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable National Targets Widget'
+        panorama_solutions_widget:
+          type: mapping
+          label: 'Panorama Solutions Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Panorama Solutions Widget'
+        elearning_widget:
+          type: mapping
+          label: 'E-Learning Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable E-Learning Widget'
+        implementation_widget:
+          type: mapping
+          label: 'Implementation Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Implementation Widget'
+        technical_cooperation_widget:
+          type: mapping
+          label: 'Technical & Scientific Cooperation Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Technical & Scientific Cooperation Widget'
+        latest_discussions_widget:
+          type: mapping
+          label: 'Latest Discussions Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Latest Discussions Widget'
+        content_statistics_widget:
+          type: mapping
+          label: 'Content Statistics Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable Content Statistics Widget'
+        geobon_widget:
+          type: mapping
+          label: 'GEOBON Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable GEOBON Widget'
     translation:
       type: mapping
       label: 'Translation settings'

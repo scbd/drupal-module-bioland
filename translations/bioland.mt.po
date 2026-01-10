@@ -1016,10 +1016,6 @@ msgid "Process existing entities to create missing translation defaults. Configu
 msgstr "Tipproċessa entitajiet eżistenti biex joħolqu inadempji tat-traduzzjoni nieqsa. Ikkonfigura l-issettjar default tat-traduzzjoni fit-tab Funzjonijiet tas-Sistema."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu Settings"
-msgstr "Settings tal-Menu Mega"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
 msgstr "Is-settings tal-Mega Menu ġejjin dalwaqt."
 
@@ -1281,10 +1277,6 @@ msgid "Menu position"
 msgstr "Pożizzjoni tal-menu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Position where menu entries will appear."
-msgstr "Pożizzjoni fejn jidhru l-entrati tal-menu."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
 msgstr "Uri l-menu anke jekk vojta"
 
@@ -1453,10 +1445,6 @@ msgid "Content Type Menus"
 msgstr "Menus tat-Tip tal-Kontenut"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content Types Statistics"
-msgstr "Tipi tal-Kontenut Statistika"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
 msgstr "Dwar Home Page Eroj"
 
@@ -1479,3 +1467,309 @@ msgstr "Ippubblikat"
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
 msgstr "Mhux ippubblikat"
+
+# Content Types
+msgid "News"
+msgstr "Aħbarijiet"
+
+msgid "Event"
+msgstr "Avveniment"
+
+msgid "Events"
+msgstr "Avvenimenti"
+
+msgid "Learning Resource"
+msgstr "Riżors tat-Tagħlim"
+
+msgid "Learning Resources"
+msgstr "Riżorsi tat-tagħlim"
+
+msgid "Project"
+msgstr "Proġett"
+
+msgid "Projects"
+msgstr "Proġetti"
+
+msgid "Basic Page"
+msgstr "Paġna Bażika"
+
+msgid "Basic Pages"
+msgstr "Paġni bażiċi"
+
+msgid "Article"
+msgstr "Artiklu"
+
+msgid "Articles"
+msgstr "Artikoli"
+
+msgid "Government Ministry or Institute"
+msgstr "Ministeru jew Istitut tal-Gvern"
+
+msgid "Government Ministries or Institutes"
+msgstr "Ministeri jew Istituti tal-Gvern"
+
+msgid "Ecosystem"
+msgstr "Ekosistema"
+
+msgid "Ecosystems"
+msgstr "Ekosistemi"
+
+msgid "Protected Area"
+msgstr "Żona Protetta"
+
+msgid "Protected Areas"
+msgstr "Żoni Protetti"
+
+msgid "Biodiversity Data"
+msgstr "Dejta dwar il-bijodiversit"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Related Website"
+msgstr "Websajt Relatata"
+
+msgid "Related Websites"
+msgstr "Websajts Relatati"
+
+msgid "Other"
+msgstr "Oħrajn"
+
+msgid "Others"
+msgstr "Oħrajn"
+
+msgid "Image or Video"
+msgstr "Immaġni jew Vidjow"
+
+msgid "Images or Videos"
+msgstr "Stampi jew Vidjows"
+
+msgid "Other Resource"
+msgstr "Riżorsi oħra"
+
+msgid "Other Resources"
+msgstr "Riżorsi Oħra"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "FAQs"
+msgstr "FAQs"
+
+msgid "National Information"
+msgstr "Informazzjoni Nazzjonali"
+
+msgid "National Informations"
+msgstr "Informazzjoni Nazzjonali"
+
+msgid "Status of LMO"
+msgstr "L-istatus tal-LMO"
+
+msgid "Status of LMOs"
+msgstr "L-istatus tal-LMOs"
+
+msgid "Field Trial"
+msgstr "Prova fuq il-post"
+
+msgid "Field Trials"
+msgstr "Provi fuq il-post"
+
+msgid "National Mainstreaming Strategy"
+msgstr "Strateġija Nazzjonali għall-Integrazzjoni"
+
+msgid "National Mainstreaming Strategies"
+msgstr "Strateġiji Nazzjonali ta' Integrazzjoni"
+
+msgid "Capacity Building"
+msgstr "Bini tal-Kapaċità"
+
+msgid "Announcement"
+msgstr "Tħabbira"
+
+msgid "Announcements"
+msgstr "Avviżi"
+
+msgid "Contact"
+msgstr "Kuntatt"
+
+msgid "Contacts"
+msgstr "Kuntatti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Mega Menu Component Settings"
+msgstr "Settings tal-Komponent tal-Menu Mega"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Position where menu entries manually created in drupal will appear next to the automated section."
+msgstr "Pożizzjoni fejn l-entrati tal-menu maħluqa manwalment f'drupal se jidhru ħdejn it-taqsima awtomatizzata."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Types Statistics Menu"
+msgstr "Menu tal-Istatistika tat-Tipi tal-Kontenut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Widget Settings"
+msgstr "Settings tal-Widget tal-Paġna Ewleni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GBIF Widget"
+msgstr "Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GBIF Widget"
+msgstr "Ippermetti Widget GBIF"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
+msgstr "Ippermetti l-widget GBIF (Faċilità Globali ta' Informazzjoni dwar il-Bijodiversità) fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Country: @country"
+msgstr "Pajjiż: @country"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @zoom)"
+msgstr "(Default issettjat minn qabel: @zoom)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom Factor"
+msgstr "Fattur taż-żum"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Zoom level for the map (1-255).@info"
+msgstr "Livell taż-żum għall-mappa (1-255). @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lng)"
+msgstr "(Default issettjat minn qabel: @lng)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "(Preset default: @lat)"
+msgstr "(Default issettjat minn qabel: @lat)"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Longitude"
+msgstr "Punt taċ-Ċentru - Lonġitudni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Longitude coordinate for map center point.@info"
+msgstr "Koordinata tal-lonġitudni għall-punt taċ-ċentru tal-mappa. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Center Point - Latitude"
+msgstr "Punt taċ-Ċentru - Latitudni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latitude coordinate for map center point.@info"
+msgstr "Koordinata tal-latitudni għall-punt taċ-ċentru tal-mappa. @info"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest News and Updates Widget"
+msgstr "L-aħħar Aħbarijiet u Aġġornamenti Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest News and Updates Widget"
+msgstr "Ippermetti l-aħħar Aħbarijiet u Aġġornamenti Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest News and Updates widget on the home page."
+msgstr "Ippermetti l-widget tal-Aħħar Aħbarijiet u Aġġornamenti fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "National Targets Widget"
+msgstr "Widget tal-Miri Nazzjonali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable National Targets Widget"
+msgstr "Jippermetti Widget tal-Miri Nazzjonali"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the National Targets widget on the home page."
+msgstr "Ippermetti l-widget tal-Miri Nazzjonali fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Panorama Solutions Widget"
+msgstr "Widget Soluzzjonijiet Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Panorama Solutions Widget"
+msgstr "Ippermetti Widget Soluzzjonijiet Panorama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Panorama Solutions widget on the home page."
+msgstr "Ippermetti l-widget Soluzzjonijiet Panorama fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "E-Learning Widget"
+msgstr "Widget E-Tagħlim"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable E-Learning Widget"
+msgstr "Ippermetti Widget E-Learning"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the E-Learning widget on the home page."
+msgstr "Ippermetti l-widget E-Learning fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Implementation Widget"
+msgstr "Widget ta' Implimentazzjoni"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Implementation Widget"
+msgstr "Ippermetti Widget tal-Imp"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Implementation widget on the home page."
+msgstr "Ippermetti l-widget ta' Implimentazzjoni fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Technical & Scientific Cooperation Widget"
+msgstr "Widget ta' Kooperazzjoni Teknika u Xjentifika"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Technical & Scientific Cooperation Widget"
+msgstr "Jippermetti Widget tal-Kooperazzjoni Teknika u Xj"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Technical & Scientific Cooperation widget on the home page."
+msgstr "Ippermetti l-widget Kooperazzjoni Teknika u Xjentifika fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Latest Discussions Widget"
+msgstr "L-aħħar Diskussjonijiet Widget"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Latest Discussions Widget"
+msgstr "Ippermetti Widget ta 'l-Aħħar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Latest Discussions widget on the home page."
+msgstr "Ippermetti l-widget tal-aħħar Diskussjonijiet fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Content Statistics Widget"
+msgstr "Widget tal-Istatistika tal-Kontenut"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable Content Statistics Widget"
+msgstr "Ippermetti l-Widget tal-Istatistika tal-"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the Content Statistics widget on the home page."
+msgstr "Ippermetti l-widget tal-Istatistika tal-Kontenut fuq il-paġna ewlenija."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "GEOBON Widget"
+msgstr "Widget GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable GEOBON Widget"
+msgstr "Ippermetti l-Widget GEOBON"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Enable the GEOBON widget on the home page."
+msgstr "Ippermetti l-widget GEOBON fuq il-paġna ewlenija."
