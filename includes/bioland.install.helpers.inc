@@ -27,3 +27,17 @@ function _bioland_require_module($module, $feature = 'operation') {
   }
   return NULL;
 }
+
+/*
+ * =============================================================================
+ * UPDATE HOOKS
+ * =============================================================================
+ */
+
+/**
+ * Disable system cron.
+ */
+function bioland_update_9061() {
+  \Drupal::state()->set('system.cron_disabled', TRUE);
+  return t('System cron has been disabled.');
+}
