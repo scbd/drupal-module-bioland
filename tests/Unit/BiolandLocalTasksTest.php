@@ -56,22 +56,19 @@ class BiolandLocalTasksTest extends TestCase {
   /**
    * Routes that are expected to render as local task tabs on the settings
    * form (i.e. every route sharing the BiolandSettingsForm base route
-   * hierarchy). Kept in sync manually with bioland.routing.yml.
+   * hierarchy). Derived directly from bioland.routing.yml (every top-level
+   * route whose machine name starts with "bioland.settings") so a newly
+   * added settings route is automatically covered by
+   * testEveryExpectedRouteHasALocalTask() instead of silently passing
+   * because nobody remembered to add it to a hand-maintained list.
    */
   private function getExpectedTabRoutes(): array {
-    return [
-      'bioland.settings',
-      'bioland.settings.field_visibility',
-      'bioland.settings.tags',
-      'bioland.settings.help_comments',
-      'bioland.settings.front_end',
-      'bioland.settings.front_end.general',
-      'bioland.settings.front_end.mega_menu',
-      'bioland.settings.front_end.home_page',
-      'bioland.settings.front_end.home_widgets',
-      'bioland.settings.system_functions',
-      'bioland.settings.admin',
-    ];
+    $routes = $this->parseFlatYaml('bioland.routing.yml');
+
+    return array_values(array_filter(
+      array_keys($routes),
+      fn(string $routeName): bool => str_starts_with($routeName, 'bioland.settings')
+    ));
   }
 
   /**
