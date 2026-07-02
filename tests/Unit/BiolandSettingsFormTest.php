@@ -498,6 +498,74 @@ class BiolandSettingsFormTest extends TestCase {
   }
 
   /**
+   * Tests timezone.user.configurable is re-pinned even when unchanged.
+   *
+   * Proves the invariant holds independently of whether timezone.default
+   * changed: a save that only touches the site name (timezone.default stays
+   * the same) must still force per-user time zone selection off if it was
+   * left on, keeping a single site-wide time zone.
+   */
+  public function testSubmitGeneralRePinsTimezoneUserConfigurableWhenUnchanged(): void {
+    // timezone.default already matches the submitted value; only
+    // timezone.user.configurable starts wrong (TRUE instead of FALSE).
+    $siteConfig = new Config('system.site', ['name' => 'Old', 'slogan' => '', 'mail' => 'admin@example.com']);
+    $dateConfig = new Config('system.date', [
+      'timezone' => [
+        'default' => 'UTC',
+        'user' => ['configurable' => TRUE],
+      ],
+    ]);
+    $biolandConfig = new Config('bioland.settings', []);
+    $frOverride = new Config('system.site', []);
+
+    $factory = new class($siteConfig, $dateConfig, $biolandConfig) {
+      public function __construct(private $site, private $date, private $bioland) {}
+      public function get($name) {
+        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
+      }
+      public function getEditable($name) {
+        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
+      }
+    };
+
+    $languageManager = $this->createMock(LanguageManagerInterface::class);
+    $languageManager->method('getDefaultLanguage')->willReturn(new Language('en', 'English'));
+    $languageManager->method('getLanguages')->willReturn([
+      'en' => new Language('en', 'English'),
+      'fr' => new Language('fr', 'French'),
+    ]);
+    $languageManager->method('getLanguageConfigOverride')->willReturn($frOverride);
+
+    $form = new class($languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $this->requestStack, $factory) extends BiolandSettingsForm {
+      public function __construct($lm, $etm, $tbs, $db, $cu, $rs, $factory) {
+        parent::__construct($lm, $etm, $tbs, $db, $cu, $rs);
+        $this->configFactory = $factory;
+      }
+    };
+
+    $formState = $this->createMock(FormStateInterface::class);
+    $formState->method('get')->with('bioland_section')->willReturn('general');
+    $formState->method('getValues')->willReturn([
+      // Only the site name changes; timezone stays UTC (unchanged).
+      'site_name' => 'New Site',
+      'date_default_timezone' => 'UTC',
+      'site_name_translations' => [],
+      'region' => '',
+      'continent' => '',
+    ]);
+
+    $formArray = [];
+    $form->submitForm($formArray, $formState);
+
+    // timezone.default is unchanged...
+    $this->assertSame('UTC', $dateConfig->get('timezone.default'));
+    // ...but timezone.user.configurable is still re-pinned to FALSE.
+    $this->assertFalse($dateConfig->get('timezone.user.configurable'));
+    // ...and the date config was saved to persist that re-pin.
+    $this->assertTrue($dateConfig->saved);
+  }
+
+  /**
    * Tests clearing a translation deletes the empty language override.
    */
   public function testSubmitGeneralDeletesEmptiedOverride(): void {

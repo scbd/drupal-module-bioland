@@ -1779,10 +1779,17 @@ class BiolandSettingsForm extends ConfigFormBase {
 
       // Mirror the default time zone back to system.date.
       $date_config = $this->configFactory()->getEditable('system.date');
+      $date_changed = FALSE;
       if ($date_config->get('timezone.default') !== $mapped['timezone']) {
         $date_config->set('timezone.default', $mapped['timezone']);
-        // Disable per-user time zone selection to keep a single site value.
+        $date_changed = TRUE;
+      }
+      // Keep a single site-wide time zone: always ensure per-user selection is off.
+      if ($date_config->get('timezone.user.configurable') !== FALSE) {
         $date_config->set('timezone.user.configurable', FALSE);
+        $date_changed = TRUE;
+      }
+      if ($date_changed) {
         $date_config->save();
       }
 
