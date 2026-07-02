@@ -415,6 +415,31 @@ class BiolandSettingsFormTest extends TestCase {
   }
 
   /**
+   * Creates a fake config factory that returns the provided config objects.
+   *
+   * @param \Drupal\Core\Config\Config $siteConfig
+   *   The system.site config.
+   * @param \Drupal\Core\Config\Config $dateConfig
+   *   The system.date config.
+   * @param \Drupal\Core\Config\Config $biolandConfig
+   *   The bioland.settings config.
+   *
+   * @return object
+   *   An anonymous factory object that implements get() and getEditable().
+   */
+  private function makeConfigFactory($siteConfig, $dateConfig, $biolandConfig) {
+    return new class($siteConfig, $dateConfig, $biolandConfig) {
+      public function __construct(private $site, private $date, private $bioland) {}
+      public function get($name) {
+        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
+      }
+      public function getEditable($name) {
+        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
+      }
+    };
+  }
+
+  /**
    * Tests the full submit round-trip writes to system.site and system.date.
    *
    * Proves the WRITE direction of the bidirectional mirror: values typed in
@@ -428,15 +453,7 @@ class BiolandSettingsFormTest extends TestCase {
     $frOverride = new Config('system.site', []);
 
     // Fake config factory returning the mutable stubs above.
-    $factory = new class($siteConfig, $dateConfig, $biolandConfig) {
-      public function __construct(private $site, private $date, private $bioland) {}
-      public function get($name) {
-        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
-      }
-      public function getEditable($name) {
-        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
-      }
-    };
+    $factory = $this->makeConfigFactory($siteConfig, $dateConfig, $biolandConfig);
 
     // Language manager: default en, plus fr; fr override is a mutable stub.
     $languageManager = $this->createMock(LanguageManagerInterface::class);
@@ -490,15 +507,7 @@ class BiolandSettingsFormTest extends TestCase {
     // Override currently holds a translated name that the user is clearing.
     $frOverride = new Config('system.site', ['name' => 'Ancien site']);
 
-    $factory = new class($siteConfig, $dateConfig, $biolandConfig) {
-      public function __construct(private $site, private $date, private $bioland) {}
-      public function get($name) {
-        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
-      }
-      public function getEditable($name) {
-        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
-      }
-    };
+    $factory = $this->makeConfigFactory($siteConfig, $dateConfig, $biolandConfig);
 
     $languageManager = $this->createMock(LanguageManagerInterface::class);
     $languageManager->method('getDefaultLanguage')->willReturn(new Language('en', 'English'));
