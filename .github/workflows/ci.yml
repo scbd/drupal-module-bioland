@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
@@ -32,7 +36,7 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: ${{ matrix.node }}
-          cache: npm
+          cache: yarn
 
       - name: Get composer cache directory
         id: composer-cache
@@ -46,10 +50,10 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install PHP deps
-        run: composer install --no-interaction --prefer-dist --no-progress
+        run: composer install --no-interaction --prefer-dist --no-progress --no-scripts
 
       - name: Install Node deps
-        run: npm install
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Lint PHP
         run: npm run lint:php
