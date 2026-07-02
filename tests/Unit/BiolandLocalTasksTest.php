@@ -76,6 +76,7 @@ class BiolandLocalTasksTest extends TestCase {
    */
   public function testEveryExpectedRouteHasALocalTask(): void {
     $tasks = $this->parseFlatYaml('bioland.links.task.yml');
+    $this->assertNotEmpty($tasks, 'No task entries parsed - bioland.links.task.yml may be malformed.');
     $taskRouteNames = array_column($tasks, 'route_name');
 
     foreach ($this->getExpectedTabRoutes() as $routeName) {
@@ -93,6 +94,7 @@ class BiolandLocalTasksTest extends TestCase {
    */
   public function testAdminTabExistsAndIsLast(): void {
     $tasks = $this->parseFlatYaml('bioland.links.task.yml');
+    $this->assertNotEmpty($tasks, 'No task entries parsed - bioland.links.task.yml may be malformed.');
 
     $this->assertArrayHasKey(
       'bioland.settings_admin_tab',
@@ -114,6 +116,7 @@ class BiolandLocalTasksTest extends TestCase {
       if (($task['base_route'] ?? NULL) !== 'bioland.settings') {
         continue;
       }
+      $this->assertArrayHasKey('weight', $task, sprintf('Sibling tab "%s" is missing a weight.', $machineName));
       $this->assertGreaterThan(
         (int) $task['weight'],
         $adminWeight,
