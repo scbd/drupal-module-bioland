@@ -886,19 +886,19 @@ msgstr "Δεν έχετε δικαίωμα δημιουργίας στοιχεί
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Βοήθεια παράκαμψης σειράς"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Κείμενο βοήθειας παράκαμψης σειράς"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Κείμενο βοήθειας που εξηγεί το πεδίο παράκαμψης σειράς και την προτεραιότητα ταξινόμησης περιεχομένου."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Μετάφραση κειμένου βοήθειας παράκαμψης σειράς"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -910,7 +910,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Εμφάνιση ετικετών κατάστασης εκδήλωσης για αυτούς τους τύπους περιεχομένου:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -922,7 +922,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Εμφάνιση ετικετών κατάστασης έργου για αυτούς τους τύπους περιεχομένου:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1862,3 +1862,35 @@ msgstr "Ενεργοποίηση γραφικού στοιχείου GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Ενεργοποιήστε το widget GEOBON στην αρχική σελίδα."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Διαμορφώστε ρυθμίσεις, συμπεριλαμβανομένων τοπικών ρυθμίσεων, χωρών και περιοχής."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Αρχική σελίδα"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Ήρωες αρχικής σελίδας"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Γραφικά στοιχεία αρχικής σελίδας"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Μεγαμενού"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Ετικέτες"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Ήρωες αρχικής σελίδας"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Αποθήκευση διαμόρφωσης"

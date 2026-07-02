@@ -785,19 +785,19 @@ msgstr "คุณไม่มีสิทธิ์ในการสร้าง
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "ความช่วยเหลือการแทนที่ลำดับ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "ข้อความช่วยเหลือการแทนที่ลำดับ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "ข้อความช่วยเหลือที่อธิบายฟิลด์การแทนที่ลำดับและลำดับความสำคัญในการจัดเรียงเนื้อหา"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "แปลข้อความช่วยเหลือการแทนที่ลำดับ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "แสดงแท็กสถานะกิจกรรมสำหรับประเภทเนื้อหาเหล่านี้:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "แสดงแท็กสถานะโครงการสำหรับประเภทเนื้อหาเหล่านี้:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "ลบแฟลกสติกทั้งหมดออกจากท
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "รีเซ็ตสติกี"
+msgstr "รีเซ็ตแบบเหนียว"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "เปิดใช้งานวิดเจ็ต GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "เปิดใช้งานวิดเจ็ต GEOBON บนหน้าแรก"
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "กำหนดค่าการตั้งค่ารวมถึงตำแหน่งที่ตั้ง ประเทศ และภูมิภาค"
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "หน้าแรก"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "ฮีโร่หน้าแรก"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "วิดเจ็ตหน้าแรก"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "เมกะเมนู"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "แท็ก"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "ฮีโร่หน้าแรก"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "บันทึกการกำหนดค่า"

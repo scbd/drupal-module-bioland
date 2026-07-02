@@ -785,19 +785,19 @@ msgstr "Виетнамски"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Помощ за презаписване на реда"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Помощен текст за презаписване на реда"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Помощен текст, обясняващ полето Презаписване на реда и приоритета за сортиране на съдържанието."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Преведи помощния текст за презаписване на реда"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Показване на маркерите за статус на събитие за тези типове съдържание:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Показване на маркерите за статус на проект за тези типове съдържание:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Премахва всички лепкави флагове от все�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Нулиране на лепкаво"
+msgstr "Нулиране на лепкав"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Активиране на джаджа GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Активирайте приспособлението GEOBON на началната страница."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Конфигуриране на настройки, включително локали, държави и регион."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Начална страница"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Герои на началната страница"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Джаджи за начална страница"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Мега меню"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Тагове"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Герои на началната страница"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Запазване на конфигурацията"

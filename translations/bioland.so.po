@@ -785,19 +785,19 @@ msgstr "Ma leh ogolaan in aad u abuuro ayaabaha menu hoos ah sheyaha kale ee men
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Caawimaad Dabooli Amarka"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Qoraalka Caawimaadda Dabooli Amarka"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Qoraal caawimaad oo sharraxaya goobta Dabooli Amarka iyo mudnaanta kala saarista content-ka."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Turjun Qoraalka Caawimaadda Dabooli Amarka"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Muuji tags-ka xaaladda dhacdada noocyada waxyaabahan:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Muuji tags-ka xaaladda mashruuca noocyada waxyaabahan:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Saareeysa dhammaan calanada leh oo laga soo saaray galinta wax kasta"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Dib u dhigay Sticky"
+msgstr "Dib u deji waxaabsan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Hawl Geobon Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Waxo widgetka GEOBON ee bogga guriga."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Habee dejinta oo ay ku jiraan goobaha, dalalka, iyo gobolka."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Bogga Hore"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Geesiyaasha Bogga Hore"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgets-ka Bogga Hore"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Menu Weyn"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Geesiyaasha Bogga Hore"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Kaydi habaynta"

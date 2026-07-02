@@ -886,19 +886,19 @@ msgstr "Nid oes gennych ganiatâd i greu eitemau dewislen o dan eitemau dewislen
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Cymorth Diystyru Trefn"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Testun Cymorth Diystyru Trefn"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Testun cymorth sy'n esbonio'r maes Diystyru Trefn a blaenoriaeth trefnu cynnwys."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Cyfieithu Testun Cymorth Diystyru Trefn"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -910,7 +910,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Dangos tagiau Statws Digwyddiad ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -922,7 +922,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Dangos tagiau Statws Prosiect ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1862,3 +1862,35 @@ msgstr "Galluogi Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Galluogi'r teclyn GEOBON ar y dudalen gartref."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Ffurfweddwch osodiadau gan gynnwys locales, gwledydd, a rhanbarth."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Tudalen Gartref"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Arwyr y Dudalen Gartref"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Teclynnau Tudalen Gartref"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Ddewislen"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tagiau"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Arwyr Tudalen Gartref"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Cadw'r ffurfweddiad"

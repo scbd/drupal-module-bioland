@@ -785,19 +785,19 @@ msgstr "Nemáte povolenie na vytváranie položiek ponuky v rámci iných polož
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Pomocník pre prepísanie poradia"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Text pomocníka pre prepísanie poradia"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Text pomocníka vysvetľujúci pole Prepísanie poradia a prioritu triedenia obsahu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Preložiť text pomocníka pre prepísanie poradia"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Zobraziť značky stavu udalosti pre tieto typy obsahu:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Zobraziť značky stavu projektu pre tieto typy obsahu:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Odstráni všetky lepiace vlajky z každej položky obsahu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Obnoviť Sticky"
+msgstr "Obnoviť lepkavý"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Povoliť miniaplikáciu GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Povoliť miniaplikáciu GEOBON na domovskej stránke."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Nakonfigurujte nastavenia vrátane jazykových prostredí, krajín a regiónu."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Domovská stránka"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hrdinovia domovskej stránky"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgety domovskej stránky"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Značky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hrdinovia domovskej stránky"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Uložiť konfiguráciu"

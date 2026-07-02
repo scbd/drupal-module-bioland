@@ -785,19 +785,19 @@ msgstr "Jūs neturite leidimo kurti meniu elementus pagal kitus meniu elementus.
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Tvarkos perrašymo pagalba"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Tvarkos perrašymo pagalbos tekstas"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Pagalbos tekstas, paaiškinantis tvarkos perrašymo lauką ir turinio rūšiavimo prioritetą."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Versti tvarkos perrašymo pagalbos tekstą"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Rodyti įvykio būsenos žymas šiems turinio tipams:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Rodyti projekto būsenos žymas šiems turinio tipams:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Pašalina visas lipnias vėliavas iš kiekvieno turinio įrašo."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Iš naujo nustatyti “Sticky”"
+msgstr "Iš naujo nustatyti lipnų"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Įgalinti GEOBON valdiklį"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Įgalinkite GEOBON valdiklį pagrindiniame puslapyje."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigūruokite nustatymus, įskaitant lokales, šalis ir regioną."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Pagrindinis puslapis"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Pagrindinio puslapio herojai"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Pagrindinio puslapio valdikliai"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega meniu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Žymos"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Pagrindinio puslapio herojai"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Išsaugoti konfigūraciją"

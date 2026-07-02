@@ -785,19 +785,19 @@ msgstr "Nimate dovoljenja za ustvarjanje elementov menija pod drugimi elementi m
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Pomoč za razveljavitev vrstnega reda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Besedilo pomoči za razveljavitev vrstnega reda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Besedilo pomoči, ki pojasnjuje polje za razveljavitev vrstnega reda in prednost razvrščanja vsebine."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Prevedi besedilo pomoči za razveljavitev vrstnega reda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Prikaži oznake stanja dogodka za te vrste vsebine:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Prikaži oznake stanja projekta za te vrste vsebine:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1773,3 +1773,35 @@ msgstr "Omogoči pripomoček GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Omogočite pripomoček GEOBON na domači strani."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigurirajte nastavitve, vključno z jeziki, državami in regijo."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Domača stran"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Junaki domače strani"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Pripomočki domače strani"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega meni"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Oznake"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Junaki domače strani"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Shrani konfiguracijo"

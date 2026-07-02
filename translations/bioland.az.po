@@ -785,19 +785,19 @@ msgstr "Digər menyu elementləri altında menyu elementləri yaratmaq üçün i
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Sifariş Ləğvi Kömək"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Sifariş Ləğvi Kömək Mətni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Sifariş Ləğvi sahəsini və məzmun çeşidlənməsi prioritetini izah edən kömək mətni."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Sifariş Ləğvi Kömək Mətnini Tərcümə Et"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Bu məzmun növləri üçün Tədbir Statusu etiketlərini göstərin:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Bu məzmun növləri üçün Layihə Statusu etiketlərini göstərin:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Hər məzmun girişindən bütün yapışqan bayraqları çıxarır."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Yapışqan yenidən qurun"
+msgstr "Yapışqanı sıfırlayın"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "GEOBON Widget-ni aktivləşdirin"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Ana səhifədə GEOBON vidjetini aktivləşdirin."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Yerlər, ölkələr və region daxil olmaqla parametrləri konfiqurasiya edin."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Ana səhifə"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Ana səhifə qəhrəmanları"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Ana səhifə vidcetləri"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Menyu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Etiketlər"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Ana səhifə qəhrəmanları"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Konfiqurasiyanı saxla"

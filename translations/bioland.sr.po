@@ -785,19 +785,19 @@ msgstr "Nemate dozvolu da kreirate stavke menija pod drugim stavkama menija. Za 
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Помоћ за преклапање редоследа"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Текст помоћи за преклапање редоследа"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Текст помоћи који објашњава поље за преклапање редоследа и приоритет сортирања садржаја."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Преведи текст помоћи за преклапање редоследа"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Прикажи ознаке статуса догађаја за ове типове садржаја:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Прикажи ознаке статуса пројекта за ове типове садржаја:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1005,7 +1005,7 @@ msgstr "Prednji kraj"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End General"
+msgstr "Prednji kraj - opšte"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"
@@ -1418,7 +1418,7 @@ msgstr "Uklanja sve lepljive zastavice iz svakog unosa sadržaja."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Resetujte lepljivo"
+msgstr "Ресетуј лепљиво"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Omogući GEOBON vidžet"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Omogućite GEOBON vidžet na početnoj stranici."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Конфигуришите поставке укључујући локалитете, земље и регион."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Почетна страница"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Хероји почетне странице"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Виџети почетне странице"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Мега мени"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Ознаке"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Хероји почетне странице"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Сачувај конфигурацију"

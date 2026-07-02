@@ -672,19 +672,19 @@ msgstr "الفيتنامية"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "مساعدة تجاوز الترتيب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "نص مساعدة تجاوز الترتيب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "نص مساعدة يوضح حقل تجاوز الترتيب وأولوية فرز المحتوى."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ترجمة نص مساعدة تجاوز الترتيب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -696,7 +696,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "عرض علامات حالة الفعالية لأنواع المحتوى هذه:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -708,7 +708,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "عرض علامات حالة المشروع لأنواع المحتوى هذه:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1305,7 +1305,7 @@ msgstr "يزيل جميع العلامات اللاصقة من كل إدخال �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "إعادة ضبط الملصق"
+msgstr "إعادة تعيين اللزج"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1660,3 +1660,35 @@ msgstr "تمكين أداة GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "قم بتمكين أداة GEOBON على الصفحة الرئيسية."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "تكوين الإعدادات بما في ذلك المواقع والبلدان والمنطقة."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "الصفحة الرئيسية"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "أبطال الصفحة الرئيسية"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "أدوات الصفحة الرئيسية"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "القائمة الضخمة"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "الوسوم"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "أبطال الصفحة الرئيسية"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "حفظ الإعدادات"

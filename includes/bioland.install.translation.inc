@@ -225,3 +225,31 @@ function bioland_update_9012(&$sandbox) {
     '@total' => $sandbox['total'],
   ]);
 }
+
+/**
+ * Re-import Bioland translation files to pick up corrected/added UI strings.
+ *
+ * Several admin UI strings (route titles, local task titles, menu link
+ * descriptions, and a handful of form labels) were missing msgid/msgstr
+ * entries in translations/bioland.<langcode>.po, or had placeholder
+ * msgstr values identical to the English source, so they always rendered
+ * in English regardless of the active site language. The .po files have
+ * been corrected; this re-runs the same import used at install time
+ * (bioland_update_9002()) so existing sites pick up the fix. The importer
+ * always overwrites both customized and non-customized translations
+ * (see _bioland_import_translations()), so this is safe to run more than
+ * once.
+ */
+function bioland_update_9062() {
+  // Check if locale module and service are available.
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    return t('Skipped translation import: locale module is not enabled.');
+  }
+
+  if (!\Drupal::hasService('locale.translation')) {
+    return t('Skipped translation import: locale.translation service is not available. Enable the Interface Translation module.');
+  }
+
+  _bioland_import_translations();
+  return t('Bioland translation re-import process completed. Check logs for details.');
+}

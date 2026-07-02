@@ -886,19 +886,19 @@ msgstr "No teniu permís per crear elements de menú sota altres elements de men
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Ajuda de substitució d'ordre"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Text d'ajuda de substitució d'ordre"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Text d'ajuda que explica el camp de substitució d'ordre i la prioritat d'ordenació del contingut."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Tradueix el text d'ajuda de substitució d'ordre"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -910,7 +910,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Mostra les etiquetes d'estat de l'esdeveniment per a aquests tipus de contingut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -922,7 +922,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Mostra les etiquetes d'estat del projecte per a aquests tipus de contingut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1102,7 +1102,7 @@ msgstr "End frontal"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End General"
+msgstr "End frontal general"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"
@@ -1507,7 +1507,7 @@ msgstr "Elimina totes les banderes enganxoses de cada entrada de contingut."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Restablir adhesiu"
+msgstr "Restableix enganxós"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1862,3 +1862,35 @@ msgstr "Activa el giny GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Activa el giny GEOBON a la pàgina principal."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Configureu els paràmetres, inclosos els idiomes, els països i la regió."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Pàgina d'inici"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Herois de la pàgina d'inici"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Ginys de la pàgina d'inici"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega menú"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Etiquetes"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Herois de la pàgina d'inici"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Desa la configuració"

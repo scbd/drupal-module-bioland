@@ -852,19 +852,19 @@ msgstr "Nemáte oprávnění k vytváření položek nabídky pod jinými polož
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Nápověda k přepsání pořadí"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Nápovědný text k přepsání pořadí"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Nápovědný text vysvětlující pole Přepsání pořadí a prioritu řazení obsahu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Přeložit nápovědný text k přepsání pořadí"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -876,7 +876,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Zobrazit tagy stavu události pro tyto typy obsahu:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -888,7 +888,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Zobrazit tagy stavu projektu pro tyto typy obsahu:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1485,7 +1485,7 @@ msgstr "Odstraní všechny lepivé příznaky z každé položky obsahu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Obnovit Sticky"
+msgstr "Obnovit lepkavý"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1840,3 +1840,35 @@ msgstr "Povolit widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Povolte widget GEOBON na domovské stránce."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigurace nastavení včetně jazykových verzí, zemí a regionu."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Domovská stránka"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hrdinové domovské stránky"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgety domovské stránky"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Štítky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hrdinové domovské stránky"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Uložit konfiguraci"

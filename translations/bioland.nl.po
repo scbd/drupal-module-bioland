@@ -785,19 +785,19 @@ msgstr "Je hebt geen toestemming om menu-items aan te maken onder andere menu-it
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Hulp bij volgorde overschrijven"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Hulptekst voor volgorde overschrijven"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Hulptekst die het veld voor het overschrijven van de volgorde en de sorteerprioriteit van inhoud uitlegt."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Vertaal hulptekst voor volgorde overschrijven"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Evenementstatustags tonen voor deze inhoudstypen:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Projectstatustags tonen voor deze inhoudstypen:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Verwijdert alle plakvlaggen van elk item in de inhoud."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Sticky opnieuw instellen"
+msgstr "Kleverig opnieuw instellen"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "GEOBON-widget inschakelen"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Activeer de GEOBON-widget op de startpagina."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Configureer instellingen, waaronder landinstellingen, landen en regio."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Startpagina"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Startpagina-hero's"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Startpagina-widgets"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Megamenu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Startpagina-hero's"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Configuratie opslaan"

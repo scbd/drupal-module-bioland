@@ -785,19 +785,19 @@ msgstr "आपल्याकडे इतर मेनू आयटम अं�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "ऑर्डर ओव्हरराइड मदत"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "ऑर्डर ओव्हरराइड मदत मजकूर"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "ऑर्डर ओव्हरराइड फील्ड आणि सामग्री क्रमवारी प्राधान्य स्पष्ट करणारा मदत मजकूर."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ऑर्डर ओव्हरराइड मदत मजकूराचे भाषांतर करा"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "या सामग्री प्रकारांसाठी इव्हेंट स्थिती टॅग दाखवा:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "या सामग्री प्रकारांसाठी प्रकल्प स्थिती टॅग दाखवा:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "प्रत्येक सामग्री एंट्रीमध�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "स्टिकी रीसेट करा"
+msgstr "चिकटी रीसेट करा"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "जीओबॉन विजेट सक्षम करा"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "मुख्य पृष्ठावर जीओबॉन विजेट सक्षम करा."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "स्थाने, देश आणि प्रदेशासह सेटिंग्ज कॉन्फिगर करा."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "मुख्यपृष्ठ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "मुख्यपृष्ठ हिरो"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "मुख्यपृष्ठ विजेट्स"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "मेगा मेनू"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "टॅग्ज"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "मुख्यपृष्ठ हिरो"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "कॉन्फिगरेशन जतन करा"

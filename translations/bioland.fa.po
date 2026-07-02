@@ -868,19 +868,19 @@ msgstr "شما مجوز ایجاد موارد منو در سایر موارد م
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "راهنمای لغو ترتیب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "متن راهنمای لغو ترتیب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "متن راهنما که فیلد لغو ترتیب و اولویت مرتب‌سازی محتوا را توضیح می‌دهد."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ترجمه متن راهنمای لغو ترتیب"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -892,7 +892,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "نمایش برچسب‌های وضعیت رویداد برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -904,7 +904,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "نمایش برچسب‌های وضعیت پروژه برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1493,7 +1493,7 @@ msgstr "تمام پرچم های چسبنده را از هر ورودی محتو
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "تنظیم مجدد Sticky"
+msgstr "بازنشانی چسبنده"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1848,3 +1848,31 @@ msgstr "فعال کردن ویجت GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ویجت GEOBON را در صفحه اصلی فعال کنید."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "پیکربندی تنظیمات شامل زبان‌ها، کشورها و منطقه."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "صفحه اصلی"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "قهرمان(های) صفحه اصلی"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "ابزارک‌های صفحه اصلی"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "منوی مگا"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "قهرمانان صفحه اصلی"

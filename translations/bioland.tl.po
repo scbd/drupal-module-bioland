@@ -785,19 +785,19 @@ msgstr "Wala kang pahintulot na lumikha ng mga item sa menu sa ilalim ng iba pan
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Tulong sa Pag-override ng Order"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Tekstong Tulong sa Pag-override ng Order"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Tekstong tulong na nagpapaliwanag sa field na Pag-override ng Order at priyoridad ng pag-uuri ng nilalaman."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Isalin ang Tekstong Tulong sa Pag-override ng Order"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Ipakita ang mga tag ng Katayuan ng Kaganapan para sa mga uri ng nilalaman na ito:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Ipakita ang mga tag ng Katayuan ng Proyekto para sa mga uri ng nilalaman na ito:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Tinatanggal ang lahat ng malagkit na watawat mula sa bawat entry ng nila
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "I-reset ang Sticky"
+msgstr "I-reset ang malagkit"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Paganahin ang GEOBON Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Paganahin ang widget ng GEOBON sa home page."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "I-configure ang mga setting kabilang ang mga locale, bansa, at rehiyon."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Home Page (Pangunahing Pahina)"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Bayani ng Home Page"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Mga Widget sa Home Page"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Mga Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Mga Bayani ng Home Page"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "I-save ang configuration"

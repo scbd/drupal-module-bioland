@@ -785,19 +785,19 @@ msgstr "Nu aveți permisiunea de a crea elemente de meniu sub alte elemente de m
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Ajutor pentru suprascrierea ordinii"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Text de ajutor pentru suprascrierea ordinii"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Text de ajutor care explică câmpul de suprascriere a ordinii și prioritatea de sortare a conținutului."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Traduceți textul de ajutor pentru suprascrierea ordinii"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Afișați etichetele Stare eveniment pentru aceste tipuri de conținut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Afișați etichetele Stare proiect pentru aceste tipuri de conținut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1005,7 +1005,7 @@ msgstr "Capătul frontal"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End General"
+msgstr "Capătul frontal - General"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"
@@ -1418,7 +1418,7 @@ msgstr "Elimină toate steagurile lipicioase din fiecare intrare de conținut."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Resetați Sticky"
+msgstr "Resetați lipicioasă"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Activați widgetul GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Activați widgetul GEOBON pe pagina de pornire."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Configurați setările, inclusiv locale, țări și regiune."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Pagina principală"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Eroii paginii principale"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widget-uri pagina principală"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Meniu mega"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Etichete"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Eroii paginii principale"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Salvați configurația"

@@ -785,19 +785,19 @@ msgstr "Bạn không có quyền tạo các mục menu dưới các mục menu k
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Trợ giúp ghi đè thứ tự"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Văn bản trợ giúp ghi đè thứ tự"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Văn bản trợ giúp giải thích trường ghi đè thứ tự và mức độ ưu tiên sắp xếp nội dung."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Dịch văn bản trợ giúp ghi đè thứ tự"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Hiển thị thẻ Trạng thái sự kiện cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Hiển thị thẻ Trạng thái dự án cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Xóa tất cả các cờ dính khỏi mọi mục nhập nội dung."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Đặt lại Sticky"
+msgstr "Đặt lại dẻo"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Kích hoạt Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Kích hoạt tiện ích GEOBON trên trang chủ."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Định cấu hình cài đặt bao gồm ngôn ngữ, quốc gia và khu vực."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Trang chủ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hình ảnh nổi bật trang chủ"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Tiện ích trang chủ"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Menu lớn"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Thẻ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hình ảnh nổi bật trang chủ"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Lưu cấu hình"

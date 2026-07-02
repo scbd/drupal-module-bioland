@@ -785,19 +785,19 @@ msgstr "Non sei autorizzato a creare voci di menu in altre voci di menu. Per il 
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Guida alla priorità di ordinamento"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Testo guida alla priorità di ordinamento"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Testo guida che spiega il campo di priorità di ordinamento e la priorità di ordinamento dei contenuti."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Traduci testo guida alla priorità di ordinamento"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -809,7 +809,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Mostra i tag dello stato dell'evento per questi tipi di contenuto:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -821,7 +821,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Mostra i tag dello stato del progetto per questi tipi di contenuto:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1418,7 +1418,7 @@ msgstr "Rimuove tutte le bandiere adesive da ogni voce di contenuto."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Reimposta Sticky"
+msgstr "Reimposta appiccicoso"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1773,3 +1773,35 @@ msgstr "Abilita widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Abilita il widget GEOBON nella home page."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Configura le impostazioni tra cui lingue, paesi e regione."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Pagina iniziale"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hero della pagina iniziale"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widget della pagina iniziale"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hero della pagina iniziale"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Salva configurazione"
