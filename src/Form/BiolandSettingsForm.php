@@ -2704,6 +2704,46 @@ class BiolandSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Builds the home-page hero help/intro markup for the current site flavor.
+   *
+   * The copy differs by site flavor. Biosafety Land (BSL) sites - detected via
+   * the persisted bioland.settings.is_biosafety_land flag (the same flag
+   * getBrandingName() reads; it is written by BiolandDmsmConfigService when the
+   * DMSM multiSiteCode is 'bsl') - show a single-hero variant sourced from the
+   * home_hero_help_bsl_heading / home_hero_help_bsl_text config properties. All
+   * other (BL2) sites keep the original rotating-hero copy.
+   *
+   * Like getBrandingName(), the source strings are wrapped in $this->t() so the
+   * translations/bioland.<langcode>.po catalogs apply. The config properties
+   * hold the canonical English (source) strings that are used verbatim as the
+   * t() msgid; a matching msgid/msgstr pair is shipped in every .po file.
+   *
+   * @param \Drupal\Core\Config\ImmutableConfig $config
+   *   The bioland.settings configuration.
+   *
+   * @return string
+   *   The rendered HTML markup for the hero description block.
+   */
+  protected function buildHeroDescriptionMarkup($config) {
+    if ($config->get('is_biosafety_land')) {
+      // Biosafety Land variant. Config holds the canonical source strings.
+      $heading = $config->get('help_comments.home_hero_help_bsl_heading')
+        ?: 'About Home Page Heroe';
+      $body = $config->get('help_comments.home_hero_help_bsl_text')
+        ?: 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.';
+
+      return '<p style="margin: 0 0 10px 0;"><strong>' . $this->t($heading) . '</strong></p>' .
+        '<p style="margin: 0;">' . $this->t($body) . '</p>';
+    }
+
+    // Default (BL2) variant - unchanged original copy.
+    return '<p style="margin: 0 0 10px 0;"><strong>' . $this->t('About Home Page Heroes') . '</strong></p>' .
+      '<p style="margin: 0 0 10px 0;">' . $this->t('Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners.') . '</p>' .
+      '<p style="margin: 0 0 10px 0;">' . $this->t('The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day.') . '</p>' .
+      '<p style="margin: 0;">' . $this->t('If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below.') . '</p>';
+  }
+
+  /**
    * Build hero sections for the Home Hero(s) tab.
    *
    * @param array &$form
@@ -2735,15 +2775,14 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#attributes' => ['class' => ['bioland-heroes-wrapper']],
       ];
 
-      // Add description explaining how heroes work
+      // Add description explaining how heroes work. The intro copy differs by
+      // site flavor: Biosafety Land (BSL) sites show a single-hero variant,
+      // all other (BL2) sites keep the original rotating-hero copy.
       $form['home_page_heroes']['description'] = [
         '#type' => 'html_tag',
         '#tag' => 'div',
         '#attributes' => ['class' => ['bioland-heroes-description'], 'style' => 'margin-bottom: 20px; padding: 15px; background: #fff; border-left: 4px solid #0073aa; border-radius: 4px;'],
-        '#value' => '<p style="margin: 0 0 10px 0;"><strong>' . $this->t('About Home Page Heroes') . '</strong></p>' .
-          '<p style="margin: 0 0 10px 0;">' . $this->t('Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners.') . '</p>' .
-          '<p style="margin: 0 0 10px 0;">' . $this->t('The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day.') . '</p>' .
-          '<p style="margin: 0;">' . $this->t('If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below.') . '</p>',
+        '#value' => $this->buildHeroDescriptionMarkup($this->config('bioland.settings')),
       ];
 
       // Add global styles

@@ -1773,3 +1773,11 @@ msgstr "Активиране на джаджа GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Активирайте приспособлението GEOBON на началната страница."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Относно банера на началната страница"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Банерите са големите банерни изображения, показвани в горната част на началната страница. Тъй като оформлението на началната страница не може да се редактира директно, тук редактирате банера на началната страница."

@@ -1773,3 +1773,11 @@ msgstr "જીઓબોન વિજેટ સક્ષમ કરો"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "હોમ પેજ પર GEOBON વિજેટને સક્ષમ કરો."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "હોમ પેજ બેનર વિશે"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "બેનર એ હોમ પેજની ટોચ પર દર્શાવવામાં આવતી મોટી બેનર છબીઓ છે. હોમ પેજનું લેઆઉટ સીધું સંપાદિત કરી શકાતું નથી, તેથી અહીં તમે હોમ પેજનું બેનર સંપાદિત કરો છો."

@@ -1862,3 +1862,11 @@ msgstr "Activa el giny GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Activa el giny GEOBON a la pàgina principal."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Sobre el bàner de la pàgina d'inici"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Els bàners són les imatges de bàner grans que es mostren a la part superior de la pàgina d'inici. Com que la disposició de la pàgina d'inici no es pot editar directament, aquí és on editeu el bàner de la pàgina d'inici."

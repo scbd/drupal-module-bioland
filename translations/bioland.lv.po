@@ -1773,3 +1773,11 @@ msgstr "Iespējot GEOBON logrīku"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Iespējojiet GEOBON logrīku mājas lapā."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Par sākumlapas reklāmkarogu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Reklāmkarogi ir lielie attēli, kas tiek rādīti sākumlapas augšpusē. Tā kā sākumlapas izkārtojumu nevar rediģēt tieši, šeit jūs rediģējat sākumlapas reklāmkarogu."

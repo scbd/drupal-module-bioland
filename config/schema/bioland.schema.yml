@@ -125,6 +125,12 @@ bioland.settings:
         attachments_heroes_translations_format:
           type: mapping
           label: 'Attachments heroes help text translations formats'
+        home_hero_help_bsl_heading:
+          type: text
+          label: 'Home page hero help heading (Biosafety Land variant)'
+        home_hero_help_bsl_text:
+          type: text
+          label: 'Home page hero help body (Biosafety Land variant)'
         promotion_text:
           type: text
           label: 'Promotion options help text'

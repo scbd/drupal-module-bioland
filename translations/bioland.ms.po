@@ -1773,3 +1773,11 @@ msgstr "Dayakan Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Dayakan widget GEOBON di halaman utama."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Mengenai sepanduk halaman utama"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Sepanduk ialah imej sepanduk besar yang dipaparkan di bahagian atas halaman utama. Memandangkan susun atur halaman utama tidak boleh disunting secara terus, di sinilah anda menyunting sepanduk halaman utama."

@@ -1848,3 +1848,11 @@ msgstr "Pèmèt GEOBON Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Pèmèt widje GEOBON a nan paj lakay la."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Konsènan banyè paj dakèy la"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Banyè yo se gwo imaj banyè ki parèt anlè paj dakèy la. Piske yo pa ka modifye layout paj dakèy la dirèkteman, se isit la ou modifye banyè paj dakèy la."

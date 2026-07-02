@@ -1773,3 +1773,11 @@ msgstr "Wezesha Widget ya GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Wezesha widget ya GEOBON kwenye ukurasa wa nyumbani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Kuhusu bango la ukurasa wa nyumbani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Mabango ni picha kubwa za bango zinazoonyeshwa juu ya ukurasa wa nyumbani. Kwa kuwa muundo wa ukurasa wa nyumbani hauwezi kuhaririwa moja kwa moja, hapa ndipo unapohariri bango la ukurasa wa nyumbani."

@@ -1773,3 +1773,11 @@ msgstr "GEOBON Widget-ni aktivləşdirin"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Ana səhifədə GEOBON vidjetini aktivləşdirin."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Ana səhifə banneri haqqında"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Bannerlər ana səhifənin yuxarısında göstərilən böyük banner şəkilləridir. Ana səhifənin tərtibatını birbaşa redaktə etmək mümkün olmadığından, ana səhifənin bannerini burada redaktə edirsiniz."

@@ -1773,3 +1773,11 @@ msgstr "Միացնել GEOBON վիջեթը"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Միացրեք GEOBON վիջեթը գլխավոր էջում:"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Գլխավոր էջի պաստառի մասին"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Պաստառները գլխավոր էջի վերևում ցուցադրվող մեծ պատկերներ են։ Քանի որ գլխավոր էջի դասավորությունը հնարավոր չէ ուղղակիորեն խմբագրել, այստեղ դուք խմբագրում եք գլխավոր էջի պաստառը։"
