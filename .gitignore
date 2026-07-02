@@ -86,3 +86,4 @@ failed-*
 .yarn/unplugged/
 .yarn/build-state.yml
 .github
+docs/.temp
