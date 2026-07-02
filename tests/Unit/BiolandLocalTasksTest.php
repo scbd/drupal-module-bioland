@@ -138,7 +138,7 @@ class BiolandLocalTasksTest extends TestCase {
     // Extract the block for bioland.settings.admin (from its header to the
     // next top-level key or EOF).
     $this->assertMatchesRegularExpression(
-      '/^bioland\.settings\.admin:\n(?:.+\n?)*?\s+_role:\s*[\'"]administrator[\'"]/m',
+      '/^bioland\.settings\.admin:\n(?:[ \t]+[^\n]*\n|\n)*?[ \t]+_role:\s*[\'"]administrator[\'"]/m',
       $content,
       'bioland.settings.admin route must require the "administrator" role, matching bioland.settings.system_functions.'
     );
