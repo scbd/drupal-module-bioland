@@ -70,6 +70,7 @@ jobs:
       - run:
           name: PHP lint
           command: |
+            # Must stay in sync with package.json's lint:php script
             find . -type f \( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \) -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n 1 php -l
       - run:
           name: Prepare PHP test results dir
