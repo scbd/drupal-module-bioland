@@ -76,6 +76,7 @@ class TranslationCatalogIntegrityTest extends TestCase {
   private function parsePoFile(string $file): array {
     $content = file_get_contents($file);
     $entries = [];
+    // Single-line msgid/msgstr pairs only; multi-line entries are intentionally skipped (none exist among the required strings).
     $pattern = '/^msgid "((?:[^"\\\\]|\\\\.)*)"\nmsgstr "((?:[^"\\\\]|\\\\.)*)"/m';
     preg_match_all($pattern, $content, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
@@ -87,7 +88,7 @@ class TranslationCatalogIntegrityTest extends TestCase {
   }
 
   /**
-   * Test that the translations directory contains the expected 66 locale files.
+   * Test that the translations directory exists and contains locale files.
    */
   public function testTranslationsDirectoryExists(): void {
     $path = $this->getTranslationsPath();
