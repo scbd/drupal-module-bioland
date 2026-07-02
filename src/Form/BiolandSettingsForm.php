@@ -2,6 +2,7 @@
 
 namespace Drupal\bioland\Form;
 
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -2718,6 +2719,12 @@ class BiolandSettingsForm extends ConfigFormBase {
    * hold the canonical English (source) strings that are used verbatim as the
    * t() msgid; a matching msgid/msgstr pair is shipped in every .po file.
    *
+   * Caveat: editing the home_hero_help_bsl_* config replaces the t() source
+   * string, so an edited value has no matching .po msgid and renders untranslated
+   * for every locale. The BSL branch output is also run through Xss::filterAdmin()
+   * as defense-in-depth, since the config-sourced strings become dynamic t()
+   * msgids concatenated into raw markup.
+   *
    * @param \Drupal\Core\Config\ImmutableConfig $config
    *   The bioland.settings configuration.
    *
@@ -2727,13 +2734,21 @@ class BiolandSettingsForm extends ConfigFormBase {
   protected function buildHeroDescriptionMarkup($config) {
     if ($config->get('is_biosafety_land')) {
       // Biosafety Land variant. Config holds the canonical source strings.
+      // Use ?? (not ?:) so only an unset/NULL key falls back to the seeded
+      // default: the fallback guards existing sites where the update hook has
+      // not yet written the key, not an admin who intentionally blanks the copy.
       $heading = $config->get('help_comments.home_hero_help_bsl_heading')
-        ?: 'About Home Page Heroe';
+        ?? 'About Home Page Heroe';
       $body = $config->get('help_comments.home_hero_help_bsl_text')
-        ?: 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.';
+        ?? 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.';
 
-      return '<p style="margin: 0 0 10px 0;"><strong>' . $this->t($heading) . '</strong></p>' .
-        '<p style="margin: 0;">' . $this->t($body) . '</p>';
+      // Defense-in-depth: the config-sourced strings become dynamic t() msgids
+      // concatenated into raw markup, so filter the assembled output through
+      // Xss::filterAdmin() before it reaches the #value render array.
+      return Xss::filterAdmin(
+        '<p style="margin: 0 0 10px 0;"><strong>' . $this->t($heading) . '</strong></p>' .
+        '<p style="margin: 0;">' . $this->t($body) . '</p>'
+      );
     }
 
     // Default (BL2) variant - unchanged original copy.

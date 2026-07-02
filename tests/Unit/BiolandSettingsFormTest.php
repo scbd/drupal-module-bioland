@@ -355,6 +355,31 @@ class BiolandSettingsFormTest extends TestCase {
   }
 
   /**
+   * Tests the BSL variant strips unsafe markup from config-sourced strings.
+   *
+   * Defense-in-depth: the config-sourced heading/body become dynamic t() msgids
+   * concatenated into raw markup, so Xss::filterAdmin() must strip any unsafe
+   * tags (e.g. <script>) from the assembled output while keeping the safe text.
+   */
+  public function testBuildHeroDescriptionMarkupBslStripsUnsafeConfigMarkup(): void {
+    $form = $this->createFormWithConfig([
+      'is_biosafety_land' => TRUE,
+      'help_comments' => [
+        'home_hero_help_bsl_heading' => 'Safe<script>alert(1)</script>',
+        'home_hero_help_bsl_text' => 'Body',
+      ],
+    ]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // Xss::filterAdmin() strips the unsafe <script> tag from the output.
+    $this->assertStringNotContainsString('<script>', $result);
+
+    // The safe text is preserved.
+    $this->assertStringContainsString('Safe', $result);
+  }
+
+  /**
    * Invokes the protected buildHeroDescriptionMarkup() method via reflection.
    *
    * @param \Drupal\bioland\Form\BiolandSettingsForm $form
