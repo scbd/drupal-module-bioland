@@ -52,9 +52,12 @@ vendor/bin/phpunit              # Direct PHPUnit
 
 # JavaScript tests (Jest)
 npm test                         # Jest in CI mode
-npm run test:ci                 # With coverage
+npx jest --ci --coverage         # With coverage
 
-# CircleCI workflow (.circleci/config.yml) runs both stacks
+# Full local run (lint + PHP + JS)
+npm run test:all
+
+# CI (.github/workflows/ci.yml) runs lint, PHP, and JS as separate steps
 ```
 
 ### Installation & Dependency Management
