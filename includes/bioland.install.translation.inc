@@ -240,7 +240,7 @@ function bioland_update_9012(&$sandbox) {
  * (see _bioland_import_translations()), so this is safe to run more than
  * once.
  */
-function bioland_update_9062() {
+function bioland_update_9063() {
   // Check if locale module and service are available.
   if (!\Drupal::moduleHandler()->moduleExists('locale')) {
     return t('Skipped translation import: locale module is not enabled.');
