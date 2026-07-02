@@ -2,6 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bioland 0.0.1\n"
 "POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"PO-Revision-Date: 2025-11-11 00:00+0000\n"
+"Last-Translator: Bioland Team\n"
+"Language-Team: Bioland Team\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -823,7 +826,6 @@ msgstr "Help text explaining the Order Override field and content sorting priori
 msgid "Translate Order Override Help Text"
 msgstr "Translate Order Override Help Text"
 
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Debug Logging"
 msgstr "Debug Logging"
@@ -909,20 +911,12 @@ msgid "Show Organization Types tags for these content types:"
 msgstr "Show Organization Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Types"
-msgstr "Ecosystem Types"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Content types that will have Ecosystem Types tags available."
 msgstr "Content types that will have Ecosystem Types tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Ecosystem Types tags for these content types:"
 msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Types"
-msgstr "Document Types"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content types that will have Document Types tags available."
@@ -1112,10 +1106,6 @@ msgid "Auto Summary"
 msgstr "Auto Summary"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Biosafety Land"
-msgstr "Biosafety Land"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Main Menu Lock"
 msgstr "Main Menu Lock"
 
@@ -1224,62 +1214,66 @@ msgid "Translate Heroes Help Text"
 msgstr "Translate Heroes Help Text"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "<b>Promoted to front page:</b>
-<ul>
-<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>
-<li>Useful for highlighting important or timely content</li>
-<li>Multiple items can be promoted simultaneously</li>
-</ul>
-
-<b>Sticky at top of lists:</b>
-<ul>
-<li>Content stays pinned at the top of content listings</li>
-<li>Remains at top regardless of publication date</li>
-<li>Multiple sticky items appear before non-sticky content</li>
-</ul>
-
-<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
-msgstr "<b>Promoted to front page:</b>
-<ul>
-<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>
-<li>Useful for highlighting important or timely content</li>
-<li>Multiple items can be promoted simultaneously</li>
-</ul>
-
-<b>Sticky at top of lists:</b>
-<ul>
-<li>Content stays pinned at the top of content listings</li>
-<li>Remains at top regardless of publication date</li>
-<li>Multiple sticky items appear before non-sticky content</li>
-</ul>
-
-<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
+msgid ""
+"<b>Promoted to front page:</b>\n"
+"<ul>\n"
+"<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>\n"
+"<li>Useful for highlighting important or timely content</li>\n"
+"<li>Multiple items can be promoted simultaneously</li>\n"
+"</ul>\n"
+"\n"
+"<b>Sticky at top of lists:</b>\n"
+"<ul>\n"
+"<li>Content stays pinned at the top of content listings</li>\n"
+"<li>Remains at top regardless of publication date</li>\n"
+"<li>Multiple sticky items appear before non-sticky content</li>\n"
+"</ul>\n"
+"\n"
+"<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
+msgstr ""
+"<b>Promoted to front page:</b>\n"
+"<ul>\n"
+"<li>Content appears in featured listings, homepage blocks, or \"promoted\" views</li>\n"
+"<li>Useful for highlighting important or timely content</li>\n"
+"<li>Multiple items can be promoted simultaneously</li>\n"
+"</ul>\n"
+"\n"
+"<b>Sticky at top of lists:</b>\n"
+"<ul>\n"
+"<li>Content stays pinned at the top of content listings</li>\n"
+"<li>Remains at top regardless of publication date</li>\n"
+"<li>Multiple sticky items appear before non-sticky content</li>\n"
+"</ul>\n"
+"\n"
+"<b>Using both:</b> Content can be both promoted AND sticky for maximum visibility."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Promoted and Sticky options."
 msgstr "Help text explaining the Promoted and Sticky options."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "<b>Content sorting priority (highest to lowest):</b>
-<ol>
-<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>
-<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>
-<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>
-<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>
-<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>
-<li><b>Last Modified</b> – Finally sorted by most recently updated</li>
-</ol>
-<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "<b>Content sorting priority (highest to lowest):</b>
-<ol>
-<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>
-<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>
-<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>
-<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>
-<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>
-<li><b>Last Modified</b> – Finally sorted by most recently updated</li>
-</ol>
-<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgid ""
+"<b>Content sorting priority (highest to lowest):</b>\n"
+"<ol>\n"
+"<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>\n"
+"<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>\n"
+"<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>\n"
+"<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>\n"
+"<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>\n"
+"<li><b>Last Modified</b> – Finally sorted by most recently updated</li>\n"
+"</ol>\n"
+"<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
+msgstr ""
+"<b>Content sorting priority (highest to lowest):</b>\n"
+"<ol>\n"
+"<li><b>Sticky</b> – Items marked \"Sticky at top of lists\" always appear first followed by:</li>\n"
+"<li><b>Promoted</b> – Items marked \"Promoted to front page\" but sort above the other fields, followed by</li>\n"
+"<li><b>Order Override</b> – A tool for fine grain ordering. Lower numbers appear before higher numbers (e.g., 10 appears before 20).</li>\n"
+"<li><b>Start Date</b> – Then sorted by start date if it exists, followed by</li>\n"
+"<li><b>Published Date</b> – Then sorted by publish date if it exists, followed by</li>\n"
+"<li><b>Last Modified</b> – Finally sorted by most recently updated</li>\n"
+"</ol>\n"
+"<b>Tip:</b> Leave it at 10000 which is off essentially, to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Ordering Reset"
@@ -1436,10 +1430,6 @@ msgstr "Sticky"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Items marked \"Sticky at top of lists\" always appear first"
 msgstr "Items marked \"Sticky at top of lists\" always appear first"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Order Override"
-msgstr "Order Override"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"

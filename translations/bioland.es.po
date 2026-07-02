@@ -2,6 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bioland 0.0.1\n"
 "POT-Creation-Date: 2025-11-11 00:00+0000\n"
+"PO-Revision-Date: 2025-11-11 00:00+0000\n"
+"Last-Translator: Bioland Team\n"
+"Language-Team: Bioland Team\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -820,20 +823,12 @@ msgid "Show Organization Types tags for these content types:"
 msgstr "Show Organization Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Types"
-msgstr "Ecosystem Types"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Content types that will have Ecosystem Types tags available."
 msgstr "Content types that will have Ecosystem Types tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Ecosystem Types tags for these content types:"
 msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Types"
-msgstr "Document Types"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content types that will have Document Types tags available."
