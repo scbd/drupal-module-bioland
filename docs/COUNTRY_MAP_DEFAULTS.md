@@ -40,7 +40,7 @@ The module includes preset zoom levels and center coordinates for over 240 count
 
 ### Frontend (JavaScript)
 
-**Home Widgets Behavior** (`js/bioland-home-widgets-1-0-47.js`)
+**Home Widgets Behavior** (`js/bioland-home-widgets-1-1-0.js`)
 - Exposes settings via `window.Bioland.homeWidgets`
 - Available on all pages via `hook_page_attachments()`
 - Debug logging when enabled in settings
@@ -210,7 +210,7 @@ public static function getDefaults() {
 
 Enable debug logging to see settings in browser console:
 
-1. Go to `/admin/config/bioland/settings/development`
+1. Go to `/admin/config/bioland/settings/admin`
 2. Check "Enable Debug Logging"
 3. Check "Home Widgets" under debug areas
 4. Save configuration
