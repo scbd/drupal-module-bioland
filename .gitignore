@@ -82,9 +82,11 @@ failed-*
 .phpunit.result.cache
 .phpunit.result*
 .php*
-.yarn/install-state.gz
-.yarn/unplugged/
-.yarn/build-state.yml
+*.backup
+# Yarn Berry / PnP artifacts — this repo is Yarn 1 (classic), keep these out
+.pnp.*
+.yarn/
 .github/*
 !.github/workflows/
 docs/.temp
+test-output.txt
