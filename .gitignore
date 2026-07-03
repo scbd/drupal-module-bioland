@@ -55,6 +55,7 @@
 
 # Ignore vendor dependencies and scripts
 /vendor
+/composer.lock
 /composer.phar
 /composer
 /robo.phar
