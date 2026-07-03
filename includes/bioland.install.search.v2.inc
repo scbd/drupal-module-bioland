@@ -373,3 +373,40 @@ function bioland_update_9059() {
 function bioland_update_9060() {
   return _bioland_v2_reindex_search();
 }
+
+/**
+ * Converge the Search API index and facets on the canonical v2 configuration.
+ *
+ * This is the single, authoritative "switch" for Search API configuration.
+ *
+ * Two configuration paths exist in this module for historical reasons:
+ *  - The v1 path (bioland.install.search.inc): _bioland_configure_search_api_index()
+ *    and _bioland_configure_facets(), run by the legacy bioland_update_9025().
+ *    It builds the index/facets programmatically and produces a different shape
+ *    than v2 (e.g. tracker order, indexed languages, and it creates a "language"
+ *    facet that v2 later deletes).
+ *  - The v2 path (this file): _bioland_v2_update_search_and_facets_config(), which
+ *    applies the serialized production config and is the canonical source of truth.
+ *    It is also what a fresh bioland_install() runs.
+ *
+ * Because a site's final index state otherwise depends on which subset and order
+ * of those legacy hooks its update history happened to run, an index could be left
+ * half-configured (v1 as the last writer, or a reindex missed). This hook removes
+ * that ambiguity: as the highest-numbered update hook it is guaranteed to run last
+ * for EVERY existing site regardless of history, converging the index and facets
+ * on the canonical v2 configuration and reindexing.
+ *
+ * The operation is idempotent and safe to re-run:
+ *  - _bioland_v2_apply_serialized_config() creates-or-updates each config and
+ *    preserves existing UUIDs, so sites already on v2 get a no-op re-apply.
+ *  - Every step guards on the relevant module being enabled.
+ *  - It ends with a full reindex, so the index is always left fully populated.
+ *
+ * Fresh installs baseline their schema at this hook number and therefore skip it
+ * (bioland_install() already applies the v2 config directly).
+ *
+ * @version 1.1.0
+ */
+function bioland_update_9064() {
+  return _bioland_v2_update_search_and_facets_config();
+}

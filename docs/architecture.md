@@ -295,7 +295,11 @@ enabled per site. Notable infrastructure-facing behaviours:
   externally.
 - **Search API** uses the database backend (the `content` index), not Solr. The v2 install path
   (`bioland.install.search.v2.inc`, hooks 9059 and 9060) applies serialized production config and
-  rebuilds the index; the older v1 path remains for older installs.
+  rebuilds the index; it is the canonical source of truth and what a fresh `bioland_install()` runs.
+  The older v1 path (`bioland.install.search.inc`) is retained only so its historical hooks stay
+  replayable. `bioland_update_9064` is a terminal, idempotent convergence hook: as the
+  highest-numbered update it runs last for every site and re-applies the v2 config plus a reindex,
+  so a site lands on the canonical index regardless of its update history.
 - **DMSM** is reachable over HTTPS at install and update time; the install path degrades gracefully
   if it is not, the update path does not.
 - **Environment detection** is by hostname pattern (`cbddev.xyz` dev, `staging.cbd.int` staging,
@@ -339,8 +343,11 @@ See each ADR for the rationale; it is not restated here.
   does not exist. The `getCountryDefaults()` method they mention is still accurate
   (`src/Service/BiolandCountryMapDefaults.php`), so that reference is fine; it is the versioned
   filenames and the `/development` route that have drifted. Treat the code as truth.
-- **Two Search API install paths.** v1 and v2 both exist. A site's correct path depends on its
-  history; there is no single switch, so misordered updates could leave an index half-configured.
+- **Two Search API install paths.** v1 and v2 both exist. v2 is canonical; v1 is retained only for
+  replay of its historical hooks. `bioland_update_9064` now provides the single convergence switch
+  (highest-numbered, idempotent, runs last for every site), so update history no longer determines
+  the final index state. The remaining risk is only if new code re-wires the deprecated v1 helpers
+  into the install path — the file header of `bioland.install.search.inc` warns against this.
 - **DMSM coupling at update time.** A DMSM outage blocks `drush updb`. That is deliberate, but it
   couples routine deployments to an external service's availability.
 - **Large single form.** `BiolandSettingsForm` is one ~2900-line class. It works, but the section

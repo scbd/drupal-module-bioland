@@ -6,6 +6,15 @@
  *
  * Contains helper functions and update hooks for configuring Search API
  * indexes, facets, and related functionality.
+ *
+ * SUPERSEDED: this is the legacy "v1" configuration path, retained only so the
+ * historical update hooks that already ran on existing sites (e.g.
+ * bioland_update_9025) remain replayable. The canonical source of truth is now
+ * the "v2" path in bioland.install.search.v2.inc, and bioland_update_9064()
+ * converges every site on it. Do NOT wire these v1 helpers
+ * (_bioland_configure_search_api_index(), _bioland_configure_facets(), etc.)
+ * into bioland_install() or any new update hook, or the two paths will fight
+ * over the same config and can leave the index half-configured.
  */
 
 /*
