@@ -1635,6 +1635,81 @@ class BiolandSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Maps raw General-tab form values to the config writes they mirror.
+   *
+   * Pure function (no Drupal services) so the value-path handling can be unit
+   * tested directly. It resolves the exact submitted-value locations for the
+   * General section and normalises text_format wrappers.
+   *
+   * The General section does NOT set #tree on the "general" fieldset or the
+   * "site_name_section" details, so Form API flattens their descendants to the
+   * top level of $values keyed by the leaf element key:
+   *   - site name        -> $values['site_name']
+   *   - slogan           -> $values['site_slogan'] (text_format array)
+   *   - name translations   -> $values['site_name_translations'][$langcode]
+   *   - slogan translations -> $values['site_slogan_translations'][$langcode]
+   *   - time zone        -> $values['date_default_timezone']
+   * (A nested 'site_name_section' path is still accepted defensively in case
+   * #tree is added to that container later.)
+   *
+   * @param array $values
+   *   The raw $form_state->getValues() array.
+   * @param string[] $translation_langcodes
+   *   Non-default language codes to build per-language overrides for.
+   *
+   * @return array
+   *   Normalised writes: [
+   *     'site'      => ['name' => string, 'slogan' => string],
+   *     'overrides' => [langcode => ['name' => string, 'slogan' => string]],
+   *     'timezone'  => string,
+   *   ]. Override values are '' when the field was emptied (signal to remove).
+   */
+  public static function extractGeneralSettings(array $values, array $translation_langcodes) {
+    // text_format elements submit as ['value' => ..., 'format' => ...].
+    $text = static function ($field) {
+      if (is_array($field)) {
+        return (string) ($field['value'] ?? '');
+      }
+      return (string) ($field ?? '');
+    };
+
+    $site_name = $values['site_name_section']['site_name'] ?? $values['site_name'] ?? '';
+
+    $mapped = [
+      'site' => [
+        'name' => (string) $site_name,
+      ],
+      'overrides' => [],
+      'timezone' => (string) ($values['date_default_timezone'] ?? ''),
+    ];
+
+    // The slogan field can be access-hidden; only mirror it when it was part
+    // of the submission, so a hidden field never wipes existing config.
+    $slogan_present = array_key_exists('site_slogan', $values);
+    if ($slogan_present) {
+      $mapped['site']['slogan'] = $text($values['site_slogan']);
+    }
+
+    foreach ($translation_langcodes as $langcode) {
+      $name_value = $values['site_name_translations'][$langcode]
+        ?? $values['site_name_section']['site_name_translations'][$langcode]
+        ?? '';
+
+      $override = ['name' => $text($name_value)];
+
+      $slogan_trans_present = isset($values['site_slogan_translations'])
+        && array_key_exists($langcode, $values['site_slogan_translations']);
+      if ($slogan_trans_present) {
+        $override['slogan'] = $text($values['site_slogan_translations'][$langcode]);
+      }
+
+      $mapped['overrides'][$langcode] = $override;
+    }
+
+    return $mapped;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
@@ -1643,82 +1718,80 @@ class BiolandSettingsForm extends ConfigFormBase {
     $config = $this->config('bioland.settings');
 
     if ($section === 'general') {
-      $languages = $this->languageManager->getLanguages();
       $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
 
-      // Save system.site configuration (only if changed)
+      // Build the list of translatable language codes (all configured
+      // languages except the default one) so the mirror is driven by the
+      // site's real language set, not a hardcoded list.
+      $translation_langcodes = [];
+      foreach ($this->languageManager->getLanguages() as $langcode => $language) {
+        if ($langcode !== $default_langcode) {
+          $translation_langcodes[] = $langcode;
+        }
+      }
+
+      // Normalise the raw form values into the exact set of config writes.
+      // Kept as a pure, unit-testable mapping (see extractGeneralSettings()).
+      $mapped = self::extractGeneralSettings($values, $translation_langcodes);
+
+      // Mirror site name/slogan back to system.site (write only on change).
       $site_config = $this->configFactory()->getEditable('system.site');
       $site_config_changed = FALSE;
-
-      // Get site_name from nested site_name_section
-      $site_name = $values['site_name_section']['site_name'] ?? $values['site_name'];
-      if ($site_config->get('name') !== $site_name) {
-        $site_config->set('name', $site_name);
-        $site_config_changed = TRUE;
+      foreach ($mapped['site'] as $config_key => $new_value) {
+        if ($site_config->get($config_key) !== $new_value) {
+          $site_config->set($config_key, $new_value);
+          $site_config_changed = TRUE;
+        }
       }
-      // Extract slogan value from text_format array
-      $slogan_value = is_array($values['site_slogan']) ? ($values['site_slogan']['value'] ?? '') : $values['site_slogan'];
-      if ($site_config->get('slogan') !== $slogan_value) {
-        $site_config->set('slogan', $slogan_value);
-        $site_config_changed = TRUE;
-      }
-      if ($site_config->get('mail') !== $values['site_mail']) {
-        $site_config->set('mail', $values['site_mail']);
-        $site_config_changed = TRUE;
-      }
-
       if ($site_config_changed) {
         $site_config->save();
       }
 
-      // Save translations if there are multiple languages
-      if (count($languages) > 1) {
-        $translatable_fields = [
-          'name' => 'site_name_translations',
-          'slogan' => 'site_slogan_translations',
-        ];
-
-        foreach ($languages as $langcode => $language) {
-          if ($langcode === $default_langcode) {
-            continue;
-          }
-
-          $config_override = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
-          $override_changed = FALSE;
-
-          foreach ($translatable_fields as $config_key => $form_key) {
-            // Get site_name translations from nested site_name_section
-            if ($form_key === 'site_name_translations') {
-              $field_value = $values['site_name_section'][$form_key][$langcode] ?? '';
-            }
-            else {
-              $field_value = $values[$form_key][$langcode] ?? '';
-            }
-            // Extract value from text_format array for slogan field
-            if ($config_key === 'slogan' && is_array($field_value)) {
-              $new_value = $field_value['value'] ?? '';
-            }
-            else {
-              $new_value = $field_value;
-            }
-            if ($config_override->get($config_key) !== $new_value) {
-              $config_override->set($config_key, $new_value);
+      // Mirror per-language name/slogan to the system.site language overrides.
+      // An emptied translation removes the override key (core behaviour),
+      // rather than persisting an empty string.
+      foreach ($mapped['overrides'] as $langcode => $override_values) {
+        $config_override = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
+        $override_changed = FALSE;
+        foreach ($override_values as $config_key => $new_value) {
+          if ($new_value === '') {
+            if ($config_override->get($config_key) !== NULL) {
+              $config_override->clear($config_key);
               $override_changed = TRUE;
             }
           }
-
-          if ($override_changed) {
+          elseif ($config_override->get($config_key) !== $new_value) {
+            $config_override->set($config_key, $new_value);
+            $override_changed = TRUE;
+          }
+        }
+        if ($override_changed) {
+          // Delete the override entirely once it holds no data, so a cleared
+          // translation does not leave an empty override behind.
+          if (empty($config_override->get())) {
+            $config_override->delete();
+          }
+          else {
             $config_override->save();
           }
         }
       }
 
-      // Save timezone configuration to system.date
+      // Mirror the default time zone back to system.date.
       $date_config = $this->configFactory()->getEditable('system.date');
-      $date_config->set('timezone.default', $values['date_default_timezone']);
-      // Set user.configurable to FALSE to disable user timezone selection
-      $date_config->set('timezone.user.configurable', FALSE);
-      $date_config->save();
+      $date_changed = FALSE;
+      if ($date_config->get('timezone.default') !== $mapped['timezone']) {
+        $date_config->set('timezone.default', $mapped['timezone']);
+        $date_changed = TRUE;
+      }
+      // Keep a single site-wide time zone: always ensure per-user selection is off.
+      if ($date_config->get('timezone.user.configurable') !== FALSE) {
+        $date_config->set('timezone.user.configurable', FALSE);
+        $date_changed = TRUE;
+      }
+      if ($date_changed) {
+        $date_config->save();
+      }
 
       $config
         ->set('region', $values['region'])
