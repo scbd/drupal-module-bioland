@@ -195,12 +195,22 @@ class BiolandHomePageForm extends BiolandSettingsFormBase {
 
       // Load each media entity by ID
       $media_storage = $this->entityTypeManager->getStorage('media');
+      $current_language = $this->languageManager->getCurrentLanguage()->getId();
       $hero_index = 0;
 
       foreach ($results as $target_id) {
         $entity = $media_storage->load($target_id);
         if (!$entity) {
           continue;
+        }
+
+        // Hero media entities are translatable and shared across languages
+        // (field_attachments on the system_pages term is NOT translatable, so
+        // every language references the same media). Render the current
+        // interface language's translation so /es shows the Spanish hero
+        // (label, description, image) rather than the default-language one.
+        if ($entity->hasTranslation($current_language)) {
+          $entity = $entity->getTranslation($current_language);
         }
 
         $hero_index++;

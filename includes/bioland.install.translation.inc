@@ -18,18 +18,20 @@
  * Import translations from PO files in the module's translations directory.
  *
  * Scans the bioland/translations directory for .po files and imports them
- * using the locale.translation service. Only imports for enabled languages.
+ * into the locale database. Only imports for enabled languages.
+ *
+ * Uses \Drupal\locale\Gettext::fileToDatabase() - the supported programmatic
+ * PO import API (PSR-4 autoloaded). A previous implementation called a non-existent
+ * "locale.translation" service (with an "importTranslationFile()" method that
+ * does not exist), so its availability guard short-circuited and NOTHING was
+ * ever imported: the re-import update hooks reported success while silently
+ * importing zero strings, which is why newer msgids (e.g. the BSL home-page
+ * hero help text) rendered untranslated on every locale.
  */
 function _bioland_import_translations() {
   // Only import if locale module is enabled.
   if (!\Drupal::moduleHandler()->moduleExists('locale')) {
     \Drupal::logger('bioland')->notice('Skipping translation import: locale module is not enabled.');
-    return;
-  }
-
-  // Check if the locale.translation service is available.
-  if (!\Drupal::hasService('locale.translation')) {
-    \Drupal::logger('bioland')->warning('Skipping translation import: locale.translation service is not available.');
     return;
   }
 
@@ -80,10 +82,10 @@ function _bioland_import_translations() {
           'customized' => TRUE,
         ];
 
-        \Drupal::service('locale.translation')->importTranslationFile(
-          $file->uri,
-          $options
-        );
+        // $file already exposes ->filename and ->uri (from scanDirectory());
+        // fileToDatabase() also reads ->langcode.
+        $file->langcode = $langcode;
+        \Drupal\locale\Gettext::fileToDatabase($file, $options);
         $imported_count++;
         \Drupal::logger('bioland')->notice('Successfully imported translation file @file.', [
           '@file' => $file->filename,
@@ -100,6 +102,10 @@ function _bioland_import_translations() {
   }
 
   if ($imported_count > 0) {
+    // Invalidate the persistent locale cache (tagged 'locale' by LocaleLookup)
+    // so freshly imported strings are served on the next request instead of a
+    // stale cached translation set.
+    \Drupal\Core\Cache\Cache::invalidateTags(['locale']);
     \Drupal::logger('bioland')->notice('Imported @count translation file(s).', [
       '@count' => $imported_count,
     ]);
@@ -303,4 +309,26 @@ function bioland_update_9063() {
 
   _bioland_import_translations();
   return t('Bioland translation re-import process completed. Check logs for details.');
+}
+
+/**
+ * Re-import translations after fixing the broken PO importer.
+ *
+ * Updates 9062/9063 called _bioland_import_translations(), but that helper (and
+ * the hooks' own guards) depended on a "locale.translation" service that does
+ * not exist in Drupal core, so the availability check short-circuited and no
+ * strings were ever imported - the hooks reported success while doing nothing.
+ * The helper now uses \Drupal\locale\Gettext::fileToDatabase() and invalidates
+ * the 'locale' cache. This re-runs the import so existing sites finally pick up
+ * the missing translations (e.g. the BSL home-page hero help text). Safe to run
+ * more than once - the importer overwrites both customized and non-customized
+ * translations.
+ */
+function bioland_update_9065() {
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    return t('Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.');
+  }
+
+  _bioland_import_translations();
+  return t('Re-imported Bioland translations with the corrected PO importer. Check logs for details.');
 }
