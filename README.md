@@ -353,7 +353,7 @@ The module maintains backward compatibility with the original SCBD field module:
 
 ## Installation
 
-1. Place the module in `/modules/custom/bioland`
+1. Place the module in `/modules/custom/scbd-bioland`
 2. Enable the module via Drupal admin or Drush
 3. Configure settings at `/admin/config/bioland/settings`
 4. Clear caches
