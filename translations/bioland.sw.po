@@ -788,19 +788,19 @@ msgstr "Huna ruhusa ya kuunda vitu vya menyu chini ya vitu vingine vya menyu. Vi
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Msaada wa Kubadilisha Mpangilio"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Maandishi ya Msaada wa Kubadilisha Mpangilio"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Maandishi ya usaidizi yanayoeleza kipengele cha Kubadilisha Mpangilio na kipaumbele cha kupanga maudhui."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Tafsiri Maandishi ya Msaada wa Kubadilisha Mpangilio"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Onyesha lebo za Hali ya Tukio kwa aina hizi za yaliyomo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Onyesha lebo za Hali ya Mradi kwa aina hizi za yaliyomo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Huondoa bendera zote zinazoweka kutoka kwa kila ingia ya maudhui."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Weka upya Sticky"
+msgstr "Weka upya nguvu"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Wezesha Widget ya GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Wezesha widget ya GEOBON kwenye ukurasa wa nyumbani."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Sanidi mipangilio ikiwa ni pamoja na lokeli, nchi, na eneo."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Ukurasa wa Nyumbani"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Mashujaa wa Ukurasa wa Nyumbani"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Vifaa vya Ukurasa wa Nyumbani"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Menyu Kuu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Lebo"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Mashujaa wa Ukurasa wa Nyumbani"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Hifadhi mipangilio"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

@@ -871,19 +871,19 @@ msgstr "Ou pa gen pèmisyon pou kreye atik meni anba lòt atik meni yo. Se sèlm
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Èd Ranplasman Lòd"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Tèks Èd Ranplasman Lòd"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Tèks èd ki eksplike chan Ranplasman Lòd ak priyorite triyaj kontni."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Tradui Tèks Èd Ranplasman Lòd"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -895,7 +895,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Montre Tags Estati Evènman pou kalite kontni sa yo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -907,7 +907,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Montre Tags Estati Pwojè pou kalite kontni sa yo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1843,6 +1843,34 @@ msgstr "Pèmèt GEOBON Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Pèmèt widje GEOBON a nan paj lakay la."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigire paramèt yo, ki gen ladan lokal, peyi, ak rejyon."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Paj Akèy"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Ewo Paj Akèy"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgets Paj Akèy"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Meni"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Ewo Paj Akèy"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

@@ -788,19 +788,19 @@ msgstr "മറ്റ് മെനു ഇനങ്ങൾക്ക് കീഴി
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "ഓർഡർ ഓവർറൈഡ് സഹായം"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "ഓർഡർ ഓവർറൈഡ് സഹായ വാചകം"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "ഓർഡർ ഓവർറൈഡ് ഫീൽഡും ഉള്ളടക്ക അടുക്കൽ മുൻഗണനയും വിശദീകരിക്കുന്ന സഹായ വാചകം."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ഓർഡർ ഓവർറൈഡ് സഹായ വാചകം വിവർത്തനം ചെയ്യുക"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "ഈ ഉള്ളടക്ക തരങ്ങൾക്കായി ഇവന്റ് സ്റ്റാറ്റസ് ടാഗുകൾ കാണിക്കുക:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "ഈ ഉള്ളടക്ക തരങ്ങൾക്കായി പ്രോജക്റ്റ് സ്റ്റാറ്റസ് ടാഗുകൾ കാണിക്കുക:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1768,6 +1768,38 @@ msgstr "ജിയോബോൺ വിഡ്ജറ്റ് പ്രവർത്�
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ഹോം പേജിൽ GEOBON വിഡ്ജറ്റ് പ്രവർത്തനക്ഷമമാക്കുക."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "ലൊക്കേലുകൾ, രാജ്യങ്ങൾ, പ്രദേശം എന്നിവയുൾപ്പെടെയുള്ള ക്രമീകരണങ്ങൾ കോൺഫിഗർ ചെയ്യുക."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "ഹോം പേജ്"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "ഹോം ഹീറോ(കൾ)"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "ഹോം വിജറ്റുകൾ"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "മെഗാ മെനു"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ടാഗുകൾ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "ഹോം പേജ് ഹീറോകൾ"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "കോൺഫിഗറേഷൻ സംരക്ഷിക്കുക"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

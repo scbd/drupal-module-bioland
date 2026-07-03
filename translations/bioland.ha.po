@@ -788,19 +788,19 @@ msgstr "Ba ku da izini don ƙirƙirar abubuwan menu a ƙarƙashin sauran abubuwa
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Taimakon Maye Gurbin Oda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Rubutun Taimakon Maye Gurbin Oda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Rubutun taimako da ke bayyana filin Maye Gurbin Oda da fifikon tsara abun ciki."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Fassara Rubutun Taimakon Maye Gurbin Oda"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Nuna alamun Matsayin Taro don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Nuna alamun Matsayin Aikin don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Yana cire duk tutoci masu ɗanɗewa daga kowane shigarwar abun ciki."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Sake saita Sticky"
+msgstr "Sake saita mai ɗanɗano"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Kunna GEOBON Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Kunna widget din GEOBON akan shafin gida."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Saita saituna waɗanda suka haɗa da wurare, ƙasashe, da yanki."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Shafin Farko"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Jarumin Shafin Farko"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgets na Shafin Farko"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Babban Menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Alamu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Jarumai na Shafin Farko"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Ajiye tsari"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

@@ -788,19 +788,19 @@ msgstr "他のメニュー項目の下にメニュー項目を作成する権限
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "順序上書きヘルプ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "順序上書きヘルプテキスト"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "順序上書きフィールドとコンテンツの並べ替え優先順位を説明するヘルプテキスト。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "順序上書きヘルプテキストを翻訳"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "次のコンテンツタイプのイベントステータスタグを表示:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "次のコンテンツタイプのプロジェクトステータスタグを表示:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1768,6 +1768,38 @@ msgstr "GEOBONウィジェットを有効にする"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ホームページでGEOBONウィジェットを有効にします。"
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "ロケール、国、地域などの設定を構成します。"
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "ホームページ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "ホームページヒーロー"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "ホームページウィジェット"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "メガメニュー"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "タグ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "ホームページヒーロー"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "設定を保存"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

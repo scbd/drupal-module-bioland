@@ -788,19 +788,19 @@ msgstr "Немате дозвола да креирате ставки од ме
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Помош за преклопување на редоследот"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Помошен текст за преклопување на редоследот"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Помошен текст што го објаснува полето за преклопување на редоследот и приоритетот на сортирање на содржината."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Преведи го помошниот текст за преклопување на редоследот"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Прикажи ги ознаките за статус на настан за овие типови содржини:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Прикажи ги ознаките за статус на проект за овие типови содржини:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1768,6 +1768,38 @@ msgstr "Овозможи графичка контрола на GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Овозможете го графичкиот елемент GEOBON на почетната страница."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Конфигурирајте ги поставките вклучувајќи локали, држави и регион."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Почетна страница"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Херои на почетната страница"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Виџети на почетна страница"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Мега мени"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Ознаки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Херои на почетна страница"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Зачувај конфигурација"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

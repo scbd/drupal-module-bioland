@@ -1809,6 +1809,38 @@ msgstr "Enable GEOBON Widget"
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Enable the GEOBON widget on the home page."
 
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Configure settings including locales, countries, and region."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Home Page"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Home Hero(s)"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Home Widgets"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tags"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Home Page Heros"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Save configuration"
+
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"
 msgstr "About Home Page Heroe"

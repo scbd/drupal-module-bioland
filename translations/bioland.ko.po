@@ -788,19 +788,19 @@ msgstr "다른 메뉴 항목 아래에 메뉴 항목을 작성할 권한이 없�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "순서 재정의 도움말"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "순서 재정의 도움말 텍스트"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "순서 재정의 필드와 콘텐츠 정렬 우선순위를 설명하는 도움말 텍스트입니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "순서 재정의 도움말 텍스트 번역"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "다음 콘텐츠 유형에 대한 이벤트 상태 태그를 표시합니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "다음 콘텐츠 유형에 대한 프로젝트 상태 태그를 표시합니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "모든 콘텐츠 항목에서 모든 고정 플래그를 제거합니다
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "스티커 재설정"
+msgstr "끈적끈적한 항목 재설정"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "지오본 위젯 활성화"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "홈 페이지에서 GEOBON 위젯을 활성화합니다."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "로케일, 국가, 지역 등의 설정을 구성합니다."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "홈페이지"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "홈페이지 히어로"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "홈페이지 위젯"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "메가 메뉴"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "태그"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "홈페이지 히어로"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "구성 저장"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

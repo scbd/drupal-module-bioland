@@ -788,19 +788,19 @@ msgstr "M'għandekx permess biex toħloq oġġetti tal-menu taħt oġġetti oħr
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Għajnuna għal Prijorità ta' Ordni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Test ta' Għajnuna għal Prijorità ta' Ordni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Test ta' għajnuna li jispjega l-qasam ta' Prijorità ta' Ordni u l-prijorità tal-issortjar tal-kontenut."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Traduci t-Test ta' Għajnuna għal Prijorità ta' Ordni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Uri t-tikketti tal-Istatus tal-Avveniment għal dawn it-tipi ta' kontenut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Uri t-tikketti tal-Istatus tal-Proġett għal dawn it-tipi ta' kontenut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Tneħħi l-bnadar kollha li jwaħħlu minn kull dħul tal-kontenut."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Irrisettja Sticky"
+msgstr "Irrisettja Twaħħal"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Ippermetti l-Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Ippermetti l-widget GEOBON fuq il-paġna ewlenija."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Ikkonfigura s-settings inkluż il-lokalitajiet, il-pajjiżi, u r-reġjun."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Paġna Ewlenija"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Eroj tal-Paġna Ewlenija"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widgets tal-Paġna Ewlenija"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega Menu"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tikketti"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Eroj tal-Paġna Ewlenija"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Issejvja l-konfigurazzjoni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

@@ -788,19 +788,19 @@ msgstr "Jums nav atļaujas izveidot izvēlnes vienumus citos izvēlnes vienumos.
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Kārtības ignorēšanas palīdzība"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Kārtības ignorēšanas palīdzības teksts"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Palīdzības teksts, kas izskaidro kārtības ignorēšanas lauku un satura kārtošanas prioritāti."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Tulkot kārtības ignorēšanas palīdzības tekstu"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Rādīt pasākuma statusa tagus šiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Rādīt projekta statusa tagus šiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Noņem visus lipīgos karodziņus no katra satura ieraksta."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Atiestatīt Sticky"
+msgstr "Atiestatīt lipīgo"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Iespējot GEOBON logrīku"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Iespējojiet GEOBON logrīku mājas lapā."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigurējiet iestatījumus, tostarp lokalizācijas, valstis un reģionu."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Sākumlapa"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Sākumlapas varoņi"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Sākumlapas logrīki"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega izvēlne"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tagi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Sākumlapas varoņi"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Saglabāt konfigurāciju"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

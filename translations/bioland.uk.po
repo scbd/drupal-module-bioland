@@ -788,19 +788,19 @@ msgstr "У вас немає дозволу на створення пункті
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Довідка щодо перевизначення порядку"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Текст довідки щодо перевизначення порядку"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Текст довідки, що пояснює поле перевизначення порядку та пріоритет сортування вмісту."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Перекласти текст довідки щодо перевизначення порядку"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Показувати теги статусу події для таких типів вмісту:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Показувати теги статусу проєкту для таких типів вмісту:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1768,6 +1768,38 @@ msgstr "Увімкнути віджет GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Увімкніть віджет GEOBON на домашній сторінці."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Налаштуйте параметри, включно з мовними стандартами, країнами та регіоном."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Головна сторінка"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Банери головної сторінки"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Віджети головної сторінки"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Мега-меню"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Теги"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Банери головної сторінки"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Зберегти конфігурацію"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

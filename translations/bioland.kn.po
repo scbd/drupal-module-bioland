@@ -788,19 +788,19 @@ msgstr "ಇತರ ಮೆನು ಐಟಂಗಳ ಅಡಿಯಲ್ಲಿ ಮೆ�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "ಆದೇಶ ಅತಿಕ್ರಮಣ ಸಹಾಯ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "ಆದೇಶ ಅತಿಕ್ರಮಣ ಸಹಾಯ ಪಠ್ಯ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "ಆದೇಶ ಅತಿಕ್ರಮಣ ಕ್ಷೇತ್ರ ಮತ್ತು ವಿಷಯ ವಿಂಗಡಣೆ ಆದ್ಯತೆಯನ್ನು ವಿವರಿಸುವ ಸಹಾಯ ಪಠ್ಯ."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ಆದೇಶ ಅತಿಕ್ರಮಣ ಸಹಾಯ ಪಠ್ಯವನ್ನು ಅನುವಾದಿಸಿ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "ಈ ವಿಷಯ ಪ್ರಕಾರಗಳಿಗಾಗಿ ಈವೆಂಟ್ ಸ್ಥಿತಿ ಟ್ಯಾಗ್‌ಗಳನ್ನು ತೋರಿಸಿ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "ಈ ವಿಷಯ ಪ್ರಕಾರಗಳಿಗಾಗಿ ಯೋಜನೆ ಸ್ಥಿತಿ ಟ್ಯಾಗ್‌ಗಳನ್ನು ತೋರಿಸಿ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "ಪ್ರತಿ ವಿಷಯ ನಮೂದಿಯಿಂದ ಎಲ್ಲಾ
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "ಸ್ಟಿಕಿ ಮರುಹೊಂದಿಸಿ"
+msgstr "ಜಿಗುಟಾದದ್ದನ್ನು ಮರುಹೊಂದಿಸಿ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "ಜಿಯೋಬನ್ ವಿಜೆಟ್ ಅನ್ನು ಸಕ್ರಿ
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ಮುಖಪುಟದಲ್ಲಿ GEOBON ವಿಜೆಟ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "ಲೋಕೇಲ್‌ಗಳು, ದೇಶಗಳು ಮತ್ತು ಪ್ರದೇಶ ಸೇರಿದಂತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "ಮುಖಪುಟ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "ಮುಖಪುಟ ಹೀರೋ(ಗಳು)"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "ಮುಖಪುಟ ವಿಜೆಟ್‌ಗಳು"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "ಮೆಗಾ ಮೆನು"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ಟ್ಯಾಗ್‌ಗಳು"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "ಮುಖಪುಟ ಹೀರೋಗಳು"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "ಸಂರಚನೆಯನ್ನು ಉಳಿಸಿ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

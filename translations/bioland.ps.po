@@ -788,19 +788,19 @@ msgstr "تاسو د نورو مینو توکو لاندې د مینو توکي �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "د امر پرتله کولو مرسته"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "د امر پرتله کولو د مرستې متن"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "د امر پرتله کولو ډګر او د منځپانګې ترتیب لومړیتوب تشریح کوونکی د مرستې متن."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "د امر پرتله کولو د مرستې متن وژباړئ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "د دې محتوا ډولونو لپاره د پیښې حالت ټګونه ښودئ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "د دې محتوا ډولونو لپاره د پروژې حالت ټګونه ښودئ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "د هر محتوا د ننوتلو څخه ټول چسپي جګړې لر"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "سټیکي بیا کړئ"
+msgstr "لزوونکی بیا تنظیمول"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "جیوبون ویجیټ فعال کړئ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "په کور پاڼه کې د GEOBON ویجیټ فعال کړئ."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "تنظیمات تنظیم کړئ چې پکې ځایونه، هیوادونه، او سیمه شامل دي."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "کور پاڼه"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "د کور پاڼې پهلوانان"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "د کور پاڼې وجیټونه"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "لوی مینو"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ټګونه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "د کور پاڼې پهلوانان"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "بڼه خوندي کړئ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

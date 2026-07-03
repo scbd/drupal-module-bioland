@@ -788,19 +788,19 @@ msgstr "Þú hefur ekki leyfi til að búa til valmyndaratriði undir öðrum va
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Hjálp fyrir röðunartilsniðgang"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Hjálpartexti fyrir röðunartilsniðgang"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Hjálpartexti sem útskýrir röðunartilsniðgangsreitinn og forgangsröðun efnis."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Þýða hjálpartexta fyrir röðunartilsniðgang"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Sýna stöðumerki viðburðar fyrir þessar tegundir efnis:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Sýna stöðumerki verkefnis fyrir þessar tegundir efnis:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Fjarlægir alla klístraða fána úr hverri efnisfærslu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Endurstilla Sticky"
+msgstr "Endurstilla klístrað"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Virkja GEOBON búnað"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Virkja GEOBON búnaðinn á heimasíðunni."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Stilltu stillingar, þar á meðal svæði, lönd og svæði."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Heimasíða"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hetjur heimasíðu"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Heimasíðu-græjur"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Stórvalmynd"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Merki"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hetjur heimasíðu"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Vista stillingar"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

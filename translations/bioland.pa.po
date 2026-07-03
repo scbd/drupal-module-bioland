@@ -788,19 +788,19 @@ msgstr "ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਮੀਨੂ ਆਈਟਮਾਂ �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "ਕ੍ਰਮ ਓਵਰਰਾਈਡ ਮਦਦ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "ਕ੍ਰਮ ਓਵਰਰਾਈਡ ਮਦਦ ਟੈਕਸਟ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "ਮਦਦ ਟੈਕਸਟ ਜੋ ਕ੍ਰਮ ਓਵਰਰਾਈਡ ਖੇਤਰ ਅਤੇ ਸਮੱਗਰੀ ਲੜੀਬੱਧ ਤਰਜੀਹ ਦੀ ਵਿਆਖਿਆ ਕਰਦਾ ਹੈ।"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "ਕ੍ਰਮ ਓਵਰਰਾਈਡ ਮਦਦ ਟੈਕਸਟ ਦਾ ਅਨੁਵਾਦ ਕਰੋ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਇਵੈਂਟ ਸਥਿਤੀ ਟੈਗ ਦਿਖਾਓ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਪ੍ਰੋਜੈਕਟ ਸਥਿਤੀ ਟੈਗ ਦਿਖਾਓ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1768,6 +1768,38 @@ msgstr "ਜੀਓਬਨ ਵਿਜੇਟ ਨੂੰ ਸਮਰੱਥ ਕਰੋ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ਹੋਮ ਪੇਜ ਤੇ ਜੀਓਬਨ ਵਿਜੇਟ ਨੂੰ ਸਮਰੱਥ ਕਰੋ."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "ਲੋਕੇਲ, ਦੇਸ਼ਾਂ ਅਤੇ ਖੇਤਰ ਸਮੇਤ ਸੈਟਿੰਗਾਂ ਨੂੰ ਸੰਰਚਿਤ ਕਰੋ।"
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "ਮੁੱਖ ਪੰਨਾ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "ਮੁੱਖ ਪੰਨਾ ਹੀਰੋ"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "ਮੁੱਖ ਪੰਨਾ ਵਿਜੇਟਸ"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "ਮੈਗਾ ਮੀਨੂ"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ਟੈਗ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "ਮੁੱਖ ਪੰਨਾ ਹੀਰੋਜ਼"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "ਸੰਰਚਨਾ ਸੁਰੱਖਿਅਤ ਕਰੋ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

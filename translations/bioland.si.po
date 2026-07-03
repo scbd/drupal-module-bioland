@@ -788,19 +788,19 @@ msgstr "වෙනත් මෙනු අයිතම යටතේ මෙනු �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "අනුපිළිවෙල අභිබවා යාමේ උදව්"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "අනුපිළිවෙල අභිබවා යාමේ උදව් පෙළ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "අනුපිළිවෙල අභිබවා යාමේ ක්ෂේත්‍රය සහ අන්තර්ගත වර්ග කිරීමේ ප්‍රමුඛතාවය පැහැදිලි කරන උදව් පෙළ."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "අනුපිළිවෙල අභිබවා යාමේ උදව් පෙළ පරිවර්තනය කරන්න"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "මෙම අන්තර්ගත වර්ග සඳහා සිදුවීම් තත්ව ටැග් පෙන්වන්න:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "මෙම අන්තර්ගත වර්ග සඳහා ව්‍යාපෘති තත්ව ටැග් පෙන්වන්න:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "සෑම අන්තර්ගත ඇතුළත් කිරීමක
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "ඇලෙන සුළු සැකසුම්"
+msgstr "ඇලෙන සුළු නැවත සකසන්න"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "GEOBON විජට් සක්රීය කරන්න"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "මුල් පිටුවේ GEOBON විජට් සක්රීය කරන්න."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "පෙදෙස්, රටවල් සහ කලාපය ඇතුළුව සැකසුම් වින්‍යාස කරන්න."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "මුල් පිටුව"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "මුල් පිටු වීරයන්"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "මුල් පිටු විජට්"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "මෙගා මෙනුව"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ටැග්"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "මුල් පිටු වීරයන්"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "වින්‍යාසය සුරකින්න"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

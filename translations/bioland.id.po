@@ -788,19 +788,19 @@ msgstr "Anda tidak memiliki izin untuk membuat item menu di bawah item menu lain
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Bantuan Timpa Urutan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Teks Bantuan Timpa Urutan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Teks bantuan yang menjelaskan bidang Timpa Urutan dan prioritas pengurutan konten."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Terjemahkan Teks Bantuan Timpa Urutan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Tampilkan tag Status Acara untuk jenis konten ini:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Tampilkan tag Status Proyek untuk jenis konten ini:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Menghapus semua tanda lengket dari setiap entri konten."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Setel ulang Sticky"
+msgstr "Setel ulang lengket"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Aktifkan Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Aktifkan widget GEOBON di halaman beranda."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Konfigurasikan pengaturan termasuk lokal, negara, dan wilayah."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Halaman Beranda"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Hero Halaman Beranda"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Widget Beranda"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Menu Mega"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tag"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Hero Halaman Beranda"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Simpan konfigurasi"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

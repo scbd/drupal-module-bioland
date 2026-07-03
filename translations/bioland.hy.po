@@ -788,19 +788,19 @@ msgstr "Դուք չունեք թույլտվություն ստեղծել ցան
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Կարգի փոփոխման օգնություն"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Կարգի փոփոխման օգնական տեքստ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Օգնական տեքստ, որը բացատրում է Կարգի փոփոխման դաշտը և բովանդակության դասավորման առաջնահերթությունը:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Թարգմանել Կարգի փոփոխման օգնական տեքստը"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Ցույց տալ Իրադարձության կարգավիճակի պիտակները այս բովանդակության տեսակների համար."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Ցույց տալ Ծրագրի կարգավիճակի պիտակները այս բովանդակության տեսակների համար."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Հեռացնում է բոլոր կպչուն դրոշները բովա�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Վերականգնել կպչուն"
+msgstr "Վերականգնել կպչունը"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Միացնել GEOBON վիջեթը"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Միացրեք GEOBON վիջեթը գլխավոր էջում:"
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Կարգավորել կարգավորումները, ներառյալ լոկալները, երկրները և տարածաշրջանը:"
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Գլխավոր էջ"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Գլխավոր էջի հերոսներ"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Գլխավոր էջի վիջեթներ"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Մեգա մենյու"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Պիտակներ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Գլխավոր էջի հերոսներ"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Պահպանել կազմաձևումը"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

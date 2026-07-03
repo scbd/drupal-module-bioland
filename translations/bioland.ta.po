@@ -788,19 +788,19 @@ msgstr "மற்ற மெனு உருப்படிகளின் கீ
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "வரிசை மேலெழுதல் உதவி"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "வரிசை மேலெழுதல் உதவி உரை"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "வரிசை மேலெழுதல் புலம் மற்றும் உள்ளடக்க வரிசைப்படுத்தல் முன்னுரிமையை விளக்கும் உதவி உரை."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "வரிசை மேலெழுதல் உதவி உரையை மொழிபெயர்க்கவும்"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "இந்த உள்ளடக்க வகைகளுக்கான நிகழ்வு நிலை குறிச்சொற்களைக் காட்டு:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "இந்த உள்ளடக்க வகைகளுக்கான திட்ட நிலை குறிச்சொற்களைக் காட்டு:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "ஒவ்வொரு உள்ளடக்க உள்ளீட்ட�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "ஸ்டிக் மீட்டமைக்கவும்"
+msgstr "ஒட்டும் தன்மையை மீட்டமைக்கவும்"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "ஜியோபோன் விட்ஜெட்டை இயக்க�
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "முகப்புப் பக்கத்தில் ஜியோபோன் விட்ஜெட்டை இயக்கவும்."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "மொழி அமைப்புகள், நாடுகள் மற்றும் பிராந்தியம் உள்ளிட்ட அமைப்புகளை உள்ளமைக்கவும்."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "முகப்புப் பக்கம்"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "முகப்புப் பக்க ஹீரோக்கள்"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "முகப்புப் பக்க விட்ஜெட்டுகள்"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "மெகா மெனு"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "குறிச்சொற்கள்"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "முகப்புப் பக்க ஹீரோக்கள்"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "கட்டமைப்பைச் சேமிக்கவும்"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

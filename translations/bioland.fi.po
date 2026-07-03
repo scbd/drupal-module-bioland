@@ -871,19 +871,19 @@ msgstr "Sinulla ei ole oikeutta luoda valikkokohteita muiden valikkokohteiden al
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Järjestyksen ohitusohje"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Järjestyksen ohituksen ohjeteksti"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Ohjeteksti, joka selittää järjestyksen ohituskentän ja sisällön lajittelun prioriteetin."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Käännä järjestyksen ohituksen ohjeteksti"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -895,7 +895,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Näytä tapahtuman tilatunnisteet näille sisältötyypeille:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -907,7 +907,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Näytä projektin tilatunnisteet näille sisältötyypeille:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1488,7 +1488,7 @@ msgstr "Poistaa kaikki tarttuvat liput jokaisesta sisältömerkinnästä."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Nollaa Sticky"
+msgstr "Nollaa tahmea"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1843,6 +1843,34 @@ msgstr "Ota GEOBON-widget käyttöön"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Ota GEOBON-widget käyttöön kotisivulla."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Määritä asetukset, mukaan lukien maa-asetukset, maat ja alue."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Etusivu"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Etusivun herokuvat"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Etusivun widgetit"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Mega-valikko"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Tunnisteet"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Etusivun herokuvat"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

@@ -871,19 +871,19 @@ msgstr "Teil pole luba luua menüüüksusi teiste menüüüksuste all. Teie roll
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Järjestuse tühistamise abi"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Järjestuse tühistamise abitekst"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Abitekst, mis selgitab järjestuse tühistamise välja ja sisu sortimise prioriteeti."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Tõlgi järjestuse tühistamise abitekst"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -895,7 +895,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Kuva sündmuse oleku sildid nende sisutüüpide jaoks:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -907,7 +907,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Kuva projekti oleku sildid nende sisutüüpide jaoks:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1843,6 +1843,34 @@ msgstr "Luba GEOBON vidin"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Luba kodulehel GEOBON vidin."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Seadistage sätted, sealhulgas lokaadid, riigid ja piirkond."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Avaleht"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Avalehe kangelased"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Avalehe vidinad"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Megamenüü"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Sildid"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Avalehe kangelased"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

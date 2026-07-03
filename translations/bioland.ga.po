@@ -788,19 +788,19 @@ msgstr "Níl cead agat míreanna roghchláir a chruthú faoi mhíreanna roghchl�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "Cabhair Sárú Ord"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "Téacs Cabhrach Sárú Ord"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "Téacs cabhrach a mhíníonn an réimse Sárú Ord agus tosaíocht sórtála ábhair."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "Aistrigh Téacs Cabhrach Sárú Ord"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "Taispeáin clibeanna Stádas Imeachta do na cineálacha ábhair seo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "Taispeáin clibeanna Stádas Tionscadail do na cineálacha ábhair seo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "Baineann sé na bratacha greamaitheacha go léir ó gach iontráil ábha
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Athshocraigh Greamaigh"
+msgstr "Athshocraigh Greamaitheach"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "Cumasaigh Giuirléid GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Cumasaigh an giuirléid GEOBON ar an leathanach baile."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "Cumraigh socruithe lena n-áirítear logáin, tíortha, agus réigiún."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "Leathanach Baile"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "Laochra an Leathanaigh Bhaile"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "Giuirléidí an Leathanaigh Bhaile"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "Meigathaisceán"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "Clibeanna"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "Laochra Leathanach Baile"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "Sábháil an cumraíocht"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"

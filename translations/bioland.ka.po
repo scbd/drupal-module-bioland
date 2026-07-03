@@ -788,19 +788,19 @@ msgstr "თქვენ არ გაქვთ ნებართვა შე�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Order Override Help"
+msgstr "რიგის უგულებელყოფის დახმარება"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Order Override Help Text"
+msgstr "რიგის უგულებელყოფის დახმარების ტექსტი"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Help text explaining the Order Override field and content sorting priority."
+msgstr "დახმარების ტექსტი, რომელიც განმარტავს რიგის უგულებელყოფის ველს და შინაარსის დალაგების პრიორიტეტს."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Translate Order Override Help Text"
+msgstr "თარგმნეთ რიგის უგულებელყოფის დახმარების ტექსტი"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Show Event Status tags for these content types:"
+msgstr "აჩვენეთ ღონისძიების სტატუსის ტეგები ამ შინაარსის ტიპებისთვის:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Show Project Status tags for these content types:"
+msgstr "აჩვენეთ პროექტის სტატუსის ტეგები ამ შინაარსის ტიპებისთვის:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -1413,7 +1413,7 @@ msgstr "წაშლის ყველა წებოვან დროშა
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "წებოვანი აღდგენა"
+msgstr "წებოვანის აღდგენა"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
@@ -1768,6 +1768,38 @@ msgstr "GEOBON ვიჯეტის ჩართვა"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "ჩართეთ GEOBON ვიჯეტი მთავარ გვერდზე."
+
+#: bioland.links.menu.yml
+msgid "Configure settings including locales, countries, and region."
+msgstr "დააკონფიგურირეთ პარამეტრები, მათ შორის ლოკალები, ქვეყნები და რეგიონი."
+
+#: bioland.routing.yml
+msgid "Home Page"
+msgstr "მთავარი გვერდი"
+
+#: bioland.links.task.yml
+msgid "Home Hero(s)"
+msgstr "მთავარი გვერდის ბანერები"
+
+#: bioland.routing.yml
+msgid "Home Widgets"
+msgstr "მთავარი გვერდის ვიჯეტები"
+
+#: bioland.links.task.yml
+msgid "Mega Menu"
+msgstr "მეგა მენიუ"
+
+#: bioland.routing.yml
+msgid "Tags"
+msgstr "ტეგები"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Home Page Heros"
+msgstr "მთავარი გვერდის ბანერები"
+
+#: core (ConfigFormBase)
+msgid "Save configuration"
+msgstr "კონფიგურაციის შენახვა"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"
