@@ -90,3 +90,6 @@ failed-*
 !.github/workflows/
 docs/.temp
 test-output.txt
+.claude
+.github*
+!.github/workflows
