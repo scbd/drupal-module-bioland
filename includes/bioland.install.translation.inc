@@ -235,7 +235,7 @@ function bioland_update_9012(&$sandbox) {
  * re-imports the translation catalogs so the new BSL msgids are available for
  * the site's installed languages.
  *
- * @see \Drupal\bioland\Form\BiolandSettingsForm::buildHeroDescriptionMarkup()
+ * @see \Drupal\bioland\Form\BiolandHomePageForm::buildHeroDescriptionMarkup()
  */
 function bioland_update_9062() {
   $messages = [];

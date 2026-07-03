@@ -1,98 +1,87 @@
 bioland.settings:
   path: '/admin/config/bioland/settings'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
-    _title_callback: '\Drupal\bioland\Form\BiolandSettingsForm::getTitle'
-    section: 'general'
+    _form: '\Drupal\bioland\Form\BiolandGeneralSettingsForm'
+    _title_callback: '\Drupal\bioland\Form\BiolandGeneralSettingsForm::getTitle'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.field_visibility:
   path: '/admin/config/bioland/settings/field-visibility'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandFieldVisibilityForm'
     _title: 'Field Visibility Settings'
-    section: 'field_visibility'
   requirements:
     _permission: 'administer bioland field settings'
 
 bioland.settings.tags:
   path: '/admin/config/bioland/settings/tags'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandTagsForm'
     _title: 'Tags'
-    section: 'tags'
   requirements:
     _permission: 'administer bioland field settings'
 
 bioland.settings.help_comments:
   path: '/admin/config/bioland/settings/help-comments'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandHelpCommentsForm'
     _title: 'Help Comments'
-    section: 'help_comments'
   requirements:
     _permission: 'administer bioland field settings'
 
 bioland.settings.front_end:
   path: '/admin/config/bioland/settings/front-end'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandFrontEndRedirectForm'
     _title: 'Front End'
-    section: 'front_end'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.front_end.general:
   path: '/admin/config/bioland/settings/front-end/general'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandFrontEndGeneralForm'
     _title: 'Front End General'
-    section: 'front_end_general'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.front_end.mega_menu:
   path: '/admin/config/bioland/settings/front-end/mega-menu'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandMegaMenuForm'
     _title: 'Mega Menu'
-    section: 'front_end_mega_menu'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.front_end.home_page:
   path: '/admin/config/bioland/settings/front-end/home-page'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandHomePageForm'
     _title: 'Home Page'
-    section: 'front_end_home_page'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.front_end.home_widgets:
   path: '/admin/config/bioland/settings/front-end/home-widgets'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandHomeWidgetsForm'
     _title: 'Home Widgets'
-    section: 'front_end_home_widgets'
   requirements:
     _permission: 'administer bioland settings'
 
 bioland.settings.system_functions:
   path: '/admin/config/bioland/settings/system-functions'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandSystemFunctionsForm'
     _title: 'System Functions'
-    section: 'system_functions'
   requirements:
     _role: 'administrator'
 
 bioland.settings.admin:
   path: '/admin/config/bioland/settings/admin'
   defaults:
-    _form: '\Drupal\bioland\Form\BiolandSettingsForm'
+    _form: '\Drupal\bioland\Form\BiolandAdminSettingsForm'
     _title: 'Admin Settings'
-    section: 'admin'
   requirements:
     _role: 'administrator'
