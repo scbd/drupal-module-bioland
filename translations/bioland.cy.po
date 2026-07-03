@@ -1857,3 +1857,11 @@ msgstr "Galluogi Widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Galluogi'r teclyn GEOBON ar y dudalen gartref."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Ynghylch baner y dudalen gartref"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Baneri yw'r delweddau baner mawr sy'n cael eu harddangos ar frig y dudalen gartref. Gan na ellir golygu cynllun y dudalen gartref yn uniongyrchol, dyma lle rydych chi'n golygu baner y dudalen gartref."

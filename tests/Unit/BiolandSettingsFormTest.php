@@ -298,6 +298,113 @@ class BiolandSettingsFormTest extends TestCase {
   }
 
   /**
+   * Tests hero description uses the default (BL2) copy when not BSL.
+   */
+  public function testBuildHeroDescriptionMarkupReturnsBl2Variant(): void {
+    $form = $this->createFormWithConfig(['is_biosafety_land' => FALSE]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // BL2 keeps the original three-paragraph rotating-hero copy.
+    $this->assertStringContainsString('About Home Page Heroes', $result);
+    $this->assertStringContainsString('this is where you configure the hero banners', $result);
+    $this->assertStringContainsString('rotate automatically every hour', $result);
+    $this->assertStringContainsString('unpublish the other hero(es)', $result);
+
+    // It must NOT contain the BSL variant strings.
+    $this->assertStringNotContainsString('this is where you edit the hero banner', $result);
+  }
+
+  /**
+   * Tests hero description uses the BSL variant when the site is BSL.
+   */
+  public function testBuildHeroDescriptionMarkupReturnsBslVariant(): void {
+    $form = $this->createFormWithConfig([
+      'is_biosafety_land' => TRUE,
+      'help_comments' => [
+        'home_hero_help_bsl_heading' => 'About Home Page Heroe',
+        'home_hero_help_bsl_text' => 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.',
+      ],
+    ]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // BSL uses the single-hero heading + body sourced from config.
+    $this->assertStringContainsString('About Home Page Heroe', $result);
+    $this->assertStringContainsString('this is where you edit the hero banner for the home page', $result);
+
+    // It must NOT contain the BL2 rotating-hero copy.
+    $this->assertStringNotContainsString('rotate automatically every hour', $result);
+    $this->assertStringNotContainsString('unpublish the other hero(es)', $result);
+    $this->assertStringNotContainsString('this is where you configure the hero banners', $result);
+  }
+
+  /**
+   * Tests the BSL variant falls back to hardcoded defaults when config is empty.
+   *
+   * Guards existing sites where the update hook has not yet seeded the new
+   * config properties: the markup must still render the BSL copy.
+   */
+  public function testBuildHeroDescriptionMarkupBslFallsBackWhenConfigMissing(): void {
+    $form = $this->createFormWithConfig(['is_biosafety_land' => TRUE]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    $this->assertStringContainsString('About Home Page Heroe', $result);
+    $this->assertStringContainsString('this is where you edit the hero banner for the home page', $result);
+    $this->assertStringNotContainsString('rotate automatically every hour', $result);
+  }
+
+  /**
+   * Tests the BSL variant strips unsafe markup from config-sourced strings.
+   *
+   * Defense-in-depth: the config-sourced heading/body become dynamic t() msgids
+   * concatenated into raw markup, so Xss::filterAdmin() must strip any unsafe
+   * tags (e.g. <script>) from the assembled output while keeping the safe text.
+   */
+  public function testBuildHeroDescriptionMarkupBslStripsUnsafeConfigMarkup(): void {
+    $form = $this->createFormWithConfig([
+      'is_biosafety_land' => TRUE,
+      'help_comments' => [
+        'home_hero_help_bsl_heading' => 'Safe<script>alert(1)</script>',
+        'home_hero_help_bsl_text' => 'Body',
+      ],
+    ]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // Xss::filterAdmin() strips the unsafe <script> tag from the output.
+    $this->assertStringNotContainsString('<script>', $result);
+
+    // The safe text is preserved.
+    $this->assertStringContainsString('Safe', $result);
+  }
+
+  /**
+   * Invokes the protected buildHeroDescriptionMarkup() method via reflection.
+   *
+   * @param \Drupal\bioland\Form\BiolandSettingsForm $form
+   *   The form instance (must expose config() returning bioland.settings).
+   *
+   * @return string
+   *   The rendered hero description markup.
+   */
+  protected function invokeBuildHeroDescriptionMarkup(BiolandSettingsForm $form): string {
+    // Reflect on the runtime class so the anonymous subclass's overridden,
+    // protected config() (returning the injected test config) is used.
+    $reflection = new \ReflectionObject($form);
+
+    $configMethod = $reflection->getMethod('config');
+    $configMethod->setAccessible(TRUE);
+    $config = $configMethod->invoke($form, 'bioland.settings');
+
+    $method = $reflection->getMethod('buildHeroDescriptionMarkup');
+    $method->setAccessible(TRUE);
+
+    return $method->invoke($form, $config);
+  }
+
+  /**
    * Creates a form instance with mocked config.
    *
    * @param array $configData

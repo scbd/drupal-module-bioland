@@ -45,6 +45,8 @@ help_comments:
   attachments_images_translations: {}
   attachments_heroes_text: 'Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis.'
   attachments_heroes_translations: {}
+  home_hero_help_bsl_heading: 'About Home Page Heroe'
+  home_hero_help_bsl_text: 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.'
 field_visibility_rules: ''
 config:
   promote_and_sticky_public: true

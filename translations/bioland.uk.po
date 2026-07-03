@@ -1768,3 +1768,11 @@ msgstr "Увімкнути віджет GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Увімкніть віджет GEOBON на домашній сторінці."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Про банер головної сторінки"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Банери — це великі зображення, що відображаються у верхній частині головної сторінки. Оскільки макет головної сторінки не можна редагувати безпосередньо, саме тут ви редагуєте банер головної сторінки."

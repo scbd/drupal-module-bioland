@@ -1768,3 +1768,11 @@ msgstr "Įgalinti GEOBON valdiklį"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Įgalinkite GEOBON valdiklį pagrindiniame puslapyje."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Apie pagrindinio puslapio reklamjuostę"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Reklamjuostės yra didelės reklamjuosčių nuotraukos, rodomos pagrindinio puslapio viršuje. Kadangi pagrindinio puslapio išdėstymo negalima redaguoti tiesiogiai, čia redaguojate pagrindinio puslapio reklamjuostę."

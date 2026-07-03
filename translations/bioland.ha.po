@@ -1768,3 +1768,11 @@ msgstr "Kunna GEOBON Widget"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Kunna widget din GEOBON akan shafin gida."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Game da banner na shafin gida"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Banner manyan hotunan banner ne da ake nunawa a saman shafin gida. Tunda ba za a iya gyara tsarin shafin gida kai tsaye ba, a nan ne kake gyara banner na shafin gida."

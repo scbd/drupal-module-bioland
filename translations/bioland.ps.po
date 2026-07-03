@@ -1768,3 +1768,11 @@ msgstr "جیوبون ویجیټ فعال کړئ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "په کور پاڼه کې د GEOBON ویجیټ فعال کړئ."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "د کور پاڼې بینر په اړه"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "بینرونه هغه لوی بینر انځورونه دي چې د کور پاڼې په سر کې ښودل کیږي. څرنګه چې د کور پاڼې ترتیب په مستقیم ډول نه شي سمون کیدی، دلته تاسو د کور پاڼې بینر سمون کوئ."

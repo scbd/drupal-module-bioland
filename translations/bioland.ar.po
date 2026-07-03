@@ -1655,3 +1655,11 @@ msgstr "تمكين أداة GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "قم بتمكين أداة GEOBON على الصفحة الرئيسية."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "حول صور الأبطال في الصفحة الرئيسية"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "صور الأبطال هي الصور الكبيرة التي تظهر في أعلى الصفحة الرئيسية. بما أنه لا يمكن تعديل تخطيط الصفحة الرئيسية مباشرةً، فهذا هو المكان الذي تُحرِّر فيه صورة البطل الخاصة بالصفحة الرئيسية."

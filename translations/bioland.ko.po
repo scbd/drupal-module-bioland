@@ -1768,3 +1768,11 @@ msgstr "지오본 위젯 활성화"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "홈 페이지에서 GEOBON 위젯을 활성화합니다."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "홈페이지 배너 정보"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "배너는 홈페이지 상단에 표시되는 큰 배너 이미지입니다. 홈페이지 레이아웃은 직접 편집할 수 없으므로 여기에서 홈페이지 배너를 편집합니다."

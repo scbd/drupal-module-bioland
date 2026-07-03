@@ -1768,3 +1768,11 @@ msgstr "Omogoči pripomoček GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Omogočite pripomoček GEOBON na domači strani."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "O pasici domače strani"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Pasice so velike slike pasic, prikazane na vrhu domače strani. Ker postavitve domače strani ni mogoče urejati neposredno, tukaj urejate pasico domače strani."

@@ -1768,3 +1768,11 @@ msgstr "Activer le widget GEOBON"
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
 msgstr "Activez le widget GEOBON sur la page d'accueil."
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "À propos du visuel de la page d'accueil"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Les visuels sont les grandes images de bannière affichées en haut de la page d'accueil. Comme la mise en page de la page d'accueil ne peut pas être modifiée directement, c'est ici que vous modifiez la bannière visuelle de la page d'accueil."
