@@ -1867,3 +1867,11 @@ msgstr "Forsidehelte"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Gem konfiguration"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Om forsidebanneret"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Bannere er de store bannerbilleder, der vises øverst på forsiden. Da forsidens layout ikke kan redigeres direkte, er det her, du redigerer forsidens banner."

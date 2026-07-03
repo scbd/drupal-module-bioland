@@ -1800,3 +1800,11 @@ msgstr "Хероји почетне странице"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Сачувај конфигурацију"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "О банеру почетне странице"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Банери су велике слике приказане на врху почетне странице. Пошто се распоред почетне странице не може директно уређивати, овде уређујете банер почетне странице."

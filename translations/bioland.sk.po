@@ -1800,3 +1800,11 @@ msgstr "Hrdinovia domovskej stránky"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Uložiť konfiguráciu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "O banneri domovskej stránky"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Bannery sú veľké bannerové obrázky zobrazené v hornej časti domovskej stránky. Keďže rozloženie domovskej stránky nie je možné upravovať priamo, tu upravujete banner domovskej stránky."

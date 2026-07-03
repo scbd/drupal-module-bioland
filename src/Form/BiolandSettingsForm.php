@@ -2,6 +2,7 @@
 
 namespace Drupal\bioland\Form;
 
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -1635,6 +1636,81 @@ class BiolandSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Maps raw General-tab form values to the config writes they mirror.
+   *
+   * Pure function (no Drupal services) so the value-path handling can be unit
+   * tested directly. It resolves the exact submitted-value locations for the
+   * General section and normalises text_format wrappers.
+   *
+   * The General section does NOT set #tree on the "general" fieldset or the
+   * "site_name_section" details, so Form API flattens their descendants to the
+   * top level of $values keyed by the leaf element key:
+   *   - site name        -> $values['site_name']
+   *   - slogan           -> $values['site_slogan'] (text_format array)
+   *   - name translations   -> $values['site_name_translations'][$langcode]
+   *   - slogan translations -> $values['site_slogan_translations'][$langcode]
+   *   - time zone        -> $values['date_default_timezone']
+   * (A nested 'site_name_section' path is still accepted defensively in case
+   * #tree is added to that container later.)
+   *
+   * @param array $values
+   *   The raw $form_state->getValues() array.
+   * @param string[] $translation_langcodes
+   *   Non-default language codes to build per-language overrides for.
+   *
+   * @return array
+   *   Normalised writes: [
+   *     'site'      => ['name' => string, 'slogan' => string],
+   *     'overrides' => [langcode => ['name' => string, 'slogan' => string]],
+   *     'timezone'  => string,
+   *   ]. Override values are '' when the field was emptied (signal to remove).
+   */
+  public static function extractGeneralSettings(array $values, array $translation_langcodes) {
+    // text_format elements submit as ['value' => ..., 'format' => ...].
+    $text = static function ($field) {
+      if (is_array($field)) {
+        return (string) ($field['value'] ?? '');
+      }
+      return (string) ($field ?? '');
+    };
+
+    $site_name = $values['site_name_section']['site_name'] ?? $values['site_name'] ?? '';
+
+    $mapped = [
+      'site' => [
+        'name' => (string) $site_name,
+      ],
+      'overrides' => [],
+      'timezone' => (string) ($values['date_default_timezone'] ?? ''),
+    ];
+
+    // The slogan field can be access-hidden; only mirror it when it was part
+    // of the submission, so a hidden field never wipes existing config.
+    $slogan_present = array_key_exists('site_slogan', $values);
+    if ($slogan_present) {
+      $mapped['site']['slogan'] = $text($values['site_slogan']);
+    }
+
+    foreach ($translation_langcodes as $langcode) {
+      $name_value = $values['site_name_translations'][$langcode]
+        ?? $values['site_name_section']['site_name_translations'][$langcode]
+        ?? '';
+
+      $override = ['name' => $text($name_value)];
+
+      $slogan_trans_present = isset($values['site_slogan_translations'])
+        && array_key_exists($langcode, $values['site_slogan_translations']);
+      if ($slogan_trans_present) {
+        $override['slogan'] = $text($values['site_slogan_translations'][$langcode]);
+      }
+
+      $mapped['overrides'][$langcode] = $override;
+    }
+
+    return $mapped;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
@@ -1643,82 +1719,80 @@ class BiolandSettingsForm extends ConfigFormBase {
     $config = $this->config('bioland.settings');
 
     if ($section === 'general') {
-      $languages = $this->languageManager->getLanguages();
       $default_langcode = $this->languageManager->getDefaultLanguage()->getId();
 
-      // Save system.site configuration (only if changed)
+      // Build the list of translatable language codes (all configured
+      // languages except the default one) so the mirror is driven by the
+      // site's real language set, not a hardcoded list.
+      $translation_langcodes = [];
+      foreach ($this->languageManager->getLanguages() as $langcode => $language) {
+        if ($langcode !== $default_langcode) {
+          $translation_langcodes[] = $langcode;
+        }
+      }
+
+      // Normalise the raw form values into the exact set of config writes.
+      // Kept as a pure, unit-testable mapping (see extractGeneralSettings()).
+      $mapped = self::extractGeneralSettings($values, $translation_langcodes);
+
+      // Mirror site name/slogan back to system.site (write only on change).
       $site_config = $this->configFactory()->getEditable('system.site');
       $site_config_changed = FALSE;
-
-      // Get site_name from nested site_name_section
-      $site_name = $values['site_name_section']['site_name'] ?? $values['site_name'];
-      if ($site_config->get('name') !== $site_name) {
-        $site_config->set('name', $site_name);
-        $site_config_changed = TRUE;
+      foreach ($mapped['site'] as $config_key => $new_value) {
+        if ($site_config->get($config_key) !== $new_value) {
+          $site_config->set($config_key, $new_value);
+          $site_config_changed = TRUE;
+        }
       }
-      // Extract slogan value from text_format array
-      $slogan_value = is_array($values['site_slogan']) ? ($values['site_slogan']['value'] ?? '') : $values['site_slogan'];
-      if ($site_config->get('slogan') !== $slogan_value) {
-        $site_config->set('slogan', $slogan_value);
-        $site_config_changed = TRUE;
-      }
-      if ($site_config->get('mail') !== $values['site_mail']) {
-        $site_config->set('mail', $values['site_mail']);
-        $site_config_changed = TRUE;
-      }
-
       if ($site_config_changed) {
         $site_config->save();
       }
 
-      // Save translations if there are multiple languages
-      if (count($languages) > 1) {
-        $translatable_fields = [
-          'name' => 'site_name_translations',
-          'slogan' => 'site_slogan_translations',
-        ];
-
-        foreach ($languages as $langcode => $language) {
-          if ($langcode === $default_langcode) {
-            continue;
-          }
-
-          $config_override = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
-          $override_changed = FALSE;
-
-          foreach ($translatable_fields as $config_key => $form_key) {
-            // Get site_name translations from nested site_name_section
-            if ($form_key === 'site_name_translations') {
-              $field_value = $values['site_name_section'][$form_key][$langcode] ?? '';
-            }
-            else {
-              $field_value = $values[$form_key][$langcode] ?? '';
-            }
-            // Extract value from text_format array for slogan field
-            if ($config_key === 'slogan' && is_array($field_value)) {
-              $new_value = $field_value['value'] ?? '';
-            }
-            else {
-              $new_value = $field_value;
-            }
-            if ($config_override->get($config_key) !== $new_value) {
-              $config_override->set($config_key, $new_value);
+      // Mirror per-language name/slogan to the system.site language overrides.
+      // An emptied translation removes the override key (core behaviour),
+      // rather than persisting an empty string.
+      foreach ($mapped['overrides'] as $langcode => $override_values) {
+        $config_override = $this->languageManager->getLanguageConfigOverride($langcode, 'system.site');
+        $override_changed = FALSE;
+        foreach ($override_values as $config_key => $new_value) {
+          if ($new_value === '') {
+            if ($config_override->get($config_key) !== NULL) {
+              $config_override->clear($config_key);
               $override_changed = TRUE;
             }
           }
-
-          if ($override_changed) {
+          elseif ($config_override->get($config_key) !== $new_value) {
+            $config_override->set($config_key, $new_value);
+            $override_changed = TRUE;
+          }
+        }
+        if ($override_changed) {
+          // Delete the override entirely once it holds no data, so a cleared
+          // translation does not leave an empty override behind.
+          if (empty($config_override->get())) {
+            $config_override->delete();
+          }
+          else {
             $config_override->save();
           }
         }
       }
 
-      // Save timezone configuration to system.date
+      // Mirror the default time zone back to system.date.
       $date_config = $this->configFactory()->getEditable('system.date');
-      $date_config->set('timezone.default', $values['date_default_timezone']);
-      // Set user.configurable to FALSE to disable user timezone selection
-      $date_config->set('timezone.user.configurable', FALSE);
-      $date_config->save();
+      $date_changed = FALSE;
+      if ($date_config->get('timezone.default') !== $mapped['timezone']) {
+        $date_config->set('timezone.default', $mapped['timezone']);
+        $date_changed = TRUE;
+      }
+      // Keep a single site-wide time zone: always ensure per-user selection is off.
+      if ($date_config->get('timezone.user.configurable') !== FALSE) {
+        $date_config->set('timezone.user.configurable', FALSE);
+        $date_changed = TRUE;
+      }
+      if ($date_changed) {
+        $date_config->save();
+      }
 
       $config
         ->set('region', $values['region'])
@@ -2704,6 +2778,60 @@ class BiolandSettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Builds the home-page hero help/intro markup for the current site flavor.
+   *
+   * The copy differs by site flavor. Biosafety Land (BSL) sites - detected via
+   * the persisted bioland.settings.is_biosafety_land flag (the same flag
+   * getBrandingName() reads; it is written by BiolandDmsmConfigService when the
+   * DMSM multiSiteCode is 'bsl') - show a single-hero variant sourced from the
+   * home_hero_help_bsl_heading / home_hero_help_bsl_text config properties. All
+   * other (BL2) sites keep the original rotating-hero copy.
+   *
+   * Like getBrandingName(), the source strings are wrapped in $this->t() so the
+   * translations/bioland.<langcode>.po catalogs apply. The config properties
+   * hold the canonical English (source) strings that are used verbatim as the
+   * t() msgid; a matching msgid/msgstr pair is shipped in every .po file.
+   *
+   * Caveat: editing the home_hero_help_bsl_* config replaces the t() source
+   * string, so an edited value has no matching .po msgid and renders untranslated
+   * for every locale. The BSL branch output is also run through Xss::filterAdmin()
+   * as defense-in-depth, since the config-sourced strings become dynamic t()
+   * msgids concatenated into raw markup.
+   *
+   * @param \Drupal\Core\Config\ImmutableConfig $config
+   *   The bioland.settings configuration.
+   *
+   * @return string
+   *   The rendered HTML markup for the hero description block.
+   */
+  protected function buildHeroDescriptionMarkup($config) {
+    if ($config->get('is_biosafety_land')) {
+      // Biosafety Land variant. Config holds the canonical source strings.
+      // Use ?? (not ?:) so only an unset/NULL key falls back to the seeded
+      // default: the fallback guards existing sites where the update hook has
+      // not yet written the key, not an admin who intentionally blanks the copy.
+      $heading = $config->get('help_comments.home_hero_help_bsl_heading')
+        ?? 'About Home Page Heroe';
+      $body = $config->get('help_comments.home_hero_help_bsl_text')
+        ?? 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.';
+
+      // Defense-in-depth: the config-sourced strings become dynamic t() msgids
+      // concatenated into raw markup, so filter the assembled output through
+      // Xss::filterAdmin() before it reaches the #value render array.
+      return Xss::filterAdmin(
+        '<p style="margin: 0 0 10px 0;"><strong>' . $this->t($heading) . '</strong></p>' .
+        '<p style="margin: 0;">' . $this->t($body) . '</p>'
+      );
+    }
+
+    // Default (BL2) variant - unchanged original copy.
+    return '<p style="margin: 0 0 10px 0;"><strong>' . $this->t('About Home Page Heroes') . '</strong></p>' .
+      '<p style="margin: 0 0 10px 0;">' . $this->t('Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners.') . '</p>' .
+      '<p style="margin: 0 0 10px 0;">' . $this->t('The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day.') . '</p>' .
+      '<p style="margin: 0;">' . $this->t('If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below.') . '</p>';
+  }
+
+  /**
    * Build hero sections for the Home Hero(s) tab.
    *
    * @param array &$form
@@ -2735,15 +2863,14 @@ class BiolandSettingsForm extends ConfigFormBase {
         '#attributes' => ['class' => ['bioland-heroes-wrapper']],
       ];
 
-      // Add description explaining how heroes work
+      // Add description explaining how heroes work. The intro copy differs by
+      // site flavor: Biosafety Land (BSL) sites show a single-hero variant,
+      // all other (BL2) sites keep the original rotating-hero copy.
       $form['home_page_heroes']['description'] = [
         '#type' => 'html_tag',
         '#tag' => 'div',
         '#attributes' => ['class' => ['bioland-heroes-description'], 'style' => 'margin-bottom: 20px; padding: 15px; background: #fff; border-left: 4px solid #0073aa; border-radius: 4px;'],
-        '#value' => '<p style="margin: 0 0 10px 0;"><strong>' . $this->t('About Home Page Heroes') . '</strong></p>' .
-          '<p style="margin: 0 0 10px 0;">' . $this->t('Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners.') . '</p>' .
-          '<p style="margin: 0 0 10px 0;">' . $this->t('The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day.') . '</p>' .
-          '<p style="margin: 0;">' . $this->t('If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below.') . '</p>',
+        '#value' => $this->buildHeroDescriptionMarkup($this->config('bioland.settings')),
       ];
 
       // Add global styles

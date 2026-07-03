@@ -1800,3 +1800,11 @@ msgstr "მთავარი გვერდის ბანერები"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "კონფიგურაციის შენახვა"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "მთავარი გვერდის ბანერის შესახებ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "ბანერები არის დიდი გამოსახულებები, რომლებიც ნაჩვენებია მთავარი გვერდის ზედა ნაწილში. ვინაიდან მთავარი გვერდის განლაგების პირდაპირ რედაქტირება შეუძლებელია, სწორედ აქ არედაქტირებთ მთავარი გვერდის ბანერს."

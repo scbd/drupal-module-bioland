@@ -227,6 +227,57 @@ function bioland_update_9012(&$sandbox) {
 }
 
 /**
+ * Add Biosafety Land home-page hero help text config and re-import PO files.
+ *
+ * Existing sites do not re-import config/install/bioland.settings.yml, so the
+ * two new help_comments.home_hero_help_bsl_* properties must be seeded here.
+ * Only sets each property when it is not already present (idempotent). Also
+ * re-imports the translation catalogs so the new BSL msgids are available for
+ * the site's installed languages.
+ *
+ * @see \Drupal\bioland\Form\BiolandSettingsForm::buildHeroDescriptionMarkup()
+ */
+function bioland_update_9062() {
+  $messages = [];
+
+  // Seed the new BSL home-page hero help text config properties if missing.
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $changed = FALSE;
+
+  $defaults = [
+    'help_comments.home_hero_help_bsl_heading' => 'About Home Page Heroe',
+    'help_comments.home_hero_help_bsl_text' => 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.',
+  ];
+  foreach ($defaults as $key => $value) {
+    if ($config->get($key) === NULL) {
+      $config->set($key, $value);
+      $changed = TRUE;
+    }
+  }
+  if ($changed) {
+    $config->save();
+    $messages[] = t('Seeded Biosafety Land home-page hero help text configuration.');
+  }
+  else {
+    $messages[] = t('Biosafety Land home-page hero help text configuration already present.');
+  }
+
+  // Re-import translation catalogs so the new msgids are available.
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = t('Skipped translation import: locale module is not enabled.');
+  }
+  elseif (!\Drupal::hasService('locale.translation')) {
+    $messages[] = t('Skipped translation import: locale.translation service is not available. Enable the Interface Translation module.');
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = t('Re-imported Bioland translations for installed languages. Check logs for details.');
+  }
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
  * Re-import Bioland translation files to pick up corrected/added UI strings.
  *
  * Several admin UI strings (route titles, local task titles, menu link

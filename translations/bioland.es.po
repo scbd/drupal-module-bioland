@@ -1784,3 +1784,11 @@ msgstr "Héroes de la página de inicio"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Guardar configuración"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Acerca del héroe de la página de inicio"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Los héroes son las imágenes de banner grandes que se muestran en la parte superior de la página de inicio. Dado que el diseño de la página de inicio no se puede editar directamente, aquí es donde se edita el banner de héroe de la página de inicio."

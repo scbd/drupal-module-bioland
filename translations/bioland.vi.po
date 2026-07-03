@@ -1800,3 +1800,11 @@ msgstr "Hình ảnh nổi bật trang chủ"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Lưu cấu hình"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Giới thiệu về biểu ngữ trang chủ"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Biểu ngữ là những hình ảnh biểu ngữ lớn hiển thị ở đầu trang chủ. Vì bố cục trang chủ không thể chỉnh sửa trực tiếp, đây là nơi bạn chỉnh sửa biểu ngữ của trang chủ."

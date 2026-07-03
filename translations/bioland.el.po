@@ -1889,3 +1889,11 @@ msgstr "Ήρωες αρχικής σελίδας"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Αποθήκευση διαμόρφωσης"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Σχετικά με το banner της αρχικής σελίδας"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Τα banner είναι οι μεγάλες εικόνες banner που εμφανίζονται στο επάνω μέρος της αρχικής σελίδας. Επειδή η διάταξη της αρχικής σελίδας δεν μπορεί να επεξεργαστεί απευθείας, εδώ επεξεργάζεστε το banner της αρχικής σελίδας."

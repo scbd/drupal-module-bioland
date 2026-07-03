@@ -1800,3 +1800,11 @@ msgstr "Tuisblad-helde"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Stoor konfigurasie"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Oor die tuisblad-baniere"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Baniere is die groot bannerbeelde wat bo-aan die tuisblad vertoon word. Aangesien die tuisblad-uitleg nie direk geredigeer kan word nie, is dit hier waar jy die tuisblad se banier redigeer."

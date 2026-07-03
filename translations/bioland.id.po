@@ -1800,3 +1800,11 @@ msgstr "Hero Halaman Beranda"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Simpan konfigurasi"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Tentang banner halaman beranda"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Banner adalah gambar banner besar yang ditampilkan di bagian atas halaman beranda. Karena tata letak halaman beranda tidak dapat diedit secara langsung, di sinilah Anda mengedit banner halaman beranda."

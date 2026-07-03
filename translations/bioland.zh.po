@@ -1800,3 +1800,11 @@ msgstr "首页横幅"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "保存配置"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "关于主页横幅图"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "横幅图是显示在主页顶部的大幅图片。由于主页布局无法直接编辑，您可在此处编辑主页的横幅图。"

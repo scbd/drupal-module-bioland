@@ -1800,3 +1800,11 @@ msgstr "Hetjur heimasíðu"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Vista stillingar"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Um borða á heimasíðu"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Borðar eru stóru borðamyndirnar sem birtast efst á heimasíðunni. Þar sem ekki er hægt að breyta útliti heimasíðunnar beint er það hér sem þú breytir borða heimasíðunnar."

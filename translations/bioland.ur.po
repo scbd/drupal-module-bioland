@@ -1800,3 +1800,11 @@ msgstr "ہوم پیج ہیروز"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "کنفیگریشن محفوظ کریں"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "ہوم پیج بینر کے بارے میں"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "بینرز بڑی بینر تصاویر ہیں جو ہوم پیج کے اوپر دکھائی جاتی ہیں۔ چونکہ ہوم پیج کے لے آؤٹ کو براہ راست ترمیم نہیں کیا جا سکتا، اس لیے یہاں آپ ہوم پیج کا بینر ترمیم کرتے ہیں۔"

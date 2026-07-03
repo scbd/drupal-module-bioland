@@ -13,6 +13,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Config\Config;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -297,6 +298,113 @@ class BiolandSettingsFormTest extends TestCase {
   }
 
   /**
+   * Tests hero description uses the default (BL2) copy when not BSL.
+   */
+  public function testBuildHeroDescriptionMarkupReturnsBl2Variant(): void {
+    $form = $this->createFormWithConfig(['is_biosafety_land' => FALSE]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // BL2 keeps the original three-paragraph rotating-hero copy.
+    $this->assertStringContainsString('About Home Page Heroes', $result);
+    $this->assertStringContainsString('this is where you configure the hero banners', $result);
+    $this->assertStringContainsString('rotate automatically every hour', $result);
+    $this->assertStringContainsString('unpublish the other hero(es)', $result);
+
+    // It must NOT contain the BSL variant strings.
+    $this->assertStringNotContainsString('this is where you edit the hero banner', $result);
+  }
+
+  /**
+   * Tests hero description uses the BSL variant when the site is BSL.
+   */
+  public function testBuildHeroDescriptionMarkupReturnsBslVariant(): void {
+    $form = $this->createFormWithConfig([
+      'is_biosafety_land' => TRUE,
+      'help_comments' => [
+        'home_hero_help_bsl_heading' => 'About Home Page Heroe',
+        'home_hero_help_bsl_text' => 'Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page.',
+      ],
+    ]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // BSL uses the single-hero heading + body sourced from config.
+    $this->assertStringContainsString('About Home Page Heroe', $result);
+    $this->assertStringContainsString('this is where you edit the hero banner for the home page', $result);
+
+    // It must NOT contain the BL2 rotating-hero copy.
+    $this->assertStringNotContainsString('rotate automatically every hour', $result);
+    $this->assertStringNotContainsString('unpublish the other hero(es)', $result);
+    $this->assertStringNotContainsString('this is where you configure the hero banners', $result);
+  }
+
+  /**
+   * Tests the BSL variant falls back to hardcoded defaults when config is empty.
+   *
+   * Guards existing sites where the update hook has not yet seeded the new
+   * config properties: the markup must still render the BSL copy.
+   */
+  public function testBuildHeroDescriptionMarkupBslFallsBackWhenConfigMissing(): void {
+    $form = $this->createFormWithConfig(['is_biosafety_land' => TRUE]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    $this->assertStringContainsString('About Home Page Heroe', $result);
+    $this->assertStringContainsString('this is where you edit the hero banner for the home page', $result);
+    $this->assertStringNotContainsString('rotate automatically every hour', $result);
+  }
+
+  /**
+   * Tests the BSL variant strips unsafe markup from config-sourced strings.
+   *
+   * Defense-in-depth: the config-sourced heading/body become dynamic t() msgids
+   * concatenated into raw markup, so Xss::filterAdmin() must strip any unsafe
+   * tags (e.g. <script>) from the assembled output while keeping the safe text.
+   */
+  public function testBuildHeroDescriptionMarkupBslStripsUnsafeConfigMarkup(): void {
+    $form = $this->createFormWithConfig([
+      'is_biosafety_land' => TRUE,
+      'help_comments' => [
+        'home_hero_help_bsl_heading' => 'Safe<script>alert(1)</script>',
+        'home_hero_help_bsl_text' => 'Body',
+      ],
+    ]);
+
+    $result = $this->invokeBuildHeroDescriptionMarkup($form);
+
+    // Xss::filterAdmin() strips the unsafe <script> tag from the output.
+    $this->assertStringNotContainsString('<script>', $result);
+
+    // The safe text is preserved.
+    $this->assertStringContainsString('Safe', $result);
+  }
+
+  /**
+   * Invokes the protected buildHeroDescriptionMarkup() method via reflection.
+   *
+   * @param \Drupal\bioland\Form\BiolandSettingsForm $form
+   *   The form instance (must expose config() returning bioland.settings).
+   *
+   * @return string
+   *   The rendered hero description markup.
+   */
+  protected function invokeBuildHeroDescriptionMarkup(BiolandSettingsForm $form): string {
+    // Reflect on the runtime class so the anonymous subclass's overridden,
+    // protected config() (returning the injected test config) is used.
+    $reflection = new \ReflectionObject($form);
+
+    $configMethod = $reflection->getMethod('config');
+    $configMethod->setAccessible(TRUE);
+    $config = $configMethod->invoke($form, 'bioland.settings');
+
+    $method = $reflection->getMethod('buildHeroDescriptionMarkup');
+    $method->setAccessible(TRUE);
+
+    return $method->invoke($form, $config);
+  }
+
+  /**
    * Creates a form instance with mocked config.
    *
    * @param array $configData
@@ -327,6 +435,285 @@ class BiolandSettingsFormTest extends TestCase {
         return $this->testConfig;
       }
     };
+  }
+
+  /**
+   * Tests the mapper reads site name from the flattened value path.
+   */
+  public function testExtractGeneralSettingsReadsSiteName(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      ['site_name' => 'My Site', 'date_default_timezone' => 'UTC'],
+      []
+    );
+
+    $this->assertSame('My Site', $mapped['site']['name']);
+    $this->assertSame('UTC', $mapped['timezone']);
+    $this->assertSame([], $mapped['overrides']);
+  }
+
+  /**
+   * Tests the mapper still accepts the nested site_name_section path.
+   */
+  public function testExtractGeneralSettingsAcceptsNestedSiteName(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      ['site_name_section' => ['site_name' => 'Nested Site']],
+      []
+    );
+
+    $this->assertSame('Nested Site', $mapped['site']['name']);
+  }
+
+  /**
+   * Tests the mapper unwraps a text_format slogan array.
+   */
+  public function testExtractGeneralSettingsUnwrapsSloganTextFormat(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      [
+        'site_name' => 'S',
+        'site_slogan' => ['value' => 'Hello world', 'format' => 'full_html'],
+      ],
+      []
+    );
+
+    $this->assertSame('Hello world', $mapped['site']['slogan']);
+  }
+
+  /**
+   * Tests a hidden slogan field is not mirrored (no accidental wipe).
+   */
+  public function testExtractGeneralSettingsSkipsAbsentSlogan(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      ['site_name' => 'S'],
+      []
+    );
+
+    $this->assertArrayNotHasKey('slogan', $mapped['site']);
+  }
+
+  /**
+   * Tests translations are read from the flattened top-level path.
+   */
+  public function testExtractGeneralSettingsReadsTranslationsFromFlatPath(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      [
+        'site_name' => 'S',
+        'site_name_translations' => ['fr' => 'Mon site', 'es' => 'Mi sitio'],
+      ],
+      ['fr', 'es']
+    );
+
+    $this->assertSame('Mon site', $mapped['overrides']['fr']['name']);
+    $this->assertSame('Mi sitio', $mapped['overrides']['es']['name']);
+  }
+
+  /**
+   * Tests an emptied translation maps to an empty string (removal signal).
+   */
+  public function testExtractGeneralSettingsEmptyTranslationSignalsRemoval(): void {
+    $mapped = BiolandSettingsForm::extractGeneralSettings(
+      [
+        'site_name' => 'S',
+        'site_name_translations' => ['fr' => ''],
+      ],
+      ['fr']
+    );
+
+    $this->assertSame('', $mapped['overrides']['fr']['name']);
+  }
+
+  /**
+   * Creates a fake config factory that returns the provided config objects.
+   *
+   * @param \Drupal\Core\Config\Config $siteConfig
+   *   The system.site config.
+   * @param \Drupal\Core\Config\Config $dateConfig
+   *   The system.date config.
+   * @param \Drupal\Core\Config\Config $biolandConfig
+   *   The bioland.settings config.
+   *
+   * @return object
+   *   An anonymous factory object that implements get() and getEditable().
+   */
+  private function makeConfigFactory($siteConfig, $dateConfig, $biolandConfig) {
+    return new class($siteConfig, $dateConfig, $biolandConfig) {
+      public function __construct(private $site, private $date, private $bioland) {}
+      public function get($name) {
+        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
+      }
+      public function getEditable($name) {
+        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
+      }
+    };
+  }
+
+  /**
+   * Tests the full submit round-trip writes to system.site and system.date.
+   *
+   * Proves the WRITE direction of the bidirectional mirror: values typed in
+   * the Bioland form land on the same config objects the core forms edit.
+   */
+  public function testSubmitGeneralMirrorsToSystemConfig(): void {
+    // Editable config objects the submit will write to.
+    $siteConfig = new Config('system.site', ['name' => 'Old', 'slogan' => '', 'mail' => 'admin@example.com']);
+    $dateConfig = new Config('system.date', ['timezone' => ['default' => 'UTC']]);
+    $biolandConfig = new Config('bioland.settings', []);
+    $frOverride = new Config('system.site', []);
+
+    // Fake config factory returning the mutable stubs above.
+    $factory = $this->makeConfigFactory($siteConfig, $dateConfig, $biolandConfig);
+
+    // Language manager: default en, plus fr; fr override is a mutable stub.
+    $languageManager = $this->createMock(LanguageManagerInterface::class);
+    $languageManager->method('getDefaultLanguage')->willReturn(new Language('en', 'English'));
+    $languageManager->method('getLanguages')->willReturn([
+      'en' => new Language('en', 'English'),
+      'fr' => new Language('fr', 'French'),
+    ]);
+    $languageManager->method('getLanguageConfigOverride')->willReturn($frOverride);
+
+    $form = new class($languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $this->requestStack, $factory) extends BiolandSettingsForm {
+      public function __construct($lm, $etm, $tbs, $db, $cu, $rs, $factory) {
+        parent::__construct($lm, $etm, $tbs, $db, $cu, $rs);
+        $this->configFactory = $factory;
+      }
+    };
+
+    $formState = $this->createMock(FormStateInterface::class);
+    $formState->method('get')->with('bioland_section')->willReturn('general');
+    $formState->method('getValues')->willReturn([
+      'site_name' => 'New Site',
+      'date_default_timezone' => 'America/Toronto',
+      'site_name_translations' => ['fr' => 'Nouveau site'],
+      'region' => '',
+      'continent' => '',
+    ]);
+
+    $formArray = [];
+    $form->submitForm($formArray, $formState);
+
+    // system.site name mirrored and persisted.
+    $this->assertSame('New Site', $siteConfig->get('name'));
+    $this->assertTrue($siteConfig->saved);
+    // Phantom site_mail no longer clobbers the existing mail.
+    $this->assertSame('admin@example.com', $siteConfig->get('mail'));
+    // system.date timezone mirrored and persisted.
+    $this->assertSame('America/Toronto', $dateConfig->get('timezone.default'));
+    $this->assertTrue($dateConfig->saved);
+    // fr language override written and persisted.
+    $this->assertSame('Nouveau site', $frOverride->get('name'));
+    $this->assertTrue($frOverride->saved);
+  }
+
+  /**
+   * Tests timezone.user.configurable is re-pinned even when unchanged.
+   *
+   * Proves the invariant holds independently of whether timezone.default
+   * changed: a save that only touches the site name (timezone.default stays
+   * the same) must still force per-user time zone selection off if it was
+   * left on, keeping a single site-wide time zone.
+   */
+  public function testSubmitGeneralRePinsTimezoneUserConfigurableWhenUnchanged(): void {
+    // timezone.default already matches the submitted value; only
+    // timezone.user.configurable starts wrong (TRUE instead of FALSE).
+    $siteConfig = new Config('system.site', ['name' => 'Old', 'slogan' => '', 'mail' => 'admin@example.com']);
+    $dateConfig = new Config('system.date', [
+      'timezone' => [
+        'default' => 'UTC',
+        'user' => ['configurable' => TRUE],
+      ],
+    ]);
+    $biolandConfig = new Config('bioland.settings', []);
+    $frOverride = new Config('system.site', []);
+
+    $factory = new class($siteConfig, $dateConfig, $biolandConfig) {
+      public function __construct(private $site, private $date, private $bioland) {}
+      public function get($name) {
+        return $name === 'bioland.settings' ? $this->bioland : ($name === 'system.date' ? $this->date : $this->site);
+      }
+      public function getEditable($name) {
+        return $name === 'system.date' ? $this->date : ($name === 'bioland.settings' ? $this->bioland : $this->site);
+      }
+    };
+
+    $languageManager = $this->createMock(LanguageManagerInterface::class);
+    $languageManager->method('getDefaultLanguage')->willReturn(new Language('en', 'English'));
+    $languageManager->method('getLanguages')->willReturn([
+      'en' => new Language('en', 'English'),
+      'fr' => new Language('fr', 'French'),
+    ]);
+    $languageManager->method('getLanguageConfigOverride')->willReturn($frOverride);
+
+    $form = new class($languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $this->requestStack, $factory) extends BiolandSettingsForm {
+      public function __construct($lm, $etm, $tbs, $db, $cu, $rs, $factory) {
+        parent::__construct($lm, $etm, $tbs, $db, $cu, $rs);
+        $this->configFactory = $factory;
+      }
+    };
+
+    $formState = $this->createMock(FormStateInterface::class);
+    $formState->method('get')->with('bioland_section')->willReturn('general');
+    $formState->method('getValues')->willReturn([
+      // Only the site name changes; timezone stays UTC (unchanged).
+      'site_name' => 'New Site',
+      'date_default_timezone' => 'UTC',
+      'site_name_translations' => [],
+      'region' => '',
+      'continent' => '',
+    ]);
+
+    $formArray = [];
+    $form->submitForm($formArray, $formState);
+
+    // timezone.default is unchanged...
+    $this->assertSame('UTC', $dateConfig->get('timezone.default'));
+    // ...but timezone.user.configurable is still re-pinned to FALSE.
+    $this->assertFalse($dateConfig->get('timezone.user.configurable'));
+    // ...and the date config was saved to persist that re-pin.
+    $this->assertTrue($dateConfig->saved);
+  }
+
+  /**
+   * Tests clearing a translation deletes the empty language override.
+   */
+  public function testSubmitGeneralDeletesEmptiedOverride(): void {
+    $siteConfig = new Config('system.site', ['name' => 'Site', 'mail' => 'a@b.com']);
+    $dateConfig = new Config('system.date', ['timezone' => ['default' => 'UTC']]);
+    $biolandConfig = new Config('bioland.settings', []);
+    // Override currently holds a translated name that the user is clearing.
+    $frOverride = new Config('system.site', ['name' => 'Ancien site']);
+
+    $factory = $this->makeConfigFactory($siteConfig, $dateConfig, $biolandConfig);
+
+    $languageManager = $this->createMock(LanguageManagerInterface::class);
+    $languageManager->method('getDefaultLanguage')->willReturn(new Language('en', 'English'));
+    $languageManager->method('getLanguages')->willReturn([
+      'en' => new Language('en', 'English'),
+      'fr' => new Language('fr', 'French'),
+    ]);
+    $languageManager->method('getLanguageConfigOverride')->willReturn($frOverride);
+
+    $form = new class($languageManager, $this->entityTypeManager, $this->translationBatchService, $this->database, $this->currentUser, $this->requestStack, $factory) extends BiolandSettingsForm {
+      public function __construct($lm, $etm, $tbs, $db, $cu, $rs, $factory) {
+        parent::__construct($lm, $etm, $tbs, $db, $cu, $rs);
+        $this->configFactory = $factory;
+      }
+    };
+
+    $formState = $this->createMock(FormStateInterface::class);
+    $formState->method('get')->with('bioland_section')->willReturn('general');
+    $formState->method('getValues')->willReturn([
+      'site_name' => 'Site',
+      'date_default_timezone' => 'UTC',
+      'site_name_translations' => ['fr' => ''],
+      'region' => '',
+      'continent' => '',
+    ]);
+
+    $formArray = [];
+    $form->submitForm($formArray, $formState);
+
+    // The now-empty override is deleted rather than saved with an empty name.
+    $this->assertTrue($frOverride->deleted);
   }
 
 }

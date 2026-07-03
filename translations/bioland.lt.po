@@ -1800,3 +1800,11 @@ msgstr "Pagrindinio puslapio herojai"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "Išsaugoti konfigūraciją"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "Apie pagrindinio puslapio reklamjuostę"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "Reklamjuostės yra didelės reklamjuosčių nuotraukos, rodomos pagrindinio puslapio viršuje. Kadangi pagrindinio puslapio išdėstymo negalima redaguoti tiesiogiai, čia redaguojate pagrindinio puslapio reklamjuostę."

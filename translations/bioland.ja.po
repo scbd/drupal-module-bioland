@@ -1800,3 +1800,11 @@ msgstr "ホームページヒーロー"
 #: core (ConfigFormBase)
 msgid "Save configuration"
 msgstr "設定を保存"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "About Home Page Heroe"
+msgstr "ホームページのバナーについて"
+
+#: src/Form/BiolandSettingsForm.php
+msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
+msgstr "バナーは、ホームページの上部に表示される大きなバナー画像です。ホームページのレイアウトは直接編集できないため、ここでホームページのバナーを編集します。"
