@@ -5,7 +5,7 @@
     "scripts": {
         "test": "jest",
         "test:php": "composer test",
-        "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \\) -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n 1 php -l",
+        "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \\) -not -path './vendor/*' -not -path './node_modules/*' -not -path './.claude/*' -not -path './web/*' -not -path './coverage/*' -print0 | xargs -0 -n 1 php -l",
         "test:all": "npm run lint:php && npm run test:php && npm test",
         "deploy:dev-bsl": "rsync -av --exclude='coverage' --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
         "deploy:dev-bsl-clean": "ssh ubuntu@staging.infra.cbd.int 'sudo rm -rf /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland && sudo mkdir -p /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland && sudo chown -R ubuntu:ubuntu /home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland' && npm run deploy:dev-bsl",
