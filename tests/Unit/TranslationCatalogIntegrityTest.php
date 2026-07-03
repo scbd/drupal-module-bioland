@@ -28,6 +28,8 @@ class TranslationCatalogIntegrityTest extends TestCase {
   private const REQUIRED_MSGIDS = [
     // bioland.links.menu.yml: menu link description.
     'Configure settings including locales, countries, and region.',
+    // src/Plugin/Derivative/BiolandMenuLink.php: branded menu link description.
+    'Configure @branding settings including locales, countries, and region.',
     // bioland.routing.yml: route _title.
     'Home Page',
     // bioland.links.task.yml: local task title.

@@ -1808,3 +1808,6 @@ msgstr "Mengenai sepanduk halaman utama"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Sepanduk ialah imej sepanduk besar yang dipaparkan di bahagian atas halaman utama. Memandangkan susun atur halaman utama tidak boleh disunting secara terus, di sinilah anda menyunting sepanduk halaman utama."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Konfigurasikan tetapan @branding termasuk lokaliti, negara, dan wilayah."

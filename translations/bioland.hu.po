@@ -1879,3 +1879,6 @@ msgstr "A kezdőlap bannere"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "A bannerek a kezdőlap tetején megjelenő nagy bannerképek. Mivel a kezdőlap elrendezése nem szerkeszthető közvetlenül, itt szerkesztheti a kezdőlap bannerét."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "@branding beállítások konfigurálása, beleértve a területi beállításokat, országokat és régiót."

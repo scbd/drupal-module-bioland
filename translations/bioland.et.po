@@ -1879,3 +1879,6 @@ msgstr "Avalehe bänneri teave"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Bännerid on avalehe ülaosas kuvatavad suured bännerpildid. Kuna avalehe paigutust ei saa otse muuta, saate siin avalehe bännerit muuta."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Seadistage @branding sätted, sealhulgas lokaadid, riigid ja piirkond."

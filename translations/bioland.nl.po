@@ -1808,3 +1808,6 @@ msgstr "Over de homepagebanner"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Banners zijn de grote bannerafbeeldingen die bovenaan de homepagina worden weergegeven. Omdat de lay-out van de homepagina niet rechtstreeks kan worden bewerkt, bewerkt u hier de banner van de homepagina."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Configureer @branding-instellingen, waaronder landinstellingen, landen en regio."

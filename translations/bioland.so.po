@@ -1808,3 +1808,6 @@ msgstr "Ku saabsan calanka bogga hore"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Calammada waa sawirada calanka waaweyn ee lagu soo bandhigo qeybta sare ee bogga hore. Maadaama qaabaynta bogga hore aan si toos ah loo tafatiri karin, halkan ayaad ka tafatirtaa calanka bogga hore."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Habee dejinta @branding oo ay ku jiraan goobaha, dalalka, iyo gobolka."

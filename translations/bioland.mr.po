@@ -1808,3 +1808,6 @@ msgstr "मुख्यपृष्ठ बॅनरबद्दल"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "बॅनर म्हणजे मुख्यपृष्ठाच्या शीर्षस्थानी दाखवल्या जाणाऱ्या मोठ्या बॅनर प्रतिमा. मुख्यपृष्ठाची मांडणी थेट संपादित करता येत नसल्याने, येथे तुम्ही मुख्यपृष्ठाचे बॅनर संपादित करता."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "स्थाने, देश आणि प्रदेशासह @branding सेटिंग्ज कॉन्फिगर करा."

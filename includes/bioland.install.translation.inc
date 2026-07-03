@@ -312,23 +312,43 @@ function bioland_update_9063() {
 }
 
 /**
- * Re-import translations after fixing the broken PO importer.
+ * Re-import translations for the branded config-menu description msgid.
  *
- * Updates 9062/9063 called _bioland_import_translations(), but that helper (and
- * the hooks' own guards) depended on a "locale.translation" service that does
- * not exist in Drupal core, so the availability check short-circuited and no
- * strings were ever imported - the hooks reported success while doing nothing.
- * The helper now uses \Drupal\locale\Gettext::fileToDatabase() and invalidates
- * the 'locale' cache. This re-runs the import so existing sites finally pick up
- * the missing translations (e.g. the BSL home-page hero help text). Safe to run
- * more than once - the importer overwrites both customized and non-customized
- * translations.
+ * The admin config menu link description is built dynamically by
+ * \Drupal\bioland\Plugin\Derivative\BiolandMenuLink as
+ * t('Configure @branding settings including locales, countries, and region.',
+ * ['@branding' => 'Biosafety Land' | 'Bioland']). That placeholder-based msgid
+ * had no msgstr in any translations/bioland.<langcode>.po catalog (only the
+ * older, now-orphaned 'Configure settings including locales, countries, and
+ * region.' msgid was present), so the description always rendered in English.
+ * The branded msgid has been added to every catalog; this re-runs the same
+ * importer used at install time so existing sites pick up the new strings.
+ * The importer overwrites both customized and non-customized translations
+ * (see _bioland_import_translations()), so this is safe to run more than once.
+ *
+ * Because this is now the highest-numbered update hook, it must also re-apply
+ * the canonical Search API v2 configuration LAST, preserving the convergence
+ * invariant previously held by bioland_update_9064() (see
+ * \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest and
+ * _bioland_v2_update_search_and_facets_config()).
  */
 function bioland_update_9065() {
+  $messages = [];
+
+  // Re-import translation catalogs so the branded msgid becomes available.
   if (!\Drupal::moduleHandler()->moduleExists('locale')) {
-    return t('Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.');
+    $messages[] = t('Skipped translation import: locale module is not enabled.');
+  }
+  elseif (!\Drupal::hasService('locale.translation')) {
+    $messages[] = t('Skipped translation import: locale.translation service is not available. Enable the Interface Translation module.');
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = t('Bioland branded config-menu description re-import completed. Check logs for details.');
   }
 
-  _bioland_import_translations();
-  return t('Re-imported Bioland translations with the corrected PO importer. Check logs for details.');
+  // Converge the canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

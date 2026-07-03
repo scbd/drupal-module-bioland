@@ -1879,3 +1879,6 @@ msgstr "Tietoja etusivun bannerista"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Bannerit ovat etusivun yläosassa näkyviä suuria bannerikuvia. Koska etusivun asettelua ei voi muokata suoraan, tässä muokkaat etusivun banneria."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Määritä @branding-asetukset, mukaan lukien maa-asetukset, maat ja alue."

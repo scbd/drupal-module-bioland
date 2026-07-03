@@ -1808,3 +1808,6 @@ msgstr "홈페이지 배너 정보"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "배너는 홈페이지 상단에 표시되는 큰 배너 이미지입니다. 홈페이지 레이아웃은 직접 편집할 수 없으므로 여기에서 홈페이지 배너를 편집합니다."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "로케일, 국가, 지역 등의 @branding 설정을 구성합니다."

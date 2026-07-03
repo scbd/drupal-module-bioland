@@ -1808,3 +1808,6 @@ msgstr "Про банер головної сторінки"
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
 msgstr "Банери — це великі зображення, що відображаються у верхній частині головної сторінки. Оскільки макет головної сторінки не можна редагувати безпосередньо, саме тут ви редагуєте банер головної сторінки."
+
+msgid "Configure @branding settings including locales, countries, and region."
+msgstr "Налаштуйте параметри @branding, включно з мовними стандартами, країнами та регіоном."
