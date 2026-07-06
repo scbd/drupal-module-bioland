@@ -996,11 +996,11 @@ msgstr "წარმატებით გადაადგინეთ field_o
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "წინა ბოლო"
+msgstr "ინტერფეისი"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ფრონტ ენდის გენერალი"
+msgstr "ზოგადი ინტერფეისი"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

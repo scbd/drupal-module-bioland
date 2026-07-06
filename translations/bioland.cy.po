@@ -1093,11 +1093,11 @@ msgstr "Ailosod field_order yn llwyddiannus i 1000 ar gyfer nodau @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Diwedd Blaen"
+msgstr "Rhyngwyneb"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Diwedd Blaen Cyffredinol"
+msgstr "Rhyngwyneb cyffredinol"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

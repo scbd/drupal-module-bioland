@@ -996,11 +996,11 @@ msgstr "@count düğümleri için field_order başarıyla 1000'e sıfırlayın."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Ön Uç"
+msgstr "Arayüz"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Ön Uç Genel"
+msgstr "Genel arayüz"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

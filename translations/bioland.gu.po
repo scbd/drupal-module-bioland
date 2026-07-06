@@ -996,11 +996,11 @@ msgstr "@count ગાંઠો માટે સફળતાપૂર્વક fi
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ફ્રન્ટ એન્ડ"
+msgstr "ઇન્ટરફેસ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ફ્રન્ટ એન્ડ જનરલ"
+msgstr "સામાન્ય ઇન્ટરફેસ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

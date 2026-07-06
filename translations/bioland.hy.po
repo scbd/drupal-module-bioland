@@ -996,11 +996,11 @@ msgstr "Հաջողությամբ վերականգնել field_order- ը 1000- ի
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Առջևի ծայրը"
+msgstr "Ինտերֆեյս"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Առջևի ընդհանուր ծայրը"
+msgstr "Ընդհանուր ինտերֆեյս"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

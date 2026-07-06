@@ -996,11 +996,11 @@ msgstr "Stel field_order suksesvol terug na 1000 vir @count nodes."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Voorkant"
+msgstr "Koppelvlak"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Algemene"
+msgstr "Algemene koppelvlak"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

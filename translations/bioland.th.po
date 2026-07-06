@@ -996,11 +996,11 @@ msgstr "รีเซ็ต field_order เป็น 1000 สำหรับโ�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ปลายด้านหน้า"
+msgstr "อินเทอร์เฟซ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ส่วนหน้าทั่วไป"
+msgstr "อินเทอร์เฟซทั่วไป"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

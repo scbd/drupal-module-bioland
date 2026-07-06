@@ -996,11 +996,11 @@ msgstr "Успешно нулиране на field_order на 1000 за @count �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Преден край"
+msgstr "Интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Общ преден край"
+msgstr "Общ интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

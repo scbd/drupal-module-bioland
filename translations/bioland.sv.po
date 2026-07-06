@@ -996,11 +996,11 @@ msgstr "Återställ fält_order till 1000 för @count noder."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Främre änden"
+msgstr "Gränssnitt"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Allmänt"
+msgstr "Allmänt gränssnitt"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

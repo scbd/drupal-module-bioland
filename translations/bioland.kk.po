@@ -996,11 +996,11 @@ msgstr "@count түйіндері үшін field_order 1000-ға сәтті қа
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Алдыңғы жағы"
+msgstr "Интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Алдыңғы жағы жалпы"
+msgstr "Жалпы интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

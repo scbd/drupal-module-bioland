@@ -996,11 +996,11 @@ msgstr "@count qovşaqları üçün field_order-i 1000-ə uğurla sıfırlayın.
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Ön ucu"
+msgstr "İnterfeys"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Ümumi ön tərəf"
+msgstr "Ümumi interfeys"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

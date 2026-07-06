@@ -996,11 +996,11 @@ msgstr "Athshocraigh go rathúil field_order go 1000 do nóid @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Deireadh Tosaigh"
+msgstr "Comhéadan"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Ginearálta"
+msgstr "Comhéadan ginearálta"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

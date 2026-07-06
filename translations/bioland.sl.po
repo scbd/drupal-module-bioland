@@ -996,11 +996,11 @@ msgstr "Uspešno ponastavite field_order na 1000 za vozlišča @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Sprednji konec"
+msgstr "Vmesnik"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Sprednji del splošnega"
+msgstr "Splošni vmesnik"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

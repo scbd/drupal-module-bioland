@@ -996,11 +996,11 @@ msgstr "Reimposta field_order a 1000 con successo per i nodi @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Front-end"
+msgstr "Interfaccia"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front-end generale"
+msgstr "Interfaccia generale"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

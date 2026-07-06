@@ -996,11 +996,11 @@ msgstr "Endurstilla field_order í 1000 fyrir @count hnúta með góðum árangr
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Framendi"
+msgstr "Viðmót"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Almennt framhlið"
+msgstr "Almennt viðmót"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

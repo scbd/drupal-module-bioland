@@ -1075,11 +1075,11 @@ msgstr "Sikeresen állítsa vissza a field_order értékét 1000-re @count csom�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Elülső vég"
+msgstr "Felület"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Elülső rész általános"
+msgstr "Általános felület"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

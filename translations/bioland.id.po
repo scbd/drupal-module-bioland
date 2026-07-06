@@ -996,11 +996,11 @@ msgstr "Berhasil mengatur ulang field_order ke 1000 untuk node @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Ujung depan"
+msgstr "Antarmuka"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Umum"
+msgstr "Antarmuka umum"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

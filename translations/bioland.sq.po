@@ -996,11 +996,11 @@ msgstr "Rivendosni me sukses field_order në 1000 për nyjet @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Fundi i përparmë"
+msgstr "Ndërfaqja"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End i Përgjithshëm"
+msgstr "Ndërfaqja e përgjithshme"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

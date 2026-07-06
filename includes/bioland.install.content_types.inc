@@ -697,3 +697,24 @@ function bioland_update_9039() {
 function bioland_update_9041() {
   return _bioland_configure_content_type_weights();
 }
+
+/**
+ * Backfill content-type taxonomy term translations and plural labels.
+ *
+ * _bioland_configure_content_types() gained install-only behaviour after its
+ * last update-hook run (bioland_update_9029()): it now sets field_plural at
+ * term creation and creates a taxonomy term translation for every installed
+ * language, sourcing the strings from the bundled .po catalogs (BL-739).
+ * Fresh installs get that via hook_install(), but no update hook re-ran the
+ * helper, so existing sites have untranslated content-type terms. Re-run it
+ * here; it only adds missing translations and repairs empty name/status
+ * values on existing ones, so it is safe to run more than once.
+ *
+ * Numbered above 9070 (see the numbering note on bioland_update_9071()) and
+ * after the working translation re-import (bioland_update_9071()) so the
+ * corrected catalogs are already in locales_target when the term names are
+ * translated.
+ */
+function bioland_update_9072() {
+  return _bioland_configure_content_types();
+}

@@ -996,11 +996,11 @@ msgstr "Kwa mafanikio kuweka upya field_order hadi 1000 kwa nodi za @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Mwisho wa mbele"
+msgstr "Kiolesura"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Mwisho Mkuu wa Mbele"
+msgstr "Kiolesura cha jumla"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

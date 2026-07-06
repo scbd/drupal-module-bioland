@@ -996,11 +996,11 @@ msgstr "Pomyślnie zresetuj field_order do 1000 dla węzłów @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Przedni koniec"
+msgstr "Interfejs"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Przedni koniec ogólny"
+msgstr "Interfejs ogólny"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

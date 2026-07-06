@@ -980,11 +980,11 @@ msgstr "Se restableció correctamente field_order a 1000 para los nodos @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Front end"
+msgstr "Interfaz"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front end general"
+msgstr "Interfaz general"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

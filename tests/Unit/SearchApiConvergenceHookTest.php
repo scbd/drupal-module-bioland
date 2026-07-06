@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
  *
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
- * determining its final index state, bioland_update_9064() must remain the
- * highest-numbered update hook and must re-apply the canonical v2 config.
+ * determining its final index state, the highest-numbered update hook
+ * (currently bioland_update_9074()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -73,15 +73,34 @@ class SearchApiConvergenceHookTest extends TestCase {
       'bioland_update_9064() must apply the canonical v2 config via _bioland_v2_update_search_and_facets_config().'
     );
 
-    // The current highest-numbered hook (bioland_update_9065(), in the
-    // translation include) must ALSO converge on the canonical v2 config, since
-    // Drupal runs it last for every site.
+    // bioland_update_9065() (translation include) held the convergence duty
+    // while it was the highest-numbered hook and must keep converging for
+    // sites whose update run ends there.
     $translationFile = $this->moduleRoot() . '/includes/bioland.install.translation.inc';
     $this->assertFileExists($translationFile);
     $this->assertMatchesRegularExpression(
       '/function\s+bioland_update_9065\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
       file_get_contents($translationFile),
       'bioland_update_9065() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The current highest-numbered hook (bioland_update_9074()) must ALSO
+    // converge on the canonical v2 config, since Drupal runs it last for
+    // every site (9071-9073 re-import translations and backfill taxonomy
+    // translations / settings defaults after 9065).
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9074\s*\([^)]*\)\s*\{[^}]*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      $content,
+      'bioland_update_9074() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9075(), added for the 1.1.2
+    // interface-string + zh-hans translation corrections) is the last writer
+    // for every site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9075\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($translationFile),
+      'bioland_update_9075() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
   }
 
@@ -98,9 +117,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9065,
+      9075,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9065() now holds that role (it re-imports translations and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9075() now holds that role (it re-imports the 1.1.2 translation corrections and re-applies the canonical v2 config after the 9071-9074 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

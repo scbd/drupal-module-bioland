@@ -996,11 +996,11 @@ msgstr "Uspešno resetujte field_order na 1000 za @count čvorove."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Prednji kraj"
+msgstr "Interfejs"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Prednji kraj - opšte"
+msgstr "Opšti interfejs"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

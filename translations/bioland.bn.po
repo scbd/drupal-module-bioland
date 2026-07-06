@@ -883,11 +883,11 @@ msgstr "@count নোডের জন্য সফলভাবে ফিল্�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ফ্রন্ট এন্ড"
+msgstr "ইন্টারফেস"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ফ্রন্ট এন্ড জেনারেল"
+msgstr "সাধারণ ইন্টারফেস"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

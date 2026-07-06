@@ -996,11 +996,11 @@ msgstr "Samun nasarar sake saita field_order zuwa 1000 don nodes @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Ƙarshen gaba"
+msgstr "Interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Babban Ƙarshen Babban"
+msgstr "Interface na gaba ɗaya"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

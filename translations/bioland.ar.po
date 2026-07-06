@@ -883,11 +883,11 @@ msgstr "تمت إعادة تعيين field_order إلى 1000 لعقد @count ب�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "الواجهة الأمامية"
+msgstr "الواجهة"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "الواجهة الأمامية العامة"
+msgstr "الواجهة العامة"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

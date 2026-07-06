@@ -996,11 +996,11 @@ msgstr "Resetați cu succes field_order la 1000 pentru nodurile @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Capătul frontal"
+msgstr "Interfață"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Capătul frontal - General"
+msgstr "Interfață generală"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

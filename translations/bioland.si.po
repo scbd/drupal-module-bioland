@@ -996,11 +996,11 @@ msgstr "@count නෝඩ් සඳහා field_order 1000 දක්වා සා
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ඉදිරිපස අවසානය"
+msgstr "අතුරුමුහුණත"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ෆ්රන්ට් එන්ඩ් ජෙනර"
+msgstr "සාමාන්‍ය අතුරුමුහුණත"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

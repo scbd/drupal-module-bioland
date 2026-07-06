@@ -996,11 +996,11 @@ msgstr "Redefina field_order para 1000 com sucesso para os nós @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Front-end"
+msgstr "Interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front-end geral"
+msgstr "Interface geral"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

@@ -996,11 +996,11 @@ msgstr "@count tugunlari uchun field_orderni 1000 ga muvaffaqiyatli tiklash."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Old uchi"
+msgstr "Interfeys"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Old End Umumiy"
+msgstr "Umumiy interfeys"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

@@ -56,8 +56,11 @@ function _bioland_import_translations() {
   $skipped_count = 0;
 
   foreach ($files as $file) {
-    // Extract language code from filename (e.g., bioland.fr.po -> fr).
-    if (preg_match('/bioland\.([a-z]{2})\.po$/', $file->filename, $matches)) {
+    // Extract language code from filename (e.g., bioland.fr.po -> fr,
+    // bioland.zh-hans.po -> zh-hans). Supports 2-3 letter base codes with an
+    // optional hyphenated subtag (zh-hans, zh-hant, pt-br) so multi-part Drupal
+    // langcodes are not silently skipped by a [a-z]{2}-only pattern.
+    if (preg_match('/bioland\.([a-z]{2,3}(?:-[a-z0-9]+)?)\.po$/', $file->filename, $matches)) {
       $langcode = $matches[1];
 
       // Check if language is enabled.
@@ -348,6 +351,79 @@ function bioland_update_9065() {
   }
 
   // Converge the canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Re-import PO catalogs with the working importer (repairs the broken guard).
+ *
+ * NOTE ON NUMBERING (applies to hooks 9071-9074): the harness/staging database
+ * lineage carries a bioland schema version of 9070, recorded by experimental
+ * code that was never committed (no bioland_update_9066-9070 exists in this
+ * repo). Drupal only runs hooks numbered ABOVE the stored schema version, so
+ * on those databases every hook <= 9070 - including the earlier translation
+ * re-imports 9062/9063/9065 - is permanently skipped and `drush updatedb`
+ * reports nothing pending. All corrective hooks therefore start at 9071.
+ *
+ * This one exists because hooks 9062/9063/9065 have a second, independent
+ * defect: each guards the import on \Drupal::hasService('locale.translation'),
+ * a service that does NOT exist in Drupal core, so even when they ran they hit
+ * the guard and imported zero strings. That is why UI strings added to the .po
+ * catalogs (e.g. the branded "Configure @branding settings ..." admin-menu
+ * description) never reached locales_target and still render in English.
+ *
+ * _bioland_import_translations() already uses the supported
+ * \Drupal\locale\Gettext::fileToDatabase() API and invalidates the 'locale'
+ * cache tag. This hook simply calls it guarded ONLY on the locale module being
+ * enabled - no phantom-service check - so the import actually happens. The
+ * importer overwrites customized and non-customized strings alike, so it is
+ * safe to run more than once.
+ */
+function bioland_update_9071() {
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    return t('Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.');
+  }
+
+  _bioland_import_translations();
+  return t('Re-imported Bioland translation catalogs with the corrected importer. Check logs for details.');
+}
+
+/**
+ * Re-import PO catalogs for the 1.1.2 translation corrections and converge.
+ *
+ * The 1.1.2 release corrected the Spanish (and all other) "Front End" /
+ * "Front End General" admin-UI strings from lowercased/machine-translated
+ * English to proper localized "interface" terms, and added a dedicated
+ * translations/bioland.zh-hans.po catalog (previously the Chinese strings
+ * lived only in bioland.zh.po, which the site's zh-hans langcode never
+ * matched). Because Drupal runs each numbered update hook only once, sites
+ * that already ran the earlier 9071 re-import will not pick these corrected
+ * catalogs up without a NEW higher-numbered hook - this is it.
+ *
+ * As the highest-numbered hook it is guaranteed to run LAST for every site, so
+ * per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config (via _bioland_v2_update_search_and_facets_config(), loaded
+ * by bioland.install) so the last writer never leaves a half-configured index.
+ * The importer overwrites customized and non-customized strings alike, and the
+ * v2 converger is create-or-update / UUID-preserving, so this is safe to run
+ * more than once.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9075() {
+  $messages = [];
+
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = t('Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.');
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = t('Re-imported Bioland 1.1.2 translation catalogs (interface strings + zh-hans). Check logs for details.');
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
 
   return implode(' ', array_map('strval', $messages));

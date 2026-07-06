@@ -996,11 +996,11 @@ msgstr "@count നോഡുകൾക്കായി 1000 ലേക്ക് fiel
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ഫ്രണ്ട് എൻഡ്"
+msgstr "ഇന്റർഫേസ്"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ഫ്രണ്ട് എൻഡ് ജനറൽ"
+msgstr "പൊതു ഇന്റർഫേസ്"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

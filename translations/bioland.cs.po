@@ -1063,11 +1063,11 @@ msgstr "Úspěšně resetujte field_order na 1000 pro uzly @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Přední konec"
+msgstr "Rozhraní"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Obecné"
+msgstr "Obecné rozhraní"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

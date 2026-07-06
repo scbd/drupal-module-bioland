@@ -410,3 +410,24 @@ function bioland_update_9060() {
 function bioland_update_9064() {
   return _bioland_v2_update_search_and_facets_config();
 }
+
+/**
+ * Terminal convergence: re-apply the canonical Search API v2 config last.
+ *
+ * The 9071-9073 corrective hooks (translation re-import, term-translation
+ * backfill, config seed) outnumber the previous convergence points (9064, and
+ * 9065 which also converges), so the "single switch" duty moves here. As the
+ * highest-numbered update hook this is guaranteed to run last for every site
+ * regardless of update history, re-applying the canonical v2 index/facet
+ * configuration and reindexing. Same idempotency guarantees as
+ * bioland_update_9064(): create-or-update, UUID-preserving, module-guarded,
+ * ends with a full reindex.
+ *
+ * If you add a higher-numbered hook, it must itself converge on the v2
+ * config and SearchApiConvergenceHookTest must be updated to point at it.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9074() {
+  return _bioland_v2_update_search_and_facets_config();
+}

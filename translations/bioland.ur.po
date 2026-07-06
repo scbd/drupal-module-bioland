@@ -996,11 +996,11 @@ msgstr "@count نوڈز کے لیے فیلڈ_آرڈر کو کامیابی کے �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "فرنٹ اینڈ"
+msgstr "انٹرفیس"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "فرنٹ اینڈ جنرل"
+msgstr "عمومی انٹرفیس"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

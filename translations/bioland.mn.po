@@ -996,11 +996,11 @@ msgstr "@count зангилааны хувьд field_order-ийг 1000 руу а
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Урд талын төгсгөл"
+msgstr "Интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Урд талын ерөнхий"
+msgstr "Ерөнхий интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

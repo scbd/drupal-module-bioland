@@ -996,11 +996,11 @@ msgstr "Irrisettja b'suċċess field_order għal 1000 għal nodi @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Tmiem ta 'quddiem"
+msgstr "Interfaċċa"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Ġenerali"
+msgstr "Interfaċċa ġenerali"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

@@ -996,11 +996,11 @@ msgstr "Si guul ah dib u dib u dib u dhigay field_order 1000 ee @count nodes."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Dhamaad Hore"
+msgstr "Interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Hore End General"
+msgstr "Interface guud"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

@@ -1075,11 +1075,11 @@ msgstr "Palauta kenttäjärjestys arvoon 1000 onnistuneesti @count -solmuille."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Etupää"
+msgstr "Käyttöliittymä"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Käyttöliittymä Yleinen"
+msgstr "Yleinen käyttöliittymä"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

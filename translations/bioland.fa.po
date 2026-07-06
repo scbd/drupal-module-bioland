@@ -1075,11 +1075,11 @@ msgstr "با موفقیت field_order را برای گره های @count به 10
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "بخش جلو"
+msgstr "رابط"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "جلو انتد عمومی"
+msgstr "رابط عمومی"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

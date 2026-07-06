@@ -996,11 +996,11 @@ msgstr "Đặt lại thành công field_order thành 1000 cho các nút @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Mặt trước"
+msgstr "Giao diện"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Giao diện người dùng chung"
+msgstr "Giao diện chung"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

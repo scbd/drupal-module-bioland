@@ -996,11 +996,11 @@ msgstr "@count 노드의 필드_주문을 1000으로 성공적으로 재설정�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "프런트엔드"
+msgstr "인터페이스"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "프론트엔드 일반"
+msgstr "일반 인터페이스"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

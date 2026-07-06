@@ -1063,11 +1063,11 @@ msgstr "Nulstil field_order til 1000 for @count noder med succes."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Frontenden"
+msgstr "Grænseflade"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End Generelt"
+msgstr "Generel grænseflade"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

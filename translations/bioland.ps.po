@@ -996,11 +996,11 @@ msgstr "په بریالیتوب سره د @count نوډز لپاره 1000 ته f
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "مخکې پای"
+msgstr "انټرفیس"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "د مخې پایان عمومي"
+msgstr "عمومي انټرفیس"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

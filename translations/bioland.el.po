@@ -1093,11 +1093,11 @@ msgstr "Επαναφέρετε επιτυχώς το field_order σε 1000 γι�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Μπροστινό άκρο"
+msgstr "Διεπαφή"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Γενικό μπροστινό άκρο"
+msgstr "Γενική διεπαφή"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

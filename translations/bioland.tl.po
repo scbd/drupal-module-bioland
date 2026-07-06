@@ -996,11 +996,11 @@ msgstr "Matagumpay na i-reset ang field_order sa 1000 para sa mga node @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Harap na dulo"
+msgstr "Interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Pangkalahatang Front End"
+msgstr "Pangkalahatang interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

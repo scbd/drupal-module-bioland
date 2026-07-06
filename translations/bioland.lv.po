@@ -996,11 +996,11 @@ msgstr "Veiksmīgi atiestatīt field_order uz 1000 @count mezgliem."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Priekšējais gals"
+msgstr "Saskarne"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Priekšējā gala vispārējā daļa"
+msgstr "Vispārīga saskarne"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

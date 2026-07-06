@@ -996,11 +996,11 @@ msgstr "Успешно обнулено значение field_order до 1000 �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Передняя часть"
+msgstr "Интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Общие сведения о фронтенде"
+msgstr "Общий интерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

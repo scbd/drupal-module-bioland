@@ -1093,11 +1093,11 @@ msgstr "field_order wurde erfolgreich auf 1000 für @count -Knoten zurückgesetz
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Frontend"
+msgstr "Oberfläche"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Frontend allgemein"
+msgstr "Allgemeine Oberfläche"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

@@ -996,11 +996,11 @@ msgstr "Успішно скинути field_order до 1000 для вузлів 
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Передня частина"
+msgstr "Інтерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Загальна фронтальна частина"
+msgstr "Загальний інтерфейс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

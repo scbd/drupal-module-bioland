@@ -996,11 +996,11 @@ msgstr "@count ノードの field_order が 1000 に正常にリセットされ�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "フロントエンド"
+msgstr "インターフェース"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "フロントエンド一般"
+msgstr "インターフェース全般"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

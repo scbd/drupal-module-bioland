@@ -996,11 +996,11 @@ msgstr "@count முனைகளுக்கு 1000 க்கு field_order �
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "முன் முனைமை"
+msgstr "இடைமுகம்"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ஃபிரண்ட் எண்ட் ஜெனரல்"
+msgstr "பொது இடைமுகம்"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

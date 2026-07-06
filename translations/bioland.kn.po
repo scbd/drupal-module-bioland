@@ -996,11 +996,11 @@ msgstr "@count ನೋಡ್ಗಳಿಗಾಗಿ field_order ಅನ್ನು 100
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ಫ್ರಂಟ್ ಎಂಡ್"
+msgstr "ಇಂಟರ್‌ಫೇಸ್"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ಫ್ರಂಟ್ ಎಂಡ್ ಜನರಲ್"
+msgstr "ಸಾಮಾನ್ಯ ಇಂಟರ್‌ಫೇಸ್"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

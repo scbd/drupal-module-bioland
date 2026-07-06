@@ -996,11 +996,11 @@ msgstr "@count ਨੋਡਸ ਲਈ ਸਫਲਤਾਪੂਰਵਕ ਫੀਲਡ_�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "ਫਰੰਟ ਐਂਡ"
+msgstr "ਇੰਟਰਫੇਸ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "ਫਰੰਟ ਐਂਡ ਜਨਰਲ"
+msgstr "ਆਮ ਇੰਟਰਫੇਸ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

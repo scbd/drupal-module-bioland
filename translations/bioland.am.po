@@ -996,11 +996,11 @@ msgstr "ለ@count ኖዶች Field_order ወደ 1000 በተሳካ ሁኔታ ዳ�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "የፊት መጨረሻ"
+msgstr "በይነገጽ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "የፊት መጨረሻ አጠቃላይ"
+msgstr "አጠቃላይ በይነገጽ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

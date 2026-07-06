@@ -1075,11 +1075,11 @@ msgstr "Lähtestage edukalt field_order väärtusele 1000 @count sõlmede jaoks.
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Esiots"
+msgstr "Liides"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Üldine esiosa"
+msgstr "Üldine liides"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

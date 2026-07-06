@@ -996,11 +996,11 @@ msgstr "Успешно ресетирајте field_order на 1000 за јаз�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Преден крај"
+msgstr "Интерфејс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Општи преден крај"
+msgstr "Општ интерфејс"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

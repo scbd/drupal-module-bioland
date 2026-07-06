@@ -996,11 +996,11 @@ msgstr "成功将 @count 节点的 field_order 重置为 1000。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "前端"
+msgstr "界面"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "前端通用"
+msgstr "通用界面"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

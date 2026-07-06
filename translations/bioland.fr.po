@@ -996,11 +996,11 @@ msgstr "Réinitialisez avec succès field_order à 1000 pour les nœuds @count."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Extrémité avant"
+msgstr "Interface"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Front End : général"
+msgstr "Interface générale"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"

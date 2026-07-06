@@ -8,799 +8,799 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
+"Language: zh-hans\n"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "General Settings"
-msgstr "Bendrieji nustatymai"
+msgstr "常规设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Countries"
-msgstr "Šalys"
+msgstr "国家"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enter one country code per line."
-msgstr "Įveskite po vieną šalies kodą eilutėje."
+msgstr "每行输入一个国家代码。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Region"
-msgstr "Regionas"
+msgstr "地区"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Select the geographical region."
-msgstr "Pasirinkite geografinį regioną."
+msgstr "选择地理区域。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "North America"
-msgstr "Šiaurės Amerika"
+msgstr "北美洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "South America"
-msgstr "Pietų Amerika"
+msgstr "南美洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Europe"
-msgstr "Europa"
+msgstr "欧洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Asia"
-msgstr "Azija"
+msgstr "亚洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Africa"
-msgstr "Afrika"
+msgstr "非洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Oceania"
-msgstr "Okeanija"
+msgstr "大洋洲"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Is Biosafety Land?"
-msgstr "Ar tai biologinės saugos žemė?"
+msgstr "是生物安全之地吗？"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
-msgstr "Nurodo, ar tai yra biologinės saugos žemės egzempliorius."
+msgstr "指示这是否是一个生物安全之地的实例。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Behavior Settings"
-msgstr "Laukų elgsenos nustatymai"
+msgstr "字段行为设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
-msgstr "Įjungti laukų matomumo valdymą"
+msgstr "启用字段可见性控制"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show/hide fields based on content type selection. Controls URL, date, and published fields visibility."
-msgstr "Rodyti/slėpti laukus pagal turinio tipo pasirinkimą. Valdo URL, datos ir paskelbtų laukų matomumą."
+msgstr "根据内容类型选择显示/隐藏字段。控制 URL、日期和已发布字段的可见性。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
-msgstr "Įjungti papildomus laukus"
+msgstr "启用附加字段"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Add content-type specific additional tags (event statuses, project statuses, etc.) based on thesaurus content type."
-msgstr "Pridėti specifinius turinio tipui papildomus laukus (įvykių būsenos, projektų būsenos ir t. t.) pagal tezaurų turinio tipą."
+msgstr "根据同义词库内容类型添加特定于内容类型的附加字段（事件状态、项目状态等）。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
-msgstr "Įjungti automatinę santrauką"
+msgstr "启用自动摘要"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically generate summary from body content as user types."
-msgstr "Automatiškai generuoti santrauką iš pagrindinio turinio, kai vartotojas rašo."
+msgstr "在用户输入时从正文内容自动生成摘要。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Help Comments"
-msgstr "Įjungti laukų pagalbos komentarus"
+msgstr "启用字段帮助注释"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Display contextual help comments for fields based on content type."
-msgstr "Rodyti kontekstinius pagalbos komentarus laukams pagal turinio tipą."
+msgstr "根据内容类型显示字段的上下文帮助注释。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Rules"
-msgstr "Laukų matomumo taisyklės"
+msgstr "字段可见性规则"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Define custom field visibility rules (JSON format)."
-msgstr "Apibrėžkite pasirinktines laukų matomumo taisykles (JSON formatu)."
+msgstr "定义自定义字段可见性规则（JSON 格式）。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
-msgstr "Numatytieji vertimai"
+msgstr "翻译默认值"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Konfigūruoti vertimų numatytųjų (kalbos vietos rezervavimo ženklų) kūrimą verčiamiems objektams."
+msgstr "为可翻译实体配置翻译默认值（语言占位符）的创建。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
-msgstr "Automatiškai kurti numatytuosius vertimus"
+msgstr "自动创建翻译默认值"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "When enabled, translation defaults (placeholders) are created for other languages at entity create/update. Existing translations with proper source are not overwritten."
-msgstr "Kai įjungta, numatytieji vertimai (vietos rezervavimo ženklai) sukuriami kitoms kalboms kuriant/atnaujinant objektą. Esami vertimai su tinkamu šaltiniu neperrašomi."
+msgstr "启用后，在实体创建/更新时会为其他语言创建翻译默认值（占位符）。具有正确来源的现有翻译不会被覆盖。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Use all available languages"
-msgstr "Naudoti visas galimas kalbas"
+msgstr "使用所有可用语言"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "When enabled, translations will be created for all languages installed on the site. When disabled, only the selected target languages below will be used."
-msgstr "Kai įjungta, vertimai bus kuriami visoms svetainėje įdiegtoms kalboms. Kai išjungta, bus naudojamos tik žemiau pasirinktos tikslinės kalbos."
+msgstr "启用后，将为网站上安装的所有语言创建翻译。禁用后，将仅使用下面选定的目标语言。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Target languages for translation defaults"
-msgstr "Tikslinės kalbos numatytiesiems vertimams"
+msgstr "翻译默认值的目标语言"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Select which languages to create translation defaults for. Used only when \"Use all available languages\" is disabled."
-msgstr "Pasirinkite, kurioms kalboms kurti numatytuosius vertimus. Naudojama tik tada, kai parinktis „Naudoti visas galimas kalbas“ yra išjungta."
+msgstr "选择要为其创建翻译默认值的语言。仅在禁用“使用所有可用语言”时使用。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Copy source field values"
-msgstr "Kopijuoti šaltinio laukų reikšmes"
+msgstr "复制源字段值"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "When enabled, translatable field values from the source language will be copied to new translations."
-msgstr "Kai įjungta, verčiamų laukų reikšmės iš šaltinio kalbos bus nukopijuotos į naujus vertimus."
+msgstr "启用后，源语言的可翻译字段值将被复制到新的翻译中。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Entity types"
-msgstr "Objektų tipai"
+msgstr "实体类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Select which entity types should have translation defaults created."
-msgstr "Pasirinkite, kuriems objektų tipams turėtų būti kuriami numatytieji vertimai."
+msgstr "选择应为其创建翻译默认值的实体类型。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Batch Operations"
-msgstr "Masinės operacijos"
+msgstr "批量操作"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Process existing entities to create missing translation defaults."
-msgstr "Apdoroti esamus objektus, kad būtų sukurti trūkstami numatytieji vertimai."
+msgstr "处理现有实体以创建缺失的翻译默认值。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Entity type to process"
-msgstr "Apdorojamas objekto tipas"
+msgstr "要处理的实体类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "- Select -"
-msgstr "- Pasirinkite -"
+msgstr "- 选择 -"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Select an entity type to create translations for existing entities."
-msgstr "Pasirinkite objekto tipą, kad sukurtumėte vertimus esamiems objektams."
+msgstr "选择一个实体类型为现有实体创建翻译。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Create translation defaults for existing entities"
-msgstr "Sukurti numatytuosius vertimus esamiems objektams"
+msgstr "为现有实体创建翻译默认值"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Please select an entity type to process."
-msgstr "Prašome pasirinkti apdorojamą objekto tipą."
+msgstr "请选择要处理的实体类型。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "English"
-msgstr "Anglų"
+msgstr "英语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Spanish"
-msgstr "Ispanų"
+msgstr "西班牙语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "French"
-msgstr "Prancūzų"
+msgstr "法语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "German"
-msgstr "Vokiečių"
+msgstr "德语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Italian"
-msgstr "Italų"
+msgstr "意大利语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Portuguese"
-msgstr "Portugalų"
+msgstr "葡萄牙语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Dutch"
-msgstr "Olandų"
+msgstr "荷兰语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Chinese"
-msgstr "Kinų"
+msgstr "中文"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Japanese"
-msgstr "Japonų"
+msgstr "日语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Korean"
-msgstr "Korėjiečių"
+msgstr "韩语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Arabic"
-msgstr "Arabų"
+msgstr "阿拉伯语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Russian"
-msgstr "Rusų"
+msgstr "俄语"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "Help"
-msgstr "Pagalba"
+msgstr "帮助"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Tai bus pagrindinis jūsų naujo svetainės turinio tekstas. Santrauka gali būti naudojama trumpam ir glaustam jūsų turinio aprašymui. Be to, santrauka bus rodoma jūsų įrašo sąrašo ir kortelių rodiniuose svetainėje. Kitu atveju bus naudojami keli pirmieji sakiniai iš pagrindinio turinio."
+msgstr "这将是您新网站内容的主要内容。摘要可用于显示您内容的简明描述。此外，摘要将显示在您记录在网站上的列表和卡片视图中。或者，将使用主要内容的前几句话。"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "Images"
-msgstr "Paveikslėliai"
+msgstr "图片"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Pirmasis paveikslėlis</b> iš kairės į dešinę čia <b>bus pagrindinis jūsų įrašo paveikslėlis</b>, rodomas puslapyje ir miniatiūrose sąrašo bei kortelių rodiniuose. Visi kiti paveikslėliai bus rodomi po pagrindiniu turiniu."
+msgstr "此处从左到右顺序的<b>第一张图片</b>，<b>将是您记录的主图片</b>，显示在页面上以及列表和卡片视图的缩略图中。所有其他图片将显示在主要内容下方。"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
-msgstr "Didieji baneriai (herojai)"
+msgstr "英雄横幅"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Bet kuris puslapis/turinio tipas gali turėti kelis <b>didžiuosius banerius (herojus)</b>. Jei jų yra daugiau nei vienas, jie bus keičiami kas valandą."
+msgstr "任何页面/内容类型都可以有多个<b>英雄横幅</b>。如果有一个以上，它们将每小时轮换一次。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "News (2)"
-msgstr "Naujienos (2)"
+msgstr "新闻 (2)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Meeting or Event (3)"
-msgstr "Susitikimas arba renginys (3)"
+msgstr "会议或活动 (3)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project (5)"
-msgstr "Projektas (5)"
+msgstr "项目 (5)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document (12)"
-msgstr "Dokumentas (12)"
+msgstr "文档 (12)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Related Website (13)"
-msgstr "Susijusi svetainė (13)"
+msgstr "相关网站 (13)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Other Resource (15)"
-msgstr "Kitas išteklius (15)"
+msgstr "其他资源 (15)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Image or Video (16)"
-msgstr "Paveikslėlis arba vaizdo įrašas (16)"
+msgstr "图片或视频 (16)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "FAQ (43)"
-msgstr "DUK (43)"
+msgstr "常见问题 (43)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "National Information (44)"
-msgstr "Nacionalinė informacija (44)"
+msgstr "国家信息 (44)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Status of LMOs (45)"
-msgstr "GMO statusas (45)"
+msgstr "改性活生物体状况 (45)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Trial (46)"
-msgstr "Lauko bandymas (46)"
+msgstr "田间试验 (46)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "National Mainstreaming Strategy (47)"
-msgstr "Nacionalinė integravimo strategija (47)"
+msgstr "国家主流化战略 (47)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Capacity-Building (48)"
-msgstr "Gebėjimų stiprinimas (48)"
+msgstr "能力建设 (48)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Announcement (49)"
-msgstr "Pranešimas (49)"
+msgstr "公告 (49)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Contact (50)"
-msgstr "Kontaktas (50)"
+msgstr "联系人 (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
-msgstr "Biolandas"
+msgstr "Bioland"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Biosafety Land"
-msgstr "Biologinės saugos žemė"
+msgstr "生物安全土地"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "@branding Settings"
-msgstr "@branding Nustatymai"
+msgstr "@branding 设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Site name"
-msgstr "Svetainės pavadinimas"
+msgstr "站点名称"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Slogan"
-msgstr "Šūkis"
+msgstr "口号"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "How this is used depends on your site's theme."
-msgstr "Kaip tai naudojama, priklauso nuo jūsų svetainės temos."
+msgstr "如何使用它取决于您网站的主题。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Email address"
-msgstr "Elektroninio pašto adresas"
+msgstr "电子邮件地址"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "The <em>From</em> address in automated e-mails sent during registration and new password requests, and other notifications. (Use an address ending in your site's domain to help prevent this e-mail being flagged as spam.)"
-msgstr "<em>Iš</em> adresas automatiniuose elektroniniuose laiškuose, siunčiamuose registracijos metu ir naujų slaptažodžių užklausų, bei kitų pranešimų metu. (Naudokite adresą, kuris baigiasi jūsų svetainės domene, kad šis el. laiškas nebūtų pažymėtas kaip šlamštas.)"
+msgstr "<em>注册期间发送的自动电子邮件中的发件人地址、新密码请求以及其他通知。</em>（使用以您网站域名结尾的地址来帮助防止此电子邮件被标记为垃圾邮件。）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Site Name"
-msgstr "Išversti svetainės pavadinimą"
+msgstr "翻译网站名称"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Slogan"
-msgstr "Išversti Slogan"
+msgstr "翻译口号"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
-msgstr "Lauko matomumo kontrolė"
+msgstr "现场能见度控制"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show/hide fields based on content type selection. Configure which fields are visible for each content type below."
-msgstr "Rodyti/slėpti laukus pagal turinio tipo pasirinkimą. Konfigūruokite, kurie laukai matomi kiekvienam toliau pateiktam turinio tipui."
+msgstr "根据内容类型选择显示/隐藏字段。在下方配置每种内容类型可见的字段。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "URL Field"
-msgstr "URL laukas"
+msgstr "网址字段"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show URL field for these content types:"
-msgstr "Rodyti šių tipų turinio URL lauką:"
+msgstr "显示以下内容类型的 URL 字段："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Published Field"
-msgstr "Paskelbtas laukas"
+msgstr "已发布字段"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Published field for these content types:"
-msgstr "Rodyti paskelbtą lauką šiems turinio tipams:"
+msgstr "显示以下内容类型的已发布字段："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Date Range Field (Start & End Date)"
-msgstr "Datos diapazono laukas (pradžios ir pabaigos data)"
+msgstr "日期范围字段（开始和结束日期）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Date Range fields (Start & End Date) for these content types:"
-msgstr "Rodyti datų diapazono laukus (pradžios ir pabaigos data) šiems turinio tipams:"
+msgstr "显示以下内容类型的日期范围字段（开始和结束日期）："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Control"
-msgstr "Papildomų laukų kontrolė"
+msgstr "其他字段控制"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Mapping"
-msgstr "Papildomų laukų kartografavimas"
+msgstr "其他字段映射"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "The following content types will have these additional tags available:"
-msgstr "Šiuose turinio tipuose bus prieinami šie papildomi laukai:"
+msgstr "以下内容类型将提供这些附加字段："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Statuses"
-msgstr "Įvykio būsenos"
+msgstr "事件状态"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Statuses, Geographic Scopes"
-msgstr "Projekto būsenos, geografinės sritys"
+msgstr "项目状态、地理范围"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Ministry (8)"
-msgstr "Ministerija (8)"
+msgstr "部委 (8)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types, Government Types"
-msgstr "Organizacijos tipai, vyriausybės tipai"
+msgstr "组织类型、政府类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem (9)"
-msgstr "Ekosistema (9)"
+msgstr "生态系统 (9)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
-msgstr "Ekosistemų tipai"
+msgstr "生态系统类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
-msgstr "Dokumentų tipai"
+msgstr "文件类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Šie laukai dinamiškai pridedami pagal pasirinktą turinio tipą ir yra maitinami Vue.js komponentu."
+msgstr "这些字段是根据所选内容类型动态添加的，并由 Vue.js 组件提供支持。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Menu Depth Restriction"
-msgstr "Įgalinti meniu gylio apribojimą"
+msgstr "启用菜单深度限制"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Apriboti ne administratoriaus vartotojams kurti antro lygio meniu elementus ir giliau. Tik vartotojai, turintys “administruoti meniu” leidimą, gali kurti įdėtus meniu elementus."
+msgstr "限制非管理员用户创建二级菜单项及更深层次的菜单项。只有拥有 “管理菜单” 权限的用户才能创建嵌套菜单项。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
-msgstr "(Reikalinga)"
+msgstr "（必填）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "<strong>Required:</strong> Select which entity types should have translation defaults created. You must select at least one entity type for automatic translation defaults to work. Common choice: <em>Content (node)</em>."
-msgstr "<strong>Reikalinga:</strong> pasirinkite, kurių subjektų tipuose turėtų būti sukurti vertimo numatytieji parametrai. Turite pasirinkti bent vieną subjekto tipą, kad automatinio vertimo numatytieji parametrai veiktų. Bendras pasirinkimas: Tur <em>inys (mazgas)</em>."
+msgstr "<strong>必需：</strong>选择应创建翻译默认值的实体类型。必须至少选择一种实体类型才能使自动翻译默认生效。常见选择：<em>内容（节点）</em>。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "You must select at least one entity type for automatic translation defaults to work. Please select one or more entity types, or disable \"Automatically create translation defaults\"."
-msgstr "Turite pasirinkti bent vieną subjekto tipą, kad automatinio vertimo numatytieji parametrai veiktų. Prašome pasirinkti vieną ar daugiau subjektų tipų, arba išjungti “Automatiškai sukurti vertimo numatytuosius nustatymus”."
+msgstr "必须至少选择一种实体类型才能使自动翻译默认生效。请选择一种或多种实体类型，或禁用 “自动创建翻译默认值”。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Afrikaans"
-msgstr "Afrikiečių"
+msgstr "南非荷兰语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Amharic"
-msgstr "Amharų"
+msgstr "阿姆哈拉语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Asturian"
-msgstr "Astūrietis"
+msgstr "阿斯图里亚斯的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Azerbaijani"
-msgstr "Azerbaidžaniečių"
+msgstr "阿塞拜疆人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Belarusian"
-msgstr "Baltarusių"
+msgstr "白俄罗斯人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bulgarian"
-msgstr "Bulgarų"
+msgstr "保加利亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bengali"
-msgstr "Bengalų kalba"
+msgstr "孟加拉的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tibetan"
-msgstr "Tibetietis"
+msgstr "藏族"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bosnian"
-msgstr "Bosnių"
+msgstr "波斯尼亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Catalan"
-msgstr "Katalonų"
+msgstr "加泰罗尼亚语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Czech"
-msgstr "Čekų"
+msgstr "捷克人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Welsh"
-msgstr "Velso"
+msgstr "威尔士的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Danish"
-msgstr "Danų kalba"
+msgstr "丹麦的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Dzongkha"
-msgstr "Dzongkha"
+msgstr "宗卡"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Greek"
-msgstr "Graikų kalba"
+msgstr "希腊人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Esperanto"
-msgstr "Esperanto kalba"
+msgstr "世界语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Estonian"
-msgstr "Estų"
+msgstr "爱沙尼亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Basque"
-msgstr "Baskų"
+msgstr "巴斯克的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Persian"
-msgstr "Persų"
+msgstr "波斯语的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Finnish"
-msgstr "Suomių"
+msgstr "芬兰语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Filipino"
-msgstr "Filipinietis"
+msgstr "菲律宾人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Faeroese"
-msgstr "Farerų"
+msgstr "法罗语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Frisian"
-msgstr "Fryzų"
+msgstr "弗里斯兰人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Irish"
-msgstr "Airis"
+msgstr "爱尔兰人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Scots Gaelic"
-msgstr "Škotų gėlų kalba"
+msgstr "苏格兰盖尔语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Galician"
-msgstr "Galisų"
+msgstr "加利西亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Swiss German"
-msgstr "Šveicarijos vokiečių"
+msgstr "瑞士德语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Gujarati"
-msgstr "Gudžarati"
+msgstr "古吉拉特语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Hebrew"
-msgstr "Hebrajų kalba"
+msgstr "希伯来人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Hindi"
-msgstr "Hindi"
+msgstr "印地语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Croatian"
-msgstr "Kroatas"
+msgstr "克罗地亚语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Haitian Creole"
-msgstr "Haičio kreolų kalba"
+msgstr "海地克里奥尔语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Hungarian"
-msgstr "Vengrų"
+msgstr "匈牙利人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Armenian"
-msgstr "Armėnų"
+msgstr "亚美尼亚的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Indonesian"
-msgstr "Indoneziečių kalba"
+msgstr "印度尼西亚的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Icelandic"
-msgstr "Islandų kalba"
+msgstr "冰岛的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Javanese"
-msgstr "Javanese"
+msgstr "爪哇人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Georgian"
-msgstr "Gruzinų"
+msgstr "格鲁吉亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Kazakh"
-msgstr "Kazachas"
+msgstr "哈萨克斯坦人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Khmer"
-msgstr "Khmerų"
+msgstr "高棉人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Kannada"
-msgstr "Kanados"
+msgstr "卡纳达语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Kurdish"
-msgstr "Kurdų"
+msgstr "库尔德"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Kyrgyz"
-msgstr "Kirgizas"
+msgstr "吉尔吉斯斯坦的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Lao"
-msgstr "Laosas"
+msgstr "老挝"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Lithuanian"
-msgstr "Lietuvis"
+msgstr "立陶宛语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Latvian"
-msgstr "Latvis"
+msgstr "拉脱维亚的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Malagasy"
-msgstr "Madagaskaris"
+msgstr "马达加斯加人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Macedonian"
-msgstr "Makedonų"
+msgstr "马其顿人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Malayalam"
-msgstr "Malajalių"
+msgstr "马拉雅拉姆语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Mongolian"
-msgstr "Mongolų"
+msgstr "蒙古人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Marathi"
-msgstr "Maratai"
+msgstr "马拉地语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bahasa Malaysia"
-msgstr "Malaiziečių"
+msgstr "马来语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Burmese"
-msgstr "Birmos"
+msgstr "缅甸人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Nepali"
-msgstr "Nepalų"
+msgstr "尼泊尔语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Norwegian Bokmål"
-msgstr "Norvegijos bokmål"
+msgstr "挪威语 Bokmål"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Norwegian Nynorsk"
-msgstr "Norvegų Nynorsk"
+msgstr "挪威新诺斯克语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Occitan"
-msgstr "oksitanų"
+msgstr "奥克西坦"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Punjabi"
-msgstr "Punjabi"
+msgstr "旁遮普语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Polish"
-msgstr "lenkas"
+msgstr "波兰语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Portuguese, Portugal"
-msgstr "Portugalija, Portugalija"
+msgstr "葡萄牙语、葡萄牙"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Portuguese, Brazil"
-msgstr "Portugalijos, Brazilija"
+msgstr "葡萄牙语、巴西"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Romanian"
-msgstr "Rumunų"
+msgstr "罗马尼亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Scots"
-msgstr "Škotai"
+msgstr "苏格兰人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Northern Sami"
-msgstr "Šiaurės samiai"
+msgstr "北萨米人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Sinhala"
-msgstr "Sinhala"
+msgstr "僧伽罗人的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Slovak"
-msgstr "Slovakas"
+msgstr "斯洛伐克人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Slovenian"
-msgstr "Slovėnų"
+msgstr "斯洛文尼亚的"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Albanian"
-msgstr "Albanų"
+msgstr "阿尔巴尼亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Serbian"
-msgstr "Serbų kalba"
+msgstr "塞尔维亚人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Swedish"
-msgstr "Švedų"
+msgstr "瑞典人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Swahili"
-msgstr "Svahili"
+msgstr "斯瓦希里语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tamil"
-msgstr "Tamilų"
+msgstr "泰米尔人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tamil, Sri Lanka"
-msgstr "Tamilų kalba, Šri Lanka"
+msgstr "泰米尔语，斯里兰卡"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Telugu"
-msgstr "Telugu"
+msgstr "泰卢固语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Thai"
-msgstr "Tailandietis"
+msgstr "泰国人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Turkish"
-msgstr "Turkų"
+msgstr "土耳其人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tuvan"
-msgstr "Tuvanas"
+msgstr "图瓦人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Uyghur"
-msgstr "Uigūrų"
+msgstr "维吾尔人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Ukrainian"
-msgstr "Ukrainietis"
+msgstr "乌克兰人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Urdu"
-msgstr "Urdu"
+msgstr "乌尔都语"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Vietnamese"
-msgstr "Vietnamiečių"
+msgstr "越南人"
 
 #: bioland.module
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr "保存"
 
 #: bioland.module
 msgid "Order Override"
-msgstr "Užsakymo nepaisymas"
+msgstr "订单改写"
 
 #: bioland.module
 msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Jūs neturite leidimo kurti meniu elementus pagal kitus meniu elementus. Jūsų vaidmeniui leidžiami tik aukščiausio lygio meniu elementai."
+msgstr "您无权在其他菜单项下创建菜单项。您的角色只允许使用顶级菜单项。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
-msgstr "Tvarkos perrašymo pagalba"
+msgstr "顺序覆盖帮助"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help Text"
-msgstr "Tvarkos perrašymo pagalbos tekstas"
+msgstr "顺序覆盖帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Order Override field and content sorting priority."
-msgstr "Pagalbos tekstas, paaiškinantis tvarkos perrašymo lauką ir turinio rūšiavimo prioritetą."
+msgstr "解释顺序覆盖字段和内容排序优先级的帮助文本。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Order Override Help Text"
-msgstr "Versti tvarkos perrašymo pagalbos tekstą"
+msgstr "翻译顺序覆盖帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Event Status"
@@ -812,7 +812,7 @@ msgstr "Content types that will have Event Status tags available."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
-msgstr "Rodyti įvykio būsenos žymas šiems turinio tipams:"
+msgstr "显示以下内容类型的活动状态标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Project Status"
@@ -824,7 +824,7 @@ msgstr "Content types that will have Project Status and Geographic Scope tags av
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
-msgstr "Rodyti projekto būsenos žymas šiems turinio tipams:"
+msgstr "显示以下内容类型的项目状态标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
@@ -856,11 +856,11 @@ msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
-msgstr "Žymės Nustatymai"
+msgstr "标签设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin Settings"
-msgstr "Administratoriaus nustatymai"
+msgstr "管理员设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "@name (@tid)"
@@ -868,946 +868,946 @@ msgstr "@name (@tid)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Failed to load content type options from tags vocabulary: @message"
-msgstr "Nepavyko įkelti turinio tipo parinkčių iš žymų žodyno: @message"
+msgstr "无法从标签词汇表中加载内容类型选项：@message"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help"
-msgstr "Reklamos parinkčių pagalba"
+msgstr "促销选项帮助"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
-msgstr "Reklamos parinkčių žinyno tekstas"
+msgstr "促销选项帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Pagalbos tekstas, kuriame paaiškinamos parinktys “Skatinama” ir “Sticky”. HTML yra leidžiamas."
+msgstr "说明 “推广” 和 “置顶” 选项的帮助文本。允许使用 HTML。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
-msgstr "Versti reklamos pagalbos tekstą"
+msgstr "翻译促销帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Debug Logging"
-msgstr "Derinimo registravimas"
+msgstr "调试日志"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Debug Logging"
-msgstr "Įgalinti derinimo registravimą"
+msgstr "启用调试日志"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable console.log output for Bioland JavaScript features. Useful for debugging."
-msgstr "Įgalinkite “Bioland JavaScript” funkcijų console.log išvestį. Naudinga derinimui."
+msgstr "启用 Bioland JavaScript 功能的 console.log 输出。对调试很有用。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Debug Log Areas"
-msgstr "Žurnalo sričių derinimas"
+msgstr "调试日志区域"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Select which areas should output debug logs. Only effective when Debug Logging is enabled."
-msgstr "Pasirinkite, kurios sritys turėtų išvesti derinimo žurnalus. Veiksminga tik tada, kai įjungtas derinimo registravimas."
+msgstr "选择应输出调试日志的区域。仅在启用调试日志记录时有效。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility"
-msgstr "Lauko matomumas"
+msgstr "现场可见性"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Log field visibility show/hide operations."
-msgstr "Žurnalo lauko matomumas parodyti/slėpti operacijas."
+msgstr "记录字段可见性显示/隐藏操作。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Log additional fields mounting and content type changes."
-msgstr "Registruokite papildomų laukų montavimo ir turinio tipo pakeitimus."
+msgstr "记录其他字段挂载和内容类型更改。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Log auto summary generation and CKEditor connections."
-msgstr "Automatinio suvestinės generavimo žurnalas ir CKEditor jungtys."
+msgstr "记录自动生成摘要和 CKEditor 连接。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments"
-msgstr "Pagalbos komentarai"
+msgstr "帮助评论"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Log help comment insertion and visibility changes."
-msgstr "Prisijungti pagalbos komentaro įterpimo ir matomumo pakeitimus."
+msgstr "日志帮助注释插入和可见性更改。"
 
 #: js/bioland-help-comments-1-0-21.js
 msgid "Promotion Options"
-msgstr "Skatinimo parinktys"
+msgstr "促销选项"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "System Functions"
-msgstr "Sistemos funkcijos"
+msgstr "系统函数"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Administrative system operations. Use with caution."
-msgstr "Administracinės sistemos operacijos. Naudokite atsargiai."
+msgstr "管理系统操作。谨慎使用。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promote and Sticky"
-msgstr "Skatinkite ir lipnią"
+msgstr "推广和粘贴"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promote and Sticky flags on records can be seen by public or anonymous users."
-msgstr "Reklamuoti ir “Sticky” vėliavas ant įrašų gali matyti viešieji arba anoniminiai vartotojai."
+msgstr "公开或匿名用户可以看到记录上的 “推广” 和 “置顶” 标志。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Promote and Sticky flags to public users"
-msgstr "Rodyti reklamavimo ir lipnios vėliavėles viešiesiems vartotojams"
+msgstr "向公众用户显示 “推广” 和 “粘贴” 标志"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Drupal Cache Management"
-msgstr "“Drupal” talpyklos valdymas"
+msgstr "Drupal 缓存管理"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache."
-msgstr "Išvalo visus talpyklos duomenis iš “Drupal”. Tai apima puslapių talpyklas, atvaizdavimo talpyklas ir sukompiliuotus šablonus. Naudokite tai, kai matote pasenusį turinį arba atlikę konfigūracijos pakeitimus, kurie neatsispindi svetainėje. Pastaba, tai neturi įtakos CDN talpyklą, naršyklės talpyklą, arba middleware API įvyniojimo talpyklą."
+msgstr "清除 Drupal 中的所有缓存数据。这包括页面缓存、渲染缓存和已编译的模板。当您看到过时的内容或进行了未反映在网站上的配置更改后，请使用此选项。请注意，这不会影响 CDN 缓存、浏览器缓存或中间件 API 包装器缓存。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Rebuild Drupal Cache"
-msgstr "Atkurkite “Drupal” talpyklą"
+msgstr "重建 Drupal 缓存"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Rebuilding cache..."
-msgstr "Talpyklos atkūrimas..."
+msgstr "正在重建缓存..."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Ordering"
-msgstr "Turinio užsakymas"
+msgstr "内容订购"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Iš naujo nustato visų mazgų field_order reikšmę į 1000. Tai sukuria naują kiekvieno mazgo reviziją su peržiūros pranešimu “Atstatyti užsakymą”. Išsaugoma originali paskutinio atnaujinimo data ir vartotojas. Naudokite tai norėdami normalizuoti turinio užsakymą visoje svetainėje."
+msgstr "将所有节点的 field_order 值重置为 1000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
-msgstr "Iš naujo nustatyti užsakymą"
+msgstr "重置订单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting ordering values..."
-msgstr "Užsakymo reikšmių atstatymas..."
+msgstr "正在重置排序值..."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Drupal cache has been rebuilt successfully."
-msgstr "“Drupal” talpykla buvo sėkmingai atstatyta."
+msgstr "Drupal 缓存已成功重建。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset field_order to 1000 for @count nodes."
-msgstr "Sėkmingai atstatykite field_order į 1000 @count mazgams."
+msgstr "成功将 @count 节点的 field_order 重置为 1000。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "Sąsaja"
+msgstr "界面"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "Bendroji sąsaja"
+msgstr "通用界面"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"
-msgstr "Vertimo paketinės operacijos"
+msgstr "翻译批量操作"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Apdorokite esamus subjektus, kad sukurtumėte trūkstamus vertimo numatytuosius parametrus. Konfigūruokite numatytuosius vertimo nustatymus skirtuke Sistemos funkcijos."
+msgstr "处理现有实体以创建缺失的翻译默认值。在 “系统功能” 选项卡中配置翻译默认设置。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu settings coming soon."
-msgstr "Netrukus pasirodys “Mega Menu” nustatymai."
+msgstr "超级菜单设置即将推出。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Home Page Settings"
-msgstr "Pagrindinio puslapio nustatymai"
+msgstr "主页设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Home Page settings coming soon."
-msgstr "Netrukus pasirodys pagrindinio puslapio nustatymai."
+msgstr "主页设置即将推出。"
 
 #: bioland.install
 msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit modulis neįjungtas; praleidžiant profilio konfigūraciją."
+msgstr "Linkit 模块未启用；正在跳过配置文件配置。"
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
-msgstr "Sukurtas ir sukonfigūruotas numatytasis Linkit profilis su visais matchers."
+msgstr "使用所有匹配器创建并配置了默认 Linkit 配置文件。"
 
 #: bioland.install
 msgid "Updated existing default Linkit profile with Bioland matchers configuration."
-msgstr "Atnaujintas esamas numatytasis Linkit profilis su Bioland matchers konfigūracija."
+msgstr "使用 Bioland 匹配器配置更新了现有的默认 Linkit 配置文件。"
 
 #: bioland.install
 msgid "Linkit profile configuration completed: @message"
-msgstr "Linkit profilio konfigūracija baigta: @message"
+msgstr "Linkit 配置文件配置已完成：@message"
 
 #: bioland.install
 msgid "Linkit default profile @status with Bioland matchers configuration."
-msgstr "Linkit numatytąjį profilį @status su Bioland matchers konfigūracija."
+msgstr "将默认配置文件 @status 与 Bioland 匹配器配置关联起来。"
 
 #: bioland.install
 msgid "Required module: @module"
-msgstr "Reikalingas modulis: @module"
+msgstr "必填模块：@module"
 
 #: bioland.install
 msgid "Configured editor.editor.full_html with Linkit extension."
-msgstr "Sukonfigūruotas editor.editor.full_html su Linkit plėtiniu."
+msgstr "使用 Linkit 扩展名配置了 editor.editor.full_html。"
 
 #: bioland.install
 msgid "Editor full_html not found; skipping Linkit editor configuration."
-msgstr "Redaktorius full_html nerastas; praleidžiant Linkit redaktoriaus konfigūraciją."
+msgstr "找不到编辑器 full_html；正在跳过 Linkit 编辑器配置。"
 
 #: bioland.install
 msgid "Configured filter.format.full_html with Linkit filter."
-msgstr "Sukonfigūruotas filter.format.full_html su Linkit filtru."
+msgstr "使用 Linkit 过滤器配置 filter.format.full_html。"
 
 #: bioland.install
 #: src/Form/BiolandSettingsForm.php
 msgid "Site Email"
-msgstr "Svetainės el. paštas"
+msgstr "网站电子邮件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Auto Summary"
-msgstr "Automatinė santrauka"
+msgstr "自动摘要"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Main Menu Lock"
-msgstr "Pagrindinio meniu užraktas"
+msgstr "主菜单锁"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Lock Main Menu Editing"
-msgstr "Užrakinti pagrindinio meniu redagavimą"
+msgstr "锁定主菜单编辑"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Prevents scbd_staff, site_manager and content_manager from editing the main menu. When unchecked, these roles will be granted the \"Administer Main navigation menu items\" permission."
-msgstr "Neleidžia scbd_staff, site_manager ir content_manager redaguoti pagrindinį meniu. Kai nepažymėta, šiems vaidmenims bus suteiktas leidimas “Administruoti pagrindinius naršymo meniu elementus”."
+msgstr "防止 scbd_staff、site_manager 和 content_manager 编辑主菜单。如果未选中，这些角色将被授予 “管理主导航菜单项目” 权限。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Settings"
-msgstr "Lauko matomumo nustatymai"
+msgstr "字段可见性设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable"
-msgstr "Įjungti"
+msgstr "启用"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
-msgstr "Papildomų žymų nustatymai"
+msgstr "其他标签设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Type"
-msgstr "Organizacijos tipas"
+msgstr "组织类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Organization Type tags for these content types:"
-msgstr "Rodyti organizacijos tipo žymas šiems turinio tipams:"
+msgstr "显示以下内容类型的组织类型标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Type"
-msgstr "Ekosistemos tipas"
+msgstr "生态系统类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Rodyti ekosistemos tipo žymas šiems turinio tipams:"
+msgstr "显示以下内容类型的生态系统类型标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Type"
-msgstr "Dokumento tipas"
+msgstr "文件类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show Document Type tags for these content types:"
-msgstr "Rodyti dokumentų tipo žymas šiems turinio tipams:"
+msgstr "显示以下内容类型的文档类型标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"
-msgstr "Pagalbos komentarų nustatymai"
+msgstr "帮助评论设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Body Field Help"
-msgstr "Kūno lauko pagalba"
+msgstr "身体区域帮助"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Body Field Help Text"
-msgstr "Kūno lauko pagalbos tekstas"
+msgstr "正文字段帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text displayed for the body/content field."
-msgstr "Žinyno tekstas rodomas kūno/turinio laukui."
+msgstr "正文/内容字段显示的帮助文本。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "This will be the main content of your new site content. The summary can be used to display a brief concise description of your content. Further, the summary will be displayed in list and card views of your record on the website. Alternatively, the first few sentences from the main content will be used."
-msgstr "Tai bus pagrindinis jūsų naujos svetainės turinio turinys. Santrauka gali būti naudojama trumpam glaustam jūsų turinio aprašymui parodyti. Be to, santrauka bus rodoma jūsų įrašo sąrašo ir kortelių peržiūrose svetainėje. Arba bus naudojami pirmieji keli pagrindinio turinio sakiniai."
+msgstr "这将是你新网站内容的主要内容。摘要可用于显示内容的简短描述。此外，摘要将显示在您在网站上的记录的列表和卡片视图中。或者，将使用主要内容的前几句话。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Body Help Text"
-msgstr "Išversti “Body Help” tekstą"
+msgstr "翻译正文帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Attachments Field Help"
-msgstr "Priedų lauko žinynas"
+msgstr "“附件” 字段帮助"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Images Help Text"
-msgstr "Vaizdų žinyno tekstas"
+msgstr "图片帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text for the images section of attachments."
-msgstr "Priedų vaizdų skyriaus žinyno tekstas."
+msgstr "附件图片部分的帮助文本。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "The first image in order of left to right here, will be the main image of your record displayed on the page and in thumbnails in list and card views. All other images will be displayed below the main content."
-msgstr "Pirmasis vaizdas iš kairės į dešinę čia bus pagrindinis jūsų įrašo vaizdas, rodomas puslapyje ir miniatiūromis sąrašo ir kortelių rodiniuose. Visi kiti vaizdai bus rodomi po pagrindiniu turiniu."
+msgstr "按从左到右的顺序排列，第一张图像将是显示在页面上以及列表视图和卡片视图的缩略图中的记录的主图像。所有其他图像将显示在主要内容下方。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Images Help Text"
-msgstr "Išversti vaizdų žinyno tekstą"
+msgstr "翻译图片帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Heroes Help Text"
-msgstr "Heroes pagalbos tekstas"
+msgstr "英雄帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text for the hero banners section."
-msgstr "Pagalbos tekstas herojų antraščių skiltyje."
+msgstr "英雄旗帜部分的帮助文本。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Any page/content type can have multiple hero banners. If there is more than one they will be rotated on an hourly basis."
-msgstr "Bet kuriame puslapyje/turinio tipe gali būti keli herojų reklaminiai skydeliai. Jei jų yra daugiau nei vienas, jie bus keičiami kas valandą."
+msgstr "任何页面/内容类型都可以有多个英雄旗帜。如果有多个，则每小时轮换一次。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Heroes Help Text"
-msgstr "Versti “Heroes” pagalbos tekstą"
+msgstr "翻译英雄帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "\"<b>Promoted to front page:</b>"
-msgstr "“Pa <b>aukštinta į pirmąjį puslapį:</b>"
+msgstr "“已<b>晋升到头版：</b>"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help text explaining the Promoted and Sticky options."
-msgstr "Pagalbos tekstas, kuriame paaiškinamos parinktys “Skatinama” ir “Sticky”."
+msgstr "说明 “推广” 和 “置顶” 选项的帮助文本。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "\"<b>Content sorting priority (highest to lowest):</b>"
-msgstr "“<b>Turinio rūšiavimo prioritetas (nuo didžiausio iki mažiausio):</b>"
+msgstr "“<b>内容排序优先级（从高到低）：</b>"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Ordering Reset"
-msgstr "Turinio užsakymo atstatymas"
+msgstr "内容订购重置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resets the field_order value to 10000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Iš naujo nustato field_order reikšmę į 10000 visiems mazgams. Tai sukuria naują kiekvieno mazgo reviziją su peržiūros pranešimu “Atstatyti užsakymą”. Išsaugoma originali paskutinio atnaujinimo data ir vartotojas. Naudokite tai norėdami normalizuoti turinio užsakymą visoje svetainėje."
+msgstr "将所有节点的 field_order 值重置为 10000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Sėkmingai atstatykite field_order į 10000 @count mazgams."
+msgstr "成功将 @count 节点的 field_order 重置为 10000。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
-msgstr "Iš naujo nustatyti užsakymą"
+msgstr "重置订单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Turinio tipo meniu"
+msgstr "🗂️ 内容类型菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
-msgstr "Konfigūruokite automatinius meniu įrašus kiekvienam turinio tipui mega meniu."
+msgstr "为超级菜单中的每种内容类型配置自动菜单条目。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "@type_name Menu"
-msgstr "@type_name Meniu"
+msgstr "@type_name 菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Maximum menus to show"
-msgstr "Maksimalus meniu, kuriuos reikia parodyti"
+msgstr "要显示的最大菜单数"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Maximum number of menu entries to display for this content type."
-msgstr "Didžiausias meniu įrašų skaičius, kurį reikia rodyti šiam turinio tipui."
+msgstr "此内容类型要显示的最大菜单条目数。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Drupal menus position"
-msgstr "“Drupal” meniu padėtis"
+msgstr "Drupal 菜单位置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Top"
-msgstr "Viršuje"
+msgstr "顶部"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bottom"
-msgstr "Apačia"
+msgstr "底部"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Drupal menu entries will appear at the top or bottom of automatic entries."
-msgstr "Drupal meniu įrašai bus rodomi automatinių įrašų viršuje arba apačioje."
+msgstr "Drupal 菜单条目将出现在自动条目的顶部或底部。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Country Profiles Menu"
-msgstr "Šalių profilių meniu"
+msgstr "国家概况菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Focal Points Menu"
-msgstr "Židinio taškų meniu"
+msgstr "焦点菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "National Targets Menu"
-msgstr "Nacionalinių tikslų meniu"
+msgstr "国家目标菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "National Report Menu"
-msgstr "Nacionalinės ataskaitos meniu"
+msgstr "国家报告菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "BCH Menu"
-msgstr "BCH meniu"
+msgstr "BCH 菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "ABSCH Menu"
-msgstr "ABSCH meniu"
+msgstr "ABSCH 菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Forums Menu"
-msgstr "Forumų meniu"
+msgstr "论坛菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Menu position"
-msgstr "Meniu padėtis"
+msgstr "菜单位置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Show menu even if empty"
-msgstr "Rodyti meniu, net jei tuščias"
+msgstr "即使菜单为空也显示菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Display this menu section even when there are no entries."
-msgstr "Rodyti šį meniu skyrių net tada, kai nėra įrašų."
+msgstr "即使没有条目，也要显示此菜单部分。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "An error occurred while updating menu permissions. Please check the logs."
-msgstr "Atnaujinant meniu teises įvyko klaida. Patikrinkite žurnalus."
+msgstr "更新菜单权限时出错。请检查日志。"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "How it Works"
-msgstr "Kaip tai veikia"
+msgstr "它是如何运作的"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Promoted to front page:"
-msgstr "Paaukštinta į pirmąjį puslapį:"
+msgstr "晋升到头版："
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Content appears in featured listings, homepage blocks, or \"promoted\" views"
-msgstr "Turinys rodomas siūlomuose sąrašuose, pagrindinio puslapio blokuose arba “reklamuojamuose” rodiniuose"
+msgstr "内容出现在精选列表、主页区块或 “推广” 视图中"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Useful for highlighting important or timely content"
-msgstr "Naudinga norint pabrėžti svarbų ar savalaikį turinį"
+msgstr "可用于突出显示重要或及时的内容"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Multiple items can be promoted simultaneously"
-msgstr "Vienu metu galima reklamuoti kelis elementus"
+msgstr "可以同时升级多个物品"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Sticky at top of lists:"
-msgstr "Lipnūs sąrašų viršuje:"
+msgstr "置于列表顶部："
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Content stays pinned at the top of content listings"
-msgstr "Turinys lieka prisegtas turinio sąrašų viršuje"
+msgstr "内容保持固定在内容列表的顶部"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Remains at top regardless of publication date"
-msgstr "Išlieka viršuje, nepriklausomai nuo paskelbimo datos"
+msgstr "无论发布日期如何，都保持在最前面"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Multiple sticky items appear before non-sticky content"
-msgstr "Prieš nelipnų turinį pasirodo keli lipnūs elementai"
+msgstr "在非粘性内容之前出现多个粘性项目"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Using both:"
-msgstr "Naudodami abu:"
+msgstr "两者都使用："
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Content can be both promoted AND sticky for maximum visibility."
-msgstr "Turinys gali būti tiek reklamuojamas, TIEK lipnus, kad būtų užtikrintas maksimalus matomumas."
+msgstr "内容既可以推广，也可以粘贴，以最大限度地提高知名度。"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Content sorting priority (highest to lowest):"
-msgstr "Turinio rūšiavimo prioritetas (nuo didžiausio iki mažiausio):"
+msgstr "内容排序优先级（从高到低）："
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Sticky"
-msgstr "Lipnūs"
+msgstr "粘性的"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Items marked \"Sticky at top of lists\" always appear first"
-msgstr "Elementai, pažymėti “Lipnūs sąrašų viršuje”, visada rodomi pirmiausia"
+msgstr "标记为 “置于列表顶部” 的项目始终排在最前面"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Lower numbers appear before higher numbers (e.g., 10 appears before 20)"
-msgstr "Mažesni skaičiai rodomi prieš didesnius skaičius (pvz., 10 pasirodo prieš 20)"
+msgstr "较低的数字出现在较高的数字之前（例如，10 出现在 20 之前）"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Promoted"
-msgstr "Skatinamas"
+msgstr "晋升"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Prekės, pažymėtos “Paaukštinta į pirmąjį puslapį”, ateina toliau"
+msgstr "接下来是标有 “晋升到头版” 的项目"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
-msgstr "Pradžios data"
+msgstr "开始日期"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Tada rūšiuojama pagal pradžios datą (arba paskelbtą datą, jei nėra pradžios datos)"
+msgstr "然后按开始日期（如果没有开始日期，则按发布日期）排序"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
-msgstr "Paskutinis pakeitimas"
+msgstr "上次修改时间"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Finally sorted by most recently updated"
-msgstr "Galiausiai surūšiuota pagal naujausią atnaujinimą"
+msgstr "最后按最近更新的顺序排序"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
-msgstr "Patarimas:"
+msgstr "提示："
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Palikite tuščią, kad galėtumėte naudoti numatytąjį rūšiavimą. Naudokite 10 padalomis (pvz., 10, 20, 30), kad vėliau paliktumėte vietos daiktams įterpti."
+msgstr "留空以使用默认排序。使用 10 的增量（例如 10、20、30）为以后插入项目留出空间。"
 
 #: bioland.module
 msgid "URL"
-msgstr "URL"
+msgstr "网址"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Site Name"
-msgstr "Svetainės pavadinimas"
+msgstr "站点名称"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Promoted Content"
-msgstr "Iš naujo nustatyti reklamuojamą turinį"
+msgstr "重置推广内容"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Removes all the promoted flags from every content entry."
-msgstr "Pašalina visas reklamuojamas vėliavas iš kiekvieno turinio įrašo."
+msgstr "移除每个内容条目中的所有推广标志。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Promoted"
-msgstr "Reklamuotas iš naujo"
+msgstr "重置推广"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting promoted flags..."
-msgstr "Reklamuotų vėliavų nustatymas iš naujo..."
+msgstr "正在重置推广标志..."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset promoted flag to 0 for @count content entries."
-msgstr "Sėkmingai iš naujo nustatykite reklamuojamą vėliavėlę į 0 @count turinio įrašams."
+msgstr "成功将 @count 内容条目的升级标志重置为 0。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky Content"
-msgstr "Iš naujo nustatyti lipnų turinį"
+msgstr "重置置置顶内容"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Removes all the sticky flags from every content entry."
-msgstr "Pašalina visas lipnias vėliavas iš kiekvieno turinio įrašo."
+msgstr "移除每个内容条目中的所有粘性标记。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Reset Sticky"
-msgstr "Iš naujo nustatyti lipnų"
+msgstr "重置粘性"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Resetting sticky flags..."
-msgstr "Lipnių vėliavėlių nustatymas iš naujo..."
+msgstr "正在重置粘性标志..."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
-msgstr "Sėkmingai atstatykite lipnią vėliavėlę į 0 @count turinio įrašams."
+msgstr "成功将 @count 内容条目的粘性标志重置为 0。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front-end"
-msgstr "Priekinė dalis"
+msgstr "前端"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"
-msgstr "Administratorius"
+msgstr "管理员"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Promote and Sticky Icon Visibility"
-msgstr "Reklamuokite ir lipnios piktogramos matomumą"
+msgstr "宣传和粘贴图标的知名度"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Type Menus"
-msgstr "Turinio tipo meniu"
+msgstr "内容类型菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroes"
-msgstr "Apie “Home Page Heroes”"
+msgstr "关于主页英雄"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Heroes are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you configure the hero banners."
-msgstr "Herojai yra dideli reklamjuostės vaizdai, rodomi pagrindinio puslapio viršuje. Kadangi pagrindinio puslapio išdėstymo negalima tiesiogiai redaguoti, čia konfigūruojate herojų antraštes."
+msgstr "英雄是显示在主页顶部的大型横幅图片。由于无法直接编辑主页布局，因此您可以在此处配置英雄横幅。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "The heroes rotate automatically every hour, allowing you to display different messages and images throughout the day."
-msgstr "Herojai sukasi automatiškai kas valandą, todėl visą dieną galėsite rodyti skirtingus pranešimus ir vaizdus."
+msgstr "英雄每小时自动轮换一次，让您可以全天显示不同的消息和图像。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "If you prefer to display only one hero, simply unpublish the other hero(es) using the Edit button below."
-msgstr "Jei norite rodyti tik vieną herojų, tiesiog panaikinkite kito herojaus (-ų) paskelbimą naudodami žemiau esantį mygtuką Redaguoti."
+msgstr "如果你只想显示一个英雄，只需使用下面的编辑按钮取消发布其他英雄即可。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Published"
-msgstr "Paskelbta"
+msgstr "已出版"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Unpublished"
-msgstr "Neskelbiama"
+msgstr "未发表"
 
 # Content Types
 msgid "News"
-msgstr "žinios"
+msgstr "消息"
 
 msgid "Event"
-msgstr "Renginys"
+msgstr "事件"
 
 msgid "Events"
-msgstr "Renginiai"
+msgstr "活动"
 
 msgid "Learning Resource"
-msgstr "Mokymosi šaltinis"
+msgstr "学习资源"
 
 msgid "Learning Resources"
-msgstr "Mokymosi ištekliai"
+msgstr "学习资源"
 
 msgid "Project"
-msgstr "Projektas"
+msgstr "项目"
 
 msgid "Projects"
-msgstr "Projektai"
+msgstr "项目"
 
 msgid "Basic Page"
-msgstr "Pagrindinis puslapis"
+msgstr "基本页面"
 
 msgid "Basic Pages"
-msgstr "Pagrindiniai puslapiai"
+msgstr "基本页面"
 
 msgid "Article"
-msgstr "Straipsnis"
+msgstr "文章"
 
 msgid "Articles"
-msgstr "Straipsniai"
+msgstr "文章"
 
 msgid "Government Ministry or Institute"
-msgstr "Vyriausybės ministerija arba institutas"
+msgstr "政府部委或机构"
 
 msgid "Government Ministries or Institutes"
-msgstr "Vyriausybės ministerijos ar institutai"
+msgstr "政府部门或机构"
 
 msgid "Ecosystem"
-msgstr "Ekosistema"
+msgstr "生态系统"
 
 msgid "Ecosystems"
-msgstr "Ekosistemos"
+msgstr "生态系统"
 
 msgid "Protected Area"
-msgstr "Saugoma teritorija"
+msgstr "保护区"
 
 msgid "Protected Areas"
-msgstr "Saugomos teritorijos"
+msgstr "保护区"
 
 msgid "Biodiversity Data"
-msgstr "Biologinės įvairovės duomenys"
+msgstr "生物多样性数据"
 
 msgid "Document"
-msgstr "dokumentas"
+msgstr "文档"
 
 msgid "Documents"
-msgstr "Dokumentai"
+msgstr "文件"
 
 msgid "Related Website"
-msgstr "Susijusi svetainė"
+msgstr "相关网站"
 
 msgid "Related Websites"
-msgstr "Susijusios svetainės"
+msgstr "相关网站"
 
 msgid "Other"
-msgstr "Kita"
+msgstr "其他"
 
 msgid "Others"
-msgstr "Kiti"
+msgstr "其他的"
 
 msgid "Image or Video"
-msgstr "Vaizdas arba vaizdo įrašas"
+msgstr "图片或视频"
 
 msgid "Images or Videos"
-msgstr "Vaizdai arba vaizdo įrašai"
+msgstr "图片或视频"
 
 msgid "Other Resource"
-msgstr "Kiti ištekliai"
+msgstr "其他资源"
 
 msgid "Other Resources"
-msgstr "Kiti ištekliai"
+msgstr "其他资源"
 
 msgid "FAQ"
-msgstr "DUK"
+msgstr "常见问题"
 
 msgid "FAQs"
-msgstr "DUK"
+msgstr "常见问题解答"
 
 msgid "National Information"
-msgstr "Nacionalinė informacija"
+msgstr "国家信息"
 
 msgid "National Informations"
-msgstr "Nacionalinė informacija"
+msgstr "国家信息"
 
 msgid "Status of LMO"
-msgstr "LMO statusas"
+msgstr "LMO 的状态"
 
 msgid "Status of LMOs"
-msgstr "LMO statusas"
+msgstr "LMO 的现状"
 
 msgid "Field Trial"
-msgstr "Lauko bandymas"
+msgstr "实地试验"
 
 msgid "Field Trials"
-msgstr "Lauko bandymai"
+msgstr "实地试验"
 
 msgid "National Mainstreaming Strategy"
-msgstr "Nacionalinė integravimo strategija"
+msgstr "国家主流化战略"
 
 msgid "National Mainstreaming Strategies"
-msgstr "Nacionalinės integravimo strategijos"
+msgstr "国家主流化战略"
 
 msgid "Capacity Building"
-msgstr "Gebėjimų stiprinimas"
+msgstr "能力建设"
 
 msgid "Announcement"
-msgstr "Skelbimas"
+msgstr "公告"
 
 msgid "Announcements"
-msgstr "Pranešimai"
+msgstr "公告"
 
 msgid "Contact"
-msgstr "Susisiekite"
+msgstr "联系我们"
 
 msgid "Contacts"
-msgstr "Kontaktai"
+msgstr "联系人"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Mega Menu Component Settings"
-msgstr "“Mega Menu” komponentų nustatymai"
+msgstr "超级菜单组件设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Position where menu entries manually created in drupal will appear next to the automated section."
-msgstr "Pozicija, kurioje meniu įrašai, rankiniu būdu sukurti drupal, pasirodys šalia automatizuoto skyriaus."
+msgstr "在 drupal 中手动创建的菜单条目将出现在自动化部分旁边的位置。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Types Statistics Menu"
-msgstr "Turinio tipai Statistikos meniu"
+msgstr "内容类型统计菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Home Page Widget Settings"
-msgstr "Pagrindinis puslapis Valdiklio nustatymai"
+msgstr "主页小工具设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "GBIF Widget"
-msgstr "GBIF valdiklis"
+msgstr "GBIF 小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable GBIF Widget"
-msgstr "Įgalinti GBIF valdiklį"
+msgstr "启用 GBIF 控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GBIF (Global Biodiversity Information Facility) widget on the home page."
-msgstr "Įgalinkite GBIF (Globali biologinės įvairovės informacijos priemonė) valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 GBIF（全球生物多样性信息设施）控件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Country: @country"
-msgstr "Šalis: @country"
+msgstr "国家：@country"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Preset default: @zoom)"
-msgstr "(Iš anksto nustatytas numatytasis nustatymas: @zoom)"
+msgstr "（默认预设：@zoom）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Zoom Factor"
-msgstr "Priartinimo koeficientas"
+msgstr "缩放系数"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Zoom level for the map (1-255).@info"
-msgstr "Žemėlapio priartinimo lygis (1-255). @info"
+msgstr "地图的缩放级别 (1-255)。@info"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Preset default: @lng)"
-msgstr "(Iš anksto nustatytas numatytasis nustatymas: @lng)"
+msgstr "（默认预设：@lng）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Preset default: @lat)"
-msgstr "(Iš anksto nustatytas numatytasis nustatymas: @lat)"
+msgstr "（默认预设：@lat）"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Center Point - Longitude"
-msgstr "Centrinis taškas - ilguma"
+msgstr "中心点-经度"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Longitude coordinate for map center point.@info"
-msgstr "Žemėlapio centrinio taško ilgumos koordinatė. @info"
+msgstr "地图中心点的经度坐标。@info"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Center Point - Latitude"
-msgstr "Centrinis taškas - platuma"
+msgstr "中心点-纬度"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Latitude coordinate for map center point.@info"
-msgstr "Žemėlapio centrinio taško platumos koordinatė. @info"
+msgstr "地图中心点的纬度坐标。@info"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Latest News and Updates Widget"
-msgstr "Naujausių naujienų ir atnaujinimų valdiklis"
+msgstr "最新新闻和更新小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Latest News and Updates Widget"
-msgstr "Įgalinti naujausių naujienų ir naujinimų valdiklį"
+msgstr "启用最新新闻和更新控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Latest News and Updates widget on the home page."
-msgstr "Įgalinkite naujausių naujienų ir naujinimų valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 “最新新闻和更新” 控件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "National Targets Widget"
-msgstr "Nacionalinių tikslų valdiklis"
+msgstr "国家目标小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable National Targets Widget"
-msgstr "Įgalinti nacionalinių tikslų valdiklį"
+msgstr "启用国家目标控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the National Targets widget on the home page."
-msgstr "Pagrindiniame puslapyje įgalinkite nacionalinių tikslų valdiklį."
+msgstr "在主页上启用 “国家目标” 控件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Panorama Solutions Widget"
-msgstr "Panoramos sprendimų valdiklis"
+msgstr "全景解决方案小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Panorama Solutions Widget"
-msgstr "Įjungti “Panorama Solutions” valdiklį"
+msgstr "启用全景解决方案控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Panorama Solutions widget on the home page."
-msgstr "Įgalinkite “Panorama Solutions” valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 “全景解决方案” 插件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "E-Learning Widget"
-msgstr "Elektroninio mokymosi valdiklis"
+msgstr "电子学习小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable E-Learning Widget"
-msgstr "Įgalinti elektroninio mokymosi valdiklį"
+msgstr "启用电子学习小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the E-Learning widget on the home page."
-msgstr "Įgalinkite elektroninio mokymosi valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用电子学习插件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Implementation Widget"
-msgstr "Įgyvendinimo valdiklis"
+msgstr "实现控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Implementation Widget"
-msgstr "Įgalinti įgyvendinimo valdiklį"
+msgstr "启用实现控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Implementation widget on the home page."
-msgstr "Įgalinkite diegimo valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 “实施” 控件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Technical & Scientific Cooperation Widget"
-msgstr "Techninio ir mokslinio bendradarbiavimo valdiklis"
+msgstr "技术和科学合作小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Technical & Scientific Cooperation Widget"
-msgstr "Įgalinti techninio ir mokslinio bendradarbiavimo valdiklį"
+msgstr "启用技术和科学合作小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Technical & Scientific Cooperation widget on the home page."
-msgstr "Pagrindiniame puslapyje įgalinkite Techninio ir mokslinio bendradarbiavimo valdiklį."
+msgstr "在主页上启用 “技术与科学合作” 插件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Latest Discussions Widget"
-msgstr "Naujausių diskusijų valdiklis"
+msgstr "最新讨论小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Latest Discussions Widget"
-msgstr "Įgalinti naujausių diskusijų valdiklį"
+msgstr "启用 “最新讨论” 控件"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Latest Discussions widget on the home page."
-msgstr "Įgalinkite naujausių diskusijų valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 “最新讨论” 控件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Content Statistics Widget"
-msgstr "Turinio statistikos valdiklis"
+msgstr "内容统计小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Content Statistics Widget"
-msgstr "Įgalinti turinio statistikos valdiklį"
+msgstr "启用内容统计小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the Content Statistics widget on the home page."
-msgstr "Įgalinkite turinio statistikos valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 “内容统计” 小组件。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "GEOBON Widget"
-msgstr "GEOBON valdiklis"
+msgstr "GEOBON 小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable GEOBON Widget"
-msgstr "Įgalinti GEOBON valdiklį"
+msgstr "启用 GEOBON 小工具"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable the GEOBON widget on the home page."
-msgstr "Įgalinkite GEOBON valdiklį pagrindiniame puslapyje."
+msgstr "在主页上启用 GEOBON 控件。"
 
 #: bioland.links.menu.yml
 msgid "Configure settings including locales, countries, and region."
-msgstr "Konfigūruokite nustatymus, įskaitant lokales, šalis ir regioną."
+msgstr "配置设置，包括区域设置、国家和地区。"
 
 #: bioland.routing.yml
 msgid "Home Page"
-msgstr "Pagrindinis puslapis"
+msgstr "首页"
 
 #: bioland.links.task.yml
 msgid "Home Hero(s)"
-msgstr "Pagrindinio puslapio herojai"
+msgstr "首页横幅"
 
 #: bioland.routing.yml
 msgid "Home Widgets"
-msgstr "Pagrindinio puslapio valdikliai"
+msgstr "首页小工具"
 
 #: bioland.links.task.yml
 msgid "Mega Menu"
-msgstr "Mega meniu"
+msgstr "超级菜单"
 
 #: bioland.routing.yml
 msgid "Tags"
-msgstr "Žymos"
+msgstr "标签"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Home Page Heros"
-msgstr "Pagrindinio puslapio herojai"
+msgstr "首页横幅"
 
 #: core (ConfigFormBase)
 msgid "Save configuration"
-msgstr "Išsaugoti konfigūraciją"
+msgstr "保存配置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "About Home Page Heroe"
-msgstr "Apie pagrindinio puslapio reklamjuostę"
+msgstr "关于主页横幅图"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Heros are the large banner images displayed at the top of the home page. Since the home page layout cannot be directly edited, this is where you edit the hero banner for the home page."
-msgstr "Reklamjuostės yra didelės reklamjuosčių nuotraukos, rodomos pagrindinio puslapio viršuje. Kadangi pagrindinio puslapio išdėstymo negalima redaguoti tiesiogiai, čia redaguojate pagrindinio puslapio reklamjuostę."
+msgstr "横幅图是显示在主页顶部的大幅图片。由于主页布局无法直接编辑，您可在此处编辑主页的横幅图。"
 
 msgid "Configure @branding settings including locales, countries, and region."
-msgstr "Konfigūruokite @branding nustatymus, įskaitant lokales, šalis ir regioną."
+msgstr "配置 @branding 设置，包括区域设置、国家和地区。"

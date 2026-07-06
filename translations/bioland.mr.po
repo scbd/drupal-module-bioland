@@ -996,11 +996,11 @@ msgstr "@count नोड्ससाठी फील्ड_ऑर्डर य�
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End"
-msgstr "फ्रंट एंड"
+msgstr "इंटरफेस"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
-msgstr "फ्रंट एंड जन"
+msgstr "सामान्य इंटरफेस"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Batch Operations"
