@@ -1878,3 +1878,43 @@ msgstr "Bannery jsou velké obrázky zobrazené v horní části domovské strá
 
 msgid "Configure @branding settings including locales, countries, and region."
 msgstr "Konfigurace nastavení @branding včetně jazykových verzí, zemí a regionu."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "National Biosafety Framework Section"
+msgstr "National Biosafety Framework Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable National Biosafety Framework Section"
+msgstr "Enable National Biosafety Framework Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the National Biosafety Framework content swiper on the BSL home page."
+msgstr "Show the National Biosafety Framework content swiper on the BSL home page."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH News Section"
+msgstr "BCH News Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH News Section"
+msgstr "Enable BCH News Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH news swiper on the BSL home page."
+msgstr "Show the BCH news swiper on the BSL home page."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH Resources Section"
+msgstr "BCH Resources Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH Resources Section"
+msgstr "Enable BCH Resources Section"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH resources swiper on the BSL home page."
+msgstr "Show the BCH resources swiper on the BSL home page."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
+msgstr "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."

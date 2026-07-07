@@ -1698,3 +1698,43 @@ msgstr "صور الأبطال هي الصور الكبيرة التي تظهر �
 
 msgid "Configure @branding settings including locales, countries, and region."
 msgstr "تكوين إعدادات @branding بما في ذلك المواقع والبلدان والمنطقة."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "National Biosafety Framework Section"
+msgstr "قسم الإطار الوطني للسلامة الأحيائية"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable National Biosafety Framework Section"
+msgstr "تمكين قسم الإطار الوطني للسلامة الأحيائية"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the National Biosafety Framework content swiper on the BSL home page."
+msgstr "عرض شريط تمرير محتوى الإطار الوطني للسلامة الأحيائية على الصفحة الرئيسية لـ BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH News Section"
+msgstr "قسم أخبار BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH News Section"
+msgstr "تمكين قسم أخبار BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH news swiper on the BSL home page."
+msgstr "عرض شريط تمرير أخبار BCH على الصفحة الرئيسية لـ BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH Resources Section"
+msgstr "قسم موارد BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH Resources Section"
+msgstr "تمكين قسم موارد BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH resources swiper on the BSL home page."
+msgstr "عرض شريط تمرير موارد BCH على الصفحة الرئيسية لـ BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
+msgstr "هذا موقع لغرفة تبادل معلومات السلامة الأحيائية. تُعرض أدناه أقسام الصفحة الرئيسية لـ BSL فقط."

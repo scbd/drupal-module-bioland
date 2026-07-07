@@ -1811,3 +1811,43 @@ msgstr "横幅图是显示在主页顶部的大幅图片。由于主页布局无
 
 msgid "Configure @branding settings including locales, countries, and region."
 msgstr "配置 @branding 设置，包括区域设置、国家和地区。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "National Biosafety Framework Section"
+msgstr "国家生物安全框架板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable National Biosafety Framework Section"
+msgstr "启用国家生物安全框架板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the National Biosafety Framework content swiper on the BSL home page."
+msgstr "在 BSL 主页上显示国家生物安全框架内容轮播。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH News Section"
+msgstr "BCH 新闻板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH News Section"
+msgstr "启用 BCH 新闻板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH news swiper on the BSL home page."
+msgstr "在 BSL 主页上显示 BCH 新闻轮播。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH Resources Section"
+msgstr "BCH 资源板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH Resources Section"
+msgstr "启用 BCH 资源板块"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH resources swiper on the BSL home page."
+msgstr "在 BSL 主页上显示 BCH 资源轮播。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
+msgstr "这是一个生物安全信息交换所网站。下面仅显示 BSL 主页板块。"

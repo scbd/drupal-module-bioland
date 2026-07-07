@@ -428,3 +428,40 @@ function bioland_update_9075() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Re-import translation catalogs for the BSL home-widget section strings.
+ *
+ * The BSL-only home-page widget section (National Biosafety Framework, BCH
+ * News, BCH Resources) added in BL-823 introduced ten new admin-UI msgids that
+ * predated every .po catalog, so those labels rendered untranslated on the
+ * home-widgets settings form (e.g. Spanish). This hook re-imports the catalogs
+ * now that those msgids exist (real translations for ar/en/es/fr/ru/zh, English
+ * fallback elsewhere). Because Drupal runs each numbered update hook only once,
+ * sites that already ran 9075 need this NEW higher-numbered hook to pick them up.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ * The importer overwrites customized and non-customized strings alike, and the
+ * v2 converger is create-or-update / UUID-preserving, so this is safe to run
+ * more than once.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9076() {
+  $messages = [];
+
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = t('Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.');
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = t('Re-imported Bioland translation catalogs for the BSL home-widget section strings. Check logs for details.');
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

@@ -1811,3 +1811,43 @@ msgstr "Баннеры — это крупные изображения, ото�
 
 msgid "Configure @branding settings including locales, countries, and region."
 msgstr "Настройте параметры @branding, включая языковые стандарты, страны и регион."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "National Biosafety Framework Section"
+msgstr "Раздел «Национальная рамочная программа по биобезопасности»"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable National Biosafety Framework Section"
+msgstr "Включить раздел «Национальная рамочная программа по биобезопасности»"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the National Biosafety Framework content swiper on the BSL home page."
+msgstr "Показывать слайдер контента Национальной рамочной программы по биобезопасности на главной странице BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH News Section"
+msgstr "Раздел новостей BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH News Section"
+msgstr "Включить раздел новостей BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH news swiper on the BSL home page."
+msgstr "Показывать слайдер новостей BCH на главной странице BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH Resources Section"
+msgstr "Раздел ресурсов BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH Resources Section"
+msgstr "Включить раздел ресурсов BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH resources swiper on the BSL home page."
+msgstr "Показывать слайдер ресурсов BCH на главной странице BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
+msgstr "Это сайт Механизма посредничества по биобезопасности. Ниже показаны только разделы главной страницы BSL."

@@ -1795,3 +1795,43 @@ msgstr "Los héroes son las imágenes de banner grandes que se muestran en la pa
 
 msgid "Configure @branding settings including locales, countries, and region."
 msgstr "Configure los ajustes de @branding, incluidos los idiomas, los países y la región."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "National Biosafety Framework Section"
+msgstr "Sección del Marco Nacional de Bioseguridad"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable National Biosafety Framework Section"
+msgstr "Habilitar la sección del Marco Nacional de Bioseguridad"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the National Biosafety Framework content swiper on the BSL home page."
+msgstr "Mostrar el carrusel de contenido del Marco Nacional de Bioseguridad en la página de inicio de BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH News Section"
+msgstr "Sección de noticias del BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH News Section"
+msgstr "Habilitar la sección de noticias del BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH news swiper on the BSL home page."
+msgstr "Mostrar el carrusel de noticias del BCH en la página de inicio de BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "BCH Resources Section"
+msgstr "Sección de recursos del BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Enable BCH Resources Section"
+msgstr "Habilitar la sección de recursos del BCH"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Show the BCH resources swiper on the BSL home page."
+msgstr "Mostrar el carrusel de recursos del BCH en la página de inicio de BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
+msgstr "Este es un sitio del Centro de Intercambio de Información sobre Seguridad de la Biotecnología. A continuación solo se muestran las secciones de la página de inicio de BSL."
