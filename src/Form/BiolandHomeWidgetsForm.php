@@ -29,7 +29,9 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
   protected function buildSectionForm(array $form, FormStateInterface $form_state, $config): array {
     // Ensure default values are saved to config if not already present
     $this->ensureHomeWidgetDefaults($config);
-    
+
+    $isBsl = (bool) $config->get('is_biosafety_land');
+
     $form['home_widgets_settings'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Home Page Widget Settings'),
@@ -38,17 +40,65 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#tree' => TRUE,
     ];
 
+    if ($isBsl) {
+      $form['home_widgets_settings']['bsl_info'] = [
+        '#type' => 'markup',
+        '#markup' => '<p class="description">' . $this->t('This is a Biosafety Clearing-House site. Only BSL home page sections are shown below.') . '</p>',
+      ];
+
+      // BSL: National Biosafety Framework widget
+      $form['home_widgets_settings']['nbf_widget'] = [
+        '#type' => 'details',
+        '#title' => $this->t('National Biosafety Framework Section'),
+        '#open' => FALSE,
+        '#tree' => TRUE,
+      ];
+      $form['home_widgets_settings']['nbf_widget']['enable'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable National Biosafety Framework Section'),
+        '#default_value' => $config->get('home_widgets.nbf_widget.enable') !== FALSE,
+        '#description' => $this->t('Show the National Biosafety Framework content swiper on the BSL home page.'),
+      ];
+
+      // BSL: BCH News widget
+      $form['home_widgets_settings']['bch_news_widget'] = [
+        '#type' => 'details',
+        '#title' => $this->t('BCH News Section'),
+        '#open' => FALSE,
+        '#tree' => TRUE,
+      ];
+      $form['home_widgets_settings']['bch_news_widget']['enable'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable BCH News Section'),
+        '#default_value' => $config->get('home_widgets.bch_news_widget.enable') !== FALSE,
+        '#description' => $this->t('Show the BCH news swiper on the BSL home page.'),
+      ];
+
+      // BSL: BCH Resources widget
+      $form['home_widgets_settings']['bch_resources_widget'] = [
+        '#type' => 'details',
+        '#title' => $this->t('BCH Resources Section'),
+        '#open' => FALSE,
+        '#tree' => TRUE,
+      ];
+      $form['home_widgets_settings']['bch_resources_widget']['enable'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable BCH Resources Section'),
+        '#default_value' => $config->get('home_widgets.bch_resources_widget.enable') !== FALSE,
+        '#description' => $this->t('Show the BCH resources swiper on the BSL home page.'),
+      ];
+
+      return $form;
+    }
+
+    // CHM (Bioland) widgets — shown only for non-BSL sites.
+
     // GBIF Widget section
     $form['home_widgets_settings']['gbif_widget'] = [
       '#type' => 'details',
       '#title' => $this->t('GBIF Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['gbif_widget']['enable'] = [
@@ -142,11 +192,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Latest News and Updates Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['latest_news_widget']['enable'] = [
@@ -162,11 +207,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('National Targets Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['national_targets_widget']['enable'] = [
@@ -182,11 +222,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Panorama Solutions Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['panorama_solutions_widget']['enable'] = [
@@ -202,11 +237,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('E-Learning Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['elearning_widget']['enable'] = [
@@ -222,11 +252,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Implementation Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['implementation_widget']['enable'] = [
@@ -242,11 +267,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Technical & Scientific Cooperation Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['technical_cooperation_widget']['enable'] = [
@@ -262,11 +282,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Latest Discussions Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['latest_discussions_widget']['enable'] = [
@@ -282,11 +297,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Content Statistics Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['content_statistics_widget']['enable'] = [
@@ -302,11 +312,6 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       '#title' => $this->t('GEOBON Widget'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="is_biosafety_land"]' => ['checked' => FALSE],
-        ],
-      ],
     ];
 
     $form['home_widgets_settings']['geobon_widget']['enable'] = [
@@ -324,48 +329,35 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
    */
   protected function submitSectionForm(array &$form, FormStateInterface $form_state, $config): void {
     $values = $form_state->getValues();
-    // Get home_widgets_settings values - with #tree => TRUE, values are nested
     $home_widgets_values = $values['home_widgets_settings'] ?? [];
-    
-    // Save GBIF widget settings
+    $isBsl = (bool) $config->get('is_biosafety_land');
+
+    if ($isBsl) {
+      // Save BSL-specific widget settings only.
+      $config->set('home_widgets.nbf_widget.enable', (bool) ($home_widgets_values['nbf_widget']['enable'] ?? TRUE));
+      $config->set('home_widgets.bch_news_widget.enable', (bool) ($home_widgets_values['bch_news_widget']['enable'] ?? TRUE));
+      $config->set('home_widgets.bch_resources_widget.enable', (bool) ($home_widgets_values['bch_resources_widget']['enable'] ?? TRUE));
+      return;
+    }
+
+    // CHM (Bioland) widget settings.
     $gbif_widget = $home_widgets_values['gbif_widget'] ?? [];
-    
-    // Save enable checkbox
     $config->set('home_widgets.gbif_widget.enable', (bool) ($gbif_widget['enable'] ?? TRUE));
-    
-    // Save country-specific settings
     $countries_data = $gbif_widget['countries'] ?? [];
     foreach ($countries_data as $country_code => $country_settings) {
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.zoom_level", (int) ($country_settings['zoom_level'] ?? 7));
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.longitude", (float) ($country_settings['longitude'] ?? 0.0));
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.latitude", (float) ($country_settings['latitude'] ?? 0.0));
     }
-    
-    // Save Latest News Widget settings
+
     $config->set('home_widgets.latest_news_widget.enable', (bool) ($home_widgets_values['latest_news_widget']['enable'] ?? TRUE));
-    
-    // Save National Targets Widget settings
     $config->set('home_widgets.national_targets_widget.enable', (bool) ($home_widgets_values['national_targets_widget']['enable'] ?? TRUE));
-    
-    // Save Panorama Solutions Widget settings
     $config->set('home_widgets.panorama_solutions_widget.enable', (bool) ($home_widgets_values['panorama_solutions_widget']['enable'] ?? TRUE));
-    
-    // Save E-Learning Widget settings
     $config->set('home_widgets.elearning_widget.enable', (bool) ($home_widgets_values['elearning_widget']['enable'] ?? TRUE));
-    
-    // Save Implementation Widget settings
     $config->set('home_widgets.implementation_widget.enable', (bool) ($home_widgets_values['implementation_widget']['enable'] ?? TRUE));
-    
-    // Save Technical & Scientific Cooperation Widget settings
     $config->set('home_widgets.technical_cooperation_widget.enable', (bool) ($home_widgets_values['technical_cooperation_widget']['enable'] ?? TRUE));
-    
-    // Save Latest Discussions Widget settings
     $config->set('home_widgets.latest_discussions_widget.enable', (bool) ($home_widgets_values['latest_discussions_widget']['enable'] ?? TRUE));
-    
-    // Save Content Statistics Widget settings
     $config->set('home_widgets.content_statistics_widget.enable', (bool) ($home_widgets_values['content_statistics_widget']['enable'] ?? TRUE));
-    
-    // Save GEOBON Widget settings
     $config->set('home_widgets.geobon_widget.enable', (bool) ($home_widgets_values['geobon_widget']['enable'] ?? TRUE));
   }
 
@@ -387,6 +379,9 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       'latest_discussions_widget',
       'content_statistics_widget',
       'geobon_widget',
+      'nbf_widget',
+      'bch_news_widget',
+      'bch_resources_widget',
     ];
 
     $needs_save = FALSE;

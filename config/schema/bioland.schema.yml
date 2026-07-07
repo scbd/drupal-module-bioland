@@ -385,6 +385,27 @@ bioland.settings:
             enable:
               type: boolean
               label: 'Enable GEOBON Widget'
+        nbf_widget:
+          type: mapping
+          label: 'National Biosafety Framework Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable National Biosafety Framework Widget'
+        bch_news_widget:
+          type: mapping
+          label: 'BCH News Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable BCH News Widget'
+        bch_resources_widget:
+          type: mapping
+          label: 'BCH Resources Widget settings'
+          mapping:
+            enable:
+              type: boolean
+              label: 'Enable BCH Resources Widget'
     translation:
       type: mapping
       label: 'Translation settings'

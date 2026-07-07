@@ -92,6 +92,7 @@ translation:
   entity_types:
     - node
 home_widgets:
+  # CHM (Bioland) widgets
   gbif_widget:
     enable: true
   latest_news_widget:
@@ -111,4 +112,11 @@ home_widgets:
   content_statistics_widget:
     enable: true
   geobon_widget:
+    enable: true
+  # BSL (Biosafety Clearing-House) widgets
+  nbf_widget:
+    enable: true
+  bch_news_widget:
+    enable: true
+  bch_resources_widget:
     enable: true
