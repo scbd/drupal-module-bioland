@@ -152,10 +152,18 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   }
 
   // Change "Save (this translation)" to just "Save" for all node content forms.
-  // Uses #after_build to ensure this runs after content_translation module
-  // sets the button text, which happens after hook_form_alter.
+  // This must happen during form build (hook_form_alter), NOT in #after_build:
+  // Drupal matches the submitted "op" value against the button's build-time
+  // #value to determine the triggering element. Renaming in #after_build only
+  // changed the rendered label, so on edit forms the browser submitted
+  // op="Save" while the build-time value was "Save (this translation)" - no
+  // match, the media-library button became the trigger, and the form silently
+  // rebuilt without saving. bioland_module_implements_alter() moves this hook
+  // after content_translation's so the rename sticks.
   if (strpos($form_id, 'node_content_') === 0 || $form_id === 'node_content_form') {
-    $form['#after_build'][] = 'bioland_form_after_build_save_button';
+    if (isset($form['actions']['submit']['#value'])) {
+      $form['actions']['submit']['#value'] = t('Save');
+    }
   }
 
   // Only attach to node_content_form and node_content_edit_form.
@@ -466,24 +474,21 @@ function bioland_theme() {
 }
 
 /**
- * After build callback to change "Save (this translation)" to just "Save".
+ * Implements hook_module_implements_alter().
  *
- * This runs after content_translation module sets the button text,
- * ensuring our change takes effect.
- *
- * @param array $form
- *   The form array.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The form state.
- *
- * @return array
- *   The modified form array.
+ * Moves bioland's hook_form_alter to run last so the Save-button relabel in
+ * bioland_form_alter() overrides the "Save (this translation)" label that
+ * content_translation sets during its own hook_form_alter. The relabel must
+ * stay in the form-build phase (never #after_build) so the button's #value
+ * matches the submitted "op" value when Drupal resolves the triggering
+ * element - see bioland_form_alter().
  */
-function bioland_form_after_build_save_button(array $form, FormStateInterface $form_state) {
-  if (isset($form['actions']['submit']['#value'])) {
-    $form['actions']['submit']['#value'] = t('Save');
+function bioland_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'form_alter' && isset($implementations['bioland'])) {
+    $group = $implementations['bioland'];
+    unset($implementations['bioland']);
+    $implementations['bioland'] = $group;
   }
-  return $form;
 }
 
 /**
