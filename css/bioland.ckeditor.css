@@ -1,0 +1,68 @@
+/**
+ * Bioland CKEditor 5 content styles.
+ *
+ * Aligns the in-editor rendering of headings with the public (Nuxt) frontend
+ * so authors get a WYSIWYG-accurate preview of the body content. This mirrors
+ * the heading rules from the frontend's global styles (app.vue): heading sizes
+ * and the primary-coloured underline on h3 / h4 / h5.lead, plus the uppercase
+ * treatment on h6.
+ *
+ * Scope note: CKEditor 5 renders inline in the page DOM (no iframe). The live
+ * editable root carries the classes `ck` and `ck-content`, so `.ck.ck-content`
+ * (two classes) styles the editing area and out-specifies CKEditor's own
+ * single-class `.ck-content` defaults regardless of stylesheet load order.
+ *
+ * Intentionally NOT changed: font-family. Only sizes + the underline treatment
+ * are aligned for now.
+ *
+ * Colour note: the underline colour is the per-Site primary, which on the
+ * frontend is a DMSM value resolved per request and injected as `--bs-primary`.
+ * Drupal/CKEditor has no access to that value, so we default `--bs-primary` to
+ * the Bioland default (UN blue, #009edb). The rules read the variable, so a
+ * future per-tenant injection can override it without touching this file.
+ */
+
+.ck.ck-content {
+  --bs-primary: #009edb;
+}
+
+/* Base heading sizes matching the frontend's Bootstrap 5.3 type scale. */
+.ck.ck-content h2 {
+  font-size: 2rem;
+}
+
+.ck.ck-content h3 {
+  display: block;
+  width: fit-content;
+  font-size: 1.75rem;
+  border-bottom: 0.25rem solid var(--bs-primary);
+  margin-bottom: 3rem;
+}
+
+.ck.ck-content h4 {
+  display: block;
+  width: fit-content;
+  font-size: 1.5rem;
+  border-bottom: 0.25rem solid var(--bs-primary);
+  margin-bottom: 1.5rem;
+}
+
+.ck.ck-content h5 {
+  font-size: 1.25rem;
+}
+
+.ck.ck-content h5.lead {
+  display: block;
+  width: fit-content;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  border-bottom: 0.25rem solid var(--bs-primary);
+  margin-bottom: 1.5rem;
+}
+
+.ck.ck-content h6 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}

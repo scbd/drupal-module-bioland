@@ -171,6 +171,12 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
+  // Align the CKEditor 5 editing surface with the public (Nuxt) frontend:
+  // heading sizes and the primary-coloured underline on h3/h4/h5. CKEditor 5
+  // renders inline in the page DOM, so a stylesheet scoped to .ck-content
+  // styles the live editing area. Fonts are intentionally left untouched.
+  $form['#attached']['library'][] = 'bioland/ckeditor_content_styles';
+
   // Add custom submit handler to redirect with query parameter.
   $form['actions']['submit']['#submit'][] = 'bioland_node_content_form_submit';
 

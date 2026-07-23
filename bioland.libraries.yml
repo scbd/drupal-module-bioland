@@ -82,3 +82,10 @@ home_widgets:
     - core/drupal
     - core/drupalSettings
     - bioland/debug_logger
+
+# Aligns the CKEditor 5 editing surface with the public frontend rendering
+# (heading sizes + primary-coloured underline). CSS-only; scoped to .ck-content.
+ckeditor_content_styles:
+  css:
+    theme:
+      css/bioland.ckeditor.css: {}
