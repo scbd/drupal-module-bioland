@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "പ്രദേശം"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "ഭൂമിശാസ്ത്രപരമായ പ്രദേശം തിരഞ്ഞെടുക്കുക."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "വടക്കേ അമേരിക്ക"
 
@@ -61,10 +57,6 @@ msgstr "ബയോസേഫ്റ്റി ലാൻഡ് ആണോ?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "ഇതൊരു ബയോസേഫ്റ്റി ലാൻഡ് ഇൻസ്റ്റൻസ് ആണോ എന്ന് സൂചിപ്പിക്കുന്നു."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "ഫീൽഡ് സ്വഭാവ ക്രമീകരണങ്ങൾ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "ഇഷ്‌ടാനുസൃത ഫീൽഡ് ദൃശ്യപര�
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "വിവർത്തന ഡിഫോൾട്ടുകൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "വിവർത്തനം ചെയ്യാവുന്ന എന്റിറ്റികൾക്കായി വിവർത്തന ഡിഫോൾട്ടുകൾ (ഭാഷാ പ്ലെയ്‌സ്‌ഹോൾഡറുകൾ) സൃഷ്‌ടിക്കുന്നത് കോൺഫിഗർ ചെയ്യുക."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "സഹായം"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "ഇതായിരിക്കും നിങ്ങളുടെ പുതിയ സൈറ്റ് ഉള്ളടക്കത്തിന്റെ പ്രധാന ഉള്ളടക്കം. നിങ്ങളുടെ ഉള്ളടക്കത്തിന്റെ സംക്ഷിപ്ത വിവരണം പ്രദർശിപ്പിക്കുന്നതിന് സംഗ്രഹം ഉപയോഗിക്കാം. കൂടാതെ, വെബ്സൈറ്റിലെ നിങ്ങളുടെ റെക്കോർഡിന്റെ ലിസ്റ്റ്, കാർഡ് കാഴ്‌ചകളിൽ സംഗ്രഹം പ്രദർശിപ്പിക്കും. പകരമായി, പ്രധാന ഉള്ളടക്കത്തിൽ നിന്നുള്ള ആദ്യത്തെ കുറച്ച് വാക്യങ്ങൾ ഉപയോഗിക്കും."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "ചിത്രങ്ങൾ"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "ഇവിടെ ഇടത്തുനിന്ന് വലത്തോട്ടുള്ള ക്രമത്തിൽ <b>ആദ്യത്തെ ചിത്രം</b>, പേജിലും ലിസ്റ്റ്, കാർഡ് കാഴ്‌ചകളിലെ ലഘുചിത്രങ്ങളിലും പ്രദർശിപ്പിക്കുന്ന നിങ്ങളുടെ റെക്കോർഡിന്റെ <b>പ്രധാന ചിത്രമായിരിക്കും</b>. മറ്റെല്ലാ ചിത്രങ്ങളും പ്രധാന ഉള്ളടക്കത്തിന് താഴെ പ്രദർശിപ്പിക്കും."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "ഹീറോകൾ"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "ഏത് പേജിനും/ഉള്ളടക്ക തരത്തിനും ഒന്നിലധികം <b>ഹീറോ ബാനറുകൾ</b> ഉണ്ടാകാം. ഒന്നിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ അവ മണിക്കൂർ അടിസ്ഥാനത്തിൽ റൊട്ടേറ്റ് ചെയ്യപ്പെടും."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "വാർത്തകൾ (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "മീറ്റിംഗ് അല്ലെങ്കിൽ ഇവന്റ് (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "പ്രോജക്റ്റ് (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "പ്രമാണം (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "ബന്ധപ്പെട്ട വെബ്സൈറ്റ് (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "മറ്റ് ഉറവിടം (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "ചിത്രം അല്ലെങ്കിൽ വീഡിയോ (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "പതിവുചോദ്യങ്ങൾ (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "ദേശീയ വിവരങ്ങൾ (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "LMO-കളുടെ നില (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "ഫീൽഡ് ട്രയൽ (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "ദേശീയ മുഖ്യധാരാ തന്ത്രം (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "ശേഷി വർദ്ധിപ്പിക്കൽ (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "അറിയിപ്പ് (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "ബന്ധപ്പെടുക (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "ഈ ഉള്ളടക്ക തരങ്ങൾക്കായി തീയതി ശ്രേണി ഫീൽഡുകൾ (ആരംഭ & അവസാനതീയതി) കാണിക്കുക:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "അധിക ഫീൽഡുകൾ നിയന്ത്രണം"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "അധിക ഫീൽഡുകൾ മാപ്പിംഗ്"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "ഇനിപ്പറയുന്ന ഉള്ളടക്ക തരങ്ങൾക്ക് ഈ അധിക ഫീൽഡുകൾ ലഭ്യമാകും:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "ഇവന്റ് സ്റ്റാറ്റസുകൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "പ്രോജക്റ്റ് സ്റ്റാറ്റസുകൾ, ജിയോഗ്രാഫിക് സ്കോപ്പുകൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "മന്ത്രാലയം (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "ഓർഗനൈസേഷൻ തരങ്ങൾ, സർക്കാർ തരങ്ങൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "ഇക്കോസിസ്റ്റം (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "ഇക്കോസിസ്റ്റം തരങ്ങൾ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "പ്രമാണ തരങ്ങൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "തിരഞ്ഞെടുത്ത ഉള്ളടക്ക തരം അടിസ്ഥാനമാക്കി ഈ ഫീൽഡുകൾ ചലനാത്മകമായി ചേർക്കുകയും ഒരു Vue.js ഘടകം ശക്തിപ്പെടുത്തുകയും ചെയ്യുന്നു."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "മെനു ഡെപ്ത് നിയന്ത്രണം പ്രവർത്തനക്ഷമമാക്കുക"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "രണ്ടാം നില മെനു ഇനങ്ങൾ സൃഷ്ടിക്കുന്നതിൽ നിന്നും നോൺ-അഡ്മിനിസ്ട്രേറ്റർ ഉപയോക്താക്കളെ നിയന്ത്രിക്കുക ആഴത്തിൽ “മെനു അഡ്മിനിസ്ട്രേറ്റ് ചെയ്യുക” അനുമതിയുള്ള ഉപയോക്താക്കൾക്ക് മാത്രമേ നെസ്റ്റഡ് മെനു ഇനങ്ങൾ സൃഷ്ടിക്കാൻ കഴിയൂ."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "സംരക്ഷിക്കുക"
 msgid "Order Override"
 msgstr "ഓർഡർ ഓവർറൈഡ്"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "മറ്റ് മെനു ഇനങ്ങൾക്ക് കീഴിൽ മെനു ഇനങ്ങൾ സൃഷ്ടിക്കാൻ നിങ്ങൾക്ക് അനുമതി ഇല്ല. നിങ്ങളുടെ റോളിനായി ടോപ്പ്-ലെവൽ മെനു ഇനങ്ങൾ മാത്രമേ അനുവദിക്കൂ."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "ഓർഡർ ഓവർറൈഡ് സഹായം"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "ഈ ഉള്ളടക്ക തരങ്ങൾക്കായി ഇവന്റ് സ്റ്റാറ്റസ് ടാഗുകൾ കാണിക്കുക:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "ഈ ഉള്ളടക്ക തരങ്ങൾക്കായി പ്രോജക്റ്റ് സ്റ്റാറ്റസ് ടാഗുകൾ കാണിക്കുക:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "പ്രമോഷൻ ഓപ്ഷനുകൾ സഹായം"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "പ്രമോഷൻ ഓപ്ഷനുകൾ സഹായ വാചകം"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "പ്രമോട്ട് ചെയ്ത, സ്റ്റിക്കി ഓപ്ഷനുകൾ വിശദീകരിക്കുന്ന സഹായ ടെക്സ്റ്റ്. HTML അനുവദനീയമാണ്."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "ഉള്ളടക്ക ക്രമീകരണം"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "എല്ലാ നോഡുകൾക്കും ഫീൽഡ്_ഓർഡർ മൂല്യം 1000 ആയി പുനഃസജ്ജമാക്കുന്നു. “ക്രമീകരണം പുനഃസജ്ജമാക്കുക” എന്ന പുനരവലോകന സന്ദേശം ഉപയോഗിച്ച് ഓരോ നോഡിനും ഇത് ഒരു പുതിയ റിവിഷൻ സൃഷ്ടിക്കുന്നു. യഥാർത്ഥ അവസാനമായി അപ്ഡേറ്റ് ചെയ്ത തീയതിയും ഉപയോക്താവും സംരക്ഷിക്കപ്പെടുന്നു. സൈറ്റിലുടനീളം ഉള്ളടക്ക ക്രമീകരണം സാധാരണമാക്കാൻ ഇത് ഉപയോഗിക്കുക."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "ഓർഡറിംഗ് റീസെറ്റ് ചെയ്യുക"
 
@@ -1001,30 +829,6 @@ msgstr "ഇന്റർഫേസ്"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "പൊതു ഇന്റർഫേസ്"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "വിവർത്തന ബാച്ച് പ്രവർത്തനങ്ങൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "കാണാതായ വിവർത്തന സ്ഥിരസ്ഥിതികൾ സൃഷ്ടിക്കുന്നതിന് നിലവിലുള്ള എന്റിറ്റികൾ പ്രോസസ്സ് ചെയ്യുക. സിസ്റ്റം ഫംഗ്ഷനുകൾ ടാബിൽ വിവർത്തന സ്ഥിരസ്ഥിതി ക്രമീകരണങ്ങൾ കോൺഫിഗർ ചെയ്യുക."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "മെഗാ മെനു ക്രമീകരണങ്ങൾ ഉടൻ വരുന്നു."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "ഹോം പേജ് ക്രമീകരണങ്ങൾ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "ഹോം പേജ് ക്രമീകരണങ്ങൾ ഉടൻ വരുന്നു."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "ലിങ്കിറ്റ് മൊഡ്യൂൾ പ്രവർത്തനക്ഷമമാക്കിയിട്ടില്ല; പ്രൊഫൈൽ കോൺഫിഗറേഷൻ ഒഴിവാക്കുക."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "എല്ലാ നോഡുകൾക്കും ഫീൽഡ്_ഓർഡർ മൂല്യം 10000 ആയി പുനഃസജ്ജമാക്കുന്നു. “ക്രമീകരണം പുനഃസജ്ജമാക്കുക” എന്ന പുനരവലോകന സന്ദേശം ഉപയോഗിച്ച് ഓരോ നോഡിനും ഇത് ഒരു പുതിയ റിവിഷൻ സൃഷ്ടിക്കുന്നു. യഥാർത്ഥ അവസാനമായി അപ്ഡേറ്റ് ചെയ്ത തീയതിയും ഉപയോക്താവും സംരക്ഷിക്കപ്പെടുന്നു. സൈറ്റിലുടനീളം ഉള്ളടക്ക ക്രമീകരണം സാധാരണമാക്കാൻ ഇത് ഉപയോഗിക്കുക."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "@count നോഡുകൾക്കായി 10000 ലേക്ക് field_order വിജയകരമായി പുനഃസജ്ജമാക്കുക."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "ഓർഡറിംഗ് റീസെറ്റ് ചെയ്യുക"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ ഉള്ളടക്ക തരം മെനുകൾ"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "സ്ഥാനക്കയറ്റം"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "“ഫ്രണ്ട് പേജിലേക്ക് പ്രമോട്ട് ചെയ്തു” എന്ന് അടയാളപ്പെടുത്തിയ ഇനങ്ങൾ അടുത്തതായി വരുന്നു"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "ആരംഭിക്കുന്ന തീയതി"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "തുടർന്ന് ആരംഭ തീയതി പ്രകാരം അടുക്കി (അല്ലെങ്കിൽ ആരംഭ തീയതി ഇല്ലെങ്കിൽ പ്രസിദ്ധീകരിച്ച തീയതി)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "ഒടുവിൽ ഏറ്റവും അടുത്തിടെ അ
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "നുറുങ്ങ്:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "സ്ഥിരസ്ഥിതി അടുക്കൽ ഉപയോഗിക്കുന്നതിന് ശൂന്യമായി വിടുക. പിന്നീട് ഇനങ്ങൾ ചേർക്കുന്നതിന് ഇടം വിടാൻ 10 (ഉദാ: 10, 20, 30) വർദ്ധനവ് ഉപയോഗിക്കുക."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "സ്റ്റിക്കി ഫ്ലാഗുകൾ പുനഃസ�
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "@count ഉള്ളടക്ക എൻട്രികൾക്കായി 0 ലേക്ക് സ്റ്റിക്കി ഫ്ലാഗ് വിജയകരമായി റീസെറ്റ് ചെയ്യുക."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "ഫ്രണ്ട് എൻഡ്"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

@@ -22,9 +22,6 @@ msgstr "প্রতি লাইনে একটি করে দেশের �
 msgid "Region"
 msgstr "অঞ্চল"
 
-msgid "Select the geographical region."
-msgstr "ভৌগোলিক অঞ্চল নির্বাচন করুন।"
-
 msgid "North America"
 msgstr "উত্তর আমেরিকা"
 
@@ -48,9 +45,6 @@ msgstr "এটি কি বায়োসেফটি ল্যান্ড?"
 
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "নির্দেশ করে যে এটি একটি বায়োসেফটি ল্যান্ড ইনস্ট্যান্স কিনা।"
-
-msgid "Field Behavior Settings"
-msgstr "ফিল্ড আচরণ সেটিংস"
 
 msgid "Enable Field Visibility Control"
 msgstr "ফিল্ড দৃশ্যমানতা নিয়ন্ত্রণ সক্ষম করুন"
@@ -84,9 +78,6 @@ msgstr "কাস্টম ফিল্ড দৃশ্যমানতার ন
 
 msgid "Translation Defaults"
 msgstr "অনুবাদ ডিফল্ট"
-
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "অনুবাদযোগ্য সত্তার জন্য অনুবাদ ডিফল্ট (ভাষা স্থানধারক) তৈরির কনফিগার করুন।"
 
 msgid "Automatically create translation defaults"
 msgstr "স্বয়ংক্রিয়ভাবে অনুবাদ ডিফল্ট তৈরি করুন"
@@ -178,74 +169,17 @@ msgstr "রাশিয়ান"
 msgid "Help"
 msgstr "সাহায্য"
 
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "এটি আপনার নতুন সাইটের বিষয়বস্তুর প্রধান অংশ হবে। সারাংশটি আপনার বিষয়বস্তুর একটি সংক্ষিপ্ত বিবরণ প্রদর্শন করতে ব্যবহার করা যেতে পারে। এছাড়াও, সারাংশটি ওয়েবসাইটে আপনার রেকর্ডের তালিকা এবং কার্ড ভিউতে প্রদর্শিত হবে। বিকল্পভাবে, প্রধান বিষয়বস্তু থেকে প্রথম কয়েকটি বাক্য ব্যবহার করা হবে।"
-
 msgid "Images"
 msgstr "ছবি"
 
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "এখানে বাম থেকে ডানের ক্রমে <b>প্রথম ছবিটি</b>, আপনার রেকর্ডের <b>প্রধান ছবি</b> হবে যা পৃষ্ঠায় এবং তালিকা ও কার্ড ভিউতে থাম্বনেইল হিসাবে প্রদর্শিত হবে। অন্য সমস্ত ছবি প্রধান বিষয়বস্তুর নীচে প্রদর্শিত হবে।"
-
 msgid "Heroes"
 msgstr "হিরো"
-
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "যেকোনো পৃষ্ঠা/বিষয়বস্তুর প্রকারে একাধিক <b>হিরো ব্যানার</b> থাকতে পারে। যদি একাধিক থাকে তবে সেগুলি প্রতি ঘণ্টায় ঘোরানো হবে।"
-
-msgid "News (2)"
-msgstr "সংবাদ (২)"
-
-msgid "Meeting or Event (3)"
-msgstr "সভা বা অনুষ্ঠান (৩)"
-
-msgid "Project (5)"
-msgstr "প্রকল্প (৫)"
-
-msgid "Document (12)"
-msgstr "নথি (১২)"
-
-msgid "Related Website (13)"
-msgstr "সম্পর্কিত ওয়েবসাইট (১৩)"
-
-msgid "Other Resource (15)"
-msgstr "অন্যান্য সম্পদ (১৫)"
-
-msgid "Image or Video (16)"
-msgstr "ছবি বা ভিডিও (১৬)"
-
-msgid "FAQ (43)"
-msgstr "সাধারণ জিজ্ঞাসা (৪৩)"
-
-msgid "National Information (44)"
-msgstr "জাতীয় তথ্য (৪৪)"
-
-msgid "Status of LMOs (45)"
-msgstr "LMO-এর অবস্থা (৪৫)"
-
-msgid "Field Trial (46)"
-msgstr "ক্ষেত্র পরীক্ষা (৪৬)"
-
-msgid "National Mainstreaming Strategy (47)"
-msgstr "জাতীয় মূলধারার কৌশল (৪৭)"
-
-msgid "Capacity-Building (48)"
-msgstr "সক্ষমতা বৃদ্ধি (৪৮)"
-
-msgid "Announcement (49)"
-msgstr "ঘোষণা (৪৯)"
-
-msgid "Contact (50)"
-msgstr "যোগাযোগ (৫০)"
 
 msgid "Order Override"
 msgstr "অর্ডার ওভাররাইড"
 
 msgid "Save"
 msgstr "সংরক্ষণ করুন"
-
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "আপনার অন্য মেনু আইটেমের অধীনে মেনু আইটেম তৈরি করার অনুমতি নেই। আপনার ভূমিকার জন্য শুধুমাত্র শীর্ষ-স্তরের মেনু আইটেম অনুমোদিত।"
 
 msgid "Site name"
 msgstr "সাইটের নাম"
@@ -301,44 +235,11 @@ msgstr "তারিখ পরিসীমা ফিল্ড (শুরু এ�
 msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "এই বিষয়বস্তুর প্রকারগুলির জন্য তারিখ পরিসীমা ফিল্ড (শুরু এবং শেষের তারিখ) দেখান:"
 
-msgid "Additional Tags Control"
-msgstr "অতিরিক্ত ফিল্ড নিয়ন্ত্রণ"
-
-msgid "Additional Tags Mapping"
-msgstr "অতিরিক্ত ফিল্ড ম্যাপিং"
-
-msgid "The following content types will have these additional tags available:"
-msgstr "নিম্নলিখিত বিষয়বস্তুর প্রকারগুলিতে এই অতিরিক্ত ফিল্ডগুলি উপলব্ধ থাকবে:"
-
-msgid "Event Statuses"
-msgstr "ইভেন্টের অবস্থা"
-
-msgid "Project Statuses, Geographic Scopes"
-msgstr "প্রকল্পের অবস্থা, ভৌগোলিক পরিধি"
-
-msgid "Ministry (8)"
-msgstr "মন্ত্রণালয় (৮)"
-
-msgid "Organization Types, Government Types"
-msgstr "সংস্থার প্রকার, সরকারের প্রকার"
-
-msgid "Ecosystem (9)"
-msgstr "বাস্তুতন্ত্র (৯)"
-
 msgid "Ecosystem Types"
 msgstr "বাস্তুতন্ত্রের প্রকার"
 
 msgid "Document Types"
 msgstr "নথির প্রকার"
-
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "এই ফিল্ডগুলি নির্বাচিত বিষয়বস্তুর প্রকারের উপর ভিত্তি করে গতিশীলভাবে যোগ করা হয় এবং একটি Vue.js উপাদান দ্বারা চালিত হয়।"
-
-msgid "Enable Menu Depth Restriction"
-msgstr "মেনু গভীরতা সীমাবদ্ধতা সক্ষম করুন"
-
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "অ-প্রশাসক ব্যবহারকারীদের দ্বিতীয়-স্তরের মেনু আইটেম এবং তার চেয়ে গভীরতর তৈরি করা থেকে সীমাবদ্ধ করুন। শুধুমাত্র \"মেনু পরিচালনা\" অনুমতি সহ ব্যবহারকারীরা নেস্টেড মেনু আইটেম তৈরি করতে পারেন।"
 
 msgid "(Required)"
 msgstr "(প্রয়োজনীয়)"
@@ -694,10 +595,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "এই বিষয়বস্তু ধরণের জন্য ইভেন্ট স্ট্যাটাস ট্যাগ দেখান:"
 
@@ -706,40 +603,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "এই বিষয়বস্তু ধরণের জন্য প্রকল্প স্ট্যাটাস ট্যাগ দেখান:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -764,10 +633,6 @@ msgstr "প্রচার বিকল্প সহায়তা"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "প্রচার বিকল্প সহায়তা পাঠ্য"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "প্রচারিত এবং স্টিকি বিকল্পগুলি ব্যাখ্যা করে টেক্সট সহায়তা করুন এইচটিএমএল অনুমোদিত।"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -862,10 +727,6 @@ msgid "Content Ordering"
 msgstr "কন্টেন্ট অর্ডার"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "সমস্ত নোডের জন্য ফিল্ড_অর্ডার মান 1000 এ পুনরায় সেট করে। এটি “রিসেট অর্ডারিং” রিভিশন বার্তা সহ প্রতিটি নোডের জন্য একটি নতুন সংশোধন তৈরি করে। মূল শেষ আপডেট তারিখ এবং ব্যবহারকারী সংরক্ষিত হয়। সাইট জুড়ে সামগ্রী অর্ডারিং স্বাভাবিক করতে এটি ব্যবহার করুন।"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "রিসেট অর্ডারিং"
 
@@ -888,30 +749,6 @@ msgstr "ইন্টারফেস"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "সাধারণ ইন্টারফেস"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "অনুবাদ ব্যাচ অপারেশন"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "অনুপস্থিত অনুবাদ ডিফল্ট তৈরি করতে বিদ্যমান সত্তা প্রক্রিয়া করুন। সিস্টেম ফাংশন ট্যাবে অনুবাদ ডিফল্ট সেটিং কনফিগার করুন।"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "মেগা মেনু সেটিং শীঘ্রই আসছে।"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "হোম পেজ সেটিংস"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "হোম পেজ সেটিংস শীঘ্রই আসছে।"
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "লিঙ্কিট মডিউল সক্রিয় নয়; প্রোফাইল কনফিগারেশন এড়িয়ে যাওয়া"
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1083,16 +920,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "সমস্ত নোডের জন্য ফিল্ড_অর্ডার মান 10000 এ পুনরায় সেট করে। এটি “রিসেট অর্ডারিং” রিভিশন বার্তা সহ প্রতিটি নোডের জন্য একটি নতুন সংশোধন তৈরি করে। মূল শেষ আপডেট তারিখ এবং ব্যবহারকারী সংরক্ষিত হয়। সাইট জুড়ে সামগ্রী অর্ডারিং স্বাভাবিক করতে এটি ব্যবহার করুন।"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "@count নোডের জন্য সফলভাবে ফিল্ড_অর্ডার 10000 এ পুনরায় সেট করুন।"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "অর্ডার রিসেট করুন"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ কন্টেন্ট টাইপ মেনু"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1235,16 +1064,8 @@ msgid "Promoted"
 msgstr "প্রচারিত"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "“সামনের পৃষ্ঠায় প্রচারিত” চিহ্নিত আইটেমগুলি পরবর্তী"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "শুরুর তারিখ"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "তারপরে শুরুর তারিখ অনুসারে সাজানো (বা প্রকাশিত তারিখ না থাকলে প্রকাশিত"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1257,10 +1078,6 @@ msgstr "শেষ পর্যন্ত সম্প্রতি আপডেট
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "টিপ:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "ডিফল্ট বাছাই ব্যবহার করতে খালি রেখে দিন। পরে আইটেমগুলি সন্নিবেশ করার জন্য জায়গা ছেড়ে দিতে 10 (উদাহরণস্বরূপ, 10, 20, 30) এর বৃদ্ধি ব্যবহার করুন।"
 
 #: bioland.module
 msgid "URL"
@@ -1309,10 +1126,6 @@ msgstr "স্টিকি পতাকা পুনরায় সেট ক�
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "@count কন্টেন্ট এন্ট্রির জন্য সফলভাবে স্টিকি পতাকা 0 এ রিসেট"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "ফ্রন্ট-এন্ড"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

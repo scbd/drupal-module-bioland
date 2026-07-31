@@ -166,10 +166,6 @@ msgid "Region"
 msgstr "Régió"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Válassza ki a földrajzi régiót."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Észak-Amerika"
 
@@ -200,10 +196,6 @@ msgstr "A biológiai biztonság földje?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Azt jelzi, hogy ez egy Biosafety Land példány-e."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "A mező viselkedési beállításai"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -242,10 +234,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Dátumtartomány mezők megjelenítése (kezdő és befejezési dátum) ezekhez a tartalomtípusokhoz:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "További mezők vezérlése"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "További mezők engedélyezése"
 
@@ -254,44 +242,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "Adjon hozzá tartalomtípus-specifikus további mezőket (eseményállapotok, projektállapotok stb.) a tezaurusz tartalomtípusának megfelelően."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "További mezők feltérképezése"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "A következő tartalomtípusokban ezek a további mezők állnak rendelkezésre:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Esemény állapotok"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Projektállapotok, földrajzi hatókörök"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Minisztérium (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Szervezettípusok, Kormánytípusok"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ökoszisztéma (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Ökoszisztéma típusok"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Dokumentumtípusok"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Ezeket a mezőket dinamikusan hozzáadja a kiválasztott tartalomtípus alapján, és egy Vue.js összetevő működteti őket."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -310,20 +266,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Kontextus szerinti súgómegjegyzések megjelenítése a mezőkhöz a tartalomtípus alapján."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Menü mélységkorlátozásának engedélyezése"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Korlátozza a nem rendszergazdai felhasználók számára, hogy másodszintű és mélyebb menüelemeket hozzanak létre. Csak a „menü adminisztrációja” jogosultsággal rendelkező felhasználók hozhatnak létre beágyazott menüelemeket."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Fordítás alapértelmezett beállításai"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Konfigurálja a fordítható entitások fordítási alapértelmezett beállításainak (nyelvi helyőrzők) létrehozását."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -778,84 +722,12 @@ msgid "Help"
 msgstr "Segítség"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Ez lesz az új webhely tartalmának fő tartalma. Az összefoglaló felhasználható a tartalom rövid, tömör leírásának megjelenítésére. Továbbá, az összefoglaló a webhelyen található bejegyzés lista- és kártyanézeteiben jelenik meg. Alternatív megoldásként a fő tartalom első néhány mondatát fogjuk használni."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Képek"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "Az <b>első kép</b> itt balról jobbra sorrendben a rekord <b>fő képe lesz</b>, amely az oldalon, miniatűrökben jelenik meg a lista- és kártyanézetekben. Az összes többi kép a fő tartalom alatt jelenik meg."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Hősök"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Bármely oldal/tartalomtípus több <b>hő</b> s bannerrel rendelkezhet. Ha több van, akkor egy, akkor óránként forgatják őket."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Hírek (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Találkozó vagy esemény (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Projekt (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dokumentum (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Kapcsolódó weboldal (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Egyéb források (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Kép vagy videó (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "GYAKORI KÉRDÉSEK (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Nemzeti információk (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Az LMO-k állapota (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Terepi próba (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Nemzeti általános érvényesítési stratégia (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Kapacitásépítés (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Közlemény (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Kapcsolat (50)"
 
 #: bioland.module
 msgid "Save"
@@ -864,10 +736,6 @@ msgstr "Mentés"
 #: bioland.module
 msgid "Order Override"
 msgstr "Rendelés felülírása"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Nincs jogosultsága a menüpontok létrehozására más menüpontok alatt. Csak a legfelső szintű menüpontok engedélyezettek szerepköréhez."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -890,10 +758,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Esemény állapot címkék megjelenítése az alábbi tartalomtípusokhoz:"
 
@@ -902,40 +766,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Projekt állapot címkék megjelenítése az alábbi tartalomtípusokhoz:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -960,10 +796,6 @@ msgstr "Promóciós beállítások Súgó"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Promóciós beállítások Súgószöveg"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "A Támogatott és a Ragadós beállításokat ismertető súgószöveg. HTML megengedett."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1054,10 +886,6 @@ msgid "Content Ordering"
 msgstr "Tartalomrendezés"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Az összes csomópont esetében a field_order értékét 1000-re állítja vissza. Ez minden csomóponthoz új verziót hoz létre a „Rendelés visszaállítása” revíziós üzenettel. Az eredeti utoljára frissített dátum és felhasználó megmarad. Ezzel normalizálhatja a tartalom rendezését az egész webhelyen."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Rendelés visszaállítása"
 
@@ -1080,30 +908,6 @@ msgstr "Felület"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Általános felület"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Fordítási kötegelt műveletek"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "A meglévő entitások feldolgozása hiányzó fordítási alapbeállítások létrehozásához. Konfigurálja a fordítás alapértelmezett beállításait a Rendszerfunkciók lapon."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "A mega menü beállításai hamarosan megjelennek."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Kezdőlap beállítások"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "A kezdőlap beállításai hamarosan megjelennek."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "A Linkit modul nincs engedélyezve; a profil konfigurációjának kihagyása."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1271,16 +1075,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Az összes csomópont esetében a field_order értékét 10000 értékre állítja vissza. Ez minden csomóponthoz új verziót hoz létre a „Rendelés visszaállítása” revíziós üzenettel. Az eredeti utoljára frissített dátum és felhasználó megmarad. Ezzel normalizálhatja a tartalom rendezését az egész webhelyen."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Sikeresen állítsa vissza a field_order értékét 10000 értékre @count csomópontoknál."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Rendelés visszaállítása"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Tartalomtípus-menük"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1423,16 +1219,8 @@ msgid "Promoted"
 msgstr "Előléptetett"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "„Előléptetett címlapra” feliratú tételek következnek"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Kezdés dátuma"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Ezután rendezés kezdő dátum szerint (vagy közzététel dátuma, ha nincs kezdő dátum)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1445,10 +1233,6 @@ msgstr "Végül rendezve a legutóbb frissített"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Tipp:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Az alapértelmezett rendezés használatához hagyja üresen. Használjon 10-es lépéseket (pl. 10, 20, 30), hogy teret hagyjon az elemek későbbi behelyezéséhez."
 
 #: bioland.module
 msgid "URL"
@@ -1497,10 +1281,6 @@ msgstr "Ragadós zászlók visszaállítása..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Sikeresen állítsa vissza a ragadós jelzőt 0 értékre a @count tartalombejegyzésekhez."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Front-end"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

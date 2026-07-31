@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Réigiún"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Roghnaigh an réigiún geografach."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Meiriceá Thuaidh"
 
@@ -61,10 +57,6 @@ msgstr "An Talamh Bithshábháilteachta é?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Léiríonn sé an cás Bithshábháilteachta é seo."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Socruithe Iompraíochta Réimse"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Sainmhínigh rialacha infheictheachta réimse saincheaptha (formáid JSO
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Réamhshocruithe Aistriúcháin"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Cumraigh cruthú réamhshocruithe aistriúcháin (sealbhóirí teanga) d'eintitis in-aistrithe."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Cabhair"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Seo a bheidh mar phríomhábhar d'ábhar nua do shuímh.  Is féidir an achoimre a úsáid chun cur síos gairid beacht ar d'ábhar a thaispeáint.  Ina theannta sin, taispeánfar an achoimre i radhairc liosta agus cárta de do thaifead ar an suíomh gréasáin.  Mar mhalairt air sin, úsáidfear an chéad chúpla abairt ón bpríomhábhar."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Íomhánna"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "An <b>chéad íomhá</b> in ord ó chlé go deas anseo, <b>a bheidh mar phríomhíomhá</b> de do thaifead a thaispeánfar ar an leathanach agus i mionsamhlacha i radhairc liosta agus cárta.  Taispeánfar gach íomhá eile faoin bpríomhábhar."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Laochra"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Is féidir le haon leathanach/cineál ábhair <b>meirgí laochra</b> iolracha a bheith aige.  Má tá níos mó ná ceann amháin ann, rothlófar iad ar bhonn uaire."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Nuacht (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Cruinniú nó Imeacht (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Tionscadal (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Doiciméad (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Suíomh Gréasáin Gaolmhar (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Acmhainn Eile (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Íomhá nó Físeán (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Ceisteanna Coitianta (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Faisnéis Náisiúnta (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Stádas LMOanna (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Triail Allamuigh (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Straitéis Náisiúnta Príomhshruthaithe (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Forbairt Acmhainne (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Fógra (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Teagmháil (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Taispeáin réimsí Raon Dáta (Dáta Tosaigh agus Deireadh) do na cineálacha ábhair seo:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Rialú Réimsí Breise"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Mapáil Réimsí Breise"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Beidh na réimsí breise seo ar fáil sna cineálacha ábhair seo a leanas:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Stádas Imeachta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Stádas Tionscadail, Scóipí Geografacha"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Aireacht (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Cineálaí Eagraíochta, Cineálacha"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Éiceachóras (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Cineálacha Éiceach"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "cineálacha Doiciméad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Cuirtear na réimsí seo go dinimiciúil bunaithe ar an gcineál ábhair roghnaithe agus tá siad faoi thiomáint ag comhpháirt Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Cumasaigh Srianadh Doimhneachta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Cuir srian ar úsáideoirí neamh-riarthóra míreanna roghchlár dara leibhéal a chruthú Ní féidir ach úsáideoirí a bhfuil cead “roghchlár a riar” earraí roghchláir neadaithe a chruthú"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Sábháil"
 msgid "Order Override"
 msgstr "Ordú a chur ar aghaidh"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Níl cead agat míreanna roghchláir a chruthú faoi mhíreanna roghchláir eile. Ní cheadaítear ach míreanna roghchláir barrleibhéil do do ról."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Cabhair Sárú Ord"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Taispeáin clibeanna Stádas Imeachta do na cineálacha ábhair seo:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Taispeáin clibeanna Stádas Tionscadail do na cineálacha ábhair seo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Roghanna Cur Chun Cinn"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Téacs Cabhrach um Roghanna Cinn"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Téacs cabhrach ag míniú na roghanna Ardaithe agus Greamaithe Ceadaítear HTML."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Ordú Ábhar"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Athshocraíonn an luach field_order go 1000 do gach nóid. Cruthaíonn sé seo athbhreithniú nua do gach nód leis an teachtaireacht athbhreithnithe “Athshocrú ordú”. Caomhnaítear an dáta agus an t-úsáideoir bunaidh nuashonraithe de Úsáid é seo chun ordú ábhair a normalú ar fud an láithreáin."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Athshocraigh Ordú"
 
@@ -1001,30 +829,6 @@ msgstr "Comhéadan"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Comhéadan ginearálta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Oibríochtaí Baisc Aist"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Próiseáil aonáin atá ann cheana chun réamhshocruithe aistriúcháin atá in easnamh Cumraigh socruithe réamhshocraithe aistriúcháin sa chluaisín Fei"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Socruithe Mega Menu ag teacht go luath."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Socruithe Leathanach Baile"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Socruithe Leathanach Baile ag teacht go luath."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Níl modúl Linkit cumasaithe; cumraíocht phróifíle a scipeáil."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Athshocraíonn an luach field_order go 10000 do gach nóid. Cruthaíonn sé seo athbhreithniú nua do gach nód leis an teachtaireacht athbhreithnithe “Athshocrú ordú”. Caomhnaítear an dáta agus an t-úsáideoir bunaidh nuashonraithe de Úsáid é seo chun ordú ábhair a normalú ar fud an láithreáin."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Athshocraigh go rathúil field_order go 10000 do nóid @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Athshocraigh ordú"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Biachláir Cineál Ábhar"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Cur chun cinn"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Tagann míreanna marcáilte “Cuireadh chun cinn go leathanach tosaigh”"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Dáta Tosaigh"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Ansin sórtáilte de réir dáta tosaigh (nó dáta foilsithe mura bhfuil dáta tosaigh ann"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Sórtáilte ar deireadh de réir nuashonraithe"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Leid:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Fág folamh chun sórtáil réamhshocraithe a úsáid. Úsáid increimeanna de 10 (m.sh., 10, 20, 30) chun spáis a fhágáil chun earraí a chur isteach níos déanaí."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Bratacha greamaitheacha a athshocrú..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Athshocraigh bratach greamaitheach go rathúil go 0 le haghaidh iontrálacha ábhair @count"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Ceann tosaigh"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

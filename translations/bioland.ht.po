@@ -166,10 +166,6 @@ msgid "Region"
 msgstr "Rejyon"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Chwazi rejyon jeyografik la."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Amerik di Nò"
 
@@ -200,10 +196,6 @@ msgstr "Èske tè biosekirite?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Endike si wi ou non sa a se yon egzanp Tè Biosafety."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Anviwònman Konpòt"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -242,10 +234,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Montre Dat Range jaden (Start & Fen Dat) pou kalite kontni sa yo:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Kontwòl jaden adisyonèl"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "Pèmèt jaden adisyonèl"
 
@@ -254,44 +242,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "Ajoute kontent-kalite espesifik jaden adisyonèl (status evènman, stati pwojè, elatriye) ki baze sou kalite kontni thesaurus."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Jaden adisyonèl kat"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Kalite kontni sa yo pral gen jaden adisyonèl sa yo disponib:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Estati Evènman"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Estati pwojè, domèn jeyografik"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ministè (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Kalite òganizasyon, Kalite gouvènman"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekosistèm (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Kalite ekosistèm"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Kalite dokiman"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Jaden sa yo dinamik ajoute ki baze sou kalite a kontni chwazi epi yo patrone pa yon eleman Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -310,20 +266,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Montre kòmantè èd kontèks pou jaden ki baze sou kalite kontni."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Pèmèt Restriksyon Pwofondè"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Restriksyon sou itilizatè ki pa administratè soti nan kreye atik meni dezyèm-nivo ak pi fon. Se sèlman itilizatè yo ki gen “administre meni” pèmisyon ka kreye atik meni nisted."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Defaults tradiksyon"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Configure kreyasyon defaults tradiksyon (placeholders lang) pou antite tradutab."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -778,84 +722,12 @@ msgid "Help"
 msgstr "Ede"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Sa a pral kontni prensipal la nan nouvo kontni sit ou. Rezime a ka itilize pou montre yon deskripsyon kout kout kontni ou. Pli lwen, rezime a pral parèt nan lis ak opinyon kat nan dosye ou sou sit entènèt la. Altènativman, yo pral premye fraz la kèk soti nan kontni prensipal la dwe itilize."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Imaj"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "Pre <b>mye im</b> aj la nan lòd de bò gòch a dwa isit <b>la, yo pral imaj prensipal</b> la nan dosye ou parèt sou paj la ak nan thumbnails nan lis ak opinyon kat. Tout yon lòt imaj yo pral parèt anba a kontni prensipal la."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Ewo"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Nenpòt ki kalite paj/kontni ka gen banyè ewo miltip<b>.</b> Si gen plis lè sa a yon sèl yo pral vire sou yon baz èdtan."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Nouvèl (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Reyinyon oswa Evènman (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Pwojè (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dokiman (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Sit wèb ki gen rapò (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Lòt resous (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Imaj oswa Videyo (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "FAQ (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Enfòmasyon Nasyonal (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Estati LMO (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Jijman jaden (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Estrateji Nasyonal Mainstream (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Kapasite Building (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Anons (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Kontakte (50)"
 
 #: bioland.module
 msgid "Save"
@@ -864,10 +736,6 @@ msgstr "Sove"
 #: bioland.module
 msgid "Order Override"
 msgstr "Lòd ranvwaye"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Ou pa gen pèmisyon pou kreye atik meni anba lòt atik meni yo. Se sèlman atik meni tèt-nivo yo pèmèt pou wòl ou."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -890,10 +758,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Montre Tags Estati Evènman pou kalite kontni sa yo:"
 
@@ -902,40 +766,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Montre Tags Estati Pwojè pou kalite kontni sa yo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -960,10 +796,6 @@ msgstr "Opsyon Pwomosyon Ede"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Opsyon Pwomosyon èd tè"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Ede tèks ki eksplike opsyon ankouraje ak kolan yo. HTML pèmèt."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1054,10 +886,6 @@ msgid "Content Ordering"
 msgstr "Kòmande kontni"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Resete valè field_order a 1000 pou tout nœuds. Sa a kreye yon nouvo revizyon pou chak ne ak mesaj revizyon an “Reyajiste kòmande”. Orijinal dènye dat la mete ajou ak itilizatè yo konsève. Sèvi ak sa a nòmalize kòmande kontni atravè sit la."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Reyajiste lòd"
 
@@ -1080,30 +908,6 @@ msgstr "Entèfas"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Entèfas jeneral"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Operasyon pakèt tradiksyon"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Pwosesis antite ki deja egziste deja pou kreye defaults tradiksyon ki manke. Configure tradiksyon default anviwònman nan tab la Fonksyon Sistèm."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Anviwònman Mega Menu vini byento."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Anviwònman paj kay"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Anviwònman Paj Kay vini byento."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Modil Linkit pa pèmèt; sote konfigirasyon pwofil."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1271,16 +1075,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Resete valè field_order a 10000 pou tout nœuds. Sa a kreye yon nouvo revizyon pou chak ne ak mesaj revizyon an “Reyajiste kòmande”. Orijinal dènye dat la mete ajou ak itilizatè yo konsève. Sèvi ak sa a nòmalize kòmande kontni atravè sit la."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Aksè Reyajiste field_order nan 10000 pou nœuds @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Reyajiste kòmande"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Menys Kalite Kontni"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1423,16 +1219,8 @@ msgid "Promoted"
 msgstr "Ankouraje"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Atik ki make “Ankouraje nan paj devan” vini pwochen"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Dat Kòmanse"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Lè sa a, klase pa dat kòmanse (oswa dat pibliye si pa gen okenn dat kòmanse)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1445,10 +1233,6 @@ msgstr "Finalman klase pa pi dènyèman mete ajou"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Ide:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Kite vid pou sèvi ak klasman default. Sèvi ak increments nan 10 (egzanp, 10, 20, 30) yo kite plas pou mete atik pita."
 
 #: bioland.module
 msgid "URL"
@@ -1497,10 +1281,6 @@ msgstr "Resetting drapo kolan..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Aksè Reyajiste drapo kolan nan 0 pou antre kontni @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Devan-fen"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

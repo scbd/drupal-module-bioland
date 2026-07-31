@@ -188,10 +188,6 @@ msgid "Region"
 msgstr "Rhanbarth"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Dewiswch y rhanbarth daearyddol."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Gogledd America"
 
@@ -222,10 +218,6 @@ msgstr "A yw Tir Bioddiogelwch?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Yn nodi a yw hwn yn enghraifft Tir Bioddiogelwch."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Gosodiadau Ymddygiad Maes"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -264,10 +256,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Dangos meysydd Ystod Dyddiad (Dyddiad Cychwyn a Diwedd) ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Rheoli Meysydd Ychwanegol"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "Galluogi Meysydd Ychwanegol"
 
@@ -276,44 +264,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "Ychwanegwch feysydd ychwanegol penodol math cynnwys (statws digwyddiad, statws prosiect, ac ati) yn seiliedig ar fath cynnwys thesawrws."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Mapio Meysydd Ychwanegol"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Bydd gan y mathau canlynol o gynnwys y meysydd ychwanegol hyn ar gael:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Statws Digwyddiad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Statws Prosiect, Cwmpasau Daearyddol"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Y Weinyddiaeth (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Mathau o Sefydliadau, Mathau Llywodraeth"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ecosystem (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Mathau Ecosystem"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Mathau o Ddogfennau"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Mae'r meysydd hyn yn cael eu hychwanegu'n ddeinamig yn seiliedig ar y math o gynnwys a ddewiswyd ac yn cael eu pweru gan gydran Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -332,20 +288,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Arddangos sylwadau cymorth cyd-destunol ar gyfer meysydd yn seiliedig ar y math o gynnwys."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Galluogi Cyfyngiad Dyfnder Dewis"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Cyfyngu defnyddwyr nad ydynt yn weinyddwr rhag creu eitemau dewislen ail lefel ac yn ddyfnach. Dim ond defnyddwyr sydd â chaniatâd “gweinyddu bwydlen” sy'n gallu creu eitemau dewislen nythu."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Rhagosodiadau Cyfieithu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Ffurfweddu creu rhagosodiadau cyfieithu (deiliaid lleoedd iaith) ar gyfer endidau y gellir eu cyfieithu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -796,84 +740,12 @@ msgid "Vietnamese"
 msgstr "Fietnameg"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Dyma fydd prif gynnwys eich cynnwys safle newydd. Gellir defnyddio'r crynodeb i arddangos disgrifiad cryno byr o'ch cynnwys. Ymhellach, bydd y crynodeb yn cael ei arddangos mewn golygfeydd rhestr a cherdyn o'ch cofnod ar y wefan. Fel arall, defnyddir yr ychydig frawddeg gyntaf o'r prif gynnwys."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Delweddau"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "Y ddel <b>wedd gyntaf</b> yn nhrefn o&#39;r chwith i&#39;r dde yma, <b>fydd prif ddelwedd</b> eich cofnod a ddangosir ar y dudalen ac mewn mân-luniau mewn golygfeydd rhestr a cherdyn. Bydd yr holl ddelweddau eraill yn cael eu harddangos o dan y prif gynnwys."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Arwyr"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Gall unrhyw fath o dudalen/cynnwys gael baneri arwyr lluosog<b>.</b> Os oes mwy yna un byddant yn cael eu cylchdroi bob awr."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Newyddion (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Cyfarfod neu Digwyddiad (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Prosiect (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dogfen (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Gwefan Gysylltiedig (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Adnoddau Eraill (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Delwedd neu Fideo (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "CWESTIYNAU CYFFREDIN (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Gwybodaeth Genedlaethol (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Statws LMOs (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Treial Maes (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Strategaeth Brif Ffrydio Genedlaethol (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Adeiladu Capasiti (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Cyhoeddiad (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Cyswllt (50)"
 
 #: bioland.module
 msgid "Save"
@@ -882,10 +754,6 @@ msgstr "Arbed"
 #: bioland.module
 msgid "Order Override"
 msgstr "Gorchymyn Diystyru"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Nid oes gennych ganiatâd i greu eitemau dewislen o dan eitemau dewislen eraill. Dim ond eitemau bwydlen lefel uchaf sy'n cael eu caniatáu ar gyfer eich rôl."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -908,10 +776,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Dangos tagiau Statws Digwyddiad ar gyfer y mathau hyn o gynnwys:"
 
@@ -920,40 +784,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Dangos tagiau Statws Prosiect ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -978,10 +814,6 @@ msgstr "Help Opsiynau Hyrwyddo"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Testun Cymorth Opsiynau Hyrwyddo"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Testun cymorth yn esbonio'r opsiynau Hyrwyddedig a Gludiog. Caniateir HTML."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1072,10 +904,6 @@ msgid "Content Ordering"
 msgstr "Archebu Cynnwys"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Ail-osod gwerth field_order i 1000 ar gyfer pob nod. Mae hyn yn creu diwygiad newydd ar gyfer pob nod gyda'r neges adolygu “Ailosod archebu”. Mae'r dyddiad a'r defnyddiwr a ddiweddarwyd diwethaf gwreiddiol yn cael eu cadw. Defnyddiwch hyn i normaleiddio archebu cynnwys ar draws y wefan."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Ailosod Archebu"
 
@@ -1098,30 +926,6 @@ msgstr "Rhyngwyneb"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Rhyngwyneb cyffredinol"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Gweithrediadau Swp Cyfieithu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Prosesu endidau presennol i greu rhagosodiadau cyfieithu sydd ar goll. Ffurfweddu gosodiadau diofyn cyfieithu yn y tab Swyddogaethau System."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Gosodiadau Dewislen Mega yn dod yn fuan."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Gosodiadau Tudalen Hafan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Gosodiadau Tudalen Hafan yn dod yn fuan."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Nid yw modiwl Linkit wedi'i alluogi; sgipio cyfluniad proffil."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1285,16 +1089,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Ail-osod gwerth field_order i 10000 ar gyfer pob nod. Mae hyn yn creu diwygiad newydd ar gyfer pob nod gyda'r neges adolygu “Ailosod archebu”. Mae'r dyddiad a'r defnyddiwr a ddiweddarwyd diwethaf gwreiddiol yn cael eu cadw. Defnyddiwch hyn i normaleiddio archebu cynnwys ar draws y wefan."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Ailosod field_order yn llwyddiannus i 10000 ar gyfer nodau @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Ailosod archebu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Bwydlenni Math o Gynnwys"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1437,16 +1233,8 @@ msgid "Promoted"
 msgstr "Wedi'i hyrwyddo"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Eitemau sydd wedi'u marcio “Hyrwyddo i'r dudalen flaen” yn dod nesaf"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Dyddiad Dechrau"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Yna didoli yn ôl dyddiad dechrau (neu ddyddiad cyhoeddi os nad oes dyddiad dechrau)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1459,10 +1247,6 @@ msgstr "Didoli yn olaf yn ôl diweddaru fwyaf diweddar"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Awgrym:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Gadewch yn wag i ddefnyddio didoli diofyn. Defnyddiwch gynydd o 10 (ee, 10, 20, 30) i adael lle i fewnosod eitemau yn ddiweddarach."
 
 #: bioland.module
 msgid "URL"
@@ -1511,10 +1295,6 @@ msgstr "Ailosod baneri gludiog..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Ailosod baner gludiog yn llwyddiannus i 0 ar gyfer cofnodion cynnwys @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Pen-blaen"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

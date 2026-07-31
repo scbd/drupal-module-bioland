@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Khu vực"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Chọn khu vực địa lý."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Bắc Mỹ"
 
@@ -61,10 +57,6 @@ msgstr "Có phải là Vùng đất An toàn Sinh học không?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Cho biết đây có phải là một phiên bản Vùng đất An toàn Sinh học hay không."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Cài đặt Hành vi Trường"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Xác định các quy tắc hiển thị trường tùy chỉnh (định
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Mặc định Dịch"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Cấu hình việc tạo các mặc định dịch (trình giữ chỗ ngôn ngữ) cho các thực thể có thể dịch."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Trợ giúp"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Đây sẽ là nội dung chính của nội dung trang web mới của bạn. Phần tóm tắt có thể được sử dụng để hiển thị một mô tả ngắn gọn, súc tích về nội dung của bạn. Hơn nữa, phần tóm tắt sẽ được hiển thị trong các chế độ xem danh sách và thẻ của bản ghi của bạn trên trang web. Ngoài ra, một vài câu đầu tiên từ nội dung chính sẽ được sử dụng."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Hình ảnh"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Hình ảnh đầu tiên</b> theo thứ tự từ trái sang phải ở đây, <b>sẽ là hình ảnh chính</b> của bản ghi của bạn được hiển thị trên trang và trong các hình thu nhỏ ở chế độ xem danh sách và thẻ. Tất cả các hình ảnh khác sẽ được hiển thị bên dưới nội dung chính."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Biểu ngữ chính"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Bất kỳ trang/loại nội dung nào cũng có thể có nhiều <b>biểu ngữ chính</b>. Nếu có nhiều hơn một, chúng sẽ được xoay vòng hàng giờ."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Tin tức (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Cuộc họp hoặc Sự kiện (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Dự án (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Tài liệu (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Trang web liên quan (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Tài nguyên khác (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Hình ảnh hoặc Video (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Câu hỏi thường gặp (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Thông tin quốc gia (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Tình trạng của LMO (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Thử nghiệm thực địa (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Chiến lược lồng ghép quốc gia (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Nâng cao năng lực (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Thông báo (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Liên hệ (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Hiển thị trường Phạm vi ngày (Ngày bắt đầu và ngày kết thúc) cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Kiểm soát trường bổ sung"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Lập bản đồ trường bổ sung"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Các loại nội dung sau sẽ có sẵn các trường bổ sung này:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Trạng thái sự kiện"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Trạng thái dự án, Phạm vi địa lý"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Bộ (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Các loại tổ chức, loại chính phủ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Hệ sinh thái (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Các loại hệ sinh thái"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Các loại tài liệu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Các trường này được thêm động dựa trên loại nội dung đã chọn và được cung cấp bởi một thành phần Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Kích hoạt giới hạn độ sâu menu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Hạn chế người dùng không phải quản trị viên tạo các mục menu cấp hai và sâu hơn. Chỉ những người dùng có quyền “quản trị menu” mới có thể tạo các mục menu lồng nhau."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Tiết kiệm"
 msgid "Order Override"
 msgstr "Ghi đè đơn hàng"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Bạn không có quyền tạo các mục menu dưới các mục menu khác. Chỉ các mục menu cấp cao nhất mới được phép cho vai trò của bạn."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Trợ giúp ghi đè thứ tự"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Hiển thị thẻ Trạng thái sự kiện cho các loại nội dung sau:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Hiển thị thẻ Trạng thái dự án cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Tùy chọn khuyến mãi Trợ giúp"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Tùy chọn khuyến mãi Văn bản trợ giúp"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Văn bản trợ giúp giải thích các tùy chọn Promoted và Sticky. HTML được cho phép"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Đặt hàng nội dung"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Đặt lại giá trị field_order thành 1000 cho tất cả các nút. Điều này tạo ra một bản sửa đổi mới cho mỗi nút với thông báo sửa đổi “Đặt lại thứ tự”. Ngày cập nhật cuối cùng ban đầu và người dùng được bảo tồn. Sử dụng điều này để bình thường hóa thứ tự nội dung trên trang web."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Đặt lại đặt hàng"
 
@@ -1001,30 +829,6 @@ msgstr "Giao diện"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Giao diện chung"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Hoạt động hàng loạt dịch"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Xử lý các thực thể hiện có để tạo các mặc định dịch còn thiếu. Định cấu hình cài đặt mặc định dịch trong tab Chức năng hệ thống."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Cài đặt Mega Menu sắp ra mắt."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Cài đặt Trang chủ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Cài đặt Trang chủ sắp ra mắt."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Mô-đun Linkit không được bật; bỏ qua cấu hình hồ sơ."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Đặt lại giá trị field_order thành 10000 cho tất cả các nút. Điều này tạo ra một bản sửa đổi mới cho mỗi nút với thông báo sửa đổi “Đặt lại thứ tự”. Ngày cập nhật cuối cùng ban đầu và người dùng được bảo tồn. Sử dụng điều này để bình thường hóa thứ tự nội dung trên trang web."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Đặt lại thành công field_order thành 10000 cho các nút @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Đặt lại thứ tự"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Menu loại nội dung"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Được thăng chức"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Các mục được đánh dấu “Được quảng bá lên trang nhất” sẽ tiếp theo"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Ngày bắt đầu"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Sau đó sắp xếp theo ngày bắt đầu (hoặc ngày xuất bản nếu không có ngày bắt đầu)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Cuối cùng được sắp xếp theo cập nhật gần đây nhất"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Mẹo:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Để trống để sử dụng sắp xếp mặc định. Sử dụng gia số 10 (ví dụ: 10, 20, 30) để chừa chỗ cho việc chèn các mục sau này."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Đặt lại cờ dính..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Đặt lại thành công cờ dính thành 0 cho các mục nội dung @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Front-end"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

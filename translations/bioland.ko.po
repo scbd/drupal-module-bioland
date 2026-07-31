@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "지역"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "지리적 지역을 선택하세요."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "북미"
 
@@ -61,10 +57,6 @@ msgstr "생물안전성 랜드입니까?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "이것이 생물안전성 랜드 인스턴스인지 여부를 나타냅니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "필드 동작 설정"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "사용자 지정 필드 가시성 규칙을 정의합니다 (JSON 형식
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "번역 기본값"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "번역 가능한 엔터티에 대한 번역 기본값(언어 자리 표시자) 생성을 구성합니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "도움말"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "이것이 새 사이트 콘텐츠의 주요 내용이 됩니다. 요약은 콘텐츠에 대한 간결한 설명을 표시하는 데 사용할 수 있습니다. 또한 요약은 웹사이트의 레코드 목록 및 카드 보기에 표시됩니다. 또는 본문의 처음 몇 문장이 사용됩니다."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "이미지"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "여기서 왼쪽에서 오른쪽 순서로 <b>첫 번째 이미지</b>가 페이지와 목록 및 카드 보기의 썸네일에 표시되는 레코드의 <b>주요 이미지</b>가 됩니다. 다른 모든 이미지는 주요 콘텐츠 아래에 표시됩니다."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "히어로"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "모든 페이지/콘텐츠 유형은 여러 개의 <b>히어로 배너</b>를 가질 수 있습니다. 하나 이상인 경우 시간 단위로 순환됩니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "뉴스 (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "회의 또는 이벤트 (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "프로젝트 (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "문서 (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "관련 웹사이트 (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "기타 리소스 (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "이미지 또는 비디오 (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "자주 묻는 질문 (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "국가 정보 (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "LMO 상태 (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "현장 시험 (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "국가 주류화 전략 (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "역량 강화 (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "공지 (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "연락처 (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "다음 콘텐츠 유형의 날짜 범위 필드 (시작 및 종료 날짜) 를 표시합니다."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "추가 필드 제어"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "추가 필드 매핑"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "다음과 같은 콘텐츠 유형에는 이러한 추가 필드를 사용할 수 있습니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "이벤트 상태"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "프로젝트 상태, 지리적 범위"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "미니스트리 (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "조직 유형, 정부 유형"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "에코시스템 (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "생태계 유형"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "문서 유형"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "이러한 필드는 선택한 콘텐츠 유형에 따라 동적으로 추가되며 Vue.js 구성 요소에 의해 제공됩니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "메뉴 깊이 제한 활성화"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "관리자가 아닌 사용자가 2단계 이상의 메뉴 항목을 만들지 못하도록 제한합니다.“메뉴 관리” 권한이 있는 사용자만 중첩된 메뉴 항목을 만들 수 있습니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "저장"
 msgid "Order Override"
 msgstr "오더 오버라이드"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "다른 메뉴 항목 아래에 메뉴 항목을 작성할 권한이 없습니다.역할에는 최상위 메뉴 항목만 사용할 수 있습니다."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "순서 재정의 도움말"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "다음 콘텐츠 유형에 대한 이벤트 상태 태그를 표시합니다."
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "다음 콘텐츠 유형에 대한 프로젝트 상태 태그를 표시합니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "프로모션 옵션 도움말"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "프로모션 옵션 도움말 텍스트"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "프로모션 및 고정 옵션을 설명하는 도움말 텍스트입니다.HTML은 허용됩니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "콘텐츠 주문"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "모든 노드에 대해 필드_오더 값을 1000으로 재설정합니다.그러면 각 노드에 대해 “Reset order”라는 수정 메시지와 함께 새 개정이 생성됩니다.원래의 최종 업데이트 날짜 및 사용자는 보존됩니다.이를 사용하여 사이트 전체에서 콘텐츠 순서를 표준화할 수 있습니다."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "주문 재설정"
 
@@ -1001,30 +829,6 @@ msgstr "인터페이스"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "일반 인터페이스"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "번역 배치 작업"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "기존 엔티티를 처리하여 누락된 번역 기본값을 생성합니다.시스템 함수 탭에서 번역 기본 설정을 구성합니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "메가 메뉴 설정이 곧 제공됩니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "홈 페이지 설정"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "홈 페이지 설정이 곧 제공될 예정입니다."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit 모듈이 활성화되지 않았습니다. 프로필 구성을 건너뛰는 중입니다."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "모든 노드에 대해 필드_오더 값을 10000으로 재설정합니다.그러면 각 노드에 대해 “Reset order”라는 수정 메시지와 함께 새 개정이 생성됩니다.원래의 최종 업데이트 날짜 및 사용자는 보존됩니다.이를 사용하여 사이트 전체에서 콘텐츠 순서를 표준화할 수 있습니다."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "@count 노드의 필드_주문을 10000으로 성공적으로 재설정했습니다."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "주문 재설정"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ 콘텐츠 유형 메뉴"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "승진"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "“프론트 페이지로 승격됨”으로 표시된 항목은 다음과 같습니다."
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "시작일"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "그런 다음 시작 날짜 (또는 시작 날짜가 없는 경우 게시된 날짜) 별로 정렬합니다."
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "마지막으로 가장 최근에 업데이트된 순으로 정렬되었�
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "팁:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "기본 정렬을 사용하려면 비워 두십시오.10씩 (예: 10, 20, 30) 씩 늘려 나중에 항목을 삽입할 수 있는 공간을 확보하세요."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "고정 플래그 재설정 중..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "@count 콘텐츠 항목의 고정 플래그를 0으로 성공적으로 재설정했습니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "프런트엔드"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

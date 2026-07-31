@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Svæði"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Veldu landfræðilegt svæði."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Norður-Ameríka"
 
@@ -61,10 +57,6 @@ msgstr "Er líföryggisland?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Gefur til kynna hvort þetta sé dæmi um líföryggisland."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Stillingar fyrir hegðun reita"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Skilgreina sérsniðnar reglur um sýnileika reita (JSON snið)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Sjálfgefnar þýðingar"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Stilla stofnun sjálfgefinna þýðinga (staðgengla fyrir tungumál) fyrir þýðanlegar einingar."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Hjálp"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Þetta verður aðalinnihald nýja vefsvæðisins þíns. Hægt er að nota útdráttinn til að birta stutta og hnitmiðaða lýsingu á innihaldinu þínu. Ennfremur mun útdrátturinn birtast í lista- og kortasýn á færslunni þinni á vefsíðunni. Að öðrum kosti verða fyrstu fáu setningarnar úr aðalinnihaldinu notaðar."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Myndir"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Fyrsta myndin</b> í röð frá vinstri til hægri hér, <b>verður aðalmyndin</b> á færslunni þinni sem birtist á síðunni og í smámyndum í lista- og kortasýn. Allar aðrar myndir verða birtar fyrir neðan aðalinnihaldið."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Hetjur"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Hvaða síða/innihaldstegund sem er getur haft marga <b>hetjuborða</b>. Ef það er fleiri en einn verður þeim snúið á klukkutíma fresti."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Fréttir (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Fundur eða viðburður (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Verkefni (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Skjal (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Tengd vefsíða (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Annað úrræði (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Mynd eða myndband (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Algengar spurningar (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Landsupplýsingar (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Staða erfðabreyttra lífvera (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Vettvangstilraun (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Landsáætlun um samþættingu (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Hæfnisuppbygging (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Tilkynning (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Tengiliður (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Sýna dagsetningarsvið reiti (upphaf- og lokadagsetning) fyrir þessar tegundir efnis:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Viðbótarsviðurstýring"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Kortlagning viðbótar sviða"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Eftirfarandi efnistegundir munu hafa þessa viðbótarreiti tiltæka:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Viðburðastöður"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Staða verkefna, landfræðileg umfang"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ráðuneyti (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Skipulagsgerðir, ríkisstjórnartegundir"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Vistkerfi (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Tegundir vistkerfa"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Skjalagerðir"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Þessum reitum er virkt bætt út frá völdum efnistegund og eru knúin af Vue.js hluti."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Virkja takmörkun dýptarvalmyndar"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Takmarka notendur sem ekki eru stjórnandi frá því að búa til annars stigs valmyndaratriði og dýpra. Aðeins notendur með leyfi “stjórna valmyndinni” geta búið til hreiðra valmyndaratriði."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Vista"
 msgid "Order Override"
 msgstr "Hnekki pöntun"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Þú hefur ekki leyfi til að búa til valmyndaratriði undir öðrum valmyndaratriðum. Aðeins efsta stigs valmyndaratriði eru leyfð fyrir hlutverk þitt."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Hjálp fyrir röðunartilsniðgang"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Sýna stöðumerki viðburðar fyrir þessar tegundir efnis:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Sýna stöðumerki verkefnis fyrir þessar tegundir efnis:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Kynningarvalkostir Hjálp"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Kynningarvalkostir Hjálpartexti"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Hjálpartexti sem útskýrir valkostina Promoted og Sticky. HTML er leyfilegt."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Pöntun efnis"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Endurstillir field_order gildið í 1000 fyrir alla hnúta. Þetta skapar nýja endurskoðun fyrir hvern hnút með endurskoðunarskilaboðunum “Endurstilla röðun”. Upprunalega síðast uppfærða dagsetning og notandinn eru varðveittir. Notaðu þetta til að staðla röðun efnis yfir síðuna."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Endurstilla pöntun"
 
@@ -1001,30 +829,6 @@ msgstr "Viðmót"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Almennt viðmót"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Þýðingahópsaðgerðir"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Vinna úr núverandi aðilum til að búa til vanskilgildi þýðingar sem vantar. Stilltu sjálfgefnar stillingar þýðingar í flipanum Kerfisaðgerðir."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Mega Menu stillingar koma fljótlega."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Stillingar heimasíðunnar"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Stillingar heimasíðunnar koma fljótlega."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit-einingin er ekki virk; sleppa sniðstillingum."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Endurstillir field_order gildið í 10000 fyrir alla hnúta. Þetta skapar nýja endurskoðun fyrir hvern hnút með endurskoðunarskilaboðunum “Endurstilla röðun”. Upprunalega síðast uppfærða dagsetning og notandinn eru varðveittir. Notaðu þetta til að staðla röðun efnis yfir síðuna."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Endurstilla field_order í 10000 fyrir @count hnúta með góðum árangri."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Endurstilla pöntun"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Matseðlar um efnisgerð"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Kynnt"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Hlutir merktir “Kynntir á forsíðu” koma næst"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Upphafsdagur"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Síðan raðað eftir upphafsdegi (eða birtum degi ef enginn upphafsdagur)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Loksins raðað eftir nýjustu uppfærðum"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Ábending:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Látið vera tómt til að nota sjálfgefna flokkun. Notaðu þrepum 10 (t.d. 10, 20, 30) til að skilja eftir pláss til að setja inn hluti síðar."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Að endurstilla klístraða fána..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Endurstilla klímfána með góðum árangri í 0 fyrir @count efnisfærslur."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Framhlið"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

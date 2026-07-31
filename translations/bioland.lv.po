@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Reģions"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Atlasiet ģeogrāfisko reģionu."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Ziemeļamerika"
 
@@ -61,10 +57,6 @@ msgstr "Vai ir biodrošības zeme?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Norāda, vai šī ir biodrošības zemes instance."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Lauka uzvedības iestatījumi"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Definēt pielāgotus lauka redzamības noteikumus (JSON formātā)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Tulkošanas noklusējumi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Konfigurēt tulkošanas noklusējumu (valodu vietturu) izveidi tulkojamiem entītijām."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Palīdzība"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Šis būs jūsu jaunā vietnes satura galvenais saturs.  Kopsavilkumu var izmantot, lai parādītu īsu, kodolīgu jūsu satura aprakstu.  Turklāt kopsavilkums  tiks parādīts jūsu ieraksta saraksta un kartīšu skatos vietnē.  Alternatīvi tiks izmantoti pirmie daži teikumi no galvenā satura."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Attēli"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Pirmais attēls</b> šeit no kreisās uz labo, <b>būs jūsu ieraksta galvenais attēls</b>, kas tiks parādīts lapā un sīktēlos saraksta un kartīšu skatos.  Visi pārējie attēli tiks parādīti zem galvenā satura."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Galvenie baneri"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Jebkurai lapai/satura veidam var būt vairāki <b>galvenie baneri</b>.  Ja ir vairāk nekā viens, tie tiks rotēti reizi stundā."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Ziņas (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Sanāksme vai pasākums (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Projekts (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dokuments (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Saistītā vietne (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Cits resurss (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Attēls vai video (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "BUJ (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Nacionālā informācija (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "LMO statuss (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Lauka izmēģinājums (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Nacionālā integrācijas stratēģija (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Spēju veidošana (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Paziņojums (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Kontakts (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Rādīt datumu diapazona laukus (sākuma un beigu datums) šādiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Papildu lauku kontrole"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Papildu lauku kartēšana"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Šie papildu lauki būs pieejami šādiem satura veidiem:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Notikumu statusi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Projekta statusi, ģeogrāfiskie jomas"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ministrija (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Organizācijas veidi, valdības veidi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekosistēma (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Ekosistēmu veidi"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Dokumentu veidi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Šie lauki tiek dinamiski pievienoti, pamatojoties uz izvēlēto satura tipu, un tos darbina Vue.js komponents."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Iespējot izvēlnes dziļuma ierobežo"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Ierobežojiet lietotājiem, kas nav administratori, izveidot otrā līmeņa izvēlnes vienumus un dziļāk. Tikai lietotāji ar atļauju “administrēt izvēlni” var izveidot ligzdotus izvēlnes vienumus."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Saglabāt"
 msgid "Order Override"
 msgstr "Pasūtījuma aizstāšana"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Jums nav atļaujas izveidot izvēlnes vienumus citos izvēlnes vienumos. Jūsu lomai ir atļauti tikai augstākā līmeņa izvēlnes vienumi."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Kārtības ignorēšanas palīdzība"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Rādīt pasākuma statusa tagus šiem satura tipiem:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Rādīt projekta statusa tagus šiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Veicināšanas opcijas Palīdzība"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Reklāmas opciju Palīdzības teksts"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Palīdzības teksts, kurā izskaidrotas reklamētās un uzlīmētās opcijas. HTML ir atļauts."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Satura pasūtīšana"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Atjauno lauka kārtības vērtību uz 1000 visiem mezgliem. Tādējādi katram mezglam tiek izveidota jauna pārskatīšana ar pārskatīšanas ziņojumu “Atiestatīt pasūtīšanu”. Sākotnējais pēdējais atjauninātais datums un lietotājs tiek saglabāts. Izmantojiet to, lai normalizētu satura pasūtīšanu visā vietnē."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Atjaunot pasūtīšanu"
 
@@ -1001,30 +829,6 @@ msgstr "Saskarne"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Vispārīga saskarne"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Tulkošanas partijas operācijas"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Apstrādājiet esošās entītijas, lai izveidotu trūkstošos tulkošanas noklusējuma iestatījumus. Konfigurējiet tulkošanas noklusējuma iestatījumus cilnē Sistēmas funkcijas."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Drīzumā būs pieejami mega izvēlnes iestatījumi."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Mājas lapas iestatījumi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Mājas lapas iestatījumi drīzumā."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit modulis nav iespējots; izlaižot profila konfigurāciju."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Atjauno lauka kārtības vērtību uz 10000 visiem mezgliem. Tādējādi katram mezglam tiek izveidota jauna pārskatīšana ar pārskatīšanas ziņojumu “Atiestatīt pasūtīšanu”. Sākotnējais pēdējais atjauninātais datums un lietotājs tiek saglabāts. Izmantojiet to, lai normalizētu satura pasūtīšanu visā vietnē."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Veiksmīgi atiestatīt field_order uz 10000 @count mezgliem."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Atiestatīt pasūtīšanu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Satura tipa izvēlnes"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Paaugstināts"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Tālāk nāk vienumi ar atzīmi “Izvirzīts uz pirmlapu”"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Sākuma datums"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Pēc tam sakārto pēc sākuma datuma (vai publicēšanas datuma, ja nav sākuma datuma)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Visbeidzot sakārtots pēc pēdējā atjauninātā"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Padoms:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Atstājiet tukšu, lai izmantotu noklusējuma šķirošanu. Izmantojiet 10 soli (piemēram, 10, 20, 30), lai vēlāk atstātu vietu priekšmetu ievietošanai."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Lipīgo karogu atiestatīšana..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Veiksmīgi atiestatīt uzlīmēto karodziņu uz 0 @count satura ierakstiem."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Priekšpuse"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

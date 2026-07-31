@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Wilayah"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Pilih wilayah geografis."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Amerika Utara"
 
@@ -61,10 +57,6 @@ msgstr "Apakah Lahan Keamanan Hayati?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Menunjukkan apakah ini adalah contoh Lahan Keamanan Hayati."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Pengaturan Perilaku Bidang"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Tentukan aturan visibilitas bidang khusus (format JSON)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Default Terjemahan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Konfigurasikan pembuatan default terjemahan (placeholder bahasa) untuk entitas yang dapat diterjemahkan."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Bantuan"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Ini akan menjadi konten utama dari konten situs baru Anda. Ringkasan dapat digunakan untuk menampilkan deskripsi singkat dan padat dari konten Anda. Selanjutnya, ringkasan akan ditampilkan dalam tampilan daftar dan kartu dari catatan Anda di situs web. Sebagai alternatif, beberapa kalimat pertama dari konten utama akan digunakan."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Gambar"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Gambar pertama</b> dalam urutan dari kiri ke kanan di sini, <b>akan menjadi gambar utama</b> dari catatan Anda yang ditampilkan di halaman dan dalam gambar mini di tampilan daftar dan kartu. Semua gambar lain akan ditampilkan di bawah konten utama."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Pahlawan"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Setiap halaman/jenis konten dapat memiliki beberapa <b>spanduk pahlawan</b>. Jika ada lebih dari satu, mereka akan diputar setiap jam."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Berita (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Pertemuan atau Acara (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Proyek (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dokumen (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Situs Web Terkait (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Sumber Daya Lainnya (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Gambar atau Video (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "FAQ (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Informasi Nasional (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Status LMO (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Uji Coba Lapangan (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Strategi Pengarusutamaan Nasional (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Peningkatan Kapasitas (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Pengumuman (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Kontak (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Tampilkan bidang Rentang Tanggal (Tanggal Mulai & Akhir) untuk jenis konten ini:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Kontrol Bidang Tambahan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Pemetaan Bidang Tambahan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Jenis konten berikut akan memiliki bidang tambahan ini yang tersedia:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Status Acara"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Status Proyek, Lingkup Geografis"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Kementerian (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Jenis Organisasi, Jenis Pemerintah"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekosistem (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Jenis Ekosistem"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Jenis Dokumen"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Bidang-bidang ini ditambahkan secara dinamis berdasarkan jenis konten yang dipilih dan didukung oleh komponen Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Aktifkan Pembatasan Kedalaman Menu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Batasi pengguna non-administrator untuk membuat item menu tingkat kedua dan lebih dalam. Hanya pengguna dengan izin “mengelola menu” yang dapat membuat item menu bersarang."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Menyimpan"
 msgid "Order Override"
 msgstr "Penggantian Pesanan"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Anda tidak memiliki izin untuk membuat item menu di bawah item menu lainnya. Hanya item menu tingkat atas yang diizinkan untuk peran Anda."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Bantuan Timpa Urutan"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Tampilkan tag Status Acara untuk jenis konten ini:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Tampilkan tag Status Proyek untuk jenis konten ini:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Bantuan Opsi Promosi"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Opsi Promosi Teks Bantuan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Teks bantuan yang menjelaskan opsi Promosi dan Sticky. HTML diperbolehkan."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Pemesanan Konten"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Mengatur ulang nilai field_order ke 1000 untuk semua node. Ini membuat revisi baru untuk setiap node dengan pesan revisi “Reset order”. Tanggal dan pengguna terakhir yang diperbarui asli dipertahankan. Gunakan ini untuk menormalkan pemesanan konten di seluruh situs."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Atur Ulang Pemesanan"
 
@@ -1001,30 +829,6 @@ msgstr "Antarmuka"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Antarmuka umum"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Operasi Batch Terjemahan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Memproses entitas yang ada untuk membuat default terjemahan yang hilang. Konfigurasikan pengaturan default terjemahan di tab Fungsi Sistem."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Pengaturan Mega Menu segera hadir."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Pengaturan Halaman Beranda"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Pengaturan Home Page segera hadir."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Modul Linkit tidak diaktifkan; melewatkan konfigurasi profil."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Mengatur ulang nilai field_order ke 10000 untuk semua node. Ini membuat revisi baru untuk setiap node dengan pesan revisi “Reset order”. Tanggal dan pengguna terakhir yang diperbarui asli dipertahankan. Gunakan ini untuk menormalkan pemesanan konten di seluruh situs."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Berhasil mengatur ulang field_order ke 10000 untuk node @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Setel ulang pemesanan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Menu Jenis Konten"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Dipromosikan"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Item bertanda “Dipromosikan ke halaman depan” datang berikutnya"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Mulai tanggal"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Kemudian diurutkan berdasarkan tanggal mulai (atau tanggal diterbitkan jika tidak ada tanggal mulai)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Akhirnya diurutkan berdasarkan yang terbaru diperbarui"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Kiat:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Biarkan kosong untuk menggunakan penyortiran default. Gunakan kenaikan 10 (misalnya, 10, 20, 30) untuk menyisakan ruang untuk memasukkan item nanti."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Mengatur ulang bendera lengket..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Berhasil mengatur ulang tanda lengket ke 0 untuk entri konten @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Front-end"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

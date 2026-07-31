@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Регіон"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Виберіть географічний регіон."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Північна Америка"
 
@@ -61,10 +57,6 @@ msgstr "Чи є це землею біобезпеки?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Вказує, чи є це екземпляром землі біобезпеки."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Налаштування поведінки полів"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Визначте власні правила видимості полі
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Стандартні налаштування перекладу"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Налаштуйте створення стандартних перекладів (заповнювачів мови) для сутностей, що перекладаються."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Допомога"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Це буде основний вміст вашого нового сайту.  Резюме можна використовувати для відображення короткого стислого опису вашого вмісту.  Крім того, резюме  буде відображатися у вигляді списку та карток вашого запису на веб-сайті.  В іншому випадку буде використано перші кілька речень з основного вмісту."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Зображення"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Перше зображення</b> тут, у порядку зліва направо, <b>буде головним зображенням</b> вашого запису, що відображається на сторінці та в мініатюрах у вигляді списку та карток.  Усі інші зображення будуть відображені під основним вмістом."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Герої"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Будь-яка сторінка/тип вмісту може мати кілька <b>банерів-героїв</b>.  Якщо їх більше одного, вони будуть обертатися щогодини."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Новини (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Зустріч або подія (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Проект (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Документ (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Пов'язаний веб-сайт (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Інший ресурс (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Зображення або відео (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Часті запитання (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Національна інформація (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Статус ГМО (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Польове випробування (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Національна стратегія інтеграції (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Розбудова потенціалу (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Оголошення (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Контакт (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Показувати поля Діапазон дат (дата початку та закінчення) для таких типів вмісту:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Додатковий контроль полів"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Картування додаткових полів"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Наступні типи вмісту матимуть такі додаткові поля:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Статуси подій"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Статуси проектів, географічні сфери"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Міністерство (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Типи організацій, типи уряду"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Екосистема (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Типи екосистем"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Типи документів"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Ці поля динамічно додаються на основі вибраного типу вмісту та підтримуються компонентом Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Увімкнути обмеження глибини меню"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Заборонити користувачам, які не є адміністраторами, створювати пункти меню другого рівня і глибше. Тільки користувачі з дозволом «адмініструвати меню» можуть створювати вкладені пункти меню."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Зберегти"
 msgid "Order Override"
 msgstr "Перевизначення замовлення"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "У вас немає дозволу на створення пунктів меню під іншими пунктами меню. Для вашої ролі дозволено лише пункти меню верхнього рівня."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Довідка щодо перевизначення порядку"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Показувати теги статусу події для таких типів вмісту:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Показувати теги статусу проєкту для таких типів вмісту:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Параметри просування Довідка"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Параметри просування Текст довідки"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Текст довідки, що пояснює параметри «Розкручені» та «Наклейовані HTML дозволено."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Впорядкування вмісту"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Скидає значення field_order до 1000 для всіх вузлів. Це створює нову версію для кожного вузла з повідомленням про редакцію «Скинути порядок». Оригінальна дата останнього оновлення та користувач зберігаються. Використовуйте це для нормалізації впорядкування вмісту на сайті."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Скинути замовлення"
 
@@ -1001,30 +829,6 @@ msgstr "Інтерфейс"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Загальний інтерфейс"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Пакетні операції перекладу"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Обробіть існуючі об'єкти, щоб створити відсутні типові значення перекладу. Налаштуйте параметри перекладу за замовчуванням на вкладці Системні функції."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Налаштування Mega Menu незабаром."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Налаштування домашньої сторінки"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Налаштування домашньої сторінки незабаром."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Модуль Linkit не ввімкнено; пропускається конфігурація профілю."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Скидає значення field_order до 10000 для всіх вузлів. Це створює нову версію для кожного вузла з повідомленням про редакцію «Скинути порядок». Оригінальна дата останнього оновлення та користувач зберігаються. Використовуйте це для нормалізації впорядкування вмісту на сайті."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Успішно скинути field_order до 10000 для вузлів @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Скинути замовлення"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Меню типу вмісту"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Розкручений"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Далі йдуть елементи з позначкою «Просунуто на головну сторінку»"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Дата початку"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Потім відсортовано за датою початку (або датою публікації, якщо немає дати початку)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Нарешті відсортовано за останнім оновл
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Порада:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Залиште порожнім, щоб використовувати сортування за замовчуванням. Використовуйте кроки 10 (наприклад, 10, 20, 30), щоб залишити місце для подальшого вставлення елементів."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Скидання клейких прапорців..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Успішно скинути липкий прапор до 0 для записів вмісту @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Фронт-енд"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

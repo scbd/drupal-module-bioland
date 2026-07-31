@@ -22,9 +22,6 @@ msgstr "أدخل رمز دولة واحداً في كل سطر."
 msgid "Region"
 msgstr "المنطقة"
 
-msgid "Select the geographical region."
-msgstr "اختر المنطقة الجغرافية."
-
 msgid "North America"
 msgstr "أمريكا الشمالية"
 
@@ -48,9 +45,6 @@ msgstr "هل هي أرض السلامة الأحيائية؟"
 
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "يشير إلى ما إذا كانت هذه نسخة من أرض السلامة الأحيائية."
-
-msgid "Field Behavior Settings"
-msgstr "إعدادات سلوك الحقول"
 
 msgid "Enable Field Visibility Control"
 msgstr "تفعيل التحكم في رؤية الحقول"
@@ -84,9 +78,6 @@ msgstr "تعريف قواعد مخصصة لرؤية الحقول (بتنسيق J
 
 msgid "Translation Defaults"
 msgstr "الإعدادات الافتراضية للترجمة"
-
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "تهيئة إنشاء الإعدادات الافتراضية للترجمة (عناصر اللغة النائبة) للكيانات القابلة للترجمة."
 
 msgid "Automatically create translation defaults"
 msgstr "إنشاء الإعدادات الافتراضية للترجمة تلقائياً"
@@ -178,74 +169,17 @@ msgstr "الروسية"
 msgid "Help"
 msgstr "مساعدة"
 
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "سيكون هذا المحتوى الرئيسي لمحتوى موقعك الجديد. يمكن استخدام الملخص لعرض وصف موجز ودقيق لمحتواك. بالإضافة إلى ذلك، سيُعرض الملخص في طرق عرض القوائم والبطاقات لسجلك على الموقع. وبدلاً من ذلك، ستُستخدم الجمل القليلة الأولى من المحتوى الرئيسي."
-
 msgid "Images"
 msgstr "الصور"
 
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "ستكون <b>أول صورة</b> من اليسار إلى اليمين هنا <b>هي الصورة الرئيسية</b> لسجلك المعروضة على الصفحة وفي الصور المصغرة ضمن طرق عرض القوائم والبطاقات. ستُعرض جميع الصور الأخرى أسفل المحتوى الرئيسي."
-
 msgid "Heroes"
 msgstr "اللافتات الرئيسية"
-
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "يمكن لأي صفحة/نوع محتوى أن يحتوي على عدة <b>لافتات رئيسية</b>. إذا وُجد أكثر من واحدة فسيتم تبديلها كل ساعة."
-
-msgid "News (2)"
-msgstr "الأخبار (2)"
-
-msgid "Meeting or Event (3)"
-msgstr "اجتماع أو فعالية (3)"
-
-msgid "Project (5)"
-msgstr "مشروع (5)"
-
-msgid "Document (12)"
-msgstr "وثيقة (12)"
-
-msgid "Related Website (13)"
-msgstr "موقع ذو صلة (13)"
-
-msgid "Other Resource (15)"
-msgstr "مورد آخر (15)"
-
-msgid "Image or Video (16)"
-msgstr "صورة أو فيديو (16)"
-
-msgid "FAQ (43)"
-msgstr "الأسئلة الشائعة (43)"
-
-msgid "National Information (44)"
-msgstr "معلومات وطنية (44)"
-
-msgid "Status of LMOs (45)"
-msgstr "حالة الكائنات الحية المحورة (45)"
-
-msgid "Field Trial (46)"
-msgstr "تجربة حقلية (46)"
-
-msgid "National Mainstreaming Strategy (47)"
-msgstr "استراتيجية الدمج الوطنية (47)"
-
-msgid "Capacity-Building (48)"
-msgstr "بناء القدرات (48)"
-
-msgid "Announcement (49)"
-msgstr "إعلان (49)"
-
-msgid "Contact (50)"
-msgstr "جهة اتصال (50)"
 
 msgid "Order Override"
 msgstr "تجاوز الترتيب"
 
 msgid "Save"
 msgstr "حفظ"
-
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "ليست لديك صلاحية إنشاء عناصر قائمة تحت عناصر قائمة أخرى. يُسمح لك فقط بعناصر القائمة ذات المستوى الأعلى."
 
 msgid "Site name"
 msgstr "اسم الموقع"
@@ -301,44 +235,11 @@ msgstr "حقل نطاق التاريخ (تاريخ البداية والنهاي
 msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "إظهار حقول نطاق التاريخ (تاريخ البداية والنهاية) لأنواع المحتوى التالية:"
 
-msgid "Additional Tags Control"
-msgstr "التحكم في الحقول الإضافية"
-
-msgid "Additional Tags Mapping"
-msgstr "تعيين الحقول الإضافية"
-
-msgid "The following content types will have these additional tags available:"
-msgstr "ستتوفر أنواع المحتوى التالية على هذه الحقول الإضافية:"
-
-msgid "Event Statuses"
-msgstr "حالات الحدث"
-
-msgid "Project Statuses, Geographic Scopes"
-msgstr "حالات المشروع، النطاقات الجغرافية"
-
-msgid "Ministry (8)"
-msgstr "الوزارة (8)"
-
-msgid "Organization Types, Government Types"
-msgstr "أنواع المنظمات، أنواع الحكومات"
-
-msgid "Ecosystem (9)"
-msgstr "النظام البيئي (9)"
-
 msgid "Ecosystem Types"
 msgstr "أنواع النظم البيئية"
 
 msgid "Document Types"
 msgstr "أنواع الوثائق"
-
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "تُضاف هذه الحقول ديناميكياً بناءً على نوع المحتوى المحدد ويتم تشغيلها بواسطة مكون Vue.js."
-
-msgid "Enable Menu Depth Restriction"
-msgstr "تفعيل تقييد عمق القائمة"
-
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "تقييد المستخدمين غير الإداريين من إنشاء عناصر قائمة من المستوى الثاني وما بعده. يمكن فقط للمستخدمين الذين لديهم صلاحية \"إدارة القائمة\" إنشاء عناصر قائمة متداخلة."
 
 msgid "(Required)"
 msgstr "(مطلوب)"
@@ -694,10 +595,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "عرض علامات حالة الفعالية لأنواع المحتوى هذه:"
 
@@ -706,40 +603,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "عرض علامات حالة المشروع لأنواع المحتوى هذه:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -764,10 +633,6 @@ msgstr "مساعدة خيارات الترويج"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "نص تعليمات خيارات الترويج"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "نص مساعدة يشرح الخيارات المروجة والثابتة. يُسمح باستخدام HTML."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -862,10 +727,6 @@ msgid "Content Ordering"
 msgstr "ترتيب المحتوى"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "يعيد تعيين قيمة field_order إلى 1000 لجميع العقد. يؤدي هذا إلى إنشاء مراجعة جديدة لكل عقدة برسالة المراجعة «إعادة تعيين الطلب». يتم الاحتفاظ بتاريخ التحديث الأخير الأصلي والمستخدم. استخدم هذا لتطبيع ترتيب المحتوى عبر الموقع."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "إعادة تعيين الطلب"
 
@@ -888,30 +749,6 @@ msgstr "الواجهة"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "الواجهة العامة"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "عمليات دفعة الترجمة"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "قم بمعالجة الكيانات الموجودة لإنشاء إعدادات الترجمة الافتراضية المفقودة. قم بتكوين الإعدادات الافتراضية للترجمة في علامة تبويب وظائف النظام."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "ستتوفر إعدادات القائمة الضخمة قريبًا."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "إعدادات الصفحة الرئيسية"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "ستتوفر إعدادات الصفحة الرئيسية قريبًا."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "لم يتم تمكين وحدة Linkit؛ تخطي تكوين ملف التعريف."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1083,16 +920,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "يعيد تعيين قيمة field_order إلى 10000 لجميع العقد. يؤدي هذا إلى إنشاء مراجعة جديدة لكل عقدة برسالة المراجعة «إعادة تعيين الطلب». يتم الاحتفاظ بتاريخ التحديث الأخير الأصلي والمستخدم. استخدم هذا لتطبيع ترتيب المحتوى عبر الموقع."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "تمت إعادة تعيين field_order إلى 10000 لعقد @count بنجاح."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "إعادة ترتيب"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ قوائم نوع المحتوى"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1235,16 +1064,8 @@ msgid "Promoted"
 msgstr "تمت ترقيته"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "تأتي العناصر التي تحمل علامة «تمت ترقيتها إلى الصفحة الأولى» بعد ذلك"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "تاريخ البدء"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "ثم يتم الفرز حسب تاريخ البدء (أو تاريخ النشر إذا لم يكن هناك تاريخ بدء)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1257,10 +1078,6 @@ msgstr "تم الفرز أخيرًا حسب آخر تحديث"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "نصيحة:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "اتركه فارغًا لاستخدام الفرز الافتراضي. استخدم زيادات قدرها 10 (على سبيل المثال، 10، 20، 30) لترك مساحة لإدخال العناصر لاحقًا."
 
 #: bioland.module
 msgid "URL"
@@ -1309,10 +1126,6 @@ msgstr "إعادة تعيين العلامات اللاصقة..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "تمت إعادة تعيين العلامة اللاصقة بنجاح إلى 0 لإدخالات محتوى @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "الواجهة الأمامية"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

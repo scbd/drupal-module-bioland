@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Region"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Izaberite geografski region."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Severna Amerika"
 
@@ -61,10 +57,6 @@ msgstr "Da li je zemljište za biološku sigurnost?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Označava da li je ovo instanca zemljišta za biološku sigurnost."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Podešavanja ponašanja polja"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Definišite prilagođena pravila vidljivosti polja (JSON format)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Podrazumevane vrednosti prevoda"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Konfigurišite kreiranje podrazumevanih vrednosti prevoda (čuvari mesta za jezik) za prevodive entitete."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Pomoć"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Ovo će biti glavni sadržaj vašeg novog sadržaja na sajtu. Sažetak se može koristiti za prikaz kratkog, sažetog opisa vašeg sadržaja. Dalje, sažetak će biti prikazan u prikazima liste i kartica vašeg zapisa na veb stranici. Alternativno, koristiće se prvih nekoliko rečenica iz glavnog sadržaja."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Slike"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Prva slika</b> po redosledu s leva na desno ovde, <b>biće glavna slika</b> vašeg zapisa prikazana na stranici i u sličicama u prikazima liste i kartica. Sve ostale slike biće prikazane ispod glavnog sadržaja."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Heroji"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Bilo koja stranica/tip sadržaja može imati više <b>hero banera</b>. Ako ih ima više od jednog, rotiraće se na satnoj bazi."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Vesti (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Sastanak ili događaj (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Projekat (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dokument (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Povezana veb stranica (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Drugi resurs (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Slika ili video (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Česta pitanja (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Nacionalne informacije (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Status LMO-a (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Poljski ogled (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Nacionalna strategija integracije (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Izgradnja kapaciteta (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Obaveštenje (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Kontakt (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Prikaži polja opsega datuma (datum početka i završetka) za ove tipove sadržaja:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Kontrola dodatnih polja"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Mapiranje dodatnih polja"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Sledeći tipovi sadržaja će imati na raspolaganju ova dodatna polja:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Statusi događaja"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Statusi projekta, geografski opsezi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ministarstvo (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Tipovi organizacija, tipovi vlade"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekosistem (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Vrste ekosistema"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Vrste dokumenata"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Ova polja se dinamički dodaju na osnovu izabranog tipa sadržaja i pokreću ih komponenta Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Omogući ograničenje dubine menija"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Ograničite korisnike koji nisu administratori da kreiraju stavke menija drugog nivoa i dublje. Samo korisnici sa dozvolom za „administriranje menija“ mogu da kreiraju ugnežđene stavke menija."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Sačuvaj"
 msgid "Order Override"
 msgstr "Poništavanje naloga"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Nemate dozvolu da kreirate stavke menija pod drugim stavkama menija. Za vašu ulogu su dozvoljene samo stavke menija najvišeg nivoa."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Помоћ за преклапање редоследа"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Прикажи ознаке статуса догађаја за ове типове садржаја:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Прикажи ознаке статуса пројекта за ове типове садржаја:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Pomoć za opcije promocije"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Opcije promocije Tekst pomoći"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Tekst pomoći koji objašnjava opcije Promovisane i Lepljive. HTML je dozvoljen."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Naručivanje sadržaja"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Resetuje vrednost field_order na 1000 za sve čvorove. Ovo stvara novu reviziju za svaki čvor sa revizijskom porukom „Resetuj naručivanje“. Originalni poslednji datum ažuriranja i korisnik su sačuvani. Koristite ovo da normalizujete redosled sadržaja širom sajta."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Resetujte naručivanje"
 
@@ -1001,30 +829,6 @@ msgstr "Interfejs"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Opšti interfejs"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Operacije prevođenja serije"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Obradite postojeće entitete da biste stvorili nedostajuće podrazumevane vrednosti prevoda. Konfigurišite podrazumevane postavke prevoda na kartici Funkcije sistema."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Podešavanja Mega menija uskoro."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Podešavanja početne stranice"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Podešavanja početne stranice uskoro."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit modul nije omogućen; preskakanje konfiguracije profila."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Resetuje vrednost field_order na 10000 za sve čvorove. Ovo stvara novu reviziju za svaki čvor sa revizijskom porukom „Resetuj naručivanje“. Originalni poslednji datum ažuriranja i korisnik su sačuvani. Koristite ovo da normalizujete redosled sadržaja širom sajta."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Uspešno resetujte field_order na 10000 za @count čvorove."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Resetujte naručivanje"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Meniji tipa sadržaja"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Promovisano"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Predmeti sa oznakom „Promovisani na naslovnu stranicu“ dolaze sledeće"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Датум почетка"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Zatim sortirano prema datumu početka (ili datumu objavljivanja ako nema datuma početka)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Konačno sortirano prema najnovijem ažuriranju"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Savet:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Ostavite prazno da biste koristili podrazumevano sortiranje. Koristite korake od 10 (npr. 10, 20, 30) da biste kasnije ostavili prostor za umetanje predmeta."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Resetovanje lepljivih zastava..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Uspešno resetujte lepljivu zastavicu na 0 za unose sadržaja @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Front-end"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

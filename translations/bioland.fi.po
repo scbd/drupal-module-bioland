@@ -166,10 +166,6 @@ msgid "Region"
 msgstr "Alue"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Valitse maantieteellinen alue."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Pohjois-Amerikka"
 
@@ -200,10 +196,6 @@ msgstr "Onko bioturvallisuus maa?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Osoittaa, onko kyseessä Biosafety Land -tapaus."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Kentän käyttäytymisasetukset"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -242,10 +234,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Näytä päivämäärävaihtelukentät (alkamis- ja lopetuspäivämäärä) näille sisältötyypeille:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Lisäkenttien hallinta"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "Ota käyttöön lisäkentät"
 
@@ -254,44 +242,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "Lisää sisältötyyppikohtaisia lisäkenttiä (tapahtumatilat, projektin tilat jne.) tesauruksen sisältötyypin perusteella."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Lisäkenttien kartoitus"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Seuraavat sisältötyypit sisältävät nämä lisäkentät:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Tapahtumatilat"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Projektin tilat, maantieteelliset laajuudet"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ministeriö (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Organisaatiotyypit, Hallitustyypit"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekosysteemi (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Ekosysteemityypit"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Asiakirjatyypit"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Nämä kentät lisätään dynaamisesti valitun sisältötyypin perusteella, ja ne toimivat Vue.js -komponentin avulla."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -310,20 +266,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Näytä sisältötyypin mukaiset kenttien kontekstuaaliset ohjekommentit."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Ota valikon syvyysrajoitus käyttöön"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Rajoita muita kuin järjestelmänvalvojan käyttäjiä luomasta toisen tason valikkokohteita ja syvempiä. Vain käyttäjät, joilla on ”hallinta-valikko” -oikeus, voivat luoda sisäkkäisiä valikkokohteita."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Käännöksen oletusasetukset"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Määritä käännettävien entiteettien käännösten oletusarvojen (kielipaikkamerkkien) luominen."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -778,84 +722,12 @@ msgid "Help"
 msgstr "Apua"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Tämä on uuden sivustosi sisällön pääsisältö. Yhteenvetoa voidaan käyttää lyhyen tiiviin kuvauksen sisältöstäsi. Lisäksi yhteenveto näkyy luettelo- ja korttinäkymissä tietueestasi verkkosivustolla. Vaihtoehtoisesti käytetään muutamaa ensimmäistä lausetta pääsisällöstä."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Kuvat"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Ensimmäinen kuva järjest</b> yksessä vasemmalta oikealle tässä, on <b>tietueesi pääkuva, joka näkyy</b> sivulla ja pikkukuvissa luettelo- ja korttinäkymissä. Kaikki muut kuvat näytetään pääsisällön alapuolella."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Sankareita"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Kaikilla sivu/sisältötyypeillä voi olla useita <b>sankaribannereita.</b> Jos niitä on enemmän kuin yksi, niitä pyöritetään tunneittain."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Uutiset (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Kokous tai tapahtuma (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Projekti (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Asiakirja (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Liittyvä verkkosivusto (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Muut resurssit (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Kuva tai video (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "USEIN KYSYTYT KYSYMYKSET (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Kansalliset tiedot (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "LMO:iden tilanne (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Kenttäkoe (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Kansallinen valtavirtaistamisstrategia (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Valmiuksien kehittäminen (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Ilmoitus (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Yhteystiedot (50)"
 
 #: bioland.module
 msgid "Save"
@@ -864,10 +736,6 @@ msgstr "Tallentaa"
 #: bioland.module
 msgid "Order Override"
 msgstr "Tilauksen ohitus"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Sinulla ei ole oikeutta luoda valikkokohteita muiden valikkokohteiden alle. Vain ylimmän tason valikkokohteet ovat sallittuja roolissasi."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -890,10 +758,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Näytä tapahtuman tilatunnisteet näille sisältötyypeille:"
 
@@ -902,40 +766,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Näytä projektin tilatunnisteet näille sisältötyypeille:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -960,10 +796,6 @@ msgstr "Kampanjavaihtoehtojen ohje"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Kampanjavaihtoehtojen ohjeteksti"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Ohjeteksti, jossa selitetään Promoted- ja Sticky -vaihtoehdot. HTML on sallittu."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1054,10 +886,6 @@ msgid "Content Ordering"
 msgstr "Sisällön tilaaminen"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Palauttaa field_order -arvon arvoon 1000 kaikille solmuille. Tämä luo uuden version kullekin solmulle, jossa on versioviesti ”Nollaa järjestys”. Alkuperäinen viimeksi päivitetty päivämäärä ja käyttäjä säilyvät. Tämän avulla voit normalisoida sisällön järjestyksen koko sivustolla."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Nollaa tilaus"
 
@@ -1080,30 +908,6 @@ msgstr "Käyttöliittymä"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Yleinen käyttöliittymä"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Käännöserätoiminnot"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Käsittele olemassa olevia entiteettejä luodaksesi puuttuvat käännöksen oletusarvot. Määritä käännöksen oletusasetukset Järjestelmätoiminnot -välilehdessä."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Mega Menu -asetukset tulossa pian."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Kotisivun asetukset"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Kotisivun asetukset tulossa pian."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit-moduuli ei ole käytössä; profiilin määritys ohitetaan."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1271,16 +1075,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Palauttaa field_order -arvon arvoon 10000 kaikille solmuille. Tämä luo uuden version kullekin solmulle, jossa on versioviesti ”Nollaa järjestys”. Alkuperäinen viimeksi päivitetty päivämäärä ja käyttäjä säilyvät. Tämän avulla voit normalisoida sisällön järjestyksen koko sivustolla."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Palauta field_order arvoon 10000 onnistuneesti @count -solmuille."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Nollaa tilaus"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Sisältötyyppivalikot"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1423,16 +1219,8 @@ msgid "Promoted"
 msgstr "Ylennetty"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Seuraavaksi tulevat kohteet, joissa on merkintä ”Mainostettu etusivulle”"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Aloituspäivämäärä"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Lajitellaan sitten aloituspäivämäärän (tai julkaisupäivän mukaan, jos aloituspäivää ei ole)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1445,10 +1233,6 @@ msgstr "Lopuksi lajiteltu viimeksi päivitetyn mukaan"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Vinkki:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Jätä tyhjäksi, jos haluat käyttää oletuslajittelua. Käytä 10: n välein (esim. 10, 20, 30) jättääksesi tilaa esineiden asettamiselle myöhemmin."
 
 #: bioland.module
 msgid "URL"
@@ -1497,10 +1281,6 @@ msgstr "Sticky -lippujen nollaaminen..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Nollaa tarttuva lippu arvoon 0 onnistuneesti @count -sisältömerkinnöille."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Etupää"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

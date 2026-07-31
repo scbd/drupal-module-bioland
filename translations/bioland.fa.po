@@ -166,10 +166,6 @@ msgid "Region"
 msgstr "منطقه"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "منطقه جغرافیایی را انتخاب کنید."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "آمریکای شمالی"
 
@@ -200,10 +196,6 @@ msgstr "آیا ایمنی زیستی زمین است؟"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "نشان می دهد که آیا این یک نمونه زمین ایمنی زیستی است یا خیر."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "تنظیمات رفتار فیلد"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -242,10 +234,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "نمایش فیلدهای محدوده تاریخ (تاریخ شروع و پایان) برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "کنترل فیلدهای اضافی"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "فیلدهای اضافی را فعال کنید"
 
@@ -254,44 +242,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "فیلدهای اضافی خاص نوع محتوا (وضعیت رویداد، وضعیت پروژه و غیره) را بر اساس نوع محتوای اصطلاحنامه اضافه کنید."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "نقشه برداری فیلدهای اضافی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "انواع محتوای زیر این فیلدهای اضافی را در دسترس خواهند داشت:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "وضعیت رویداد"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "وضعیت پروژه، دامنه های جغرافیایی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "وزارت (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "انواع سازمان، انواع دولتی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "اکوسیستم (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "انواع اکوسیستم"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "انواع سند"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "این فیلدها به صورت پویا بر اساس نوع محتوای انتخاب شده اضافه می شوند و توسط یک کامپوننت Vue.js تأمین می شوند."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -310,20 +266,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "نمایش نظرات راهنمای متنی برای فیلدها بر اساس نوع محتوا."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "فعال کردن محدودیت عمق منو"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "کاربران غیر مدیر را از ایجاد موارد منو سطح دوم و عمیق تر محدود کنید. فقط کاربرانی که دارای مجوز «مدیریت منو» هستند می توانند آیتم های منو توکار ایجاد کنند."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "پیش فرض ترجمه"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "پیکربندی ایجاد پیش فرض ترجمه (جایگزین های زبان) برای موجودیت های قابل ترجمه."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -778,84 +722,12 @@ msgid "Help"
 msgstr "کمک"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "این محتوای اصلی محتوای سایت جدید شما خواهد بود. خلاصه را می توان برای نمایش یک توضیح مختصر مختصر از محتوای شما استفاده کرد. علاوه بر این، خلاصه در نمایش لیست و کارت رکورد شما در وب سایت نمایش داده می شود. متناوباً، چند جمله اول از محتوای اصلی استفاده خواهد شد."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "تصاویر"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>اولین تصویر به تر</b> تیب از چپ به راست در اینجا، <b>تصویر اصلی رکورد شما خواهد</b> بود که در صفحه و در تصاویر کوچک در نماهای لیست و کارت نمایش داده می شود. تمام تصاویر دیگر در زیر محتوای اصلی نمایش داده می شود."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "قهرمانان"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "هر نوع صفحه/محتوا می تواند چندین بنر <b>قهرمان داشته باشد.</b> اگر تعداد بیشتری از یک وجود داشته باشد، آنها به صورت ساعتی چرخش می شوند."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "اخبار (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "جلسه یا رویداد (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "پروژه (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "سند (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "وب سایت مرتبط (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "منابع دیگر (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "تصویر یا ویدئو (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "سوالات متداول (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "اطلاعات ملی (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "وضعیت LMO ها (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "کارآزمایی میدانی (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "استراتژی اصلی سازی ملی (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "ظرفیت سازی (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "اعلامیه (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "تماس با ما (50)"
 
 #: bioland.module
 msgid "Save"
@@ -864,10 +736,6 @@ msgstr "ذخیره کردن"
 #: bioland.module
 msgid "Order Override"
 msgstr "لغو سفارش"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "شما مجوز ایجاد موارد منو در سایر موارد منو ندارید. فقط موارد منوی سطح بالا برای نقش شما مجاز هستند."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -890,10 +758,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "نمایش برچسب‌های وضعیت رویداد برای این انواع محتوا:"
 
@@ -902,40 +766,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "نمایش برچسب‌های وضعیت پروژه برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -960,10 +796,6 @@ msgstr "راهنمای گزینه های تبلیغاتی"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "گزینه های تبلیغاتی متن راهنما"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "متن راهنما برای توضیح گزینه های تبلیغاتی و Sticky. HTML مجاز است"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1054,10 +886,6 @@ msgid "Content Ordering"
 msgstr "سفارش محتوا"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "مقدار field_order را برای همه گره ها به 1000 تنظیم می کند. این یک بازنگری جدید برای هر گره با پیام بازنگری «تنظیم مجدد سفارش» ایجاد می کند. آخرین تاریخ به روز رسانی اصلی و کاربر حفظ می شود. از این برای عادی سازی سفارش محتوا در سراسر سایت استفاده کنید."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "تنظیم مجدد سفارش"
 
@@ -1080,30 +908,6 @@ msgstr "رابط"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "رابط عمومی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "عملیات دسته ای ترجمه"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "فرایند موجود را برای ایجاد پیش فرض ترجمه از دست رفته پردازش کنید. تنظیمات پیش فرض ترجمه را در برگه توابع سیستم پیکربندی کنید."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "تنظیمات مگا منو به زودی ارائه می شود."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "تنظیمات صفحه اصلی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "تنظیمات صفحه اصلی به زودی"
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "ماژول Linkit فعال نیست؛ از پیکربندی پروفایل عبور می کند."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1271,16 +1075,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "مقدار field_order را برای همه گره ها به 10000 تنظیم می کند. این یک بازنگری جدید برای هر گره با پیام بازنگری «تنظیم مجدد سفارش» ایجاد می کند. آخرین تاریخ به روز رسانی اصلی و کاربر حفظ می شود. از این برای عادی سازی سفارش محتوا در سراسر سایت استفاده کنید."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "با موفقیت field_order را برای گره های @count به 10000 تنظیم مجدد کنید."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "تنظیم مجدد سفارش"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ منوهای نوع محتوا"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1423,16 +1219,8 @@ msgid "Promoted"
 msgstr "ارتقا یافته"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "موارد دارای علامت «ارتقا یافته به صفحه اول» بعدی هستند"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "تاریخ شروع"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "سپس مرتب شده بر اساس تاریخ شروع (یا تاریخ انتشار در صورت عدم تاریخ شروع)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1445,10 +1233,6 @@ msgstr "در نهایت طبق آخرین به روز شده مرتب شده"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "نکته:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "برای استفاده از مرتب سازی پیش فرض خالی بگذارید. از افزایش 10 (به عنوان مثال، 10، 20، 30) استفاده کنید تا فضایی برای قرار دادن موارد بعداً باقی بگذارید."
 
 #: bioland.module
 msgid "URL"
@@ -1497,10 +1281,6 @@ msgstr "تنظیم مجدد پرچم های چسبنده..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "پرچم چسبنده را برای ورودی های محتوای @count با موفقیت به 0 تنظیم مجدد کنید."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "بخش جلویی"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

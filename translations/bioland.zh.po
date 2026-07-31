@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "地区"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "选择地理区域。"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "北美洲"
 
@@ -61,10 +57,6 @@ msgstr "是生物安全之地吗？"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "指示这是否是一个生物安全之地的实例。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "字段行为设置"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "定义自定义字段可见性规则（JSON 格式）。"
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "翻译默认值"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "为可翻译实体配置翻译默认值（语言占位符）的创建。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "帮助"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "这将是您新网站内容的主要内容。摘要可用于显示您内容的简明描述。此外，摘要将显示在您记录在网站上的列表和卡片视图中。或者，将使用主要内容的前几句话。"
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "图片"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "此处从左到右顺序的<b>第一张图片</b>，<b>将是您记录的主图片</b>，显示在页面上以及列表和卡片视图的缩略图中。所有其他图片将显示在主要内容下方。"
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "英雄横幅"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "任何页面/内容类型都可以有多个<b>英雄横幅</b>。如果有一个以上，它们将每小时轮换一次。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "新闻 (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "会议或活动 (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "项目 (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "文档 (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "相关网站 (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "其他资源 (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "图片或视频 (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "常见问题 (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "国家信息 (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "改性活生物体状况 (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "田间试验 (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "国家主流化战略 (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "能力建设 (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "公告 (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "联系人 (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "显示以下内容类型的日期范围字段（开始和结束日期）："
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "其他字段控制"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "其他字段映射"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "以下内容类型将提供这些附加字段："
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "事件状态"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "项目状态、地理范围"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "部委 (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "组织类型、政府类型"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "生态系统 (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "生态系统类型"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "文件类型"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "这些字段是根据所选内容类型动态添加的，并由 Vue.js 组件提供支持。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "启用菜单深度限制"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "限制非管理员用户创建二级菜单项及更深层次的菜单项。只有拥有 “管理菜单” 权限的用户才能创建嵌套菜单项。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "保存"
 msgid "Order Override"
 msgstr "订单改写"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "您无权在其他菜单项下创建菜单项。您的角色只允许使用顶级菜单项。"
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "顺序覆盖帮助"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "显示以下内容类型的活动状态标签："
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "显示以下内容类型的项目状态标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "促销选项帮助"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "促销选项帮助文本"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "说明 “推广” 和 “置顶” 选项的帮助文本。允许使用 HTML。"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "内容订购"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "将所有节点的 field_order 值重置为 1000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "重置订单"
 
@@ -1001,30 +829,6 @@ msgstr "界面"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "通用界面"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "翻译批量操作"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "处理现有实体以创建缺失的翻译默认值。在 “系统功能” 选项卡中配置翻译默认设置。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "超级菜单设置即将推出。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "主页设置"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "主页设置即将推出。"
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Linkit 模块未启用；正在跳过配置文件配置。"
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "将所有节点的 field_order 值重置为 10000。这将为每个节点创建一个新的修订版本，其修订版本消息为 “重置顺序”。原始上次更新日期和用户将被保留。使用它来规范整个站点的内容排序。"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "成功将 @count 节点的 field_order 重置为 10000。"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "重置订单"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ 内容类型菜单"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "晋升"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "接下来是标有 “晋升到头版” 的项目"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "开始日期"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "然后按开始日期（如果没有开始日期，则按发布日期）排序"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "最后按最近更新的顺序排序"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "提示："
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "留空以使用默认排序。使用 10 的增量（例如 10、20、30）为以后插入项目留出空间。"
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "正在重置粘性标志..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "成功将 @count 内容条目的粘性标志重置为 0。"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "前端"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

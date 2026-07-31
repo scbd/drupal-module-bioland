@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Gobolka"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Dooro gobolka juqraafi ahaan."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Waqooyiga Ameerika"
 
@@ -61,10 +57,6 @@ msgstr "Ma Dhul Badbaadada Bayoolaji ahbaa?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Waxay tilmaamaysaa in kani yahay tusaale Dhul Badbaadada Bayoolaji ah."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Dejinta Dhaqanka Goobta"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Qeex xeerar gaar ah oo muuqashada goobta ah (qaabka JSON)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Dejinta Turjumaada ee Asalka ah"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Habee abuurista dejinta turjumaada ee asalka ah (boos-hayayaasha luqadda) ee cutubyada la turjumi karo."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Caawin"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Kani wuxuu noqon doonaa nuxurka ugu muhiimsan ee nuxurka boggaaga cusub. Soo koobidda waxaa loo isticmaali karaa in lagu soo bandhigo sharraxaad kooban oo qeexan oo ku saabsan nuxurkaaga. Intaa waxaa dheer, soo koobidda waxaa lagu soo bandhigi doonaa liiska iyo aragtiyaha kaararka ee diiwaankaaga ee bogga internetka. Haddii kale, dhowrka jumladood ee ugu horreeya ee nuxurka ugu muhiimsan ayaa la isticmaali doonaa."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Sawirro"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Sawirka ugu horreeya</b> ee sida ay u kala horreeyaan bidix ilaa midig halkan, <b>wuxuu noqon doonaa sawirka ugu muhiimsan</b> ee diiwaankaaga ee lagu soo bandhigay bogga iyo sawirrada yaryar ee liiska iyo aragtiyaha kaararka. Dhammaan sawirrada kale waxaa lagu soo bandhigi doonaa hoosta nuxurka ugu muhiimsan."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Halyeeyo"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Bog kasta/nooc kasta oo nuxur ah wuxuu yeelan karaa <b>boorar halyeeyo</b> oo badan. Haddii ay jiraan wax ka badan hal, waxaa la isku beddeli doonaa saacad kasta."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Wararka (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Kulan ama Dhacdo (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Mashruuc (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Dukumenti (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Websaydh La Xidhiidha (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Kheyraad Kale (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Sawir ama Fiidiyoow (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Su'aalaha Inta Badan La Isweydiiyo (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Macluumaadka Qaranka (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Heerka LMO-yada (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Tijaabada Goobta (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Istaraatiijiyadda Guud ee Qaranka (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Dhisidda Awoodda (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Ogeysiis (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "La Xidhiidh (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Muuqda booyinka Taariikhda (Bilowga & Taariikhda dhammaadka) noocadan waxyaabaha:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Maamulka Booyinka dheeraad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Kaarinta Booyinka dheeraad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Noocyada waxyaabaha soo socda waxay leeyihiin doonaan booyinka dheera"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Xaalada dhacdooyinka"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Xaalada Mashruuca, Geographical Scopes"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Wasaaradda (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Nooca Ururka, Nooca Dowladda"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Ekoodsiga (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Nooca Ecosystem"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Nooca Dhaqaaqa"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Booyaani waxaa si sidii loo daray oo ku saleysan nooca waxyaabaha la doortay, waxaana la awood leeyahay qaybta Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Xaddaadinta Doorada Menuqa"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Isticmaamiyaha aan maamul aan la xidhiin abuurta ayaabaha heerka labaad iyo Kaliya isticmaale leh “maamul menu” waxay abuuri kartaa shaqooyinka menyuu waa."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Badbaadin"
 msgid "Order Override"
 msgstr "Order Override"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Ma leh ogolaan in aad u abuuro ayaabaha menu hoos ah sheyaha kale ee menu. Kaliya waxyaabaha heerka sare ee menu waxaa loo ogolaaday doorkaaga."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Caawimaad Dabooli Amarka"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Muuji tags-ka xaaladda dhacdada noocyada waxyaabahan:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Muuji tags-ka xaaladda mashruuca noocyada waxyaabahan:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Xulashada Horuminta Caaw"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Xulashada Horjoogta Qoraalka"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Qoraalka caawin oo sharxaya doorashooyinka la promoyay iyo leh HTML waxaa ogolaaday."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Waxyaabaha Ee"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Dib u dhigay qiimaha field_order ilaa 1000 oo dhamaan noodooyinka. Tani waxay abuuraya dib u dhigto cusub nood kasta oo la leeyahay fariinta dib u dib u dib-u-dib-u- Taariikhda ugu danbeeyay ee la soo cusboonayay iyo isticmaalka ayaa Adeegsado tani si aad u caadiyaan waxyaabaha ee loogu tallaan"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Dib u dib u dhigay"
 
@@ -1001,30 +829,6 @@ msgstr "Interface"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Interface guud"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Howlgallada Kooxda Tarjum"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Hanaanka hay'adaha jira si loo abuuro degaarka tarjimada la maqan. Soo saabuurta tarjumada deegaanka ee tabka Hawlaha Nidaamka."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Qalabka Mega Menu oo dhawaan imaanaya."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Wararka Bogga Home"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Wararka Home Bogga oo dhowaan imaanaya."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Mooduulka Linkit ma ogolaadin; qaabka qaabka profilka."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Dib u dhigay qiimaha field_order ilaa 10000 oo dhamaan noodooyinka. Tani waxay abuuraya dib u dhigto cusub nood kasta oo la leeyahay fariinta dib u dib u dib-u-dib-u- Taariikhda ugu danbeeyay ee la soo cusboonayay iyo isticmaalka ayaa Adeegsado tani si aad u caadiyaan waxyaabaha ee loogu tallaan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Si guul ah dib u dib u dib u dhigay field_order 10000 oo nood @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Dib u dib u dhigay"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Menus Nooca Content"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "Horjeediyay"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Shayaabaha oo lagu soo maraacay “Boogta hore la soo dhigay”"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Bilowga Taariikha"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Kadibna la xidhigay taariikhda bilowga (ama taariikhda daabacay haddii"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "Ugu dambeyntii la soo dhawaan la soo cas"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Talab:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Bax banaan si aad u isticmaalaan xaabka default. Isticmaalo kordhin 10 (m.a., 10, 20, 30) si aad u baxaan qolka loo soo dhigay sheyaha markii dambe."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Dib u dib u dhigga calanka ah..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Si guul ah dib u dib u dib u dhigay calanka leh 0 for @count content."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Dhamada hore"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

@@ -27,10 +27,6 @@ msgid "Region"
 msgstr "Yanki"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Zaɓi yankin ƙasa."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Arewacin Amurka"
 
@@ -61,10 +57,6 @@ msgstr "Shin Kasa ce ta Tsaron Halittu?"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Yana nuna ko wannan misali ne na Kasa ta Tsaron Halittu."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Saitunan Halayen Filaye"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Field Visibility Control"
@@ -109,10 +101,6 @@ msgstr "Bayyana dokokin ganin filaye na al'ada (tsarin JSON)."
 #: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Tsoffin Fassarori"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Sanya yadda za a ƙirƙiri tsoffin fassarori (masu riƙe wuri na harshe) don abubuwan da za a iya fassarawa."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -235,84 +223,12 @@ msgid "Help"
 msgstr "Taimako"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Wannan zai zama babban abun cikin sabon abun cikin shafinku. Ana iya amfani da takaitawa don nuna taƙaitaccen bayanin abun cikin ku. Bugu da ƙari, za a nuna takaitawar a cikin jerin gwano da kallon kati na rikodin ku a kan gidan yanar gizon. A madadin haka, za a yi amfani da 'yan jimlolin farko daga babban abun ciki."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Hotuna"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "<b>Hoto na farko</b> a cikin jerin daga hagu zuwa dama a nan, <b>zai zama babban hoton</b> rikodin ku da aka nuna a shafin da kuma a cikin ƙananan hotuna a cikin jerin gwano da kallon kati. Duk sauran hotuna za a nuna su a ƙasan babban abun ciki."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Jaruman Hoto"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Kowane shafi/nau'in abun ciki na iya samun <b>bango na jarumai</b> da yawa. Idan akwai fiye da ɗaya za a juya su a kowace sa'a."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Labarai (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Taro ko Biki (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Aiki (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Takarda (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Gidan Yanar Gizo Mai Alaƙa (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Wata Majiya (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Hoto ko Bidiyo (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "Tambayoyi da Amsoshi (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Bayanin Kasa (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Matsayin LMOs (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Gwajin Filin (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Dabarun Haɗa Kai na Kasa (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Gina Iya-Iya (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Sanarwa (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Saduwa (50)"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Bioland"
@@ -387,56 +303,12 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Nuna filayen kwanan wata (Farawa & Ƙarshen Ranar) don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Ƙarin Filayen Gudanar da"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Ƙarin Filaye Taswirar"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Nau'ikan abun ciki masu zuwa zasu sami waɗannan ƙarin filayen:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Matsayi na Taron"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Matsayi na Aiki, Ƙididdigar yanayi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Ma'aikatar (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Nau'ikan Ƙungiya, Nau'ikan Gwamnati"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Yanayin yanayi (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Nau'ikan Yanayin Halitta"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Nau'ikan Takardu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Ana ƙara waɗannan filayen da ƙarfi dangane da nau'in abun ciki da aka zaɓa kuma ana amfani da su ta ɓangaren Vue.js."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Kunna Ƙuntatawa Zurfin Menu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Ƙuntata masu amfani da marasa gudanarwa daga ƙirƙirar abubuwa na menu na matakin biyu da zurfi. Masu amfani ne kawai tare da izinin “gudanar da menu” zasu iya ƙirƙirar abubuwan menu da aka tsara."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "(Required)"
@@ -782,10 +654,6 @@ msgstr "Ajiye"
 msgid "Order Override"
 msgstr "Order Ride"
 
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Ba ku da izini don ƙirƙirar abubuwan menu a ƙarƙashin sauran abubuwan menu. Abubuwan menu na matakin farko kawai aka ba da izinin don rawar ku."
-
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
 msgstr "Taimakon Maye Gurbin Oda"
@@ -807,10 +675,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Nuna alamun Matsayin Taro don waɗannan nau'ikan abun ciki:"
 
@@ -819,40 +683,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Nuna alamun Matsayin Aikin don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -877,10 +713,6 @@ msgstr "Taimakon Zaɓuɓɓuka"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Zaɓuɓɓukan Taimako Rubutun"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Taimakawa rubutu da ke bayanin zaɓuɓɓukan ingantaccen da An ba da izinin HTML."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -975,10 +807,6 @@ msgid "Content Ordering"
 msgstr "Tsarin abun ciki"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Sake saita ƙimar field_order zuwa 1000 don duk nodes. Wannan yana haifar da sabon bita ga kowane node tare da saƙon bita “Sake yin oda”. An kiyaye asalin ranar da aka sabunta na ƙarshe da mai amfani. Yi amfani da wannan don daidaita oda abun ciki a duk faɗin rukunin yanar gizon."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Sake tsara oda"
 
@@ -1001,30 +829,6 @@ msgstr "Interface"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Interface na gaba ɗaya"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Ayyuka na Fassara"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Gudanar da ƙungiyoyin da ke akwai don ƙirƙirar tsoffin fassarar da suka ɓace Saita saitunan tsoho na fassara a cikin shafin Ayyukan Tsarin."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Saitunan Menu na Mega zuwa nan ba da jimawa ba."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Saitunan Shafin Gida"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Saitunan Shafin Gida suna zuwa nan da jimawa ba."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Ba a kunna tsarin Linkit ba; tsallake daidaitaccen bayanan martaba."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1196,16 +1000,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Sake saita ƙimar field_order zuwa 10000 don duk nodes. Wannan yana haifar da sabon bita ga kowane node tare da saƙon bita “Sake yin oda”. An kiyaye asalin ranar da aka sabunta na ƙarshe da mai amfani. Yi amfani da wannan don daidaita oda abun ciki a duk faɗin rukunin yanar gizon."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Samun nasarar sake saita field_order zuwa 10000 don nodes @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Sake yin oda"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Menu na nau'in abun ciki"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1348,16 +1144,8 @@ msgid "Promoted"
 msgstr "An haɓaka"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Abubuwan da aka yiwa alama “An haɓaka zuwa shafin gaba” sun zo na gaba"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Kwanan Farawa"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Sannan an tsara ta ranar farawa (ko ranar buga idan babu ranar farawa)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1370,10 +1158,6 @@ msgstr "A ƙarshe an tsara ta hanyar sabunta kwanan nan"
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Tukwici:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Bar komai don amfani da rarraba tsoho. Yi amfani da ƙari na 10 (misali, 10, 20, 30) don barin ɗaki don saka abubuwa daga baya."
 
 #: bioland.module
 msgid "URL"
@@ -1422,10 +1206,6 @@ msgstr "Sake saita tutoci mai ɗanɗano..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Samun nasarar sake saita tutar mai laushi zuwa 0 don shigarwar abun ciki na @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Gaba-ƙarshe"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"

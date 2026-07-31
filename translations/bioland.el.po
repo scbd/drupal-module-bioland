@@ -188,10 +188,6 @@ msgid "Region"
 msgstr "Περιοχή"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Select the geographical region."
-msgstr "Επιλέξτε τη γεωγραφική περιοχή."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "North America"
 msgstr "Βόρεια Αμερική"
 
@@ -222,10 +218,6 @@ msgstr "Είναι η βιοασφάλεια γη;"
 #: src/Form/BiolandSettingsForm.php
 msgid "Indicates whether this is a Biosafety Land instance."
 msgstr "Υποδεικνύει εάν πρόκειται για περίπτωση βιοασφάλειας γης."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Behavior Settings"
-msgstr "Ρυθμίσεις συμπεριφοράς πεδίου"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Field Visibility Control"
@@ -264,10 +256,6 @@ msgid "Show Date Range fields (Start & End Date) for these content types:"
 msgstr "Εμφάνιση πεδίων Εύρους ημερομηνιών (Ημερομηνία έναρξης και λήξης) για αυτούς τους τύπους περιεχομένου:"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Control"
-msgstr "Έλεγχος πρόσθετων πεδίων"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Enable Additional Tags"
 msgstr "Ενεργοποίηση πρόσθετων πεδίων"
 
@@ -276,44 +264,12 @@ msgid "Add content-type specific additional tags (event statuses, project status
 msgstr "Προσθέστε πρόσθετα πεδία συγκεκριμένου τύπου περιεχομένου (καταστάσεις συμβάντων, καταστάσεις έργου κ.λπ.) με βάση τον τύπο περιεχομένου θησαυρού."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Additional Tags Mapping"
-msgstr "Χαρτογράφηση πρόσθετων πεδίων"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "The following content types will have these additional tags available:"
-msgstr "Οι ακόλουθοι τύποι περιεχομένου θα έχουν αυτά τα πρόσθετα πεδία διαθέσιμα:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Event Statuses"
-msgstr "Κατάσταση συμβάντων"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Statuses, Geographic Scopes"
-msgstr "Κατάσταση Έργου, Γεωγραφικά πεδία"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ministry (8)"
-msgstr "Υπουργείο (8)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Types, Government Types"
-msgstr "Τύποι Οργανισμού, Τύποι Κυβέρνησης"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem (9)"
-msgstr "Οικοσύστημα (9)"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Ecosystem Types"
 msgstr "Τύποι οικοσυστημάτων"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Document Types"
 msgstr "Τύποι εγγράφων"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "These tags are dynamically added based on the selected content type and are powered by a Vue.js component."
-msgstr "Αυτά τα πεδία προστίθενται δυναμικά με βάση τον επιλεγμένο τύπο περιεχομένου και τροφοδοτούνται από ένα στοιχείο Vue.js."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Enable Auto Summary"
@@ -332,20 +288,8 @@ msgid "Display contextual help comments for fields based on content type."
 msgstr "Εμφάνιση σχολίων βοήθειας με βάση τα συμφραζόμενα για πεδία με βάση τον τύπο περιεχομένου."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Enable Menu Depth Restriction"
-msgstr "Ενεργοποίηση περιορισμού βάθους μενού"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Restrict non-administrator users from creating second-level menu items and deeper. Only users with \"administer menu\" permission can create nested menu items."
-msgstr "Περιορίστε τους χρήστες που δεν είναι διαχειριστές από τη δημιουργία στοιχείων μενού δεύτερου επιπέδου και βαθύτερα. Μόνο οι χρήστες με άδεια «διαχειριστής μενού» μπορούν να δημιουργήσουν ένθετα στοιχεία μενού."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Translation Defaults"
 msgstr "Προεπιλογές μετάφρασης"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Configure creation of translation defaults (language placeholders) for translatable entities."
-msgstr "Διαμορφώστε τη δημιουργία προεπιλογών μετάφρασης (σύμβολα κράτησης θέσης γλώσσας) για μεταφράσιμες οντότητες."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Automatically create translation defaults"
@@ -796,84 +740,12 @@ msgid "Vietnamese"
 msgstr "Βιετναμέζικα"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "This will be the main content of your new site content.  The summary can be used to display a brief concise description of your content.  Further, the summary  will be displayed in list and card views of your record on the website.  Alternatively, the first few sentence from the main content will be used."
-msgstr "Αυτό θα είναι το κύριο περιεχόμενο του νέου περιεχομένου του ιστότοπού σας. Η περίληψη μπορεί να χρησιμοποιηθεί για να εμφανίσει μια σύντομη συνοπτική περιγραφή του περιεχομένου σας. Επιπλέον, η περίληψη θα εμφανίζεται σε προβολές λίστας και κάρτας της εγγραφής σας στον ιστότοπο. Εναλλακτικά, θα χρησιμοποιηθούν οι πρώτες προτάσεις από το κύριο περιεχόμενο."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Images"
 msgstr "Εικόνες"
 
 #: js/bioland-help-comments-1-0-21.js
-msgid "The <b>first image</b> in order of left to right here, <b>will be the main image</b> of your record displayed on the page and in thumbnails in list and card views.  All another images will be displayed below the main content."
-msgstr "Η <b>πρώτη εικόνα με</b> σειρά από αριστερά προς τα δεξιά εδώ, <b>θα είναι η κύρια εικόνα της εγγραφής</b> σας που εμφανίζεται στη σελίδα και σε μικρογραφίες σε προβολές λίστας και κάρτας. Όλες οι άλλες εικόνες θα εμφανιστούν κάτω από το κύριο περιεχόμενο."
-
-#: js/bioland-help-comments-1-0-21.js
 msgid "Heroes"
 msgstr "Ήρωες"
-
-#: js/bioland-help-comments-1-0-21.js
-msgid "Any page/content type can have multiple <b>hero banners</b>.  If there is more then one they will be rotated on an hourly basis."
-msgstr "Οποιοσδήποτε τύπος σελίδας/περιεχομένου μπορεί να έχει πολλαπλά πανό <b>ηρώων</b>. Εάν υπάρχουν περισσότερα από ένα, θα εναλλάσσονται σε ωριαία βάση."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "News (2)"
-msgstr "Νέα (2)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Meeting or Event (3)"
-msgstr "Συνάντηση ή εκδήλωση (3)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project (5)"
-msgstr "Έργο (5)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document (12)"
-msgstr "Έγγραφο (12)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Related Website (13)"
-msgstr "Σχετικός ιστότοπος (13)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Other Resource (15)"
-msgstr "Άλλοι πόροι (15)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Image or Video (16)"
-msgstr "Εικόνα ή βίντεο (16)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "FAQ (43)"
-msgstr "ΣΥΧΝΈΣ ΕΡΩΤΉΣΕΙΣ (43)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Information (44)"
-msgstr "Εθνικές πληροφορίες (44)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Status of LMOs (45)"
-msgstr "Κατάσταση των LMO (45)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Field Trial (46)"
-msgstr "Δοκιμή πεδίου (46)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "National Mainstreaming Strategy (47)"
-msgstr "Εθνική στρατηγική ενσωμάτωσης (47)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Capacity-Building (48)"
-msgstr "Ανάπτυξη Ικανοτήτων (48)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Announcement (49)"
-msgstr "Ανακοίνωση (49)"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Contact (50)"
-msgstr "Επικοινωνία (50)"
 
 #: bioland.module
 msgid "Save"
@@ -882,10 +754,6 @@ msgstr "Αποθήκευση"
 #: bioland.module
 msgid "Order Override"
 msgstr "Παράκαμψη παραγγελίας"
-
-#: bioland.module
-msgid "You do not have permission to create menu items under other menu items. Only top-level menu items are allowed for your role."
-msgstr "Δεν έχετε δικαίωμα δημιουργίας στοιχείων μενού κάτω από άλλα στοιχεία μενού. Επιτρέπονται μόνο στοιχεία μενού ανώτατου επιπέδου για το ρόλο σας."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Order Override Help"
@@ -908,10 +776,6 @@ msgid "Event Status"
 msgstr "Event Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Event Status tags available."
-msgstr "Content types that will have Event Status tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Event Status tags for these content types:"
 msgstr "Εμφάνιση ετικετών κατάστασης εκδήλωσης για αυτούς τους τύπους περιεχομένου:"
 
@@ -920,40 +784,12 @@ msgid "Project Status"
 msgstr "Project Status"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Project Status and Geographic Scope tags available."
-msgstr "Content types that will have Project Status and Geographic Scope tags available."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Show Project Status tags for these content types:"
 msgstr "Εμφάνιση ετικετών κατάστασης έργου για αυτούς τους τύπους περιεχομένου:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Organization Types and Government Types tags available."
-msgstr "Content types that will have Organization Types and Government Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Types tags for these content types:"
-msgstr "Show Organization Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Ecosystem Types tags available."
-msgstr "Content types that will have Ecosystem Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Types tags for these content types:"
-msgstr "Show Ecosystem Types tags for these content types:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Content types that will have Document Types tags available."
-msgstr "Content types that will have Document Types tags available."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Types tags for these content types:"
-msgstr "Show Document Types tags for these content types:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Tags Settings"
@@ -978,10 +814,6 @@ msgstr "Βοήθεια επιλογών προώθησης"
 #: src/Form/BiolandSettingsForm.php
 msgid "Promotion Options Help Text"
 msgstr "Επιλογές προώθησης Κείμενο βοήθειας"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Help text explaining the Promoted and Sticky options. HTML is allowed."
-msgstr "Κείμενο βοήθειας που εξηγεί τις επιλογές Promoted και Sticky. Επιτρέπεται η HTML."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Translate Promotion Help Text"
@@ -1072,10 +904,6 @@ msgid "Content Ordering"
 msgstr "Παραγγελία περιεχομένου"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Resets the field_order value to 1000 for all nodes. This creates a new revision for each node with the revision message \"Reset ordering\". The original last updated date and user are preserved. Use this to normalize content ordering across the site."
-msgstr "Επαναφέρει την τιμή field_order σε 1000 για όλους τους κόμβους. Αυτό δημιουργεί μια νέα αναθεώρηση για κάθε κόμβο με το μήνυμα αναθεώρησης «Επαναφορά παραγγελίας». Η αρχική ημερομηνία τελευταίας ενημέρωσης και ο χρήστης διατηρούνται. Χρησιμοποιήστε αυτό για να ομαλοποιήσετε την παραγγελία περιεχομένου σε ολόκληρο τον ιστότοπο."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset Ordering"
 msgstr "Επαναφορά παραγγελίας"
 
@@ -1098,30 +926,6 @@ msgstr "Διεπαφή"
 #: src/Form/BiolandSettingsForm.php
 msgid "Front End General"
 msgstr "Γενική διεπαφή"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Translation Batch Operations"
-msgstr "Λειτουργίες παρτίδας μετάφρασης"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Process existing entities to create missing translation defaults. Configure translation default settings in the System Functions tab."
-msgstr "Επεξεργαστείτε υπάρχουσες οντότητες για να δημιουργήσετε προεπιλογές μετάφρασης που λείπουν. Διαμορφώστε τις προεπιλεγμένες ρυθμίσεις μετάφρασης στην καρτέλα Λειτουργίες συστήματος."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Mega Menu settings coming soon."
-msgstr "Οι ρυθμίσεις Mega Menu έρχονται σύντομα."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page Settings"
-msgstr "Ρυθμίσεις αρχικής σελίδας"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Home Page settings coming soon."
-msgstr "Οι ρυθμίσεις της αρχικής σελίδας έρχονται σύντομα."
-
-#: bioland.install
-msgid "Linkit module is not enabled; skipping profile configuration."
-msgstr "Η μονάδα Linkit δεν είναι ενεργοποιημένη. Παραλείπεται η διαμόρφωση προφίλ."
 
 #: bioland.install
 msgid "Created and configured default Linkit profile with all matchers."
@@ -1285,16 +1089,8 @@ msgid "Resets the field_order value to 10000 for all nodes. This creates a new r
 msgstr "Επαναφέρει την τιμή field_order σε 10000 για όλους τους κόμβους. Αυτό δημιουργεί μια νέα αναθεώρηση για κάθε κόμβο με το μήνυμα αναθεώρησης «Επαναφορά παραγγελίας». Η αρχική ημερομηνία τελευταίας ενημέρωσης και ο χρήστης διατηρούνται. Χρησιμοποιήστε αυτό για να ομαλοποιήσετε την παραγγελία περιεχομένου σε ολόκληρο τον ιστότοπο."
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Successfully reset field_order to 10000 for @count nodes."
-msgstr "Επαναφέρετε επιτυχώς το field_order σε 10000 για κόμβους @count."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Reset ordering"
 msgstr "Επαναφορά παραγγελίας"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "🗂️ Content Type Menus"
-msgstr "🗂️ Μενού τύπου περιεχομένου"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Configure automatic menu entries for each content type in the mega menu."
@@ -1437,16 +1233,8 @@ msgid "Promoted"
 msgstr "Προωθείται"
 
 #: js/bioland-help-comments-1-0-36.js
-msgid "Items marked \"Promoted to front page\" come next"
-msgstr "Τα στοιχεία με την ένδειξη «Προωθείται στην πρώτη σελίδα» έρχονται στη συνέχεια"
-
-#: js/bioland-help-comments-1-0-36.js
 msgid "Start Date"
 msgstr "Ημερομηνία έναρξης"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Then sorted by start date (or published date if no start date)"
-msgstr "Στη συνέχεια ταξινομείται κατά ημερομηνία έναρξης (ή ημερομηνία δημοσίευσης εάν δεν υπάρχει ημερομηνία έναρξης)"
 
 #: js/bioland-help-comments-1-0-36.js
 msgid "Last Modified"
@@ -1459,10 +1247,6 @@ msgstr "Τελικά ταξινομήθηκε κατά την πιο πρόσφ�
 #: js/bioland-help-comments-1-0-36.js
 msgid "Tip:"
 msgstr "Συμβουλή:"
-
-#: js/bioland-help-comments-1-0-36.js
-msgid "Leave empty to use default sorting. Use increments of 10 (e.g., 10, 20, 30) to leave room for inserting items later."
-msgstr "Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη ταξινόμηση. Χρησιμοποιήστε προσαυξήσεις των 10 (π.χ. 10, 20, 30) για να αφήσετε χώρο για την εισαγωγή αντικειμένων αργότερα."
 
 #: bioland.module
 msgid "URL"
@@ -1511,10 +1295,6 @@ msgstr "Επαναφορά κολλωδών σημαιών..."
 #: src/Form/BiolandSettingsForm.php
 msgid "Successfully reset sticky flag to 0 for @count content entries."
 msgstr "Επαναφέρετε επιτυχώς την αυτοκόλλητη σημαία στο 0 για καταχωρήσεις περιεχομένου @count."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Front-end"
-msgstr "Μπροστινό άκρο"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Admin"
