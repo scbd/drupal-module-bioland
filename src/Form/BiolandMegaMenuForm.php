@@ -27,6 +27,8 @@ class BiolandMegaMenuForm extends BiolandSettingsFormBase {
    * {@inheritdoc}
    */
   protected function buildSectionForm(array $form, FormStateInterface $form_state, $config): array {
+    $isBsl = (bool) $config->get('is_biosafety_land');
+
     $form['mega_menu_settings'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Mega Menu Component Settings'),
@@ -105,6 +107,12 @@ class BiolandMegaMenuForm extends BiolandSettingsFormBase {
       ];
     }
 
+    // On BSL sites only the Content Type Menus section is configurable; the
+    // statistics menu and the CHM-specific menus below do not apply.
+    if ($isBsl) {
+      return $form;
+    }
+
     // Content Types Statistics Menu section
     $form['mega_menu_settings']['content_types'] = [
       '#type' => 'details',
@@ -178,6 +186,7 @@ class BiolandMegaMenuForm extends BiolandSettingsFormBase {
    */
   protected function submitSectionForm(array &$form, FormStateInterface $form_state, $config): void {
     $values = $form_state->getValues();
+    $isBsl = (bool) $config->get('is_biosafety_land');
 
     // Clear cached visible TIDs to force rescan on next load
     $config->clear('mega_menu.content_type_menus.visible_content_type_menus');
@@ -221,6 +230,12 @@ class BiolandMegaMenuForm extends BiolandSettingsFormBase {
       if (isset($content_type_values[$show_if_empty_key])) {
         $config->set('mega_menu.content_type_menus.' . $tid . '.show_if_empty', (bool) $content_type_values[$show_if_empty_key]);
       }
+    }
+
+    // BSL sites only render the Content Type Menus section, so leave the
+    // statistics menu and the CHM-specific menu settings untouched.
+    if ($isBsl) {
+      return;
     }
 
     // Save content types settings (nested under mega_menu_settings -> content_types)
