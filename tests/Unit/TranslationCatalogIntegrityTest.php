@@ -50,10 +50,6 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Help text explaining the Order Override field and content sorting priority.',
     // src/Form/BiolandSettingsForm.php: details title.
     'Translate Order Override Help Text',
-    // src/Form/BiolandSettingsForm.php: checkboxes title.
-    'Show Event Status tags for these content types:',
-    // src/Form/BiolandSettingsForm.php: checkboxes title.
-    'Show Project Status tags for these content types:',
     // src/Form/BiolandSettingsForm.php: submit button value.
     'Reset Sticky',
   ];

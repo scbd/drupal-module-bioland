@@ -283,4 +283,63 @@ class BiolandFieldFunctionalityManagerTest extends TestCase {
     $this->assertFalse($settings['enableHelpComments']);
   }
 
+  /**
+   * Tests getJavaScriptSettings falls back to the fixed additional tag values.
+   */
+  public function testGetJavaScriptSettingsFallsBackToFixedAdditionalTags(): void {
+    // No additional_tags key at all - the defaults must still reach the browser.
+    $configObject = new ImmutableConfig('bioland.settings', []);
+    $configFactory = $this->createMock(ConfigFactoryInterface::class);
+    $configFactory->method('get')
+      ->with('bioland.settings')
+      ->willReturn($configObject);
+
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
+    $settings = $manager->getJavaScriptSettings();
+
+    $this->assertSame([
+      'eventStatusContentTypes' => [3],
+      'projectStatusContentTypes' => [5],
+      'organizationTypesContentTypes' => [8],
+      'ecosystemTypesContentTypes' => [9],
+      'documentTypesContentTypes' => [12],
+    ], $settings['additionalTags']);
+  }
+
+  /**
+   * Tests getJavaScriptSettings reads the additional tag values from config.
+   */
+  public function testGetJavaScriptSettingsReadsAdditionalTagsFromConfig(): void {
+    $configData = [
+      'additional_tags' => [
+        // Simulating stored checkbox values, including an unchecked 0.
+        'event_status_content_types' => ['3' => '3'],
+        'project_status_content_types' => ['5' => '5', '7' => 0],
+        'organization_types_content_types' => ['8' => '8'],
+        'ecosystem_types_content_types' => ['9' => '9'],
+        'document_types_content_types' => ['12' => '12'],
+      ],
+    ];
+
+    $configObject = new ImmutableConfig('bioland.settings', $configData);
+    $configFactory = $this->createMock(ConfigFactoryInterface::class);
+    $configFactory->method('get')
+      ->with('bioland.settings')
+      ->willReturn($configObject);
+
+    $languageManager = $this->createMockLanguageManager();
+    $manager = new BiolandFieldFunctionalityManager($configFactory, $languageManager);
+    $settings = $manager->getJavaScriptSettings();
+
+    // Values are filtered, cast to integers, and reindexed.
+    $this->assertSame([
+      'eventStatusContentTypes' => [3],
+      'projectStatusContentTypes' => [5],
+      'organizationTypesContentTypes' => [8],
+      'ecosystemTypesContentTypes' => [9],
+      'documentTypesContentTypes' => [12],
+    ], $settings['additionalTags']);
+  }
+
 }

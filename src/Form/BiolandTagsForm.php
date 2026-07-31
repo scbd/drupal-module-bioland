@@ -2,7 +2,7 @@
 
 namespace Drupal\bioland\Form;
 
-use Drupal\bioland\Service\BiolandFieldFunctionalityManager;
+use Drupal\bioland\Service\BiolandAdditionalTagDefaults;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -50,8 +50,8 @@ class BiolandTagsForm extends BiolandSettingsFormBase {
     ];
 
     // The per-tag-group content type mappings are fixed for every Bioland site
-    // (see BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES), so
-    // they are not exposed here; submitSectionForm() keeps them in config.
+    // (see BiolandAdditionalTagDefaults::CONTENT_TYPES), so they are not
+    // exposed here; submitSectionForm() keeps them in config.
     return $form;
   }
 
@@ -65,7 +65,7 @@ class BiolandTagsForm extends BiolandSettingsFormBase {
 
     // Re-assert the fixed content type mappings so config stays authoritative
     // even though the mappings are no longer editable through this form.
-    foreach (BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES as $key => $content_types) {
+    foreach (BiolandAdditionalTagDefaults::CONTENT_TYPES as $key => $content_types) {
       $config->set('additional_tags.' . $key, $content_types);
     }
   }

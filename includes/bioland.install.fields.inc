@@ -407,14 +407,31 @@ function bioland_update_9047() {
  */
 function bioland_update_9077() {
   $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $changed = [];
+  $messages = [];
 
-  $mappings = \Drupal\bioland\Service\BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES;
+  // Plain strings, not t() - the translation system is not dependable mid-update.
+  foreach (\Drupal\bioland\Service\BiolandAdditionalTagDefaults::CONTENT_TYPES as $key => $content_types) {
+    $existing = $config->get('additional_tags.' . $key);
 
-  foreach ($mappings as $key => $content_types) {
+    // Record what was overwritten; the previous values are otherwise unrecoverable.
+    if ($existing !== $content_types) {
+      $changed[] = $key . ': ' . implode(',', (array) $existing) . ' -> ' . implode(',', $content_types);
+    }
+
     $config->set('additional_tags.' . $key, $content_types);
   }
 
   $config->save();
 
-  return t('Reset the additional tag content type mappings to their fixed values.');
+  $messages[] = $changed
+    ? 'Reset the additional tag content type mappings to their fixed values (' . implode('; ', $changed) . ').'
+    : 'Additional tag content type mappings already match their fixed values.';
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  // Drupal runs update hooks in ascending order, so this hook is now the last
+  // writer for every site and inherits the convergence duty from 9076.
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

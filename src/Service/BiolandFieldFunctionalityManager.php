@@ -12,24 +12,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
 class BiolandFieldFunctionalityManager {
 
   /**
-   * Fixed content type (tags vocabulary term ID) mapping for additional tags.
-   *
-   * These mappings are not site-configurable: every Bioland site shows the
-   * same additional tag group on the same content type. They are written to
-   * bioland.settings on install and on every save of the Tags settings form so
-   * that consumers keep reading the values from configuration.
-   *
-   * @var array<string, int[]>
-   */
-  const ADDITIONAL_TAG_CONTENT_TYPES = [
-    'event_status_content_types' => [3],
-    'project_status_content_types' => [5],
-    'organization_types_content_types' => [8],
-    'ecosystem_types_content_types' => [9],
-    'document_types_content_types' => [12],
-  ];
-
-  /**
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
@@ -100,19 +82,13 @@ class BiolandFieldFunctionalityManager {
       'helpComments' => $enableDebugLogging && ($c->get('debug_log_areas.help_comments') !== FALSE),
     ];
 
-    // Get additional tags content type settings and convert to integer arrays
-    $event_status_content_types = $c->get('additional_tags.event_status_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['event_status_content_types'];
-    $project_status_content_types = $c->get('additional_tags.project_status_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['project_status_content_types'];
-    $organization_types_content_types = $c->get('additional_tags.organization_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['organization_types_content_types'];
-    $ecosystem_types_content_types = $c->get('additional_tags.ecosystem_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['ecosystem_types_content_types'];
-    $document_types_content_types = $c->get('additional_tags.document_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['document_types_content_types'];
-
-    // Filter out unchecked values (0) and convert to integers
-    $event_status_content_types = array_values(array_map('intval', array_filter($event_status_content_types)));
-    $project_status_content_types = array_values(array_map('intval', array_filter($project_status_content_types)));
-    $organization_types_content_types = array_values(array_map('intval', array_filter($organization_types_content_types)));
-    $ecosystem_types_content_types = array_values(array_map('intval', array_filter($ecosystem_types_content_types)));
-    $document_types_content_types = array_values(array_map('intval', array_filter($document_types_content_types)));
+    // Get additional tags content type settings, falling back to the fixed
+    // defaults, then filter out unchecked values (0) and convert to integers.
+    $additional_tags = [];
+    foreach (BiolandAdditionalTagDefaults::CONTENT_TYPES as $key => $default) {
+      $content_types = $c->get('additional_tags.' . $key) ?: $default;
+      $additional_tags[BiolandAdditionalTagDefaults::JS_KEYS[$key]] = array_values(array_map('intval', array_filter($content_types)));
+    }
 
     return [
       'enableFieldVisibility' => $c->get('enable_field_visibility') !== FALSE,
@@ -123,13 +99,7 @@ class BiolandFieldFunctionalityManager {
       'urlContentTypes' => $url_content_types,
       'publishedContentTypes' => $published_content_types,
       'dateRangeContentTypes' => $date_range_content_types,
-      'additionalTags' => [
-        'eventStatusContentTypes' => $event_status_content_types,
-        'projectStatusContentTypes' => $project_status_content_types,
-        'organizationTypesContentTypes' => $organization_types_content_types,
-        'ecosystemTypesContentTypes' => $ecosystem_types_content_types,
-        'documentTypesContentTypes' => $document_types_content_types,
-      ],
+      'additionalTags' => $additional_tags,
       'helpComments' => $helpComments,
       'enableDebugLogging' => $enableDebugLogging,
       'debugLogAreas' => $debugLogAreas,

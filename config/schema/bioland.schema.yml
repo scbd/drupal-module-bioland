@@ -47,35 +47,35 @@ bioland.settings:
       label: 'Enable additional fields'
     additional_tags:
       type: mapping
-      label: 'Additional tags settings'
+      label: 'Additional tags settings (content type mappings are fixed, not site-configurable)'
       mapping:
         event_status_content_types:
           type: sequence
-          label: 'Content types where Event Status tags are visible'
+          label: 'Content types where Event Status tags are visible (fixed, not site-configurable)'
           sequence:
             type: integer
             label: 'Content type ID'
         project_status_content_types:
           type: sequence
-          label: 'Content types where Project Status tags are visible'
+          label: 'Content types where Project Status tags are visible (fixed, not site-configurable)'
           sequence:
             type: integer
             label: 'Content type ID'
         organization_types_content_types:
           type: sequence
-          label: 'Content types where Organization Types tags are visible'
+          label: 'Content types where Organization Types tags are visible (fixed, not site-configurable)'
           sequence:
             type: integer
             label: 'Content type ID'
         ecosystem_types_content_types:
           type: sequence
-          label: 'Content types where Ecosystem Types tags are visible'
+          label: 'Content types where Ecosystem Types tags are visible (fixed, not site-configurable)'
           sequence:
             type: integer
             label: 'Content type ID'
         document_types_content_types:
           type: sequence
-          label: 'Content types where Document Types tags are visible'
+          label: 'Content types where Document Types tags are visible (fixed, not site-configurable)'
           sequence:
             type: integer
             label: 'Content type ID'
