@@ -12,6 +12,24 @@ use Drupal\Core\Language\LanguageManagerInterface;
 class BiolandFieldFunctionalityManager {
 
   /**
+   * Fixed content type (tags vocabulary term ID) mapping for additional tags.
+   *
+   * These mappings are not site-configurable: every Bioland site shows the
+   * same additional tag group on the same content type. They are written to
+   * bioland.settings on install and on every save of the Tags settings form so
+   * that consumers keep reading the values from configuration.
+   *
+   * @var array<string, int[]>
+   */
+  const ADDITIONAL_TAG_CONTENT_TYPES = [
+    'event_status_content_types' => [3],
+    'project_status_content_types' => [5],
+    'organization_types_content_types' => [8],
+    'ecosystem_types_content_types' => [9],
+    'document_types_content_types' => [12],
+  ];
+
+  /**
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
@@ -83,11 +101,11 @@ class BiolandFieldFunctionalityManager {
     ];
 
     // Get additional tags content type settings and convert to integer arrays
-    $event_status_content_types = $c->get('additional_tags.event_status_content_types') ?: [3];
-    $project_status_content_types = $c->get('additional_tags.project_status_content_types') ?: [5];
-    $organization_types_content_types = $c->get('additional_tags.organization_types_content_types') ?: [8];
-    $ecosystem_types_content_types = $c->get('additional_tags.ecosystem_types_content_types') ?: [9];
-    $document_types_content_types = $c->get('additional_tags.document_types_content_types') ?: [12];
+    $event_status_content_types = $c->get('additional_tags.event_status_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['event_status_content_types'];
+    $project_status_content_types = $c->get('additional_tags.project_status_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['project_status_content_types'];
+    $organization_types_content_types = $c->get('additional_tags.organization_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['organization_types_content_types'];
+    $ecosystem_types_content_types = $c->get('additional_tags.ecosystem_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['ecosystem_types_content_types'];
+    $document_types_content_types = $c->get('additional_tags.document_types_content_types') ?: self::ADDITIONAL_TAG_CONTENT_TYPES['document_types_content_types'];
 
     // Filter out unchecked values (0) and convert to integers
     $event_status_content_types = array_values(array_map('intval', array_filter($event_status_content_types)));

@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Fassara Rubutun Taimakon Maye Gurbin Oda"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Nuna alamun Matsayin Taro don waɗannan nau'ikan abun ciki:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Nuna alamun Matsayin Aikin don waɗannan nau'ikan abun ciki:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Kunna"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Ƙarin Saitunan Alamar"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Nau'in ƙungiya"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Nuna alamun Nau'in Ƙungiya don waɗannan nau'ikan abun ciki:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Nau'in Tsarin Halitta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Nuna alamun Nau'in Tsarin Halitta don waɗannan nau'ikan abun ciki:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Nau'in Takardu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Nuna alamun Nau'in Takardu don waɗannan nau'ikan abun ciki:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

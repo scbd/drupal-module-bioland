@@ -754,22 +754,6 @@ msgid "Translate Order Override Help Text"
 msgstr "ترجمه متن راهنمای لغو ترتیب"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "نمایش برچسب‌های وضعیت رویداد برای این انواع محتوا:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "نمایش برچسب‌های وضعیت پروژه برای این انواع محتوا:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -969,30 +953,6 @@ msgstr "فعال کردن"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "تنظیمات برچسب های اضافی"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "نوع سازمان"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "نمایش برچسب های نوع سازمان برای این انواع محتوا:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "نوع اکوسیستم"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "نمایش برچسب های نوع اکوسیستم برای این انواع محتوا:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "نوع سند"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "نمایش برچسب های نوع سند برای این انواع محتوا:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

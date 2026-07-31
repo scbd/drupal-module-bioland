@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Vertaal Volgorde-oorskrywing Hulpteks"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Wys Gebeurtenisstatus-etikette vir hierdie inhoudtipes:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Wys Projekstatus-etikette vir hierdie inhoudtipes:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Aktiveer"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Bykomende etikette-instellings"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Organisasie tipe"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Wys organisasietipe-etikette vir hierdie inhoudtipes:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ekosisteem tipe"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Wys ekosisteemtipe etikette vir hierdie inhoudtipes:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Dokumenttipe"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Wys Dokumenttipe etikette vir hierdie inhoudtipes:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

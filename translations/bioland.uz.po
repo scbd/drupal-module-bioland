@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Tartibni bekor qilish yordam matnini tarjima qilish"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Ushbu kontent turlari uchun Tadbir holati teglarini ko'rsatish:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Ushbu kontent turlari uchun Loyiha holati teglarini ko'rsatish:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "yoqish"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Qo'shimcha teglar sozlamalari"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Tashkilot turi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Ushbu kontent turlari uchun tashkilot turi teglarini ko'rsatish:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ekotizim turi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Ushbu kontent turlari uchun ekotizim turi teglarini ko'rsatish:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Hujjat turi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Ushbu kontent turlari uchun Hujjat turi teglarini ko'rsatish:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Sifariş Ləğvi Kömək Mətnini Tərcümə Et"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Bu məzmun növləri üçün Tədbir Statusu etiketlərini göstərin:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Bu məzmun növləri üçün Layihə Statusu etiketlərini göstərin:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Aktivləşdirin"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Əlavə Etiketlər Ayarları"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Təşkilat növü"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Bu məzmun növləri üçün Təşkilat Tipi etiketlərini göstərin:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ekosistem növü"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Bu məzmun növləri üçün Ekosistem Tipi etiketlərini göstərin:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Sənəd növü"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Bu məzmun növləri üçün Sənəd Tipi etiketlərini göstərin:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

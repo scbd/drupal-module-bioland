@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Tafsiri Maandishi ya Msaada wa Kubadilisha Mpangilio"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Onyesha lebo za Hali ya Tukio kwa aina hizi za yaliyomo:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Onyesha lebo za Hali ya Mradi kwa aina hizi za yaliyomo:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Wezesha"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Mipangilio ya Tag za ziada"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Aina ya Shirika"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Onyesha lebo za Aina ya Shirika kwa aina hizi za yaliyomo:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Aina ya mazingira"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Onyesha lebo za Aina ya Mazingira kwa aina hizi za maudhui:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Aina ya Hati"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Onyesha lebo za Aina ya Hati kwa aina hizi za yaliyomo:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

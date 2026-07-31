@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Tulkot kārtības ignorēšanas palīdzības tekstu"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Rādīt pasākuma statusa tagus šiem satura tipiem:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Rādīt projekta statusa tagus šiem satura tipiem:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Iespējot"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Papildu tagu iestatījumi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Organizācijas veids"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Rādīt organizācijas tipa tagus šiem satura tipiem:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ekosistēmas tips"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Rādīt ekosistēmas tipa tagus šiem satura tipiem:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Dokumenta veids"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Rādīt dokumenta tipa tagus šiem satura tipiem:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

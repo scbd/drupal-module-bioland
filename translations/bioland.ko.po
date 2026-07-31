@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "순서 재정의 도움말 텍스트 번역"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "다음 콘텐츠 유형에 대한 이벤트 상태 태그를 표시합니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "다음 콘텐츠 유형에 대한 프로젝트 상태 태그를 표시합니다."
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "활성화"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "추가 태그 설정"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "조직 유형"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "다음 콘텐츠 유형에 조직 유형 태그를 표시합니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "에코시스템 유형"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "다음 콘텐츠 유형에 대한 에코시스템 유형 태그를 표시합니다."
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "문서 유형"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "다음 콘텐츠 유형에 대한 문서 유형 태그를 표시합니다."
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

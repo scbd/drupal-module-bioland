@@ -754,22 +754,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Tõlgi järjestuse tühistamise abitekst"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Kuva sündmuse oleku sildid nende sisutüüpide jaoks:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Kuva projekti oleku sildid nende sisutüüpide jaoks:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -969,30 +953,6 @@ msgstr "Luba"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Täiendavad siltide seaded"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Organisatsiooni tüüp"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Kuva organisatsioonitüübi sildid nende sisutüüpide jaoks:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ökosüsteemi tüüp"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Näita ökosüsteemi tüübi silte nende sisutüüpide jaoks:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Dokumendi tüüp"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Kuva dokumendi tüübi sildid nende sisutüüpide jaoks:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

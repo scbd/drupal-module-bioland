@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "የትዕዛዝ መሻሻል የእገዛ ጽሑፍን ተርጉም"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "ለእነዚህ የይዘት ዓይነቶች የክስተት ሁኔታ መለያዎችን አሳይ:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "ለእነዚህ የይዘት ዓይነቶች የፕሮጀክት ሁኔታ መለያዎችን አሳይ:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "ያንቁ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "ተጨማሪ መለያ ቅንብ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "የድርጅት ዓይነት"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "ለእነዚህ የይዘት ዓይነቶች የድርጅት ዓይነት መለያዎችን አ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "የሥነ ምህዳር ዓ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "ለእነዚህ የይዘት ዓይነቶች የኢኮስተም አይነት መለያዎችን"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "የሰነድ ዓይነት"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "ለእነዚህ የይዘት ዓይነቶች የሰነድ ዓይነት መለያዎችን"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

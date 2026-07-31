@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Aistrigh Téacs Cabhrach Sárú Ord"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Taispeáin clibeanna Stádas Imeachta do na cineálacha ábhair seo:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Taispeáin clibeanna Stádas Tionscadail do na cineálacha ábhair seo:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Cumasaigh"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Socruithe Clibeanna Breise"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Cineál Eagraíochta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Taispeáin clibeanna Cineál Eagraíochta do na cineálacha ábhair seo:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Cineál Éiceachrais"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Taispeáin clibeanna Cineál Éiceachórais do na cineálacha ábhair"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Cineál Doiciméad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Taispeáin clibeanna Cineál Doiciméad do na cineálacha ábhair seo"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

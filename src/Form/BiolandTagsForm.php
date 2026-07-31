@@ -2,6 +2,7 @@
 
 namespace Drupal\bioland\Form;
 
+use Drupal\bioland\Service\BiolandFieldFunctionalityManager;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -48,104 +49,9 @@ class BiolandTagsForm extends BiolandSettingsFormBase {
       '#default_value' => $config->get('enable_additional_fields') !== FALSE,
     ];
 
-    // Get content type options for tag configuration
-    $content_types = $this->getContentTypeOptions();
-
-    // Event Status tag settings
-    $form['tags_settings']['event_status'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Event Status'),
-      '#open' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['tags_settings']['event_status']['event_status_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Event Status tags for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('additional_tags.event_status_content_types') ?: [3],
-    ];
-
-    // Project Status tag settings
-    $form['tags_settings']['project_status'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Project Status'),
-      '#open' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['tags_settings']['project_status']['project_status_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Project Status tags for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('additional_tags.project_status_content_types') ?: [5],
-    ];
-
-    // Organization Type tag settings
-    $form['tags_settings']['organization_types'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Organization Type'),
-      '#open' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['tags_settings']['organization_types']['organization_types_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Organization Type tags for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('additional_tags.organization_types_content_types') ?: [8],
-    ];
-
-    // Ecosystem Type tag settings
-    $form['tags_settings']['ecosystem_types'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Ecosystem Type'),
-      '#open' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['tags_settings']['ecosystem_types']['ecosystem_types_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Ecosystem Type tags for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('additional_tags.ecosystem_types_content_types') ?: [9],
-    ];
-
-    // Document Type tag settings
-    $form['tags_settings']['document_types'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Document Type'),
-      '#open' => FALSE,
-      '#states' => [
-        'visible' => [
-          ':input[name="enable_additional_fields"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $form['tags_settings']['document_types']['document_types_content_types'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Show Document Type tags for these content types:'),
-      '#options' => $content_types,
-      '#default_value' => $config->get('additional_tags.document_types_content_types') ?: [12],
-    ];
-
+    // The per-tag-group content type mappings are fixed for every Bioland site
+    // (see BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES), so
+    // they are not exposed here; submitSectionForm() keeps them in config.
     return $form;
   }
 
@@ -155,20 +61,13 @@ class BiolandTagsForm extends BiolandSettingsFormBase {
   protected function submitSectionForm(array &$form, FormStateInterface $form_state, $config): void {
     $values = $form_state->getValues();
 
-    // Process additional tags content type selections
-    $event_status_content_types = array_values(array_filter($values['event_status_content_types']));
-    $project_status_content_types = array_values(array_filter($values['project_status_content_types']));
-    $organization_types_content_types = array_values(array_filter($values['organization_types_content_types']));
-    $ecosystem_types_content_types = array_values(array_filter($values['ecosystem_types_content_types']));
-    $document_types_content_types = array_values(array_filter($values['document_types_content_types']));
+    $config->set('enable_additional_fields', $values['enable_additional_fields']);
 
-    $config
-      ->set('enable_additional_fields', $values['enable_additional_fields'])
-      ->set('additional_tags.event_status_content_types', $event_status_content_types)
-      ->set('additional_tags.project_status_content_types', $project_status_content_types)
-      ->set('additional_tags.organization_types_content_types', $organization_types_content_types)
-      ->set('additional_tags.ecosystem_types_content_types', $ecosystem_types_content_types)
-      ->set('additional_tags.document_types_content_types', $document_types_content_types);
+    // Re-assert the fixed content type mappings so config stays authoritative
+    // even though the mappings are no longer editable through this form.
+    foreach (BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES as $key => $content_types) {
+      $config->set('additional_tags.' . $key, $content_types);
+    }
   }
 
 }

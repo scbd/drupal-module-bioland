@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Terjemah Teks Bantuan Batalan Susunan"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Tunjukkan tag Status Acara untuk jenis kandungan ini:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Tunjukkan tag Status Projek untuk jenis kandungan ini:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Dayakan"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Tetapan Tag Tambahan"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Jenis Organisasi"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Tunjukkan tag Jenis Organisasi untuk jenis kandungan ini:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Jenis Ekosistem"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Tunjukkan tag Jenis Ekosistem untuk jenis kandungan ini:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Jenis Dokumen"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Tunjukkan tag Jenis Dokumen untuk jenis kandungan ini:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

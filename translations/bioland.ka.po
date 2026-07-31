@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "თარგმნეთ რიგის უგულებელყოფის დახმარების ტექსტი"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "აჩვენეთ ღონისძიების სტატუსის ტეგები ამ შინაარსის ტიპებისთვის:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "აჩვენეთ პროექტის სტატუსის ტეგები ამ შინაარსის ტიპებისთვის:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "ჩართეთ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "დამატებითი ტეგების პარ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "ორგანიზაციის ტიპი"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "აჩვენეთ ორგანიზაციის ტიპის თეგები ამ შინაარსის ტიპებისთვის"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "ეკოსისტემის სახეობა"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "აჩვენეთ ეკოსისტემის ტიპის ტეგები ამ შინაარსის"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "დოკუმენტის სახეობა"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "დოკუმენტის ტიპის ტეგების ჩვენება ამ ტიპებისთვის:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

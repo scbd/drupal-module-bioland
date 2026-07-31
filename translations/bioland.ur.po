@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "ترتیب اوور رائیڈ مدد متن کا ترجمہ کریں"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "ان مواد کی اقسام کے لئے ایونٹ کی حیثیت کے ٹیگز دکھائیں:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "ان مواد کی اقسام کے لئے پروجیکٹ کی حیثیت کے ٹیگز دکھائیں:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "فعال"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "اضافی ٹیگز کی ترتیبات"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "تنظیم کی قسم"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "ان مواد کی اقسام کے لئے تنظیم کی قسم کے ٹیگز دکھائیں:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "ایکوسٹم کی قسم"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "ان مواد کی اقسام کے لئے ماحولیاتی نظام ٹائپ ٹیگز"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "دستاویز کی قسم"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "ان مواد کی اقسام کے لئے دستاویز کی قسم کے ٹیگ دکھائیں"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

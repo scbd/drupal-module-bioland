@@ -401,3 +401,20 @@ function bioland_update_9047() {
   
   return implode("\n", $messages);
 }
+
+/**
+ * Force the fixed additional tag content type mappings (BL-832).
+ */
+function bioland_update_9077() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+
+  $mappings = \Drupal\bioland\Service\BiolandFieldFunctionalityManager::ADDITIONAL_TAG_CONTENT_TYPES;
+
+  foreach ($mappings as $key => $content_types) {
+    $config->set('additional_tags.' . $key, $content_types);
+  }
+
+  $config->save();
+
+  return t('Reset the additional tag content type mappings to their fixed values.');
+}

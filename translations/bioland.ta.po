@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "வரிசை மேலெழுதல் உதவி உரையை மொழிபெயர்க்கவும்"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "இந்த உள்ளடக்க வகைகளுக்கான நிகழ்வு நிலை குறிச்சொற்களைக் காட்டு:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "இந்த உள்ளடக்க வகைகளுக்கான திட்ட நிலை குறிச்சொற்களைக் காட்டு:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "இயக்கு"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "கூடுதல் குறிச்சொற்கள்"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "நிறுவன வகை"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "இந்த உள்ளடக்க வகைகளுக்கான நிறுவன வகை குறிச்சொற்களைக் காட்டு:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "சூழல் அமைப்பு வகை"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "இந்த உள்ளடக்க வகைகளுக்கான சுற்றுச்சூழல் அமைப்பு வகை குறிச்சொ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "ஆவண வகை"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "இந்த உள்ளடக்க வகைகளுக்கான ஆவண வகை குறிச்சொற்களைக் காட்டு:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

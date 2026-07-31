@@ -772,22 +772,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Cyfieithu Testun Cymorth Diystyru Trefn"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Dangos tagiau Statws Digwyddiad ar gyfer y mathau hyn o gynnwys:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Dangos tagiau Statws Prosiect ar gyfer y mathau hyn o gynnwys:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -983,30 +967,6 @@ msgstr "Galluogi"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Gosodiadau Tagiau Ychwanegol"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Math o Sefydliad"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Dangos tagiau Math o Sefydliad ar gyfer y mathau hyn o gynnwys:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Math o Ecosystem"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Dangos tagiau Math Ecosystem ar gyfer y mathau hyn o gynnwys:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Math o Ddogfen"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Dangos tagiau Math o Ddogfen ar gyfer y mathau hyn o gynnwys:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

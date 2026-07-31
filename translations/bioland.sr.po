@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Преведи текст помоћи за преклапање редоследа"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Прикажи ознаке статуса догађаја за ове типове садржаја:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Прикажи ознаке статуса пројекта за ове типове садржаја:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Omogući"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Dodatne postavke oznaka"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Tip organizacije"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Prikaži oznake tipa organizacije za ove tipove sadržaja:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Tip ekosistema"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Prikaži oznake tipa ekosistema za ove tipove sadržaja:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Tip dokumenta"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Prikaži oznake tipa dokumenta za ove tipove sadržaja:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

@@ -754,22 +754,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Sorrend felülbírálás súgószövegének fordítása"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Esemény állapot címkék megjelenítése az alábbi tartalomtípusokhoz:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Projekt állapot címkék megjelenítése az alábbi tartalomtípusokhoz:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -969,30 +953,6 @@ msgstr "Engedélyezze"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "További címkék beállításai"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Szervezet típusa"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Szervezettípus-címkék megjelenítése az alábbi tartalomtípusokhoz:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Ökoszisztéma típusa"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Az ökoszisztéma-típus címkék megjelenítése ezekhez a tartalomtípusokhoz:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Dokumentum típusa"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Dokumentumtípus címkék megjelenítése az alábbi tartalomtípusokhoz:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

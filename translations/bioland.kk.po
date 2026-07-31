@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Ретті ауыстыру анықтама мәтінін аудару"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Мына мазмұн түрлеріне арналған Оқиға мәртебесі тегтерін көрсету:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Мына мазмұн түрлеріне арналған Жоба мәртебесі тегтерін көрсету:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Қосу"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Қосымша тегтер параметрлері"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Ұйым түрі"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Осы мазмұн түрлеріне арналған ұйым түрі тегтерін көрсету:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Экожүйе түрі"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Осы мазмұн түрлеріне арналған экожүйе типінің тегтерін көрсету:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Құжат түрі"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Мына мазмұн түрлеріне арналған Құжат түрі тегтерін көрсету:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Turjun Qoraalka Caawimaadda Dabooli Amarka"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Muuji tags-ka xaaladda dhacdada noocyada waxyaabahan:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Muuji tags-ka xaaladda mashruuca noocyada waxyaabahan:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Aqooyin"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Deegaanka Tags dheeraad ah"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Nooca Ururka"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Show Tags Nooca Ururka ee noocadan waxyaabaha:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Nooca Ecosystem"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Show Ecosystem Nooca Tags ee noocadan waxyaabaha:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Nooca Dhaqada"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Show Document Nooca Tags ee noocadan waxyaabaha:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Traduci t-Test ta' Għajnuna għal Prijorità ta' Ordni"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Uri t-tikketti tal-Istatus tal-Avveniment għal dawn it-tipi ta' kontenut:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Uri t-tikketti tal-Istatus tal-Proġett għal dawn it-tipi ta' kontenut:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Jippermetti"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Settings tat-Tags Addizzjonali"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Tip ta' Organizzazzjoni"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Uri t-tikketti tat-Tip ta' Organizzazzjoni għal dawn it-tipi ta' kontenut:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Tip ta' Ekosistema"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Uri t-tikketti tat-Tip tal-Ekosistema għal dawn it-tipi ta' kontenut:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Tip ta' Dokument"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Uri t-tikketti tat-Tip ta' Dokument għal dawn it-tipi ta' kontenut:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

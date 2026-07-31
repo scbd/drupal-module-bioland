@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "අනුපිළිවෙල අභිබවා යාමේ උදව් පෙළ පරිවර්තනය කරන්න"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "මෙම අන්තර්ගත වර්ග සඳහා සිදුවීම් තත්ව ටැග් පෙන්වන්න:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "මෙම අන්තර්ගත වර්ග සඳහා ව්‍යාපෘති තත්ව ටැග් පෙන්වන්න:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "සක්රීය කරන්න"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "අතිරේක ටැග් සැකසුම්"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "සංවිධාන වර්ගය"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "මෙම අන්තර්ගත වර්ග සඳහා සංවිධාන වර්ගයේ ටැග් පෙන්වන්න:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "පරිසර පද්ධති වර්ගය"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "මෙම අන්තර්ගත වර්ග සඳහා පරිසර පද්ධති වර්ගයේ ටැග් පෙන්වන්න:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "ලේඛන වර්ගය"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "මෙම අන්තර්ගත වර්ග සඳහා ලේඛන වර්ගයේ ටැග් පෙන්වන්න:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

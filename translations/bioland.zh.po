@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "翻译顺序覆盖帮助文本"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "显示以下内容类型的活动状态标签："
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "显示以下内容类型的项目状态标签："
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "启用"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "其他标签设置"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "组织类型"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "显示以下内容类型的组织类型标签："
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "生态系统类型"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "显示以下内容类型的生态系统类型标签："
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "文件类型"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "显示以下内容类型的文档类型标签："
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

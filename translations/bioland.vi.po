@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Dịch văn bản trợ giúp ghi đè thứ tự"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Hiển thị thẻ Trạng thái sự kiện cho các loại nội dung sau:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Hiển thị thẻ Trạng thái dự án cho các loại nội dung sau:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "Kích hoạt"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Cài đặt thẻ bổ sung"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Loại tổ chức"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Hiển thị thẻ Loại tổ chức cho các loại nội dung sau:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Loại hệ sinh thái"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Hiển thị thẻ Loại hệ sinh thái cho các loại nội dung sau:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Loại tài liệu"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Hiển thị thẻ Loại tài liệu cho các loại nội dung sau:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

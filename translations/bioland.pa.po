@@ -671,22 +671,6 @@ msgid "Translate Order Override Help Text"
 msgstr "ਕ੍ਰਮ ਓਵਰਰਾਈਡ ਮਦਦ ਟੈਕਸਟ ਦਾ ਅਨੁਵਾਦ ਕਰੋ"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਇਵੈਂਟ ਸਥਿਤੀ ਟੈਗ ਦਿਖਾਓ:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਪ੍ਰੋਜੈਕਟ ਸਥਿਤੀ ਟੈਗ ਦਿਖਾਓ:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -894,30 +878,6 @@ msgstr "ਸਮਰੱਥ ਕਰੋ"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "ਵਾਧੂ ਟੈਗਸ ਸੈਟਿੰਗਜ਼"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "ਸੰਗਠਨ ਦੀ ਕਿਸਮ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਸੰਗਠਨ ਕਿਸਮ ਦੇ ਟੈਗ ਦਿਖਾਓ:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "ਈਕੋਸਿਸਟਮ ਕਿਸਮ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਈਕੋਸਿਸਟਮ ਟਾਈਪ ਟੈਗ ਦਿਖਾਓ:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "ਦਸਤਾਵੇਜ਼ ਦੀ ਕਿਸਮ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "ਇਹਨਾਂ ਸਮੱਗਰੀ ਕਿਸਮਾਂ ਲਈ ਦਸਤਾਵੇਜ਼ ਕਿਸਮ ਟੈਗ ਦਿਖਾਓ:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

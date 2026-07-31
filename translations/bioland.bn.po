@@ -591,22 +591,6 @@ msgid "Translate Order Override Help Text"
 msgstr "অর্ডার ওভাররাইড সহায়তা পাঠ্য অনুবাদ করুন"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "এই বিষয়বস্তু ধরণের জন্য ইভেন্ট স্ট্যাটাস ট্যাগ দেখান:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "এই বিষয়বস্তু ধরণের জন্য প্রকল্প স্ট্যাটাস ট্যাগ দেখান:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -814,30 +798,6 @@ msgstr "সক্ষম করুন"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "অতিরিক্ত ট্যাগ সেটিং"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "সংস্থার ধরণ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "এই বিষয়বস্তু ধরণের জন্য সংস্থার টাইপ ট্যাগ দেখান:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "ইকোসিস্টেম টাইপ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "এই বিষয়বস্তু ধরণের জন্য ইকোসিস্টেম টাইপ ট্যাগ দেখান"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "ডকুমেন্ট টাইপ"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "এই বিষয়বস্তু ধরণের জন্য নথি টাইপ ট্যাগ দেখান:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"

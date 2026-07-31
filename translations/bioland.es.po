@@ -655,22 +655,6 @@ msgid "Translate Order Override Help Text"
 msgstr "Traducir texto de ayuda de anulación de orden"
 
 #: src/Form/BiolandSettingsForm.php
-msgid "Event Status"
-msgstr "Event Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Event Status tags for these content types:"
-msgstr "Mostrar etiquetas de estado del evento para estos tipos de contenido:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Project Status"
-msgstr "Project Status"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Project Status tags for these content types:"
-msgstr "Mostrar etiquetas de estado del proyecto para estos tipos de contenido:"
-
-#: src/Form/BiolandSettingsForm.php
 msgid "Organization Types"
 msgstr "Organization Types"
 
@@ -878,30 +862,6 @@ msgstr "Habilitar"
 #: src/Form/BiolandSettingsForm.php
 msgid "Additional Tags Settings"
 msgstr "Configuración de etiquetas adicionales"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Organization Type"
-msgstr "Tipo de organización"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Organization Type tags for these content types:"
-msgstr "Mostrar etiquetas de tipo de organización para estos tipos de contenido:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Ecosystem Type"
-msgstr "Tipo de ecosistema"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Ecosystem Type tags for these content types:"
-msgstr "Mostrar etiquetas de tipo de ecosistema para estos tipos de contenido:"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Document Type"
-msgstr "Tipo de documento"
-
-#: src/Form/BiolandSettingsForm.php
-msgid "Show Document Type tags for these content types:"
-msgstr "Mostrar etiquetas de tipo de documento para estos tipos de contenido:"
 
 #: src/Form/BiolandSettingsForm.php
 msgid "Help Comments Settings"
