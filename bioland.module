@@ -301,7 +301,7 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#optional' => TRUE,
     ];
 
-    // Help text is added via JavaScript (bioland-help-comments-1-1-5.js)
+    // Help text is added via JavaScript (bioland-help-comments-1-1-6.js)
     // to provide close button, cookie persistence, and info icon toggle.
 
     $form['field_order']['#group'] = 'order_override_wrapper';

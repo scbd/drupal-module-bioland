@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-debug-logger-1-1-5.js
+ * Unit tests for bioland-debug-logger-1-1-6.js
  */
 
 describe('Bioland Debug Logger', () => {
@@ -32,7 +32,7 @@ describe('Bioland Debug Logger', () => {
 
   describe('Logger initialization', () => {
     test('should expose biolandGetLogger on window object', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       expect(window.biolandGetLogger).toBeDefined();
       expect(typeof window.biolandGetLogger).toBe('function');
     });
@@ -40,7 +40,7 @@ describe('Bioland Debug Logger', () => {
 
   describe('Noop logger (debug disabled)', () => {
     test('should return noop logger when enableDebugLogging is false', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: false };
       const logger = window.biolandGetLogger('testArea', settings);
@@ -61,7 +61,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should return noop logger when settings is undefined', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const logger = window.biolandGetLogger('testArea', undefined);
       
@@ -70,7 +70,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should return noop logger when settings is null', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const logger = window.biolandGetLogger('testArea', null);
       
@@ -79,7 +79,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should return noop logger when specific area is disabled', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = {
         enableDebugLogging: true,
@@ -96,7 +96,7 @@ describe('Bioland Debug Logger', () => {
 
   describe('Active logger (debug enabled)', () => {
     test('should return active logger when enableDebugLogging is true', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('testArea', settings);
@@ -106,7 +106,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should prefix log messages with area name', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('autoSummary', settings);
@@ -116,7 +116,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should prefix warn messages with area name', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('fieldVisibility', settings);
@@ -126,7 +126,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should prefix error messages with area name', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('additionalFields', settings);
@@ -136,7 +136,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle multiple arguments in log', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -146,7 +146,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle multiple arguments in warn', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -156,7 +156,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle multiple arguments in error', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -166,7 +166,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle empty message in log', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -176,7 +176,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle empty message in warn', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -186,7 +186,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should handle empty message in error', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('test', settings);
@@ -196,7 +196,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should respect area-specific settings when area is enabled', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = {
         enableDebugLogging: true,
@@ -211,7 +211,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should work when debugLogAreas is undefined', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = {
         enableDebugLogging: true
@@ -223,7 +223,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should work when area is not in debugLogAreas', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = {
         enableDebugLogging: true,
@@ -240,7 +240,7 @@ describe('Bioland Debug Logger', () => {
 
   describe('Different area names', () => {
     test('should create logger for fieldVisibility area', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('fieldVisibility', settings);
@@ -250,7 +250,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should create logger for additionalFields area', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('additionalFields', settings);
@@ -260,7 +260,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should create logger for autoSummary area', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('autoSummary', settings);
@@ -270,7 +270,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should create logger for helpComments area', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('helpComments', settings);
@@ -280,7 +280,7 @@ describe('Bioland Debug Logger', () => {
     });
 
     test('should create logger for settingsToggle area', () => {
-      require('./bioland-debug-logger-1-1-5.js');
+      require('./bioland-debug-logger-1-1-6.js');
       
       const settings = { enableDebugLogging: true };
       const logger = window.biolandGetLogger('settingsToggle', settings);

@@ -59,8 +59,28 @@
   };
 
   /**
+   * Tags that render as a line or block boundary, so their edges are word
+   * breaks in the visible text.
+   */
+  const blockBoundaryTags = 'address|article|aside|blockquote|br|caption|dd|div|dl|dt|fieldset|figcaption|figure|footer|form|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|td|tfoot|th|thead|tr|ul';
+
+  const blockBoundaryPattern = new RegExp('<\\/?(?:' + blockBoundaryTags + ')\\b[^>]*>', 'gi');
+
+  /**
+   * Pad block-level tags with spaces so text either side of them stays
+   * separated. textContent concatenates block elements with no separator
+   * ('<p>one</p><p>two</p>' becomes 'onetwo'), which loses the word break.
+   *
+   * @param {string} input - HTML string
+   * @returns {string} HTML string with block tags surrounded by spaces
+   */
+  const padBlockBoundaries = function(input) {
+    return input.replace(blockBoundaryPattern, ' $& ');
+  };
+
+  /**
    * Strip all HTML tags from a string and clean up whitespace.
-   * 
+   *
    * @param {string} input - Input string
    * @param {Object} logger - Logger instance
    * @returns {string} String with HTML tags removed and whitespace normalized
@@ -77,7 +97,8 @@
         const text = input
           .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ')
           .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ')
-          .replace(/<[^>]+>/g, ' ')
+          .replace(blockBoundaryPattern, ' ')
+          .replace(/<[^>]+>/g, '')
           .replace(/&nbsp;/g, ' ')
           .replace(/&amp;/g, '&')
           .replace(/&lt;/g, '<')
@@ -93,7 +114,7 @@
       }
       
       const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = input;
+      tempDiv.innerHTML = padBlockBoundaries(input);
       
       const text = (tempDiv.textContent || tempDiv.innerText || '').replace(/\s+/g, ' ').trim();
       
@@ -102,7 +123,11 @@
       logger.error('Error in stripHtml:', error);
       
       try {
-        const text = input.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        const text = input
+          .replace(blockBoundaryPattern, ' ')
+          .replace(/<[^>]+>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
         return text;
       } catch (fallbackError) {
         logger.error('Even fallback stripHtml failed:', fallbackError);
