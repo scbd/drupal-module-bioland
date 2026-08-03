@@ -44,7 +44,7 @@ describe('Bioland Home Widgets', () => {
 
     global.drupalSettings = drupalSettings;
 
-    // Manually execute the IIFE from bioland-home-widgets-1-1-2.js
+    // Manually execute the IIFE from bioland-home-widgets-1-1-5.js
     const behavior = {
       attach: function (context, settings) {
         var biolandSettings = settings.bioland || {};

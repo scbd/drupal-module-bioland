@@ -40,7 +40,7 @@ The module includes preset zoom levels and center coordinates for over 240 count
 
 ### Frontend (JavaScript)
 
-**Home Widgets Behavior** (`js/bioland-home-widgets-1-1-0.js`)
+**Home Widgets Behavior** (`js/bioland-home-widgets-1-1-5.js`)
 - Exposes settings via `window.Bioland.homeWidgets`
 - Available on all pages via `hook_page_attachments()`
 - Debug logging when enabled in settings

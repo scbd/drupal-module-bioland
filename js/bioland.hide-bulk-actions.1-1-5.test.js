@@ -32,7 +32,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('behavior is registered', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     expect(behavior).toBeDefined();
@@ -40,7 +40,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('does nothing when user is not contributor', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -63,7 +63,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('hides action dropdown when user is contributor', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -80,7 +80,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('hides submit button when user is contributor', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -97,7 +97,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('does not re-process already hidden elements', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -117,7 +117,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('handles missing drupalSettings gracefully', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
@@ -129,7 +129,7 @@ describe('Bioland Hide Bulk Actions', () => {
   });
 
   test('logs success message for contributors', () => {
-    require('./bioland-hide-bulk-actions-1-1-2.js');
+    require('./bioland-hide-bulk-actions-1-1-5.js');
     const behavior = global.Drupal.behaviors.biolandHideBulkActions;
     
     const context = document.createElement('div');
