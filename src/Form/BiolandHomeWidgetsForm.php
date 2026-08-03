@@ -10,6 +10,29 @@ use Drupal\Core\Form\FormStateInterface;
 class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
 
   /**
+   * The BSL (Biosafety Clearing-House) home page widgets.
+   *
+   * Each supports both an enable flag and a content type selection.
+   */
+  protected const BSL_WIDGETS = [
+    'nbf_widget',
+    'bch_news_widget',
+    'bch_resources_widget',
+  ];
+
+  /**
+   * Default content type term IDs per BSL widget.
+   *
+   * These mirror the lists the front end hard-coded before the selection was
+   * configurable, so an unconfigured site keeps its existing behaviour.
+   */
+  protected const BSL_WIDGET_DEFAULT_CONTENT_TYPES = [
+    'nbf_widget' => [56, 44, 5, 45, 46, 47],
+    'bch_news_widget' => [2, 3, 49],
+    'bch_resources_widget' => [15, 48, 43, 16, 6, 12],
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -46,6 +69,10 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
         '#markup' => '<p class="description">' . $this->t('This is a Biosafety Clearing-House site. Only BSL home page sections are shown below.') . '</p>',
       ];
 
+      // Published content types from the 'tags' vocabulary — the same option
+      // source the mega menu content type selects use.
+      $content_type_options = $this->getPublishedContentTypeOptions();
+
       // BSL: National Biosafety Framework widget
       $form['home_widgets_settings']['nbf_widget'] = [
         '#type' => 'details',
@@ -59,6 +86,11 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
         '#default_value' => $config->get('home_widgets.nbf_widget.enable') !== FALSE,
         '#description' => $this->t('Show the National Biosafety Framework content swiper on the BSL home page.'),
       ];
+      $form['home_widgets_settings']['nbf_widget']['content_types'] = $this->buildContentTypeSelect(
+        $content_type_options,
+        $this->getWidgetContentTypes($config, 'nbf_widget'),
+        $this->t('Select the content types shown in the National Biosafety Framework swiper. Leave empty to use the defaults. This section shows site content only — nothing is pulled from the BCH central registry.')
+      );
 
       // BSL: BCH News widget
       $form['home_widgets_settings']['bch_news_widget'] = [
@@ -73,6 +105,13 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
         '#default_value' => $config->get('home_widgets.bch_news_widget.enable') !== FALSE,
         '#description' => $this->t('Show the BCH news swiper on the BSL home page.'),
       ];
+      $form['home_widgets_settings']['bch_news_widget']['content_types'] = $this->buildContentTypeSelect(
+        $content_type_options,
+        $this->getWidgetContentTypes($config, 'bch_news_widget'),
+        $this->t('Select the site content types shown in this section and searched by its "View more" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry.', [
+          '@registry' => 'news, notification, statement, meeting, pressRelease',
+        ])
+      );
 
       // BSL: BCH Resources widget
       $form['home_widgets_settings']['bch_resources_widget'] = [
@@ -87,6 +126,13 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
         '#default_value' => $config->get('home_widgets.bch_resources_widget.enable') !== FALSE,
         '#description' => $this->t('Show the BCH resources swiper on the BSL home page.'),
       ];
+      $form['home_widgets_settings']['bch_resources_widget']['content_types'] = $this->buildContentTypeSelect(
+        $content_type_options,
+        $this->getWidgetContentTypes($config, 'bch_resources_widget'),
+        $this->t('Select the site content types shown in this section and searched by its "View more" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry.', [
+          '@registry' => 'capacityBuildingInitiative, dnaSequence, modifiedOrganism, laboratoryDetection, resource, organism',
+        ])
+      );
 
       return $form;
     }
@@ -334,9 +380,11 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
 
     if ($isBsl) {
       // Save BSL-specific widget settings only.
-      $config->set('home_widgets.nbf_widget.enable', (bool) ($home_widgets_values['nbf_widget']['enable'] ?? TRUE));
-      $config->set('home_widgets.bch_news_widget.enable', (bool) ($home_widgets_values['bch_news_widget']['enable'] ?? TRUE));
-      $config->set('home_widgets.bch_resources_widget.enable', (bool) ($home_widgets_values['bch_resources_widget']['enable'] ?? TRUE));
+      foreach (self::BSL_WIDGETS as $widget) {
+        $widget_values = $home_widgets_values[$widget] ?? [];
+        $config->set("home_widgets.{$widget}.enable", (bool) ($widget_values['enable'] ?? TRUE));
+        $config->set("home_widgets.{$widget}.content_types", $this->normalizeContentTypes($widget_values['content_types'] ?? []));
+      }
       return;
     }
 
@@ -393,9 +441,91 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       }
     }
 
+    // Seed the BSL content type selections with the front end's previous
+    // hard-coded lists so behaviour is unchanged until an editor changes them.
+    foreach (self::BSL_WIDGET_DEFAULT_CONTENT_TYPES as $widget => $defaults) {
+      if ($config->get("home_widgets.{$widget}.content_types") === NULL) {
+        $config->set("home_widgets.{$widget}.content_types", $defaults);
+        $needs_save = TRUE;
+      }
+    }
+
     if ($needs_save) {
       $config->save();
     }
+  }
+
+  /**
+   * Builds a multi-select of published content types for a widget.
+   *
+   * @param array $options
+   *   Content type options keyed by term ID.
+   * @param array $default_value
+   *   The currently selected term IDs.
+   * @param \Drupal\Core\StringTranslation\TranslatableMarkup|string $description
+   *   The element description.
+   *
+   * @return array
+   *   The form element.
+   */
+  protected function buildContentTypeSelect(array $options, array $default_value, $description): array {
+    return [
+      '#type' => 'select',
+      '#title' => $this->t('Content types'),
+      '#options' => $options,
+      '#multiple' => TRUE,
+      '#default_value' => $default_value,
+      '#description' => $description,
+      // Roughly a screenful without pushing the rest of the form off-page.
+      '#size' => min(max(count($options), 5), 12),
+    ];
+  }
+
+  /**
+   * Gets the configured content type term IDs for a BSL widget.
+   *
+   * Falls back to the widget's defaults when nothing has been configured yet.
+   *
+   * @param \Drupal\Core\Config\Config $config
+   *   The config object.
+   * @param string $widget
+   *   The widget key.
+   *
+   * @return int[]
+   *   The selected term IDs.
+   */
+  protected function getWidgetContentTypes($config, string $widget): array {
+    $configured = $config->get("home_widgets.{$widget}.content_types");
+
+    if ($configured === NULL) {
+      return self::BSL_WIDGET_DEFAULT_CONTENT_TYPES[$widget] ?? [];
+    }
+
+    return $this->normalizeContentTypes($configured);
+  }
+
+  /**
+   * Normalizes a submitted content type selection to a list of term IDs.
+   *
+   * Drupal's multi-select returns values keyed by option key, and unselected
+   * options can arrive as 0/''. Both are stripped here so config only ever
+   * holds a clean, re-indexed list of positive integers.
+   *
+   * @param mixed $values
+   *   The raw submitted or stored value.
+   *
+   * @return int[]
+   *   The normalized term IDs.
+   */
+  protected function normalizeContentTypes($values): array {
+    if (!is_array($values)) {
+      return [];
+    }
+
+    $tids = array_map('intval', array_values($values));
+    $tids = array_filter($tids, static fn(int $tid): bool => $tid > 0);
+
+    return array_values(array_unique($tids));
   }
 
 }

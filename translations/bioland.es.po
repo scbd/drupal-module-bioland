@@ -1575,3 +1575,15 @@ msgstr "Mostrar el carrusel de recursos del BCH en la página de inicio de BSL."
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
 msgstr "Este es un sitio del Centro de Intercambio de Información sobre Seguridad de la Biotecnología. A continuación solo se muestran las secciones de la página de inicio de BSL."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Content types"
+msgstr "Tipos de contenido"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the content types shown in the National Biosafety Framework swiper. Leave empty to use the defaults. This section shows site content only — nothing is pulled from the BCH central registry."
+msgstr "Seleccione los tipos de contenido que se muestran en el carrusel del Marco Nacional de Bioseguridad. Déjelo vacío para usar los valores predeterminados. Esta sección muestra solo contenido del sitio — no se extrae nada del registro central del BCH."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+msgstr "Seleccione los tipos de contenido del sitio que se muestran en esta sección y que busca su enlace «Ver más». Déjelo vacío para usar los valores predeterminados. Además de los tipos de contenido seleccionados, esta sección también extrae estos tipos de registros del registro central del BCH: @registry."

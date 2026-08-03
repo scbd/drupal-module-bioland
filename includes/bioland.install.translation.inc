@@ -465,3 +465,65 @@ function bioland_update_9076() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Seed BSL home-widget content type selections and import their UI strings.
+ *
+ * The BSL home-page widgets (National Biosafety Framework, BCH News, BCH
+ * Resources) gained a configurable content type selection saved at
+ * home_widgets.<widget>.content_types. This hook seeds each selection with the
+ * list the front end previously hard-coded (only when unset, so configured
+ * sites are untouched) and re-imports the .po catalogs for the three new
+ * form strings (real translations for ar/en/es/fr/ru/zh, English fallback
+ * elsewhere).
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ * Seeding is set-if-missing, the importer overwrites catalogs idempotently,
+ * and the v2 converger is create-or-update / UUID-preserving, so this is safe
+ * to run more than once.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see \Drupal\bioland\Form\BiolandHomeWidgetsForm::BSL_WIDGET_DEFAULT_CONTENT_TYPES
+ */
+function bioland_update_9078() {
+  $messages = [];
+
+  // Seed the BSL widget content type selections with the previously
+  // hard-coded front end lists. Plain strings, not t() — the translation
+  // system is not dependable mid-update.
+  $defaults = [
+    'nbf_widget' => [56, 44, 5, 45, 46, 47],
+    'bch_news_widget' => [2, 3, 49],
+    'bch_resources_widget' => [15, 48, 43, 16, 6, 12],
+  ];
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $seeded = [];
+  foreach ($defaults as $widget => $tids) {
+    if ($config->get("home_widgets.{$widget}.content_types") === NULL) {
+      $config->set("home_widgets.{$widget}.content_types", $tids);
+      $seeded[] = $widget;
+    }
+  }
+  if ($seeded) {
+    $config->save();
+    $messages[] = 'Seeded default content type selections for: ' . implode(', ', $seeded) . '.';
+  }
+  else {
+    $messages[] = 'BSL home-widget content type selections already configured; left untouched.';
+  }
+
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = 'Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.';
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = 'Re-imported Bioland translation catalogs for the BSL home-widget content type strings. Check logs for details.';
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

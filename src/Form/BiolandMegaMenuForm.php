@@ -287,38 +287,7 @@ class BiolandMegaMenuForm extends BiolandSettingsFormBase {
    *   sorted alphabetically by plural name.
    */
   protected function getContentTypeOptionsForMegaMenu() {
-    $options = [];
-    try {
-      $current_language = $this->languageManager->getCurrentLanguage()->getId();
-      $terms = $this->entityTypeManager
-        ->getStorage('taxonomy_term')
-        ->loadByProperties([
-          'vid' => 'tags',
-          'status' => 1,
-        ]);
-
-      foreach ($terms as $term) {
-        // Load translated version of the term if available
-        if ($term->hasTranslation($current_language)) {
-          $term = $term->getTranslation($current_language);
-        }
-        $tid = (int) $term->id();
-        // Get plural field if available, fallback to label
-        $plural = $term->hasField('field_plural') && !$term->get('field_plural')->isEmpty()
-          ? $term->get('field_plural')->value
-          : $term->label();
-        $options[$tid] = $plural;
-      }
-
-      // Sort alphabetically by plural name
-      asort($options);
-    }
-    catch (\Exception $e) {
-      // Log error and return empty array if taxonomy terms cannot be loaded.
-      \Drupal::logger('bioland')->error('Failed to load content type options for mega menu: @message', ['@message' => $e->getMessage()]);
-    }
-
-    return $options;
+    return $this->getPublishedContentTypeOptions();
   }
 
   /**

@@ -392,6 +392,12 @@ bioland.settings:
             enable:
               type: boolean
               label: 'Enable National Biosafety Framework Widget'
+            content_types:
+              type: sequence
+              label: 'Content types shown in the National Biosafety Framework Widget'
+              sequence:
+                type: integer
+                label: 'Content type term ID'
         bch_news_widget:
           type: mapping
           label: 'BCH News Widget settings'
@@ -399,6 +405,12 @@ bioland.settings:
             enable:
               type: boolean
               label: 'Enable BCH News Widget'
+            content_types:
+              type: sequence
+              label: 'Content types searched by the BCH News Widget view more link'
+              sequence:
+                type: integer
+                label: 'Content type term ID'
         bch_resources_widget:
           type: mapping
           label: 'BCH Resources Widget settings'
@@ -406,6 +418,12 @@ bioland.settings:
             enable:
               type: boolean
               label: 'Enable BCH Resources Widget'
+            content_types:
+              type: sequence
+              label: 'Content types searched by the BCH Resources Widget view more link'
+              sequence:
+                type: integer
+                label: 'Content type term ID'
     translation:
       type: mapping
       label: 'Translation settings'

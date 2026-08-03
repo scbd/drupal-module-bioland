@@ -1591,3 +1591,15 @@ msgstr "在 BSL 主页上显示 BCH 资源轮播。"
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
 msgstr "这是一个生物安全信息交换所网站。下面仅显示 BSL 主页板块。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Content types"
+msgstr "内容类型"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the content types shown in the National Biosafety Framework swiper. Leave empty to use the defaults. This section shows site content only — nothing is pulled from the BCH central registry."
+msgstr "选择在国家生物安全框架内容轮播中显示的内容类型。留空则使用默认值。此部分仅显示本站点内容 — 不会从生物安全信息交换所中央登记处提取任何内容。"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+msgstr "选择在此部分显示并由其“查看更多”链接搜索的站点内容类型。留空则使用默认值。除所选内容类型外，此部分还会从生物安全信息交换所中央登记处提取以下记录类型：@registry。"

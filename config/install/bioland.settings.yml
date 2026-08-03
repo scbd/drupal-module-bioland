@@ -113,10 +113,30 @@ home_widgets:
     enable: true
   geobon_widget:
     enable: true
-  # BSL (Biosafety Clearing-House) widgets
+  # BSL (Biosafety Clearing-House) widgets.
+  # content_types are taxonomy term IDs from the 'tags' vocabulary. The
+  # defaults mirror the lists the front end previously hard-coded.
   nbf_widget:
     enable: true
+    content_types:
+      - 56
+      - 44
+      - 5
+      - 45
+      - 46
+      - 47
   bch_news_widget:
     enable: true
+    content_types:
+      - 2
+      - 3
+      - 49
   bch_resources_widget:
     enable: true
+    content_types:
+      - 15
+      - 48
+      - 43
+      - 16
+      - 6
+      - 12

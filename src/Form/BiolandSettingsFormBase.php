@@ -250,4 +250,51 @@ abstract class BiolandSettingsFormBase extends ConfigFormBase {
     return $options;
   }
 
+  /**
+   * Get published content type options labelled by their plural name.
+   *
+   * Loads published terms from the 'tags' vocabulary — the same source the
+   * mega menu content type selects use — and labels each with its
+   * field_plural value (falling back to the term label), sorted
+   * alphabetically. Only published terms (status = 1) are returned.
+   *
+   * @return array
+   *   Array of content type options keyed by term ID with the plural name as
+   *   the value, sorted alphabetically by plural name.
+   */
+  protected function getPublishedContentTypeOptions() {
+    $options = [];
+    try {
+      $current_language = $this->languageManager->getCurrentLanguage()->getId();
+      $terms = $this->entityTypeManager
+        ->getStorage('taxonomy_term')
+        ->loadByProperties([
+          'vid' => 'tags',
+          'status' => 1,
+        ]);
+
+      foreach ($terms as $term) {
+        // Load translated version of the term if available.
+        if ($term->hasTranslation($current_language)) {
+          $term = $term->getTranslation($current_language);
+        }
+        $tid = (int) $term->id();
+        // Get plural field if available, fallback to label.
+        $plural = $term->hasField('field_plural') && !$term->get('field_plural')->isEmpty()
+          ? $term->get('field_plural')->value
+          : $term->label();
+        $options[$tid] = $plural;
+      }
+
+      // Sort alphabetically by plural name.
+      asort($options);
+    }
+    catch (\Exception $e) {
+      // Log error and return empty array if taxonomy terms cannot be loaded.
+      \Drupal::logger('bioland')->error('Failed to load published content type options from tags vocabulary: @message', ['@message' => $e->getMessage()]);
+    }
+
+    return $options;
+  }
+
 }

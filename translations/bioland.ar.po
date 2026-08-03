@@ -1511,3 +1511,15 @@ msgstr "عرض شريط تمرير موارد BCH على الصفحة الرئي
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "This is a Biosafety Clearing-House site. Only BSL home page sections are shown below."
 msgstr "هذا موقع لغرفة تبادل معلومات السلامة الأحيائية. تُعرض أدناه أقسام الصفحة الرئيسية لـ BSL فقط."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Content types"
+msgstr "أنواع المحتوى"
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the content types shown in the National Biosafety Framework swiper. Leave empty to use the defaults. This section shows site content only — nothing is pulled from the BCH central registry."
+msgstr "حدد أنواع المحتوى المعروضة في شريط تمرير الإطار الوطني للسلامة الأحيائية. اتركه فارغًا لاستخدام القيم الافتراضية. يعرض هذا القسم محتوى الموقع فقط — ولا يتم جلب أي شيء من السجل المركزي لغرفة تبادل معلومات السلامة الأحيائية."
+
+#: src/Form/BiolandHomeWidgetsForm.php
+msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+msgstr "حدد أنواع محتوى الموقع المعروضة في هذا القسم والتي يبحث عنها رابط «عرض المزيد». اتركه فارغًا لاستخدام القيم الافتراضية. بالإضافة إلى أنواع المحتوى المحددة، يجلب هذا القسم أيضًا أنواع السجلات التالية من السجل المركزي لغرفة تبادل معلومات السلامة الأحيائية: @registry."
