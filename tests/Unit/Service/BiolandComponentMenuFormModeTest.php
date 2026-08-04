@@ -15,12 +15,15 @@ use PHPUnit\Framework\TestCase;
  * Unit tests for the inert Component-menu form mode service.
  *
  * Three things are pinned here beyond ordinary behaviour coverage:
- *   1. the dispatcher declines every form reachable today, so merging this
- *      task changes nothing a user can see;
+ *   1. edit detection is live (p03-02): a stored component-shaped token — in
+ *      any of the canonical, legacy, or unknown-suffix spellings — switches
+ *      an existing link's core edit form into Component mode, and the full
+ *      backward-compat matrix is pinned against the shipped class;
  *   2. the entity builder is registered AFTER menu_link_attributes', which is
  *      the only reason the picked token survives a save;
- *   3. a declined form is left byte-identical, form array and stored options
- *      alike.
+ *   3. a form the dispatcher declines — a regular link, a non-default
+ *      translation, or a user lacking the permission — is left byte-identical,
+ *      form array and stored options alike.
  *
  * @covers \Drupal\bioland\Service\BiolandComponentMenuFormMode
  */
@@ -132,17 +135,17 @@ class BiolandComponentMenuFormModeTest extends TestCase {
   /* ------------------------------------------------------------------ */
 
   /**
-   * The shipped edit-detection gate is off: nothing reachable today applies.
+   * The edit-detection gate is live: p03-02's activation flip has landed.
    */
-  public function testEditDetectionShipsDisabled(): void {
-    $this->assertFalse(
+  public function testEditDetectionIsLive(): void {
+    $this->assertTrue(
       BiolandComponentMenuFormMode::EDIT_DETECTION,
-      'p02-01 must ship inert; task p03-02 flips this constant.'
+      'p03-02 flips this constant on to activate edit detection.'
     );
   }
 
   /**
-   * The dispatcher declines every form that exists today.
+   * The dispatcher declines a form with no reason to enter Component mode.
    *
    * @dataProvider declinedFormProvider
    */
@@ -159,11 +162,11 @@ class BiolandComponentMenuFormModeTest extends TestCase {
   public function declinedFormProvider(): array {
     return [
       'regular add form' => ['default', NULL, TRUE, TRUE, TRUE],
-      'regular edit form' => ['edit', ['login cooperation'], FALSE, TRUE, TRUE],
-      'edit form of an existing component link, detection off' => ['edit', ['bl2-component-bch'], FALSE, TRUE, TRUE],
-      'legacy component link, detection off' => ['edit', ['mm-component-bch'], FALSE, TRUE, TRUE],
+      'regular edit form, no component token' => ['edit', ['login cooperation'], FALSE, TRUE, TRUE],
       'component operation on a non-default translation' => ['component', NULL, TRUE, FALSE, TRUE],
       'component operation without the permission' => ['component', NULL, TRUE, TRUE, FALSE],
+      'detected component link on a non-default translation' => ['edit', ['bl2-component-forums'], FALSE, FALSE, TRUE],
+      'detected component link without the permission' => ['edit', ['bl2-component-forums'], FALSE, TRUE, FALSE],
     ];
   }
 
@@ -193,10 +196,11 @@ class BiolandComponentMenuFormModeTest extends TestCase {
   }
 
   /**
-   * With edit detection forced on, a stored component token switches it on.
+   * With edit detection live on the shipped class, a stored component token
+   * switches it on.
    */
   public function testDispatcherAcceptsDetectedComponentLink(): void {
-    $service = $this->createService(FALSE, TRUE, EditDetectingComponentMenuFormMode::class);
+    $service = $this->createService(FALSE);
 
     $this->assertTrue(
       $service->applies($this->createFormState(['mm-component-bch login'], 'edit')),
@@ -217,13 +221,84 @@ class BiolandComponentMenuFormModeTest extends TestCase {
    * On a BSL site the site-prefixed token family is detected as well.
    */
   public function testDispatcherDetectsSitePrefixedTokenOnBslSite(): void {
-    $bsl = $this->createService(TRUE, TRUE, EditDetectingComponentMenuFormMode::class);
-    $chm = $this->createService(FALSE, TRUE, EditDetectingComponentMenuFormMode::class);
+    $bsl = $this->createService(TRUE);
+    $chm = $this->createService(FALSE);
 
     $this->assertTrue($bsl->applies($this->createFormState(['bsl-component-bch'], 'edit')));
     $this->assertFalse(
       $chm->applies($this->createFormState(['bsl-component-bch'], 'edit')),
       'The site family only exists for the running site identifier.'
+    );
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Backward-compat matrix on the core edit form (p03-02).              */
+  /* Route entity.menu_link_content.canonical, form operation "edit".    */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * A canonical stored token applies Component mode and preselects itself.
+   */
+  public function testEditDetectionAppliesForCanonicalToken(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['login bl2-component-forums bl2-2x'], 'edit');
+    $form = $this->contribAlteredForm('login bl2-component-forums bl2-2x');
+
+    $this->assertTrue($service->applies($formState));
+    $service->apply($form, $formState);
+
+    $picker = $form[BiolandComponentMenuFormMode::PICKER_ELEMENT];
+    $this->assertSame('bl2-component-forums', $picker['#default_value']);
+    $this->assertSame('Forums', $picker['#options']['bl2-component-forums']);
+  }
+
+  /**
+   * A legacy mm- spelling of a known component is detected on edit too, and
+   * maps to its canonical option — no stale option is added for it.
+   */
+  public function testEditDetectionMapsLegacyTokenToCanonicalOption(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['mm-component-bch login'], 'edit');
+    $form = $this->contribAlteredForm('mm-component-bch login');
+
+    $this->assertTrue($service->applies($formState));
+    $service->apply($form, $formState);
+
+    $picker = $form[BiolandComponentMenuFormMode::PICKER_ELEMENT];
+    $this->assertSame('bl2-component-bch', $picker['#default_value']);
+    $this->assertSame('BCH Records', $picker['#options']['bl2-component-bch']);
+    $this->assertArrayNotHasKey('mm-component-bch', $picker['#options']);
+  }
+
+  /**
+   * An unknown component-shaped token applies Component mode, is offered as a
+   * marked current-value option, and an unchanged save preserves it verbatim.
+   */
+  public function testEditDetectionPreservesUnknownTokenThroughUnchangedSave(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['login bl2-component-removed-thing'], 'edit');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('login bl2-component-removed-thing');
+
+    $this->assertTrue($service->applies($formState));
+    $service->apply($form, $formState);
+
+    $picker = $form[BiolandComponentMenuFormMode::PICKER_ELEMENT];
+    $this->assertSame('bl2-component-removed-thing', $picker['#default_value']);
+    $this->assertSame('Legacy: bl2-component-removed-thing', $picker['#options']['bl2-component-removed-thing']);
+
+    // Unchanged save: the picker resubmits the preserved current value and the
+    // class textfield resubmits its stripped display value.
+    $formState->setValue('attributes', ['class' => 'login', 'target' => '']);
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, $picker['#default_value']);
+
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['login bl2-component-removed-thing'],
+      $entity->link->first()->options['attributes']['class'],
+      'An unchanged save must preserve the unknown token verbatim.'
     );
   }
 
@@ -724,7 +799,9 @@ class BiolandComponentMenuFormModeTest extends TestCase {
    * A declined form is left byte-identical, form array and storage alike.
    *
    * Reproduces the module wiring: dispatcher first, apply() only if it says
-   * yes. Nothing about a regular menu link may change.
+   * yes. Nothing about a regular menu link may change. The kickoff's hard
+   * requirement, pinned here on the real (edit-detection-live) gate rather
+   * than a gate-overriding subclass.
    */
   public function testDeclinedFormIsByteIdentical(): void {
     $service = $this->createService(FALSE);
@@ -751,31 +828,6 @@ class BiolandComponentMenuFormModeTest extends TestCase {
     $this->assertArrayNotHasKey('bioland_component', $form);
     $this->assertSame(['menu_link_attributes'], array_keys($form['#entity_builders']));
   }
-
-  /**
-   * An existing component link is equally untouched while detection is off.
-   */
-  public function testExistingComponentLinkIsUntouchedWhileDetectionIsOff(): void {
-    $service = $this->createService(FALSE);
-    $formState = $this->createFormState(['bl2-component-bch login'], 'edit');
-    $form = $this->contribAlteredForm('bl2-component-bch login');
-    $before = $form;
-
-    if ($service->applies($formState)) {
-      $service->apply($form, $formState);
-    }
-
-    $this->assertSame($before, $form);
-  }
-
-}
-
-/**
- * Test subclass with the edit-detection gate forced on (p03-02's flip).
- */
-class EditDetectingComponentMenuFormMode extends BiolandComponentMenuFormMode {
-
-  public const EDIT_DETECTION = TRUE;
 
 }
 
