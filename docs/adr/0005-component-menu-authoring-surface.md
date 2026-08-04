@@ -1,0 +1,43 @@
+---
+status: accepted
+date: 2026-08-03
+deciders: [randy]
+context: system-wide
+code-path: src/Form/
+origin: planning
+plan: bl2-mega-menu
+---
+
+# 0005. Component menu authoring surface
+
+Editors turn a menu link into a Bioland mega-menu component by hand-typing `bl2-component-*`
+classes into the class textfield contrib `menu_link_attributes` 1.7 adds, stored in
+`menu_link_content.link.options.attributes.class`. Hand-typing is undiscoverable and error-prone:
+there is no list of valid tokens, and a typo fails silently in the frontend.
+
+We add a dedicated add route, `/admin/structure/menu/manage/{menu}/add-component`, with a thin
+form class registered as entity-form operation `component`; mode application still flows through
+the existing alter layer. The picker owns only the component token (canonical `bl2-` prefix) and
+merges it back into the class list, preserving every other token verbatim. Its options come from a
+hardcoded PHP registry narrowed to BSL-appropriate components on `is_biosafety_land` sites; an
+unknown component-shaped token surfaces as a preserved, disabled "Legacy" option.
+
+## Considered Options
+
+- Mode flag (query marker) on the core add form. Rejected: overloads the regular form's request
+  handling with a second meaning.
+- Type-chooser interstitial ahead of the regular add form. Rejected: slows the common,
+  non-component path for every editor.
+- In-form toggle switching the regular add form into component mode. Rejected: the regular form
+  gains a control it does not otherwise need.
+- Config-object option list instead of a PHP constant. Rejected: creates a second source of truth
+  alongside the registry.
+
+## Consequences
+
+- The picker list can drift from `bioland-head`'s actual components; mitigated by a pinning unit
+  test and a sync-checklist docblock. Drift fails benignly — the frontend renders an empty section
+  for an unrecognised class.
+- Regular (non-component) menu links must render byte-identically after this change; verified by
+  later tasks in this plan.
+- `menu_link_attributes` becomes a declared module dependency in `bioland.info.yml`.
