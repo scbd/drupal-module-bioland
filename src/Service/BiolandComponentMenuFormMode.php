@@ -17,12 +17,13 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  * back into storage on save.
  *
  * THE DISPATCHER. applies() is the single predicate that decides whether the
- * mode is on. It is deliberately inert as shipped:
- *   - the "component" form operation does not exist yet (added in p03-01), and
- *   - self::EDIT_DETECTION is FALSE, so an existing component link still opens
- *     in the regular form (flipped in p03-02).
- * Every form reachable today is therefore declined, apply() never runs, and no
- * form array or stored value is touched.
+ * mode is on:
+ *   - the "component" form operation does not exist yet (added in p03-01), but
+ *   - self::EDIT_DETECTION is TRUE (activated by p03-02), so an existing link
+ *     already carrying a component-shaped token now opens in Component mode
+ *     on the core edit form.
+ * A regular link, and any edit lacking the required permission or made on a
+ * non-default translation, is still declined and left byte-identical.
  *
  * THE SAVE-PATH ORDERING CONTRACT (the reason this is a service called from
  * bioland_form_alter() and not a form class). menu_link_attributes' entity
@@ -51,11 +52,13 @@ class BiolandComponentMenuFormMode {
   /**
    * Whether an existing component link opens in Component mode on edit.
    *
-   * Ships FALSE: the dispatcher then accepts nothing reachable today. Task
-   * p03-02 flips this to TRUE to activate edit detection. Read through
-   * static:: so a test subclass can force it on.
+   * Activation seam: shipped FALSE by p02-01 (inert dispatcher, nothing
+   * reachable); flipped TRUE by p03-02 to make edit detection live. Kept as a
+   * constant rather than removed so it doubles as a single-line rollback kill
+   * switch post-merge. Read through static:: so a test subclass can still
+   * force either value in isolation.
    */
-  public const EDIT_DETECTION = FALSE;
+  public const EDIT_DETECTION = TRUE;
 
   /**
    * The entity-form operation that opts a form into Component mode.
