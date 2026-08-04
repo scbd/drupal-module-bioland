@@ -1774,3 +1774,7 @@ msgstr "@label (pa disponib sou sit sa a)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen pitit."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Ajoute yon lyen meni konpozan"

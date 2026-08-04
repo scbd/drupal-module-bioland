@@ -1703,3 +1703,7 @@ msgstr "@label (šajā vietnē nav pieejams)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Šī izvēlnes saite rāda mega izvēlnes komponentu, nevis vienkāršu apakšsaišu sarakstu."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Pievienot komponenta izvēlnes saiti"

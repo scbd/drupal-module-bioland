@@ -1703,3 +1703,7 @@ msgstr "@label (mhux disponibbli fuq dan is-sit)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempliċi ta' ħoloq subordinati."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Żid ħolqa tal-menu tal-komponent"

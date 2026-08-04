@@ -1774,3 +1774,7 @@ msgstr "@label (ezen a webhelyen nem érhető el)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkozások egyszerű listája helyett."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Összetevő menühivatkozás hozzáadása"

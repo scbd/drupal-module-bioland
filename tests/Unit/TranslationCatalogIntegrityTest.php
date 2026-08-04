@@ -82,6 +82,10 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Legacy: @class',
     '@label (not available on this site)',
     'This menu link renders a mega-menu component instead of a plain list of child links.',
+    // bioland.routing.yml: route _title / bioland.links.action.yml: local
+    // action title. One string, two declaration sites - both must stay in
+    // sync with this entry or the action renders untranslated.
+    'Add component menu link',
   ];
 
   /**

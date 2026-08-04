@@ -1770,3 +1770,7 @@ msgstr "@label (nije dostupno na ovoj stranici)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Ova veza izbornika prikazuje komponentu mega izbornika umjesto obične liste podveza."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Dodaj vezu izbornika komponente"

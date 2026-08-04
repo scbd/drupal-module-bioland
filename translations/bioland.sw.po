@@ -1703,3 +1703,7 @@ msgstr "@label (hakipatikani kwenye tovuti hii)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Kiungo hiki cha menyu huonyesha kijenzi cha menyu kuu badala ya orodha rahisi ya viungo vya chini."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Ongeza kiungo cha menyu ya kijenzi"

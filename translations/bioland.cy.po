@@ -1792,3 +1792,7 @@ msgstr "@label (ddim ar gael ar y wefan hon)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Mae'r ddolen ddewislen hon yn dangos cydran mega ddewislen yn lle rhestr syml o ddolenni plant."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Ychwanegu dolen ddewislen cydran"

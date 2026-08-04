@@ -1703,3 +1703,7 @@ msgstr "@label (இந்தத் தளத்தில் கிடைக்�
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "இந்த மெனு இணைப்பு சேய் இணைப்புகளின் எளிய பட்டியலுக்குப் பதிலாக மெகா மெனு கூறைக் காட்டுகிறது."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "கூறு மெனு இணைப்பைச் சேர்க்கவும்"
