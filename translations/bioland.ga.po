@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Tuarascálacha náisiúnta"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Tuarascáil náisiúnta (6ú)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Taifid BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Taifid ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Pointí fócais náisiúnta"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Próifílí tíre"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Liosta de réir cineál ábhair"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fóraim"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Spriocanna náisiúnta (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Gach cineál ábhair"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Liosta naisc chuig tuarascálacha náisiúnta, i gcluaisíní de réir tíre; folaithe nuair nach bhfuil tuarascálacha ag an tír."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Naisc an séú tuarascáil náisiúnta do thír an tsuímh, chomh maith le leanaí an naisc féin; folaithe má tá sé folamh."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Taifid an Ionaid Malartaithe Faisnéise Bithshábháilteachta don tír, mar shampla dlíthe agus cinntí; folaithe má tá sé folamh."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Taifid an Ionaid Malartaithe Faisnéise um Rochtain agus Comhroinnt Tairbhí, mar shampla bearta agus ceadanna; folaithe má tá sé folamh."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Liosta pointí fócais náisiúnta, i gcluaisíní de réir tíre; folaithe má tá sé folamh."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Naisc chuig leathanaigh phróifíle tíre an CBD, i gcluaisíní de réir tíre; taispeántar i gcónaí."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Ábhar is déanaí an tsuímh ó na cineálacha ábhair atá socraithe ar an nasc seo; folaithe nuair nach bhfuil taifid ann."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Snáitheanna fóraim is déanaí, chomh maith le leanaí an naisc féin; folaithe má tá sé folamh."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Cártaí spriocanna náisiúnta do sprioc 7 an GBF, i gcluaisíní de réir tíre; taispeántar i gcónaí."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Nasc amháin do gach cineál ábhair a bhfuil taifid aige, chomh maith le leanaí an naisc féin; taispeántar i gcónaí."

@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Национални доклади"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Национален доклад (6-и)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Записи от BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Записи от ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Национални координационни звена"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Профили на държави"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Списък по тип съдържание"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Форуми"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Национални цели (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Всички типове съдържание"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Списък с връзки към националните доклади, в раздели по държави; скрива се, когато държавата няма доклади."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Връзки към шестия национален доклад за държавата на сайта, плюс подчинените елементи на връзката; скрива се, ако е празно."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Записи от Механизма за обмен на информация по биобезопасност за държавата, като закони и решения; скрива се, ако е празно."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Записи от Механизма за обмен на информация относно достъпа и споделянето на ползите, като мерки и разрешителни; скрива се, ако е празно."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Списък с национални координационни звена, в раздели по държави; скрива се, ако е празно."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Връзки към страниците с профили на държави на КБР, в раздели по държави; винаги се показва."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Най-новото съдържание на сайта от типовете съдържание, зададени на тази връзка; скрива се, когато няма записи."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Най-новите теми от форумите, плюс подчинените елементи на връзката; скрива се, ако е празно."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Карти на националните цели за цел 7 от GBF, в раздели по държави; винаги се показва."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "По една връзка за всеки тип съдържание, който има записи, плюс подчинените елементи на връзката; винаги се показва."

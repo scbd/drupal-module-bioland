@@ -52,6 +52,28 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Translate Order Override Help Text',
     // src/Form/BiolandSettingsForm.php: submit button value.
     'Reset Sticky',
+    // src/Service/BiolandComponentRegistry.php: mega-menu component labels.
+    'National Reports',
+    'National Report (6th)',
+    'BCH Records',
+    'ABS-CH Records',
+    'National Focal Points',
+    'Country Profiles',
+    'Content Type Listing',
+    'Forums',
+    'National Targets (GBF 7)',
+    'All Content Types',
+    // src/Service/BiolandComponentRegistry.php: mega-menu component descriptions.
+    'List of national report links, in tabs by country; hidden when the country has no reports.',
+    "Sixth national report links for the site country, plus the link's own children; hidden when empty.",
+    'Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty.',
+    'Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty.',
+    'List of national focal points, in tabs by country; hidden when empty.',
+    'Links to CBD country profile pages, in tabs by country; always shown.',
+    'Latest site content of the content types set on this link; hidden when there are no records.',
+    "Latest forum threads, plus the link's own children; hidden when empty.",
+    'National target cards for GBF target 7, in tabs by country; always shown.',
+    "One link per content type that has records, plus the link's own children; always shown.",
   ];
 
   /**
@@ -129,14 +151,16 @@ class TranslationCatalogIntegrityTest extends TestCase {
   /**
    * Short technical nouns that are legitimately kept as English loanwords
    * in some locales' existing translation style (e.g. "Admin" in German,
-   * "Tags" in Dutch, "Mega Menu" in Malay/Maltese/Tagalog). These are
-   * excluded from the "must differ from English" check below, since an
-   * identical msgstr there is a valid stylistic choice already present
-   * elsewhere in these catalogs, not a missed translation.
+   * "Tags" in Dutch, "Mega Menu" in Malay/Maltese/Tagalog, "Forums" in
+   * French/Dutch/Afrikaans). These are excluded from the "must differ from
+   * English" check below, since an identical msgstr there is a valid
+   * stylistic choice already present elsewhere in these catalogs, not a
+   * missed translation.
    */
   private const LOANWORD_TOLERANT_MSGIDS = [
     'Tags',
     'Mega Menu',
+    'Forums',
   ];
 
   /**

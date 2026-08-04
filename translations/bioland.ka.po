@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "ეროვნული ანგარიშები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "ეროვნული ანგარიში (მე-6)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH ჩანაწერები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH ჩანაწერები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "ეროვნული საკონტაქტო პუნქტები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "ქვეყნების პროფილები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "სია კონტენტის ტიპის მიხედვით"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "ფორუმები"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "ეროვნული სამიზნეები (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "კონტენტის ყველა ტიპი"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "ეროვნული ანგარიშების ბმულების სია, ჩანართებით ქვეყნების მიხედვით; იმალება, როცა ქვეყანას ანგარიშები არ აქვს."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "საიტის ქვეყნის მეექვსე ეროვნული ანგარიშის ბმულები და ბმულის ქვეელემენტები; იმალება, თუ ცარიელია."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "ქვეყნის ბიოუსაფრთხოების ინფორმაციის გაცვლის ცენტრის ჩანაწერები, მაგალითად კანონები და გადაწყვეტილებები; იმალება, თუ ცარიელია."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "ხელმისაწვდომობისა და სარგებლის განაწილების ინფორმაციის გაცვლის ცენტრის ჩანაწერები, მაგალითად ღონისძიებები და ნებართვები; იმალება, თუ ცარიელია."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "ეროვნული საკონტაქტო პუნქტების სია, ჩანართებით ქვეყნების მიხედვით; იმალება, თუ ცარიელია."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "ბმულები CBD-ის ქვეყნების პროფილების გვერდებზე, ჩანართებით ქვეყნების მიხედვით; ყოველთვის ჩანს."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "საიტის უახლესი კონტენტი ამ ბმულზე მითითებული კონტენტის ტიპებიდან; იმალება, როცა ჩანაწერები არ არის."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "ფორუმების უახლესი თემები და ბმულის ქვეელემენტები; იმალება, თუ ცარიელია."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "ეროვნული სამიზნეების ბარათები GBF-ის მე-7 სამიზნისთვის, ჩანართებით ქვეყნების მიხედვით; ყოველთვის ჩანს."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "თითო ბმული თითოეული კონტენტის ტიპისთვის, რომელსაც ჩანაწერები აქვს, და ბმულის ქვეელემენტები; ყოველთვის ჩანს."

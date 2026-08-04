@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "ብሔራዊ ሪፖርቶች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "ብሔራዊ ሪፖርት (6ኛ)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "የBCH መዝገቦች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "የABS-CH መዝገቦች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "ብሔራዊ የግንኙነት ነጥቦች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "የአገር መገለጫዎች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "በይዘት ዓይነት ዝርዝር"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "መድረኮች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "ብሔራዊ ግቦች (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "ሁሉም የይዘት ዓይነቶች"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "የብሔራዊ ሪፖርቶች አገናኞች ዝርዝር፣ በአገር ትሮች፤ አገሪቱ ሪፖርቶች ከሌላት ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "ለጣቢያው አገር ስድስተኛው ብሔራዊ ሪፖርት አገናኞች እና የአገናኙ ንዑስ ክፍሎች፤ ባዶ ከሆነ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "ለአገሪቱ የባዮሴፍቲ መረጃ ልውውጥ ማዕከል መዝገቦች፣ እንደ ሕጎች እና ውሳኔዎች፤ ባዶ ከሆነ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "የተደራሽነት እና የጥቅም ክፍፍል መረጃ ልውውጥ ማዕከል መዝገቦች፣ እንደ እርምጃዎች እና ፈቃዶች፤ ባዶ ከሆነ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "የብሔራዊ የግንኙነት ነጥቦች ዝርዝር፣ በአገር ትሮች፤ ባዶ ከሆነ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "ወደ CBD የአገር መገለጫ ገጾች አገናኞች፣ በአገር ትሮች፤ ሁልጊዜ ይታያል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "በዚህ አገናኝ ላይ ከተቀመጡት የይዘት ዓይነቶች የጣቢያው የቅርብ ጊዜ ይዘት፤ መዝገቦች በሌሉበት ጊዜ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "የመድረኮች የቅርብ ጊዜ ውይይቶች እና የአገናኙ ንዑስ ክፍሎች፤ ባዶ ከሆነ ይደበቃል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "ለGBF ግብ 7 የብሔራዊ ግቦች ካርዶች፣ በአገር ትሮች፤ ሁልጊዜ ይታያል።"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "መዝገቦች ላሉት ለእያንዳንዱ የይዘት ዓይነት አንድ አገናኝ እና የአገናኙ ንዑስ ክፍሎች፤ ሁልጊዜ ይታያል።"

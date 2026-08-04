@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Warbixinnada qaranka"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Warbixinta qaranka (6-aad)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Diiwaannada BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Diiwaannada ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Barxadaha xiriirka qaranka"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Astaamaha wadamada"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Liis sida nooca waxyaabaha"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fooramyada"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Bartilmaameedyada qaranka (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Dhammaan noocyada waxyaabaha"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Liiska xiriirinnada warbixinnada qaranka, tabab wadan kasta; waa la qariyaa marka wadanku uusan warbixinno lahayn."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Xiriirinnada warbixinta lixaad ee qaranka ee wadanka goobta, iyo qaybaha hoose ee xiriirinta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Diiwaannada Xarunta Isweydaarsiga Macluumaadka Badbaadada Noolaha ee wadanka, sida sharciyada iyo go'aannada; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Diiwaannada Xarunta Isweydaarsiga Macluumaadka Helitaanka iyo Qaybsiga Faa'iidooyinka, sida tallaabooyinka iyo oggolaanshaha; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Liiska barxadaha xiriirka qaranka, tabab wadan kasta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Xiriirinno loo maro bogagga astaamaha wadamada ee CBD, tabab wadan kasta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Waxyaabaha ugu dambeeyay ee goobta oo ka socda noocyada waxyaabaha ee lagu dejiyay xiriirintan; waa la qariyaa marka aan diiwaan jirin."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Mawduucyada ugu dambeeyay ee fooramyada, iyo qaybaha hoose ee xiriirinta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kaararka bartilmaameedyada qaranka ee bartilmaameedka 7 ee GBF, tabab wadan kasta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Hal xiriirin nooc kasta oo waxyaabo ah oo diiwaan leh, iyo qaybaha hoose ee xiriirinta; had iyo jeer waa la muujiyaa."

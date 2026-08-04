@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "ملي راپورونه"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "ملي راپور (شپږم)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "د BCH ریکارډونه"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "د ABS-CH ریکارډونه"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "ملي اړیکې ټکي"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "د هېوادونو پېژندپاڼې"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "د منځپانګې د ډول له مخې لړلیک"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "فورمونه"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "ملي موخې (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "د منځپانګې ټول ډولونه"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "د ملي راپورونو د لینکونو لړلیک، د هېوادونو له مخې په ټبونو کې؛ پټېږي کله چې هېواد راپورونه ونه لري."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "د سایټ د هېواد شپږم ملي راپور لینکونه، او د لینک خپل فرعي توکي؛ که خالي وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "د هېواد لپاره د بیولوژیکي خوندیتوب د معلوماتو د تبادلې مرکز ریکارډونه، لکه قوانین او پرېکړې؛ که خالي وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "د لاسرسي او ګټو د ویش د معلوماتو د تبادلې مرکز ریکارډونه، لکه تدابیر او اجازه لیکونه؛ که خالي وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "د ملي اړیکو ټکو لړلیک، د هېوادونو له مخې په ټبونو کې؛ که خالي وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "د CBD د هېوادونو د پېژندپاڼو مخونو ته لینکونه، د هېوادونو له مخې په ټبونو کې؛ تل ښودل کېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "پر دې لینک ټاکل شویو د منځپانګې ډولونو وروستۍ منځپانګه؛ کله چې ریکارډونه نه وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "د فورمونو وروستي موضوعات، او د لینک خپل فرعي توکي؛ که خالي وي پټېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "د GBF د 7 موخې لپاره د ملي موخو کارتونه، د هېوادونو له مخې په ټبونو کې؛ تل ښودل کېږي."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "هر هغه د منځپانګې ډول ته یو لینک چې ریکارډونه لري، او د لینک خپل فرعي توکي؛ تل ښودل کېږي."

@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "राष्ट्रीय अहवाल"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "राष्ट्रीय अहवाल (सहावा)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH नोंदी"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH नोंदी"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "राष्ट्रीय संपर्क केंद्रे"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "देश प्रोफाइल"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "सामग्री प्रकारानुसार यादी"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "मंच"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "राष्ट्रीय उद्दिष्टे (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "सर्व सामग्री प्रकार"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "राष्ट्रीय अहवालांच्या दुव्यांची यादी, देशानुसार टॅबमध्ये; देशाकडे अहवाल नसल्यास लपवली जाते."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "साइटच्या देशासाठी सहाव्या राष्ट्रीय अहवालाचे दुवे आणि दुव्याचे स्वतःचे उपघटक; रिकामे असल्यास लपवले जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "देशासाठी जैवसुरक्षा माहिती देवाणघेवाण केंद्राच्या नोंदी, उदाहरणार्थ कायदे आणि निर्णय; रिकाम्या असल्यास लपवल्या जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "प्रवेश आणि लाभ वाटप माहिती देवाणघेवाण केंद्राच्या नोंदी, उदाहरणार्थ उपाय आणि परवाने; रिकाम्या असल्यास लपवल्या जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "राष्ट्रीय संपर्क केंद्रांची यादी, देशानुसार टॅबमध्ये; रिकामी असल्यास लपवली जाते."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "CBD च्या देश प्रोफाइल पृष्ठांचे दुवे, देशानुसार टॅबमध्ये; नेहमी दाखवले जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "या दुव्यावर सेट केलेल्या सामग्री प्रकारांची साइटवरील नवीनतम सामग्री; नोंदी नसल्यास लपवली जाते."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "मंचांवरील नवीनतम चर्चा आणि दुव्याचे स्वतःचे उपघटक; रिकामे असल्यास लपवले जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF उद्दिष्ट 7 साठी राष्ट्रीय उद्दिष्ट कार्डे, देशानुसार टॅबमध्ये; नेहमी दाखवली जातात."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "नोंदी असलेल्या प्रत्येक सामग्री प्रकारासाठी एक दुवा आणि दुव्याचे स्वतःचे उपघटक; नेहमी दाखवले जातात."

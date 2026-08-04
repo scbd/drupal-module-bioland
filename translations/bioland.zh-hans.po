@@ -1603,3 +1603,83 @@ msgstr "选择在国家生物安全框架内容轮播中显示的内容类型。
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "选择在此部分显示并由其“查看更多”链接搜索的站点内容类型。留空则使用默认值。除所选内容类型外，此部分还会从生物安全信息交换所中央登记处提取以下记录类型：@registry。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "国家报告"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "国家报告（第六次）"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH 记录"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH 记录"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "国家联络点"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "国家概况"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "按内容类型列表"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "论坛"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "国家目标（GBF 目标7）"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "所有内容类型"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "按国家分标签显示国家报告链接列表；该国没有报告时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "本站所属国家的第六次国家报告链接，以及该链接自身的子链接；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "该国的生物安全信息交换所记录，例如法律和决定；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "获取和惠益分享信息交换所记录，例如措施和许可；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "按国家分标签显示国家联络点列表；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "按国家分标签显示指向《生物多样性公约》国家概况页面的链接；始终显示。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "此链接上设置的内容类型的本站最新内容；没有记录时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "论坛最新主题，以及该链接自身的子链接；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "按国家分标签显示 GBF 目标7的国家目标卡片；始终显示。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "每种有记录的内容类型显示一个链接，以及该链接自身的子链接；始终显示。"

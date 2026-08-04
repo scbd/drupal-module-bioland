@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "รายงานแห่งชาติ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "รายงานแห่งชาติ (ฉบับที่ 6)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "ระเบียน BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ระเบียน ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "จุดประสานงานแห่งชาติ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "ข้อมูลประเทศ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "รายการตามประเภทเนื้อหา"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "เว็บบอร์ด"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "เป้าหมายแห่งชาติ (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "ประเภทเนื้อหาทั้งหมด"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "รายการลิงก์รายงานแห่งชาติ แสดงเป็นแท็บตามประเทศ ซ่อนเมื่อประเทศไม่มีรายงาน"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "ลิงก์รายงานแห่งชาติฉบับที่หกของประเทศของเว็บไซต์ พร้อมรายการย่อยของลิงก์ ซ่อนเมื่อว่าง"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "ระเบียนของศูนย์เผยแพร่ข้อมูลข่าวสารความปลอดภัยทางชีวภาพของประเทศ เช่น กฎหมายและคำวินิจฉัย ซ่อนเมื่อว่าง"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "ระเบียนของศูนย์เผยแพร่ข้อมูลข่าวสารการเข้าถึงและแบ่งปันผลประโยชน์ เช่น มาตรการและใบอนุญาต ซ่อนเมื่อว่าง"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "รายการจุดประสานงานแห่งชาติ แสดงเป็นแท็บตามประเทศ ซ่อนเมื่อว่าง"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "ลิงก์ไปยังหน้าข้อมูลประเทศของ CBD แสดงเป็นแท็บตามประเทศ แสดงเสมอ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "เนื้อหาล่าสุดของเว็บไซต์จากประเภทเนื้อหาที่กำหนดไว้บนลิงก์นี้ ซ่อนเมื่อไม่มีระเบียน"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "กระทู้ล่าสุดในเว็บบอร์ด พร้อมรายการย่อยของลิงก์ ซ่อนเมื่อว่าง"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "การ์ดเป้าหมายแห่งชาติสำหรับเป้าหมายที่ 7 ของ GBF แสดงเป็นแท็บตามประเทศ แสดงเสมอ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "หนึ่งลิงก์ต่อประเภทเนื้อหาที่มีระเบียน พร้อมรายการย่อยของลิงก์ แสดงเสมอ"

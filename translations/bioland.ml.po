@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "ദേശീയ റിപ്പോർട്ടുകൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "ദേശീയ റിപ്പോർട്ട് (ആറാമത്)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH രേഖകൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH രേഖകൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "ദേശീയ ഫോക്കൽ പോയിന്റുകൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "രാജ്യ പ്രൊഫൈലുകൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "ഉള്ളടക്ക തരം അനുസരിച്ചുള്ള പട്ടിക"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "ഫോറങ്ങൾ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "ദേശീയ ലക്ഷ്യങ്ങൾ (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "എല്ലാ ഉള്ളടക്ക തരങ്ങളും"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "ദേശീയ റിപ്പോർട്ട് ലിങ്കുകളുടെ പട്ടിക, രാജ്യം അനുസരിച്ച് ടാബുകളിൽ; രാജ്യത്തിന് റിപ്പോർട്ടുകൾ ഇല്ലാത്തപ്പോൾ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "സൈറ്റിന്റെ രാജ്യത്തിനുള്ള ആറാമത്തെ ദേശീയ റിപ്പോർട്ട് ലിങ്കുകളും ലിങ്കിന്റെ സ്വന്തം ഉപഘടകങ്ങളും; ശൂന്യമെങ്കിൽ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "രാജ്യത്തിനുള്ള ജൈവസുരക്ഷാ വിവരവിനിമയ കേന്ദ്രത്തിന്റെ രേഖകൾ, ഉദാഹരണത്തിന് നിയമങ്ങളും തീരുമാനങ്ങളും; ശൂന്യമെങ്കിൽ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "പ്രവേശനവും നേട്ട പങ്കിടലും സംബന്ധിച്ച വിവരവിനിമയ കേന്ദ്രത്തിന്റെ രേഖകൾ, ഉദാഹരണത്തിന് നടപടികളും അനുമതികളും; ശൂന്യമെങ്കിൽ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "ദേശീയ ഫോക്കൽ പോയിന്റുകളുടെ പട്ടിക, രാജ്യം അനുസരിച്ച് ടാബുകളിൽ; ശൂന്യമെങ്കിൽ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "CBD രാജ്യ പ്രൊഫൈൽ പേജുകളിലേക്കുള്ള ലിങ്കുകൾ, രാജ്യം അനുസരിച്ച് ടാബുകളിൽ; എപ്പോഴും കാണിക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "ഈ ലിങ്കിൽ സജ്ജമാക്കിയ ഉള്ളടക്ക തരങ്ങളിലെ സൈറ്റിന്റെ ഏറ്റവും പുതിയ ഉള്ളടക്കം; രേഖകളില്ലാത്തപ്പോൾ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "ഫോറങ്ങളിലെ ഏറ്റവും പുതിയ ചർച്ചകളും ലിങ്കിന്റെ സ്വന്തം ഉപഘടകങ്ങളും; ശൂന്യമെങ്കിൽ മറയ്ക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF ലക്ഷ്യം 7 നായുള്ള ദേശീയ ലക്ഷ്യ കാർഡുകൾ, രാജ്യം അനുസരിച്ച് ടാബുകളിൽ; എപ്പോഴും കാണിക്കുന്നു."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "രേഖകളുള്ള ഓരോ ഉള്ളടക്ക തരത്തിനും ഒരു ലിങ്കും ലിങ്കിന്റെ സ്വന്തം ഉപഘടകങ്ങളും; എപ്പോഴും കാണിക്കുന്നു."

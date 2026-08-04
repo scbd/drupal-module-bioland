@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Rahotannin ƙasa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Rahoton ƙasa (na 6)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Bayanan BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Bayanan ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Cibiyoyin tuntuɓar ƙasa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Bayanan ƙasashe"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Jerin bisa ga nau'in abun ciki"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Dandalin tattaunawa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Manufofin ƙasa (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Dukkan nau'ikan abun ciki"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Jerin hanyoyin haɗi zuwa rahotannin ƙasa, cikin shafuka bisa ga ƙasa; ana ɓoye shi idan ƙasar ba ta da rahotanni."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Hanyoyin haɗi na rahoto na shida na ƙasar shafin, tare da ƙananan abubuwan haɗin; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Bayanan Cibiyar Musayar Bayanai kan Tsaron Halittu na ƙasar, kamar dokoki da yanke shawara; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Bayanan Cibiyar Musayar Bayanai kan Samun Dama da Rarraba Amfani, kamar matakai da izini; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Jerin cibiyoyin tuntuɓar ƙasa, cikin shafuka bisa ga ƙasa; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Hanyoyin haɗi zuwa shafukan bayanan ƙasashe na CBD, cikin shafuka bisa ga ƙasa; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Sabon abun ciki na shafin daga nau'ikan abun ciki da aka saita a wannan haɗin; ana ɓoye shi idan babu bayanai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Sabbin tattaunawar dandali, tare da ƙananan abubuwan haɗin; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Katunan manufofin ƙasa na manufa ta 7 ta GBF, cikin shafuka bisa ga ƙasa; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Haɗi ɗaya ga kowane nau'in abun ciki mai bayanai, tare da ƙananan abubuwan haɗin; ana nuna shi kullum."
