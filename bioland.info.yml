@@ -20,3 +20,4 @@ dependencies:
   - drupal:fontawesome
   - drupal:linkit
   - drupal:jsonapi_extras
+  - menu_link_attributes:menu_link_attributes

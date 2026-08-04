@@ -1,5 +1,8 @@
 # Bioland Module - Install Operations
 
+## Requirements
+- `menu_link_attributes` ≥ 1.7 — provides menu link class storage and UI.
+
 Operations performed by `bioland_install()` in order:
 
 ## Role Validation & Creation
