@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Ազգային զեկույցներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Ազգային զեկույց (6-րդ)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH գրառումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH գրառումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Ազգային կապի կենտրոններ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Երկրների պրոֆիլներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Ցանկ ըստ բովանդակության տեսակի"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Ֆորումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Ազգային թիրախներ (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Բովանդակության բոլոր տեսակները"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Ազգային զեկույցների հղումների ցանկ, ներդիրներով ըստ երկրների; թաքցվում է, երբ երկիրը զեկույցներ չունի:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Կայքի երկրի վեցերորդ ազգային զեկույցի հղումները և հղման ենթատարրերը; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Երկրի կենսաանվտանգության տեղեկատվության փոխանակման կենտրոնի գրառումները, օրինակ՝ օրենքներ և որոշումներ; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Հասանելիության և օգուտների բաշխման տեղեկատվության փոխանակման կենտրոնի գրառումները, օրինակ՝ միջոցառումներ և թույլտվություններ; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Ազգային կապի կենտրոնների ցանկ, ներդիրներով ըստ երկրների; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Հղումներ ԿԲԿ-ի երկրների պրոֆիլների էջերին, ներդիրներով ըստ երկրների; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Այս հղման վրա սահմանված բովանդակության տեսակների կայքի ամենավերջին բովանդակությունը; թաքցվում է, երբ գրառումներ չկան:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Ֆորումների ամենավերջին թեմաները և հղման ենթատարրերը; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF-ի 7-րդ թիրախի ազգային թիրախների քարտերը, ներդիրներով ըստ երկրների; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Մեկ հղում գրառումներ ունեցող յուրաքանչյուր բովանդակության տեսակի համար և հղման ենթատարրերը; ցուցադրվում է միշտ:"

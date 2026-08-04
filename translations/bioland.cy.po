@@ -1692,3 +1692,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Adroddiadau cenedlaethol"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Adroddiad cenedlaethol (6ed)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Cofnodion BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Cofnodion ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Pwyntiau cyswllt cenedlaethol"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Proffiliau gwledydd"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Rhestr yn ôl math o gynnwys"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fforymau"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Targedau cenedlaethol (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Pob math o gynnwys"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Rhestr o ddolenni i adroddiadau cenedlaethol, mewn tabiau fesul gwlad; yn cael ei chuddio pan nad oes gan y wlad adroddiadau."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Dolenni chweched adroddiad cenedlaethol gwlad y wefan, ynghyd â phlant y ddolen ei hun; yn cael ei guddio os yw'n wag."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Cofnodion y Ganolfan Gyfnewid Gwybodaeth Bioddiogelwch ar gyfer y wlad, megis deddfau a phenderfyniadau; yn cael ei guddio os yw'n wag."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Cofnodion y Ganolfan Gyfnewid Gwybodaeth Mynediad a Rhannu Buddion, megis mesurau a thrwyddedau; yn cael ei guddio os yw'n wag."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Rhestr o bwyntiau cyswllt cenedlaethol, mewn tabiau fesul gwlad; yn cael ei chuddio os yw'n wag."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Dolenni i dudalennau proffil gwledydd y CBD, mewn tabiau fesul gwlad; yn cael ei ddangos bob amser."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Cynnwys diweddaraf y wefan o'r mathau o gynnwys a osodwyd ar y ddolen hon; yn cael ei guddio pan nad oes cofnodion."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Trafodaethau fforwm diweddaraf, ynghyd â phlant y ddolen ei hun; yn cael ei guddio os yw'n wag."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Cardiau targedau cenedlaethol ar gyfer targed 7 y GBF, mewn tabiau fesul gwlad; yn cael ei ddangos bob amser."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Un ddolen ar gyfer pob math o gynnwys sydd â chofnodion, ynghyd â phlant y ddolen ei hun; yn cael ei ddangos bob amser."

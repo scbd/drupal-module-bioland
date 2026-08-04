@@ -18,3 +18,8 @@ services:
   bioland.dmsm_config:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
     arguments: ['@config.factory', '@http_client', '@logger.factory']
+
+  bioland.component_registry:
+    class: Drupal\bioland\Service\BiolandComponentRegistry
+    calls:
+      - [setStringTranslation, ['@string_translation']]

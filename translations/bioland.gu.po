@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "રાષ્ટ્રીય અહેવાલો"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "રાષ્ટ્રીય અહેવાલ (6ઠ્ઠો)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH રેકોર્ડ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH રેકોર્ડ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "રાષ્ટ્રીય ફોકલ પોઈન્ટ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "દેશ પ્રોફાઇલ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "સામગ્રી પ્રકાર પ્રમાણે યાદી"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "ફોરમ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "રાષ્ટ્રીય લક્ષ્યાંકો (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "બધા સામગ્રી પ્રકારો"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "રાષ્ટ્રીય અહેવાલોની લિંક્સની યાદી, દેશ પ્રમાણે ટૅબમાં; દેશ પાસે અહેવાલો ન હોય ત્યારે છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "સાઇટના દેશ માટે છઠ્ઠા રાષ્ટ્રીય અહેવાલની લિંક્સ અને લિંકના પોતાના ઉપ-ઘટકો; ખાલી હોય તો છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "દેશ માટે જૈવ સુરક્ષા માહિતી વિનિમય કેન્દ્રના રેકોર્ડ, જેમ કે કાયદા અને નિર્ણયો; ખાલી હોય તો છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "પ્રાપ્તિ અને લાભ વહેંચણી માહિતી વિનિમય કેન્દ્રના રેકોર્ડ, જેમ કે પગલાં અને પરવાનગીઓ; ખાલી હોય તો છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "રાષ્ટ્રીય ફોકલ પોઈન્ટની યાદી, દેશ પ્રમાણે ટૅબમાં; ખાલી હોય તો છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "CBD ના દેશ પ્રોફાઇલ પૃષ્ઠોની લિંક્સ, દેશ પ્રમાણે ટૅબમાં; હંમેશા બતાવવામાં આવે છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "આ લિંક પર સેટ કરેલા સામગ્રી પ્રકારોની સાઇટની નવીનતમ સામગ્રી; રેકોર્ડ ન હોય ત્યારે છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "ફોરમના નવીનતમ વિષયો અને લિંકના પોતાના ઉપ-ઘટકો; ખાલી હોય તો છુપાય છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF ના લક્ષ્ય 7 માટે રાષ્ટ્રીય લક્ષ્યાંક કાર્ડ, દેશ પ્રમાણે ટૅબમાં; હંમેશા બતાવવામાં આવે છે."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "રેકોર્ડ ધરાવતા દરેક સામગ્રી પ્રકાર માટે એક લિંક અને લિંકના પોતાના ઉપ-ઘટકો; હંમેશા બતાવવામાં આવે છે."

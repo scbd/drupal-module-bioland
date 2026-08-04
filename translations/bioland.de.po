@@ -1692,3 +1692,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Nationale Berichte"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Nationaler Bericht (6.)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH-Einträge"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH-Einträge"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Nationale Anlaufstellen"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Länderprofile"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Liste nach Inhaltstyp"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Foren"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Nationale Ziele (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Alle Inhaltstypen"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Liste der Links zu nationalen Berichten, in Registerkarten nach Land; ausgeblendet, wenn das Land keine Berichte hat."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Links zum sechsten nationalen Bericht des Länderstandorts sowie die Unterlinks des Links; ausgeblendet, wenn leer."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Einträge des Informationszentrums für biologische Sicherheit für das Land, etwa Gesetze und Entscheidungen; ausgeblendet, wenn leer."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Einträge des Informationszentrums für Zugang und Vorteilsausgleich, etwa Maßnahmen und Genehmigungen; ausgeblendet, wenn leer."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Liste der nationalen Anlaufstellen, in Registerkarten nach Land; ausgeblendet, wenn leer."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Links zu den CBD-Länderprofilseiten, in Registerkarten nach Land; immer sichtbar."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Neueste Website-Inhalte der auf diesem Link festgelegten Inhaltstypen; ausgeblendet, wenn keine Einträge vorhanden sind."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Neueste Forenbeiträge sowie die Unterlinks des Links; ausgeblendet, wenn leer."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Karten der nationalen Ziele zu GBF-Ziel 7, in Registerkarten nach Land; immer sichtbar."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Ein Link je Inhaltstyp mit Einträgen sowie die Unterlinks des Links; immer sichtbar."

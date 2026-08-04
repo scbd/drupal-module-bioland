@@ -1603,3 +1603,83 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Nacionalinės ataskaitos"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Nacionalinė ataskaita (6-oji)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH įrašai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH įrašai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Nacionaliniai informaciniai centrai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Šalių profiliai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type Listing"
+msgstr "Sąrašas pagal turinio tipą"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forumai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Nacionaliniai tikslai (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Visi turinio tipai"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Nacionalinių ataskaitų nuorodų sąrašas, skirtukais pagal šalis; slepiamas, kai šalis neturi ataskaitų."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Svetainės šalies šeštosios nacionalinės ataskaitos nuorodos ir pačios nuorodos antriniai elementai; slepiama, jei tuščia."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Šalies biologinės saugos informacijos rinkimo ir platinimo centro įrašai, pavyzdžiui, įstatymai ir sprendimai; slepiama, jei tuščia."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Genetinių išteklių prieigos ir naudos pasidalijimo informacijos centro įrašai, pavyzdžiui, priemonės ir leidimai; slepiama, jei tuščia."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Nacionalinių informacinių centrų sąrašas, skirtukais pagal šalis; slepiamas, jei tuščias."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Nuorodos į CBD šalių profilių puslapius, skirtukais pagal šalis; rodoma visada."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Naujausias svetainės turinys pagal šioje nuorodoje nustatytus turinio tipus; slepiama, kai įrašų nėra."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Naujausios forumų temos ir pačios nuorodos antriniai elementai; slepiama, jei tuščia."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Nacionalinių tikslų kortelės GBF 7 tikslui, skirtukais pagal šalis; rodoma visada."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Po vieną nuorodą kiekvienam turinio tipui, turinčiam įrašų, ir pačios nuorodos antriniai elementai; rodoma visada."
