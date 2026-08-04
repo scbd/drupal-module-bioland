@@ -83,6 +83,17 @@ home_widgets:
     - core/drupalSettings
     - bioland/debug_logger
 
+# Admin styling for the mega-menu Component-menu link form. Attached only by
+# Drupal\bioland\Service\BiolandComponentMenuFormMode, which owns every attach
+# site, so a regular menu link form never loads it. CSS-only; scoped to
+# .bioland-component-menu-form.
+component_menu_form:
+  css:
+    theme:
+      css/bioland-component-menu.css: {}
+  dependencies:
+    - core/drupal
+
 # Aligns the CKEditor 5 editing surface with the public frontend rendering
 # (heading sizes + primary-coloured underline). CSS-only; scoped to .ck-content.
 ckeditor_content_styles:

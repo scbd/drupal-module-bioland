@@ -1683,3 +1683,23 @@ msgstr "Karti tal-miri nazzjonali għall-mira 7 tal-GBF, f'tabs skont il-pajjiż
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Link wieħed għal kull tip ta' kontenut li għandu rekords, flimkien mat-tfal tal-link innifsu; dejjem jintwera."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponent tal-mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Il-komponent li din il-ħolqa tal-menu turi fil-mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Antikwat: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (mhux disponibbli fuq dan is-sit)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempliċi ta' ħoloq subordinati."

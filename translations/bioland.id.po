@@ -1683,3 +1683,23 @@ msgstr "Kartu target nasional untuk target 7 GBF, dalam tab per negara; selalu d
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Satu tautan untuk setiap jenis konten yang memiliki rekaman, beserta anak tautan itu sendiri; selalu ditampilkan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponen mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponen yang ditampilkan tautan menu ini di mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Warisan: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (tidak tersedia di situs ini)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Tautan menu ini menampilkan komponen mega menu alih-alih daftar tautan anak biasa."

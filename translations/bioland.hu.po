@@ -1754,3 +1754,23 @@ msgstr "Nemzeti célkártyák a GBF 7. céljához, országonkénti füleken; min
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Egy hivatkozás minden olyan tartalomtípushoz, amelyhez tartoznak rekordok, valamint a hivatkozás gyermekelemei; mindig látható."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megamenü-összetevő"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Az összetevő, amelyet ez a menühivatkozás megjelenít a megamenüben."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Örökölt: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ezen a webhelyen nem érhető el)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkozások egyszerű listája helyett."

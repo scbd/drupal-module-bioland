@@ -1667,3 +1667,23 @@ msgstr "Fichas de metas nacionales para la meta 7 del GBF, en pestañas por paí
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Un enlace por cada tipo de contenido que tenga registros, más los hijos del propio enlace; siempre se muestran."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componente del megamenú"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "El componente que este enlace de menú muestra en el megamenú."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Heredado: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (no disponible en este sitio)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Este enlace de menú muestra un componente del megamenú en lugar de una simple lista de enlaces secundarios."

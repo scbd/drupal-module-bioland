@@ -1683,3 +1683,23 @@ msgstr "GBF ലക്ഷ്യം 7 നായുള്ള ദേശീയ ലക
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "രേഖകളുള്ള ഓരോ ഉള്ളടക്ക തരത്തിനും ഒരു ലിങ്കും ലിങ്കിന്റെ സ്വന്തം ഉപഘടകങ്ങളും; എപ്പോഴും കാണിക്കുന്നു."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "മെഗാ മെനു ഘടകം"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "ഈ മെനു ലിങ്ക് മെഗാ മെനുവിൽ കാണിക്കുന്ന ഘടകം."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "പഴയത്: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ഈ സൈറ്റിൽ ലഭ്യമല്ല)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "ഈ മെനു ലിങ്ക് ഉപലിങ്കുകളുടെ ലളിതമായ പട്ടികയ്ക്ക് പകരം ഒരു മെഗാ മെനു ഘടകം കാണിക്കുന്നു."

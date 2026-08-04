@@ -1683,3 +1683,23 @@ msgstr "Карточки национальных задач по задаче 7
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "По одной ссылке на каждый тип материалов, у которого есть записи, и дочерние элементы ссылки; отображается всегда."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Компонент мегаменю"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Компонент, который эта ссылка меню отображает в мегаменю."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Устаревший: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (недоступно на этом сайте)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Эта ссылка меню отображает компонент мегаменю вместо обычного списка дочерних ссылок."

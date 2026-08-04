@@ -1683,3 +1683,23 @@ msgstr "GBF 7. hedefi için ulusal hedef kartları, ülkelere göre sekmelerde; 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Kaydı bulunan her içerik türü için bir bağlantı ve bağlantının kendi alt öğeleri; her zaman gösterilir."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega menü bileşeni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Bu menü bağlantısının mega menüde gösterdiği bileşen."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Eski: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (bu sitede kullanılamaz)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Bu menü bağlantısı, basit bir alt bağlantı listesi yerine bir mega menü bileşeni gösterir."

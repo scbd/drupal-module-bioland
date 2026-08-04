@@ -1683,3 +1683,23 @@ msgstr "Nacionalinių tikslų kortelės GBF 7 tikslui, skirtukais pagal šalis; 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Po vieną nuorodą kiekvienam turinio tipui, turinčiam įrašų, ir pačios nuorodos antriniai elementai; rodoma visada."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega meniu komponentas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponentas, kurį ši meniu nuoroda rodo mega meniu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Pasenęs: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (šioje svetainėje nepasiekiama)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ši meniu nuoroda rodo mega meniu komponentą, o ne paprastą antrinių nuorodų sąrašą."

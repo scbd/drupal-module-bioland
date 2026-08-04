@@ -1683,3 +1683,23 @@ msgstr "GBF کے ہدف 7 کے لیے قومی اہداف کے کارڈز، مل
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "ہر اس قسم کے مواد کے لیے ایک لنک جس کے ریکارڈ موجود ہوں، اور خود لنک کے ذیلی عناصر؛ ہمیشہ دکھایا جاتا ہے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "میگا مینو جزو"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "وہ جزو جو یہ مینو لنک میگا مینو میں دکھاتا ہے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "پرانا: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (اس سائٹ پر دستیاب نہیں)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "یہ مینو لنک ذیلی لنکس کی سادہ فہرست کے بجائے ایک میگا مینو جزو دکھاتا ہے۔"

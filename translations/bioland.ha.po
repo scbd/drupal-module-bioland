@@ -1683,3 +1683,23 @@ msgstr "Katunan manufofin ƙasa na manufa ta 7 ta GBF, cikin shafuka bisa ga ƙa
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Haɗi ɗaya ga kowane nau'in abun ciki mai bayanai, tare da ƙananan abubuwan haɗin; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Sashen babban menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Sashen da wannan hanyar menu ke nunawa a cikin babban menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Tsoho: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ba ya samuwa a wannan shafin)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Wannan hanyar menu tana nuna sashen babban menu maimakon jerin hanyoyin haɗi na yara."

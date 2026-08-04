@@ -1603,3 +1603,23 @@ msgstr "بطاقات الأهداف الوطنية للهدف 7 من الإطا�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "رابط واحد لكل نوع محتوى يتضمن سجلات، إضافة إلى العناصر الفرعية للرابط؛ تُعرض دائماً."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "مكوّن القائمة الضخمة"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "المكوّن الذي يعرضه رابط القائمة هذا في القائمة الضخمة."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "قديم: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (غير متاح في هذا الموقع)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "يعرض رابط القائمة هذا مكوّن القائمة الضخمة بدلاً من قائمة بسيطة من الروابط الفرعية."

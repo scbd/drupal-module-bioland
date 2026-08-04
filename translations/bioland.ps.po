@@ -1683,3 +1683,23 @@ msgstr "د GBF د 7 موخې لپاره د ملي موخو کارتونه، د �
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "هر هغه د منځپانګې ډول ته یو لینک چې ریکارډونه لري، او د لینک خپل فرعي توکي؛ تل ښودل کېږي."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "د لوی مینو برخه"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "هغه برخه چې دا د مینو لینک یې په لوی مینو کې ښیي."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "زوړ: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (په دې پاڼه کې شتون نلري)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "دا د مینو لینک د ماشوم لینکونو د ساده لیست پرځای د لوی مینو برخه ښیي."

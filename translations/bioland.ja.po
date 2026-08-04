@@ -1683,3 +1683,23 @@ msgstr "GBF 目標7の国別目標カードを国ごとのタブで表示しま�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "レコードがあるコンテンツタイプごとに1つのリンクと、このリンク自身の子リンクを表示します。常に表示されます。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "メガメニューコンポーネント"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "このメニューリンクがメガメニューで表示するコンポーネントです。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "旧式: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (このサイトでは利用できません)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "このメニューリンクは、子リンクの単純な一覧ではなくメガメニューコンポーネントを表示します。"

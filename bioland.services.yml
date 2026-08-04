@@ -23,3 +23,9 @@ services:
     class: Drupal\bioland\Service\BiolandComponentRegistry
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  bioland.component_menu_form_mode:
+    class: Drupal\bioland\Service\BiolandComponentMenuFormMode
+    arguments: ['@bioland.component_registry', '@config.factory', '@current_user']
+    calls:
+      - [setStringTranslation, ['@string_translation']]

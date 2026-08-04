@@ -165,6 +165,32 @@ class BiolandComponentRegistryTest extends TestCase {
   }
 
   /**
+   * A site id colliding with a built-in prefix changes nothing.
+   *
+   * The registry's first caller (BiolandComponentMenuFormMode) derives the
+   * site id from the site flavour, so it passes "bl2" on every Bioland site -
+   * exactly the canonical prefix's own leading segment. tokenPrefixes()
+   * deduplicates, so the predicates must answer identically to passing no site
+   * id at all; the same holds for a site id colliding with the legacy prefix.
+   */
+  public function testCollidingSiteIdIsDeduplicated(): void {
+    foreach (['bl2-component-bch', 'mm-component-bch', 'bl2-component-was-removed', 'xyz-component-bch'] as $token) {
+      foreach (['bl2', 'mm'] as $siteId) {
+        $this->assertSame(
+          $this->registry->isComponentToken($token, NULL),
+          $this->registry->isComponentToken($token, $siteId),
+          "isComponentToken($token) must ignore the colliding site id $siteId"
+        );
+        $this->assertSame(
+          $this->registry->isKnownComponentToken($token, NULL),
+          $this->registry->isKnownComponentToken($token, $siteId),
+          "isKnownComponentToken($token) must ignore the colliding site id $siteId"
+        );
+      }
+    }
+  }
+
+  /**
    * Both storage shapes normalize to the same ordered token list.
    *
    * @dataProvider extractClassesProvider

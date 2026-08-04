@@ -1683,3 +1683,23 @@ msgstr "Картки національних цілей для цілі 7 GBF, 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "По одному посиланню на кожен тип вмісту, який має записи, та дочірні елементи посилання; показується завжди."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Компонент мегаменю"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Компонент, який це посилання меню відображає в мегаменю."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Застаріле: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (недоступно на цьому сайті)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Це посилання меню відображає компонент мегаменю замість звичайного списку дочірніх посилань."

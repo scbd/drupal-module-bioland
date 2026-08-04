@@ -1754,3 +1754,23 @@ msgstr "کارت‌های اهداف ملی برای هدف ۷ چارچوب جه
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "یک پیوند برای هر نوع محتوا که سابقه دارد، به‌همراه زیرپیوندهای خود پیوند؛ همیشه نمایش داده می‌شود."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "مؤلفهٔ منوی بزرگ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "مؤلفه‌ای که این پیوند منو در منوی بزرگ نمایش می‌دهد."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "قدیمی: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (در این سایت در دسترس نیست)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "این پیوند منو به جای فهرست ساده‌ای از پیوندهای فرزند، یک مؤلفهٔ منوی بزرگ را نمایش می‌دهد."

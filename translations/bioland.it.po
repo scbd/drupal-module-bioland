@@ -1683,3 +1683,23 @@ msgstr "Schede degli obiettivi nazionali per l'obiettivo 7 del GBF, in schede pe
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Un collegamento per ogni tipo di contenuto con record, più i figli del collegamento; sempre visibili."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componente del mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Il componente che questo collegamento di menu mostra nel mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Obsoleto: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (non disponibile su questo sito)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Questo collegamento di menu mostra un componente del mega menu invece di un semplice elenco di collegamenti figlio."

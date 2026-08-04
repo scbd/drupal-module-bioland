@@ -1754,3 +1754,23 @@ msgstr "Kat objektif nasyonal pou objektif 7 GBF a, nan onglè dapre peyi; li to
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Yon lyen pou chak kalite kontni ki gen dosye, plis pitit lyen an; li toujou parèt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Konpozan mega meni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Konpozan lyen meni sa a montre nan mega meni an."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Ansyen: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (pa disponib sou sit sa a)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen pitit."

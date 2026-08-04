@@ -1683,3 +1683,23 @@ msgstr "การ์ดเป้าหมายแห่งชาติสำห
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "หนึ่งลิงก์ต่อประเภทเนื้อหาที่มีระเบียน พร้อมรายการย่อยของลิงก์ แสดงเสมอ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "องค์ประกอบเมกะเมนู"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "องค์ประกอบที่ลิงก์เมนูนี้แสดงในเมกะเมนู"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "เดิม: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ไม่พร้อมใช้งานบนเว็บไซต์นี้)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "ลิงก์เมนูนี้แสดงองค์ประกอบเมกะเมนูแทนรายการลิงก์ย่อยแบบธรรมดา"

@@ -1683,3 +1683,23 @@ msgstr "ለGBF ግብ 7 የብሔራዊ ግቦች ካርዶች፣ በአገር �
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "መዝገቦች ላሉት ለእያንዳንዱ የይዘት ዓይነት አንድ አገናኝ እና የአገናኙ ንዑስ ክፍሎች፤ ሁልጊዜ ይታያል።"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "የሜጋ ምናሌ አካል"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "ይህ የምናሌ አገናኝ በሜጋ ምናሌ ውስጥ የሚያሳየው አካል።"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "ጥንታዊ፦ @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (በዚህ ጣቢያ አይገኝም)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "ይህ የምናሌ አገናኝ ከቀላል የልጅ አገናኞች ዝርዝር ይልቅ የሜጋ ምናሌ አካል ያሳያል።"

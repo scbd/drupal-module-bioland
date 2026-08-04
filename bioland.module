@@ -149,6 +149,26 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
         $form['menu_link_display_settings']['#access'] = FALSE;
       }
     }
+
+    // Mega-menu Component mode. The service owns the single dispatcher; it
+    // declines every form reachable today (the "component" form operation does
+    // not exist yet and BiolandComponentMenuFormMode::EDIT_DETECTION is FALSE),
+    // so this call is inert and regular menu link forms stay byte-identical.
+    //
+    // ORDERING PIN - do not move this into a form class's form() method.
+    // menu_link_attributes' entity builder rebuilds
+    // link.options.attributes from its own form values on every save, so the
+    // bioland builder that merges the picked component token back MUST be
+    // registered after it. bioland_module_implements_alter() below moves this
+    // hook_form_alter last, after menu_link_attributes' base-form alter, and
+    // #entity_builders run in array order - so appending from here, and only
+    // from here, is what guarantees the token survives the save. A form()
+    // method runs before all alters and would lose it silently. Pinned by
+    // BiolandComponentMenuFormModeTest.
+    $bioland_component_mode = \Drupal::service('bioland.component_menu_form_mode');
+    if ($bioland_component_mode->applies($form_state)) {
+      $bioland_component_mode->apply($form, $form_state);
+    }
   }
 
   // Change "Save (this translation)" to just "Save" for all node content forms.
@@ -488,6 +508,14 @@ function bioland_theme() {
  * stay in the form-build phase (never #after_build) so the button's #value
  * matches the submitted "op" value when Drupal resolves the triggering
  * element - see bioland_form_alter().
+ *
+ * Running last is also the ordering guarantee the mega-menu Component mode
+ * depends on: because menu_link_attributes' base-form alter has already
+ * registered its entity builder by the time bioland_form_alter() runs, the
+ * builder BiolandComponentMenuFormMode appends lands after it in
+ * $form['#entity_builders'], which run in array order. That is what stops the
+ * contrib builder's wholesale rebuild of link.options.attributes from
+ * discarding the picked component token. Do not reorder this hook.
  */
 function bioland_module_implements_alter(&$implementations, $hook) {
   if ($hook === 'form_alter' && isset($implementations['bioland'])) {
