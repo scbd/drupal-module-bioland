@@ -1703,3 +1703,7 @@ msgstr "@label (nuk ofrohet në këtë sajt)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Kjo lidhje e menysë shfaq një komponent të mega menysë në vend të një liste të thjeshtë lidhjesh bija."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Shto lidhje menyje komponenti"

@@ -8,6 +8,8 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -372,6 +374,34 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
     if (isset($form['field_url']['#title'])) {
       $form['field_url']['#title'] = t('URL');
     }
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * Registers the "component" entity-form operation on menu_link_content, which
+ * is the activation signal for mega-menu Component mode. Until this ran, the
+ * operation did not exist and BiolandComponentMenuFormMode::applies() could
+ * never see it, leaving the whole mode inert.
+ *
+ * The registered class adds no behaviour of its own — see
+ * BiolandComponentMenuLinkForm's docblock for why the mode must be applied at
+ * form-alter time and never from a form class. Nothing here touches the
+ * default operation, so core's "Add link" and edit forms are unchanged.
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
+ *   The entity type definitions, keyed by entity type id.
+ *
+ * @see \Drupal\bioland\Controller\BiolandMenuController::addComponentLink()
+ */
+function bioland_entity_type_alter(array &$entity_types) {
+  $entity_type_id = BiolandComponentMenuFormMode::ENTITY_TYPE;
+  if (isset($entity_types[$entity_type_id])) {
+    $entity_types[$entity_type_id]->setFormClass(
+      BiolandComponentMenuFormMode::OPERATION,
+      BiolandComponentMenuLinkForm::class
+    );
   }
 }
 

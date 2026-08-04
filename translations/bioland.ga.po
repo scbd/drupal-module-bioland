@@ -1703,3 +1703,7 @@ msgstr "@label (níl sé ar fáil ar an suíomh seo)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Taispeánann an nasc roghchláir seo comhpháirt ollroghchláir in ionad liosta simplí de naisc linbh."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Cuir nasc roghchláir comhpháirte leis"

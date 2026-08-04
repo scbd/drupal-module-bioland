@@ -1,0 +1,14 @@
+# Local actions contributed by Bioland.
+#
+# The Component-menu add action sits beside core's "Add link" on the menu
+# manage screen (menu_ui.links.action.yml: menu_link_content.add_link, which
+# carries no weight and therefore sorts at 0). The weight below keeps this the
+# second of the two, so the regular flow stays the first thing an editor sees.
+# The {menu} route parameter is inherited from the current route match, which
+# entity.menu.edit_form always supplies.
+bioland.menu_link_component_add:
+  route_name: bioland.menu_link_component.add
+  title: 'Add component menu link'
+  weight: 1
+  appears_on:
+    - entity.menu.edit_form

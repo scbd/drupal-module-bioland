@@ -1703,3 +1703,7 @@ msgstr "@label（本站点不可用）"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列表。"
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "添加组件菜单链接"

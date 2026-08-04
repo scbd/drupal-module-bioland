@@ -1774,3 +1774,7 @@ msgstr "@label (ei käytettävissä tällä sivustolla)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Tämä valikkolinkki näyttää megavalikon komponentin tavallisen alilinkkiluettelon sijaan."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Lisää komponentin valikkolinkki"

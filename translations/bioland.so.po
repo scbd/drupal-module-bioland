@@ -1703,3 +1703,7 @@ msgstr "@label (laguma heli karo boggan)"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "This menu link renders a mega-menu component instead of a plain list of child links."
 msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu ka muujin lahaa liis fudud oo xiriiro hoosaad ah."
+
+#: bioland.routing.yml
+msgid "Add component menu link"
+msgstr "Ku dar xiriirka menu-ga qaybta"
