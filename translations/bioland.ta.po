@@ -1683,3 +1683,23 @@ msgstr "GBF இலக்கு 7 க்கான தேசிய இலக்க
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "பதிவுகள் உள்ள ஒவ்வொரு உள்ளடக்க வகைக்கும் ஒரு இணைப்பு மற்றும் இணைப்பின் சொந்த துணை உறுப்புகள்; எப்போதும் காட்டப்படும்."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "மெகா மெனு கூறு"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "இந்த மெனு இணைப்பு மெகா மெனுவில் காட்டும் கூறு."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "பழையது: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (இந்தத் தளத்தில் கிடைக்கவில்லை)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "இந்த மெனு இணைப்பு சேய் இணைப்புகளின் எளிய பட்டியலுக்குப் பதிலாக மெகா மெனு கூறைக் காட்டுகிறது."

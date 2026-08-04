@@ -1683,3 +1683,23 @@ msgstr "Fișe ale țintelor naționale pentru ținta 7 GBF, în file pe țări; 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Câte un link pentru fiecare tip de conținut care are înregistrări, plus copiii linkului; afișate întotdeauna."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componentă a meniului mare"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Componenta pe care acest link de meniu o afișează în meniul mare."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Moștenit: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (indisponibil pe acest site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Acest link de meniu afișează o componentă a meniului mare în locul unei liste simple de linkuri subordonate."

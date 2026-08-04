@@ -74,6 +74,14 @@ class TranslationCatalogIntegrityTest extends TestCase {
     "Latest forum threads, plus the link's own children; hidden when empty.",
     'National target cards for GBF target 7, in tabs by country; always shown.',
     "One link per content type that has records, plus the link's own children; always shown.",
+    // src/Service/BiolandComponentMenuFormMode.php: Component-mode picker
+    // chrome - field label, help text, the two preserved current-value option
+    // labels, and the form intro.
+    'Mega-menu component',
+    'The component this menu link renders in the mega menu.',
+    'Legacy: @class',
+    '@label (not available on this site)',
+    'This menu link renders a mega-menu component instead of a plain list of child links.',
   ];
 
   /**

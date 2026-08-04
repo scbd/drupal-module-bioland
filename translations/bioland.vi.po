@@ -1683,3 +1683,23 @@ msgstr "Thẻ mục tiêu quốc gia cho mục tiêu 7 của GBF, theo tab từn
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Một liên kết cho mỗi loại nội dung có hồ sơ, cùng các mục con của liên kết; luôn hiển thị."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Thành phần mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Thành phần mà liên kết menu này hiển thị trong mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Cũ: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (không khả dụng trên trang này)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Liên kết menu này hiển thị một thành phần mega menu thay vì danh sách liên kết con thông thường."

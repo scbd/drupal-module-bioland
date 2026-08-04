@@ -1683,3 +1683,23 @@ msgstr "GBF उद्दिष्ट 7 साठी राष्ट्रीय 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "नोंदी असलेल्या प्रत्येक सामग्री प्रकारासाठी एक दुवा आणि दुव्याचे स्वतःचे उपघटक; नेहमी दाखवले जातात."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "मेगा मेनू घटक"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "ही मेनू लिंक मेगा मेनूमध्ये दाखवत असलेला घटक."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "जुने: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (या साइटवर उपलब्ध नाही)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "ही मेनू लिंक उप-लिंकच्या साध्या यादीऐवजी मेगा मेनू घटक दाखवते."

@@ -1683,3 +1683,23 @@ msgstr "Fiches des objectifs nationaux pour l'objectif 7 du GBF, en onglets par 
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Un lien par type de contenu comportant des enregistrements, ainsi que les enfants du lien ; toujours affichés."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Composant du méga-menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Le composant que ce lien de menu affiche dans le méga-menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Hérité : @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (non disponible sur ce site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ce lien de menu affiche un composant du méga-menu au lieu d'une simple liste de liens enfants."

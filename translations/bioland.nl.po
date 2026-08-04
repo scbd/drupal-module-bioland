@@ -1683,3 +1683,23 @@ msgstr "Kaarten met nationale doelen voor GBF-doel 7, in tabbladen per land; alt
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Eén link per inhoudstype met records, plus de onderliggende links; altijd zichtbaar."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega-menucomponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "De component die deze menulink in het megamenu weergeeft."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Verouderd: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (niet beschikbaar op deze site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Deze menulink toont een megamenucomponent in plaats van een gewone lijst met onderliggende links."

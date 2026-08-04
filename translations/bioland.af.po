@@ -1683,3 +1683,23 @@ msgstr "Kaarte van nasionale teikens vir GBF-teiken 7, in oortjies per land; wor
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Een skakel per inhoudstipe met rekords, plus die skakel se eie kinders; word altyd gewys."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega-kieslys-komponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Die komponent wat hierdie kieslysskakel in die mega-kieslys vertoon."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Verouderd: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (nie op hierdie werf beskikbaar nie)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Hierdie kieslysskakel vertoon 'n mega-kieslys-komponent in plaas van 'n gewone lys kinderskakels."

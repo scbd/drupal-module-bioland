@@ -1683,3 +1683,23 @@ msgstr "GBF-ի 7-րդ թիրախի ազգային թիրախների քարտե�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Մեկ հղում գրառումներ ունեցող յուրաքանչյուր բովանդակության տեսակի համար և հղման ենթատարրերը; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Մեգա ցանկի բաղադրիչ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Բաղադրիչը, որը ցանկի այս հղումը ցուցադրում է մեգա ցանկում։"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Հնացած՝ @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (այս կայքում հասանելի չէ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկի բաղադրիչ՝ ենթահղումների պարզ ցանկի փոխարեն։"

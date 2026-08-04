@@ -1683,3 +1683,23 @@ msgstr "Карти на националните цели за цел 7 от GBF
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "По една връзка за всеки тип съдържание, който има записи, плюс подчинените елементи на връзката; винаги се показва."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Компонент на мега менюто"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Компонентът, който тази връзка от менюто показва в мега менюто."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Наследен: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (не е налично на този сайт)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Тази връзка от менюто показва компонент на мега менюто вместо обикновен списък с подчинени връзки."

@@ -1683,3 +1683,23 @@ msgstr "Kaararka bartilmaameedyada qaranka ee bartilmaameedka 7 ee GBF, tabab wa
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Hal xiriirin nooc kasta oo waxyaabo ah oo diiwaan leh, iyo qaybaha hoose ee xiriirinta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Qayb ka mid ah menu-ga weyn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Qaybta uu xiriirkan menu-ga ku muujiyo menu-ga weyn."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Hore: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (laguma heli karo boggan)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu ka muujin lahaa liis fudud oo xiriiro hoosaad ah."

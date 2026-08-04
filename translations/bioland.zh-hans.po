@@ -1683,3 +1683,23 @@ msgstr "按国家分标签显示 GBF 目标7的国家目标卡片；始终显示
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "每种有记录的内容类型显示一个链接，以及该链接自身的子链接；始终显示。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "超级菜单组件"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "此菜单链接在超级菜单中呈现的组件。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "旧版：@class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label（本站点不可用）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列表。"

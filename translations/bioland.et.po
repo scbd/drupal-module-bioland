@@ -1754,3 +1754,23 @@ msgstr "Riiklike eesmärkide kaardid GBF-i eesmärgi 7 kohta, vahekaartidena rii
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Üks link iga kirjetega sisutüübi kohta koos lingi enda alamlinkidega; alati kuvatud."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megamenüü komponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponent, mida see menüülink megamenüüs kuvab."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Pärand: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (sellel saidil pole saadaval)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "See menüülink kuvab megamenüü komponendi tavalise alamlinkide loendi asemel."

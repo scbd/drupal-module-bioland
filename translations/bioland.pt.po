@@ -1683,3 +1683,23 @@ msgstr "Cartões de metas nacionais para a meta 7 do GBF, em separadores por pa�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Uma ligação por cada tipo de conteúdo com registos, mais os filhos da própria ligação; sempre visíveis."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componente do megamenu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "O componente que esta ligação de menu apresenta no megamenu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Antigo: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (não disponível neste site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Esta ligação de menu apresenta um componente do megamenu em vez de uma simples lista de ligações subordinadas."

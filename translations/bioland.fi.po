@@ -1754,3 +1754,23 @@ msgstr "Kansallisten tavoitteiden kortit GBF-tavoitteelle 7, välilehdillä mait
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Yksi linkki kutakin tietueita sisältävää sisältötyyppiä kohti sekä linkin omat alalinkit; näytetään aina."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megavalikon komponentti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponentti, jonka tämä valikkolinkki näyttää megavalikossa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Vanhentunut: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ei käytettävissä tällä sivustolla)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Tämä valikkolinkki näyttää megavalikon komponentin tavallisen alilinkkiluettelon sijaan."

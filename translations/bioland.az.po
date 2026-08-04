@@ -1683,3 +1683,23 @@ msgstr "GBF 7-ci hədəfi üçün milli hədəf kartları, ölkələr üzrə tab
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Qeydləri olan hər məzmun növü üçün bir keçid və keçidin öz alt elementləri; həmişə göstərilir."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega menyu komponenti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Bu menyu keçidinin mega menyuda göstərdiyi komponent."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Köhnə: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (bu saytda mövcud deyil)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Bu menyu keçidi sadə alt keçidlər siyahısı əvəzinə mega menyu komponentini göstərir."

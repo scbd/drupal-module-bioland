@@ -1683,3 +1683,23 @@ msgstr "GBF-ийн 7 дугаар зорилтын үндэсний зорилт
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Бүртгэлтэй агуулгын төрөл бүрт нэг холбоос болон холбоосын дэд элементүүд; үргэлж харагдана."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Мега цэсний бүрэлдэхүүн"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Энэ цэсний холбоос мега цэсэнд харуулах бүрэлдэхүүн."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Хуучин: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (энэ сайт дээр байхгүй)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Энэ цэсний холбоос дэд холбоосын энгийн жагсаалтын оронд мега цэсний бүрэлдэхүүнийг харуулна."

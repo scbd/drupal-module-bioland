@@ -1750,3 +1750,23 @@ msgstr "Kartice nacionalnih ciljeva za cilj 7 GBF-a, u karticama po zemljama; uv
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Po jedan link za svaku vrstu sadržaja koja ima zapise, uz podređene stavke linka; uvijek prikazano."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponenta mega izbornika"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponenta koju ova veza izbornika prikazuje u mega izborniku."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Naslijeđeno: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (nije dostupno na ovoj stranici)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ova veza izbornika prikazuje komponentu mega izbornika umjesto obične liste podveza."

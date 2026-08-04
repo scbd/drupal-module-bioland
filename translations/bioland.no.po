@@ -1683,3 +1683,23 @@ msgstr "Kort for nasjonale mål for GBF-mål 7, i faner per land; vises alltid."
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Én lenke per innholdstype som har oppføringer, pluss lenkens egne underlenker; vises alltid."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megameny-komponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponenten denne menylenken viser i megamenyen."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Utdatert: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ikke tilgjengelig på dette nettstedet)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Denne menylenken viser en megameny-komponent i stedet for en enkel liste over underlenker."

@@ -1683,3 +1683,23 @@ msgstr "Kad sasaran kebangsaan bagi sasaran 7 GBF, dalam tab mengikut negara; se
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Satu pautan bagi setiap jenis kandungan yang mempunyai rekod, berserta anak pautan itu sendiri; sentiasa dipaparkan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponen mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponen yang dipaparkan oleh pautan menu ini dalam mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Warisan: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (tidak tersedia di laman ini)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Pautan menu ini memaparkan komponen mega menu dan bukan senarai pautan anak biasa."

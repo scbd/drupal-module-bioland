@@ -1772,3 +1772,23 @@ msgstr "Κάρτες εθνικών στόχων για τον στόχο 7 το
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Ένας σύνδεσμος για κάθε τύπο περιεχομένου που έχει εγγραφές, καθώς και τα θυγατρικά στοιχεία του συνδέσμου· εμφανίζεται πάντα."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Στοιχείο μεγάλου μενού"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Το στοιχείο που εμφανίζει αυτός ο σύνδεσμος μενού στο μεγάλο μενού."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Παλαιό: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (μη διαθέσιμο σε αυτόν τον ιστότοπο)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Αυτός ο σύνδεσμος μενού εμφανίζει ένα στοιχείο μεγάλου μενού αντί για μια απλή λίστα θυγατρικών συνδέσμων."

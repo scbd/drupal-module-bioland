@@ -1683,3 +1683,23 @@ msgstr "GBF ඉලක්ක 7 සඳහා ජාතික ඉලක්ක ක�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "වාර්තා ඇති සෑම අන්තර්ගත වර්ගයකටම එක් සබැඳියක් සහ සබැඳියේම උප අංග; සැමවිටම පෙන්වයි."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "මෙගා මෙනු සංරචකය"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "මෙම මෙනු සබැඳිය මෙගා මෙනුවේ පෙන්වන සංරචකය."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "පැරණි: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (මෙම අඩවියේ නොමැත)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "මෙම මෙනු සබැඳිය දරු සබැඳි සරල ලැයිස්තුවක් වෙනුවට මෙගා මෙනු සංරචකයක් පෙන්වයි."

@@ -1683,3 +1683,23 @@ msgstr "Karty celów krajowych dla celu 7 GBF, w kartach według krajów; zawsze
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Po jednym odnośniku dla każdego typu treści, który ma rekordy, oraz elementy podrzędne odnośnika; zawsze widoczne."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponent mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponent wyświetlany przez ten odnośnik menu w mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Starsze: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (niedostępne w tej witrynie)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ten odnośnik menu wyświetla komponent mega menu zamiast zwykłej listy odnośników podrzędnych."

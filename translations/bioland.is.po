@@ -1683,3 +1683,23 @@ msgstr "Spjöld landsmarkmiða fyrir GBF-markmið 7, í flipum eftir löndum; al
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Einn tengill fyrir hverja efnistegund sem hefur færslur, ásamt undirtenglum tengilsins; alltaf sýnt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Eining megavalmyndar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Einingin sem þessi valmyndartengill birtir í megavalmyndinni."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Eldra: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ekki í boði á þessu vefsvæði)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Þessi valmyndartengill birtir einingu megavalmyndar í stað einfalds lista undirtengla."

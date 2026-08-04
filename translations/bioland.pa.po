@@ -1683,3 +1683,23 @@ msgstr "GBF ਟੀਚਾ 7 ਲਈ ਰਾਸ਼ਟਰੀ ਟੀਚਾ ਕਾਰ�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "ਰਿਕਾਰਡ ਵਾਲੀ ਹਰ ਸਮੱਗਰੀ ਕਿਸਮ ਲਈ ਇੱਕ ਲਿੰਕ ਅਤੇ ਲਿੰਕ ਦੇ ਆਪਣੇ ਉਪ-ਤੱਤ; ਹਮੇਸ਼ਾ ਦਿਖਾਏ ਜਾਂਦੇ ਹਨ।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "ਮੈਗਾ ਮੀਨੂ ਕੰਪੋਨੈਂਟ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "ਉਹ ਕੰਪੋਨੈਂਟ ਜੋ ਇਹ ਮੀਨੂ ਲਿੰਕ ਮੈਗਾ ਮੀਨੂ ਵਿੱਚ ਦਿਖਾਉਂਦਾ ਹੈ।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "ਪੁਰਾਣਾ: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ਇਸ ਸਾਈਟ ਉੱਤੇ ਉਪਲਬਧ ਨਹੀਂ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "ਇਹ ਮੀਨੂ ਲਿੰਕ ਬਾਲ ਲਿੰਕਾਂ ਦੀ ਸਧਾਰਨ ਸੂਚੀ ਦੀ ਥਾਂ ਮੈਗਾ ਮੀਨੂ ਕੰਪੋਨੈਂਟ ਦਿਖਾਉਂਦਾ ਹੈ।"

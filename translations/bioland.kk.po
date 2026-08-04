@@ -1683,3 +1683,23 @@ msgstr "GBF 7-мақсаты бойынша ұлттық мақсат карто
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Жазбалары бар әрбір мазмұн түріне бір сілтеме және сілтеменің өз ішкі элементтері; әрқашан көрсетіледі."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Мега мәзір компоненті"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Осы мәзір сілтемесі мега мәзірде көрсететін компонент."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Ескірген: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (бұл сайтта қолжетімсіз)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Бұл мәзір сілтемесі еншілес сілтемелердің қарапайым тізімінің орнына мега мәзір компонентін көрсетеді."

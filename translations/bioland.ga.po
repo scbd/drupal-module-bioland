@@ -1683,3 +1683,23 @@ msgstr "Cártaí spriocanna náisiúnta do sprioc 7 an GBF, i gcluaisíní de r�
 #: src/Service/BiolandComponentRegistry.php
 msgid "One link per content type that has records, plus the link's own children; always shown."
 msgstr "Nasc amháin do gach cineál ábhair a bhfuil taifid aige, chomh maith le leanaí an naisc féin; taispeántar i gcónaí."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Comhpháirt an ollroghchláir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "An chomhpháirt a thaispeánann an nasc roghchláir seo san ollroghchlár."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Oidhreacht: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (níl sé ar fáil ar an suíomh seo)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Taispeánann an nasc roghchláir seo comhpháirt ollroghchláir in ionad liosta simplí de naisc linbh."
