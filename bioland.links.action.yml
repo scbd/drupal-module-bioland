@@ -9,6 +9,7 @@
 bioland.menu_link_component_add:
   route_name: bioland.menu_link_component.add
   title: 'Add component menu link'
+  class: \Drupal\menu_ui\Plugin\Menu\LocalAction\MenuLinkAdd
   weight: 1
   appears_on:
     - entity.menu.edit_form

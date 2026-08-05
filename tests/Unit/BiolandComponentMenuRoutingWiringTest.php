@@ -243,6 +243,11 @@ class BiolandComponentMenuRoutingWiringTest extends TestCase {
       $action['appears_on'],
       'The action must appear wherever core\'s "Add link" does - the menu manage screen.'
     );
+    $this->assertSame(
+      '\Drupal\menu_ui\Plugin\Menu\LocalAction\MenuLinkAdd',
+      $action['class'],
+      'Without core\'s MenuLinkAdd plugin class, saving the component form would redirect to the link\'s target URL instead of back to the menu edit screen.'
+    );
   }
 
   /**

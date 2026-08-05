@@ -87,6 +87,27 @@ class BiolandComponentMenuLinkFormTest extends TestCase {
   }
 
   /**
+   * getFormId() concatenates entity type before bundle, matching core.
+   *
+   * menu_link_content's entity type id and bundle are both "menu_link_content",
+   * so testFormIdCarriesTheOperationAndKeepsTheModulePrefix() cannot tell the
+   * two possible concatenation orders apart. This double uses a distinct
+   * bundle so a swap in EntityForm::getFormId() (bundle before entity type,
+   * instead of core's entity type before bundle) would fail this assertion.
+   */
+  public function testFormIdConcatenatesEntityTypeBeforeBundle(): void {
+    $form = new BiolandComponentMenuLinkForm();
+    $form->setEntity(new TestFormMenuLinkEntityWithDistinctBundle());
+    $form->setOperation(BiolandComponentMenuFormMode::OPERATION);
+
+    $this->assertSame(
+      'menu_link_content_custom_bundle_component_form',
+      $form->getFormId(),
+      'Core concatenates entity-type-id then bundle; a swap would produce "custom_bundle_menu_link_content_component_form" instead.'
+    );
+  }
+
+  /**
    * The default operation is untouched - the regular add/edit form is intact.
    */
   public function testDefaultOperationFormIdIsUnchanged(): void {
@@ -201,6 +222,23 @@ class TestFormMenuLinkEntityType {
    */
   public function hasKey($key) {
     return $key === 'bundle';
+  }
+
+}
+
+/**
+ * Entity double whose bundle differs from its entity type id.
+ *
+ * TestFormMenuLinkEntity above shares the same string for both, which cannot
+ * distinguish EntityForm::getFormId()'s concatenation order. This double can.
+ */
+class TestFormMenuLinkEntityWithDistinctBundle extends TestFormMenuLinkEntity {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function bundle() {
+    return 'custom_bundle';
   }
 
 }

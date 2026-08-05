@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Serves the dedicated "Add component menu link" form.
  *
- * A near-copy of core \Drupal\menu_ui\Controller\MenuController::addLink():
+ * A near-copy of core \Drupal\menu_link_content\Controller\MenuController::addLink():
  * create an unsaved menu_link_content entity with menu_name prefilled from the
  * {menu} route parameter, then hand it to the entity form builder. The single
  * difference is the operation passed to the builder — Component mode instead
