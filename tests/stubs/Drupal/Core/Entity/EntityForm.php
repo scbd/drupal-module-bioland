@@ -82,8 +82,8 @@ class EntityForm {
   /**
    * Returns the concrete form id.
    *
-   * Mirrors core: entity type id, prefixed by the bundle when the entity type
-   * has a bundle key, suffixed by the operation when it is not "default".
+   * Mirrors core: entity type id, suffixed by the bundle when the entity type
+   * has a bundle key, then suffixed by the operation when it is not "default".
    *
    * @return string
    *   The form id.
@@ -91,7 +91,7 @@ class EntityForm {
   public function getFormId() {
     $form_id = $this->entity->getEntityTypeId();
     if ($this->entity->getEntityType()->hasKey('bundle')) {
-      $form_id = $this->entity->bundle() . '_' . $form_id;
+      $form_id = $form_id . '_' . $this->entity->bundle();
     }
     if ($this->operation != 'default') {
       $form_id = $form_id . '_' . $this->operation;
