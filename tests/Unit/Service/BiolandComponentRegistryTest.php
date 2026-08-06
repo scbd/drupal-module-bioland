@@ -27,14 +27,14 @@ class BiolandComponentRegistryTest extends TestCase {
   private const EXPECTED_COMPONENTS = [
     'national-report' => ['National Reports', FALSE],
     'national-report-six' => ['National Report (6th)', FALSE],
-    'bch' => ['BCH Records', TRUE],
-    'absch' => ['ABS-CH Records', TRUE],
+    'bch' => ['BCH Records', FALSE],
+    'absch' => ['ABS-CH Records', FALSE],
     'focal-points' => ['National Focal Points', FALSE],
     'country-profiles' => ['Country Profiles', FALSE],
     'content-type' => ['Content Type Listing', TRUE],
-    'forums' => ['Forums', TRUE],
+    'forums' => ['Forums', FALSE],
     'national-targets-7' => ['National Targets (GBF 7)', FALSE],
-    'all-content-types' => ['All Content Types', TRUE],
+    'all-content-types' => ['All Content Types', FALSE],
   ];
 
   /**
@@ -83,18 +83,17 @@ class BiolandComponentRegistryTest extends TestCase {
   }
 
   /**
-   * BSL sites are offered only the narrowed subset.
+   * BSL sites are offered only the Content Type Listing.
+   *
+   * Mirrors the BSL mega-menu settings form, which exposes only the Content
+   * Type Menus section (BiolandMegaMenuForm returns early for everything
+   * else).
    */
   public function testOptionsForBslSite(): void {
-    $expected = [
-      'bl2-component-bch' => 'BCH Records',
-      'bl2-component-absch' => 'ABS-CH Records',
-      'bl2-component-content-type' => 'Content Type Listing',
-      'bl2-component-forums' => 'Forums',
-      'bl2-component-all-content-types' => 'All Content Types',
-    ];
-
-    $this->assertSame($expected, $this->registry->optionsFor(TRUE));
+    $this->assertSame(
+      ['bl2-component-content-type' => 'Content Type Listing'],
+      $this->registry->optionsFor(TRUE)
+    );
   }
 
   /**
@@ -400,6 +399,59 @@ class BiolandComponentRegistryTest extends TestCase {
       'Every non-component token survives the round trip, in order and spelling.'
     );
     $this->assertSame(['bl2-component-bch'], $this->registry->findComponentTokens($merged));
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Content-type binding tokens.                                        */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Binding-token shape rules: single spelling, non-empty slug.
+   */
+  public function testContentTypeBindingTokenRules(): void {
+    $this->assertSame('bl2-content-type-news', $this->registry->contentTypeBindingToken('news'));
+    $this->assertTrue($this->registry->isContentTypeBindingToken('bl2-content-type-news'));
+    $this->assertFalse($this->registry->isContentTypeBindingToken('bl2-content-type-'), 'An empty slug is not a binding.');
+    $this->assertFalse($this->registry->isContentTypeBindingToken('bl2-component-content-type'), 'The component token is not a binding.');
+    $this->assertFalse($this->registry->isContentTypeBindingToken('mm-content-type-news'), 'No legacy spelling exists for bindings.');
+  }
+
+  /**
+   * Bindings are found in stored order, from either storage shape.
+   */
+  public function testFindContentTypeBindings(): void {
+    $this->assertSame(
+      ['news', 'event'],
+      $this->registry->findContentTypeBindings(['bl2-component-content-type bl2-content-type-news arrow bl2-content-type-event'])
+    );
+    $this->assertSame([], $this->registry->findContentTypeBindings(['login bl2-component-forums']));
+  }
+
+  /**
+   * Merging a binding replaces existing ones and keeps the storage shape.
+   */
+  public function testMergeContentTypeBinding(): void {
+    $stored = ['arrow bl2-component-content-type bl2-content-type-news'];
+    $this->assertSame(
+      ['arrow bl2-component-content-type bl2-content-type-event'],
+      $this->registry->mergeContentTypeBinding($stored, 'event'),
+      'The component token and every other class survive; only the binding changes.'
+    );
+    $this->assertSame(
+      ['arrow bl2-component-content-type'],
+      $this->registry->mergeContentTypeBinding($stored, ''),
+      'An empty slug unbinds.'
+    );
+    $this->assertSame(
+      'arrow bl2-content-type-event',
+      $this->registry->mergeContentTypeBinding('arrow bl2-content-type-news', 'event'),
+      'A string value stays a string.'
+    );
+    $this->assertSame(
+      ['arrow', 'bl2-content-type-event'],
+      $this->registry->mergeContentTypeBinding(['arrow', 'bl2-content-type-news'], 'event'),
+      'A multi-element array stays one token per element.'
+    );
   }
 
 }

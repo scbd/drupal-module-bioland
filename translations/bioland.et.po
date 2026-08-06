@@ -1778,3 +1778,11 @@ msgstr "See menüülink kuvab megamenüü komponendi tavalise alamlinkide loendi
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Lisa komponendi menüülink"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Sisutüüp"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Sisutüüp, mida see loend kuvab."

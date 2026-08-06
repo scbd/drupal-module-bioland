@@ -1707,3 +1707,11 @@ msgstr "ಈ ಮೆನು ಕೊಂಡಿ ಮಕ್ಕಳ ಕೊಂಡಿಗಳ �
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "ಘಟಕ ಮೆನು ಲಿಂಕ್ ಸೇರಿಸಿ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "ವಿಷಯದ ಪ್ರಕಾರ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "ಈ ಪಟ್ಟಿ ತೋರಿಸುವ ವಿಷಯದ ಪ್ರಕಾರ."

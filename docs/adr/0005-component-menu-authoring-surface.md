@@ -33,6 +33,25 @@ unknown component-shaped token surfaces as a preserved, disabled "Legacy" option
 - Config-object option list instead of a PHP constant. Rejected: creates a second source of truth
   alongside the registry.
 
+## Amendment (2026-08-06): guided form, hidden attributes
+
+Editor feedback on the first shipped form: the collapsed per-option description list read as a
+second, meaningless "Mega-menu component" box, and exposing the raw Attributes fieldset invited
+the exact hand-typing this surface exists to remove. The form is now fully guided:
+
+- The Attributes box is hidden (`#access` FALSE, not removed — the contrib entity builder still
+  round-trips every class the picker does not own through the hidden textfield).
+- The picker's description shows one sentence for the selected component via `#states`; the
+  details list is gone.
+- The Content Type Listing component gets a second select of published content types (the same
+  set the mega-menu settings form configures under Content Type Menus), writing the
+  `bl2-content-type-<slug>` binding class the frontend reads. Both token families are now owned
+  by the registry; everything else still survives verbatim.
+- BSL sites offer only the Content Type Listing, mirroring the BSL mega-menu settings form, which
+  exposes only the Content Type Menus section. Non-BSL sites keep the full list.
+- Title and Link prefill from the selection (JS, empty-field-only, always overwritable); Link
+  defaults to `<nolink>` on add, matching every existing component link.
+
 ## Consequences
 
 - The picker list can drift from `bioland-head`'s actual components; mitigated by a pinning unit

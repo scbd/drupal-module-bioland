@@ -1707,3 +1707,11 @@ msgstr "Бұл мәзір сілтемесі еншілес сілтемелер
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Компонент мәзір сілтемесін қосу"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Мазмұн түрі"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Осы тізім көрсететін мазмұн түрі."

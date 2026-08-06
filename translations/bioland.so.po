@@ -1707,3 +1707,11 @@ msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu k
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ku dar xiriirka menu-ga qaybta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Nooca nuxurka"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Nooca nuxurka ee liiskani muujinayo."

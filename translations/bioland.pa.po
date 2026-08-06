@@ -1707,3 +1707,11 @@ msgstr "ਇਹ ਮੀਨੂ ਲਿੰਕ ਬਾਲ ਲਿੰਕਾਂ ਦੀ ਸ
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "ਕੰਪੋਨੈਂਟ ਮੀਨੂ ਲਿੰਕ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "ਇਹ ਸੂਚੀ ਜਿਸ ਕਿਸਮ ਦੀ ਸਮੱਗਰੀ ਦਿਖਾਉਂਦੀ ਹੈ।"

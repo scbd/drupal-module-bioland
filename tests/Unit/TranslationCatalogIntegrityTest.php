@@ -86,6 +86,10 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // action title. One string, two declaration sites - both must stay in
     // sync with this entry or the action renders untranslated.
     'Add component menu link',
+    // src/Service/BiolandComponentMenuFormMode.php: the content-type
+    // sub-select of the Content Type Listing component.
+    'Content type',
+    'The content type this listing shows.',
   ];
 
   /**

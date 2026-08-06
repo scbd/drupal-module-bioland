@@ -1707,3 +1707,11 @@ msgstr "Энэ цэсний холбоос дэд холбоосын энгий�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Бүрэлдэхүүний цэсний холбоос нэмэх"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Агуулгын төрөл"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Энэ жагсаалтад харуулах агуулгын төрөл."

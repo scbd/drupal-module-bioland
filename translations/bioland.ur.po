@@ -1707,3 +1707,11 @@ msgstr "یہ مینو لنک ذیلی لنکس کی سادہ فہرست کے ب�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "جزو مینو لنک شامل کریں"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "مواد کی قسم"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "مواد کی وہ قسم جو یہ فہرست دکھاتی ہے۔"

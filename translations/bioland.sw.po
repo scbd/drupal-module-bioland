@@ -1707,3 +1707,11 @@ msgstr "Kiungo hiki cha menyu huonyesha kijenzi cha menyu kuu badala ya orodha r
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ongeza kiungo cha menyu ya kijenzi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Aina ya maudhui"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Aina ya maudhui inayoonyeshwa na orodha hii."

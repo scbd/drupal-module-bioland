@@ -3,7 +3,9 @@
 namespace Drupal\bioland\Service;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
@@ -91,9 +93,27 @@ class BiolandComponentMenuFormMode {
   public const INTRO_ELEMENT = 'bioland_component_intro';
 
   /**
-   * Form array key of the per-option description list.
+   * Form array key of the per-option description container.
    */
   public const DESCRIPTIONS_ELEMENT = 'bioland_component_descriptions';
+
+  /**
+   * Form array key of the content-type sub-select, and its submitted value.
+   *
+   * Shown (and required) only while the picker selects the Content Type
+   * Listing component; its value becomes the "bl2-content-type-<slug>"
+   * binding class the frontend reads.
+   */
+  public const CONTENT_TYPE_ELEMENT = 'bioland_component_content_type';
+
+  /**
+   * Form state key holding the stored binding slugs, for change detection.
+   *
+   * The entity builder rewrites bindings only when the editor actually picked
+   * a different content type; an unchanged save must leave a stored
+   * multi-binding link (the frontend accepts several) byte-identical.
+   */
+  public const STORED_BINDINGS_KEY = 'bioland_component_stored_bindings';
 
   /**
    * #entity_builders key this service registers itself under.
@@ -150,6 +170,20 @@ class BiolandComponentMenuFormMode {
   protected $currentUser;
 
   /**
+   * The entity type manager, read for the content-type terms.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface|null
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The language manager, for translated content-type labels.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface|null
+   */
+  protected $languageManager;
+
+  /**
    * Constructs the Component-menu form mode service.
    *
    * @param \Drupal\bioland\Service\BiolandComponentRegistry $registry
@@ -158,11 +192,19 @@ class BiolandComponentMenuFormMode {
    *   The configuration factory.
    * @param \Drupal\Core\Session\AccountProxyInterface $current_user
    *   The current user.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface|null $entity_type_manager
+   *   The entity type manager. Nullable only so the pure token/save rules stay
+   *   unit-testable without a container; the wired service always has it, and
+   *   without it the content-type sub-select is simply not offered.
+   * @param \Drupal\Core\Language\LanguageManagerInterface|null $language_manager
+   *   The language manager, same contract.
    */
-  public function __construct(BiolandComponentRegistry $registry, ConfigFactoryInterface $config_factory, AccountProxyInterface $current_user) {
+  public function __construct(BiolandComponentRegistry $registry, ConfigFactoryInterface $config_factory, AccountProxyInterface $current_user, ?EntityTypeManagerInterface $entity_type_manager = NULL, ?LanguageManagerInterface $language_manager = NULL) {
     $this->registry = $registry;
     $this->configFactory = $config_factory;
     $this->currentUser = $current_user;
+    $this->entityTypeManager = $entity_type_manager;
+    $this->languageManager = $language_manager;
   }
 
   /**
@@ -269,6 +311,7 @@ class BiolandComponentMenuFormMode {
     // The builder reads this to tell an intentionally preserved token from an
     // arbitrary submitted value.
     $form_state->set(self::PRESERVED_TOKEN_KEY, $preserved_token);
+    $form_state->set(self::STORED_BINDINGS_KEY, $this->registry->findContentTypeBindings($stored_class));
 
     $form[self::INTRO_ELEMENT] = [
       '#type' => 'container',
@@ -296,15 +339,30 @@ class BiolandComponentMenuFormMode {
 
     $form[self::DESCRIPTIONS_ELEMENT] = $this->descriptionsElement($options);
 
-    // Show the editor only the classes the picker does not own; the component
-    // token is merged back by the entity builder. Skipped when the contrib
-    // fieldset is absent (the editor lacks the permission, or the attribute is
-    // not configured), in which case there is nothing to strip.
+    $form[self::CONTENT_TYPE_ELEMENT] = $this->contentTypeElement($stored_class, $form_state);
+
+    // The classes are the picker's output, not the editor's input: the entity
+    // builder writes the component and binding tokens, and everything else the
+    // link carries survives through the hidden textfield's default value. The
+    // contrib fieldset is therefore hidden, not removed — menu_link_attributes'
+    // entity builder still reads these elements' (default) values when it
+    // rebuilds link.options.attributes on save, so removing them would wipe
+    // every non-component class instead of preserving it.
     if (isset($form['options']['attributes']['class'])) {
       $form['options']['attributes']['class']['#default_value'] = implode(
         ' ',
         $this->registry->stripComponentTokens($stored_class, $site_id)
       );
+      $form['options']['attributes']['#access'] = FALSE;
+    }
+
+    // A component link is a mega-menu heading, not a destination: every
+    // existing one stores route:<nolink>. Prefill (never force — the editor
+    // may still point it somewhere) the empty link field of a new link.
+    if (method_exists($entity, 'isNew') && $entity->isNew()
+      && isset($form['link']['widget'][0]['uri'])
+      && empty($form['link']['widget'][0]['uri']['#default_value'])) {
+      $form['link']['widget'][0]['uri']['#default_value'] = '<nolink>';
     }
 
     $form['#attributes']['class'][] = self::FORM_CLASS;
@@ -371,6 +429,7 @@ class BiolandComponentMenuFormMode {
     $options = is_array($item->options) ? $item->options : [];
     $class = $options['attributes']['class'] ?? [];
     $merged = $this->registry->mergeComponentToken($class, $token, $site_id);
+    $merged = $this->mergeContentTypeBinding($merged, $token, $form_state);
 
     if ($this->registry->extractClasses($merged) === []) {
       unset($options['attributes']['class']);
@@ -537,10 +596,15 @@ class BiolandComponentMenuFormMode {
   }
 
   /**
-   * Builds the per-option description list shown under the picker.
+   * Builds the per-option description shown under the picker.
    *
-   * Rendered as escaped plain text (no markup, no #allowed_tags widening);
-   * core select options cannot carry per-option descriptions themselves.
+   * One container per offered component, each visible only while its option
+   * is selected (#states on the picker), so the editor reads a single
+   * sentence about the current choice instead of opening a collapsed list of
+   * all of them — the earlier details element read as a second, redundant
+   * "Mega-menu component" box. Rendered as escaped plain text (no markup, no
+   * #allowed_tags widening); core select options cannot carry per-option
+   * descriptions themselves.
    *
    * @param array $options
    *   The picker options, canonical token => label.
@@ -549,34 +613,235 @@ class BiolandComponentMenuFormMode {
    *   A render array; empty when no offered option has a description.
    */
   protected function descriptionsElement(array $options): array {
-    $items = [];
+    $element = [
+      '#type' => 'container',
+      '#weight' => -9,
+      '#attributes' => ['class' => [self::FORM_CLASS . '__descriptions']],
+    ];
+
+    $found = FALSE;
     foreach (array_keys($this->registry->getComponents()) as $suffix) {
       $token = $this->registry->canonicalToken($suffix);
       $description = $this->registry->getDescription($suffix);
       if (!isset($options[$token]) || $description === '') {
         continue;
       }
-      $items[] = [
-        'label' => ['#plain_text' => $options[$token]],
-        'separator' => ['#plain_text' => ': '],
-        'description' => ['#plain_text' => $description],
+      $found = TRUE;
+      $element[$suffix] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => [self::FORM_CLASS . '__description']],
+        '#states' => [
+          'visible' => [
+            ':input[name="' . self::PICKER_ELEMENT . '"]' => ['value' => $token],
+          ],
+        ],
+        'text' => ['#plain_text' => $description],
       ];
     }
 
-    if ($items === []) {
+    return $found ? $element : [];
+  }
+
+  /**
+   * Builds the content-type sub-select for the Content Type Listing component.
+   *
+   * Offered whenever that component is offered; visible and required (both by
+   * #states, on the picker's value) only while it is the selected component.
+   * The options are the same published content types the mega-menu settings
+   * form configures under Content Type Menus, keyed by the frontend slug the
+   * binding class carries.
+   *
+   * @param array|string $stored_class
+   *   The entity's stored class value, read for the current binding.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return array
+   *   A render array; empty when no content types can be offered (the
+   *   component itself then still saves, just unbound — matching a hand-typed
+   *   component class before this form existed).
+   */
+  protected function contentTypeElement($stored_class, FormStateInterface $form_state): array {
+    $options = $this->contentTypeOptions();
+    if ($options === []) {
       return [];
     }
 
+    $stored = $this->registry->findContentTypeBindings($stored_class);
+    $default = $stored[0] ?? NULL;
+    if ($default !== NULL && !isset($options[$default])) {
+      // A binding whose term is gone (or unpublished) is never dropped or
+      // swapped silently: offer the stored slug as the selected current value
+      // so an unchanged save keeps it verbatim.
+      $options = [$default => $this->t('Legacy: @class', ['@class' => $this->registry->contentTypeBindingToken($default)])] + $options;
+    }
+
+    $component_token = $this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX);
+
     return [
-      '#type' => 'details',
-      '#title' => $this->t('Mega-menu component'),
-      '#open' => FALSE,
-      '#weight' => -9,
-      'list' => [
-        '#theme' => 'item_list',
-        '#items' => $items,
+      '#type' => 'select',
+      '#title' => $this->t('Content type'),
+      '#options' => $options,
+      '#default_value' => $default,
+      '#empty_option' => $this->t('- Select -'),
+      '#description' => $this->t('The content type this listing shows.'),
+      '#weight' => -8,
+      '#states' => [
+        'visible' => [
+          ':input[name="' . self::PICKER_ELEMENT . '"]' => ['value' => $component_token],
+        ],
+        'required' => [
+          ':input[name="' . self::PICKER_ELEMENT . '"]' => ['value' => $component_token],
+        ],
       ],
     ];
+  }
+
+  /**
+   * Returns the offerable content types, frontend slug => translated label.
+   *
+   * The same source the mega-menu settings form lists under Content Type
+   * Menus: published terms of the "tags" vocabulary. The slug is derived from
+   * the term's untranslated name exactly as the frontend derives it, so the
+   * binding class written here is the one the Content Type Listing component
+   * looks up; the label prefers the plural form in the current language.
+   *
+   * @return array
+   *   Slug => label, sorted by label; empty when the storage is unavailable
+   *   (no container half-wired, no fatals on a broken vocabulary).
+   */
+  protected function contentTypeOptions(): array {
+    if ($this->entityTypeManager === NULL) {
+      return [];
+    }
+
+    $options = [];
+    try {
+      $terms = $this->entityTypeManager
+        ->getStorage('taxonomy_term')
+        ->loadByProperties(['vid' => 'tags', 'status' => 1]);
+
+      $langcode = $this->languageManager !== NULL
+        ? $this->languageManager->getCurrentLanguage()->getId()
+        : NULL;
+
+      foreach ($terms as $term) {
+        $slug = $this->contentTypeSlug((string) $term->label());
+        if ($slug === '') {
+          continue;
+        }
+        $translated = ($langcode !== NULL && method_exists($term, 'hasTranslation') && $term->hasTranslation($langcode))
+          ? $term->getTranslation($langcode)
+          : $term;
+        $label = (method_exists($translated, 'hasField') && $translated->hasField('field_plural') && !$translated->get('field_plural')->isEmpty())
+          ? $translated->get('field_plural')->value
+          : $translated->label();
+        $options[$slug] = (string) $label;
+      }
+      asort($options);
+    }
+    catch (\Exception $e) {
+      return [];
+    }
+
+    return $options;
+  }
+
+  /**
+   * Derives the frontend content-type slug from a term's untranslated name.
+   *
+   * Kebab-case of the singular name — "Government Ministry or Institute"
+   * becomes "government-ministry-or-institute" — matching the slugs in
+   * BiolandMegaMenuForm::getContentTypeReference() and the classes existing
+   * links already store.
+   *
+   * @param string $name
+   *   The term's untranslated (default language) name.
+   *
+   * @return string
+   *   The slug, or an empty string for a name with no usable characters.
+   */
+  protected function contentTypeSlug(string $name): string {
+    return trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($name)), '-');
+  }
+
+  /**
+   * Applies the submitted content-type binding to a merged class value.
+   *
+   * Called with the value mergeComponentToken() produced, so the component
+   * token is already in place. Three cases:
+   *   - the saved component is not the Content Type Listing: every binding
+   *     token is stripped — it can only ever have described a component the
+   *     link no longer renders;
+   *   - it is, and the editor picked a different content type than the first
+   *     stored binding: the bindings are rewritten to that one slug;
+   *   - it is, and the selection is unchanged (or nothing valid was
+   *     submitted): the stored bindings pass through byte-identically, which
+   *     is what keeps a hand-authored multi-binding link intact.
+   *
+   * @param array|string $classValue
+   *   The class value with the component token already merged.
+   * @param string $componentToken
+   *   The component token that was merged.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state carrying the sub-select value and the stored bindings.
+   *
+   * @return array|string
+   *   The class value with bindings applied, same shape as $classValue.
+   */
+  protected function mergeContentTypeBinding(array|string $classValue, string $componentToken, FormStateInterface $form_state): array|string {
+    $content_type_token = $this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX);
+    if ($componentToken !== $content_type_token) {
+      return $this->registry->findContentTypeBindings($classValue) === []
+        ? $classValue
+        : $this->registry->mergeContentTypeBinding($classValue, '');
+    }
+
+    $slug = $this->submittedContentTypeSlug($form_state);
+    if ($slug === NULL) {
+      return $classValue;
+    }
+
+    $stored = $form_state->get(self::STORED_BINDINGS_KEY);
+    $stored = is_array($stored) ? $stored : [];
+    if (($stored[0] ?? NULL) === $slug) {
+      return $classValue;
+    }
+
+    return $this->registry->mergeContentTypeBinding($classValue, $slug);
+  }
+
+  /**
+   * Returns the slug the sub-select submitted, or NULL when it must be ignored.
+   *
+   * The same storage-side gate as submittedToken(): only a slug the site
+   * offers, or the stored binding apply() chose to preserve, may become a
+   * binding class.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return string|null
+   *   The slug to bind, or NULL to leave stored bindings untouched.
+   */
+  protected function submittedContentTypeSlug(FormStateInterface $form_state): ?string {
+    $value = $form_state->getValue(self::CONTENT_TYPE_ELEMENT);
+    if (!is_scalar($value)) {
+      return NULL;
+    }
+
+    $slug = trim((string) $value);
+    if ($slug === '') {
+      return NULL;
+    }
+
+    if (isset($this->contentTypeOptions()[$slug])) {
+      return $slug;
+    }
+
+    $stored = $form_state->get(self::STORED_BINDINGS_KEY);
+
+    return (is_array($stored) && in_array($slug, $stored, TRUE)) ? $slug : NULL;
   }
 
   /**

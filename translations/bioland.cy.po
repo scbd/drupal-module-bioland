@@ -1796,3 +1796,11 @@ msgstr "Mae'r ddolen ddewislen hon yn dangos cydran mega ddewislen yn lle rhestr
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ychwanegu dolen ddewislen cydran"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Math o gynnwys"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Y math o gynnwys y mae'r rhestr hon yn ei ddangos."

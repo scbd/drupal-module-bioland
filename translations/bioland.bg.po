@@ -1707,3 +1707,11 @@ msgstr "Тази връзка от менюто показва компонен�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Добавяне на връзка от меню компонент"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Тип съдържание"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Типът съдържание, който показва този списък."

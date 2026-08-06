@@ -1627,3 +1627,11 @@ msgstr "يعرض رابط القائمة هذا مكوّن القائمة الض
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "إضافة رابط قائمة مكوّن"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "نوع المحتوى"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "نوع المحتوى الذي تعرضه هذه القائمة."

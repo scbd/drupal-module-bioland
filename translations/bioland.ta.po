@@ -1707,3 +1707,11 @@ msgstr "இந்த மெனு இணைப்பு சேய் இணை�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "கூறு மெனு இணைப்பைச் சேர்க்கவும்"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "உள்ளடக்க வகை"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "இந்தப் பட்டியல் காட்டும் உள்ளடக்க வகை."

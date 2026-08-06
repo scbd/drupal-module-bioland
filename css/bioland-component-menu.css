@@ -54,23 +54,18 @@
   margin-top: 0.25em;
 }
 
-/* Per-option description list rendered under the picker. */
-.bioland-component-menu-form details .item-list ul {
-  margin-left: 1.5em;
-  line-height: 1.6;
+/* The one-line description of the currently selected component (#states
+   shows exactly one at a time). */
+.bioland-component-menu-form__description {
+  font-style: italic;
+  color: #555;
+  margin: 0.25em 0 1em;
 }
 
-.bioland-component-menu-form details .item-list li {
-  margin-bottom: 0.35em;
-  color: #444;
-}
-
-/* The raw attributes fieldset stays available but visually secondary: the
-   picker owns the component token, this owns everything else. */
-.bioland-component-menu-form #edit-options-attributes,
-.bioland-component-menu-form details[data-drupal-selector="edit-options-attributes"] {
-  margin-top: 1.5em;
-  opacity: 0.9;
+/* The content-type sub-select, shown only for the Content Type Listing. */
+.bioland-component-menu-form select[name="bioland_component_content_type"] {
+  max-width: 32em;
+  width: 100%;
 }
 
 @media (max-width: 48em) {

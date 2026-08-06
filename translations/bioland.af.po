@@ -1707,3 +1707,11 @@ msgstr "Hierdie kieslysskakel vertoon 'n mega-kieslys-komponent in plaas van 'n 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Voeg komponent-kieslysskakel by"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Inhoudstipe"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Die inhoudstipe wat hierdie lys vertoon."

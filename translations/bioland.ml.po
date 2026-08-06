@@ -1707,3 +1707,11 @@ msgstr "ഈ മെനു ലിങ്ക് ഉപലിങ്കുകളുട
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "ഘടക മെനു ലിങ്ക് ചേർക്കുക"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "ഉള്ളടക്ക തരം"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "ഈ പട്ടിക കാണിക്കുന്ന ഉള്ളടക്ക തരം."

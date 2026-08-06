@@ -1707,3 +1707,11 @@ msgstr "Acest link de meniu afișează o componentă a meniului mare în locul u
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Adaugă legătură de meniu componentă"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tip de conținut"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Tipul de conținut afișat de această listă."

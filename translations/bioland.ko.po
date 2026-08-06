@@ -1707,3 +1707,11 @@ msgstr "이 메뉴 링크는 하위 링크의 단순 목록 대신 메가 메뉴
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "구성 요소 메뉴 링크 추가"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "콘텐츠 유형"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "이 목록에 표시되는 콘텐츠 유형입니다."

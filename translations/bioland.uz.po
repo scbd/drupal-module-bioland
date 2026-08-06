@@ -1707,3 +1707,11 @@ msgstr "Ushbu menyu havolasi oddiy quyi havolalar ro'yxati o'rniga mega menyu ko
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Komponent menyu havolasini qo'shish"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Kontent turi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Ushbu roʻyxat koʻrsatadigan kontent turi."

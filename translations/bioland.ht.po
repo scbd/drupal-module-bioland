@@ -1778,3 +1778,11 @@ msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ajoute yon lyen meni konpozan"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Kalite kontni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Kalite kontni lis sa a montre."

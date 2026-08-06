@@ -1707,3 +1707,11 @@ msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկ
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ավելացնել բաղադրիչի ցանկի հղում"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Բովանդակության տեսակ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Բովանդակության տեսակը, որը ցուցադրում է այս ցանկը:"

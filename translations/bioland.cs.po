@@ -1774,3 +1774,11 @@ msgstr "Tento odkaz nabídky zobrazuje komponentu mega nabídky místo běžnéh
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Přidat odkaz nabídky komponenty"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Typ obsahu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Typ obsahu, který tento seznam zobrazuje."

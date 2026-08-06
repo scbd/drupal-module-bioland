@@ -1707,3 +1707,11 @@ msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempli
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Żid ħolqa tal-menu tal-komponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tip ta' kontenut"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "It-tip ta' kontenut li turi din il-lista."

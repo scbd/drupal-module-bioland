@@ -1707,3 +1707,11 @@ msgstr "Ta povezava menija prikaže komponento mega menija namesto preprostega s
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Dodaj povezavo menija komponente"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Vrsta vsebine"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Vrsta vsebine, ki jo prikazuje ta seznam."

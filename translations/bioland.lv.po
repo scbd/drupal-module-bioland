@@ -1707,3 +1707,11 @@ msgstr "Šī izvēlnes saite rāda mega izvēlnes komponentu, nevis vienkāršu 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Pievienot komponenta izvēlnes saiti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Satura tips"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Satura tips, ko rāda šis saraksts."

@@ -20,8 +20,10 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  *
  * A stored class value carries tokens with several unrelated jobs (child-menu
  * binding, content-type binding, layout flags, the "login" and "our-targets"
- * markers). Only the component token belongs to this service; every other token
- * must survive a merge untouched, in its original order and spelling.
+ * markers). Two token families belong to this service: the component token and
+ * the "bl2-content-type-<slug>" binding token that tells the Content Type
+ * Listing component what to list. Every other token must survive a merge
+ * untouched, in its original order and spelling.
  *
  * SYNC CHECKLIST: self::COMPONENTS mirrors the components wired into the
  * frontend dispatcher at
@@ -59,6 +61,23 @@ class BiolandComponentRegistry {
   private const SITE_PREFIX_INFIX = '-component-';
 
   /**
+   * The component suffix that takes a content-type binding.
+   *
+   * The frontend's Content Type Listing reads its subject from a sibling
+   * "bl2-content-type-<slug>" class on the same link (bioland-head
+   * mega-menu/custom/content-type/index.vue getContentType()).
+   */
+  public const CONTENT_TYPE_SUFFIX = 'content-type';
+
+  /**
+   * Class prefix of a content-type binding token.
+   *
+   * Unlike component tokens this family has a single spelling — the frontend
+   * matches exactly this prefix.
+   */
+  public const CONTENT_TYPE_BINDING_PREFIX = 'bl2-content-type-';
+
+  /**
    * The mega-menu components, keyed by canonical class suffix.
    *
    * Each entry holds the untranslated English source strings plus the BSL
@@ -68,7 +87,10 @@ class BiolandComponentRegistry {
    *     condition (msgid).
    *   - bsl: TRUE when the component is offered on Biosafety Land (BSL) sites.
    *     The frontend gates nothing per flavour; this narrowing is a Drupal
-   *     authoring decision only, mirroring the mega-menu settings form.
+   *     authoring decision only, mirroring the mega-menu settings form — which
+   *     on a BSL site exposes ONLY the Content Type Menus section
+   *     (BiolandMegaMenuForm returns early for every other section), so only
+   *     the Content Type Listing component is offered there.
    *
    * Order is the picker's display order and is pinned by the unit test.
    */
@@ -85,12 +107,12 @@ class BiolandComponentRegistry {
     ],
     'bch' => [
       'label' => 'BCH Records',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
       'description' => "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty.",
     ],
     'absch' => [
       'label' => 'ABS-CH Records',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
       'description' => "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty.",
     ],
     'focal-points' => [
@@ -110,7 +132,7 @@ class BiolandComponentRegistry {
     ],
     'forums' => [
       'label' => 'Forums',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
       'description' => "Latest forum threads, plus the link's own children; hidden when empty.",
     ],
     'national-targets-7' => [
@@ -120,7 +142,7 @@ class BiolandComponentRegistry {
     ],
     'all-content-types' => [
       'label' => 'All Content Types',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
       'description' => "One link per content type that has records, plus the link's own children; always shown.",
     ],
   ];
@@ -332,6 +354,91 @@ class BiolandComponentRegistry {
     $canonicalToken = trim($canonicalToken);
     if ($canonicalToken !== '') {
       $tokens[] = $canonicalToken;
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Builds the content-type binding token for a content-type slug.
+   *
+   * @param string $slug
+   *   The frontend content-type slug, for example "news".
+   *
+   * @return string
+   *   The binding token, for example "bl2-content-type-news".
+   */
+  public function contentTypeBindingToken(string $slug): string {
+    return self::CONTENT_TYPE_BINDING_PREFIX . $slug;
+  }
+
+  /**
+   * Tells whether a class token is a content-type binding.
+   *
+   * @param string $token
+   *   A single class token.
+   *
+   * @return bool
+   *   TRUE for "bl2-content-type-<non-empty slug>".
+   */
+  public function isContentTypeBindingToken(string $token): bool {
+    return strpos($token, self::CONTENT_TYPE_BINDING_PREFIX) === 0
+      && strlen($token) > strlen(self::CONTENT_TYPE_BINDING_PREFIX);
+  }
+
+  /**
+   * Returns the content-type slugs bound by a stored class value.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return array
+   *   Zero-indexed list of slugs, in stored order. The frontend accepts
+   *   several bindings on one link; most links carry exactly one.
+   */
+  public function findContentTypeBindings(array|string $classValue): array {
+    $slugs = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if ($this->isContentTypeBindingToken($token)) {
+        $slugs[] = substr($token, strlen(self::CONTENT_TYPE_BINDING_PREFIX));
+      }
+    }
+    return $slugs;
+  }
+
+  /**
+   * Replaces the content-type bindings of a stored class value.
+   *
+   * Strips every binding token, then appends one for the given slug (or none,
+   * when the slug is empty — how bindings are cleared from a link whose
+   * component no longer takes one). Every other token, the component token
+   * included, survives byte-identically; the value keeps the shape it was
+   * given under the same rules as mergeComponentToken().
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param string $slug
+   *   The frontend content-type slug to bind, or an empty string to unbind.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeContentTypeBinding(array|string $classValue, string $slug): array|string {
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (!$this->isContentTypeBindingToken($token)) {
+        $tokens[] = $token;
+      }
+    }
+    $slug = trim($slug);
+    if ($slug !== '') {
+      $tokens[] = $this->contentTypeBindingToken($slug);
     }
 
     if (!is_array($classValue)) {

@@ -1707,3 +1707,11 @@ msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "添加组件菜单链接"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "内容类型"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "此列表显示的内容类型。"

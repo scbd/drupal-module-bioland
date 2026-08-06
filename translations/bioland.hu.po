@@ -1778,3 +1778,11 @@ msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkoz�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Összetevő menühivatkozás hozzáadása"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tartalomtípus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "A tartalomtípus, amelyet ez a lista megjelenít."
