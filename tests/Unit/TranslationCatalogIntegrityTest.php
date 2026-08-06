@@ -86,6 +86,31 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // action title. One string, two declaration sites - both must stay in
     // sync with this entry or the action renders untranslated.
     'Add component menu link',
+    // bioland.routing.yml: route _title / bioland.links.task.yml: local task
+    // title for the Theme tab.
+    'Theme',
+    // src/Form/BiolandThemeForm.php: the Theme tab's own strings. Its widget
+    // option labels are deliberately NOT listed - that form reuses
+    // BiolandHomeWidgetsForm's existing labels verbatim rather than adding
+    // parallel wording for the same widgets.
+    'Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes.',
+    'Colors',
+    'Primary brand color',
+    'Secondary brand color',
+    'Secondary background color',
+    'Home Page Widget Columns',
+    'Column @number',
+    'Show Forums in the mega menu',
+    'Maximum columns',
+    'Maximum rows per column (0 for no limit)',
+    'Maximum horizontal cards',
+    'Languages',
+    'Maximum languages shown before the language bar wraps',
+    'Reset to network default',
+    'This deletes the theme settings for this site. It cannot be undone.',
+    'The theme settings for this site have been reset to the network default.',
+    'Enter a valid hex color, for example #1B7B3A.',
+    'The home page widgets must be arranged in exactly @count columns.',
   ];
 
   /**
@@ -164,15 +189,17 @@ class TranslationCatalogIntegrityTest extends TestCase {
    * Short technical nouns that are legitimately kept as English loanwords
    * in some locales' existing translation style (e.g. "Admin" in German,
    * "Tags" in Dutch, "Mega Menu" in Malay/Maltese/Tagalog, "Forums" in
-   * French/Dutch/Afrikaans). These are excluded from the "must differ from
-   * English" check below, since an identical msgstr there is a valid
-   * stylistic choice already present elsewhere in these catalogs, not a
-   * missed translation.
+   * French/Dutch/Afrikaans, "Colors" in Catalan). These are excluded from the
+   * "must differ from English" check below, since an identical msgstr there is
+   * a valid stylistic choice already present elsewhere in these catalogs, not
+   * a missed translation.
    */
   private const LOANWORD_TOLERANT_MSGIDS = [
     'Tags',
     'Mega Menu',
     'Forums',
+    // Catalan spells this exactly as English does.
+    'Colors',
   ];
 
   /**

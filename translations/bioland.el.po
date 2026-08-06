@@ -1796,3 +1796,79 @@ msgstr "Αυτός ο σύνδεσμος μενού εμφανίζει ένα σ
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Προσθήκη συνδέσμου μενού στοιχείου"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Θέμα"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Τα widget ενεργοποιούνται και απενεργοποιούνται στην καρτέλα «Widget αρχικής σελίδας». Οι αποθηκευμένες αλλαγές εμφανίζονται στον δημόσιο ιστότοπο μέσα σε περίπου 5 λεπτά."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Χρώματα"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Κύριο χρώμα επωνυμίας"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Δευτερεύον χρώμα επωνυμίας"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Δευτερεύον χρώμα φόντου"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Στήλες widget αρχικής σελίδας"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Στήλη @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Εμφάνιση των φόρουμ στο μεγάλο μενού"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Μέγιστος αριθμός στηλών"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Μέγιστος αριθμός γραμμών ανά στήλη (0 σημαίνει χωρίς όριο)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Μέγιστος αριθμός οριζόντιων καρτών"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Γλώσσες"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Μέγιστος αριθμός γλωσσών που εμφανίζονται πριν αναδιπλωθεί η γραμμή γλωσσών"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Επαναφορά στην προεπιλογή δικτύου"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Αυτό διαγράφει τις ρυθμίσεις θέματος για αυτόν τον ιστότοπο. Η ενέργεια δεν αναιρείται."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Οι ρυθμίσεις θέματος για αυτόν τον ιστότοπο επαναφέρθηκαν στην προεπιλογή δικτύου."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Εισαγάγετε ένα έγκυρο δεκαεξαδικό χρώμα, για παράδειγμα #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Τα widget της αρχικής σελίδας πρέπει να διαταχθούν σε ακριβώς @count στήλες."

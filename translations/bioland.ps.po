@@ -1707,3 +1707,79 @@ msgstr "دا د مینو لینک د ماشوم لینکونو د ساده لی�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "د برخې د مینو تړنه زیاته کړئ"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "بڼه"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "ویجټونه د کور پاڼې ویجټونو ټب کې فعال او غیرفعال کیږي. خوندي شوي بدلونونه شاوخوا ۵ دقیقو کې په عامه سایټ کې ښکاري."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "رنګونه"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "د نښان لومړنی رنګ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "د نښان دویم رنګ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "د شالید دویم رنګ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "د کور پاڼې د ویجټ کالمونه"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "کالم @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "په لوی مینو کې فورمونه وښیه"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "د کالمونو تر ټولو ډېر شمېر"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "په هر کالم کې د کرښو تر ټولو ډېر شمېر (۰ يعنې بې حده)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "د افقي کارتونو تر ټولو ډېر شمېر"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "ژبې"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "مخکې له دې چې د ژبې پټه ونغاړل شي، د ښودل شویو ژبو تر ټولو ډېر شمېر"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "بیا په شبکې ټاکل شوي حالت تنظیمول"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "دا د دې سایټ د بڼې تنظیمات ړنګوي. بېرته يې نشي راګرځول کېدای."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "د دې سایټ د بڼې تنظیمات بیا په شبکې ټاکل شوي حالت تنظیم شول."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "یو سم شپاړس‌ګوني رنګ دننه کړئ، لکه #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "د کور پاڼې ویجټونه باید په سمه توګه په @count کالمونو کې تنظیم شي."

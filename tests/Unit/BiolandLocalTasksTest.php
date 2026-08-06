@@ -126,6 +126,46 @@ class BiolandLocalTasksTest extends TestCase {
   }
 
   /**
+   * The Theme tab sits under Front End at weight 4, after the existing four.
+   *
+   * testEveryExpectedRouteHasALocalTask() only proves *a* task entry exists
+   * for the route. This pins where it lands: the same base route as the other
+   * Front End tabs, and a weight that is unique among them so tab order is
+   * deterministic rather than alphabetical-by-accident.
+   */
+  public function testThemeTabIsTheLastFrontEndTab(): void {
+    $tasks = $this->parseFlatYaml('bioland.links.task.yml');
+
+    $this->assertArrayHasKey(
+      'bioland.settings_front_end_theme_tab',
+      $tasks,
+      'The Theme local task must be defined in bioland.links.task.yml.'
+    );
+
+    $theme = $tasks['bioland.settings_front_end_theme_tab'];
+    $this->assertSame('bioland.settings.front_end.theme', $theme['route_name']);
+    $this->assertSame('bioland.settings.front_end', $theme['base_route']);
+    $this->assertSame(4, (int) $theme['weight']);
+
+    // Every Front End sibling has a distinct weight, and Theme is the largest.
+    $weights = [];
+    foreach ($tasks as $machineName => $task) {
+      if (($task['base_route'] ?? NULL) !== 'bioland.settings.front_end') {
+        continue;
+      }
+      $this->assertArrayHasKey('weight', $task, sprintf('Front End tab "%s" is missing a weight.', $machineName));
+      $weights[$machineName] = (int) $task['weight'];
+    }
+
+    $this->assertCount(
+      count($weights),
+      array_unique($weights),
+      'Front End tab weights must be unique: ' . json_encode($weights)
+    );
+    $this->assertSame(4, max($weights), 'Theme takes the next free weight after the existing 0-3.');
+  }
+
+  /**
    * The admin route itself must exist and require the administrator role,
    * matching the access model used for the sibling System Functions tab.
    */

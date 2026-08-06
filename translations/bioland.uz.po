@@ -1707,3 +1707,79 @@ msgstr "Ushbu menyu havolasi oddiy quyi havolalar ro'yxati o'rniga mega menyu ko
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Komponent menyu havolasini qo'shish"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Mavzu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Vidjetlar Bosh sahifa vidjetlari yorlig‘ida yoqiladi va o‘chiriladi. Saqlangan o‘zgarishlar ommaviy saytda taxminan 5 daqiqa ichida ko‘rinadi."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Ranglar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Brendning asosiy rangi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Brendning ikkilamchi rangi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Fonning ikkilamchi rangi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Bosh sahifa vidjet ustunlari"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "@number-ustun"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Mega menyuda forumlarni ko‘rsatish"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Ustunlarning eng ko‘p soni"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Har bir ustundagi qatorlarning eng ko‘p soni (0 — cheklovsiz)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Gorizontal kartalarning eng ko‘p soni"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Tillar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Til paneli ko‘chirilgunga qadar ko‘rsatiladigan tillarning eng ko‘p soni"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Tarmoq standart qiymatiga qaytarish"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Bu ushbu saytning mavzu sozlamalarini o‘chiradi. Buni bekor qilib bo‘lmaydi."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Ushbu saytning mavzu sozlamalari tarmoq standart qiymatiga qaytarildi."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "To‘g‘ri o‘n oltilik rang kiriting, masalan #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Bosh sahifa vidjetlari aynan @count ustunga joylashtirilishi kerak."

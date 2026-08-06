@@ -1707,3 +1707,79 @@ msgstr "Taispeánann an nasc roghchláir seo comhpháirt ollroghchláir in ionad
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Cuir nasc roghchláir comhpháirte leis"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Téama"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Cuirtear giuirléidí ar siúl agus as ar an gcluaisín Giuirléidí an Leathanaigh Bhaile. Bíonn athruithe sábháilte le feiceáil ar an suíomh poiblí laistigh de thart ar 5 nóiméad."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Dathanna"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Príomhdhath branda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Dath tánaisteach branda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Dath cúlra tánaisteach"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Colúin ghiuirléidí an leathanaigh bhaile"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Colún @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Taispeáin na fóraim sa mhórroghchlár"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Uaslíon colún"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Uaslíon rónna in aghaidh an cholúin (0 gan teorainn)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Uaslíon cártaí cothrománacha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Teangacha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Uaslíon teangacha a thaispeántar sula bhfilleann an barra teanga"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Athshocraigh go réamhshocrú an líonra"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Scriosann sé seo socruithe téama an tsuímh seo. Ní féidir é a chealú."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Athshocraíodh socruithe téama an tsuímh seo go réamhshocrú an líonra."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Cuir dath heicsidheachúlach bailí isteach, mar shampla #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Ní mór giuirléidí an leathanaigh bhaile a leagan amach i @count colún go díreach."

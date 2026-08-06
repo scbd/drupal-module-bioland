@@ -1707,3 +1707,79 @@ msgstr "Þessi valmyndartengill birtir einingu megavalmyndar í stað einfalds l
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Bæta við einingavalmyndartengli"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Þema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Kveikt og slökkt er á smáforritum á flipanum Smáforrit forsíðu. Vistaðar breytingar birtast á opinbera vefnum innan um það bil 5 mínútna."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Litir"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Aðallitur vörumerkis"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Aukalitur vörumerkis"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Aukalitur bakgrunns"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Smáforritadálkar forsíðu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Dálkur @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Sýna spjallsvæði í stórvalmyndinni"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Hámarksfjöldi dálka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Hámarksfjöldi raða í dálki (0 þýðir engin takmörk)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Hámarksfjöldi láréttra korta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Tungumál"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Hámarksfjöldi tungumála sem birtast áður en tungumálastikan brotnar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Endurstilla á sjálfgefið gildi netsins"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Þetta eyðir þemastillingum þessa vefs. Ekki er hægt að afturkalla það."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Þemastillingar þessa vefs hafa verið endurstilltar á sjálfgefið gildi netsins."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Sláðu inn gildan hexlit, til dæmis #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Smáforrit forsíðunnar verða að vera í nákvæmlega @count dálkum."

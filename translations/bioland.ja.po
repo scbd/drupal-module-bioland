@@ -1707,3 +1707,79 @@ msgstr "このメニューリンクは、子リンクの単純な一覧ではな
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "コンポーネントメニューリンクを追加"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "テーマ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "ウィジェットの表示・非表示は「ホームウィジェット」タブで切り替えます。保存した変更は約5分以内に公開サイトへ反映されます。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "ブランドのメインカラー"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "ブランドのサブカラー"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "背景のサブカラー"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "ホームページのウィジェット列"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "列 @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "メガメニューにフォーラムを表示する"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "列数の上限"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "1列あたりの行数の上限（0 は無制限）"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "横並びカード数の上限"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "言語"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "言語バーが折り返すまでに表示する言語数の上限"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "ネットワークの既定値に戻す"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "このサイトのテーマ設定を削除します。元に戻すことはできません。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "このサイトのテーマ設定をネットワークの既定値に戻しました。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "有効な16進数カラーを入力してください。例: #1B7B3A"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "ホームページのウィジェットはちょうど @count 列に配置する必要があります。"

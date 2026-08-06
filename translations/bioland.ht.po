@@ -1778,3 +1778,79 @@ msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ajoute yon lyen meni konpozan"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tèm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Yo limen ak etenn widget yo nan onglè Widget Paj Dakèy la. Chanjman ki anrejistre yo parèt sou sit piblik la nan anviwon 5 minit."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Koulè"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Koulè prensipal mak la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Koulè segondè mak la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Koulè fon segondè"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kolòn widget paj dakèy la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolòn @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Montre Fowòm yo nan mega meni an"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Kantite kolòn maksimòm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Kantite ranje maksimòm pou chak kolòn (0 vle di san limit)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Kantite kat orizontal maksimòm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Lang"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Kantite lang maksimòm ki afiche anvan ba lang lan pliye"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Remete valè default rezo a"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Sa efase paramèt tèm sit sa a. Ou pa ka defèt li."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Paramèt tèm sit sa a te remèt nan valè default rezo a."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Antre yon koulè eksadesimal valab, pa egzanp #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget paj dakèy yo dwe ranje nan egzakteman @count kolòn."

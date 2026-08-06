@@ -1707,3 +1707,79 @@ msgstr "Kiungo hiki cha menyu huonyesha kijenzi cha menyu kuu badala ya orodha r
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ongeza kiungo cha menyu ya kijenzi"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Mandhari"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Vipengele huwashwa na kuzimwa katika kichupo cha Vipengele vya Ukurasa wa Mwanzo. Mabadiliko yaliyohifadhiwa huonekana kwenye tovuti ya umma ndani ya takriban dakika 5."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Rangi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Rangi kuu ya chapa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Rangi ya pili ya chapa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Rangi ya pili ya mandharinyuma"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Safu wima za vipengele vya ukurasa wa mwanzo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Safu wima @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Onyesha Mabaraza kwenye menyu kubwa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Idadi ya juu ya safu wima"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Idadi ya juu ya safu mlalo kwa kila safu wima (0 humaanisha bila kikomo)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Idadi ya juu ya kadi mlalo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Lugha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Idadi ya juu ya lugha zinazoonyeshwa kabla ya upau wa lugha kukunjwa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Rejesha kwenye chaguo-msingi la mtandao"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Hii inafuta mipangilio ya mandhari ya tovuti hii. Haiwezi kutenduliwa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Mipangilio ya mandhari ya tovuti hii imerejeshwa kwenye chaguo-msingi la mtandao."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Weka rangi sahihi ya heksadesimali, kwa mfano #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Vipengele vya ukurasa wa mwanzo lazima vipangwe katika safu wima @count hasa."

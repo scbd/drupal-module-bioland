@@ -1707,3 +1707,79 @@ msgstr "ลิงก์เมนูนี้แสดงองค์ประก
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "เพิ่มลิงก์เมนูองค์ประกอบ"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "ธีม"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "เปิดและปิดวิดเจ็ตได้ที่แท็บวิดเจ็ตหน้าแรก การเปลี่ยนแปลงที่บันทึกไว้จะปรากฏบนเว็บไซต์สาธารณะภายในประมาณ 5 นาที"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "สี"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "สีหลักของแบรนด์"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "สีรองของแบรนด์"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "สีพื้นหลังรอง"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "คอลัมน์วิดเจ็ตหน้าแรก"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "คอลัมน์ที่ @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "แสดงฟอรัมในเมกะเมนู"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "จำนวนคอลัมน์สูงสุด"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "จำนวนแถวสูงสุดต่อคอลัมน์ (0 หมายถึงไม่จำกัด)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "จำนวนการ์ดแนวนอนสูงสุด"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "ภาษา"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "จำนวนภาษาสูงสุดที่แสดงก่อนแถบภาษาจะขึ้นบรรทัดใหม่"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "รีเซ็ตเป็นค่าเริ่มต้นของเครือข่าย"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "การกระทำนี้จะลบการตั้งค่าธีมของเว็บไซต์นี้ และไม่สามารถย้อนกลับได้"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "รีเซ็ตการตั้งค่าธีมของเว็บไซต์นี้เป็นค่าเริ่มต้นของเครือข่ายแล้ว"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "กรุณาป้อนรหัสสีฐานสิบหกที่ถูกต้อง เช่น #1B7B3A"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "ต้องจัดวิดเจ็ตหน้าแรกเป็น @count คอลัมน์พอดี"

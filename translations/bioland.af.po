@@ -1707,3 +1707,79 @@ msgstr "Hierdie kieslysskakel vertoon 'n mega-kieslys-komponent in plaas van 'n 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Voeg komponent-kieslysskakel by"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Legstukke word op die Tuisblad-legstukke-oortjie aan- en afgeskakel. Gestoorde veranderinge verskyn binne ongeveer 5 minute op die openbare werf."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Kleure"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primêre handelsmerkkleur"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekondêre handelsmerkkleur"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekondêre agtergrondkleur"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Tuisblad-legstukkolomme"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolom @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Wys Forums in die megakieslys"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maksimum kolomme"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maksimum rye per kolom (0 vir geen limiet)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maksimum horisontale kaarte"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Tale"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maksimum tale wat gewys word voordat die taalbalk omvou"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Stel terug na netwerkverstek"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Dit vee die tema-instellings vir hierdie werf uit. Dit kan nie ongedaan gemaak word nie."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Die tema-instellings vir hierdie werf is na die netwerkverstek teruggestel."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Voer 'n geldige heksadesimale kleur in, byvoorbeeld #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Die tuisblad-legstukke moet in presies @count kolomme gerangskik word."

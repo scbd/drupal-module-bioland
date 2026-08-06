@@ -1796,3 +1796,79 @@ msgstr "Aquest enllaç de menú mostra un component del mega menú en lloc d'una
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Afegeix un enllaç de menú de component"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Els ginys s'activen i es desactiven a la pestanya Ginys de la pàgina d'inici. Els canvis desats apareixen al lloc públic en uns 5 minuts."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Colors"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Color primari de la marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Color secundari de la marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Color secundari de fons"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Columnes de ginys de la pàgina d'inici"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Columna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Mostra els fòrums al mega menú"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Nombre màxim de columnes"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Nombre màxim de files per columna (0 vol dir sense límit)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Nombre màxim de targetes horitzontals"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Idiomes"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Nombre màxim d'idiomes mostrats abans que la barra d'idiomes salti de línia"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Restableix al valor per defecte de la xarxa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Això suprimeix la configuració del tema d'aquest lloc. No es pot desfer."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "La configuració del tema d'aquest lloc s'ha restablert al valor per defecte de la xarxa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Introduïu un color hexadecimal vàlid, per exemple #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Els ginys de la pàgina d'inici s'han de distribuir en exactament @count columnes."

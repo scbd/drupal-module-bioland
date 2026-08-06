@@ -1,0 +1,590 @@
+<?php
+
+namespace Drupal\bioland\Form;
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\bioland\BiolandHomeWidgetRegistry;
+use Drupal\bioland\BiolandThemeContract;
+use Drupal\bioland\Service\BiolandDmsmConfigService;
+
+/**
+ * Configure the per-site theme stored at `bioland.settings:theme`.
+ *
+ * ## What this tab authors (plan decision D4)
+ *
+ * Exactly the nine LIVE keys named by \Drupal\bioland\BiolandThemeContract,
+ * and nothing else:
+ *
+ * - color.primary, color.secondary            (hex colour pickers, required)
+ * - back_ground.secondary                     (hex colour picker, required)
+ * - home_page_widgets.columns                 (widget selects; hidden on BSL)
+ * - mega_menu.forums                          (checkbox)
+ * - mega_menu.max_columns                     (1-6)
+ * - mega_menu.max_rows_per_column             (>= 0; 0 means unlimited)
+ * - mega_menu.horizontal_card_max             (1-6)
+ * - i18n.max_lang_before_wrap                 (integer, required)
+ *
+ * `hero` is NEVER authored here: it is derived downstream only when no source
+ * defines it (see BiolandDmsmConfigService::getEffectiveTheme()). The dead
+ * legacy keys (text.*, *_text_over, can_auto_translate, back_ground.primary,
+ * back_ground.tertiary, mega_menu.column_wrap, mega_menu.horizontal_card_wrap,
+ * mega_menu.show_empty, colums_width) are deliberately absent and must never
+ * be reintroduced. A conformance test pins the writer's key set against
+ * BiolandThemeContract::KEYS and against config/schema/bioland.schema.yml.
+ *
+ * Config keys are snake_case. `back_ground` is two words, never `background`:
+ * bioland-head camelCases the payload at depth 7 into `backGround`, the exact
+ * property its language bar reads. That head-facing camelCase depth is a
+ * separate contract from this Drupal snake_case depth; the two are pinned by
+ * separate assertions.
+ *
+ * ## Seeding: lazy, and ON SAVE ONLY (plan decision D5)
+ *
+ * When `bioland.settings:theme` is absent, the fields pre-populate from the
+ * site's effective dmsm theme (BiolandDmsmConfigService::getEffectiveTheme()).
+ * Building the form performs ZERO config writes -- the pre-filled values reach
+ * config only when an editor submits.
+ *
+ * This is a DELIBERATE DEVIATION from the house precedent next door:
+ * BiolandHomeWidgetsForm::ensureHomeWidgetDefaults() is called from its
+ * buildSectionForm() (:54) and calls $config->save() during the build (:433-435),
+ * so merely opening that tab writes config. The Theme tab must not do that,
+ * for two reasons:
+ *
+ * 1. A GET must not mutate state. The module ships to ~211 sites; a save on
+ *    build would silently convert every site an administrator merely LOOKED at
+ *    from "tracking the network default" to "pinned to a private copy".
+ * 2. The 46 default-tracking sites are supposed to keep live inheritance until
+ *    an editor deliberately acts. Writing on build would end that inheritance
+ *    invisibly, and D2's fall-through chain would stop being reachable.
+ *
+ * The reset control (plan decision RS) is the way back: it clears the whole
+ * `theme` key so the site falls through the D2 chain again
+ * (biolandSettings.theme > site config.theme > runTime.theme > code defaults)
+ * and renders exactly as an unseeded site does.
+ *
+ * ## BSL (plan decision D7)
+ *
+ * On `is_biosafety_land` sites the columns field is absent from the build leg,
+ * skipped in the submit leg, and its exactly-3 validator never runs. The BSL
+ * home page does not use the column mechanism at all, and its live one-column
+ * layout would fail the W2a bound. Precedent: BiolandHomeWidgetsForm:56 (build)
+ * and :379 (submit).
+ *
+ * @see \Drupal\bioland\BiolandThemeContract
+ * @see \Drupal\bioland\BiolandHomeWidgetRegistry
+ * @see \Drupal\Tests\bioland\Unit\BiolandThemeFormTest
+ */
+class BiolandThemeForm extends BiolandSettingsFormBase {
+
+  /**
+   * The `bioland.settings` key holding the whole authored theme subtree.
+   */
+  public const CONFIG_KEY = 'theme';
+
+  /**
+   * The dmsm config service id, resolved lazily.
+   *
+   * Resolved through the container rather than injected through the
+   * constructor so every settings form keeps the base class's six-argument
+   * signature (BiolandSettingsRoutingWiringTest instantiates all of them
+   * uniformly).
+   */
+  public const DMSM_SERVICE_ID = 'bioland.dmsm_config';
+
+  /**
+   * Maps each D4 config key to the head/dmsm camelCase path it seeds from.
+   *
+   * Left: the snake_case `theme` sub-path this form writes to Drupal config.
+   * Right: the camelCase sub-path of the effective dmsm theme it reads.
+   * These are two distinct contracts at two distinct depths -- this constant
+   * is the only place they meet.
+   */
+  protected const SEED_PATHS = [
+    BiolandThemeContract::KEY_COLOR_PRIMARY => 'color.primary',
+    BiolandThemeContract::KEY_COLOR_SECONDARY => 'color.secondary',
+    BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => 'backGround.secondary',
+    BiolandThemeContract::KEY_HOME_PAGE_WIDGETS_COLUMNS => 'homePageWidgets.columns',
+    BiolandThemeContract::KEY_MEGA_MENU_FORUMS => 'megaMenu.forums',
+    BiolandThemeContract::KEY_MEGA_MENU_MAX_COLUMNS => 'megaMenu.maxColumns',
+    BiolandThemeContract::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN => 'megaMenu.maxRowsPerColumn',
+    BiolandThemeContract::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX => 'megaMenu.horizontalCardMax',
+    BiolandThemeContract::KEY_I18N_MAX_LANG_BEFORE_WRAP => 'i18n.maxLangBeforeWrap',
+  ];
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormId() {
+    return 'bioland_settings_front_end_theme_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getSection(): string {
+    return 'front_end_theme';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function buildSectionForm(array $form, FormStateInterface $form_state, $config): array {
+    // NOTE: no $config->save() anywhere in this method, or anything it calls.
+    // See the class docblock -- this is the deliberate deviation from
+    // BiolandHomeWidgetsForm::ensureHomeWidgetDefaults().
+    $defaults = $this->themeDefaults($config);
+
+    $form['theme'] = [
+      '#type' => 'container',
+      '#tree' => TRUE,
+    ];
+
+    $form['theme']['help'] = [
+      '#type' => 'markup',
+      // D6 cross-link (enable flags stay on the Home Widgets tab) plus the ST
+      // staleness statement, in one string so it is one catalog entry.
+      '#markup' => '<p class="description">' . $this->t('Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes.') . '</p>',
+    ];
+
+    $form['theme']['color'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Colors'),
+      '#tree' => TRUE,
+    ];
+    $form['theme']['color']['primary'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Primary brand color'),
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'color.primary'),
+    ];
+    $form['theme']['color']['secondary'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Secondary brand color'),
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'color.secondary'),
+    ];
+
+    // A bare container, not a second fieldset: `back_ground` has to be its own
+    // level in the value tree to produce the `theme.back_ground.secondary`
+    // config path, but it is not a second group as far as the editor is
+    // concerned, and a duplicate "Colors" heading would only confuse. The
+    // field's own title carries the meaning.
+    $form['theme']['back_ground'] = [
+      '#type' => 'container',
+      '#tree' => TRUE,
+    ];
+    $form['theme']['back_ground']['secondary'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Secondary background color'),
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'back_ground.secondary'),
+    ];
+
+    // D7: the columns field does not exist at all on BSL sites. Its validator
+    // is scoped to the element's presence, so hiding it here also disables the
+    // validation and the write.
+    if (!$this->isBiosafetyLand($config)) {
+      $form['theme']['home_page_widgets'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Home Page Widget Columns'),
+        '#tree' => TRUE,
+      ];
+
+      $options = $this->columnWidgetOptions();
+      $columns = $this->leaf($defaults, 'home_page_widgets.columns');
+      $columns = is_array($columns) ? array_values($columns) : [];
+
+      for ($i = 0; $i < BiolandThemeContract::HOME_PAGE_WIDGETS_COLUMN_COUNT; $i++) {
+        $column = isset($columns[$i]) && is_array($columns[$i]) ? $columns[$i] : [];
+        $form['theme']['home_page_widgets']['columns'][$i] = [
+          '#type' => 'select',
+          '#title' => $this->t('Column @number', ['@number' => $i + 1]),
+          '#options' => $options,
+          '#multiple' => TRUE,
+          '#default_value' => array_values(array_intersect($column, array_keys($options))),
+          '#size' => min(max(count($options), 5), 12),
+        ];
+      }
+    }
+
+    $form['theme']['mega_menu'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Mega Menu'),
+      '#tree' => TRUE,
+    ];
+    $form['theme']['mega_menu']['forums'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show Forums in the mega menu'),
+      // Presence, not truthiness: an authored FALSE is a real value and must
+      // not fall back to a default.
+      '#default_value' => (bool) ($this->leaf($defaults, 'mega_menu.forums') ?? FALSE),
+    ];
+    $form['theme']['mega_menu']['max_columns'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Maximum columns'),
+      '#min' => BiolandThemeContract::MEGA_MENU_MAX_COLUMNS_MIN,
+      '#max' => BiolandThemeContract::MEGA_MENU_MAX_COLUMNS_MAX,
+      '#step' => 1,
+      '#default_value' => $this->leaf($defaults, 'mega_menu.max_columns'),
+    ];
+    $form['theme']['mega_menu']['max_rows_per_column'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Maximum rows per column (0 for no limit)'),
+      '#min' => BiolandThemeContract::MEGA_MENU_MAX_ROWS_PER_COLUMN_UNLIMITED,
+      '#step' => 1,
+      // Presence, not truthiness: 0 means "unlimited" and is a real value.
+      '#default_value' => $this->leaf($defaults, 'mega_menu.max_rows_per_column'),
+    ];
+    $form['theme']['mega_menu']['horizontal_card_max'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Maximum horizontal cards'),
+      '#min' => BiolandThemeContract::MEGA_MENU_HORIZONTAL_CARD_MAX_MIN,
+      '#max' => BiolandThemeContract::MEGA_MENU_HORIZONTAL_CARD_MAX_MAX,
+      '#step' => 1,
+      '#default_value' => $this->leaf($defaults, 'mega_menu.horizontal_card_max'),
+    ];
+
+    $form['theme']['i18n'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Languages'),
+      '#tree' => TRUE,
+    ];
+    $form['theme']['i18n']['max_lang_before_wrap'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Maximum languages shown before the language bar wraps'),
+      '#min' => 1,
+      '#step' => 1,
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'i18n.max_lang_before_wrap'),
+    ];
+
+    // RS: the way back to the D2 fall-through. #limit_validation_errors is
+    // empty so a site with an incomplete form can still reset, and the confirm
+    // dialog makes the deletion deliberate. The message is a static, translated
+    // literal passed through json_encode(), so it is a well-formed JS string
+    // literal whatever the active catalog contains. ConfigFormBase::buildForm()
+    // adds `actions.submit` afterwards without replacing this array, and the
+    // weight keeps Save first.
+    $confirm = json_encode((string) $this->t('This deletes the theme settings for this site. It cannot be undone.'));
+    $form['actions']['theme_reset'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Reset to network default'),
+      '#submit' => ['::submitResetToNetworkDefault'],
+      '#limit_validation_errors' => [],
+      '#weight' => 10,
+      '#attributes' => ['onclick' => 'return confirm(' . $confirm . ');'],
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+
+    $values = $form_state->getValue('theme');
+    $values = is_array($values) ? $values : [];
+
+    foreach (['color.primary', 'color.secondary', 'back_ground.secondary'] as $path) {
+      $value = $this->leaf($values, $path);
+      if ($value === NULL || $value === '') {
+        // Emptiness is #required's business, not this validator's.
+        continue;
+      }
+      if (!is_string($value) || preg_match('/^#[0-9A-Fa-f]{6}$/', $value) !== 1) {
+        $form_state->setErrorByName(
+          'theme][' . str_replace('.', '][', $path),
+          $this->t('Enter a valid hex color, for example #1B7B3A.')
+        );
+      }
+    }
+
+    // D7 / W2a: scoped to the element actually being present. On a BSL site the
+    // build leg never creates it, so this validator never runs there -- the
+    // scope cannot drift away from the build leg, because it IS the build leg.
+    if (!isset($form['theme']['home_page_widgets']['columns'])) {
+      return;
+    }
+
+    $columns = $values['home_page_widgets']['columns'] ?? NULL;
+    $columns = is_array($columns) ? $columns : [];
+
+    // W2a counts the OUTER length -- the number of grid columns -- never the
+    // total number of widgets across them.
+    if (count($columns) !== BiolandThemeContract::HOME_PAGE_WIDGETS_COLUMN_COUNT) {
+      $form_state->setErrorByName(
+        'theme][home_page_widgets][columns',
+        $this->t('The home page widgets must be arranged in exactly @count columns.', [
+          '@count' => BiolandThemeContract::HOME_PAGE_WIDGETS_COLUMN_COUNT,
+        ])
+      );
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function submitSectionForm(array &$form, FormStateInterface $form_state, $config): void {
+    $values = $form_state->getValue('theme');
+    $values = is_array($values) ? $values : [];
+
+    $config->set('theme.color.primary', $this->normalizeHex($this->leaf($values, 'color.primary')));
+    $config->set('theme.color.secondary', $this->normalizeHex($this->leaf($values, 'color.secondary')));
+    // Literally `back_ground`, never `background`. See the class docblock.
+    $config->set('theme.back_ground.secondary', $this->normalizeHex($this->leaf($values, 'back_ground.secondary')));
+
+    // D7: never written where the field was never rendered.
+    if (isset($form['theme']['home_page_widgets']['columns'])) {
+      $config->set(
+        'theme.home_page_widgets.columns',
+        $this->normalizeColumns($values['home_page_widgets']['columns'] ?? [])
+      );
+    }
+
+    $config->set('theme.mega_menu.forums', (bool) ($this->leaf($values, 'mega_menu.forums') ?? FALSE));
+    $config->set('theme.mega_menu.max_columns', (int) $this->leaf($values, 'mega_menu.max_columns'));
+    $config->set('theme.mega_menu.max_rows_per_column', (int) $this->leaf($values, 'mega_menu.max_rows_per_column'));
+    $config->set('theme.mega_menu.horizontal_card_max', (int) $this->leaf($values, 'mega_menu.horizontal_card_max'));
+    $config->set('theme.i18n.max_lang_before_wrap', (int) $this->leaf($values, 'i18n.max_lang_before_wrap'));
+  }
+
+  /**
+   * Deletes the authored theme so the site falls back to the network default.
+   *
+   * Clears the `theme` key of `bioland.settings` -- not the config object --
+   * restoring the D2 fall-through chain. After this the site renders exactly
+   * as a site that never opened this tab.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   */
+  public function submitResetToNetworkDefault(array &$form, FormStateInterface $form_state): void {
+    $config = $this->config('bioland.settings');
+    $config->clear(self::CONFIG_KEY);
+    $config->save();
+
+    $this->messenger()->addStatus($this->t('The theme settings for this site have been reset to the network default.'));
+  }
+
+  /**
+   * Whether this site is a Biosafety Clearing-House site.
+   *
+   * @param \Drupal\Core\Config\Config $config
+   *   The bioland.settings configuration object.
+   *
+   * @return bool
+   *   TRUE on a BSL site.
+   */
+  protected function isBiosafetyLand($config): bool {
+    return (bool) $config->get('is_biosafety_land');
+  }
+
+  /**
+   * The form's default values: the authored theme, else the dmsm seed.
+   *
+   * Presence, not truthiness: a stored theme subtree wins as soon as it
+   * exists, even if every value in it is falsy.
+   *
+   * @param \Drupal\Core\Config\Config $config
+   *   The bioland.settings configuration object.
+   *
+   * @return array
+   *   The snake_case theme defaults; empty when nothing is authored and the
+   *   seed is unavailable.
+   */
+  protected function themeDefaults($config): array {
+    $authored = $config->get(self::CONFIG_KEY);
+
+    if (is_array($authored) && $authored !== []) {
+      return $authored;
+    }
+
+    return $this->seedFromDmsm();
+  }
+
+  /**
+   * Translates the effective dmsm theme into snake_case D4 defaults.
+   *
+   * Read-only. Anything the effective theme does not define is simply absent
+   * from the result, so the corresponding field falls back to its own empty
+   * default rather than to a fabricated value.
+   *
+   * @return array
+   *   The snake_case defaults, or an empty array when no seed is available.
+   */
+  protected function seedFromDmsm(): array {
+    $service = $this->dmsmConfigService();
+
+    if (!$service instanceof BiolandDmsmConfigService) {
+      return [];
+    }
+
+    $effective = $service->getEffectiveTheme();
+
+    if (!is_array($effective)) {
+      return [];
+    }
+
+    $defaults = [];
+    foreach (self::SEED_PATHS as $configPath => $headPath) {
+      $value = $this->leaf($effective, $headPath);
+      if ($value === NULL) {
+        continue;
+      }
+      // Build the snake_case nesting one segment at a time.
+      $segments = explode('.', $configPath);
+      $cursor = &$defaults;
+      foreach ($segments as $index => $segment) {
+        if ($index === count($segments) - 1) {
+          $cursor[$segment] = $value;
+          break;
+        }
+        if (!isset($cursor[$segment]) || !is_array($cursor[$segment])) {
+          $cursor[$segment] = [];
+        }
+        $cursor = &$cursor[$segment];
+      }
+      unset($cursor);
+    }
+
+    return $defaults;
+  }
+
+  /**
+   * The dmsm config service, or NULL when the container has none.
+   *
+   * @return \Drupal\bioland\Service\BiolandDmsmConfigService|null
+   *   The service.
+   */
+  protected function dmsmConfigService() {
+    return \Drupal::service(self::DMSM_SERVICE_ID);
+  }
+
+  /**
+   * The widget options an editor may place in a column.
+   *
+   * Keyed by head theme-name (what gets stored), labelled with the same
+   * wording the Home Widgets tab uses. Only registry entries classified
+   * AUTHORABLE appear: the PLACEMENT_FIXED ones (latest_news_widget,
+   * national_targets_widget) are already rendered unconditionally outside the
+   * column mechanism, so offering them here would double-render them, and the
+   * LEGACY_NON_AUTHORABLE BSL entries have no theme-name at all.
+   *
+   * @return array
+   *   Option labels keyed by theme-name.
+   */
+  protected function columnWidgetOptions(): array {
+    // Every label below is byte-identical to the one BiolandHomeWidgetsForm
+    // already uses for the same widget, so the option list reuses translations
+    // that exist in all 67 catalogs instead of inventing parallel wording. The
+    // registry, not this map, decides which of them are actually offered.
+    $labels = [
+      'gbif_widget' => $this->t('GBIF Widget'),
+      'panorama_solutions_widget' => $this->t('Panorama Solutions Widget'),
+      'elearning_widget' => $this->t('E-Learning Widget'),
+      'implementation_widget' => $this->t('Implementation Widget'),
+      'technical_cooperation_widget' => $this->t('Technical & Scientific Cooperation Widget'),
+      'latest_discussions_widget' => $this->t('Latest Discussions Widget'),
+      'content_statistics_widget' => $this->t('Content Statistics Widget'),
+      'geobon_widget' => $this->t('GEOBON Widget'),
+    ];
+
+    $options = [];
+
+    foreach (BiolandHomeWidgetRegistry::authorableKeys() as $key) {
+      $themeName = BiolandHomeWidgetRegistry::themeNameFor($key);
+      if ($themeName === NULL) {
+        continue;
+      }
+      $options[$themeName] = $labels[$key] ?? $themeName;
+    }
+
+    return $options;
+  }
+
+  /**
+   * Normalizes a submitted column set to a list of lists of theme-names.
+   *
+   * Two things matter here (M4). First, every level is re-indexed with
+   * array_values(): removing or reordering a widget leaves gaps in the PHP
+   * array, and a gapped array serializes to a JSON object rather than an
+   * array, which the head then cannot iterate. The precedent is
+   * BiolandHomeWidgetsForm::normalizeContentTypes(). Second, values are
+   * filtered against the registry's authorable set, so a stale or forged
+   * submission can never write a placement-fixed or unknown widget name.
+   *
+   * @param mixed $columns
+   *   The raw submitted columns.
+   *
+   * @return array
+   *   A re-indexed list of re-indexed lists of authorable theme-names.
+   */
+  protected function normalizeColumns($columns): array {
+    if (!is_array($columns)) {
+      return [];
+    }
+
+    $authorable = BiolandHomeWidgetRegistry::authorableThemeNames();
+    $normalized = [];
+
+    foreach ($columns as $column) {
+      if (!is_array($column)) {
+        $normalized[] = [];
+        continue;
+      }
+      $names = array_filter(
+        array_values($column),
+        static fn($name): bool => is_string($name) && in_array($name, $authorable, TRUE)
+      );
+      $normalized[] = array_values(array_unique($names));
+    }
+
+    return array_values($normalized);
+  }
+
+  /**
+   * Normalizes a submitted hex colour to lower-case `#rrggbb`.
+   *
+   * @param mixed $value
+   *   The raw submitted value.
+   *
+   * @return string
+   *   The normalized colour, or '' when there was nothing to normalize.
+   */
+  protected function normalizeHex($value): string {
+    return is_string($value) ? strtolower(trim($value)) : '';
+  }
+
+  /**
+   * Reads a dot-path leaf out of a nested array.
+   *
+   * Presence-aware: returns NULL only when the path is genuinely absent, so
+   * `0`, `false` and `''` survive as the real values they are.
+   *
+   * @param array $data
+   *   The nested array.
+   * @param string $path
+   *   The dot-separated path.
+   *
+   * @return mixed
+   *   The value, or NULL when the path is absent.
+   */
+  protected function leaf(array $data, string $path) {
+    $cursor = $data;
+
+    foreach (explode('.', $path) as $segment) {
+      if (!is_array($cursor) || !array_key_exists($segment, $cursor)) {
+        return NULL;
+      }
+      $cursor = $cursor[$segment];
+    }
+
+    return $cursor;
+  }
+
+}

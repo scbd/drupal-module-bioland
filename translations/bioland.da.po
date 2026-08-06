@@ -1774,3 +1774,79 @@ msgstr "Dette menupunkt viser en megamenu-komponent i stedet for en almindelig l
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Tilføj komponent-menulink"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgets slås til og fra under fanen Widgets på forsiden. Gemte ændringer vises på det offentlige websted inden for cirka 5 minutter."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Farver"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primær brandfarve"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundær brandfarve"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundær baggrundsfarve"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Widgetkolonner på forsiden"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolonne @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Vis fora i megamenuen"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maksimalt antal kolonner"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maksimalt antal rækker pr. kolonne (0 betyder ingen grænse)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maksimalt antal vandrette kort"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Sprog"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maksimalt antal sprog, der vises, før sproglinjen ombrydes"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Nulstil til netværkets standard"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Dette sletter temaindstillingerne for dette websted. Handlingen kan ikke fortrydes."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Temaindstillingerne for dette websted er nulstillet til netværkets standard."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Angiv en gyldig hexfarve, for eksempel #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgets på forsiden skal være fordelt på præcis @count kolonner."

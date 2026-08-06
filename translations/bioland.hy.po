@@ -1707,3 +1707,79 @@ msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկ
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ավելացնել բաղադրիչի ցանկի հղում"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Ոճ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Վիջեթները միացվում և անջատվում են «Գլխավոր էջի վիջեթներ» ներդիրում։ Պահպանված փոփոխությունները հրապարակային կայքում երևում են մոտ 5 րոպեի ընթացքում։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Գույներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Ապրանքանիշի հիմնական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Ապրանքանիշի երկրորդական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Ֆոնի երկրորդական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Գլխավոր էջի վիջեթների սյունակներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Սյունակ @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Ցուցադրել ֆորումները մեգա ընտրացանկում"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Սյունակների առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Մեկ սյունակի տողերի առավելագույն քանակ (0 նշանակում է առանց սահմանափակման)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Հորիզոնական քարտերի առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Լեզուներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Լեզուների վահանակի փաթաթումից առաջ ցուցադրվող լեզուների առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Վերականգնել ցանցի լռելյայն արժեքը"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Սա ջնջում է այս կայքի ոճի կարգավորումները։ Գործողությունը հնարավոր չէ հետարկել։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Այս կայքի ոճի կարգավորումները վերականգնվել են ցանցի լռելյայն արժեքին։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Մուտքագրեք վավեր տասնվեցական գույն, օրինակ՝ #1B7B3A։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Գլխավոր էջի վիջեթները պետք է դասավորվեն ճիշտ @count սյունակում։"
