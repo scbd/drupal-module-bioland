@@ -1791,3 +1791,7 @@ msgstr "Không thể tải chủ đề mặc định của mạng lưới, vì v
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Nhập một số từ @min đến @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Để trống để giữ nguyên giá trị hiện tại. Dùng @reset để xóa giá trị đó."

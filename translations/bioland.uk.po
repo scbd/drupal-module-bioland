@@ -1791,3 +1791,7 @@ msgstr "Не вдалося завантажити типову тему мер�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Введіть число від @min до @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Залиште порожнім, щоб зберегти поточне значення. Щоб видалити його, скористайтеся @reset."

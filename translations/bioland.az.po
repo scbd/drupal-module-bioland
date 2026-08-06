@@ -1791,3 +1791,7 @@ msgstr "Şəbəkənin standart mövzusu yüklənə bilmədi, ona görə bu sahə
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ilə @max arasında bir ədəd daxil edin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Cari dəyəri saxlamaq üçün boş buraxın. Onu silmək üçün @reset istifadə edin."

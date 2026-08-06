@@ -1880,3 +1880,7 @@ msgstr "Nid oedd modd llwytho thema ddiofyn y rhwydwaith, felly mae'r meysydd hy
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Rhowch rif rhwng @min a @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Gadewch yn wag i gadw'r gwerth presennol. Defnyddiwch @reset i'w dynnu."

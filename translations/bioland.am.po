@@ -1791,3 +1791,7 @@ msgstr "የአውታረ መረቡ ነባሪ ገጽታ መጫን አልተቻለ�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "ከ@min እስከ @max ያለ ቁጥር ያስገቡ።"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "የአሁኑን እሴት ለማቆየት ባዶ ይተዉት። እሱን ለማስወገድ @reset ይጠቀሙ።"

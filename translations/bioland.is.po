@@ -1791,3 +1791,7 @@ msgstr "Ekki tókst að hlaða sjálfgefnu þema netsins, því sýna þessir re
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Sláðu inn tölu á milli @min og @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Skildu eftir autt til að halda núverandi gildi. Notaðu @reset til að fjarlægja það."

@@ -1791,3 +1791,7 @@ msgstr "네트워크 기본 테마를 불러오지 못해 이 필드에는 내�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min에서 @max 사이의 숫자를 입력하십시오."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "현재 값을 유지하려면 비워 두십시오. 제거하려면 @reset 을 사용하십시오."

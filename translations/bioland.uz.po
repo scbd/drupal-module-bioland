@@ -1791,3 +1791,7 @@ msgstr "Tarmoqning standart mavzusini yuklab bo'lmadi, shuning uchun bu maydonla
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min va @max orasidagi sonni kiriting."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Joriy qiymatni saqlab qolish uchun bo'sh qoldiring. Uni o'chirish uchun @reset dan foydalaning."

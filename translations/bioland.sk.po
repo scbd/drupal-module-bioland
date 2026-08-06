@@ -1791,3 +1791,7 @@ msgstr "Predvolenú tému siete sa nepodarilo načítať, preto tieto polia zobr
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Zadajte číslo medzi @min a @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ponechajte prázdne, ak chcete zachovať aktuálnu hodnotu. Na jej odstránenie použite @reset."

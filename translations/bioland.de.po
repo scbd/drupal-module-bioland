@@ -1880,3 +1880,7 @@ msgstr "Das Netzwerk-Standarddesign konnte nicht geladen werden, daher zeigen di
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Geben Sie eine Zahl zwischen @min und @max ein."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Leer lassen, um den aktuellen Wert beizubehalten. Verwenden Sie @reset, um ihn zu entfernen."

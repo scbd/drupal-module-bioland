@@ -1791,3 +1791,7 @@ msgstr "نیٹ ورک کا پہلے سے طے شدہ تھیم لوڈ نہیں ہ
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min اور @max کے درمیان ایک نمبر درج کریں۔"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "موجودہ قدر برقرار رکھنے کے لیے خالی چھوڑ دیں۔ اسے ہٹانے کے لیے @reset استعمال کریں۔"

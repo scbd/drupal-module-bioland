@@ -124,18 +124,26 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   /**
    * Last-resort colours used when the dmsm seed cannot be read.
    *
-   * getEffectiveTheme() returns NULL on any HTTP or parse error, and an
-   * unseeded colour field renders empty. Core's Color::validateColor()
-   * substitutes `#000000` for an empty `#type => color` value, so with no
-   * fallback the editor's very first Save would write black brand colours --
-   * and D5's seed-on-save would make that permanent. A dmsm hiccup during
-   * authoring must not be able to black out a site.
+   * getEffectiveTheme() returns NULL on any HTTP or parse error, leaving an
+   * unseeded colour field with no default. These fields are `#type => color`
+   * and `#required`, and the browser's native `<input type="color">` has no
+   * empty state: an unset picker posts `#000000`, so the required check sees
+   * a perfectly valid value and passes it straight through. The editor's very
+   * first Save would write black brand colours and D5's seed-on-save would
+   * make that permanent. A dmsm hiccup during authoring must not be able to
+   * black out a site.
    *
-   * These are the Bioland network defaults, not invented values: `#009edb` is
-   * already documented in-repo as "the Bioland default (UN blue)"
-   * (css/bioland.ckeditor.css:21-26), and all three are the bl2 network
-   * theme the shared fixture pins
-   * (tests/Unit/fixtures/theme-effective-values.json).
+   * These are the live Bioland network defaults, read from the network
+   * document itself rather than from a test fixture. Fetched 2026-08-06 from
+   * the public-allowlisted projection
+   * `GET https://dmsm.cbddev.xyz/api/config/prod/bl2`, whose network-level
+   * `config.theme` block reads `color.primary` #009edb, `color.secondary`
+   * #16c56e and `backGround.secondary` #F2F2F2 -- kept lower-case here
+   * because `<input type="color">` normalizes to lower-case and the stored
+   * value must round-trip. bl2 is the only prod network (`prod/bsl`,
+   * `prod/chm` and `prod/bch` all return HTTP 204). `#009edb` is separately
+   * documented in-repo as "the Bioland default (UN blue)"
+   * (css/bioland.ckeditor.css:21-26).
    *
    * They deliberately do NOT live in config/install/bioland.settings.yml.
    * That file ships no `theme` block at all, and adding one would make
@@ -262,6 +270,20 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Mega Menu'),
       '#tree' => TRUE,
     ];
+
+    // Blanking one of the three optional numbers is a deliberate no-op rather
+    // than a clear -- submitSectionForm() skips a blank so an unrelated save
+    // cannot discard a bound the editor set earlier. Without saying so the
+    // editor blanks the field, sees "saved", and watches the old value come
+    // back unexplained. Chosen over a post-save status message because it
+    // pre-empts the confusion instead of explaining it afterwards, needs no
+    // was-it-authored bookkeeping in the writer, and is the only variant that
+    // also reaches an editor who never presses Save. @reset carries the
+    // already-translated label of the control that DOES un-author (RS), so
+    // the sentence stays consistent with the button in every catalog.
+    $keepsCurrentValue = $this->t('Leave blank to keep the current value. Use @reset to remove it.', [
+      '@reset' => $this->t('Reset to network default'),
+    ]);
     $form['theme']['mega_menu']['forums'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show Forums in the mega menu'),
@@ -275,6 +297,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#min' => BiolandThemeContract::MEGA_MENU_MAX_COLUMNS_MIN,
       '#max' => BiolandThemeContract::MEGA_MENU_MAX_COLUMNS_MAX,
       '#step' => 1,
+      '#description' => $keepsCurrentValue,
       '#default_value' => $this->leaf($defaults, 'mega_menu.max_columns'),
     ];
     $form['theme']['mega_menu']['max_rows_per_column'] = [
@@ -282,6 +305,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Maximum rows per column (0 for no limit)'),
       '#min' => BiolandThemeContract::MEGA_MENU_MAX_ROWS_PER_COLUMN_UNLIMITED,
       '#step' => 1,
+      '#description' => $keepsCurrentValue,
       // Presence, not truthiness: 0 means "unlimited" and is a real value.
       '#default_value' => $this->leaf($defaults, 'mega_menu.max_rows_per_column'),
     ];
@@ -291,6 +315,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#min' => BiolandThemeContract::MEGA_MENU_HORIZONTAL_CARD_MAX_MIN,
       '#max' => BiolandThemeContract::MEGA_MENU_HORIZONTAL_CARD_MAX_MAX,
       '#step' => 1,
+      '#description' => $keepsCurrentValue,
       '#default_value' => $this->leaf($defaults, 'mega_menu.horizontal_card_max'),
     ];
 
@@ -537,8 +562,9 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    *   The bioland.settings configuration object.
    *
    * @return array
-   *   The snake_case theme defaults; empty when nothing is authored and the
-   *   seed is unavailable.
+   *   The snake_case theme defaults. Never empty: when nothing is authored
+   *   seedFromDmsm() takes over, and that always returns at least the three
+   *   colour keys (from self::FALLBACK_COLORS when the seed cannot be read).
    */
   protected function themeDefaults($config): array {
     $authored = $config->get(self::CONFIG_KEY);

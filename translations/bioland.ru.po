@@ -1791,3 +1791,7 @@ msgstr "Не удалось загрузить тему сети по умолч
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Введите число от @min до @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Оставьте пустым, чтобы сохранить текущее значение. Чтобы удалить его, используйте @reset."

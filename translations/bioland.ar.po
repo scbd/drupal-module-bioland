@@ -1711,3 +1711,7 @@ msgstr "تعذّر تحميل السمة الافتراضية للشبكة، ل�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "أدخل رقمًا بين @min و@max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "اتركه فارغًا للإبقاء على القيمة الحالية. استخدم @reset لإزالتها."

@@ -1831,3 +1831,7 @@ msgstr "The network default theme could not be loaded, so these fields show buil
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Enter a number between @min and @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Leave blank to keep the current value. Use @reset to remove it."

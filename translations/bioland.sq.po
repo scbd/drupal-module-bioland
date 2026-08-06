@@ -1791,3 +1791,7 @@ msgstr "Tema e parazgjedhur e rrjetit nuk mund të ngarkohej, prandaj këto fush
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Fusni një numër ndërmjet @min dhe @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lëreni bosh për të ruajtur vlerën aktuale. Përdorni @reset për ta hequr."

@@ -1791,3 +1791,7 @@ msgstr "നെറ്റ്‌വർക്കിന്റെ സ്ഥിരസ�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min നും @max നും ഇടയിലുള്ള ഒരു സംഖ്യ നൽകുക."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "നിലവിലെ മൂല്യം നിലനിർത്താൻ ശൂന്യമായി വിടുക. അത് നീക്കംചെയ്യാൻ @reset ഉപയോഗിക്കുക."

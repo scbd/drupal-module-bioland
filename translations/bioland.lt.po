@@ -1791,3 +1791,7 @@ msgstr "Nepavyko įkelti numatytosios tinklo temos, todėl šiuose laukuose rodo
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Įveskite skaičių nuo @min iki @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Palikite tuščią, kad išsaugotumėte dabartinę reikšmę. Norėdami ją pašalinti, naudokite @reset."

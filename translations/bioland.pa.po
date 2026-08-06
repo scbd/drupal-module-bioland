@@ -1791,3 +1791,7 @@ msgstr "ਨੈੱਟਵਰਕ ਦਾ ਮੂਲ ਥੀਮ ਲੋਡ ਨਹੀਂ 
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ਅਤੇ @max ਵਿਚਕਾਰ ਇੱਕ ਨੰਬਰ ਦਾਖਲ ਕਰੋ।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "ਮੌਜੂਦਾ ਮੁੱਲ ਰੱਖਣ ਲਈ ਖਾਲੀ ਛੱਡੋ। ਇਸਨੂੰ ਹਟਾਉਣ ਲਈ @reset ਵਰਤੋ।"

@@ -1880,3 +1880,7 @@ msgstr "No s'ha pogut carregar el tema per defecte de la xarxa, de manera que aq
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Introduïu un nombre entre @min i @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Deixeu-ho en blanc per conservar el valor actual. Utilitzeu @reset per eliminar-lo."

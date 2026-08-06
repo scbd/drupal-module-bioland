@@ -1791,3 +1791,7 @@ msgstr "An kasa loda jigon tsoho na hanyar sadarwa, don haka waɗannan filayen s
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Shigar da lamba tsakanin @min da @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Bar shi fanko don riƙe ƙimar yanzu. Yi amfani da @reset don cire ta."

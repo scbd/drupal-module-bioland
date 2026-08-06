@@ -1791,3 +1791,7 @@ msgstr "Não foi possível carregar o tema predefinido da rede, por isso estes c
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Introduza um número entre @min e @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Deixe em branco para manter o valor atual. Use @reset para removê-lo."

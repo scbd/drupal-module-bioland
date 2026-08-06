@@ -1791,3 +1791,7 @@ msgstr "Сүлжээний өгөгдмөл загварыг ачаалж чад
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ба @max хоорондох тоог оруулна уу."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Одоогийн утгыг хадгалахын тулд хоосон орхино уу. Үүнийг устгахын тулд @reset ашиглана уу."

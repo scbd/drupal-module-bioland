@@ -1862,3 +1862,7 @@ msgstr "Nou pa t kapab chaje tèm rezo a pa defo, kidonk chan sa yo montre valè
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Antre yon nimewo ant @min ak @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Kite li vid pou kenbe valè aktyèl la. Sèvi ak @reset pou retire l."

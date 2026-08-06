@@ -1791,3 +1791,7 @@ msgstr "Tema lalai rangkaian tidak dapat dimuatkan, jadi medan ini memaparkan ni
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Masukkan nombor antara @min dan @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Biarkan kosong untuk mengekalkan nilai semasa. Gunakan @reset untuk membuangnya."

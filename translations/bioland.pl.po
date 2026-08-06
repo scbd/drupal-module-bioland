@@ -1791,3 +1791,7 @@ msgstr "Nie udało się wczytać domyślnego motywu sieci, dlatego te pola pokaz
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Wprowadź liczbę z zakresu od @min do @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Pozostaw puste, aby zachować bieżącą wartość. Użyj @reset, aby ją usunąć."

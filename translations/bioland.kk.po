@@ -1791,3 +1791,7 @@ msgstr "Желінің әдепкі тақырыбын жүктеу мүмкін
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min мен @max аралығындағы санды енгізіңіз."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ағымдағы мәнді сақтау үшін бос қалдырыңыз. Оны жою үшін @reset пайдаланыңыз."

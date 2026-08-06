@@ -1791,3 +1791,7 @@ msgstr "नेटवर्कची डीफॉल्ट थीम लोड �
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min आणि @max दरम्यानची संख्या प्रविष्ट करा."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "सध्याचे मूल्य ठेवण्यासाठी रिकामे सोडा. ते काढून टाकण्यासाठी @reset वापरा."

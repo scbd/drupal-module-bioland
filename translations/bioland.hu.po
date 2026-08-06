@@ -1862,3 +1862,7 @@ msgstr "A hálózat alapértelmezett témája nem tölthető be, ezért ezek a m
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Adjon meg egy számot @min és @max között."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Hagyja üresen a jelenlegi érték megtartásához. Az eltávolításához használja a(z) @reset lehetőséget."

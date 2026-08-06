@@ -1791,3 +1791,7 @@ msgstr "Hindi ma-load ang default na tema ng network, kaya ipinapakita ng mga fi
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Maglagay ng numero sa pagitan ng @min at @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Iwanang blangko upang panatilihin ang kasalukuyang halaga. Gamitin ang @reset upang alisin ito."

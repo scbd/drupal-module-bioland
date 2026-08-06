@@ -1862,3 +1862,7 @@ msgstr "بارگذاری زمینه پیش‌فرض شبکه ممکن نشد، �
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "عددی بین @min و @max وارد کنید."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "برای حفظ مقدار فعلی خالی بگذارید. برای حذف آن از @reset استفاده کنید."

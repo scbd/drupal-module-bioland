@@ -1791,3 +1791,7 @@ msgstr "ネットワークの既定テーマを読み込めなかったため、
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min から @max までの数値を入力してください。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "現在の値を保持するには空欄のままにしてください。削除するには @reset を使用します。"

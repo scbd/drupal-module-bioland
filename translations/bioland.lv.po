@@ -1791,3 +1791,7 @@ msgstr "Tīkla noklusējuma motīvu neizdevās ielādēt, tāpēc šajos laukos 
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Ievadiet skaitli no @min līdz @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Atstājiet tukšu, lai saglabātu pašreizējo vērtību. Lai to noņemtu, izmantojiet @reset."

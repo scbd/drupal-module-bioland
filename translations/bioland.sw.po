@@ -1791,3 +1791,7 @@ msgstr "Mandhari chaguo-msingi ya mtandao haikuweza kupakiwa, kwa hivyo sehemu h
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Weka nambari kati ya @min na @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Acha wazi ili kuhifadhi thamani ya sasa. Tumia @reset kuiondoa."

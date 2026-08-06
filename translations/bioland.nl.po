@@ -1791,3 +1791,7 @@ msgstr "Het standaardthema van het netwerk kon niet worden geladen, daarom tonen
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Voer een getal in tussen @min en @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Laat leeg om de huidige waarde te behouden. Gebruik @reset om deze te verwijderen."

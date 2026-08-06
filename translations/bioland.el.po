@@ -1880,3 +1880,7 @@ msgstr "Δεν ήταν δυνατή η φόρτωση του προεπιλεγ
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Εισαγάγετε έναν αριθμό μεταξύ @min και @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Αφήστε το κενό για να διατηρήσετε την τρέχουσα τιμή. Χρησιμοποιήστε το @reset για να την αφαιρέσετε."

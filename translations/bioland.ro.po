@@ -1791,3 +1791,7 @@ msgstr "Tema implicită a rețelei nu a putut fi încărcată, așa că aceste c
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Introduceți un număr între @min și @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lăsați necompletat pentru a păstra valoarea curentă. Folosiți @reset pentru a o elimina."

@@ -1791,3 +1791,7 @@ msgstr "ไม่สามารถโหลดธีมเริ่มต้น
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "ป้อนตัวเลขระหว่าง @min ถึง @max"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "เว้นว่างไว้เพื่อคงค่าปัจจุบัน ใช้ @reset เพื่อลบค่านี้"

@@ -1791,3 +1791,7 @@ msgstr "ජාලයේ පෙරනිමි තේමාව පූරණය �
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min සහ @max අතර සංඛ්‍යාවක් ඇතුළත් කරන්න."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "වත්මන් අගය තබා ගැනීමට හිස්ව තබන්න. එය ඉවත් කිරීමට @reset භාවිතා කරන්න."

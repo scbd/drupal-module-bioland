@@ -1791,3 +1791,7 @@ msgstr "નેટવર્કની ડિફોલ્ટ થીમ લોડ �
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min અને @max વચ્ચેનો એક નંબર દાખલ કરો."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "વર્તમાન મૂલ્ય જાળવી રાખવા માટે ખાલી છોડો. તેને દૂર કરવા માટે @reset વાપરો."

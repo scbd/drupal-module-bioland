@@ -1791,3 +1791,7 @@ msgstr "Nätverkets standardtema kunde inte läsas in, så dessa fält visar inb
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Ange ett tal mellan @min och @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lämna tomt för att behålla det nuvarande värdet. Använd @reset för att ta bort det."

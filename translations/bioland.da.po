@@ -1858,3 +1858,7 @@ msgstr "Netværkets standardtema kunne ikke indlæses, så disse felter viser in
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Indtast et tal mellem @min og @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lad feltet stå tomt for at beholde den nuværende værdi. Brug @reset for at fjerne den."

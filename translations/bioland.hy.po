@@ -1791,3 +1791,7 @@ msgstr "Ցանցի լռելյայն թեման հնարավոր չեղավ բե�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Մուտքագրեք @min-ի և @max-ի միջև ընկած թիվ։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Թողեք դատարկ՝ ընթացիկ արժեքը պահպանելու համար։ Այն հեռացնելու համար օգտագործեք @reset։"

@@ -1791,3 +1791,7 @@ msgstr "Privzete teme omrežja ni bilo mogoče naložiti, zato ta polja prikazuj
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Vnesite število med @min in @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Pustite prazno, da ohranite trenutno vrednost. Za odstranitev uporabite @reset."

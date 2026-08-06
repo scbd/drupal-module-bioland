@@ -1791,3 +1791,7 @@ msgstr "It-tema awtomatika tan-netwerk ma setgħetx tittella', għalhekk dawn l-
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Daħħal numru bejn @min u @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ħalli vojt biex iżżomm il-valur attwali. Uża @reset biex tneħħih."

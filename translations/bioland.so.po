@@ -1791,3 +1791,7 @@ msgstr "Mowduuca caadiga ah ee shabakadda lama soo rari karin, sidaas darteed go
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Geli tiro u dhaxaysa @min iyo @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "U dhaaf faaruq si aad u haysato qiimaha hadda. Isticmaal @reset si aad u saarto."

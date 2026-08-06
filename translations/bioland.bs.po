@@ -1858,3 +1858,7 @@ msgstr "Zadana mrežna tema nije mogla biti učitana, pa ova polja prikazuju ugr
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Unesite broj između @min i @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ostavite prazno da biste zadržali trenutnu vrijednost. Koristite @reset da je uklonite."

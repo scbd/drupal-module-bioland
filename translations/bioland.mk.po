@@ -1791,3 +1791,7 @@ msgstr "Стандардната тема на мрежата не можеше 
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Внесете број помеѓу @min и @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Оставете празно за да ја задржите тековната вредност. Користете @reset за да ја отстраните."

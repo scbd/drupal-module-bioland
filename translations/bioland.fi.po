@@ -1862,3 +1862,7 @@ msgstr "Verkon oletusteemaa ei voitu ladata, joten nämä kentät näyttävät s
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Anna luku väliltä @min ja @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Jätä tyhjäksi, jos haluat säilyttää nykyisen arvon. Poista se käyttämällä @reset."

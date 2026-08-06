@@ -116,6 +116,12 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // network defaults.
     'Enter a number between @min and @max.',
     'The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving.',
+    // The #description on the three optional mega-menu numbers, telling the
+    // editor that blanking one keeps the current value rather than clearing
+    // it. @reset interpolates the already-listed 'Reset to network default'
+    // button label, so the sentence names the control in the same words the
+    // button itself uses in every catalog.
+    'Leave blank to keep the current value. Use @reset to remove it.',
   ];
 
   /**

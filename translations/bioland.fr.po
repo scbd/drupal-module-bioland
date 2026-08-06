@@ -1791,3 +1791,7 @@ msgstr "Le thème par défaut du réseau n'a pas pu être chargé ; ces champs a
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Saisissez un nombre compris entre @min et @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Laissez vide pour conserver la valeur actuelle. Utilisez @reset pour la supprimer."

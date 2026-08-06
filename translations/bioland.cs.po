@@ -1858,3 +1858,7 @@ msgstr "Výchozí motiv sítě se nepodařilo načíst, proto tato pole zobrazuj
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Zadejte číslo mezi @min a @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ponechte prázdné, chcete-li zachovat aktuální hodnotu. Pro její odstranění použijte @reset."

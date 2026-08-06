@@ -1791,3 +1791,7 @@ msgstr "ನೆಟ್‌ವರ್ಕ್‌ನ ಪೂರ್ವನಿಯೋಜಿ�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ಮತ್ತು @max ನಡುವಿನ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "ಪ್ರಸ್ತುತ ಮೌಲ್ಯವನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ. ಅದನ್ನು ತೆಗೆದುಹಾಕಲು @reset ಬಳಸಿ."

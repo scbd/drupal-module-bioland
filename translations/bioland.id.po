@@ -1791,3 +1791,7 @@ msgstr "Tema default jaringan tidak dapat dimuat, sehingga bidang-bidang ini men
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Masukkan angka antara @min dan @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Biarkan kosong untuk mempertahankan nilai saat ini. Gunakan @reset untuk menghapusnya."

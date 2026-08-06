@@ -1711,3 +1711,7 @@ msgstr "নেটওয়ার্কের ডিফল্ট থিম লো
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min এবং @max এর মধ্যে একটি সংখ্যা লিখুন।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "বর্তমান মান রাখতে ফাঁকা রাখুন। এটি সরাতে @reset ব্যবহার করুন।"

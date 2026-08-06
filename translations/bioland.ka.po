@@ -1791,3 +1791,7 @@ msgstr "ქსელის ნაგულისხმევი თემის 
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "შეიყვანეთ რიცხვი @min-სა და @max-ს შორის."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "დატოვეთ ცარიელი მიმდინარე მნიშვნელობის შესანარჩუნებლად. მის წასაშლელად გამოიყენეთ @reset."

@@ -14,6 +14,7 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -435,6 +436,41 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
+   * Every optional number says that blanking it is a no-op, not a clear.
+   *
+   * submitSectionForm() deliberately skips a blank instead of clearing the
+   * key, so an editor who empties the field, saves, and sees the old value
+   * come back has no way to tell that from a bug. The description is the
+   * explanation, and it points at the control that does un-author. The
+   * #required i18n number is excluded on purpose: core rejects a blank there
+   * before the writer ever runs, so the advice would be wrong.
+   */
+  public function testOptionalNumbersExplainThatBlankingKeepsTheCurrentValue(): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    foreach (['max_columns', 'max_rows_per_column', 'horizontal_card_max'] as $key) {
+      $description = (string) ($form['theme']['mega_menu'][$key]['#description'] ?? '');
+      $this->assertStringContainsString(
+        'Leave blank to keep the current value',
+        $description,
+        "mega_menu.{$key} must say that a blank is kept, not cleared."
+      );
+      $this->assertStringContainsString(
+        'Reset to network default',
+        $description,
+        "mega_menu.{$key} must name the control that does un-author."
+      );
+    }
+
+    $this->assertArrayNotHasKey(
+      '#description',
+      $form['theme']['i18n']['max_lang_before_wrap'],
+      'A #required number cannot be left blank, so the advice must not appear there.'
+    );
+  }
+
+  /**
    * Neither hero nor any dead key is offered as a form element.
    */
   public function testHeroAndDeadKeysAreAbsentFromTheForm(): void {
@@ -551,6 +587,38 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
+   * The container double throws for an unregistered id, like the real one.
+   *
+   * This is the pin under the guard test below. The stub used to return NULL
+   * here, which made \Drupal::hasService() in dmsmConfigService() dead weight
+   * as far as the suite was concerned: deleting the guard left every test
+   * green while a real site fatalled on the Theme tab. If this assertion ever
+   * goes back to expecting NULL, the guard is unpinned again.
+   */
+  public function testContainerDoubleThrowsForAnUnregisteredService(): void {
+    $this->expectException(ServiceNotFoundException::class);
+    \Drupal::service(BiolandThemeForm::DMSM_SERVICE_ID);
+  }
+
+  /**
+   * dmsmConfigService() returns NULL for a missing service, never throws.
+   *
+   * The guard test. \Drupal::service() throws ServiceNotFoundException for an
+   * unregistered id, so the documented NULL return is only reachable through
+   * the \Drupal::hasService() check -- delete that check and this call
+   * propagates the exception instead of returning, and this test goes red.
+   */
+  public function testDmsmConfigServiceReturnsNullWhenTheContainerHasNone(): void {
+    $form = $this->createForm();
+
+    $this->assertFalse(\Drupal::hasService(BiolandThemeForm::DMSM_SERVICE_ID));
+    $this->assertNull(
+      $this->invoke($form, 'dmsmConfigService'),
+      'dmsmConfigService() must degrade to NULL, not throw, when the service is unregistered.'
+    );
+  }
+
+  /**
    * With no dmsm service in the container the form still builds.
    *
    * It degrades to the fallback colours rather than to empty fields, and
@@ -568,11 +636,12 @@ class BiolandThemeFormTest extends TestCase {
   /**
    * An unreadable seed warns the editor and never leaves a colour empty.
    *
-   * getEffectiveTheme() returns NULL on any HTTP or parse error. Left empty,
-   * core's Color::validateColor() would substitute #000000 on the editor's
-   * first Save and D5's seed-on-save would make the black permanent, so a
-   * dmsm hiccup would silently black out a site. Two guards: the warning,
-   * and the network-default colours.
+   * getEffectiveTheme() returns NULL on any HTTP or parse error. With no
+   * default, the browser's native `<input type="color">` -- which has no
+   * empty state -- would post #000000 on the editor's first Save, the
+   * #required check would wave it through, and D5's seed-on-save would make
+   * the black permanent, so a dmsm hiccup would silently black out a site.
+   * Two guards: the warning, and the network-default colours.
    */
   public function testSeedFailureWarnsAndFallsBackToNetworkColors(): void {
     $this->stubDmsmService(NULL);

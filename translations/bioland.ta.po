@@ -1791,3 +1791,7 @@ msgstr "நெட்வொர்க்கின் இயல்புநில�
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min மற்றும் @max இடையே ஒரு எண்ணை உள்ளிடவும்."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "தற்போதைய மதிப்பை வைத்திருக்க காலியாக விடவும். அதை அகற்ற @reset பயன்படுத்தவும்."

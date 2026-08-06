@@ -1791,3 +1791,7 @@ msgstr "د شبکې تلواله بڼه نه شوه پورته کولی، نو �
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "د @min او @max ترمنځ یو شمېر ولیکئ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "اوسنی ارزښت ساتلو لپاره یې خالي پریږدئ. د لرې کولو لپاره @reset وکاروئ."

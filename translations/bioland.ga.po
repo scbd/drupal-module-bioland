@@ -1791,3 +1791,7 @@ msgstr "Níorbh fhéidir téama réamhshocraithe an líonra a lódáil, mar sin 
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Cuir isteach uimhir idir @min agus @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Fág folamh é chun an luach reatha a choinneáil. Úsáid @reset chun é a bhaint."

@@ -1791,3 +1791,7 @@ msgstr "Ağın varsayılan teması yüklenemedi, bu nedenle bu alanlar yerleşik
 #: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ile @max arasında bir sayı girin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Mevcut değeri korumak için boş bırakın. Kaldırmak için @reset kullanın."
