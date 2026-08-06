@@ -124,9 +124,10 @@ class BiolandHomeWidgetRegistryTest extends TestCase {
   }
 
   /**
-   * Tests every entry carries exactly one classification and one flavor.
+   * Tests every entry has a valid classification, flavor, and definition
+   * key order.
    */
-  public function testEveryEntryHasExactlyOneClassificationAndFlavor(): void {
+  public function testEveryEntryHasAValidClassificationAndFlavor(): void {
     $classifications = [
       BiolandHomeWidgetRegistry::CLASSIFICATION_AUTHORABLE,
       BiolandHomeWidgetRegistry::CLASSIFICATION_PLACEMENT_FIXED,
@@ -191,6 +192,22 @@ class BiolandHomeWidgetRegistryTest extends TestCase {
 
     $this->assertFalse(BiolandHomeWidgetRegistry::isAuthorableThemeName('news'));
     $this->assertFalse(BiolandHomeWidgetRegistry::isAuthorableThemeName('nbf'));
+  }
+
+  /**
+   * Tests every authorable entry carries a non-NULL theme-name.
+   *
+   * authorableThemeNames() maps theme_name through a closure declared to
+   * return `string`. An authorable entry with a NULL theme_name would throw
+   * a runtime TypeError there instead of failing this test.
+   */
+  public function testEveryAuthorableEntryHasANonNullThemeName(): void {
+    foreach (BiolandHomeWidgetRegistry::authorableKeys() as $key) {
+      $this->assertNotNull(
+        BiolandHomeWidgetRegistry::definition($key)['theme_name'],
+        "{$key} is authorable but has no theme_name."
+      );
+    }
   }
 
   /**

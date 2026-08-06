@@ -3,7 +3,15 @@
 namespace Drupal\bioland;
 
 /**
- * The single source of truth for the Bioland home page widget vocabulary.
+ * The single source of truth for the widget key <-> theme-name mapping and
+ * classification.
+ *
+ * Not yet consolidated: three other enumerations of the same 13 keys survive
+ * untouched and are not (yet) derived from this class —
+ * \Drupal\bioland\Service\BiolandSettingsManager::getHomeWidgetSettings()
+ * (the block that actually ships `home_widgets.*.enable` to head),
+ * `config/schema/bioland.schema.yml`, and `config/install/bioland.settings.yml`.
+ * See docs/debt.md for the consolidation debt this leaves open.
  *
  * Two vocabularies describe the same widgets from opposite ends of the stack,
  * and until now neither end knew about the other:
@@ -118,6 +126,11 @@ final class BiolandHomeWidgetRegistry {
    * - flavor: self::FLAVOR_CHM or self::FLAVOR_BSL.
    * - classification: exactly one of the self::CLASSIFICATION_* constants.
    * - note: why the entry is not plain authorable, or '' when it is.
+   *
+   * head_matcher and note have no runtime reader, and neither does
+   * self::UNGATED_THEME_NAMES above: all three exist as executable
+   * documentation for tests and humans, so a future reader does not go
+   * hunting for a consumer that was never meant to exist.
    */
   public const WIDGETS = [
     'gbif_widget' => [
@@ -266,10 +279,10 @@ final class BiolandHomeWidgetRegistry {
    *   The theme-names, including placement-fixed ones.
    */
   public static function themeNames(): array {
-    return array_values(array_filter(array_column(
-      self::WIDGETS,
-      'theme_name'
-    )));
+    return array_values(array_filter(
+      array_column(self::WIDGETS, 'theme_name'),
+      static fn(?string $name): bool => $name !== NULL
+    ));
   }
 
   /**
