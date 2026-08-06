@@ -328,6 +328,8 @@ Decisions that shape this module are recorded as ADRs in `docs/adr/`:
   translation defaults on save rather than invoking machine translation.
 - `docs/adr/0004-disable-system-cron.md`: system cron is disabled in favour of external scheduling
   (BL-739).
+- `docs/adr/0006-theme-authority.md`: `bioland.settings.theme` is the per-site theme authoring
+  authority, reaching head via dmsm's existing `biolandSettings` attach with zero dmsm changes.
 
 See each ADR for the rationale; it is not restated here.
 
