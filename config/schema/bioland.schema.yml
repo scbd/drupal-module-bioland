@@ -493,9 +493,13 @@ bioland.settings:
             # app/components/page/home-chm.vue:18-20). Confirmed by the DMSM
             # prod seed and the stg config, which carry three nested arrays
             # for a CHM site and one nested array for a single-column BCH
-            # site. D3's "exactly 3" bound counts the OUTER length (3
+            # site. W2a's "exactly 3" bound counts the OUTER length (3
             # columns); the inner vocabulary is owned by the widget registry
-            # (p01-05), not this schema.
+            # (p01-05), not this schema. The one-column BCH shape is not a
+            # counter-example to that bound -- it is exactly the deferred
+            # column-count-aware-grid alternative recorded as W2a's debt row,
+            # so p02-01's validator rejecting it is intentional, not an
+            # oversight.
             columns:
               type: sequence
               label: 'Home page widget columns (vocabulary owned by the widget registry, not this schema)'

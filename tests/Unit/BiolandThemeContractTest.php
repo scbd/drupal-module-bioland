@@ -296,11 +296,21 @@ class BiolandThemeContractTest extends TestCase {
   public function testHomePageWidgetsColumnsIsASequenceOfWidgetColumns(): void {
     $block = implode("\n", $this->extractColumnsBlockLines());
     $this->assertNotSame('', $block, '`columns` must be declared under the theme block.');
+    // Each `.*?` gap below is guarded against skipping over another
+    // `sequence:` key line. Without the guard, a THIRD nesting level (an
+    // extra `type: sequence` / `sequence:` pair) can be absorbed by one of
+    // the lazy gaps and the regex still matches -- it only pins "at least
+    // two levels", not "exactly two". The guard forces the two `sequence:`
+    // matches onto the two literal occurrences in a doubly-nested shape, so
+    // a triple-nested shape (which has three) fails to match.
     $this->assertMatchesRegularExpression(
-      '/^\s*columns:\s*$.*?^\s*type: sequence\s*$.*?^\s*sequence:\s*$.*?^\s*type: sequence\s*$.*?^\s*sequence:\s*$.*?^\s*type: string\s*$/ms',
+      '/^\s*columns:\s*$(?:(?!^\s*sequence:\s*$).)*?^\s*type: sequence\s*$(?:(?!^\s*sequence:\s*$).)*?'
+      . '^\s*sequence:\s*$(?:(?!^\s*sequence:\s*$).)*?^\s*type: sequence\s*$(?:(?!^\s*sequence:\s*$).)*?'
+      . '^\s*sequence:\s*$(?:(?!^\s*sequence:\s*$).)*?^\s*type: string\s*$/ms',
       $block,
       '`columns` must be a sequence whose elements are themselves sequences of strings '
-      . '(a list of grid columns, each a list of widget machine names), not a flat string sequence.'
+      . '(a list of grid columns, each a list of widget machine names) -- exactly two levels of '
+      . 'nesting, neither a flat string sequence nor a triple-nested shape.'
     );
   }
 
