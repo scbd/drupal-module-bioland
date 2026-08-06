@@ -9,7 +9,7 @@ plan: themeing
 phase: p01-01
 ---
 
-# 0006. `bioland.settings.theme` is the per-site theme authority
+# 0006. bioland.settings.theme is the per-site theme authority
 
 Per-site theme (colors, home-widget columns, mega-menu bounds, language-bar wrap) moves out of
 dmsm's JSON5 config and into Drupal, authored under `bioland.settings.theme` (snake_case keys). It
