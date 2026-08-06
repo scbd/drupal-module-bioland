@@ -279,8 +279,27 @@ final class BiolandHomeWidgetRegistry {
    *   The theme-names, including placement-fixed ones.
    */
   public static function themeNames(): array {
+    return self::keepNonNullThemeNames(array_column(self::WIDGETS, 'theme_name'));
+  }
+
+  /**
+   * Removes NULL entries from a theme-name list, keeping `''` and `'0'`.
+   *
+   * Extracted from self::themeNames() so this NULL-only semantics — deliberately
+   * distinct from array_filter()'s default falsy-value semantics, which would
+   * also drop `''` and `'0'` — can be pinned by a unit test against a fixture,
+   * independent of self::WIDGETS (which never contains those edge values, so a
+   * test against the real constant cannot catch a regression here).
+   *
+   * @param array<int, string|null> $theme_names
+   *   Theme-names, possibly containing NULL for keyless widgets.
+   *
+   * @return string[]
+   *   The non-NULL theme-names, re-indexed.
+   */
+  private static function keepNonNullThemeNames(array $theme_names): array {
     return array_values(array_filter(
-      array_column(self::WIDGETS, 'theme_name'),
+      $theme_names,
       static fn(?string $name): bool => $name !== NULL
     ));
   }

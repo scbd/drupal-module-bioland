@@ -261,6 +261,25 @@ class BiolandHomeWidgetRegistryTest extends TestCase {
   }
 
   /**
+   * Tests the NULL-only filter in themeNames() keeps `''` and `'0'`.
+   *
+   * self::WIDGETS never contains those edge values, so a test against the
+   * real constant cannot catch a regression to a callback-less
+   * `array_filter()`, which treats every falsy value (`''`, `'0'`, `0`,
+   * `FALSE`) as removable, not just NULL. This pins the extracted
+   * `keepNonNullThemeNames()` helper directly against a fixture that does
+   * contain those values.
+   */
+  public function testThemeNamesFilterKeepsEmptyStringAndZeroString(): void {
+    $method = new \ReflectionMethod(BiolandHomeWidgetRegistry::class, 'keepNonNullThemeNames');
+    $method->setAccessible(TRUE);
+
+    $result = $method->invoke(NULL, ['', '0', 'foo', NULL, 'bar', NULL]);
+
+    $this->assertSame(['', '0', 'foo', 'bar'], $result);
+  }
+
+  /**
    * Tests the registry preserves the key order the form defaulted in.
    */
   public function testAllKeysPreserveTheFormDefaultingOrder(): void {
