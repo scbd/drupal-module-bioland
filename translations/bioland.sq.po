@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profilet e vendeve"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Listim sipas llojit të përmbajtjes"
+msgid "Content Type"
+msgstr "Lloji i përmbajtjes"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Fusni një numër ndërmjet @min dhe @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Lëreni bosh për të ruajtur vlerën aktuale. Përdorni @reset për ta hequr."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Lloji i përmbajtjes"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Lloji i përmbajtjes që shfaq kjo listë."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Aktivizo lidhjet e menusë së komponentëve"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Shfaq veprimin \"Shto lidhje menyje komponenti\" në ekranin e menaxhimit të menusë. Kur nuk është zgjedhur, veprimi dhe formulari i tij nuk janë të disponueshëm."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Shfaq miniaturat"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Shfaq një miniaturë pranë çdo hyrjeje."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Kolonat e mega menusë"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Sa kolona të mega menusë zë ky seksion."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Parazgjedhje (1 kolonë)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolona"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolona (vetëm ekranet shumë të mëdha)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimumi i rreshtave për kolonë"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Parazgjedhja e sajtit"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimumi i hyrjeve për kolonë; pa u caktuar vlen parazgjedhja e sajtit."

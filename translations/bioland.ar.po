@@ -1549,8 +1549,8 @@ msgid "Country Profiles"
 msgstr "الملفات القُطرية"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "قائمة حسب نوع المحتوى"
+msgid "Content Type"
+msgstr "نوع المحتوى"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1715,3 +1715,57 @@ msgstr "أدخل رقمًا بين @min و@max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "اتركه فارغًا للإبقاء على القيمة الحالية. استخدم @reset لإزالتها."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "نوع المحتوى"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "نوع المحتوى الذي تعرضه هذه القائمة."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "تمكين روابط قائمة المكونات"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "يعرض إجراء \"إضافة رابط قائمة مكوّن\" في شاشة إدارة القائمة. عند إلغاء التحديد، يصبح الإجراء ونموذجه غير متاحين."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "إظهار الصور المصغرة"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "إظهار صورة مصغرة بجانب كل إدخال."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "أعمدة القائمة الضخمة"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "عدد أعمدة القائمة الضخمة التي يشغلها هذا القسم."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "افتراضي (عمود واحد)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count أعمدة"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count أعمدة (الشاشات الكبيرة جدًا فقط)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "الحد الأقصى للصفوف في العمود"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "إعداد الموقع الافتراضي"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "الحد الأقصى للإدخالات المعروضة في كل عمود؛ يسري الإعداد الافتراضي للموقع عند عدم التحديد."

@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "د هېوادونو پېژندپاڼې"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "د منځپانګې د ډول له مخې لړلیک"
+msgid "Content Type"
+msgstr "د منځپانګې ډول"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "د @min او @max ترمنځ یو شمېر ولیکئ."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "اوسنی ارزښت ساتلو لپاره یې خالي پریږدئ. د لرې کولو لپاره @reset وکاروئ."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "د منځپانګې ډول"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "د منځپانګې هغه ډول چې دا لړلیک یې ښيي."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "د برخې مینو اړیکې فعالې کړئ"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "د مینو مدیریت پرده کې د \"د برخې د مینو تړنه زیاته کړئ\" کړنه ښیي. کله چې ونه ټاکل شي، کړنه او د هغې فورمه شتون نه لري."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "کوچني انځورونه وښایاست"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "د هرې ننوتنې تر څنګ کوچنی انځور ښیي."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "د مېګا مینو ستنې"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "دا برخه د مېګا مینو څومره ستنې نیسي."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "تلواله (۱ ستنه)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count ستنې"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count ستنې (یوازې ډېرې لویې پردې)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "په هره ستنه کې اعظمي کتارونه"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "د سایټ تلواله"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "په هره ستنه کې اعظمي ننوتنې؛ که ونه ټاکل شي د سایټ تلواله پلي کېږي."

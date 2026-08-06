@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "国別プロファイル"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "コンテンツタイプ別一覧"
+msgid "Content Type"
+msgstr "コンテンツタイプ"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "@min から @max までの数値を入力してください。"
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "現在の値を保持するには空欄のままにしてください。削除するには @reset を使用します。"
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "コンテンツタイプ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "この一覧に表示されるコンテンツタイプ。"
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "コンポーネントメニューリンクを有効にする"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "メニュー管理画面に「コンポーネントメニューリンクを追加」アクションを表示します。チェックを外すと、アクションとそのフォームは利用できません。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "サムネイルを表示"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "各項目の横にサムネイル画像を表示します。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "メガメニューの列数"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "このセクションがメガメニューの何列分を占めるか。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "デフォルト（1列）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count列"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count列（特大画面のみ）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "列あたりの最大行数"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "サイトの既定値"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "列あたりに表示する最大件数。未設定の場合はサイトの既定値が適用されます。"

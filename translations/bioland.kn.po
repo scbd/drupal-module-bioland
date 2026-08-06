@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "ದೇಶ ಪ್ರೊಫೈಲ್‌ಗಳು"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "ವಿಷಯ ಪ್ರಕಾರದ ಪ್ರಕಾರ ಪಟ್ಟಿ"
+msgid "Content Type"
+msgstr "ವಿಷಯದ ಪ್ರಕಾರ"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "@min ಮತ್ತು @max ನಡುವಿನ ಸಂಖ್ಯೆಯನ್
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "ಪ್ರಸ್ತುತ ಮೌಲ್ಯವನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ. ಅದನ್ನು ತೆಗೆದುಹಾಕಲು @reset ಬಳಸಿ."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "ವಿಷಯದ ಪ್ರಕಾರ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "ಈ ಪಟ್ಟಿ ತೋರಿಸುವ ವಿಷಯದ ಪ್ರಕಾರ."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "ಘಟಕ ಮೆನು ಲಿಂಕ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "ಮೆನು ನಿರ್ವಹಣೆ ಪರದೆಯಲ್ಲಿ \"ಘಟಕ ಮೆನು ಲಿಂಕ್ ಸೇರಿಸಿ\" ಕ್ರಿಯೆಯನ್ನು ತೋರಿಸುತ್ತದೆ. ಗುರುತು ಹಾಕದಿದ್ದರೆ, ಕ್ರಿಯೆ ಮತ್ತು ಅದರ ಫಾರ್ಮ್ ಲಭ್ಯವಿರುವುದಿಲ್ಲ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "ಥಂಬ್‌ನೇಲ್‌ಗಳನ್ನು ತೋರಿಸಿ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "ಪ್ರತಿ ನಮೂದಿನ ಪಕ್ಕದಲ್ಲಿ ಥಂಬ್‌ನೇಲ್ ಚಿತ್ರವನ್ನು ತೋರಿಸುತ್ತದೆ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "ಮೆಗಾ ಮೆನು ಕಾಲಮ್‌ಗಳು"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "ಈ ವಿಭಾಗವು ಮೆಗಾ ಮೆನುವಿನ ಎಷ್ಟು ಕಾಲಮ್‌ಗಳನ್ನು ಆವರಿಸುತ್ತದೆ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ಡೀಫಾಲ್ಟ್ (1 ಕಾಲಮ್)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count ಕಾಲಮ್‌ಗಳು"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count ಕಾಲಮ್‌ಗಳು (ಅತಿ ದೊಡ್ಡ ಪರದೆಗಳಲ್ಲಿ ಮಾತ್ರ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "ಪ್ರತಿ ಕಾಲಮ್‌ಗೆ ಗರಿಷ್ಠ ಸಾಲುಗಳು"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "ಸೈಟ್ ಡೀಫಾಲ್ಟ್"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "ಪ್ರತಿ ಕಾಲಮ್‌ಗೆ ಗರಿಷ್ಠ ನಮೂದುಗಳು; ಹೊಂದಿಸದಿದ್ದರೆ ಸೈಟ್ ಡೀಫಾಲ್ಟ್ ಅನ್ವಯಿಸುತ್ತದೆ."

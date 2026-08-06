@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "Riigiprofiilid"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Loend sisutüüpide kaupa"
+msgid "Content Type"
+msgstr "Sisutüüp"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1866,3 +1866,57 @@ msgstr "Sisestage arv vahemikus @min kuni @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Jätke tühjaks, et säilitada praegune väärtus. Selle eemaldamiseks kasutage @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Sisutüüp"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Sisutüüp, mida see loend kuvab."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Luba komponendi menüülingid"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Kuvab tegevuse \"Lisa komponendi menüülink\" menüü haldamise ekraanil. Kui see pole märgitud, pole tegevus ja selle vorm saadaval."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Kuva pisipildid"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Kuvab iga kirje kõrval pisipildi."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Megamenüü veerud"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Mitu megamenüü veergu see jaotis hõlmab."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Vaikimisi (1 veerg)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count veergu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count veergu (ainult eriti suurtel ekraanidel)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimaalne ridade arv veerus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Saidi vaikeväärtus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimaalne kirjete arv veerus; määramata jätmisel kehtib saidi vaikeväärtus."

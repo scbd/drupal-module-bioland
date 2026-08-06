@@ -20,8 +20,10 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  *
  * A stored class value carries tokens with several unrelated jobs (child-menu
  * binding, content-type binding, layout flags, the "login" and "our-targets"
- * markers). Only the component token belongs to this service; every other token
- * must survive a merge untouched, in its original order and spelling.
+ * markers). Two token families belong to this service: the component token and
+ * the "bl2-content-type-<slug>" binding token that tells the Content Type
+ * Listing component what to list. Every other token must survive a merge
+ * untouched, in its original order and spelling.
  *
  * SYNC CHECKLIST: self::COMPONENTS mirrors the components wired into the
  * frontend dispatcher at
@@ -59,6 +61,65 @@ class BiolandComponentRegistry {
   private const SITE_PREFIX_INFIX = '-component-';
 
   /**
+   * The component suffix that takes a content-type binding.
+   *
+   * The frontend's Content Type Listing reads its subject from a sibling
+   * "bl2-content-type-<slug>" class on the same link (bioland-head
+   * mega-menu/custom/content-type/index.vue getContentType()).
+   */
+  public const CONTENT_TYPE_SUFFIX = 'content-type';
+
+  /**
+   * Class prefix of a content-type binding token.
+   *
+   * Unlike component tokens this family has a single spelling — the frontend
+   * matches exactly this prefix.
+   */
+  public const CONTENT_TYPE_BINDING_PREFIX = 'bl2-content-type-';
+
+  /**
+   * The thumbnail toggle token the picker writes.
+   *
+   * bioland-head drop-down.vue showThumbs() shows a thumbnail beside each
+   * child link when the section carries this class (or the legacy spelling).
+   */
+  public const THUMBS_TOKEN = 'bl2-show-thumbs';
+
+  /**
+   * Legacy thumbnail spelling, still read by the frontend but never written.
+   */
+  public const LEGACY_THUMBS_TOKEN = 'mm-show-thumbs';
+
+  /**
+   * The column-width tokens, widest last.
+   *
+   * bioland-head drop-down.vue getSectionScaleClasses(): a bare token flexes
+   * the section to that many columns at every breakpoint; the "-xl" variants
+   * apply only on xl/xxl viewports. Absent any of these a section spans one
+   * column.
+   */
+  public const WIDTH_TOKENS = [
+    'bl2-2x',
+    'bl2-3x',
+    'bl2-4x',
+    'bl2-5x',
+    'bl2-2x-xl',
+    'bl2-3x-xl',
+    'bl2-4x-xl',
+    'bl2-5x-xl',
+  ];
+
+  /**
+   * Class prefix of the Content Type list-view rows cap.
+   *
+   * "bl2-ct-max-row-per-column-<n>" caps how many entries the Content Type
+   * component lists per column before slicing (content-type/index.vue
+   * getMaxRowsPerColumn()); absent, the site-wide theme default applies.
+   * Read by no other component.
+   */
+  public const MAX_ROWS_PREFIX = 'bl2-ct-max-row-per-column-';
+
+  /**
    * The mega-menu components, keyed by canonical class suffix.
    *
    * Each entry holds the untranslated English source strings plus the BSL
@@ -68,7 +129,10 @@ class BiolandComponentRegistry {
    *     condition (msgid).
    *   - bsl: TRUE when the component is offered on Biosafety Land (BSL) sites.
    *     The frontend gates nothing per flavour; this narrowing is a Drupal
-   *     authoring decision only, mirroring the mega-menu settings form.
+   *     authoring decision only, mirroring the mega-menu settings form — which
+   *     on a BSL site exposes ONLY the Content Type Menus section
+   *     (BiolandMegaMenuForm returns early for every other section), so only
+   *     the Content Type Listing component is offered there.
    *
    * Order is the picker's display order and is pinned by the unit test.
    */
@@ -76,51 +140,61 @@ class BiolandComponentRegistry {
     'national-report' => [
       'label' => 'National Reports',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "List of national report links, in tabs by country; hidden when the country has no reports.",
     ],
     'national-report-six' => [
       'label' => 'National Report (6th)',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Sixth national report links for the site country, plus the link's own children; hidden when empty.",
     ],
     'bch' => [
       'label' => 'BCH Records',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty.",
     ],
     'absch' => [
       'label' => 'ABS-CH Records',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty.",
     ],
     'focal-points' => [
       'label' => 'National Focal Points',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "List of national focal points, in tabs by country; hidden when empty.",
     ],
     'country-profiles' => [
       'label' => 'Country Profiles',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Links to CBD country profile pages, in tabs by country; always shown.",
     ],
     'content-type' => [
-      'label' => 'Content Type Listing',
+      'label' => 'Content Type',
       'bsl' => TRUE,
+      'thumbs' => TRUE,
       'description' => "Latest site content of the content types set on this link; hidden when there are no records.",
     ],
     'forums' => [
       'label' => 'Forums',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Latest forum threads, plus the link's own children; hidden when empty.",
     ],
     'national-targets-7' => [
       'label' => 'National Targets (GBF 7)',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "National target cards for GBF target 7, in tabs by country; always shown.",
     ],
     'all-content-types' => [
       'label' => 'All Content Types',
-      'bsl' => TRUE,
+      'bsl' => FALSE,
+      'thumbs' => TRUE,
       'description' => "One link per content type that has records, plus the link's own children; always shown.",
     ],
   ];
@@ -332,6 +406,277 @@ class BiolandComponentRegistry {
     $canonicalToken = trim($canonicalToken);
     if ($canonicalToken !== '') {
       $tokens[] = $canonicalToken;
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Builds the content-type binding token for a content-type slug.
+   *
+   * @param string $slug
+   *   The frontend content-type slug, for example "news".
+   *
+   * @return string
+   *   The binding token, for example "bl2-content-type-news".
+   */
+  public function contentTypeBindingToken(string $slug): string {
+    return self::CONTENT_TYPE_BINDING_PREFIX . $slug;
+  }
+
+  /**
+   * Tells whether a class token is a content-type binding.
+   *
+   * @param string $token
+   *   A single class token.
+   *
+   * @return bool
+   *   TRUE for "bl2-content-type-<non-empty slug>".
+   */
+  public function isContentTypeBindingToken(string $token): bool {
+    return strpos($token, self::CONTENT_TYPE_BINDING_PREFIX) === 0
+      && strlen($token) > strlen(self::CONTENT_TYPE_BINDING_PREFIX);
+  }
+
+  /**
+   * Returns the content-type slugs bound by a stored class value.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return array
+   *   Zero-indexed list of slugs, in stored order. The frontend accepts
+   *   several bindings on one link; most links carry exactly one.
+   */
+  public function findContentTypeBindings(array|string $classValue): array {
+    $slugs = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if ($this->isContentTypeBindingToken($token)) {
+        $slugs[] = substr($token, strlen(self::CONTENT_TYPE_BINDING_PREFIX));
+      }
+    }
+    return $slugs;
+  }
+
+  /**
+   * Replaces the content-type bindings of a stored class value.
+   *
+   * Strips every binding token, then appends one for the given slug (or none,
+   * when the slug is empty — how bindings are cleared from a link whose
+   * component no longer takes one). Every other token, the component token
+   * included, survives byte-identically; the value keeps the shape it was
+   * given under the same rules as mergeComponentToken().
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param string $slug
+   *   The frontend content-type slug to bind, or an empty string to unbind.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeContentTypeBinding(array|string $classValue, string $slug): array|string {
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (!$this->isContentTypeBindingToken($token)) {
+        $tokens[] = $token;
+      }
+    }
+    $slug = trim($slug);
+    if ($slug !== '') {
+      $tokens[] = $this->contentTypeBindingToken($slug);
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Tells whether a component token's component renders thumbnails.
+   *
+   * Only the Content Type and All Content Types Vue components read
+   * bl2-show-thumbs off their own link; on every other component the token is
+   * inert. Mirrors the per-file reads in bioland-head
+   * mega-menu/custom/content-type/index.vue and all-content-types.vue.
+   *
+   * @param string $token
+   *   A component token, in any accepted spelling.
+   * @param string|null $siteId
+   *   Optional runtime multisite identifier; see isComponentToken().
+   *
+   * @return bool
+   *   TRUE when the token names a known component that reads the thumbnail
+   *   token; FALSE for every other token, unknown ones included.
+   */
+  public function componentSupportsThumbs(string $token, ?string $siteId = NULL): bool {
+    foreach (self::COMPONENTS as $suffix => $component) {
+      if (!$component['thumbs']) {
+        continue;
+      }
+      if ($token === $this->canonicalToken($suffix) || $token === self::LEGACY_PREFIX . $suffix) {
+        return TRUE;
+      }
+      $siteId = trim((string) $siteId);
+      if ($siteId !== '' && $token === $siteId . self::SITE_PREFIX_INFIX . $suffix) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Returns the canonical tokens of the components that render thumbnails.
+   *
+   * @return array
+   *   Zero-indexed canonical tokens, in map order.
+   */
+  public function thumbsSupportingTokens(): array {
+    $tokens = [];
+    foreach (self::COMPONENTS as $suffix => $component) {
+      if ($component['thumbs']) {
+        $tokens[] = $this->canonicalToken($suffix);
+      }
+    }
+    return $tokens;
+  }
+
+  /**
+   * Returns the stored max-rows-per-column value, or an empty string.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return string
+   *   The digits after the prefix of the first max-rows token, in stored
+   *   order; an empty string when none is stored (the site default applies).
+   */
+  public function findMaxRowsValue(array|string $classValue): string {
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (strpos($token, self::MAX_ROWS_PREFIX) === 0 && strlen($token) > strlen(self::MAX_ROWS_PREFIX)) {
+        return substr($token, strlen(self::MAX_ROWS_PREFIX));
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Replaces the max-rows-per-column token of a stored class value.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param string|null $value
+   *   The rows cap to write (digits), an empty string to fall back to the
+   *   site default, or NULL to leave the family untouched.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeMaxRows(array|string $classValue, ?string $value): array|string {
+    if ($value === NULL) {
+      return $classValue;
+    }
+
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (strpos($token, self::MAX_ROWS_PREFIX) !== 0) {
+        $tokens[] = $token;
+      }
+    }
+    if ($value !== '' && ctype_digit($value)) {
+      $tokens[] = self::MAX_ROWS_PREFIX . $value;
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Tells whether a stored class value shows thumbnails.
+   *
+   * Either spelling counts when reading; writing always uses THUMBS_TOKEN.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return bool
+   *   TRUE when a thumbnail token is present.
+   */
+  public function hasThumbsToken(array|string $classValue): bool {
+    $tokens = $this->extractClasses($classValue);
+
+    return in_array(self::THUMBS_TOKEN, $tokens, TRUE) || in_array(self::LEGACY_THUMBS_TOKEN, $tokens, TRUE);
+  }
+
+  /**
+   * Returns the stored column-width token, or an empty string for one column.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return string
+   *   The first width token found, in stored order.
+   */
+  public function findWidthToken(array|string $classValue): string {
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (in_array($token, self::WIDTH_TOKENS, TRUE)) {
+        return $token;
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Replaces the style tokens (thumbnails, column width) of a class value.
+   *
+   * A NULL control leaves that family byte-identical — the caller had no
+   * submitted value for it. A non-NULL control owns its family: existing
+   * tokens (legacy spellings included) are stripped and the requested one
+   * appended. Every other token survives verbatim; the value keeps the shape
+   * it was given under the same rules as mergeComponentToken().
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param bool|null $thumbs
+   *   TRUE to show thumbnails, FALSE to hide them, NULL to leave untouched.
+   * @param string|null $widthToken
+   *   A WIDTH_TOKENS entry, an empty string for the one-column default, or
+   *   NULL to leave untouched.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeStyleTokens(array|string $classValue, ?bool $thumbs, ?string $widthToken): array|string {
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if ($thumbs !== NULL && ($token === self::THUMBS_TOKEN || $token === self::LEGACY_THUMBS_TOKEN)) {
+        continue;
+      }
+      if ($widthToken !== NULL && in_array($token, self::WIDTH_TOKENS, TRUE)) {
+        continue;
+      }
+      $tokens[] = $token;
+    }
+    if ($widthToken !== NULL && $widthToken !== '' && in_array($widthToken, self::WIDTH_TOKENS, TRUE)) {
+      $tokens[] = $widthToken;
+    }
+    if ($thumbs === TRUE) {
+      $tokens[] = self::THUMBS_TOKEN;
     }
 
     if (!is_array($classValue)) {

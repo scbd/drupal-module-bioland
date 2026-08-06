@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profiluri de țară"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Listare după tipul de conținut"
+msgid "Content Type"
+msgstr "Tip de conținut"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Introduceți un număr între @min și @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Lăsați necompletat pentru a păstra valoarea curentă. Folosiți @reset pentru a o elimina."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tip de conținut"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Tipul de conținut afișat de această listă."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Activează linkurile de meniu ale componentelor"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Afișează acțiunea \"Adaugă legătură de meniu componentă\" pe ecranul de administrare a meniului. Când nu este bifat, acțiunea și formularul ei nu sunt disponibile."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Afișează miniaturi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Afișează o miniatură lângă fiecare intrare."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Coloanele mega meniului"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Câte coloane din mega meniu ocupă această secțiune."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Implicit (1 coloană)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count coloane"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count coloane (doar ecrane foarte mari)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Număr maxim de rânduri pe coloană"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Valoarea implicită a site-ului"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Numărul maxim de intrări pe coloană; nesetat, se aplică valoarea implicită a site-ului."

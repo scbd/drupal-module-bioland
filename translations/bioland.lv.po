@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Valstu profili"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Saraksts pēc satura veida"
+msgid "Content Type"
+msgstr "Satura tips"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Ievadiet skaitli no @min līdz @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Atstājiet tukšu, lai saglabātu pašreizējo vērtību. Lai to noņemtu, izmantojiet @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Satura tips"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Satura tips, ko rāda šis saraksts."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Iespējot komponentu izvēlnes saites"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Rāda darbību \"Pievienot komponenta izvēlnes saiti\" izvēlnes pārvaldības ekrānā. Ja nav atzīmēts, darbība un tās veidlapa nav pieejamas."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Rādīt sīktēlus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Rāda sīktēlu blakus katram ierakstam."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Mega izvēlnes kolonnas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Cik mega izvēlnes kolonnas aizņem šī sadaļa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Noklusējums (1 kolonna)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolonnas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolonnas (tikai īpaši lielos ekrānos)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimālais rindu skaits kolonnā"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Vietnes noklusējums"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimālais ierakstu skaits kolonnā; ja nav iestatīts, spēkā ir vietnes noklusējums."

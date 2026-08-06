@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Próifílí tíre"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liosta de réir cineál ábhair"
+msgid "Content Type"
+msgstr "Cineál ábhair"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Cuir isteach uimhir idir @min agus @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Fág folamh é chun an luach reatha a choinneáil. Úsáid @reset chun é a bhaint."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Cineál ábhair"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "An cineál ábhair a thaispeánann an liosta seo."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Cumasaigh naisc roghchláir comhpháirte"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Taispeánann sé an gníomh \"Cuir nasc roghchláir comhpháirte leis\" ar scáileán bainistithe an roghchláir. Nuair nach bhfuil sé ticeáilte, níl an gníomh ná a fhoirm ar fáil."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Taispeáin mionsamhlacha"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Taispeánann mionsamhail in aice le gach iontráil."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Colúin an mheigea-roghchláir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Cé mhéad colún den mheigea-roghchlár a líonann an rannán seo."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Réamhshocrú (1 cholún)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count colún"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count colún (scáileáin an-mhóra amháin)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Uaslíon rónna in aghaidh an cholúin"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Réamhshocrú an tsuímh"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Uaslíon iontrálacha in aghaidh an cholúin; gan socrú, feidhmíonn réamhshocrú an tsuímh."

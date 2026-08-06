@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Astaamaha wadamada"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liis sida nooca waxyaabaha"
+msgid "Content Type"
+msgstr "Nooca nuxurka"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Geli tiro u dhaxaysa @min iyo @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "U dhaaf faaruq si aad u haysato qiimaha hadda. Isticmaal @reset si aad u saarto."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Nooca nuxurka"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Nooca nuxurka ee liiskani muujinayo."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Awood u sii xiriirinta menu-ga qaybaha"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Wuxuu ku muujinayaa ficilka \"Ku dar xiriirka menu-ga qaybta\" shaashadda maaraynta menu-ga. Marka aan la calaamadin, ficilka iyo foomkiisu lama heli karaan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Muuji sawirrada yaryar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Waxay muujisaa sawir yar oo ag yaal gelitaan kasta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Tiirarka menu-ga weyn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Immisa tiir oo menu-ga weyn ah ayay qaybtani qaadataa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Caadi (1 tiir)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count tiir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count tiir (shaashadaha aad u waaweyn oo keliya)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Safafka ugu badan tiir kasta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Caadiga goobta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Gelitaannada ugu badan tiir kasta; haddii aan la dejin waxaa shaqeeya caadiga goobta."

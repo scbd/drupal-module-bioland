@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profily krajín"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Zoznam podľa typu obsahu"
+msgid "Content Type"
+msgstr "Typ obsahu"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Zadajte číslo medzi @min a @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Ponechajte prázdne, ak chcete zachovať aktuálnu hodnotu. Na jej odstránenie použite @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Typ obsahu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Typ obsahu, ktorý tento zoznam zobrazuje."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Povoliť komponentové odkazy ponuky"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Zobrazuje akciu \"Pridať odkaz ponuky komponentu\" na obrazovke správy ponuky. Ak nie je začiarknuté, akcia ani jej formulár nie sú dostupné."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Zobraziť miniatúry"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Zobrazí miniatúru vedľa každej položky."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Stĺpce mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Koľko stĺpcov mega menu táto sekcia zaberá."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Predvolené (1 stĺpec)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count stĺpce"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count stĺpce (iba veľmi veľké obrazovky)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maximum riadkov na stĺpec"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Predvolené nastavenie webu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maximálny počet položiek na stĺpec; ak nie je nastavené, platí predvolená hodnota webu."

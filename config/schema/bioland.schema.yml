@@ -187,6 +187,12 @@ bioland.settings:
     main_menu_lock:
       type: boolean
       label: 'Lock main menu editing'
+    component_menu_add_enabled:
+      type: boolean
+      label: 'Enable component menu links'
+    component_menu_show_attributes:
+      type: boolean
+      label: 'Show the Attributes section on component menu link forms'
     mega_menu:
       type: mapping
       label: 'Mega menu settings'

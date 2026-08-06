@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "Maaprofiilit"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Luettelo sisältötyypeittäin"
+msgid "Content Type"
+msgstr "Sisältötyyppi"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1866,3 +1866,57 @@ msgstr "Anna luku väliltä @min ja @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Jätä tyhjäksi, jos haluat säilyttää nykyisen arvon. Poista se käyttämällä @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Sisältötyyppi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Sisältötyyppi, jonka tämä luettelo näyttää."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Ota komponenttivalikkolinkit käyttöön"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Näyttää toiminnon \"Lisää komponentin valikkolinkki\" valikon hallintanäytöllä. Kun valinta on pois, toiminto ja sen lomake eivät ole käytettävissä."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Näytä pikkukuvat"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Näyttää pikkukuvan jokaisen kohteen vieressä."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Megavalikon sarakkeet"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Kuinka monta megavalikon saraketta tämä osio vie."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Oletus (1 sarake)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count saraketta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count saraketta (vain erittäin suuret näytöt)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Rivien enimmäismäärä saraketta kohden"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Sivuston oletus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Kohteiden enimmäismäärä saraketta kohden; ilman valintaa käytetään sivuston oletusta."

@@ -46,13 +46,32 @@ class BiolandComponentMenuFormModeTest extends TestCase {
 
   /**
    * Builds the service for a site flavour and permission state.
+   *
+   * Without $contentTypes the entity type manager stays NULL, which is the
+   * documented degraded state (no sub-select offered); pass term labels to
+   * exercise the content-type paths.
    */
-  protected function createService(bool $isBsl = FALSE, bool $hasPermission = TRUE, string $class = BiolandComponentMenuFormMode::class): BiolandComponentMenuFormMode {
-    $config = new ImmutableConfig('bioland.settings', ['is_biosafety_land' => $isBsl]);
+  protected function createService(bool $isBsl = FALSE, bool $hasPermission = TRUE, string $class = BiolandComponentMenuFormMode::class, ?array $contentTypes = NULL, ?bool $showAttributes = NULL): BiolandComponentMenuFormMode {
+    $settings = ['is_biosafety_land' => $isBsl];
+    if ($showAttributes !== NULL) {
+      $settings['component_menu_show_attributes'] = $showAttributes;
+    }
+    $config = new ImmutableConfig('bioland.settings', $settings);
     $configFactory = $this->createMock(ConfigFactoryInterface::class);
     $configFactory->method('get')->with('bioland.settings')->willReturn($config);
 
-    return new $class($this->registry, $configFactory, new TestAccount($hasPermission));
+    $entityTypeManager = NULL;
+    if ($contentTypes !== NULL) {
+      $terms = [];
+      foreach ($contentTypes as $name => $plural) {
+        $terms[] = new TestTerm($name, $plural);
+      }
+      $storage = new TestTermStorage($terms);
+      $entityTypeManager = $this->createMock(\Drupal\Core\Entity\EntityTypeManagerInterface::class);
+      $entityTypeManager->method('getStorage')->with('taxonomy_term')->willReturn($storage);
+    }
+
+    return new $class($this->registry, $configFactory, new TestAccount($hasPermission), $entityTypeManager);
   }
 
   /**
@@ -337,8 +356,9 @@ class BiolandComponentMenuFormModeTest extends TestCase {
 
     $options = $form[BiolandComponentMenuFormMode::PICKER_ELEMENT]['#options'];
     $this->assertSame($this->registry->optionsFor(TRUE), $options);
-    $this->assertArrayHasKey('bl2-component-bch', $options);
+    $this->assertArrayHasKey('bl2-component-content-type', $options);
     $this->assertArrayNotHasKey('bl2-component-national-report', $options);
+    $this->assertArrayNotHasKey('bl2-component-bch', $options);
   }
 
   /**
@@ -405,7 +425,7 @@ class BiolandComponentMenuFormModeTest extends TestCase {
       'National Reports (not available on this site)',
       $picker['#options']['bl2-component-national-report']
     );
-    $this->assertArrayHasKey('bl2-component-bch', $picker['#options'], 'The narrowed list is still offered alongside it.');
+    $this->assertArrayHasKey('bl2-component-content-type', $picker['#options'], 'The narrowed list is still offered alongside it.');
   }
 
   /**
@@ -458,21 +478,31 @@ class BiolandComponentMenuFormModeTest extends TestCase {
   }
 
   /**
-   * Per-option descriptions are listed, in registry order, as escaped text.
+   * Per-option descriptions render as escaped text, one visible at a time.
+   *
+   * Each offered component gets its own container, #states-bound to the
+   * picker's value, so the editor only ever reads the sentence describing the
+   * current selection — never a second collapsed "Mega-menu component" box.
    */
   public function testPerOptionDescriptionsAreRenderedAsPlainText(): void {
-    $service = $this->createService(TRUE);
+    $service = $this->createService(FALSE);
     $formState = $this->createFormState(NULL, 'component', TRUE);
     $form = $this->contribAlteredForm();
 
     $service->apply($form, $formState);
 
-    $items = $form[BiolandComponentMenuFormMode::DESCRIPTIONS_ELEMENT]['list']['#items'];
-    $this->assertCount(count($this->registry->optionsFor(TRUE)), $items);
-    $this->assertSame('BCH Records', $items[0]['label']['#plain_text']);
+    $descriptions = $form[BiolandComponentMenuFormMode::DESCRIPTIONS_ELEMENT];
+    $this->assertSame('container', $descriptions['#type'], 'No details element - one visible sentence, not a collapsed list.');
+
+    $suffixes = array_filter(array_keys($descriptions), static fn ($key) => strpos((string) $key, '#') !== 0);
+    $this->assertCount(count($this->registry->optionsFor(FALSE)), $suffixes);
+
+    $bch = $descriptions['bch'];
+    $this->assertSame($this->registry->getDescription('bch'), $bch['text']['#plain_text']);
     $this->assertSame(
-      $this->registry->getDescription('bch'),
-      $items[0]['description']['#plain_text']
+      ['value' => 'bl2-component-bch'],
+      $bch['#states']['visible'][':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]'],
+      'Each description is visible only while its component is selected.'
     );
   }
 
@@ -829,6 +859,458 @@ class BiolandComponentMenuFormModeTest extends TestCase {
     $this->assertSame(['menu_link_attributes'], array_keys($form['#entity_builders']));
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Attributes hiding and link prefill.                                 */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * The contrib Attributes box is hidden, but keeps working underneath.
+   *
+   * #access FALSE (not removal) is the load-bearing choice: the contrib
+   * entity builder still reads the hidden class textfield's default value on
+   * save, which is how every class the picker does not own survives.
+   */
+  public function testAttributesFieldsetIsHiddenNotRemoved(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['login bl2-component-forums'], 'component');
+    $form = $this->contribAlteredForm('login bl2-component-forums');
+
+    $service->apply($form, $formState);
+
+    $this->assertFalse($form['options']['attributes']['#access'], 'The Attributes box is hidden from the editor.');
+    $this->assertSame(
+      'login',
+      $form['options']['attributes']['class']['#default_value'],
+      'The hidden textfield still round-trips the classes the picker does not own.'
+    );
+
+    // The "Show Attributes" admin setting opts a site back in.
+    $optedIn = $this->createService(FALSE, TRUE, BiolandComponentMenuFormMode::class, NULL, TRUE);
+    $visible = $this->contribAlteredForm('login bl2-component-forums');
+    $optedIn->apply($visible, $this->createFormState(['login bl2-component-forums'], 'component'));
+    $this->assertArrayNotHasKey('#access', $visible['options']['attributes'], 'component_menu_show_attributes: true keeps the box visible.');
+  }
+
+  /**
+   * A new link's empty link field is prefilled with <nolink>, overridably.
+   */
+  public function testLinkFieldIsPrefilledWithNolinkOnAdd(): void {
+    $service = $this->createService(FALSE);
+    $form = $this->contribAlteredForm();
+    $form['link'] = ['widget' => [0 => ['uri' => ['#type' => 'url', '#default_value' => '']]]];
+
+    $service->apply($form, $this->createFormState(NULL, 'component', TRUE));
+    $this->assertSame('<nolink>', $form['link']['widget'][0]['uri']['#default_value']);
+
+    // An existing link's destination is never rewritten.
+    $editForm = $this->contribAlteredForm();
+    $editForm['link'] = ['widget' => [0 => ['uri' => ['#type' => 'url', '#default_value' => 'internal:/reports']]]];
+    $service->apply($editForm, $this->createFormState(['bl2-component-forums'], 'component'));
+    $this->assertSame('internal:/reports', $editForm['link']['widget'][0]['uri']['#default_value']);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Content-type sub-select.                                            */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Builds a service that offers News and Events as content types.
+   */
+  protected function createServiceWithContentTypes(bool $isBsl = FALSE): BiolandComponentMenuFormMode {
+    return $this->createService($isBsl, TRUE, BiolandComponentMenuFormMode::class, [
+      'News' => 'News',
+      'Event' => 'Events',
+      'Government Ministry or Institute' => 'Government Ministries or Institutes',
+    ]);
+  }
+
+  /**
+   * The sub-select offers the published content types, gated on the picker.
+   */
+  public function testContentTypeSubSelectIsOfferedAndGatedOnThePicker(): void {
+    $service = $this->createServiceWithContentTypes(TRUE);
+    $formState = $this->createFormState(NULL, 'component', TRUE);
+    $form = $this->contribAlteredForm();
+
+    $service->apply($form, $formState);
+
+    $element = $form[BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT];
+    $this->assertSame('select', $element['#type']);
+    $this->assertSame(
+      ['event' => 'Events', 'government-ministry-or-institute' => 'Government Ministries or Institutes', 'news' => 'News'],
+      $element['#options'],
+      'Options are the published content types, keyed by frontend slug, sorted by label.'
+    );
+
+    $gate = [':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]' => ['value' => 'bl2-component-content-type']];
+    $this->assertSame($gate, $element['#states']['visible'], 'Visible only while Content Type Listing is picked.');
+    $this->assertSame($gate, $element['#states']['required'], 'And required exactly then.');
+  }
+
+  /**
+   * A stored binding preselects its slug; an orphaned one is preserved.
+   */
+  public function testContentTypeSubSelectDefaultsToStoredBinding(): void {
+    $service = $this->createServiceWithContentTypes();
+
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $this->createFormState(['bl2-component-content-type arrow bl2-content-type-news'], 'component'));
+    $this->assertSame('news', $form[BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT]['#default_value']);
+
+    $orphaned = $this->contribAlteredForm();
+    $service->apply($orphaned, $this->createFormState(['bl2-component-content-type bl2-content-type-was-removed'], 'component'));
+    $element = $orphaned[BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT];
+    $this->assertSame('was-removed', $element['#default_value']);
+    $this->assertSame(
+      'Legacy: bl2-content-type-was-removed',
+      $element['#options']['was-removed'],
+      'A binding whose term is gone is offered as the preserved current value, never dropped.'
+    );
+  }
+
+  /**
+   * Without a term source the sub-select is simply absent.
+   */
+  public function testContentTypeSubSelectAbsentWithoutTermSource(): void {
+    $service = $this->createService(FALSE);
+    $form = $this->contribAlteredForm();
+
+    $service->apply($form, $this->createFormState(NULL, 'component', TRUE));
+
+    $this->assertSame([], $form[BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT]);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Content-type binding on save.                                       */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Saving a Content Type Listing writes both classes.
+   */
+  public function testBuilderWritesComponentAndBindingClasses(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(NULL, 'component', TRUE);
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue('attributes', ['class' => '', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-content-type bl2-content-type-news']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * Picking a different content type rewrites the binding.
+   */
+  public function testBuilderRewritesAChangedBinding(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['arrow bl2-component-content-type bl2-content-type-news'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('arrow');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'event');
+    $formState->setValue('attributes', ['class' => 'arrow bl2-content-type-news', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['arrow bl2-component-content-type bl2-content-type-event']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * An unchanged selection leaves a hand-authored multi-binding link intact.
+   */
+  public function testUnchangedSelectionPreservesMultiBindingLink(): void {
+    $service = $this->createServiceWithContentTypes();
+    $stored = 'bl2-component-content-type bl2-content-type-news bl2-content-type-event';
+    $formState = $this->createFormState([$stored], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    // The hidden class textfield round-trips everything but the component
+    // token - the bindings included.
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-content-type-event', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-content-type-event bl2-component-content-type']]],
+      $entity->link->first()->options,
+      'The frontend accepts several bindings; an unchanged save must not collapse them.'
+    );
+  }
+
+  /**
+   * Switching to a component that takes no binding strips the stale one.
+   */
+  public function testBuilderStripsBindingsForNonContentTypeComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news arrow'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('arrow');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue('attributes', ['class' => 'arrow', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['arrow bl2-component-forums']]],
+      $entity->link->first()->options,
+      'A binding only ever describes the Content Type Listing; it never outlives it.'
+    );
+  }
+
+  /**
+   * An arbitrary submitted slug outside the offered options is ignored.
+   */
+  public function testUnofferedSubmittedSlugIsIgnored(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'evil"><script>');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type']]],
+      $entity->link->first()->options,
+      'Only an offered slug (or the preserved stored one) may become a class.'
+    );
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Thumbnails and column width.                                        */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * The presentation controls are offered, prefilled from the stored classes.
+   */
+  public function testThumbsAndWidthControlsReflectStoredClasses(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-3x mm-show-thumbs'], 'component');
+    $form = $this->contribAlteredForm();
+
+    $service->apply($form, $formState);
+
+    $this->assertTrue($form[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#default_value']);
+    $this->assertSame('bl2-3x', $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#default_value']);
+    $this->assertSame(
+      ['', 'bl2-2x', 'bl2-3x', 'bl2-4x', 'bl2-5x', 'bl2-2x-xl', 'bl2-3x-xl', 'bl2-4x-xl', 'bl2-5x-xl'],
+      array_keys($form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']),
+      'Exactly the width tokens the frontend reads, plus the one-column default.'
+    );
+    $this->assertSame(
+      '2 columns',
+      (string) $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']['bl2-2x'],
+      'The multiplier comes from the digits before the "x" - never the "2" in the bl2 prefix.'
+    );
+    $this->assertSame(
+      '4 columns (extra-large screens only)',
+      (string) $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']['bl2-4x-xl']
+    );
+  }
+
+  /**
+   * Saving writes the chosen style tokens and normalizes the legacy thumbs.
+   */
+  public function testBuilderWritesStyleTokens(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news mm-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 1);
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'bl2-2x');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news mm-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type bl2-2x bl2-show-thumbs']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * Unchecking thumbnails and resetting the width clears both families.
+   */
+  public function testBuilderClearsStyleTokens(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-forums bl2-4x bl2-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 0);
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, '');
+    $formState->setValue('attributes', ['class' => 'bl2-4x bl2-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * Thumbnails are offered only where a Vue component actually reads them.
+   *
+   * Only content-type/index.vue and all-content-types.vue read
+   * bl2-show-thumbs off their own link; the checkbox is #states-gated to
+   * exactly those pickers' tokens.
+   */
+  public function testThumbsCheckboxIsGatedToSupportingComponents(): void {
+    $service = $this->createService(FALSE);
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $this->createFormState(NULL, 'component', TRUE));
+
+    $selector = ':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]';
+    $this->assertSame(
+      [
+        [$selector => ['value' => 'bl2-component-content-type']],
+        'or',
+        [$selector => ['value' => 'bl2-component-all-content-types']],
+      ],
+      $form[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#states']['visible']
+    );
+
+    // On BSL only content-type is offered, so the gate collapses to it.
+    $bsl = $this->contribAlteredForm();
+    $this->createService(TRUE)->apply($bsl, $this->createFormState(NULL, 'component', TRUE));
+    $this->assertSame(
+      [$selector => ['value' => 'bl2-component-content-type']],
+      $bsl[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#states']['visible']
+    );
+  }
+
+  /**
+   * A thumbnail token never survives onto a component that cannot render it.
+   */
+  public function testThumbsAreStrippedForUnsupportingComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    // The editor switches to Forums; the states-hidden checkbox still submits
+    // its stored TRUE, but forums.vue never reads the token.
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 1);
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * The rows cap is offered for the Content Type component and round-trips.
+   */
+  public function testMaxRowsControl(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-ct-max-row-per-column-4'], 'component');
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $element = $form[BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT];
+    $this->assertSame('4', $element['#default_value']);
+    $this->assertSame(
+      [':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]' => ['value' => 'bl2-component-content-type']],
+      $element['#states']['visible'],
+      'Only content-type/index.vue reads the rows cap.'
+    );
+
+    // A changed cap is rewritten; the site-default option clears it.
+    $entity = $formState->getFormObject()->getEntity();
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT, '6');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-ct-max-row-per-column-4', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type bl2-ct-max-row-per-column-6']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * The rows cap never survives onto a component that cannot read it.
+   */
+  public function testMaxRowsIsStrippedForOtherComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-ct-max-row-per-column-4'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT, '4');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-ct-max-row-per-column-4', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * An arbitrary submitted width value is never written.
+   */
+  public function testUnofferedWidthValueIsIgnored(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-forums bl2-2x'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'evil"><script>');
+    $formState->setValue('attributes', ['class' => 'bl2-2x', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-2x bl2-component-forums']]],
+      $entity->link->first()->options,
+      'Only a width token the frontend reads (or the empty default) may be written.'
+    );
+  }
+
 }
 
 /**
@@ -1101,6 +1583,91 @@ class TestLinkItem {
 
   public function __construct(array $options) {
     $this->options = $options;
+  }
+
+}
+
+/**
+ * Taxonomy term storage double for the content-type sub-select.
+ */
+class TestTermStorage {
+
+  /**
+   * The terms returned by any loadByProperties() call.
+   *
+   * @var array
+   */
+  protected $terms;
+
+  public function __construct(array $terms) {
+    $this->terms = $terms;
+  }
+
+  public function loadByProperties(array $properties = []) {
+    return $this->terms;
+  }
+
+}
+
+/**
+ * Content-type term double: a name and an optional plural.
+ */
+class TestTerm {
+
+  /**
+   * The untranslated term name.
+   *
+   * @var string
+   */
+  protected $name;
+
+  /**
+   * The field_plural value, or NULL for a term without one.
+   *
+   * @var string|null
+   */
+  protected $plural;
+
+  public function __construct(string $name, ?string $plural = NULL) {
+    $this->name = $name;
+    $this->plural = $plural;
+  }
+
+  public function label() {
+    return $this->name;
+  }
+
+  public function hasTranslation($langcode) {
+    return FALSE;
+  }
+
+  public function getTranslation($langcode) {
+    return $this;
+  }
+
+  public function hasField($field_name) {
+    return $field_name === 'field_plural' && $this->plural !== NULL;
+  }
+
+  public function get($field_name) {
+    return new class($this->plural) {
+
+      /**
+       * The plural value.
+       *
+       * @var string|null
+       */
+      public $value;
+
+      public function __construct(?string $value) {
+        $this->value = $value;
+      }
+
+      public function isEmpty() {
+        return $this->value === NULL || $this->value === '';
+      }
+
+    };
   }
 
 }

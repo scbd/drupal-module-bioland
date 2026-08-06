@@ -162,6 +162,41 @@ class BiolandAdminSettingsForm extends BiolandSettingsFormBase {
       '#default_value' => $config->get('main_menu_lock') !== FALSE,
     ];
 
+    // Component menu link authoring. The flag is read by
+    // \Drupal\bioland\Access\BiolandComponentMenuAccessCheck, which gates the
+    // add-component route; core computes each local action's #access from that
+    // route, so denying it both hides the action and blocks the URL.
+    $form['admin_settings']['component_menu'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Mega Menu'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+    ];
+
+    $form['admin_settings']['component_menu']['component_menu_add_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Component Menu Links'),
+      '#description' => $this->t('Shows the "Add component menu link" action on the menu manage screen. When unchecked, the action and its form are unavailable.'),
+      '#default_value' => $config->get('component_menu_add_enabled') !== FALSE,
+    ];
+
+    // Sub-setting of the switch above: only meaningful while component menu
+    // links exist at all, hence the #states gate on the parent checkbox.
+    // Default OFF - the picker owns the component token, so the raw contrib
+    // Attributes fieldset is hidden from the component form unless a site
+    // explicitly opts back in (read by BiolandComponentMenuFormMode::apply()).
+    $form['admin_settings']['component_menu']['component_menu_show_attributes'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show Attributes'),
+      '#description' => $this->t('Shows the Attributes section on the component menu link form. Hidden by default; the component picker manages these values.'),
+      '#default_value' => $config->get('component_menu_show_attributes') === TRUE,
+      '#states' => [
+        'visible' => [
+          ':input[name="component_menu_add_enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
     return $form;
   }
 
@@ -187,7 +222,9 @@ class BiolandAdminSettingsForm extends BiolandSettingsFormBase {
       ->set('debug_log_areas.additional_fields', $values['debug_log_additional_fields'])
       ->set('debug_log_areas.auto_summary', $values['debug_log_auto_summary'])
       ->set('debug_log_areas.help_comments', $values['debug_log_help_comments'])
-      ->set('main_menu_lock', $values['main_menu_lock_enabled']);
+      ->set('main_menu_lock', $values['main_menu_lock_enabled'])
+      ->set('component_menu_add_enabled', $values['component_menu_add_enabled'])
+      ->set('component_menu_show_attributes', $values['component_menu_show_attributes']);
 
     // Handle Main Menu Lock permission changes
     $this->handleMainMenuLockPermissions($values['main_menu_lock_enabled']);

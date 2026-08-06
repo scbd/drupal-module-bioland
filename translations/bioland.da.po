@@ -1696,8 +1696,8 @@ msgid "Country Profiles"
 msgstr "Landeprofiler"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liste efter indholdstype"
+msgid "Content Type"
+msgstr "Indholdstype"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1862,3 +1862,57 @@ msgstr "Indtast et tal mellem @min og @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Lad feltet stå tomt for at beholde den nuværende værdi. Brug @reset for at fjerne den."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Indholdstype"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Den indholdstype, som denne liste viser."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Aktivér komponentmenulinks"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Viser handlingen \"Tilføj komponent-menulink\" på menuadministrationsskærmen. Når den ikke er markeret, er handlingen og dens formular ikke tilgængelige."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Vis miniaturer"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Viser et miniaturebillede ved siden af hver post."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Megamenu-kolonner"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hvor mange kolonner af megamenuen denne sektion fylder."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standard (1 kolonne)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolonner"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolonner (kun ekstra store skaerme)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maks. raekker pr. kolonne"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Webstedsstandard"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maks. antal poster pr. kolonne; webstedsstandarden gaelder, naar intet er valgt."

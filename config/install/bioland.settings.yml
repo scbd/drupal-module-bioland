@@ -57,6 +57,8 @@ debug_log_areas:
   auto_summary: true
   help_comments: true
 main_menu_lock: true
+component_menu_add_enabled: true
+component_menu_show_attributes: false
 mega_menu:
   content_type_menus:
     visible_content_type_menus: []

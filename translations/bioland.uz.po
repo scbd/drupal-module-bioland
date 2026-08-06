@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Mamlakat profillari"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Kontent turi bo'yicha ro'yxat"
+msgid "Content Type"
+msgstr "Kontent turi"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "@min va @max orasidagi sonni kiriting."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Joriy qiymatni saqlab qolish uchun bo'sh qoldiring. Uni o'chirish uchun @reset dan foydalaning."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Kontent turi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Ushbu roʻyxat koʻrsatadigan kontent turi."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Komponent menyu havolalarini yoqish"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menyuni boshqarish ekranida \"Komponent menyu havolasini qo'shish\" amalini ko‘rsatadi. Belgilanmagan bo‘lsa, amal va uning shakli mavjud bo‘lmaydi."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Miniatyuralarni ko'rsatish"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Har bir yozuv yonida miniatyura ko'rsatadi."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Mega menyu ustunlari"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Bu bo'lim mega menyuning nechta ustunini egallaydi."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standart (1 ustun)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count ustun"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count ustun (faqat juda katta ekranlar)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Har ustunda maksimal qatorlar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Sayt standarti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Har ustunda maksimal yozuvlar; belgilanmasa sayt standarti amal qiladi."

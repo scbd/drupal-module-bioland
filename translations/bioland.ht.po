@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "Pwofil peyi yo"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lis dapre kalite kontni"
+msgid "Content Type"
+msgstr "Kalite kontni"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1866,3 +1866,57 @@ msgstr "Antre yon nimewo ant @min ak @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Kite li vid pou kenbe valè aktyèl la. Sèvi ak @reset pou retire l."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Kalite kontni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Kalite kontni lis sa a montre."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Aktive lyen meni konpozan"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Montre aksyon \"Ajoute yon lyen meni konpozan\" sou ekran jesyon meni an. Le li pa tcheke, aksyon an ak fom li pa disponib."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Montre ti imaj yo"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Montre yon ti imaj bo kote chak antre."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Kolòn gwo meni an"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Konbyen kolòn nan gwo meni an seksyon sa a pran."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Paran (1 kolòn)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolòn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolòn (sèlman sou gwo ekran)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimòm ranje pa kolòn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Paran sit la"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimòm antre pa kolòn; si li pa defini, paran sit la aplike."

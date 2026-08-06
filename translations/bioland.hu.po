@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "Országprofilok"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lista tartalomtípus szerint"
+msgid "Content Type"
+msgstr "Tartalomtípus"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1866,3 +1866,57 @@ msgstr "Adjon meg egy számot @min és @max között."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Hagyja üresen a jelenlegi érték megtartásához. Az eltávolításához használja a(z) @reset lehetőséget."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tartalomtípus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "A tartalomtípus, amelyet ez a lista megjelenít."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Komponens menühivatkozások engedélyezése"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Megjeleníti a(z) \"Összetevő menühivatkozás hozzáadása\" műveletet a menükezelő képernyőn. Ha nincs bejelölve, a művelet és annak űrlapja nem érhető el."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Bélyegképek megjelenítése"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Bélyegképet jelenít meg minden bejegyzés mellett."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Mega menü oszlopai"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hány oszlopot foglal el ez a szakasz a mega menüben."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Alapértelmezett (1 oszlop)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count oszlop"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count oszlop (csak extra nagy képernyőkön)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Sorok maximuma oszloponként"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Webhely alapértelmezése"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Oszloponként megjelenő bejegyzések maximuma; beállítás nélkül a webhely alapértelmezése érvényes."

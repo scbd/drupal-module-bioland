@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profils de pays"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liste par type de contenu"
+msgid "Content Type"
+msgstr "Type de contenu"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Saisissez un nombre compris entre @min et @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Laissez vide pour conserver la valeur actuelle. Utilisez @reset pour la supprimer."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Type de contenu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Le type de contenu affiché par cette liste."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Activer les liens de menu de composant"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Affiche l'action \"Ajouter un lien de menu composant\" sur l'écran de gestion du menu. Lorsqu'elle est décochée, l'action et son formulaire ne sont pas disponibles."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Afficher les vignettes"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Affiche une vignette à côté de chaque entrée."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Colonnes du méga-menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Nombre de colonnes du méga-menu occupées par cette section."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Par défaut (1 colonne)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count colonnes"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count colonnes (très grands écrans uniquement)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Nombre maximal de lignes par colonne"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Valeur par défaut du site"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Nombre maximal d'entrées par colonne ; sans réglage, la valeur par défaut du site s'applique."

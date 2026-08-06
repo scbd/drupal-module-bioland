@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Ülke profilleri"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "İçerik türüne göre liste"
+msgid "Content Type"
+msgstr "İçerik türü"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "@min ile @max arasında bir sayı girin."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Mevcut değeri korumak için boş bırakın. Kaldırmak için @reset kullanın."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "İçerik türü"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Bu listenin gösterdiği içerik türü."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Bileşen menü bağlantılarını etkinleştir"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menü yönetim ekranında \"Bileşen menü bağlantısı ekle\" eylemini gösterir. İşaretli değilken eylem ve formu kullanılamaz."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Küçük resimleri göster"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Her girişin yanında küçük bir resim gösterir."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Mega menü sütunları"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Bu bölümün mega menüde kaç sütun kapladığı."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Varsayılan (1 sütun)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count sütun"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count sütun (yalnızca çok büyük ekranlar)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Sütun başına en fazla satır"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Site varsayılanı"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Sütun başına listelenen en fazla giriş; ayarlanmadığında site varsayılanı geçerlidir."

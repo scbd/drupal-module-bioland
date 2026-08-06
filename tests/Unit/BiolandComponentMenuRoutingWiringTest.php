@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\bioland\Unit;
 
+use Drupal\bioland\Access\BiolandComponentMenuAccessCheck;
 use Drupal\bioland\Controller\BiolandMenuController;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -186,15 +187,49 @@ class BiolandComponentMenuRoutingWiringTest extends TestCase {
   }
 
   /**
-   * Access mirrors core's add-link route exactly: no new permission or role.
+   * Permissions mirror core's add-link route: no new permission or role.
+   *
+   * The one extra requirement allowed here is the site-wide feature switch
+   * _bioland_component_menu_enabled, which only ever takes access away. A
+   * _permission or _role requirement would instead diverge the component flow
+   * from the regular one for a whole class of editors (plan decision #5).
    */
   public function testRouteAccessMirrorsCoreAddLinkExactly(): void {
     $route = $this->parseYaml('bioland.routing.yml')[self::ROUTE];
 
     $this->assertSame(
-      ['_entity_create_access' => 'menu_link_content'],
+      [
+        // 'TRUE' in the file; the reader resolves YAML booleans.
+        '_entity_create_access' => 'menu_link_content',
+        '_bioland_component_menu_enabled' => TRUE,
+      ],
       $route['requirements'],
-      'The component add route must require exactly what core entity.menu.add_link_form requires - no extra _permission or _role.'
+      'The component add route must require core entity.menu.add_link_form access plus the feature switch - no extra _permission or _role.'
+    );
+  }
+
+  /**
+   * The feature switch resolves to a tagged, instantiable access check.
+   *
+   * The requirement key, the service tag's applies_to and the class are three
+   * separate declarations; a mismatch fails as a 500 on the menu manage screen
+   * ("no access checker applies"), not as a hidden button.
+   */
+  public function testTheFeatureSwitchIsBackedByATaggedAccessCheck(): void {
+    $services = $this->parseYaml('bioland.services.yml')['services'];
+
+    $this->assertArrayHasKey('bioland.component_menu_access', $services);
+    $service = $services['bioland.component_menu_access'];
+
+    $this->assertSame(BiolandComponentMenuAccessCheck::class, ltrim($service['class'], '\\'));
+    $this->assertTrue(
+      class_exists(BiolandComponentMenuAccessCheck::class),
+      'The access check class named in bioland.services.yml must exist.'
+    );
+    $this->assertStringContainsString(
+      '{ name: access_check, applies_to: _bioland_component_menu_enabled }',
+      file_get_contents($this->moduleRoot() . '/bioland.services.yml'),
+      'The access_check tag must apply to _bioland_component_menu_enabled, the requirement key the route uses.'
     );
   }
 

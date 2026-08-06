@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "દેશ પ્રોફાઇલ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "સામગ્રી પ્રકાર પ્રમાણે યાદી"
+msgid "Content Type"
+msgstr "સામગ્રીનો પ્રકાર"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "@min અને @max વચ્ચેનો એક નંબર દાખ�
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "વર્તમાન મૂલ્ય જાળવી રાખવા માટે ખાલી છોડો. તેને દૂર કરવા માટે @reset વાપરો."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "સામગ્રીનો પ્રકાર"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "આ યાદી જે પ્રકારની સામગ્રી બતાવે છે."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "ઘટક મેનુ લિંક્સ સક્ષમ કરો"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "મેનુ સંચાલન સ્ક્રીન પર \"ઘટક મેનુ લિંક ઉમેરો\" ક્રિયા બતાવે છે. અનચેક કરેલું હોય ત્યારે, ક્રિયા અને તેનું ફોર્મ ઉપલબ્ધ નથી."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "થંબનેલ બતાવો"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "દરેક એન્ટ્રીની બાજુમાં થંબનેલ છબી બતાવે છે."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "મેગા મેનૂની કૉલમ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "આ વિભાગ મેગા મેનૂની કેટલી કૉલમ આવરે છે."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ડિફૉલ્ટ (1 કૉલમ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count કૉલમ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count કૉલમ (ફક્ત ખૂબ મોટી સ્ક્રીન પર)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "કૉલમ દીઠ મહત્તમ પંક્તિઓ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "સાઇટ ડિફૉલ્ટ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "કૉલમ દીઠ મહત્તમ એન્ટ્રીઓ; સેટ ન હોય ત્યારે સાઇટ ડિફૉલ્ટ લાગુ પડે છે."

@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Wasifu wa nchi"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Orodha kwa aina ya maudhui"
+msgid "Content Type"
+msgstr "Aina ya maudhui"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1795,3 +1795,57 @@ msgstr "Weka nambari kati ya @min na @max."
 #: src/Form/BiolandThemeForm.php
 msgid "Leave blank to keep the current value. Use @reset to remove it."
 msgstr "Acha wazi ili kuhifadhi thamani ya sasa. Tumia @reset kuiondoa."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Aina ya maudhui"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Aina ya maudhui inayoonyeshwa na orodha hii."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Washa viungo vya menyu ya vijenzi"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Huonyesha kitendo cha \"Ongeza kiungo cha menyu ya kijenzi\" kwenye skrini ya usimamizi wa menyu. Kisipochaguliwa, kitendo na fomu yake havipatikani."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Onyesha vijipicha"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Huonyesha kijipicha kando ya kila ingizo."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Safuwima za menyu kubwa"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Sehemu hii inachukua safuwima ngapi za menyu kubwa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Chaguomsingi (safuwima 1)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "Safuwima @count"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "Safuwima @count (skrini kubwa sana pekee)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Idadi ya juu ya safu kwa safuwima"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Chaguomsingi cha tovuti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Idadi ya juu ya maingizo kwa safuwima; bila kuwekwa, chaguomsingi cha tovuti hutumika."
