@@ -26,6 +26,12 @@ namespace Drupal\bioland;
  * `siteStore.theme.backGround.secondary`). Spelling this key `background`
  * would camelCase to `background` and silently miss that consumer.
  *
+ * That consumer is not wired to this config yet. `siteStore.theme` today
+ * resolves `config.theme || config.runTime.theme` (bioland-head
+ * app/stores/site.js:145-147), not `biolandSettings.theme`, and the depth-7
+ * camelCase only rewrites `config.runTime.biolandSettings`. These keys reach
+ * head only once p03-01 lands the precedence leg.
+ *
  * @see \Drupal\Tests\bioland\Unit\BiolandThemeContractTest
  */
 final class BiolandThemeContract {
@@ -46,8 +52,10 @@ final class BiolandThemeContract {
   public const KEY_BACK_GROUND_SECONDARY = 'back_ground.secondary';
 
   /**
-   * Home page widget column order. Vocabulary owned by the widget registry
-   * (p01-05), not this contract or the schema.
+   * Home page widget columns: a list of grid columns, each an ordered list
+   * of widget machine names (a sequence of sequences, not a flat list -- see
+   * bioland-head app/components/page/home-chm.vue:18-20). Vocabulary owned by
+   * the widget registry (p01-05), not this contract or the schema.
    */
   public const KEY_HOME_PAGE_WIDGETS_COLUMNS = 'home_page_widgets.columns';
 
@@ -123,5 +131,14 @@ final class BiolandThemeContract {
   public const MEGA_MENU_HORIZONTAL_CARD_MAX_MIN = 1;
 
   public const MEGA_MENU_HORIZONTAL_CARD_MAX_MAX = 6;
+
+  /**
+   * W2a's required number of home page widget columns.
+   *
+   * Counts the OUTER length of `home_page_widgets.columns` -- the number of
+   * grid columns -- not the total widget count. As with the bounds above,
+   * the enforcement logic lives in p02-01's validators, not here.
+   */
+  public const HOME_PAGE_WIDGETS_COLUMN_COUNT = 3;
 
 }

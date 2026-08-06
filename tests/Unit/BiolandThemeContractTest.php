@@ -41,11 +41,7 @@ class BiolandThemeContractTest extends TestCase {
    * Returns the path to config/schema/bioland.schema.yml.
    */
   private function getSchemaPath(): string {
-    $path = dirname(__DIR__, 2) . '/config/schema/bioland.schema.yml';
-    if (!is_file($path)) {
-      $path = __DIR__ . '/../../config/schema/bioland.schema.yml';
-    }
-    return $path;
+    return dirname(__DIR__, 2) . '/config/schema/bioland.schema.yml';
   }
 
   /**
@@ -142,6 +138,78 @@ class BiolandThemeContractTest extends TestCase {
   }
 
   /**
+   * Parses EVERY declared dot-path under the theme block, not just leaves.
+   *
+   * Unlike parseLeafKeys(), this also matches `key: value` scalar lines and
+   * records intermediate mapping paths, so a dead key survives here even if
+   * it is declared inline or as a container. That is what makes the dead-key
+   * assertion able to fail independently of the contract<->schema pin.
+   */
+  private function parseAllKeyPaths(array $lines): array {
+    $reserved = ['type', 'label', 'mapping', 'sequence'];
+    $paths = [];
+    /** @var array<int, array{indent: int, path: string}> $stack */
+    $stack = [];
+
+    foreach ($lines as $line) {
+      // Comments are prose, not declarations.
+      if (preg_match('/^\s*#/', $line)) {
+        continue;
+      }
+      if (!preg_match('/^(\s*)([\'"]?[\w*-]+[\'"]?):(\s|$)/', $line, $m)) {
+        continue;
+      }
+      $indent = strlen($m[1]);
+      $key = trim($m[2], "'\"");
+
+      while (!empty($stack) && $stack[count($stack) - 1]['indent'] >= $indent) {
+        array_pop($stack);
+      }
+
+      if (in_array($key, $reserved, TRUE)) {
+        // Structural word: never a path segment.
+        continue;
+      }
+
+      $path = empty($stack) ? $key : $stack[count($stack) - 1]['path'] . '.' . $key;
+      $paths[] = $path;
+      $stack[] = ['indent' => $indent, 'path' => $path];
+    }
+
+    return $paths;
+  }
+
+  /**
+   * Returns the raw lines of the `home_page_widgets.columns` block.
+   *
+   * Runs from the `columns:` line to the next line indented at or above it.
+   */
+  private function extractColumnsBlockLines(): array {
+    $lines = $this->extractThemeBlockLines(file_get_contents($this->getSchemaPath()));
+    $block = [];
+    $baseIndent = NULL;
+
+    foreach ($lines as $line) {
+      if ($baseIndent === NULL) {
+        if (preg_match('/^(\s*)columns:\s*$/', $line, $m)) {
+          $baseIndent = strlen($m[1]);
+          $block[] = $line;
+        }
+        continue;
+      }
+      if (trim($line) === '') {
+        continue;
+      }
+      if (strlen($line) - strlen(ltrim($line)) <= $baseIndent) {
+        break;
+      }
+      $block[] = $line;
+    }
+
+    return $block;
+  }
+
+  /**
    * Returns the sorted set of leaf dot-path keys declared under `theme`.
    */
   private function getSchemaThemeKeys(): array {
@@ -184,9 +252,11 @@ class BiolandThemeContractTest extends TestCase {
    * must never appear anywhere in the schema file.
    */
   public function testBackGroundKeyIsCorrectlySpelled(): void {
-    $content = file_get_contents($this->getSchemaPath());
-    $this->assertStringContainsString('back_ground:', $content, 'The `back_ground` key must be present.');
-    $this->assertStringNotContainsString('background:', $content, 'The dead `background` key must never appear.');
+    // Scoped to the theme block: unrelated keys elsewhere in the 500-line
+    // schema must not be able to fail (or accidentally satisfy) this test.
+    $themeBlock = implode("\n", $this->extractThemeBlockLines(file_get_contents($this->getSchemaPath())));
+    $this->assertStringContainsString('back_ground:', $themeBlock, 'The `back_ground` key must be present.');
+    $this->assertStringNotContainsString('background:', $themeBlock, 'The dead `background` key must never appear.');
     $this->assertContains(BiolandThemeContract::KEY_BACK_GROUND_SECONDARY, BiolandThemeContract::KEYS);
   }
 
@@ -194,8 +264,14 @@ class BiolandThemeContractTest extends TestCase {
    * None of the D4 dead keys may appear among the theme leaf keys.
    */
   public function testDeadKeysAreAbsent(): void {
-    $schemaKeys = $this->getSchemaThemeKeys();
-    $haystack = implode("\n", $schemaKeys);
+    // Deliberately NOT getSchemaThemeKeys(): that set is already pinned to
+    // BiolandThemeContract::KEYS by testContractKeysMatchSchemaExactly(), so
+    // asserting against it can never fail on its own. Parsing every declared
+    // path out of the raw theme block instead catches a dead key added to
+    // the schema and the contract together, or declared inline / as a
+    // container where the leaf parser would not see it.
+    $lines = $this->extractThemeBlockLines(file_get_contents($this->getSchemaPath()));
+    $haystack = implode("\n", $this->parseAllKeyPaths($lines));
 
     foreach (self::DEAD_KEY_FRAGMENTS as $fragment) {
       $this->assertStringNotContainsString(
@@ -207,19 +283,39 @@ class BiolandThemeContractTest extends TestCase {
   }
 
   /**
-   * `home_page_widgets.columns` must be a plain string sequence -- no
-   * enumerated widget vocabulary declared in the schema.
+   * `home_page_widgets.columns` must be a sequence OF SEQUENCES of strings:
+   * an outer list of grid columns, each holding widget machine names.
+   *
+   * Head renders the outer level as the `col-md-4` grid columns and the
+   * inner level as the widgets in one column (bioland-head
+   * app/components/page/home-chm.vue:18-20); the DMSM prod seed and stg
+   * config both carry nested arrays. A flat `sequence of string` would be
+   * wrong, so this asserts the inner element type explicitly rather than
+   * just "columns is a sequence" -- the latter passes for both shapes.
+   */
+  public function testHomePageWidgetsColumnsIsASequenceOfWidgetColumns(): void {
+    $block = implode("\n", $this->extractColumnsBlockLines());
+    $this->assertNotSame('', $block, '`columns` must be declared under the theme block.');
+    $this->assertMatchesRegularExpression(
+      '/^\s*columns:\s*$.*?^\s*type: sequence\s*$.*?^\s*sequence:\s*$.*?^\s*type: sequence\s*$.*?^\s*sequence:\s*$.*?^\s*type: string\s*$/ms',
+      $block,
+      '`columns` must be a sequence whose elements are themselves sequences of strings '
+      . '(a list of grid columns, each a list of widget machine names), not a flat string sequence.'
+    );
+  }
+
+  /**
+   * The registry (p01-05) owns the widget vocabulary; no enumerated widget
+   * names may be hardcoded in the schema.
    */
   public function testHomePageWidgetsColumnsHasNoEnumeratedVocabulary(): void {
     $content = file_get_contents($this->getSchemaPath());
-    $this->assertMatchesRegularExpression(
-      '/columns:\s*\n\s*type: sequence/',
-      $content,
-      '`columns` must be declared as a sequence.'
-    );
-    // The registry (p01-05) owns widget names; none should be hardcoded
-    // as YAML enum-style values here.
     $this->assertStringNotContainsString('allowed_values', $content);
+    $this->assertStringNotContainsString(
+      'panorama',
+      implode("\n", $this->extractColumnsBlockLines()),
+      'Widget machine names must not be enumerated in the schema.'
+    );
   }
 
   /**
