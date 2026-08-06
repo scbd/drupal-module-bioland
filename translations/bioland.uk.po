@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Профілі країн"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Список за типом вмісту"
+msgid "Content Type"
+msgstr "Тип вмісту"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Це посилання меню відображає компонент
 msgid "Add component menu link"
 msgstr "Додати посилання меню компонента"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Тип вмісту"
@@ -1715,3 +1716,40 @@ msgstr "Тип вмісту"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Тип вмісту, який показує цей список."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Увімкнути посилання меню компонентів"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Показує дію \"Додати посилання меню компонента\" на екрані керування меню. Якщо не позначено, дія та її форма недоступні."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Показувати мініатюри"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Показує мініатюру поруч із кожним записом."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Ширина колонки"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Скільки колонок мега-меню займає цей розділ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Типово (1 колонка)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count колонки"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count колонки (лише дуже великі екрани)"

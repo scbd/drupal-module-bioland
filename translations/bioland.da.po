@@ -1696,8 +1696,8 @@ msgid "Country Profiles"
 msgstr "Landeprofiler"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liste efter indholdstype"
+msgid "Content Type"
+msgstr "Indholdstype"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1775,6 +1775,7 @@ msgstr "Dette menupunkt viser en megamenu-komponent i stedet for en almindelig l
 msgid "Add component menu link"
 msgstr "Tilføj komponent-menulink"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Indholdstype"
@@ -1782,3 +1783,40 @@ msgstr "Indholdstype"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Den indholdstype, som denne liste viser."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Aktivér komponentmenulinks"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Viser handlingen \"Tilføj komponent-menulink\" på menuadministrationsskærmen. Når den ikke er markeret, er handlingen og dens formular ikke tilgængelige."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Vis miniaturer"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Viser et miniaturebillede ved siden af hver post."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Kolonnebredde"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hvor mange kolonner af megamenuen denne sektion fylder."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standard (1 kolonne)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolonner"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolonner (kun ekstra store skaerme)"

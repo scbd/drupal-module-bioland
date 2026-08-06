@@ -78,6 +78,36 @@ class BiolandComponentRegistry {
   public const CONTENT_TYPE_BINDING_PREFIX = 'bl2-content-type-';
 
   /**
+   * The thumbnail toggle token the picker writes.
+   *
+   * bioland-head drop-down.vue showThumbs() shows a thumbnail beside each
+   * child link when the section carries this class (or the legacy spelling).
+   */
+  public const THUMBS_TOKEN = 'bl2-show-thumbs';
+
+  /**
+   * Legacy thumbnail spelling, still read by the frontend but never written.
+   */
+  public const LEGACY_THUMBS_TOKEN = 'mm-show-thumbs';
+
+  /**
+   * The column-width tokens, widest last.
+   *
+   * bioland-head drop-down.vue getSectionScaleClasses(): a bare token flexes
+   * the section to that many columns at every breakpoint; the "-xl" variants
+   * apply only on xl/xxl viewports. Absent any of these a section spans one
+   * column.
+   */
+  public const WIDTH_TOKENS = [
+    'bl2-2x',
+    'bl2-3x',
+    'bl2-4x',
+    'bl2-2x-xl',
+    'bl2-3x-xl',
+    'bl2-4x-xl',
+  ];
+
+  /**
    * The mega-menu components, keyed by canonical class suffix.
    *
    * Each entry holds the untranslated English source strings plus the BSL
@@ -126,7 +156,7 @@ class BiolandComponentRegistry {
       'description' => "Links to CBD country profile pages, in tabs by country; always shown.",
     ],
     'content-type' => [
-      'label' => 'Content Type Listing',
+      'label' => 'Content Type',
       'bsl' => TRUE,
       'description' => "Latest site content of the content types set on this link; hidden when there are no records.",
     ],
@@ -439,6 +469,88 @@ class BiolandComponentRegistry {
     $slug = trim($slug);
     if ($slug !== '') {
       $tokens[] = $this->contentTypeBindingToken($slug);
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Tells whether a stored class value shows thumbnails.
+   *
+   * Either spelling counts when reading; writing always uses THUMBS_TOKEN.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return bool
+   *   TRUE when a thumbnail token is present.
+   */
+  public function hasThumbsToken(array|string $classValue): bool {
+    $tokens = $this->extractClasses($classValue);
+
+    return in_array(self::THUMBS_TOKEN, $tokens, TRUE) || in_array(self::LEGACY_THUMBS_TOKEN, $tokens, TRUE);
+  }
+
+  /**
+   * Returns the stored column-width token, or an empty string for one column.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return string
+   *   The first width token found, in stored order.
+   */
+  public function findWidthToken(array|string $classValue): string {
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (in_array($token, self::WIDTH_TOKENS, TRUE)) {
+        return $token;
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Replaces the style tokens (thumbnails, column width) of a class value.
+   *
+   * A NULL control leaves that family byte-identical — the caller had no
+   * submitted value for it. A non-NULL control owns its family: existing
+   * tokens (legacy spellings included) are stripped and the requested one
+   * appended. Every other token survives verbatim; the value keeps the shape
+   * it was given under the same rules as mergeComponentToken().
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param bool|null $thumbs
+   *   TRUE to show thumbnails, FALSE to hide them, NULL to leave untouched.
+   * @param string|null $widthToken
+   *   A WIDTH_TOKENS entry, an empty string for the one-column default, or
+   *   NULL to leave untouched.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeStyleTokens(array|string $classValue, ?bool $thumbs, ?string $widthToken): array|string {
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if ($thumbs !== NULL && ($token === self::THUMBS_TOKEN || $token === self::LEGACY_THUMBS_TOKEN)) {
+        continue;
+      }
+      if ($widthToken !== NULL && in_array($token, self::WIDTH_TOKENS, TRUE)) {
+        continue;
+      }
+      $tokens[] = $token;
+    }
+    if ($widthToken !== NULL && $widthToken !== '' && in_array($widthToken, self::WIDTH_TOKENS, TRUE)) {
+      $tokens[] = $widthToken;
+    }
+    if ($thumbs === TRUE) {
+      $tokens[] = self::THUMBS_TOKEN;
     }
 
     if (!is_array($classValue)) {

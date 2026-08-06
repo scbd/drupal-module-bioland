@@ -1718,8 +1718,8 @@ msgid "Country Profiles"
 msgstr "Perfils de país"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Llistat per tipus de contingut"
+msgid "Content Type"
+msgstr "Tipus de contingut"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1797,6 +1797,7 @@ msgstr "Aquest enllaç de menú mostra un component del mega menú en lloc d'una
 msgid "Add component menu link"
 msgstr "Afegeix un enllaç de menú de component"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Tipus de contingut"
@@ -1804,3 +1805,40 @@ msgstr "Tipus de contingut"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "El tipus de contingut que mostra aquesta llista."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Habilita els enllaços de menú de components"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Mostra l'acció \"Afegeix un enllaç de menú de component\" a la pantalla de gestió del menú. Quan està desmarcat, l'acció i el seu formulari no estan disponibles."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Mostra miniatures"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Mostra una imatge en miniatura al costat de cada entrada."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Amplada de columna"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Quantes columnes del megamenú ocupa aquesta secció."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Per defecte (1 columna)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count columnes"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count columnes (només en pantalles molt grans)"

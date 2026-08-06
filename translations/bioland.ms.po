@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profil negara"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Senarai mengikut jenis kandungan"
+msgid "Content Type"
+msgstr "Jenis kandungan"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Pautan menu ini memaparkan komponen mega menu dan bukan senarai pautan a
 msgid "Add component menu link"
 msgstr "Tambah pautan menu komponen"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Jenis kandungan"
@@ -1715,3 +1716,40 @@ msgstr "Jenis kandungan"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Jenis kandungan yang dipaparkan oleh senarai ini."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Dayakan pautan menu komponen"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menunjukkan tindakan \"Tambah pautan menu komponen\" pada skrin pengurusan menu. Apabila tidak ditanda, tindakan dan borangnya tidak tersedia."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Tunjukkan imej kecil"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Menunjukkan imej kecil di sebelah setiap entri."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Lebar lajur"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Berapa lajur mega menu yang diliputi bahagian ini."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Lalai (1 lajur)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count lajur"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count lajur (skrin sangat besar sahaja)"

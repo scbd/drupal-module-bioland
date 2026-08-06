@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Bayanan ƙasashe"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Jerin bisa ga nau'in abun ciki"
+msgid "Content Type"
+msgstr "Nau'in abun ciki"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Wannan hanyar menu tana nuna sashen babban menu maimakon jerin hanyoyin 
 msgid "Add component menu link"
 msgstr "Ƙara hanyar haɗin menu na sashe"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Nau'in abun ciki"
@@ -1715,3 +1716,40 @@ msgstr "Nau'in abun ciki"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Nau'in abun ciki da wannan jerin ke nunawa."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Kunna hanyoyin menu na sassa"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Yana nuna aikin \"Ƙara hanyar haɗin menu na sashe\" a allon sarrafa menu. Idan ba a zaba ba, aikin da fom dinsa ba sa samuwa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Nuna kananan hotuna"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Yana nuna karamin hoto kusa da kowane shigarwa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Fadin shafi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Yawan ginshikan babban menu da wannan sashe ke dauka."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Tsoho (ginshiki 1)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "Ginshikai @count"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "Ginshikai @count (manyan allo kawai)"

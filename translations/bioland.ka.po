@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "ქვეყნების პროფილები"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "სია კონტენტის ტიპის მიხედვით"
+msgid "Content Type"
+msgstr "კონტენტის ტიპი"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "მენიუს ეს ბმული აჩვენებს მ�
 msgid "Add component menu link"
 msgstr "კომპონენტის მენიუს ბმულის დამატება"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "კონტენტის ტიპი"
@@ -1715,3 +1716,40 @@ msgstr "კონტენტის ტიპი"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "კონტენტის ტიპი, რომელსაც ეს სია აჩვენებს."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "კომპონენტის მენიუს ბმულების ჩართვა"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "აჩვენებს \"კომპონენტის მენიუს ბმულის დამატება\" მოქმედებას მენიუს მართვის ეკრანზე. თუ მონიშნული არ არის, მოქმედება და მისი ფორმა მიუწვდომელია."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "მინიატურების ჩვენება"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "აჩვენებს მინიატურას თითოეული ჩანაწერის გვერდით."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "სვეტის სიგანე"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "რამდენ სვეტს იკავებს ეს სექცია მეგა მენიუში."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ნაგულისხმევი (1 სვეტი)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count სვეტი"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count სვეტი (მხოლოდ ძალიან დიდი ეკრანები)"

@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "ข้อมูลประเทศ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "รายการตามประเภทเนื้อหา"
+msgid "Content Type"
+msgstr "ประเภทเนื้อหา"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "ลิงก์เมนูนี้แสดงองค์ประก
 msgid "Add component menu link"
 msgstr "เพิ่มลิงก์เมนูองค์ประกอบ"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "ประเภทเนื้อหา"
@@ -1715,3 +1716,40 @@ msgstr "ประเภทเนื้อหา"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "ประเภทเนื้อหาที่รายการนี้แสดง"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "เปิดใช้งานลิงก์เมนูคอมโพเนนต์"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "แสดงการดำเนินการ \"เพิ่มลิงก์เมนูองค์ประกอบ\" บนหน้าจอจัดการเมนู เมื่อไม่ได้เลือก การดำเนินการและแบบฟอร์มจะไม่พร้อมใช้งาน"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "แสดงภาพขนาดย่อ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "แสดงภาพขนาดย่อข้างแต่ละรายการ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "ความกว้างคอลัมน์"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "ส่วนนี้ครอบคลุมกี่คอลัมน์ของเมกะเมนู"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ค่าเริ่มต้น (1 คอลัมน์)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count คอลัมน์"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count คอลัมน์ (เฉพาะหน้าจอขนาดใหญ่พิเศษ)"

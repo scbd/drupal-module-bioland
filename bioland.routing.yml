@@ -88,8 +88,16 @@ bioland.settings.admin:
 
 # The dedicated "Add component menu link" flow. Deliberately a sibling of
 # core's entity.menu.add_link_form rather than a replacement: the regular add
-# path stays byte-identical. Access, parameters and _admin_route mirror that
-# core route exactly, so this adds no new permission (see ADR 0005).
+# path stays byte-identical. Permission-wise this mirrors core's
+# entity.menu.add_link_form exactly - _entity_create_access and nothing more -
+# so it adds no new permission or role (see ADR 0005).
+#
+# _bioland_component_menu_enabled is the site-wide on/off switch from Bioland's
+# admin settings, not an access widening: it can only take access away, and the
+# create-access check still applies when it is on. It lives on the route rather
+# than in a local-actions alter because core derives the
+# bioland.menu_link_component_add action's #access from this route, so one
+# decision both hides the button and closes the URL.
 bioland.menu_link_component.add:
   path: '/admin/structure/menu/manage/{menu}/add-component'
   defaults:
@@ -97,6 +105,7 @@ bioland.menu_link_component.add:
     _title: 'Add component menu link'
   requirements:
     _entity_create_access: 'menu_link_content'
+    _bioland_component_menu_enabled: 'TRUE'
   options:
     _admin_route: TRUE
     parameters:

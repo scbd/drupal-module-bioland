@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "ملکی پروفائلز"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "مواد کی قسم کے مطابق فہرست"
+msgid "Content Type"
+msgstr "مواد کی قسم"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "یہ مینو لنک ذیلی لنکس کی سادہ فہرست کے ب�
 msgid "Add component menu link"
 msgstr "جزو مینو لنک شامل کریں"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "مواد کی قسم"
@@ -1715,3 +1716,40 @@ msgstr "مواد کی قسم"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "مواد کی وہ قسم جو یہ فہرست دکھاتی ہے۔"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "کمپوننٹ مینو لنکس فعال کریں"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "مینو مینجمنٹ اسکرین پر \"جزو مینو لنک شامل کریں\" عمل دکھاتا ہے۔ غیر منتخب ہونے پر، عمل اور اس کا فارم دستیاب نہیں ہوتے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "تھمب نیل دکھائیں"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "ہر اندراج کے ساتھ ایک تھمب نیل تصویر دکھاتا ہے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "کالم کی چوڑائی"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "یہ حصہ میگا مینو کے کتنے کالم لیتا ہے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "طے شدہ (1 کالم)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count کالم"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count کالم (صرف بہت بڑی اسکرینیں)"

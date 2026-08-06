@@ -1718,8 +1718,8 @@ msgid "Country Profiles"
 msgstr "Länderprofile"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Liste nach Inhaltstyp"
+msgid "Content Type"
+msgstr "Inhaltstyp"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1797,6 +1797,7 @@ msgstr "Dieser Menülink zeigt eine Mega-Menü-Komponente statt einer einfachen 
 msgid "Add component menu link"
 msgstr "Komponenten-Menülink hinzufügen"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Inhaltstyp"
@@ -1804,3 +1805,40 @@ msgstr "Inhaltstyp"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Der Inhaltstyp, den diese Liste anzeigt."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Komponenten-Menülinks aktivieren"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Zeigt die Aktion \"Komponenten-Menülink hinzufügen\" auf der Menüverwaltungsseite an. Wenn deaktiviert, sind die Aktion und ihr Formular nicht verfügbar."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Vorschaubilder anzeigen"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Zeigt ein Vorschaubild neben jedem Eintrag."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Spaltenbreite"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Wie viele Spalten des Mega-Menüs dieser Abschnitt einnimmt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standard (1 Spalte)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count Spalten"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count Spalten (nur sehr große Bildschirme)"

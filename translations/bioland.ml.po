@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "രാജ്യ പ്രൊഫൈലുകൾ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "ഉള്ളടക്ക തരം അനുസരിച്ചുള്ള പട്ടിക"
+msgid "Content Type"
+msgstr "ഉള്ളടക്ക തരം"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "ഈ മെനു ലിങ്ക് ഉപലിങ്കുകളുട
 msgid "Add component menu link"
 msgstr "ഘടക മെനു ലിങ്ക് ചേർക്കുക"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "ഉള്ളടക്ക തരം"
@@ -1715,3 +1716,40 @@ msgstr "ഉള്ളടക്ക തരം"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "ഈ പട്ടിക കാണിക്കുന്ന ഉള്ളടക്ക തരം."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "ഘടക മെനു ലിങ്കുകൾ പ്രവർത്തനക്ഷമമാക്കുക"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "മെനു മാനേജ്മെന്റ് സ്ക്രീനിൽ \"ഘടക മെനു ലിങ്ക് ചേർക്കുക\" പ്രവർത്തനം കാണിക്കുന്നു. ചെക്ക് ചെയ്തിട്ടില്ലെങ്കിൽ, പ്രവർത്തനവും അതിന്റെ ഫോമും ലഭ്യമല്ല."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "ലഘുചിത്രങ്ങൾ കാണിക്കുക"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "ഓരോ എൻട്രിക്കും അരികിൽ ഒരു ലഘുചിത്രം കാണിക്കുന്നു."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "കോളം വീതി"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "ഈ വിഭാഗം മെഗാ മെനുവിന്റെ എത്ര കോളങ്ങൾ ഉൾക്കൊള്ളുന്നു."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "സ്ഥിരം (1 കോളം)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count കോളങ്ങൾ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count കോളങ്ങൾ (വളരെ വലിയ സ്ക്രീനുകളിൽ മാത്രം)"

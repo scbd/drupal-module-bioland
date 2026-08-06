@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Trang thông tin quốc gia"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Danh sách theo loại nội dung"
+msgid "Content Type"
+msgstr "Loại nội dung"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Liên kết menu này hiển thị một thành phần mega menu thay v�
 msgid "Add component menu link"
 msgstr "Thêm liên kết menu thành phần"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Loại nội dung"
@@ -1715,3 +1716,40 @@ msgstr "Loại nội dung"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Loại nội dung mà danh sách này hiển thị."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Bật liên kết menu thành phần"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Hiển thị hành động \"Thêm liên kết menu thành phần\" trên màn hình quản lý menu. Khi bỏ chọn, hành động và biểu mẫu của nó không khả dụng."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Hiện hình thu nhỏ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Hiển thị hình thu nhỏ bên cạnh mỗi mục."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Độ rộng cột"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Phần này chiếm bao nhiêu cột của mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Mặc định (1 cột)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count cột"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count cột (chỉ màn hình cực lớn)"

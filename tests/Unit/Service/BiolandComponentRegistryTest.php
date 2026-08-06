@@ -31,7 +31,7 @@ class BiolandComponentRegistryTest extends TestCase {
     'absch' => ['ABS-CH Records', FALSE],
     'focal-points' => ['National Focal Points', FALSE],
     'country-profiles' => ['Country Profiles', FALSE],
-    'content-type' => ['Content Type Listing', TRUE],
+    'content-type' => ['Content Type', TRUE],
     'forums' => ['Forums', FALSE],
     'national-targets-7' => ['National Targets (GBF 7)', FALSE],
     'all-content-types' => ['All Content Types', FALSE],
@@ -91,7 +91,7 @@ class BiolandComponentRegistryTest extends TestCase {
    */
   public function testOptionsForBslSite(): void {
     $this->assertSame(
-      ['bl2-component-content-type' => 'Content Type Listing'],
+      ['bl2-component-content-type' => 'Content Type'],
       $this->registry->optionsFor(TRUE)
     );
   }
@@ -451,6 +451,59 @@ class BiolandComponentRegistryTest extends TestCase {
       ['arrow', 'bl2-content-type-event'],
       $this->registry->mergeContentTypeBinding(['arrow', 'bl2-content-type-news'], 'event'),
       'A multi-element array stays one token per element.'
+    );
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Style tokens: thumbnails and column width.                          */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Thumbnail detection accepts both spellings; writing is canonical only.
+   */
+  public function testThumbsTokenRules(): void {
+    $this->assertTrue($this->registry->hasThumbsToken(['arrow bl2-show-thumbs']));
+    $this->assertTrue($this->registry->hasThumbsToken(['mm-show-thumbs']), 'The legacy spelling still counts when reading.');
+    $this->assertFalse($this->registry->hasThumbsToken(['arrow bl2-component-forums']));
+
+    $written = $this->registry->mergeStyleTokens(['arrow mm-show-thumbs'], TRUE, NULL);
+    $this->assertSame(['arrow bl2-show-thumbs'], $written, 'Writing normalizes a legacy spelling to the canonical token.');
+  }
+
+  /**
+   * The first stored width token wins; none means the one-column default.
+   */
+  public function testFindWidthToken(): void {
+    $this->assertSame('bl2-3x', $this->registry->findWidthToken(['arrow bl2-3x bl2-show-thumbs']));
+    $this->assertSame('bl2-2x-xl', $this->registry->findWidthToken(['bl2-2x-xl']));
+    $this->assertSame('', $this->registry->findWidthToken(['arrow login']));
+  }
+
+  /**
+   * Style merging: NULL leaves a family untouched, non-NULL owns it.
+   */
+  public function testMergeStyleTokens(): void {
+    $stored = ['arrow bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'];
+
+    $this->assertSame(
+      ['arrow bl2-component-content-type bl2-content-type-news bl2-3x bl2-show-thumbs'],
+      $this->registry->mergeStyleTokens($stored, TRUE, 'bl2-3x'),
+      'A new width replaces the old; every other token survives in place or is re-appended.'
+    );
+    $this->assertSame(
+      ['arrow bl2-component-content-type bl2-content-type-news'],
+      $this->registry->mergeStyleTokens($stored, FALSE, ''),
+      'FALSE thumbs and the empty width clear both families.'
+    );
+    $this->assertSame(
+      ['arrow bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'],
+      $this->registry->mergeStyleTokens($stored, NULL, NULL),
+      'NULL controls leave the stored tokens byte-identical.'
+    );
+    $this->assertSame(
+      ['arrow'],
+      $this->registry->mergeStyleTokens(['arrow'], NULL, 'not-a-width'),
+      'An unknown width token is never written.'
     );
   }
 

@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profil negara"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Daftar menurut jenis konten"
+msgid "Content Type"
+msgstr "Jenis konten"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Tautan menu ini menampilkan komponen mega menu alih-alih daftar tautan a
 msgid "Add component menu link"
 msgstr "Tambah tautan menu komponen"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Jenis konten"
@@ -1715,3 +1716,40 @@ msgstr "Jenis konten"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Jenis konten yang ditampilkan daftar ini."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Aktifkan tautan menu komponen"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menampilkan tindakan \"Tambah tautan menu komponen\" di layar pengelolaan menu. Jika tidak dicentang, tindakan dan formulirnya tidak tersedia."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Tampilkan gambar mini"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Menampilkan gambar mini di samping setiap entri."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Lebar kolom"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Berapa kolom mega menu yang ditempati bagian ini."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Bawaan (1 kolom)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolom"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolom (hanya layar ekstra besar)"

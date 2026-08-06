@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Landssnið"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Listi eftir efnistegund"
+msgid "Content Type"
+msgstr "Efnistegund"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Þessi valmyndartengill birtir einingu megavalmyndar í stað einfalds l
 msgid "Add component menu link"
 msgstr "Bæta við einingavalmyndartengli"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Efnistegund"
@@ -1715,3 +1716,40 @@ msgstr "Efnistegund"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Þessi listi sýnir þessa efnistegund."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Virkja íhlutavalmyndartengla"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Sýnir aðgerðina \"Bæta við einingavalmyndartengli\" á valmyndastjórnunarskjánum. Þegar ekki er hakað við eru aðgerðin og eyðublað hennar ekki tiltæk."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Sýna smámyndir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Sýnir smámynd við hlið hverrar færslu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Dálkabreidd"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hversu marga dálka megavalmyndarinnar þessi hluti spannar."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Sjálfgefið (1 dálkur)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count dálkar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count dálkar (aðeins mjög stórir skjáir)"

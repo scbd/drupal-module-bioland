@@ -107,6 +107,16 @@ class BiolandComponentMenuFormMode {
   public const CONTENT_TYPE_ELEMENT = 'bioland_component_content_type';
 
   /**
+   * Form array key of the thumbnails checkbox, and its submitted value.
+   */
+  public const THUMBS_ELEMENT = 'bioland_component_thumbs';
+
+  /**
+   * Form array key of the column-width select, and its submitted value.
+   */
+  public const WIDTH_ELEMENT = 'bioland_component_width';
+
+  /**
    * Form state key holding the stored binding slugs, for change detection.
    *
    * The entity builder rewrites bindings only when the editor actually picked
@@ -341,19 +351,33 @@ class BiolandComponentMenuFormMode {
 
     $form[self::CONTENT_TYPE_ELEMENT] = $this->contentTypeElement($stored_class, $form_state);
 
-    // The classes are the picker's output, not the editor's input: the entity
-    // builder writes the component and binding tokens, and everything else the
-    // link carries survives through the hidden textfield's default value. The
-    // contrib fieldset is therefore hidden, not removed — menu_link_attributes'
-    // entity builder still reads these elements' (default) values when it
-    // rebuilds link.options.attributes on save, so removing them would wipe
-    // every non-component class instead of preserving it.
+    // Presentation controls for the classes the frontend styles a section by
+    // (bioland-head drop-down.vue): thumbnails beside child links and how
+    // many mega-menu columns the section spans. Generic to every component.
+    $form[self::THUMBS_ELEMENT] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show thumbnails'),
+      '#description' => $this->t('Show a thumbnail image beside each entry.'),
+      '#default_value' => $this->registry->hasThumbsToken($stored_class),
+      '#weight' => -7,
+    ];
+
+    $form[self::WIDTH_ELEMENT] = [
+      '#type' => 'select',
+      '#title' => $this->t('Column width'),
+      '#options' => $this->widthOptions(),
+      '#default_value' => $this->registry->findWidthToken($stored_class),
+      '#description' => $this->t('How many columns of the mega menu this section spans.'),
+      '#weight' => -6,
+    ];
+
+    // Show (or, hidden below, round-trip) only the classes the picker does
+    // not own; the component token is merged back by the entity builder.
     if (isset($form['options']['attributes']['class'])) {
       $form['options']['attributes']['class']['#default_value'] = implode(
         ' ',
         $this->registry->stripComponentTokens($stored_class, $site_id)
       );
-      $form['options']['attributes']['#access'] = FALSE;
     }
 
     // A component link is a mega-menu heading, not a destination: every
@@ -363,6 +387,19 @@ class BiolandComponentMenuFormMode {
       && isset($form['link']['widget'][0]['uri'])
       && empty($form['link']['widget'][0]['uri']['#default_value'])) {
       $form['link']['widget'][0]['uri']['#default_value'] = '<nolink>';
+    }
+
+    // The picker owns the component token, so by default the whole contrib
+    // Attributes fieldset stays out of the editor's way; the "Show Attributes"
+    // admin setting opts a site back in. Hidden via #access FALSE, never
+    // unset: Form API still processes denied elements and submits their
+    // #default_value, so menu_link_attributes' entity builder keeps rebuilding
+    // link.options.attributes from the stored values and nothing is lost on
+    // save. (The class default above was already stripped of the component
+    // token, and the entity builder below merges the picked token back -
+    // exactly as on a visible fieldset.)
+    if (isset($form['options']['attributes']) && !$this->showAttributes()) {
+      $form['options']['attributes']['#access'] = FALSE;
     }
 
     $form['#attributes']['class'][] = self::FORM_CLASS;
@@ -430,6 +467,11 @@ class BiolandComponentMenuFormMode {
     $class = $options['attributes']['class'] ?? [];
     $merged = $this->registry->mergeComponentToken($class, $token, $site_id);
     $merged = $this->mergeContentTypeBinding($merged, $token, $form_state);
+    $merged = $this->registry->mergeStyleTokens(
+      $merged,
+      $this->submittedThumbs($form_state),
+      $this->submittedWidthToken($form_state)
+    );
 
     if ($this->registry->extractClasses($merged) === []) {
       unset($options['attributes']['class']);
@@ -453,6 +495,21 @@ class BiolandComponentMenuFormMode {
    */
   public function isBsl(): bool {
     return (bool) $this->configFactory->get('bioland.settings')->get('is_biosafety_land');
+  }
+
+  /**
+   * Tells whether the Attributes fieldset stays visible in Component mode.
+   *
+   * Reads bioland.settings:component_menu_show_attributes, the "Show
+   * Attributes" sub-setting on the admin settings form. Strictly opt-in: only
+   * an explicit TRUE shows the fieldset, so an absent key (sites configured
+   * before the setting existed) keeps the default hidden state.
+   *
+   * @return bool
+   *   TRUE when the site opted in to showing the raw Attributes fieldset.
+   */
+  public function showAttributes(): bool {
+    return $this->configFactory->get('bioland.settings')->get('component_menu_show_attributes') === TRUE;
   }
 
   /**
@@ -809,6 +866,66 @@ class BiolandComponentMenuFormMode {
     }
 
     return $this->registry->mergeContentTypeBinding($classValue, $slug);
+  }
+
+  /**
+   * Builds the column-width options: the default plus every frontend token.
+   *
+   * @return array
+   *   Token (or empty string) => translated label, narrowest first.
+   */
+  protected function widthOptions(): array {
+    $options = ['' => $this->t('Default (1 column)')];
+    foreach (BiolandComponentRegistry::WIDTH_TOKENS as $token) {
+      $count = (int) preg_replace('/\D/', '', $token);
+      $options[$token] = str_ends_with($token, '-xl')
+        ? $this->t('@count columns (extra-large screens only)', ['@count' => $count])
+        : $this->t('@count columns', ['@count' => $count]);
+    }
+    return $options;
+  }
+
+  /**
+   * Returns the submitted thumbnails state, or NULL when it must be ignored.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return bool|null
+   *   The checkbox state, or NULL when the element never rendered (leaving
+   *   stored thumbnail tokens untouched).
+   */
+  protected function submittedThumbs(FormStateInterface $form_state): ?bool {
+    $value = $form_state->getValue(self::THUMBS_ELEMENT);
+
+    return is_scalar($value) ? (bool) $value : NULL;
+  }
+
+  /**
+   * Returns the submitted width token, or NULL when it must be ignored.
+   *
+   * The same storage-side gate as submittedToken(): only a token the frontend
+   * actually reads (or the empty default) may be written.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return string|null
+   *   A WIDTH_TOKENS entry, '' for the one-column default, or NULL to leave
+   *   stored width tokens untouched.
+   */
+  protected function submittedWidthToken(FormStateInterface $form_state): ?string {
+    $value = $form_state->getValue(self::WIDTH_ELEMENT);
+    if (!is_scalar($value)) {
+      return NULL;
+    }
+
+    $token = trim((string) $value);
+    if ($token === '' || in_array($token, BiolandComponentRegistry::WIDTH_TOKENS, TRUE)) {
+      return $token;
+    }
+
+    return NULL;
   }
 
   /**

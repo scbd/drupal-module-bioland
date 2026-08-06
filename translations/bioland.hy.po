@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Երկրների պրոֆիլներ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Ցանկ ըստ բովանդակության տեսակի"
+msgid "Content Type"
+msgstr "Բովանդակության տեսակ"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկ
 msgid "Add component menu link"
 msgstr "Ավելացնել բաղադրիչի ցանկի հղում"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Բովանդակության տեսակ"
@@ -1715,3 +1716,40 @@ msgstr "Բովանդակության տեսակ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Բովանդակության տեսակը, որը ցուցադրում է այս ցանկը:"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Միացնել բաղադրիչի մենյուի հղումները"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Ցուցադրում է \"Ավելացնել բաղադրիչի ցանկի հղում\" գործողությունը մենյուի կառավարման էկրանին։ Երբ նշված չէ, գործողությունը և դրա ձևը հասանելի չեն։"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Ցուցադրել մանրապատկերները"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Ցուցադրում է մանրապատկեր յուրաքանչյուր գրառման կողքին:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Սյունակի լայնությունը"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Քանի սյունակ է զբաղեցնում այս բաժինը մեգա ընտրացանկում:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Լռելյայն (1 սյունակ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count սյունակ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count սյունակ (միայն շատ մեծ էկրաններին)"

@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "نمایه‌های کشوری"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "فهرست بر اساس نوع محتوا"
+msgid "Content Type"
+msgstr "نوع محتوا"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1779,6 +1779,7 @@ msgstr "این پیوند منو به جای فهرست ساده‌ای از پ�
 msgid "Add component menu link"
 msgstr "افزودن پیوند منوی مؤلفه"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "نوع محتوا"
@@ -1786,3 +1787,40 @@ msgstr "نوع محتوا"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "نوع محتوایی که این فهرست نمایش می‌دهد."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "فعال‌سازی پیوندهای منوی مؤلفه"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "عمل \"افزودن پیوند منوی مؤلفه\" را در صفحه مدیریت منو نشان می‌دهد. در صورت عدم انتخاب، این عمل و فرم آن در دسترس نیستند."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "نمایش تصاویر بندانگشتی"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "کنار هر مورد یک تصویر بندانگشتی نمایش می‌دهد."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "عرض ستون"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "این بخش چند ستون از منوی بزرگ را اشغال می‌کند."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "پیش‌فرض (۱ ستون)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count ستون"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count ستون (فقط صفحه‌های خیلی بزرگ)"

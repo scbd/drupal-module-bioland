@@ -1696,8 +1696,8 @@ msgid "Country Profiles"
 msgstr "Profili zemalja"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Popis po vrsti sadržaja"
+msgid "Content Type"
+msgstr "Vrsta sadržaja"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1775,6 +1775,7 @@ msgstr "Ova veza izbornika prikazuje komponentu mega izbornika umjesto obične l
 msgid "Add component menu link"
 msgstr "Dodaj vezu izbornika komponente"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Vrsta sadržaja"
@@ -1782,3 +1783,40 @@ msgstr "Vrsta sadržaja"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Vrsta sadržaja koju prikazuje ovaj popis."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Omogući veze komponentnog menija"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Prikazuje akciju \"Dodaj vezu izbornika komponente\" na ekranu za upravljanje menijem. Kada nije označeno, akcija i njen obrazac nisu dostupni."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Prikaži sličice"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Prikazuje sličicu pored svakog unosa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Širina kolone"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Koliko kolona mega menija zauzima ova sekcija."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Zadano (1 kolona)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolone"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolone (samo na vrlo velikim ekranima)"

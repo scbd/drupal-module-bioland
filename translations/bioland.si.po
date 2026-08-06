@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "රටවල් පැතිකඩ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "අන්තර්ගත වර්ගය අනුව ලැයිස්තුව"
+msgid "Content Type"
+msgstr "අන්තර්ගත වර්ගය"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "මෙම මෙනු සබැඳිය දරු සබැඳි ස�
 msgid "Add component menu link"
 msgstr "සංරචක මෙනු සබැඳිය එක් කරන්න"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "අන්තර්ගත වර්ගය"
@@ -1715,3 +1716,40 @@ msgstr "අන්තර්ගත වර්ගය"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "මෙම ලැයිස්තුව පෙන්වන අන්තර්ගත වර්ගය."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "සංරචක මෙනු සබැඳි සක්‍රීය කරන්න"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "මෙනු කළමනාකරණ තිරයේ \"සංරචක මෙනු සබැඳිය එක් කරන්න\" ක්‍රියාව පෙන්වයි. සලකුණු නොකළ විට, ක්‍රියාව සහ එහි පෝරමය ලබාගත නොහැක."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "කුඩා රූප පෙන්වන්න"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "සෑම ඇතුළත් කිරීමක් අසලම කුඩා රූපයක් පෙන්වයි."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "තීරු පළල"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "මෙම කොටස මෙගා මෙනුවේ තීරු කීයක් ගනීද."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "පෙරනිමි (තීරු 1)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "තීරු @count"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "තීරු @count (ඉතා විශාල තිර පමණි)"

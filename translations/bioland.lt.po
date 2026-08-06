@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Šalių profiliai"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Sąrašas pagal turinio tipą"
+msgid "Content Type"
+msgstr "Turinio tipas"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Ši meniu nuoroda rodo mega meniu komponentą, o ne paprastą antrinių 
 msgid "Add component menu link"
 msgstr "Pridėti komponento meniu nuorodą"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Turinio tipas"
@@ -1715,3 +1716,40 @@ msgstr "Turinio tipas"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Turinio tipas, kurį rodo šis sąrašas."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Įjungti komponentų meniu nuorodas"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Rodo veiksmą \"Pridėti komponento meniu nuorodą\" meniu tvarkymo ekrane. Kai nepažymėta, veiksmas ir jo forma nepasiekiami."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Rodyti miniatiūras"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Rodo miniatiūrą šalia kiekvieno įrašo."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Stulpelio plotis"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Kiek mega meniu stulpelių užima ši sekcija."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Numatytasis (1 stulpelis)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count stulpeliai"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count stulpeliai (tik itin dideliuose ekranuose)"

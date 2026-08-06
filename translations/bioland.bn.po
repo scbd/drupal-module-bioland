@@ -1549,8 +1549,8 @@ msgid "Country Profiles"
 msgstr "দেশের প্রোফাইল"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "বিষয়বস্তুর ধরন অনুসারে তালিকা"
+msgid "Content Type"
+msgstr "কনটেন্টের ধরন"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1628,6 +1628,7 @@ msgstr "এই মেনু লিঙ্কটি সাধারণ উপ-ল�
 msgid "Add component menu link"
 msgstr "কম্পোনেন্ট মেনু লিঙ্ক যোগ করুন"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "কনটেন্টের ধরন"
@@ -1635,3 +1636,40 @@ msgstr "কনটেন্টের ধরন"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "এই তালিকায় যে ধরনের কনটেন্ট দেখানো হয়।"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "কম্পোনেন্ট মেনু লিঙ্ক সক্ষম করুন"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "মেনু পরিচালনার স্ক্রিনে \"কম্পোনেন্ট মেনু লিঙ্ক যোগ করুন\" ক্রিয়াটি দেখায়। আনচেক করা থাকলে ক্রিয়া এবং এর ফর্ম উপলব্ধ থাকে না।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "থাম্বনেইল দেখান"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "প্রতিটি এন্ট্রির পাশে একটি থাম্বনেইল ছবি দেখায়।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "কলামের প্রস্থ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "এই বিভাগটি মেগা মেনুর কতগুলি কলাম জুড়ে থাকে।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ডিফল্ট (১ কলাম)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count কলাম"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count কলাম (শুধুমাত্র অতিরিক্ত বড় স্ক্রিনে)"

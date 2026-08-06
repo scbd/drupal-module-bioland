@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "देश प्रोफाइल"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "सामग्री प्रकारानुसार यादी"
+msgid "Content Type"
+msgstr "सामग्री प्रकार"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "ही मेनू लिंक उप-लिंकच्या सा�
 msgid "Add component menu link"
 msgstr "घटक मेनू दुवा जोडा"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "सामग्री प्रकार"
@@ -1715,3 +1716,40 @@ msgstr "सामग्री प्रकार"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "ही यादी दाखवत असलेला सामग्री प्रकार."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "घटक मेनू दुवे सक्षम करा"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "मेनू व्यवस्थापन स्क्रीनवर \"घटक मेनू दुवा जोडा\" क्रिया दर्शवते. अनचेक केल्यास, क्रिया आणि तिचा फॉर्म उपलब्ध नसतात."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "थंबनेल दाखवा"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "प्रत्येक नोंदीशेजारी थंबनेल प्रतिमा दाखवते."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "स्तंभ रुंदी"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "हा विभाग मेगा मेनूचे किती स्तंभ व्यापतो."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "डीफॉल्ट (1 स्तंभ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count स्तंभ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count स्तंभ (फक्त खूप मोठ्या स्क्रीनवर)"

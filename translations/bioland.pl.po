@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profile krajów"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lista według typu treści"
+msgid "Content Type"
+msgstr "Typ zawartości"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Ten odnośnik menu wyświetla komponent mega menu zamiast zwykłej listy
 msgid "Add component menu link"
 msgstr "Dodaj link menu komponentu"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Typ zawartości"
@@ -1715,3 +1716,40 @@ msgstr "Typ zawartości"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Typ zawartości wyświetlany na tej liście."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Włącz linki menu komponentów"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Wyświetla akcję \"Dodaj link menu komponentu\" na ekranie zarządzania menu. Gdy odznaczone, akcja i jej formularz są niedostępne."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Pokaż miniatury"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Pokazuje miniaturę obok każdej pozycji."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Szerokość kolumny"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Ile kolumn mega menu zajmuje ta sekcja."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Domyślnie (1 kolumna)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolumny"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolumny (tylko bardzo duże ekrany)"

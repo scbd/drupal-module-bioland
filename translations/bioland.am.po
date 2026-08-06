@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "የአገር መገለጫዎች"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "በይዘት ዓይነት ዝርዝር"
+msgid "Content Type"
+msgstr "የይዘት አይነት"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "ይህ የምናሌ አገናኝ ከቀላል የልጅ አገናኞች 
 msgid "Add component menu link"
 msgstr "የአካል ምናሌ አገናኝ አክል"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "የይዘት አይነት"
@@ -1715,3 +1716,40 @@ msgstr "የይዘት አይነት"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "ይህ ዝርዝር የሚያሳየው የይዘት አይነት።"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "የአካል ምናሌ አገናኞችን አንቃ"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "በምናሌ አስተዳደር ማያ ገጽ ላይ የ\"የአካል ምናሌ አገናኝ አክል\" እርምጃን ያሳያል። ካልተመረጠ እርምጃው እና ቅጹ አይገኙም።"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "ድንክዬዎችን አሳይ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "ከእያንዳንዱ ግቤት አጠገብ ድንክዬ ምስል ያሳያል።"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "የአምድ ስፋት"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "ይህ ክፍል የሜጋ ምናሌውን ስንት አምዶች ይይዛል።"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ነባሪ (1 አምድ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count አምዶች"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count አምዶች (በትልልቅ ማያ ገጾች ብቻ)"

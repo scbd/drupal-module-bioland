@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "国別プロファイル"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "コンテンツタイプ別一覧"
+msgid "Content Type"
+msgstr "コンテンツタイプ"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "このメニューリンクは、子リンクの単純な一覧ではな
 msgid "Add component menu link"
 msgstr "コンポーネントメニューリンクを追加"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "コンテンツタイプ"
@@ -1715,3 +1716,40 @@ msgstr "コンテンツタイプ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "この一覧に表示されるコンテンツタイプ。"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "コンポーネントメニューリンクを有効にする"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "メニュー管理画面に「コンポーネントメニューリンクを追加」アクションを表示します。チェックを外すと、アクションとそのフォームは利用できません。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "サムネイルを表示"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "各項目の横にサムネイル画像を表示します。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "列の幅"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "このセクションがメガメニューの何列分を占めるか。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "デフォルト（1列）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count列"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count列（特大画面のみ）"

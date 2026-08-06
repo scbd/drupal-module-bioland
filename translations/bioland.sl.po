@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profili držav"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Seznam po vrsti vsebine"
+msgid "Content Type"
+msgstr "Vrsta vsebine"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Ta povezava menija prikaže komponento mega menija namesto preprostega s
 msgid "Add component menu link"
 msgstr "Dodaj povezavo menija komponente"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Vrsta vsebine"
@@ -1715,3 +1716,40 @@ msgstr "Vrsta vsebine"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Vrsta vsebine, ki jo prikazuje ta seznam."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Omogoči povezave menija komponent"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Prikaže dejanje \"Dodaj povezavo menija komponente\" na zaslonu za upravljanje menija. Ko ni označeno, dejanje in njegov obrazec nista na voljo."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Pokaži sličice"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Prikaže sličico ob vsakem vnosu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Širina stolpca"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Koliko stolpcev mega menija zavzema ta razdelek."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Privzeto (1 stolpec)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count stolpci"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count stolpci (samo zelo veliki zasloni)"

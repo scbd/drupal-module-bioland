@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Ел профильдері"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Мазмұн түрі бойынша тізім"
+msgid "Content Type"
+msgstr "Мазмұн түрі"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Бұл мәзір сілтемесі еншілес сілтемелер
 msgid "Add component menu link"
 msgstr "Компонент мәзір сілтемесін қосу"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Мазмұн түрі"
@@ -1715,3 +1716,40 @@ msgstr "Мазмұн түрі"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Осы тізім көрсететін мазмұн түрі."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Компонент мәзірі сілтемелерін қосу"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Мәзірді басқару экранында \"Компонент мәзір сілтемесін қосу\" әрекетін көрсетеді. Белгіленбесе, әрекет пен оның пішіні қолжетімсіз болады."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Нобайларды көрсету"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Әр жазбаның жанында нобай суретін көрсетеді."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Баған ені"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Бұл бөлім мега мәзірдің неше бағанын алады."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Әдепкі (1 баған)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count баған"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count баған (тек өте үлкен экрандар)"

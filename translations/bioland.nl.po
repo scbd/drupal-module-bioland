@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Landenprofielen"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lijst per inhoudstype"
+msgid "Content Type"
+msgstr "Inhoudstype"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Deze menulink toont een megamenucomponent in plaats van een gewone lijst
 msgid "Add component menu link"
 msgstr "Componentmenulink toevoegen"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Inhoudstype"
@@ -1715,3 +1716,40 @@ msgstr "Inhoudstype"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Het inhoudstype dat deze lijst toont."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Componentmenulinks inschakelen"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Toont de actie \"Componentmenulink toevoegen\" op het menubeheerscherm. Indien uitgevinkt zijn de actie en het bijbehorende formulier niet beschikbaar."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Miniaturen tonen"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Toont een miniatuurafbeelding naast elk item."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Kolombreedte"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hoeveel kolommen van het megamenu deze sectie beslaat."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standaard (1 kolom)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolommen"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolommen (alleen extra grote schermen)"

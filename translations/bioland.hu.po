@@ -1700,8 +1700,8 @@ msgid "Country Profiles"
 msgstr "Országprofilok"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lista tartalomtípus szerint"
+msgid "Content Type"
+msgstr "Tartalomtípus"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1779,6 +1779,7 @@ msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkoz�
 msgid "Add component menu link"
 msgstr "Összetevő menühivatkozás hozzáadása"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Tartalomtípus"
@@ -1786,3 +1787,40 @@ msgstr "Tartalomtípus"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "A tartalomtípus, amelyet ez a lista megjelenít."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Komponens menühivatkozások engedélyezése"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Megjeleníti a(z) \"Összetevő menühivatkozás hozzáadása\" műveletet a menükezelő képernyőn. Ha nincs bejelölve, a művelet és annak űrlapja nem érhető el."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Bélyegképek megjelenítése"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Bélyegképet jelenít meg minden bejegyzés mellett."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Oszlopszélesség"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hány oszlopot foglal el ez a szakasz a mega menüben."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Alapértelmezett (1 oszlop)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count oszlop"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count oszlop (csak extra nagy képernyőkön)"

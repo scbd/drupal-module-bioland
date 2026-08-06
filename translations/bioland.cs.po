@@ -1696,8 +1696,8 @@ msgid "Country Profiles"
 msgstr "Profily zemí"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Výpis podle typu obsahu"
+msgid "Content Type"
+msgstr "Typ obsahu"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1775,6 +1775,7 @@ msgstr "Tento odkaz nabídky zobrazuje komponentu mega nabídky místo běžnéh
 msgid "Add component menu link"
 msgstr "Přidat odkaz nabídky komponenty"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Typ obsahu"
@@ -1782,3 +1783,40 @@ msgstr "Typ obsahu"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Typ obsahu, který tento seznam zobrazuje."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Povolit komponentové odkazy v nabídce"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Zobrazí akci \"Přidat odkaz nabídky komponenty\" na obrazovce správy nabídky. Pokud není zaškrtnuto, akce ani její formulář nejsou dostupné."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Zobrazit miniatury"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Zobrazí miniaturu vedle každé položky."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Šířka sloupce"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Kolik sloupců mega menu tato sekce zabírá."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Výchozí (1 sloupec)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count sloupce"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count sloupce (pouze na velmi velkých obrazovkách)"

@@ -13,7 +13,7 @@ describe('Bioland Component Menu Form', () => {
         <select name="bioland_component">
           <option value="" selected></option>
           <option value="bl2-component-forums">Forums</option>
-          <option value="bl2-component-content-type">Content Type Listing</option>
+          <option value="bl2-component-content-type">Content Type</option>
         </select>
         <select name="bioland_component_content_type">
           <option value="" selected>- Select -</option>

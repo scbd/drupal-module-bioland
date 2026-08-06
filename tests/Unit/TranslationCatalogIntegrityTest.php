@@ -59,7 +59,7 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'ABS-CH Records',
     'National Focal Points',
     'Country Profiles',
-    'Content Type Listing',
+    'Content Type',
     'Forums',
     'National Targets (GBF 7)',
     'All Content Types',
@@ -87,9 +87,22 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // sync with this entry or the action renders untranslated.
     'Add component menu link',
     // src/Service/BiolandComponentMenuFormMode.php: the content-type
-    // sub-select of the Content Type Listing component.
+    // sub-select of the Content Type component.
     'Content type',
     'The content type this listing shows.',
+    // src/Form/BiolandAdminSettingsForm.php: the on/off switch for the
+    // component-menu add flow (checkbox title and description).
+    'Enable Component Menu Links',
+    'Shows the "Add component menu link" action on the menu manage screen. When unchecked, the action and its form are unavailable.',
+    // src/Service/BiolandComponentMenuFormMode.php: the thumbnails and
+    // column-width presentation controls.
+    'Show thumbnails',
+    'Show a thumbnail image beside each entry.',
+    'Column width',
+    'How many columns of the mega menu this section spans.',
+    'Default (1 column)',
+    '@count columns',
+    '@count columns (extra-large screens only)',
   ];
 
   /**

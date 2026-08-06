@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "ਦੇਸ਼ ਪ੍ਰੋਫਾਈਲ"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "ਸਮੱਗਰੀ ਕਿਸਮ ਅਨੁਸਾਰ ਸੂਚੀ"
+msgid "Content Type"
+msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "ਇਹ ਮੀਨੂ ਲਿੰਕ ਬਾਲ ਲਿੰਕਾਂ ਦੀ ਸ
 msgid "Add component menu link"
 msgstr "ਕੰਪੋਨੈਂਟ ਮੀਨੂ ਲਿੰਕ ਸ਼ਾਮਲ ਕਰੋ"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ"
@@ -1715,3 +1716,40 @@ msgstr "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "ਇਹ ਸੂਚੀ ਜਿਸ ਕਿਸਮ ਦੀ ਸਮੱਗਰੀ ਦਿਖਾਉਂਦੀ ਹੈ।"
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "ਕੰਪੋਨੈਂਟ ਮੀਨੂ ਲਿੰਕ ਸਮਰੱਥ ਕਰੋ"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "ਮੀਨੂ ਪ੍ਰਬੰਧਨ ਸਕ੍ਰੀਨ ਉੱਤੇ \"ਕੰਪੋਨੈਂਟ ਮੀਨੂ ਲਿੰਕ ਸ਼ਾਮਲ ਕਰੋ\" ਕਾਰਵਾਈ ਦਿਖਾਉਂਦਾ ਹੈ। ਅਣ-ਚੁਣਿਆ ਹੋਣ ਉੱਤੇ, ਕਾਰਵਾਈ ਅਤੇ ਇਸਦਾ ਫਾਰਮ ਉਪਲਬਧ ਨਹੀਂ ਹੁੰਦੇ।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "ਥੰਬਨੇਲ ਦਿਖਾਓ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "ਹਰ ਐਂਟਰੀ ਦੇ ਨਾਲ ਥੰਬਨੇਲ ਤਸਵੀਰ ਦਿਖਾਉਂਦਾ ਹੈ।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "ਕਾਲਮ ਦੀ ਚੌੜਾਈ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "ਇਹ ਭਾਗ ਮੈਗਾ ਮੀਨੂ ਦੇ ਕਿੰਨੇ ਕਾਲਮ ਲੈਂਦਾ ਹੈ।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ਡਿਫਾਲਟ (1 ਕਾਲਮ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count ਕਾਲਮ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count ਕਾਲਮ (ਸਿਰਫ਼ ਬਹੁਤ ਵੱਡੀਆਂ ਸਕ੍ਰੀਨਾਂ)"

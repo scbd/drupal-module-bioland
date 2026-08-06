@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Улсын танилцуулгууд"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Агуулгын төрлөөр жагсаалт"
+msgid "Content Type"
+msgstr "Агуулгын төрөл"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Энэ цэсний холбоос дэд холбоосын энгий�
 msgid "Add component menu link"
 msgstr "Бүрэлдэхүүний цэсний холбоос нэмэх"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Агуулгын төрөл"
@@ -1715,3 +1716,40 @@ msgstr "Агуулгын төрөл"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "Энэ жагсаалтад харуулах агуулгын төрөл."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Бүрэлдэхүүн цэсийн холбоосыг идэвхжүүлэх"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Цэсийн удирдлагын дэлгэц дээр \"Бүрэлдэхүүний цэсний холбоос нэмэх\" үйлдлийг харуулна. Сонгоогүй үед үйлдэл болон түүний маягт ашиглах боломжгүй."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Өнгөц зургийг харуулах"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Бичлэг бүрийн хажууд өнгөц зураг харуулна."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Баганын өргөн"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Энэ хэсэг мега цэсний хэдэн багана эзлэхийг заана."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Үндсэн (1 багана)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count багана"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count багана (зөвхөн маш том дэлгэцэнд)"

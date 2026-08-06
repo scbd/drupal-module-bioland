@@ -1629,8 +1629,8 @@ msgid "Country Profiles"
 msgstr "Profili tal-pajjiżi"
 
 #: src/Service/BiolandComponentRegistry.php
-msgid "Content Type Listing"
-msgstr "Lista skont it-tip ta' kontenut"
+msgid "Content Type"
+msgstr "Tip ta' kontenut"
 
 #: src/Service/BiolandComponentRegistry.php
 msgid "Forums"
@@ -1708,6 +1708,7 @@ msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempli
 msgid "Add component menu link"
 msgstr "Żid ħolqa tal-menu tal-komponent"
 
+<<<<<<< ours
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Content type"
 msgstr "Tip ta' kontenut"
@@ -1715,3 +1716,40 @@ msgstr "Tip ta' kontenut"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "The content type this listing shows."
 msgstr "It-tip ta' kontenut li turi din il-lista."
+=======
+>>>>>>> theirs
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Component Menu Links"
+msgstr "Attiva l-links tal-menu tal-komponenti"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Juri l-azzjoni \"Żid ħolqa tal-menu tal-komponent\" fuq l-iskrin tal-gestjoni tal-menu. Meta ma tkunx immarkata, l-azzjoni u l-formola taghha ma jkunux disponibbli."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Uri thumbnails"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Turi immaġni żgħira ħdejn kull entrata."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Column width"
+msgstr "Wisa' tal-kolonna"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Kemm-il kolonna tal-mega menu tokkupa din it-taqsima."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Default (kolonna 1)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolonni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolonni (skrins kbar ħafna biss)"
