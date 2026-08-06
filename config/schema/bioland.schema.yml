@@ -449,3 +449,64 @@ bioland.settings:
           sequence:
             type: string
             label: 'Entity type machine name'
+    theme:
+      type: mapping
+      label: 'Theme settings'
+      mapping:
+        color:
+          type: mapping
+          label: 'Brand color settings'
+          mapping:
+            primary:
+              type: string
+              label: 'Primary brand color'
+            secondary:
+              type: string
+              label: 'Secondary brand color'
+        # Key MUST be `back_ground` (two words), never `background`. Head's
+        # depth-7 camelCase transform (bioland-head
+        # server/utils/context-unified.ts:354,356) turns `back_ground` into
+        # `backGround`, which is what head actually reads
+        # (app/components/page/header/language-bar.vue:59,
+        # `siteStore.theme.backGround.secondary`). Spelling it `background`
+        # would camelCase to `background` and silently miss that consumer.
+        back_ground:
+          type: mapping
+          label: 'Background color settings'
+          mapping:
+            secondary:
+              type: string
+              label: 'Secondary background color'
+        home_page_widgets:
+          type: mapping
+          label: 'Home page widget theme settings'
+          mapping:
+            columns:
+              type: sequence
+              label: 'Home page widget column order (vocabulary owned by the widget registry, not this schema)'
+              sequence:
+                type: string
+                label: 'Widget machine name'
+        mega_menu:
+          type: mapping
+          label: 'Mega menu theme settings'
+          mapping:
+            forums:
+              type: boolean
+              label: 'Show Forums in the mega menu'
+            max_columns:
+              type: integer
+              label: 'Maximum mega menu columns'
+            max_rows_per_column:
+              type: integer
+              label: 'Maximum mega menu rows per column'
+            horizontal_card_max:
+              type: integer
+              label: 'Maximum horizontal cards in the mega menu'
+        i18n:
+          type: mapping
+          label: 'Internationalization theme settings'
+          mapping:
+            max_lang_before_wrap:
+              type: integer
+              label: 'Maximum languages shown before the language bar wraps'
