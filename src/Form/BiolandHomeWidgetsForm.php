@@ -3,6 +3,7 @@
 namespace Drupal\bioland\Form;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\bioland\BiolandHomeWidgetRegistry;
 
 /**
  * Configure Home Widgets settings for the Bioland module.
@@ -13,12 +14,11 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
    * The BSL (Biosafety Clearing-House) home page widgets.
    *
    * Each supports both an enable flag and a content type selection.
+   *
+   * The vocabulary itself lives in BiolandHomeWidgetRegistry; this constant is
+   * only an alias so existing call sites keep working.
    */
-  protected const BSL_WIDGETS = [
-    'nbf_widget',
-    'bch_news_widget',
-    'bch_resources_widget',
-  ];
+  protected const BSL_WIDGETS = BiolandHomeWidgetRegistry::BSL_WIDGET_KEYS;
 
   /**
    * Default content type term IDs per BSL widget.
@@ -388,25 +388,19 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
       return;
     }
 
-    // CHM (Bioland) widget settings.
-    $gbif_widget = $home_widgets_values['gbif_widget'] ?? [];
-    $config->set('home_widgets.gbif_widget.enable', (bool) ($gbif_widget['enable'] ?? TRUE));
-    $countries_data = $gbif_widget['countries'] ?? [];
+    // CHM (Bioland) widget settings. Every CHM widget carries an enable flag;
+    // the registry owns which keys those are.
+    foreach (BiolandHomeWidgetRegistry::chmKeys() as $widget) {
+      $config->set("home_widgets.{$widget}.enable", (bool) ($home_widgets_values[$widget]['enable'] ?? TRUE));
+    }
+
+    // The GBIF widget additionally carries per-country map settings.
+    $countries_data = $home_widgets_values['gbif_widget']['countries'] ?? [];
     foreach ($countries_data as $country_code => $country_settings) {
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.zoom_level", (int) ($country_settings['zoom_level'] ?? 7));
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.longitude", (float) ($country_settings['longitude'] ?? 0.0));
       $config->set("home_widgets.gbif_widget.countries.{$country_code}.latitude", (float) ($country_settings['latitude'] ?? 0.0));
     }
-
-    $config->set('home_widgets.latest_news_widget.enable', (bool) ($home_widgets_values['latest_news_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.national_targets_widget.enable', (bool) ($home_widgets_values['national_targets_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.panorama_solutions_widget.enable', (bool) ($home_widgets_values['panorama_solutions_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.elearning_widget.enable', (bool) ($home_widgets_values['elearning_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.implementation_widget.enable', (bool) ($home_widgets_values['implementation_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.technical_cooperation_widget.enable', (bool) ($home_widgets_values['technical_cooperation_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.latest_discussions_widget.enable', (bool) ($home_widgets_values['latest_discussions_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.content_statistics_widget.enable', (bool) ($home_widgets_values['content_statistics_widget']['enable'] ?? TRUE));
-    $config->set('home_widgets.geobon_widget.enable', (bool) ($home_widgets_values['geobon_widget']['enable'] ?? TRUE));
   }
 
   /**
@@ -416,21 +410,7 @@ class BiolandHomeWidgetsForm extends BiolandSettingsFormBase {
    *   The config object.
    */
   protected function ensureHomeWidgetDefaults($config) {
-    $widgets = [
-      'gbif_widget',
-      'latest_news_widget',
-      'national_targets_widget',
-      'panorama_solutions_widget',
-      'elearning_widget',
-      'implementation_widget',
-      'technical_cooperation_widget',
-      'latest_discussions_widget',
-      'content_statistics_widget',
-      'geobon_widget',
-      'nbf_widget',
-      'bch_news_widget',
-      'bch_resources_widget',
-    ];
+    $widgets = BiolandHomeWidgetRegistry::allKeys();
 
     $needs_save = FALSE;
     foreach ($widgets as $widget) {
