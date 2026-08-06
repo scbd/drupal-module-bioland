@@ -1783,3 +1783,11 @@ msgstr "ትክክለኛ የሄክስ ቀለም ያስገቡ፣ ለምሳሌ #1B7
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "የመነሻ ገጽ መግብሮች በትክክል በ@count አምዶች መደራጀት አለባቸው።"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "የአውታረ መረቡ ነባሪ ገጽታ መጫን አልተቻለም፤ ስለዚህ እነዚህ መስኮች አብሮ የተሰሩ ነባሪ እሴቶችን ያሳያሉ። ከማስቀመጥዎ በፊት እያንዳንዱን እሴት ያረጋግጡ።"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "ከ@min እስከ @max ያለ ቁጥር ያስገቡ።"

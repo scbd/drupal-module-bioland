@@ -1783,3 +1783,11 @@ msgstr "ਇੱਕ ਵੈਧ ਹੈਕਸ ਰੰਗ ਦਾਖਲ ਕਰੋ, ਉ�
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ਹੋਮ ਪੇਜ ਵਿਜੇਟ ਬਿਲਕੁਲ @count ਕਾਲਮਾਂ ਵਿੱਚ ਵਿਵਸਥਿਤ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "ਨੈੱਟਵਰਕ ਦਾ ਮੂਲ ਥੀਮ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ, ਇਸ ਲਈ ਇਹ ਖੇਤਰ ਬਿਲਟ-ਇਨ ਮੂਲ ਮੁੱਲ ਦਿਖਾ ਰਹੇ ਹਨ। ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਹਰੇਕ ਮੁੱਲ ਦੀ ਜਾਂਚ ਕਰੋ।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ਅਤੇ @max ਵਿਚਕਾਰ ਇੱਕ ਨੰਬਰ ਦਾਖਲ ਕਰੋ।"

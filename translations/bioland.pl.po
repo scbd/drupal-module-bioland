@@ -1783,3 +1783,11 @@ msgstr "Wprowadź prawidłowy kolor szesnastkowy, na przykład #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widżety strony głównej muszą być rozmieszczone dokładnie w @count kolumnach."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Nie udało się wczytać domyślnego motywu sieci, dlatego te pola pokazują wbudowane wartości domyślne. Sprawdź każdą wartość przed zapisaniem."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Wprowadź liczbę z zakresu od @min do @max."

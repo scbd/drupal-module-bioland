@@ -1783,3 +1783,11 @@ msgstr "یو سم شپاړس‌ګوني رنګ دننه کړئ، لکه #1B7B3A.
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "د کور پاڼې ویجټونه باید په سمه توګه په @count کالمونو کې تنظیم شي."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "د شبکې تلواله بڼه نه شوه پورته کولی، نو دا ډګرونه جوړ شوي تلوال ارزښتونه ښیي. له خوندي کولو دمخه هر ارزښت وګورئ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "د @min او @max ترمنځ یو شمېر ولیکئ."

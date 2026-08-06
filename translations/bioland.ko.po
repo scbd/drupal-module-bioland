@@ -1783,3 +1783,11 @@ msgstr "올바른 16진수 색상을 입력하세요. 예: #1B7B3A"
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "홈페이지 위젯은 정확히 @count개의 열로 배치해야 합니다."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "네트워크 기본 테마를 불러오지 못해 이 필드에는 내장 기본값이 표시됩니다. 저장하기 전에 모든 값을 확인하십시오."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min에서 @max 사이의 숫자를 입력하십시오."

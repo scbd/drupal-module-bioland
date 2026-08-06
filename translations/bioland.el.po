@@ -1872,3 +1872,11 @@ msgstr "Εισαγάγετε ένα έγκυρο δεκαεξαδικό χρώμ
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Τα widget της αρχικής σελίδας πρέπει να διαταχθούν σε ακριβώς @count στήλες."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Δεν ήταν δυνατή η φόρτωση του προεπιλεγμένου θέματος του δικτύου, επομένως αυτά τα πεδία εμφανίζουν ενσωματωμένες προεπιλογές. Ελέγξτε κάθε τιμή πριν από την αποθήκευση."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Εισαγάγετε έναν αριθμό μεταξύ @min και @max."

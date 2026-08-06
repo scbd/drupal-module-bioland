@@ -284,13 +284,26 @@ class BiolandDmsmConfigService
             // Per-leaf merge, site over network. A list (hero.primary,
             // homePageWidgets.columns) is a leaf and is replaced wholesale;
             // only associative branches recurse.
-            $mergeLeaves = function (array $base, array $override) use (&$mergeLeaves) {
+            //
+            // The empty-array case is why this is not a bare
+            // !array_is_list() test on each side. json_decode() renders an
+            // empty JSON OBJECT (`"megaMenu": {}`) and an empty JSON ARRAY
+            // (`"megaMenu": []`) as the same PHP `[]`, and array_is_list([])
+            // is TRUE -- so a site block carrying an empty object would be
+            // classified as a list, replace the whole network branch
+            // wholesale, and wipe every leaf the network defined. That is
+            // exactly the per-leaf merge the MD rule forbids. `[]` therefore
+            // counts as a branch on BOTH operands: as an override it
+            // contributes no leaves and the network branch survives intact,
+            // and as a base it is simply filled by the override.
+            $isBranch = static fn($value): bool => is_array($value)
+                && ($value === [] || !array_is_list($value));
+
+            $mergeLeaves = function (array $base, array $override) use (&$mergeLeaves, $isBranch) {
                 foreach ($override as $key => $value) {
-                    $recurse = is_array($value)
-                        && !array_is_list($value)
+                    $recurse = $isBranch($value)
                         && isset($base[$key])
-                        && is_array($base[$key])
-                        && !array_is_list($base[$key]);
+                        && $isBranch($base[$key]);
                     $base[$key] = $recurse ? $mergeLeaves($base[$key], $value) : $value;
                 }
 

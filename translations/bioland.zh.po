@@ -1783,3 +1783,11 @@ msgstr "請輸入有效的十六進位顏色，例如 #1B7B3A。"
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "首頁小工具必須恰好排成 @count 欄。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "無法載入網路預設主題，因此這些欄位顯示的是內建預設值。儲存前請檢查每一項數值。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "請輸入 @min 到 @max 之間的數字。"

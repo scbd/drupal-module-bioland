@@ -1783,3 +1783,11 @@ msgstr "Etibarlı onaltılıq rəng daxil edin, məsələn #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Ana səhifə vidcetləri tam olaraq @count sütunda düzülməlidir."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Şəbəkənin standart mövzusu yüklənə bilmədi, ona görə bu sahələr daxili standart dəyərləri göstərir. Yadda saxlamazdan əvvəl hər dəyəri yoxlayın."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ilə @max arasında bir ədəd daxil edin."

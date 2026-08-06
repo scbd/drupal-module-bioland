@@ -1783,3 +1783,11 @@ msgstr "Geli midab hex ah oo sax ah, tusaale #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget-yada bogga hore waa in lagu habeeyaa saddex @count tiir oo sax ah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Mowduuca caadiga ah ee shabakadda lama soo rari karin, sidaas darteed goobahan waxay muujinayaan qiimayaal caadi ah oo ku dhex jira. Hubi qiime kasta ka hor inta aanad kaydin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Geli tiro u dhaxaysa @min iyo @max."

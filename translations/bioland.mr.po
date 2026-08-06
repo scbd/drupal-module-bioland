@@ -1783,3 +1783,11 @@ msgstr "वैध हेक्स रंग प्रविष्ट करा, 
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "होम पेज विजेट्स नेमक्या @count स्तंभांमध्ये मांडली पाहिजेत."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "नेटवर्कची डीफॉल्ट थीम लोड करता आली नाही, त्यामुळे ही फील्ड अंगभूत डीफॉल्ट मूल्ये दाखवत आहेत. जतन करण्यापूर्वी प्रत्येक मूल्य तपासा."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min आणि @max दरम्यानची संख्या प्रविष्ट करा."

@@ -1783,3 +1783,11 @@ msgstr "Ievadiet derīgu heksadecimālo krāsu, piemēram, #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Sākumlapas sīkrīki jāizkārto tieši @count kolonnās."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tīkla noklusējuma motīvu neizdevās ielādēt, tāpēc šajos laukos tiek rādītas iebūvētās noklusējuma vērtības. Pirms saglabāšanas pārbaudiet katru vērtību."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Ievadiet skaitli no @min līdz @max."

@@ -1783,3 +1783,11 @@ msgstr "შეიყვანეთ სწორი თექვსმეტო�
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "მთავარი გვერდის ვიჯეტები ზუსტად @count სვეტად უნდა განლაგდეს."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "ქსელის ნაგულისხმევი თემის ჩატვირთვა ვერ მოხერხდა, ამიტომ ეს ველები აჩვენებს ჩაშენებულ ნაგულისხმევ მნიშვნელობებს. შენახვამდე შეამოწმეთ თითოეული მნიშვნელობა."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "შეიყვანეთ რიცხვი @min-სა და @max-ს შორის."

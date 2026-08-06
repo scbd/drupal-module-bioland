@@ -1783,3 +1783,11 @@ msgstr "กรุณาป้อนรหัสสีฐานสิบหกท
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ต้องจัดวิดเจ็ตหน้าแรกเป็น @count คอลัมน์พอดี"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "ไม่สามารถโหลดธีมเริ่มต้นของเครือข่ายได้ ฟิลด์เหล่านี้จึงแสดงค่าเริ่มต้นที่มีอยู่ในระบบ โปรดตรวจสอบทุกค่าก่อนบันทึก"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "ป้อนตัวเลขระหว่าง @min ถึง @max"

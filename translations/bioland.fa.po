@@ -1854,3 +1854,11 @@ msgstr "یک رنگ شانزده‌شانزدهی معتبر وارد کنید،
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ابزارک‌های صفحهٔ نخست باید دقیقاً در @count ستون چیده شوند."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "بارگذاری زمینه پیش‌فرض شبکه ممکن نشد، بنابراین این فیلدها مقادیر پیش‌فرض داخلی را نشان می‌دهند. پیش از ذخیره، هر مقدار را بررسی کنید."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "عددی بین @min و @max وارد کنید."

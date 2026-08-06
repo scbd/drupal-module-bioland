@@ -1854,3 +1854,11 @@ msgstr "Adjon meg érvényes hexadecimális színt, például #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "A kezdőlapi modulokat pontosan @count oszlopba kell rendezni."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "A hálózat alapértelmezett témája nem tölthető be, ezért ezek a mezők beépített alapértékeket mutatnak. Mentés előtt ellenőrizzen minden értéket."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Adjon meg egy számot @min és @max között."

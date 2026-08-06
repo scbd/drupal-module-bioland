@@ -1783,3 +1783,11 @@ msgstr "Введіть коректний шістнадцятковий кол�
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Віджети головної сторінки мають бути розміщені рівно у @count стовпцях."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Не вдалося завантажити типову тему мережі, тому ці поля показують вбудовані типові значення. Перевірте кожне значення перед збереженням."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Введіть число від @min до @max."

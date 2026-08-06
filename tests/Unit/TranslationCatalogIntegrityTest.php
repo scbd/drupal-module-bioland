@@ -111,6 +111,11 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'The theme settings for this site have been reset to the network default.',
     'Enter a valid hex color, for example #1B7B3A.',
     'The home page widgets must be arranged in exactly @count columns.',
+    // D3's server-side numeric bound, and the warning shown when the dmsm
+    // seed cannot be read and the colour fields fall back to the built-in
+    // network defaults.
+    'Enter a number between @min and @max.',
+    'The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving.',
   ];
 
   /**

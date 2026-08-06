@@ -1783,3 +1783,11 @@ msgstr "Skriv inn en gyldig heksfarge, for eksempel #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Modulene på forsiden må fordeles på nøyaktig @count kolonner."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Nettverkets standardtema kunne ikke lastes, så disse feltene viser innebygde standardverdier. Kontroller hver verdi før du lagrer."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Skriv inn et tall mellom @min og @max."

@@ -1783,3 +1783,11 @@ msgstr "Maglagay ng wastong hex na kulay, halimbawa #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Dapat nakaayos ang mga widget ng home page sa eksaktong @count na hanay."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Hindi ma-load ang default na tema ng network, kaya ipinapakita ng mga field na ito ang mga built-in na default na halaga. Suriin ang bawat halaga bago mag-save."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Maglagay ng numero sa pagitan ng @min at @max."

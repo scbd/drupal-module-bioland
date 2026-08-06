@@ -1783,3 +1783,11 @@ msgstr "Geçerli bir onaltılık renk girin, örneğin #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Ana sayfa bileşenleri tam olarak @count sütuna yerleştirilmelidir."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Ağın varsayılan teması yüklenemedi, bu nedenle bu alanlar yerleşik varsayılan değerleri gösteriyor. Kaydetmeden önce her değeri kontrol edin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ile @max arasında bir sayı girin."

@@ -1783,3 +1783,11 @@ msgstr "Sláðu inn gildan hexlit, til dæmis #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Smáforrit forsíðunnar verða að vera í nákvæmlega @count dálkum."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Ekki tókst að hlaða sjálfgefnu þema netsins, því sýna þessir reitir innbyggð sjálfgefin gildi. Athugaðu hvert gildi áður en þú vistar."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Sláðu inn tölu á milli @min og @max."

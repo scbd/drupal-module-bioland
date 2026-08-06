@@ -1783,3 +1783,11 @@ msgstr "Hãy nhập mã màu thập lục phân hợp lệ, ví dụ #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Các tiện ích trang chủ phải được sắp xếp thành đúng @count cột."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Không thể tải chủ đề mặc định của mạng lưới, vì vậy các trường này hiển thị giá trị mặc định tích hợp sẵn. Hãy kiểm tra từng giá trị trước khi lưu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Nhập một số từ @min đến @max."

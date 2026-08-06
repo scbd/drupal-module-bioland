@@ -51,6 +51,24 @@ class Drupal {
   }
 
   /**
+   * Whether a service is registered.
+   *
+   * Mirrors \Drupal::hasService(). The real container THROWS
+   * ServiceNotFoundException from service() for an unregistered id rather
+   * than returning NULL, so callers that mean to degrade instead of fatal
+   * must ask this first.
+   *
+   * @param string $id
+   *   The service ID.
+   *
+   * @return bool
+   *   TRUE when the container has the service.
+   */
+  public static function hasService($id) {
+    return isset(static::$container[$id]) || $id === 'extension.list.module';
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

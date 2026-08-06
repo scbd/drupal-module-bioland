@@ -1854,3 +1854,11 @@ msgstr "Anna kelvollinen heksaväri, esimerkiksi #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Etusivun pienoisohjelmat on järjestettävä täsmälleen @count sarakkeeseen."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Verkon oletusteemaa ei voitu ladata, joten nämä kentät näyttävät sisäänrakennetut oletusarvot. Tarkista jokainen arvo ennen tallentamista."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Anna luku väliltä @min ja @max."

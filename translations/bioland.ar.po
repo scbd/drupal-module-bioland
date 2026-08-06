@@ -1703,3 +1703,11 @@ msgstr "أدخل لونًا سداسيًا عشريًا صالحًا، على س
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "يجب ترتيب أدوات الصفحة الرئيسية في @count أعمدة بالضبط."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "تعذّر تحميل السمة الافتراضية للشبكة، لذا تعرض هذه الحقول القيم الافتراضية المدمجة. تحقق من كل قيمة قبل الحفظ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "أدخل رقمًا بين @min و@max."

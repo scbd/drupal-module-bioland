@@ -1783,3 +1783,11 @@ msgstr "Zadajte platnú šestnástkovú farbu, napríklad #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widgety domovskej stránky musia byť usporiadané presne do @count stĺpcov."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Predvolenú tému siete sa nepodarilo načítať, preto tieto polia zobrazujú vstavané predvolené hodnoty. Pred uložením skontrolujte každú hodnotu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Zadajte číslo medzi @min a @max."

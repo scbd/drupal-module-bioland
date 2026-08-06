@@ -1783,3 +1783,11 @@ msgstr "To‘g‘ri o‘n oltilik rang kiriting, masalan #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Bosh sahifa vidjetlari aynan @count ustunga joylashtirilishi kerak."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tarmoqning standart mavzusini yuklab bo'lmadi, shuning uchun bu maydonlar o'rnatilgan standart qiymatlarni ko'rsatmoqda. Saqlashdan oldin har bir qiymatni tekshiring."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min va @max orasidagi sonni kiriting."

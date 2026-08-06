@@ -1783,3 +1783,11 @@ msgstr "Introduceți o culoare hexazecimală validă, de exemplu #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widgeturile paginii principale trebuie aranjate în exact @count coloane."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tema implicită a rețelei nu a putut fi încărcată, așa că aceste câmpuri afișează valori implicite încorporate. Verificați fiecare valoare înainte de salvare."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Introduceți un număr între @min și @max."

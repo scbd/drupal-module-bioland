@@ -1783,3 +1783,11 @@ msgstr "Внесете важечка шеснаесетична боја, на 
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Виџетите на почетната страница мора да бидат распоредени во точно @count колони."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Стандардната тема на мрежата не можеше да се вчита, па овие полиња прикажуваат вградени стандардни вредности. Проверете ја секоја вредност пред зачувување."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Внесете број помеѓу @min и @max."

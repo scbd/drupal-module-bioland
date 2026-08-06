@@ -1823,3 +1823,11 @@ msgstr "Enter a valid hex color, for example #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "The home page widgets must be arranged in exactly @count columns."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Enter a number between @min and @max."

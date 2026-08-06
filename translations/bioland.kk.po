@@ -1783,3 +1783,11 @@ msgstr "Жарамды он алтылық түс енгізіңіз, мысал
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Басты бет виджеттері дәл @count бағанға орналастырылуы керек."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Желінің әдепкі тақырыбын жүктеу мүмкін болмады, сондықтан бұл өрістер кірістірілген әдепкі мәндерді көрсетеді. Сақтамас бұрын әрбір мәнді тексеріңіз."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min мен @max аралығындағы санды енгізіңіз."

@@ -1783,3 +1783,11 @@ msgstr "ایک درست ہیکس رنگ درج کریں، مثال کے طور �
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ہوم پیج ویجٹس کو بالکل @count کالموں میں ترتیب دینا ضروری ہے۔"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "نیٹ ورک کا پہلے سے طے شدہ تھیم لوڈ نہیں ہو سکا، اس لیے یہ خانے بلٹ اِن پہلے سے طے شدہ اقدار دکھا رہے ہیں۔ محفوظ کرنے سے پہلے ہر قدر کی جانچ کریں۔"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min اور @max کے درمیان ایک نمبر درج کریں۔"

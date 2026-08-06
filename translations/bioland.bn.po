@@ -1703,3 +1703,11 @@ msgstr "একটি বৈধ হেক্স রঙ লিখুন, উদা
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "হোম পেজ উইজেটগুলি ঠিক @count কলামে সাজাতে হবে।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "নেটওয়ার্কের ডিফল্ট থিম লোড করা যায়নি, তাই এই ক্ষেত্রগুলি অন্তর্নির্মিত ডিফল্ট মান দেখাচ্ছে। সংরক্ষণ করার আগে প্রতিটি মান পরীক্ষা করুন।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min এবং @max এর মধ্যে একটি সংখ্যা লিখুন।"

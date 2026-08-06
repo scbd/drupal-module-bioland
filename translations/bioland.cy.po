@@ -1872,3 +1872,11 @@ msgstr "Rhowch liw hecs dilys, er enghraifft #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Rhaid trefnu teclynnau'r dudalen gartref mewn union @count colofn."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Nid oedd modd llwytho thema ddiofyn y rhwydwaith, felly mae'r meysydd hyn yn dangos gwerthoedd diofyn adeiledig. Gwiriwch bob gwerth cyn cadw."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Rhowch rif rhwng @min a @max."

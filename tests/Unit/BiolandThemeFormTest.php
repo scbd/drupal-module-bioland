@@ -212,6 +212,37 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
+   * A messenger double that records every message by severity.
+   *
+   * @return object
+   *   The recording messenger.
+   */
+  protected function recordingMessenger() {
+    return new class {
+      public $warnings = [];
+      public $statuses = [];
+      public $errors = [];
+
+      public function addMessage($message, $type = 'status') {
+        $this->statuses[] = (string) $message;
+      }
+
+      public function addStatus($message) {
+        $this->statuses[] = (string) $message;
+      }
+
+      public function addWarning($message) {
+        $this->warnings[] = (string) $message;
+      }
+
+      public function addError($message) {
+        $this->errors[] = (string) $message;
+      }
+
+    };
+  }
+
+  /**
    * Builds the section form against a config double.
    *
    * @param \Drupal\Core\Config\Config $config
@@ -222,6 +253,25 @@ class BiolandThemeFormTest extends TestCase {
    */
   protected function build(Config $config): array {
     return $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+  }
+
+  /**
+   * Builds the section form and returns both the form and its messages.
+   *
+   * @param \Drupal\Core\Config\Config $config
+   *   The config double.
+   *
+   * @return array
+   *   [built form, recording messenger].
+   */
+  protected function buildWithMessenger(Config $config): array {
+    $form = $this->createForm();
+    $messenger = $this->recordingMessenger();
+    $form->setMessenger($messenger);
+
+    $built = $this->invoke($form, 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    return [$built, $messenger];
   }
 
   /**
@@ -501,13 +551,90 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * With no dmsm service in the container the form still builds, unseeded.
+   * With no dmsm service in the container the form still builds.
+   *
+   * It degrades to the fallback colours rather than to empty fields, and
+   * says so. \Drupal::service() throws for an unregistered id, so the form
+   * must ask \Drupal::hasService() first or this build would fatal.
    */
-  public function testMissingDmsmServiceDegradesToNoSeed(): void {
-    $form = $this->build($this->config());
+  public function testMissingDmsmServiceDegradesToFallbackColors(): void {
+    [$form, $messenger] = $this->buildWithMessenger($this->config());
 
-    $this->assertNull($form['theme']['color']['primary']['#default_value']);
     $this->assertSame('color', $form['theme']['color']['primary']['#type']);
+    $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
+    $this->assertCount(1, $messenger->warnings);
+  }
+
+  /**
+   * An unreadable seed warns the editor and never leaves a colour empty.
+   *
+   * getEffectiveTheme() returns NULL on any HTTP or parse error. Left empty,
+   * core's Color::validateColor() would substitute #000000 on the editor's
+   * first Save and D5's seed-on-save would make the black permanent, so a
+   * dmsm hiccup would silently black out a site. Two guards: the warning,
+   * and the network-default colours.
+   */
+  public function testSeedFailureWarnsAndFallsBackToNetworkColors(): void {
+    $this->stubDmsmService(NULL);
+
+    [$form, $messenger] = $this->buildWithMessenger($this->config());
+
+    $this->assertCount(1, $messenger->warnings, 'A failed seed must warn the editor exactly once.');
+    $this->assertStringContainsString('could not be loaded', $messenger->warnings[0]);
+
+    $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#16c56e', $form['theme']['color']['secondary']['#default_value']);
+    $this->assertSame('#f2f2f2', $form['theme']['back_ground']['secondary']['#default_value']);
+
+    foreach ([
+      $form['theme']['color']['primary']['#default_value'],
+      $form['theme']['color']['secondary']['#default_value'],
+      $form['theme']['back_ground']['secondary']['#default_value'],
+    ] as $value) {
+      $this->assertNotSame('', $value, 'An empty colour is what core turns into #000000.');
+      $this->assertNotSame('#000000', $value);
+    }
+  }
+
+  /**
+   * A seed that succeeds raises no warning and is not overwritten.
+   */
+  public function testSuccessfulSeedRaisesNoWarning(): void {
+    $case = $this->fixtureCases()['theme-less-site'];
+    $this->stubDmsmService($case['expectedEffectiveTheme']);
+
+    [$form, $messenger] = $this->buildWithMessenger($this->config());
+
+    $this->assertSame([], $messenger->warnings);
+    $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
+  }
+
+  /**
+   * An already-authored theme neither warns nor consults the seed.
+   */
+  public function testAuthoredThemeRaisesNoSeedWarning(): void {
+    // exactly(0): a site with its own theme must not pay for the HTTP call.
+    $this->stubDmsmService(NULL, 0);
+
+    [, $messenger] = $this->buildWithMessenger($this->config([
+      'theme' => ['color' => ['primary' => '#abcdef']],
+    ]));
+
+    $this->assertSame([], $messenger->warnings);
+  }
+
+  /**
+   * M5: the 10 second HTTP seed is fetched at most once per form instance.
+   */
+  public function testSeedIsMemoizedPerFormInstance(): void {
+    // exactly(1) across three seedFromDmsm() calls on one instance.
+    $this->stubDmsmService(NULL, 1);
+
+    $form = $this->createForm();
+
+    for ($i = 0; $i < 3; $i++) {
+      $this->assertSame('#009edb', $this->invoke($form, 'seedFromDmsm')['color']['primary']);
+    }
   }
 
   // ---------------------------------------------------------------------
@@ -845,6 +972,150 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   // ---------------------------------------------------------------------
+  // D3 bounds: a blank optional numeric is not a zero.
+  // ---------------------------------------------------------------------
+
+  /**
+   * A blank optional numeric is skipped, never cast to 0.
+   *
+   * `(int) ''` is 0, and core's Number::validateNumber() EARLY-RETURNS on ''
+   * so #min/#max never fire for an empty field. Casting would land
+   * `max_columns: 0` and `horizontal_card_max: 0` in config, both outside
+   * D3's 1-6, in a config nothing downstream re-validates.
+   *
+   * @dataProvider blankNumericProvider
+   */
+  public function testBlankOptionalNumericIsNotWrittenAsZero(string $path, string $blank): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    [$group, $key] = explode('.', $path);
+    $values['theme'][$group][$key] = $blank;
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertNotSame(
+      0,
+      $config->get('theme.' . $path),
+      sprintf('A blank %s must not be coerced to 0.', $path)
+    );
+    $this->assertNull(
+      $config->get('theme.' . $path),
+      sprintf('A blank %s must leave the key unauthored.', $path)
+    );
+  }
+
+  /**
+   * The optional numerics and the blank values they can arrive as.
+   *
+   * @return array
+   *   Test cases.
+   */
+  public function blankNumericProvider(): array {
+    return [
+      // The two D3 1-6 bounded keys: 0 is outside their range entirely.
+      'max_columns empty string' => ['mega_menu.max_columns', ''],
+      'horizontal_card_max empty string' => ['mega_menu.horizontal_card_max', ''],
+      // Not out of range, but 0 here MEANS "unlimited" -- a real setting the
+      // editor never chose.
+      'max_rows_per_column empty string' => ['mega_menu.max_rows_per_column', ''],
+    ];
+  }
+
+  /**
+   * A blank numeric leaves a previously authored value alone.
+   *
+   * Skip, not clear: an unrelated save must not be able to silently discard
+   * a bound the editor set earlier. RS's reset is the deliberate way to
+   * un-author.
+   */
+  public function testBlankNumericPreservesAnAuthoredValue(): void {
+    $this->stubDmsmService(NULL, 0);
+    $config = $this->config([
+      'theme' => ['mega_menu' => ['max_columns' => 4]],
+    ]);
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    $values['theme']['mega_menu']['max_columns'] = '';
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame(4, $config->get('theme.mega_menu.max_columns'));
+  }
+
+  /**
+   * A submitted 0 is still a real authored value, not a blank.
+   *
+   * The blank guard must test for NULL/'' explicitly, never empty().
+   */
+  public function testZeroIsStillAuthoredAfterTheBlankGuard(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    $values['theme']['mega_menu']['max_rows_per_column'] = '0';
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame(
+      0,
+      $config->get('theme.mega_menu.max_rows_per_column'),
+      '0 means unlimited and must survive the blank guard.'
+    );
+  }
+
+  /**
+   * Non-empty numerics outside D3's bounds are rejected server-side.
+   *
+   * @dataProvider boundedNumericProvider
+   */
+  public function testNonEmptyNumericsAreBoundsCheckedServerSide(string $path, $value, bool $valid): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    $values = $this->submittableValues();
+    [$group, $key] = explode('.', $path);
+    $values['theme'][$group][$key] = $value;
+    $formState = $this->formState($values);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    $name = 'theme][' . str_replace('.', '][', $path);
+    $this->assertSame(
+      $valid,
+      !array_key_exists($name, $formState->getErrors()),
+      sprintf('%s = %s should be %s.', $path, var_export($value, TRUE), $valid ? 'accepted' : 'rejected')
+    );
+  }
+
+  /**
+   * Bounded numeric values and whether D3 allows them.
+   *
+   * @return array
+   *   Test cases.
+   */
+  public function boundedNumericProvider(): array {
+    return [
+      'max_columns at min' => ['mega_menu.max_columns', 1, TRUE],
+      'max_columns at max' => ['mega_menu.max_columns', 6, TRUE],
+      'max_columns zero' => ['mega_menu.max_columns', 0, FALSE],
+      'max_columns forged high' => ['mega_menu.max_columns', 999, FALSE],
+      'max_columns non numeric' => ['mega_menu.max_columns', 'six', FALSE],
+      // Blank is optional, not invalid: the writer skips it instead.
+      'max_columns blank' => ['mega_menu.max_columns', '', TRUE],
+      'horizontal_card_max at min' => ['mega_menu.horizontal_card_max', 1, TRUE],
+      'horizontal_card_max at max' => ['mega_menu.horizontal_card_max', 6, TRUE],
+      'horizontal_card_max zero' => ['mega_menu.horizontal_card_max', 0, FALSE],
+      'horizontal_card_max forged high' => ['mega_menu.horizontal_card_max', 7, FALSE],
+      'horizontal_card_max blank' => ['mega_menu.horizontal_card_max', '', TRUE],
+    ];
+  }
+
+  // ---------------------------------------------------------------------
   // RS: reset to network default.
   // ---------------------------------------------------------------------
 
@@ -999,6 +1270,90 @@ class BiolandThemeFormTest extends TestCase {
 
     $this->assertSame(6, $effective['i18n']['maxLangBeforeWrap'], 'Omitted leaf falls through to the network leg.');
     $this->assertSame('#565B29', $effective['color']['primary'], 'Present leaf still comes from the site leg.');
+  }
+
+  /**
+   * An empty site branch does not wipe the network branch.
+   *
+   * json_decode() renders an empty JSON object (`"megaMenu": {}`) and an
+   * empty JSON array as the same PHP `[]`, and array_is_list([]) is TRUE --
+   * so a naive list test classifies the empty branch as a leaf and replaces
+   * the whole network branch wholesale. That is a wholesale replace where MD
+   * ratifies a per-leaf merge: every leaf the network defined disappears.
+   */
+  public function testEmptySiteBranchDoesNotWipeTheNetworkBranch(): void {
+    $effective = $this->effectiveThemeFor([
+      'theme' => [
+        'color' => ['primary' => '#565B29'],
+        // The empty-object case.
+        'megaMenu' => [],
+      ],
+      'runTime' => [
+        'theme' => [
+          'color' => ['primary' => '#009edb', 'secondary' => '#16c56e'],
+          'megaMenu' => [
+            'forums' => TRUE,
+            'maxColumns' => 4,
+            'maxRowsPerColumn' => 0,
+            'horizontalCardMax' => 3,
+          ],
+        ],
+      ],
+    ]);
+
+    $this->assertSame(
+      [
+        'forums' => TRUE,
+        'maxColumns' => 4,
+        'maxRowsPerColumn' => 0,
+        'horizontalCardMax' => 3,
+      ],
+      $effective['megaMenu'],
+      'An empty site branch contributes no leaves; the network branch survives intact.'
+    );
+
+    // The rest of the merge is unaffected.
+    $this->assertSame('#565B29', $effective['color']['primary']);
+    $this->assertSame('#16c56e', $effective['color']['secondary']);
+  }
+
+  /**
+   * An empty NETWORK branch is still filled by the site branch.
+   *
+   * The `[]`-is-a-branch rule applies to both operands, so an empty base
+   * must recurse rather than block the override.
+   */
+  public function testEmptyNetworkBranchIsFilledBySite(): void {
+    $effective = $this->effectiveThemeFor([
+      'theme' => ['megaMenu' => ['maxColumns' => 5]],
+      'runTime' => [
+        'theme' => [
+          'color' => ['primary' => '#009edb', 'secondary' => '#16c56e'],
+          'megaMenu' => [],
+        ],
+      ],
+    ]);
+
+    $this->assertSame(['maxColumns' => 5], $effective['megaMenu']);
+  }
+
+  /**
+   * A genuine list leaf is still replaced wholesale, not element-merged.
+   *
+   * The `[]` carve-out must not turn non-empty lists into merge branches.
+   */
+  public function testNonEmptyListLeavesAreStillReplacedWholesale(): void {
+    $effective = $this->effectiveThemeFor([
+      'theme' => ['homePageWidgets' => ['columns' => [['gbif']]]],
+      'runTime' => [
+        'theme' => [
+          'color' => ['primary' => '#009edb', 'secondary' => '#16c56e'],
+          'homePageWidgets' => ['columns' => [['panorama'], ['tsc'], ['geobon']]],
+        ],
+      ],
+    ]);
+
+    $this->assertSame([['gbif']], $effective['homePageWidgets']['columns']);
   }
 
   /**

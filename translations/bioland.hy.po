@@ -1783,3 +1783,11 @@ msgstr "Մուտքագրեք վավեր տասնվեցական գույն, օր�
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Գլխավոր էջի վիջեթները պետք է դասավորվեն ճիշտ @count սյունակում։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Ցանցի լռելյայն թեման հնարավոր չեղավ բեռնել, ուստի այս դաշտերը ցույց են տալիս ներկառուցված լռելյայն արժեքներ։ Ստուգեք յուրաքանչյուր արժեք նախքան պահպանելը։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Մուտքագրեք @min-ի և @max-ի միջև ընկած թիվ։"

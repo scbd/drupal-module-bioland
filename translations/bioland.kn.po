@@ -1783,3 +1783,11 @@ msgstr "ಮಾನ್ಯವಾದ ಹೆಕ್ಸ್ ಬಣ್ಣವನ್ನು 
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ಮುಖಪುಟ ವಿಜೆಟ್‌ಗಳನ್ನು ನಿಖರವಾಗಿ @count ಕಾಲಮ್‌ಗಳಲ್ಲಿ ಜೋಡಿಸಬೇಕು."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "ನೆಟ್‌ವರ್ಕ್‌ನ ಪೂರ್ವನಿಯೋಜಿತ ಥೀಮ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಕ್ಷೇತ್ರಗಳು ಅಂತರ್ನಿರ್ಮಿತ ಪೂರ್ವನಿಯೋಜಿತ ಮೌಲ್ಯಗಳನ್ನು ತೋರಿಸುತ್ತವೆ. ಉಳಿಸುವ ಮೊದಲು ಪ್ರತಿ ಮೌಲ್ಯವನ್ನು ಪರಿಶೀಲಿಸಿ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ಮತ್ತು @max ನಡುವಿನ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."

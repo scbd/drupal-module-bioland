@@ -1783,3 +1783,11 @@ msgstr "Daħħal kulur eżadeċimali validu, pereżempju #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Il-widgets tal-paġna ewlenija għandhom jitqiegħdu f'eżattament @count kolonni."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "It-tema awtomatika tan-netwerk ma setgħetx tittella', għalhekk dawn l-oqsma juru valuri awtomatiċi integrati. Iċċekkja kull valur qabel ma tissejvja."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Daħħal numru bejn @min u @max."

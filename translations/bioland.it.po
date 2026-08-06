@@ -1783,3 +1783,11 @@ msgstr "Inserisci un colore esadecimale valido, ad esempio #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "I widget della home page devono essere disposti in esattamente @count colonne."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Non è stato possibile caricare il tema predefinito della rete, quindi questi campi mostrano valori predefiniti integrati. Controlla ogni valore prima di salvare."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Inserisci un numero compreso tra @min e @max."

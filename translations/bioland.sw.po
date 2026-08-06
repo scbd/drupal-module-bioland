@@ -1783,3 +1783,11 @@ msgstr "Weka rangi sahihi ya heksadesimali, kwa mfano #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Vipengele vya ukurasa wa mwanzo lazima vipangwe katika safu wima @count hasa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Mandhari chaguo-msingi ya mtandao haikuweza kupakiwa, kwa hivyo sehemu hizi zinaonyesha thamani chaguo-msingi zilizojengwa ndani. Angalia kila thamani kabla ya kuhifadhi."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Weka nambari kati ya @min na @max."

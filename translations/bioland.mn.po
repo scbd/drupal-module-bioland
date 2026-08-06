@@ -1783,3 +1783,11 @@ msgstr "Зөв арван зургаатын өнгө оруулна уу, жи�
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Нүүр хуудасны виджетүүдийг яг @count баганад байрлуулах ёстой."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Сүлжээний өгөгдмөл загварыг ачаалж чадсангүй тул эдгээр талбарт суулгасан өгөгдмөл утгууд харагдаж байна. Хадгалахаас өмнө утга бүрийг шалгана уу."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ба @max хоорондох тоог оруулна уу."

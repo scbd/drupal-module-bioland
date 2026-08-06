@@ -1854,3 +1854,11 @@ msgstr "Antre yon koulè eksadesimal valab, pa egzanp #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget paj dakèy yo dwe ranje nan egzakteman @count kolòn."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Nou pa t kapab chaje tèm rezo a pa defo, kidonk chan sa yo montre valè entegre pa defo. Tcheke chak valè anvan ou anrejistre."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Antre yon nimewo ant @min ak @max."

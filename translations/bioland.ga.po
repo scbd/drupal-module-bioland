@@ -1783,3 +1783,11 @@ msgstr "Cuir dath heicsidheachúlach bailí isteach, mar shampla #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Ní mór giuirléidí an leathanaigh bhaile a leagan amach i @count colún go díreach."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Níorbh fhéidir téama réamhshocraithe an líonra a lódáil, mar sin taispeánann na réimsí seo réamhshocruithe ionsuite. Seiceáil gach luach sula sábhálann tú."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Cuir isteach uimhir idir @min agus @max."

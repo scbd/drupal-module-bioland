@@ -1783,3 +1783,11 @@ msgstr "Shigar da ingantaccen launin hex, misali #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Dole ne a shirya kayan aikin shafin farko a cikin ginshiƙai @count daidai."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "An kasa loda jigon tsoho na hanyar sadarwa, don haka waɗannan filayen suna nuna ƙimomin tsoho na cikin gida. Duba kowace ƙima kafin ka ajiye."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Shigar da lamba tsakanin @min da @max."

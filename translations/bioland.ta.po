@@ -1783,3 +1783,11 @@ msgstr "சரியான ஹெக்ஸ் வண்ணத்தை உள்
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "முகப்புப் பக்க விட்ஜெட்டுகள் சரியாக @count நெடுவரிசைகளில் அமைக்கப்பட வேண்டும்."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "நெட்வொர்க்கின் இயல்புநிலைத் தீம் ஏற்ற முடியவில்லை, எனவே இந்தப் புலங்கள் உள்ளமைந்த இயல்புநிலை மதிப்புகளைக் காட்டுகின்றன. சேமிப்பதற்கு முன் ஒவ்வொரு மதிப்பையும் சரிபார்க்கவும்."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min மற்றும் @max இடையே ஒரு எண்ணை உள்ளிடவும்."

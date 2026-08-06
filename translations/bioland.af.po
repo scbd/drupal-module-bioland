@@ -1783,3 +1783,11 @@ msgstr "Voer 'n geldige heksadesimale kleur in, byvoorbeeld #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Die tuisblad-legstukke moet in presies @count kolomme gerangskik word."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Die netwerk se verstektema kon nie gelaai word nie, dus wys hierdie velde ingeboude verstekwaardes. Kontroleer elke waarde voordat u stoor."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Voer 'n getal tussen @min en @max in."

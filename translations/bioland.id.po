@@ -1783,3 +1783,11 @@ msgstr "Masukkan warna heksadesimal yang valid, misalnya #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget halaman beranda harus disusun dalam tepat @count kolom."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tema default jaringan tidak dapat dimuat, sehingga bidang-bidang ini menampilkan nilai default bawaan. Periksa setiap nilai sebelum menyimpan."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Masukkan angka antara @min dan @max."

@@ -1783,3 +1783,11 @@ msgstr "Saisissez une couleur hexadécimale valide, par exemple #1B7B3A."
 #: src/Form/BiolandThemeForm.php
 msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Les widgets de la page d'accueil doivent être répartis en exactement @count colonnes."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Le thème par défaut du réseau n'a pas pu être chargé ; ces champs affichent donc des valeurs par défaut intégrées. Vérifiez chaque valeur avant d'enregistrer."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Saisissez un nombre compris entre @min et @max."
