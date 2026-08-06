@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Ցուցադրում է մանրապատկեր յուրաքանչյուր գրառման կողքին:"
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Սյունակի լայնությունը"
+msgid "Mega menu columns"
+msgstr "Մեգա ընտրացանկի սյունակներ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count սյունակ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count սյունակ (միայն շատ մեծ էկրաններին)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Առավելագույն տողեր մեկ սյունակում"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Կայքի լռելյայն"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Սյունակում ցուցադրվող առավելագույն գրառումներ. չսահմանելու դեպքում գործում է կայքի լռելյայնը:"

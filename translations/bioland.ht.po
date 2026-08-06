@@ -1806,8 +1806,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Montre yon ti imaj bo kote chak antre."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Laje kolòn"
+msgid "Mega menu columns"
+msgstr "Kolòn gwo meni an"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1824,3 +1824,15 @@ msgstr "@count kolòn"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count kolòn (sèlman sou gwo ekran)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimòm ranje pa kolòn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Paran sit la"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimòm antre pa kolòn; si li pa defini, paran sit la aplike."

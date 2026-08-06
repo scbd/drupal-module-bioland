@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "ከእያንዳንዱ ግቤት አጠገብ ድንክዬ ምስል ያሳያል።"
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "የአምድ ስፋት"
+msgid "Mega menu columns"
+msgstr "የሜጋ ምናሌ አምዶች"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count አምዶች"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count አምዶች (በትልልቅ ማያ ገጾች ብቻ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "በአምድ ከፍተኛ ረድፎች"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "የጣቢያ ነባሪ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "በአምድ የሚዘረዘሩ ከፍተኛ ግቤቶች፤ ካልተቀመጠ የጣቢያው ነባሪ ይሠራል።"

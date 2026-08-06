@@ -20,21 +20,23 @@ use PHPUnit\Framework\TestCase;
 class BiolandComponentRegistryTest extends TestCase {
 
   /**
-   * The expected component map: suffix => [label, bsl].
+   * The expected component map: suffix => [label, bsl, thumbs].
    *
-   * Order matters — it is the picker's display order.
+   * Order matters — it is the picker's display order. The thumbs flag mirrors
+   * which Vue components read bl2-show-thumbs off their own link
+   * (content-type/index.vue and all-content-types.vue only).
    */
   private const EXPECTED_COMPONENTS = [
-    'national-report' => ['National Reports', FALSE],
-    'national-report-six' => ['National Report (6th)', FALSE],
-    'bch' => ['BCH Records', FALSE],
-    'absch' => ['ABS-CH Records', FALSE],
-    'focal-points' => ['National Focal Points', FALSE],
-    'country-profiles' => ['Country Profiles', FALSE],
-    'content-type' => ['Content Type', TRUE],
-    'forums' => ['Forums', FALSE],
-    'national-targets-7' => ['National Targets (GBF 7)', FALSE],
-    'all-content-types' => ['All Content Types', FALSE],
+    'national-report' => ['National Reports', FALSE, FALSE],
+    'national-report-six' => ['National Report (6th)', FALSE, FALSE],
+    'bch' => ['BCH Records', FALSE, FALSE],
+    'absch' => ['ABS-CH Records', FALSE, FALSE],
+    'focal-points' => ['National Focal Points', FALSE, FALSE],
+    'country-profiles' => ['Country Profiles', FALSE, FALSE],
+    'content-type' => ['Content Type', TRUE, TRUE],
+    'forums' => ['Forums', FALSE, FALSE],
+    'national-targets-7' => ['National Targets (GBF 7)', FALSE, FALSE],
+    'all-content-types' => ['All Content Types', FALSE, TRUE],
   ];
 
   /**
@@ -65,9 +67,10 @@ class BiolandComponentRegistryTest extends TestCase {
       'Component suffixes and their display order are pinned.'
     );
 
-    foreach (self::EXPECTED_COMPONENTS as $suffix => [$label, $isBsl]) {
+    foreach (self::EXPECTED_COMPONENTS as $suffix => [$label, $isBsl, $thumbs]) {
       $this->assertSame($label, $components[$suffix]['label'], "Label pinned for $suffix.");
       $this->assertSame($isBsl, $components[$suffix]['bsl'], "BSL flag pinned for $suffix.");
+      $this->assertSame($thumbs, $components[$suffix]['thumbs'], "Thumbs flag pinned for $suffix.");
     }
   }
 
@@ -101,7 +104,7 @@ class BiolandComponentRegistryTest extends TestCase {
    */
   public function testOptionsForNonBslSite(): void {
     $expected = [];
-    foreach (self::EXPECTED_COMPONENTS as $suffix => [$label, $isBsl]) {
+    foreach (self::EXPECTED_COMPONENTS as $suffix => [$label, $isBsl, $thumbs]) {
       $expected['bl2-component-' . $suffix] = $label;
     }
 
@@ -504,6 +507,47 @@ class BiolandComponentRegistryTest extends TestCase {
       ['arrow'],
       $this->registry->mergeStyleTokens(['arrow'], NULL, 'not-a-width'),
       'An unknown width token is never written.'
+    );
+  }
+
+  /**
+   * Thumbs support resolves per component, across every token spelling.
+   */
+  public function testComponentSupportsThumbs(): void {
+    $this->assertSame(
+      ['bl2-component-content-type', 'bl2-component-all-content-types'],
+      $this->registry->thumbsSupportingTokens()
+    );
+    $this->assertTrue($this->registry->componentSupportsThumbs('bl2-component-content-type'));
+    $this->assertTrue($this->registry->componentSupportsThumbs('mm-component-all-content-types'));
+    $this->assertTrue($this->registry->componentSupportsThumbs('bsl-component-content-type', 'bsl'));
+    $this->assertFalse($this->registry->componentSupportsThumbs('bl2-component-forums'));
+    $this->assertFalse($this->registry->componentSupportsThumbs('bl2-component-was-removed'));
+  }
+
+  /**
+   * The rows-cap token round-trips and only digits are ever written.
+   */
+  public function testMaxRowsTokenRules(): void {
+    $stored = ['arrow bl2-component-content-type bl2-ct-max-row-per-column-4'];
+
+    $this->assertSame('4', $this->registry->findMaxRowsValue($stored));
+    $this->assertSame('', $this->registry->findMaxRowsValue(['arrow']));
+
+    $this->assertSame(
+      ['arrow bl2-component-content-type bl2-ct-max-row-per-column-6'],
+      $this->registry->mergeMaxRows($stored, '6')
+    );
+    $this->assertSame(
+      ['arrow bl2-component-content-type'],
+      $this->registry->mergeMaxRows($stored, ''),
+      'The empty value clears the cap back to the site default.'
+    );
+    $this->assertSame($stored, $this->registry->mergeMaxRows($stored, NULL), 'NULL leaves the family untouched.');
+    $this->assertSame(
+      ['arrow bl2-component-content-type'],
+      $this->registry->mergeMaxRows($stored, '6; DROP'),
+      'A non-digit value is never written.'
     );
   }
 

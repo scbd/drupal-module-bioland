@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Показва миниатюра до всеки запис."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Ширина на колоната"
+msgid "Mega menu columns"
+msgstr "Колони на мега менюто"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count колони"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count колони (само на много големи екрани)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Максимум редове на колона"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Стандарт за сайта"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Максимален брой записи на колона; когато не е зададено, важи стандартът за сайта."

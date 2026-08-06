@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Yana nuna karamin hoto kusa da kowane shigarwa."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Fadin shafi"
+msgid "Mega menu columns"
+msgstr "Ginshikan babban menu"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "Ginshikai @count"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "Ginshikai @count (manyan allo kawai)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Matsakaicin layuka a kowane ginshiki"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Tsohon saitin shafi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Matsakaicin shigarwa a kowane ginshiki; idan ba a saita ba, tsohon saitin shafin ke aiki."

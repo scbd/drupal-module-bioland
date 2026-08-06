@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Rodo miniatiūrą šalia kiekvieno įrašo."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Stulpelio plotis"
+msgid "Mega menu columns"
+msgstr "Mega meniu stulpeliai"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count stulpeliai"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count stulpeliai (tik itin dideliuose ekranuose)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Daugiausia eilučių stulpelyje"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Svetainės numatytoji"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Daugiausia įrašų stulpelyje; nenustačius taikoma svetainės numatytoji reikšmė."

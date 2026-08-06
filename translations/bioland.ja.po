@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "各項目の横にサムネイル画像を表示します。"
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "列の幅"
+msgid "Mega menu columns"
+msgstr "メガメニューの列数"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count列"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count列（特大画面のみ）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "列あたりの最大行数"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "サイトの既定値"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "列あたりに表示する最大件数。未設定の場合はサイトの既定値が適用されます。"

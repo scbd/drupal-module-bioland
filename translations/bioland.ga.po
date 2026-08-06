@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Taispeánann mionsamhail in aice le gach iontráil."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Leithead colúin"
+msgid "Mega menu columns"
+msgstr "Colúin an mheigea-roghchláir"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count colún"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count colún (scáileáin an-mhóra amháin)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Uaslíon rónna in aghaidh an cholúin"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Réamhshocrú an tsuímh"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Uaslíon iontrálacha in aghaidh an cholúin; gan socrú, feidhmíonn réamhshocrú an tsuímh."

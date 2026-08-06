@@ -1100,6 +1100,217 @@ class BiolandComponentMenuFormModeTest extends TestCase {
     );
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Thumbnails and column width.                                        */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * The presentation controls are offered, prefilled from the stored classes.
+   */
+  public function testThumbsAndWidthControlsReflectStoredClasses(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-3x mm-show-thumbs'], 'component');
+    $form = $this->contribAlteredForm();
+
+    $service->apply($form, $formState);
+
+    $this->assertTrue($form[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#default_value']);
+    $this->assertSame('bl2-3x', $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#default_value']);
+    $this->assertSame(
+      ['', 'bl2-2x', 'bl2-3x', 'bl2-4x', 'bl2-5x', 'bl2-2x-xl', 'bl2-3x-xl', 'bl2-4x-xl', 'bl2-5x-xl'],
+      array_keys($form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']),
+      'Exactly the width tokens the frontend reads, plus the one-column default.'
+    );
+    $this->assertSame(
+      '2 columns',
+      (string) $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']['bl2-2x'],
+      'The multiplier comes from the digits before the "x" - never the "2" in the bl2 prefix.'
+    );
+    $this->assertSame(
+      '4 columns (extra-large screens only)',
+      (string) $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']['bl2-4x-xl']
+    );
+  }
+
+  /**
+   * Saving writes the chosen style tokens and normalizes the legacy thumbs.
+   */
+  public function testBuilderWritesStyleTokens(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news mm-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 1);
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'bl2-2x');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news mm-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type bl2-2x bl2-show-thumbs']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * Unchecking thumbnails and resetting the width clears both families.
+   */
+  public function testBuilderClearsStyleTokens(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-forums bl2-4x bl2-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 0);
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, '');
+    $formState->setValue('attributes', ['class' => 'bl2-4x bl2-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * Thumbnails are offered only where a Vue component actually reads them.
+   *
+   * Only content-type/index.vue and all-content-types.vue read
+   * bl2-show-thumbs off their own link; the checkbox is #states-gated to
+   * exactly those pickers' tokens.
+   */
+  public function testThumbsCheckboxIsGatedToSupportingComponents(): void {
+    $service = $this->createService(FALSE);
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $this->createFormState(NULL, 'component', TRUE));
+
+    $selector = ':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]';
+    $this->assertSame(
+      [
+        [$selector => ['value' => 'bl2-component-content-type']],
+        'or',
+        [$selector => ['value' => 'bl2-component-all-content-types']],
+      ],
+      $form[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#states']['visible']
+    );
+
+    // On BSL only content-type is offered, so the gate collapses to it.
+    $bsl = $this->contribAlteredForm();
+    $this->createService(TRUE)->apply($bsl, $this->createFormState(NULL, 'component', TRUE));
+    $this->assertSame(
+      [$selector => ['value' => 'bl2-component-content-type']],
+      $bsl[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#states']['visible']
+    );
+  }
+
+  /**
+   * A thumbnail token never survives onto a component that cannot render it.
+   */
+  public function testThumbsAreStrippedForUnsupportingComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-show-thumbs'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    // The editor switches to Forums; the states-hidden checkbox still submits
+    // its stored TRUE, but forums.vue never reads the token.
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 1);
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-show-thumbs', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * The rows cap is offered for the Content Type component and round-trips.
+   */
+  public function testMaxRowsControl(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-ct-max-row-per-column-4'], 'component');
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $element = $form[BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT];
+    $this->assertSame('4', $element['#default_value']);
+    $this->assertSame(
+      [':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]' => ['value' => 'bl2-component-content-type']],
+      $element['#states']['visible'],
+      'Only content-type/index.vue reads the rows cap.'
+    );
+
+    // A changed cap is rewritten; the site-default option clears it.
+    $entity = $formState->getFormObject()->getEntity();
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT, '6');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-ct-max-row-per-column-4', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type bl2-ct-max-row-per-column-6']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * The rows cap never survives onto a component that cannot read it.
+   */
+  public function testMaxRowsIsStrippedForOtherComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-ct-max-row-per-column-4'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::MAX_ROWS_ELEMENT, '4');
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news bl2-ct-max-row-per-column-4', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-forums']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * An arbitrary submitted width value is never written.
+   */
+  public function testUnofferedWidthValueIsIgnored(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-forums bl2-2x'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'evil"><script>');
+    $formState->setValue('attributes', ['class' => 'bl2-2x', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-2x bl2-component-forums']]],
+      $entity->link->first()->options,
+      'Only a width token the frontend reads (or the empty default) may be written.'
+    );
+  }
+
 }
 
 /**
@@ -1457,99 +1668,6 @@ class TestTerm {
       }
 
     };
-  }
-
-  /* ------------------------------------------------------------------ */
-  /* Thumbnails and column width.                                        */
-  /* ------------------------------------------------------------------ */
-
-  /**
-   * The presentation controls are offered, prefilled from the stored classes.
-   */
-  public function testThumbsAndWidthControlsReflectStoredClasses(): void {
-    $service = $this->createService(FALSE);
-    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news bl2-3x mm-show-thumbs'], 'component');
-    $form = $this->contribAlteredForm();
-
-    $service->apply($form, $formState);
-
-    $this->assertTrue($form[BiolandComponentMenuFormMode::THUMBS_ELEMENT]['#default_value']);
-    $this->assertSame('bl2-3x', $form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#default_value']);
-    $this->assertSame(
-      ['', 'bl2-2x', 'bl2-3x', 'bl2-4x', 'bl2-2x-xl', 'bl2-3x-xl', 'bl2-4x-xl'],
-      array_keys($form[BiolandComponentMenuFormMode::WIDTH_ELEMENT]['#options']),
-      'Exactly the width tokens the frontend reads, plus the one-column default.'
-    );
-  }
-
-  /**
-   * Saving writes the chosen style tokens and normalizes the legacy thumbs.
-   */
-  public function testBuilderWritesStyleTokens(): void {
-    $service = $this->createServiceWithContentTypes();
-    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news mm-show-thumbs'], 'component');
-    $entity = $formState->getFormObject()->getEntity();
-    $form = $this->contribAlteredForm();
-    $service->apply($form, $formState);
-
-    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
-    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
-    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 1);
-    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'bl2-2x');
-    $formState->setValue('attributes', ['class' => 'bl2-content-type-news mm-show-thumbs', 'target' => '']);
-    $this->runContribEntityBuilder($entity, $formState);
-    $service->buildEntity($entity, $formState);
-
-    $this->assertSame(
-      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type bl2-2x bl2-show-thumbs']]],
-      $entity->link->first()->options
-    );
-  }
-
-  /**
-   * Unchecking thumbnails and resetting the width clears both families.
-   */
-  public function testBuilderClearsStyleTokens(): void {
-    $service = $this->createServiceWithContentTypes();
-    $formState = $this->createFormState(['bl2-component-forums bl2-4x bl2-show-thumbs'], 'component');
-    $entity = $formState->getFormObject()->getEntity();
-    $form = $this->contribAlteredForm();
-    $service->apply($form, $formState);
-
-    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
-    $formState->setValue(BiolandComponentMenuFormMode::THUMBS_ELEMENT, 0);
-    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, '');
-    $formState->setValue('attributes', ['class' => 'bl2-4x bl2-show-thumbs', 'target' => '']);
-    $this->runContribEntityBuilder($entity, $formState);
-    $service->buildEntity($entity, $formState);
-
-    $this->assertSame(
-      ['attributes' => ['class' => ['bl2-component-forums']]],
-      $entity->link->first()->options
-    );
-  }
-
-  /**
-   * An arbitrary submitted width value is never written.
-   */
-  public function testUnofferedWidthValueIsIgnored(): void {
-    $service = $this->createServiceWithContentTypes();
-    $formState = $this->createFormState(['bl2-component-forums bl2-2x'], 'component');
-    $entity = $formState->getFormObject()->getEntity();
-    $form = $this->contribAlteredForm();
-    $service->apply($form, $formState);
-
-    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
-    $formState->setValue(BiolandComponentMenuFormMode::WIDTH_ELEMENT, 'evil"><script>');
-    $formState->setValue('attributes', ['class' => 'bl2-2x', 'target' => '']);
-    $this->runContribEntityBuilder($entity, $formState);
-    $service->buildEntity($entity, $formState);
-
-    $this->assertSame(
-      ['attributes' => ['class' => ['bl2-2x bl2-component-forums']]],
-      $entity->link->first()->options,
-      'Only a width token the frontend reads (or the empty default) may be written.'
-    );
   }
 
 }

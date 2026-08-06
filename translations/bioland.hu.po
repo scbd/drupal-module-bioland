@@ -1806,8 +1806,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Bélyegképet jelenít meg minden bejegyzés mellett."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Oszlopszélesség"
+msgid "Mega menu columns"
+msgstr "Mega menü oszlopai"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1824,3 +1824,15 @@ msgstr "@count oszlop"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count oszlop (csak extra nagy képernyőkön)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Sorok maximuma oszloponként"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Webhely alapértelmezése"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Oszloponként megjelenő bejegyzések maximuma; beállítás nélkül a webhely alapértelmezése érvényes."

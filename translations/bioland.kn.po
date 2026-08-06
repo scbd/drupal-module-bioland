@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "ಪ್ರತಿ ನಮೂದಿನ ಪಕ್ಕದಲ್ಲಿ ಥಂಬ್‌ನೇಲ್ ಚಿತ್ರವನ್ನು ತೋರಿಸುತ್ತದೆ."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "ಕಾಲಮ್ ಅಗಲ"
+msgid "Mega menu columns"
+msgstr "ಮೆಗಾ ಮೆನು ಕಾಲಮ್‌ಗಳು"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count ಕಾಲಮ್‌ಗಳು"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count ಕಾಲಮ್‌ಗಳು (ಅತಿ ದೊಡ್ಡ ಪರದೆಗಳಲ್ಲಿ ಮಾತ್ರ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "ಪ್ರತಿ ಕಾಲಮ್‌ಗೆ ಗರಿಷ್ಠ ಸಾಲುಗಳು"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "ಸೈಟ್ ಡೀಫಾಲ್ಟ್"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "ಪ್ರತಿ ಕಾಲಮ್‌ಗೆ ಗರಿಷ್ಠ ನಮೂದುಗಳು; ಹೊಂದಿಸದಿದ್ದರೆ ಸೈಟ್ ಡೀಫಾಲ್ಟ್ ಅನ್ವಯಿಸುತ್ತದೆ."

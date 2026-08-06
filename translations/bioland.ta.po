@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "ஒவ்வொரு பதிவின் அருகிலும் சிறுபடத்தைக் காட்டுகிறது."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "நெடுவரிசை அகலம்"
+msgid "Mega menu columns"
+msgstr "மெகா மெனு நெடுவரிசைகள்"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count நெடுவரிசைகள்"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count நெடுவரிசைகள் (மிகப் பெரிய திரைகள் மட்டும்)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "ஒரு நெடுவரிசைக்கு அதிகபட்ச வரிசைகள்"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "தள இயல்புநிலை"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "ஒரு நெடுவரிசையில் அதிகபட்ச பதிவுகள்; அமைக்கப்படாதபோது தள இயல்புநிலை பொருந்தும்."

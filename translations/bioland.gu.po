@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "દરેક એન્ટ્રીની બાજુમાં થંબનેલ છબી બતાવે છે."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "કૉલમની પહોળાઈ"
+msgid "Mega menu columns"
+msgstr "મેગા મેનૂની કૉલમ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count કૉલમ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count કૉલમ (ફક્ત ખૂબ મોટી સ્ક્રીન પર)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "કૉલમ દીઠ મહત્તમ પંક્તિઓ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "સાઇટ ડિફૉલ્ટ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "કૉલમ દીઠ મહત્તમ એન્ટ્રીઓ; સેટ ન હોય ત્યારે સાઇટ ડિફૉલ્ટ લાગુ પડે છે."

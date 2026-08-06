@@ -1824,8 +1824,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Dangos llun bach wrth ymyl pob cofnod."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Lled colofn"
+msgid "Mega menu columns"
+msgstr "Colofnau y mega ddewislen"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1842,3 +1842,15 @@ msgstr "@count colofn"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count colofn (sgriniau mawr iawn yn unig)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Uchafswm rhesi fesul colofn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Rhagosodiad y wefan"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Uchafswm cofnodion fesul colofn; heb ei osod, defnyddir rhagosodiad y wefan."

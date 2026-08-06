@@ -1824,8 +1824,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Εμφανίζει μια μικρογραφία δίπλα σε κάθε καταχώριση."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Πλάτος στήλης"
+msgid "Mega menu columns"
+msgstr "Στήλες μεγάλου μενού"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1842,3 +1842,15 @@ msgstr "@count στήλες"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count στήλες (μόνο σε πολύ μεγάλες οθόνες)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Μέγιστες σειρές ανά στήλη"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Προεπιλογή ιστότοπου"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Μέγιστες καταχωρίσεις ανά στήλη· χωρίς ρύθμιση ισχύει η προεπιλογή του ιστότοπου."

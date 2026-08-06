@@ -1806,8 +1806,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "کنار هر مورد یک تصویر بندانگشتی نمایش می‌دهد."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "عرض ستون"
+msgid "Mega menu columns"
+msgstr "ستون‌های منوی بزرگ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1824,3 +1824,15 @@ msgstr "@count ستون"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count ستون (فقط صفحه‌های خیلی بزرگ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "حداکثر ردیف در هر ستون"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "پیش‌فرض سایت"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "حداکثر موارد فهرست‌شده در هر ستون؛ در صورت تنظیم‌نشدن، پیش‌فرض سایت اعمال می‌شود."

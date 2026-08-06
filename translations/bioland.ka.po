@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "აჩვენებს მინიატურას თითოეული ჩანაწერის გვერდით."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "სვეტის სიგანე"
+msgid "Mega menu columns"
+msgstr "მეგა მენიუს სვეტები"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count სვეტი"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count სვეტი (მხოლოდ ძალიან დიდი ეკრანები)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "მაქსიმალური რიგები სვეტზე"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "საიტის ნაგულისხმევი"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "მაქსიმალური ჩანაწერები სვეტზე; დაუყენებლობისას მოქმედებს საიტის ნაგულისხმევი."

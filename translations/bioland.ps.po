@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "د هرې ننوتنې تر څنګ کوچنی انځور ښیي."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "د ستنې پلنوالی"
+msgid "Mega menu columns"
+msgstr "د مېګا مینو ستنې"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count ستنې"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count ستنې (یوازې ډېرې لویې پردې)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "په هره ستنه کې اعظمي کتارونه"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "د سایټ تلواله"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "په هره ستنه کې اعظمي ننوتنې؛ که ونه ټاکل شي د سایټ تلواله پلي کېږي."

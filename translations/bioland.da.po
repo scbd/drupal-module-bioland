@@ -1802,8 +1802,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Viser et miniaturebillede ved siden af hver post."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Kolonnebredde"
+msgid "Mega menu columns"
+msgstr "Megamenu-kolonner"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1820,3 +1820,15 @@ msgstr "@count kolonner"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count kolonner (kun ekstra store skaerme)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maks. raekker pr. kolonne"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Webstedsstandard"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maks. antal poster pr. kolonne; webstedsstandarden gaelder, naar intet er valgt."

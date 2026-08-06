@@ -1802,8 +1802,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Prikazuje sličicu pored svakog unosa."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Širina kolone"
+msgid "Mega menu columns"
+msgstr "Kolone mega menija"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1820,3 +1820,15 @@ msgstr "@count kolone"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count kolone (samo na vrlo velikim ekranima)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Najviše redova po koloni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Zadano za sajt"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Najviše unosa po koloni; ako nije postavljeno, važi zadana vrijednost sajta."

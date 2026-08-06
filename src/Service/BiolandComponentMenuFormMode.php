@@ -117,6 +117,19 @@ class BiolandComponentMenuFormMode {
   public const WIDTH_ELEMENT = 'bioland_component_width';
 
   /**
+   * Form array key of the max-rows-per-column select, and its submitted value.
+   *
+   * Shown only for the Content Type component — the only Vue component that
+   * reads the "bl2-ct-max-row-per-column-<n>" token.
+   */
+  public const MAX_ROWS_ELEMENT = 'bioland_component_max_rows';
+
+  /**
+   * The largest rows-per-column cap the form offers.
+   */
+  public const MAX_ROWS_LIMIT = 12;
+
+  /**
    * Form state key holding the stored binding slugs, for change detection.
    *
    * The entity builder rewrites bindings only when the editor actually picked
@@ -352,23 +365,44 @@ class BiolandComponentMenuFormMode {
     $form[self::CONTENT_TYPE_ELEMENT] = $this->contentTypeElement($stored_class, $form_state);
 
     // Presentation controls for the classes the frontend styles a section by
-    // (bioland-head drop-down.vue): thumbnails beside child links and how
-    // many mega-menu columns the section spans. Generic to every component.
+    // (bioland-head drop-down.vue and the per-component Vue files). Only the
+    // Content Type and All Content Types components read the thumbnail token
+    // off their own link, so the checkbox is gated to those; the column span
+    // applies to every section.
     $form[self::THUMBS_ELEMENT] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show thumbnails'),
       '#description' => $this->t('Show a thumbnail image beside each entry.'),
       '#default_value' => $this->registry->hasThumbsToken($stored_class),
       '#weight' => -7,
+      '#states' => [
+        'visible' => $this->pickerAnyOf(array_intersect($this->registry->thumbsSupportingTokens(), array_keys($options))),
+      ],
     ];
 
     $form[self::WIDTH_ELEMENT] = [
       '#type' => 'select',
-      '#title' => $this->t('Column width'),
+      '#title' => $this->t('Mega menu columns'),
       '#options' => $this->widthOptions(),
       '#default_value' => $this->registry->findWidthToken($stored_class),
       '#description' => $this->t('How many columns of the mega menu this section spans.'),
       '#weight' => -6,
+    ];
+
+    $max_rows_default = $this->registry->findMaxRowsValue($stored_class);
+    $form[self::MAX_ROWS_ELEMENT] = [
+      '#type' => 'select',
+      '#title' => $this->t('Maximum rows per column'),
+      '#options' => ['' => $this->t('Site default')] + array_combine(
+        array_map('strval', range(1, self::MAX_ROWS_LIMIT)),
+        array_map('strval', range(1, self::MAX_ROWS_LIMIT))
+      ),
+      '#default_value' => ctype_digit($max_rows_default) && (int) $max_rows_default <= self::MAX_ROWS_LIMIT ? $max_rows_default : '',
+      '#description' => $this->t('Maximum entries listed per column; the site default applies when unset.'),
+      '#weight' => -5,
+      '#states' => [
+        'visible' => $this->pickerAnyOf([$this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX)]),
+      ],
     ];
 
     // Show (or, hidden below, round-trip) only the classes the picker does
@@ -467,11 +501,19 @@ class BiolandComponentMenuFormMode {
     $class = $options['attributes']['class'] ?? [];
     $merged = $this->registry->mergeComponentToken($class, $token, $site_id);
     $merged = $this->mergeContentTypeBinding($merged, $token, $form_state);
-    $merged = $this->registry->mergeStyleTokens(
-      $merged,
-      $this->submittedThumbs($form_state),
-      $this->submittedWidthToken($form_state)
-    );
+
+    // A thumbnail token on a component whose Vue file never reads it is dead
+    // weight; strip it on the way through, whatever the (states-hidden)
+    // checkbox submitted.
+    $thumbs = $this->registry->componentSupportsThumbs($token, $site_id)
+      ? $this->submittedThumbs($form_state)
+      : FALSE;
+    $merged = $this->registry->mergeStyleTokens($merged, $thumbs, $this->submittedWidthToken($form_state));
+
+    // Same rule for the rows cap: only the Content Type component reads it.
+    $content_type_token = $this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX);
+    $max_rows = $token === $content_type_token ? $this->submittedMaxRows($form_state) : '';
+    $merged = $this->registry->mergeMaxRows($merged, $max_rows);
 
     if ($this->registry->extractClasses($merged) === []) {
       unset($options['attributes']['class']);
@@ -869,6 +911,36 @@ class BiolandComponentMenuFormMode {
   }
 
   /**
+   * Builds a #states visibility condition matching any of the given tokens.
+   *
+   * @param array $tokens
+   *   Canonical component tokens; empty hides the element outright.
+   *
+   * @return array
+   *   A #states condition list on the picker's value (single condition, or
+   *   the OR-list form for several).
+   */
+  protected function pickerAnyOf(array $tokens): array {
+    $tokens = array_values($tokens);
+    $selector = ':input[name="' . self::PICKER_ELEMENT . '"]';
+    if ($tokens === []) {
+      return [$selector => ['value' => '']];
+    }
+    if (count($tokens) === 1) {
+      return [$selector => ['value' => $tokens[0]]];
+    }
+
+    $conditions = [];
+    foreach ($tokens as $index => $token) {
+      if ($index > 0) {
+        $conditions[] = 'or';
+      }
+      $conditions[] = [$selector => ['value' => $token]];
+    }
+    return $conditions;
+  }
+
+  /**
    * Builds the column-width options: the default plus every frontend token.
    *
    * @return array
@@ -877,7 +949,11 @@ class BiolandComponentMenuFormMode {
   protected function widthOptions(): array {
     $options = ['' => $this->t('Default (1 column)')];
     foreach (BiolandComponentRegistry::WIDTH_TOKENS as $token) {
-      $count = (int) preg_replace('/\D/', '', $token);
+      // The multiplier is the digits before the "x" ("bl2-2x-xl" spans 2
+      // columns) - never every digit in the token, which also carries the
+      // "bl2" prefix.
+      preg_match('/-(\d+)x/', $token, $matches);
+      $count = (int) ($matches[1] ?? 1);
       $options[$token] = str_ends_with($token, '-xl')
         ? $this->t('@count columns (extra-large screens only)', ['@count' => $count])
         : $this->t('@count columns', ['@count' => $count]);
@@ -923,6 +999,30 @@ class BiolandComponentMenuFormMode {
     $token = trim((string) $value);
     if ($token === '' || in_array($token, BiolandComponentRegistry::WIDTH_TOKENS, TRUE)) {
       return $token;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * Returns the submitted rows cap, or NULL when it must be ignored.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return string|null
+   *   Digits within the offered range, '' for the site default, or NULL when
+   *   the element never rendered (leaving a stored cap untouched).
+   */
+  protected function submittedMaxRows(FormStateInterface $form_state): ?string {
+    $value = $form_state->getValue(self::MAX_ROWS_ELEMENT);
+    if (!is_scalar($value)) {
+      return NULL;
+    }
+
+    $value = trim((string) $value);
+    if ($value === '' || (ctype_digit($value) && (int) $value >= 1 && (int) $value <= self::MAX_ROWS_LIMIT)) {
+      return $value;
     }
 
     return NULL;

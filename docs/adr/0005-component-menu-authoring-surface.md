@@ -42,9 +42,13 @@ the exact hand-typing this surface exists to remove. The form is now fully guide
 - The Attributes box is hidden (`#access` FALSE, not removed — the contrib entity builder still
   round-trips every class the picker does not own through the hidden textfield). The
   `component_menu_show_attributes` admin setting (default off) opts a site back in.
-- The presentation classes the frontend styles a section by become form controls: a Show
-  thumbnails checkbox (`bl2-show-thumbs`; the legacy `mm-show-thumbs` is read but normalized on
-  save) and a Column width select (`bl2-2x/3x/4x` and their `-xl` viewport variants).
+- The presentation classes the frontend styles a section by become form controls, each offered
+  only where its Vue component actually reads it: a Show thumbnails checkbox (`bl2-show-thumbs`,
+  legacy `mm-show-thumbs` read but normalized on save) gated to Content Type and All Content
+  Types; a Mega menu columns select (`bl2-2x/3x/4x/5x` and their `-xl` viewport variants — 5
+  triggers the Content Type card view); and a Maximum rows per column select
+  (`bl2-ct-max-row-per-column-<n>`) gated to Content Type. A token never survives a save onto a
+  component that cannot read it.
 - The Content Type Listing component is relabelled "Content Type".
 - The picker's description shows one sentence for the selected component via `#states`; the
   details list is gone.

@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "แสดงภาพขนาดย่อข้างแต่ละรายการ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "ความกว้างคอลัมน์"
+msgid "Mega menu columns"
+msgstr "คอลัมน์เมกะเมนู"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count คอลัมน์"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count คอลัมน์ (เฉพาะหน้าจอขนาดใหญ่พิเศษ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "จำนวนแถวสูงสุดต่อคอลัมน์"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "ค่าเริ่มต้นของไซต์"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "จำนวนรายการสูงสุดต่อคอลัมน์ หากไม่ตั้งค่าจะใช้ค่าเริ่มต้นของไซต์"

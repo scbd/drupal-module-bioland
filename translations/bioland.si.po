@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "සෑම ඇතුළත් කිරීමක් අසලම කුඩා රූපයක් පෙන්වයි."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "තීරු පළල"
+msgid "Mega menu columns"
+msgstr "මෙගා මෙනු තීරු"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "තීරු @count"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "තීරු @count (ඉතා විශාල තිර පමණි)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "තීරුවකට උපරිම පේළි"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "අඩවි පෙරනිමිය"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "තීරුවකට උපරිම ඇතුළත් කිරීම්; සකසා නොමැති විට අඩවි පෙරනිමිය අදාළ වේ."

@@ -1824,8 +1824,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Zeigt ein Vorschaubild neben jedem Eintrag."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Spaltenbreite"
+msgid "Mega menu columns"
+msgstr "Mega-Menü-Spalten"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1842,3 +1842,15 @@ msgstr "@count Spalten"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count Spalten (nur sehr große Bildschirme)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maximale Zeilen pro Spalte"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Website-Standard"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maximale Einträge pro Spalte; ohne Auswahl gilt der Website-Standard."

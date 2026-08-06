@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Waxay muujisaa sawir yar oo ag yaal gelitaan kasta."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Ballaca tiirka"
+msgid "Mega menu columns"
+msgstr "Tiirarka menu-ga weyn"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count tiir"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count tiir (shaashadaha aad u waaweyn oo keliya)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Safafka ugu badan tiir kasta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Caadiga goobta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Gelitaannada ugu badan tiir kasta; haddii aan la dejin waxaa shaqeeya caadiga goobta."

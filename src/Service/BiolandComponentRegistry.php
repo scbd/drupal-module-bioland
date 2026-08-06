@@ -102,10 +102,22 @@ class BiolandComponentRegistry {
     'bl2-2x',
     'bl2-3x',
     'bl2-4x',
+    'bl2-5x',
     'bl2-2x-xl',
     'bl2-3x-xl',
     'bl2-4x-xl',
+    'bl2-5x-xl',
   ];
+
+  /**
+   * Class prefix of the Content Type list-view rows cap.
+   *
+   * "bl2-ct-max-row-per-column-<n>" caps how many entries the Content Type
+   * component lists per column before slicing (content-type/index.vue
+   * getMaxRowsPerColumn()); absent, the site-wide theme default applies.
+   * Read by no other component.
+   */
+  public const MAX_ROWS_PREFIX = 'bl2-ct-max-row-per-column-';
 
   /**
    * The mega-menu components, keyed by canonical class suffix.
@@ -128,51 +140,61 @@ class BiolandComponentRegistry {
     'national-report' => [
       'label' => 'National Reports',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "List of national report links, in tabs by country; hidden when the country has no reports.",
     ],
     'national-report-six' => [
       'label' => 'National Report (6th)',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Sixth national report links for the site country, plus the link's own children; hidden when empty.",
     ],
     'bch' => [
       'label' => 'BCH Records',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty.",
     ],
     'absch' => [
       'label' => 'ABS-CH Records',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty.",
     ],
     'focal-points' => [
       'label' => 'National Focal Points',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "List of national focal points, in tabs by country; hidden when empty.",
     ],
     'country-profiles' => [
       'label' => 'Country Profiles',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Links to CBD country profile pages, in tabs by country; always shown.",
     ],
     'content-type' => [
       'label' => 'Content Type',
       'bsl' => TRUE,
+      'thumbs' => TRUE,
       'description' => "Latest site content of the content types set on this link; hidden when there are no records.",
     ],
     'forums' => [
       'label' => 'Forums',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "Latest forum threads, plus the link's own children; hidden when empty.",
     ],
     'national-targets-7' => [
       'label' => 'National Targets (GBF 7)',
       'bsl' => FALSE,
+      'thumbs' => FALSE,
       'description' => "National target cards for GBF target 7, in tabs by country; always shown.",
     ],
     'all-content-types' => [
       'label' => 'All Content Types',
       'bsl' => FALSE,
+      'thumbs' => TRUE,
       'description' => "One link per content type that has records, plus the link's own children; always shown.",
     ],
   ];
@@ -469,6 +491,110 @@ class BiolandComponentRegistry {
     $slug = trim($slug);
     if ($slug !== '') {
       $tokens[] = $this->contentTypeBindingToken($slug);
+    }
+
+    if (!is_array($classValue)) {
+      return implode(' ', $tokens);
+    }
+    if (count($classValue) > 1) {
+      return $tokens;
+    }
+    return [implode(' ', $tokens)];
+  }
+
+  /**
+   * Tells whether a component token's component renders thumbnails.
+   *
+   * Only the Content Type and All Content Types Vue components read
+   * bl2-show-thumbs off their own link; on every other component the token is
+   * inert. Mirrors the per-file reads in bioland-head
+   * mega-menu/custom/content-type/index.vue and all-content-types.vue.
+   *
+   * @param string $token
+   *   A component token, in any accepted spelling.
+   * @param string|null $siteId
+   *   Optional runtime multisite identifier; see isComponentToken().
+   *
+   * @return bool
+   *   TRUE when the token names a known component that reads the thumbnail
+   *   token; FALSE for every other token, unknown ones included.
+   */
+  public function componentSupportsThumbs(string $token, ?string $siteId = NULL): bool {
+    foreach (self::COMPONENTS as $suffix => $component) {
+      if (!$component['thumbs']) {
+        continue;
+      }
+      if ($token === $this->canonicalToken($suffix) || $token === self::LEGACY_PREFIX . $suffix) {
+        return TRUE;
+      }
+      $siteId = trim((string) $siteId);
+      if ($siteId !== '' && $token === $siteId . self::SITE_PREFIX_INFIX . $suffix) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Returns the canonical tokens of the components that render thumbnails.
+   *
+   * @return array
+   *   Zero-indexed canonical tokens, in map order.
+   */
+  public function thumbsSupportingTokens(): array {
+    $tokens = [];
+    foreach (self::COMPONENTS as $suffix => $component) {
+      if ($component['thumbs']) {
+        $tokens[] = $this->canonicalToken($suffix);
+      }
+    }
+    return $tokens;
+  }
+
+  /**
+   * Returns the stored max-rows-per-column value, or an empty string.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return string
+   *   The digits after the prefix of the first max-rows token, in stored
+   *   order; an empty string when none is stored (the site default applies).
+   */
+  public function findMaxRowsValue(array|string $classValue): string {
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (strpos($token, self::MAX_ROWS_PREFIX) === 0 && strlen($token) > strlen(self::MAX_ROWS_PREFIX)) {
+        return substr($token, strlen(self::MAX_ROWS_PREFIX));
+      }
+    }
+    return '';
+  }
+
+  /**
+   * Replaces the max-rows-per-column token of a stored class value.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   * @param string|null $value
+   *   The rows cap to write (digits), an empty string to fall back to the
+   *   site default, or NULL to leave the family untouched.
+   *
+   * @return array|string
+   *   The merged class value, in the same shape as $classValue.
+   */
+  public function mergeMaxRows(array|string $classValue, ?string $value): array|string {
+    if ($value === NULL) {
+      return $classValue;
+    }
+
+    $tokens = [];
+    foreach ($this->extractClasses($classValue) as $token) {
+      if (strpos($token, self::MAX_ROWS_PREFIX) !== 0) {
+        $tokens[] = $token;
+      }
+    }
+    if ($value !== '' && ctype_digit($value)) {
+      $tokens[] = self::MAX_ROWS_PREFIX . $value;
     }
 
     if (!is_array($classValue)) {

@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "ہر اندراج کے ساتھ ایک تھمب نیل تصویر دکھاتا ہے۔"
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "کالم کی چوڑائی"
+msgid "Mega menu columns"
+msgstr "میگا مینو کالم"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count کالم"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count کالم (صرف بہت بڑی اسکرینیں)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "فی کالم زیادہ سے زیادہ قطاریں"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "سائٹ کا طے شدہ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "فی کالم زیادہ سے زیادہ اندراجات؛ مقرر نہ ہونے پر سائٹ کا طے شدہ لاگو ہوتا ہے۔"

@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Бичлэг бүрийн хажууд өнгөц зураг харуулна."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Баганын өргөн"
+msgid "Mega menu columns"
+msgstr "Мега цэсний баганууд"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count багана"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count багана (зөвхөн маш том дэлгэцэнд)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Багана тус бүрийн дээд мөр"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Сайтын үндсэн утга"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Багана тус бүрд жагсаах дээд бичлэг; тохируулаагүй бол сайтын үндсэн утга үйлчилнэ."

@@ -1802,8 +1802,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Zobrazí miniaturu vedle každé položky."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Šířka sloupce"
+msgid "Mega menu columns"
+msgstr "Sloupce mega menu"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1820,3 +1820,15 @@ msgstr "@count sloupce"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count sloupce (pouze na velmi velkých obrazovkách)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maximum řádků na sloupec"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Výchozí nastavení webu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maximální počet položek na sloupec; není-li nastaveno, platí výchozí hodnota webu."

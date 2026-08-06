@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "प्रत्येक नोंदीशेजारी थंबनेल प्रतिमा दाखवते."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "स्तंभ रुंदी"
+msgid "Mega menu columns"
+msgstr "मेगा मेनूचे स्तंभ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count स्तंभ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count स्तंभ (फक्त खूप मोठ्या स्क्रीनवर)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "प्रति स्तंभ कमाल पंक्ती"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "साइट डीफॉल्ट"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "प्रति स्तंभ कमाल नोंदी; सेट नसल्यास साइट डीफॉल्ट लागू होते."

@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "ഓരോ എൻട്രിക്കും അരികിൽ ഒരു ലഘുചിത്രം കാണിക്കുന്നു."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "കോളം വീതി"
+msgid "Mega menu columns"
+msgstr "മെഗാ മെനു കോളങ്ങൾ"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "@count കോളങ്ങൾ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count കോളങ്ങൾ (വളരെ വലിയ സ്ക്രീനുകളിൽ മാത്രം)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "ഓരോ കോളത്തിനും പരമാവധി വരികൾ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "സൈറ്റ് സ്ഥിരം"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "ഓരോ കോളത്തിലും പട്ടികപ്പെടുത്തുന്ന പരമാവധി എൻട്രികൾ; സജ്ജമാക്കിയില്ലെങ്കിൽ സൈറ്റ് സ്ഥിരം ബാധകമാണ്."

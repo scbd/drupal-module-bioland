@@ -98,11 +98,15 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // column-width presentation controls.
     'Show thumbnails',
     'Show a thumbnail image beside each entry.',
-    'Column width',
+    'Mega menu columns',
     'How many columns of the mega menu this section spans.',
     'Default (1 column)',
     '@count columns',
     '@count columns (extra-large screens only)',
+    // src/Service/BiolandComponentMenuFormMode.php: the Content Type rows cap.
+    'Maximum rows per column',
+    'Site default',
+    'Maximum entries listed per column; the site default applies when unset.',
   ];
 
   /**

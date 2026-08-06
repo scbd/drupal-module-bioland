@@ -1735,8 +1735,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Huonyesha kijipicha kando ya kila ingizo."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Upana wa safuwima"
+msgid "Mega menu columns"
+msgstr "Safuwima za menyu kubwa"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1753,3 +1753,15 @@ msgstr "Safuwima @count"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "Safuwima @count (skrini kubwa sana pekee)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Idadi ya juu ya safu kwa safuwima"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Chaguomsingi cha tovuti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Idadi ya juu ya maingizo kwa safuwima; bila kuwekwa, chaguomsingi cha tovuti hutumika."

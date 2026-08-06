@@ -1806,8 +1806,8 @@ msgid "Show a thumbnail image beside each entry."
 msgstr "Näyttää pikkukuvan jokaisen kohteen vieressä."
 
 #: src/Service/BiolandComponentMenuFormMode.php
-msgid "Column width"
-msgstr "Sarakkeen leveys"
+msgid "Mega menu columns"
+msgstr "Megavalikon sarakkeet"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "How many columns of the mega menu this section spans."
@@ -1824,3 +1824,15 @@ msgstr "@count saraketta"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "@count columns (extra-large screens only)"
 msgstr "@count saraketta (vain erittäin suuret näytöt)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Rivien enimmäismäärä saraketta kohden"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Sivuston oletus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Kohteiden enimmäismäärä saraketta kohden; ilman valintaa käytetään sivuston oletusta."
