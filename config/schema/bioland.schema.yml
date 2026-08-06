@@ -449,3 +449,86 @@ bioland.settings:
           sequence:
             type: string
             label: 'Entity type machine name'
+    theme:
+      type: mapping
+      label: 'Theme settings'
+      mapping:
+        color:
+          type: mapping
+          label: 'Brand color settings'
+          mapping:
+            primary:
+              type: string
+              label: 'Primary brand color'
+            secondary:
+              type: string
+              label: 'Secondary brand color'
+        # Key MUST be `back_ground` (two words), never `background`. Head's
+        # depth-7 camelCase transform (bioland-head
+        # server/utils/context-unified.ts:354,356) turns `back_ground` into
+        # `backGround` -- the property head's language bar reads
+        # (app/components/page/header/language-bar.vue:59,
+        # `siteStore.theme.backGround.secondary`). Spelling it `background`
+        # would camelCase to `background` and silently miss that consumer.
+        # NOTE: this config is not yet the source head reads at runtime.
+        # `siteStore.theme` today resolves `config.theme || config.runTime.theme`
+        # (bioland-head app/stores/site.js:145-147), and the depth-7 camelCase
+        # only rewrites `config.runTime.biolandSettings` -- so this key reaches
+        # that consumer only once p03-01 lands the precedence leg.
+        back_ground:
+          type: mapping
+          label: 'Background color settings'
+          mapping:
+            secondary:
+              type: string
+              label: 'Secondary background color'
+        home_page_widgets:
+          type: mapping
+          label: 'Home page widget theme settings'
+          mapping:
+            # A list of grid COLUMNS, each holding an ordered list of widget
+            # machine names -- NOT a flat list of widget names. Head renders
+            # the outer level as the `col-md-4` grid columns and the inner
+            # level as the widgets inside one column (bioland-head
+            # app/components/page/home-chm.vue:18-20). Confirmed by the DMSM
+            # prod seed and the stg config, which carry three nested arrays
+            # for a CHM site and one nested array for a single-column BCH
+            # site. W2a's "exactly 3" bound counts the OUTER length (3
+            # columns); the inner vocabulary is owned by the widget registry
+            # (p01-05), not this schema. The one-column BCH shape is not a
+            # counter-example to that bound -- it is exactly the deferred
+            # column-count-aware-grid alternative recorded as W2a's debt row,
+            # so p02-01's validator rejecting it is intentional, not an
+            # oversight.
+            columns:
+              type: sequence
+              label: 'Home page widget columns (vocabulary owned by the widget registry, not this schema)'
+              sequence:
+                type: sequence
+                label: 'Widget column'
+                sequence:
+                  type: string
+                  label: 'Widget machine name'
+        mega_menu:
+          type: mapping
+          label: 'Mega menu theme settings'
+          mapping:
+            forums:
+              type: boolean
+              label: 'Show Forums in the mega menu'
+            max_columns:
+              type: integer
+              label: 'Maximum mega menu columns'
+            max_rows_per_column:
+              type: integer
+              label: 'Maximum mega menu rows per column'
+            horizontal_card_max:
+              type: integer
+              label: 'Maximum horizontal cards in the mega menu'
+        i18n:
+          type: mapping
+          label: 'Internationalization theme settings'
+          mapping:
+            max_lang_before_wrap:
+              type: integer
+              label: 'Maximum languages shown before the language bar wraps'
