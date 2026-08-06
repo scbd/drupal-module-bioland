@@ -1778,3 +1778,91 @@ msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkoz�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Összetevő menühivatkozás hozzáadása"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Megjelenés"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "A modulokat a Kezdőlap moduljai lapon lehet be- és kikapcsolni. A mentett módosítások körülbelül 5 percen belül jelennek meg a nyilvános webhelyen."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Színek"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Elsődleges márkaszín"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Másodlagos márkaszín"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Másodlagos háttérszín"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kezdőlapi moduloszlopok"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "@number. oszlop"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Fórumok megjelenítése a mega menüben"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Oszlopok maximális száma"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Oszloponkénti sorok maximális száma (a 0 korlátlant jelent)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Vízszintes kártyák maximális száma"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Nyelvek"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "A nyelvsáv tördelése előtt megjelenített nyelvek maximális száma"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Visszaállítás a hálózati alapértelmezésre"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Ez törli a webhely megjelenési beállításait. A művelet nem vonható vissza."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "A webhely megjelenési beállításai visszaálltak a hálózati alapértelmezésre."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Adjon meg érvényes hexadecimális színt, például #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "A kezdőlapi modulokat pontosan @count oszlopba kell rendezni."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "A hálózat alapértelmezett témája nem tölthető be, ezért ezek a mezők beépített alapértékeket mutatnak. Mentés előtt ellenőrizzen minden értéket."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Adjon meg egy számot @min és @max között."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Hagyja üresen a jelenlegi érték megtartásához. Az eltávolításához használja a(z) @reset lehetőséget."

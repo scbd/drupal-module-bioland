@@ -1707,3 +1707,91 @@ msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempli
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Żid ħolqa tal-menu tal-komponent"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Il-widgets jinxtegħlu u jintfew fit-tab Widgets tal-Paġna Ewlenija. Il-bidliet salvati jidhru fis-sit pubbliku fi żmien madwar 5 minuti."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Kuluri"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Kulur primarju tal-marka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Kulur sekondarju tal-marka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Kulur sekondarju tal-isfond"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kolonni tal-widgets tal-paġna ewlenija"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolonna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Uri l-Forums fil-mega menu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Numru massimu ta' kolonni"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Numru massimu ta' ringieli f'kull kolonna (0 ifisser bla limitu)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Numru massimu ta' karti orizzontali"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Lingwi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Numru massimu ta' lingwi murija qabel ma l-barra tal-lingwi taqleb"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Erġa' ssettja għad-default tan-netwerk"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Dan iħassar l-issettjar tat-tema għal dan is-sit. Ma jistax jitreġġa' lura."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "L-issettjar tat-tema għal dan is-sit reġa' ġie ssettjat għad-default tan-netwerk."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Daħħal kulur eżadeċimali validu, pereżempju #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Il-widgets tal-paġna ewlenija għandhom jitqiegħdu f'eżattament @count kolonni."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "It-tema awtomatika tan-netwerk ma setgħetx tittella', għalhekk dawn l-oqsma juru valuri awtomatiċi integrati. Iċċekkja kull valur qabel ma tissejvja."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Daħħal numru bejn @min u @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ħalli vojt biex iżżomm il-valur attwali. Uża @reset biex tneħħih."

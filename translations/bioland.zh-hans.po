@@ -1707,3 +1707,91 @@ msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "添加组件菜单链接"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "主题"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "小部件在“首页小部件”选项卡中启用和停用。保存的更改约在 5 分钟内出现在公开站点上。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "颜色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "品牌主色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "品牌辅色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "背景辅色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "首页小部件栏"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "第 @number 栏"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "在大型菜单中显示论坛"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "最大栏数"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "每栏最大行数（0 表示不限）"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "最大横向卡片数"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "语言"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "语言栏换行前显示的最大语言数"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "重置为网络默认值"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "此操作将删除本站点的主题设置，且无法撤销。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "本站点的主题设置已重置为网络默认值。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "请输入有效的十六进制颜色，例如 #1B7B3A。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "首页小部件必须恰好排成 @count 栏。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "无法加载网络默认主题，因此这些字段显示的是内置默认值。保存前请检查每一项数值。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "请输入 @min 到 @max 之间的数字。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "留空以保留当前值。使用 @reset 可将其移除。"

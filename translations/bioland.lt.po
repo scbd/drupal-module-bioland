@@ -1707,3 +1707,91 @@ msgstr "Ši meniu nuoroda rodo mega meniu komponentą, o ne paprastą antrinių 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Pridėti komponento meniu nuorodą"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Valdikliai įjungiami ir išjungiami kortelėje „Pradžios puslapio valdikliai“. Įrašyti pakeitimai viešojoje svetainėje pasirodo maždaug per 5 minutes."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Spalvos"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Pagrindinė prekės ženklo spalva"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Antrinė prekės ženklo spalva"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Antrinė fono spalva"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Pradžios puslapio valdiklių stulpeliai"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Stulpelis @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Rodyti forumus didžiajame meniu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Didžiausias stulpelių skaičius"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Didžiausias eilučių skaičius stulpelyje (0 reiškia be ribos)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Didžiausias horizontalių kortelių skaičius"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Kalbos"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Didžiausias rodomų kalbų skaičius prieš kalbų juostos perkėlimą"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Atkurti tinklo numatytąją reikšmę"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tai ištrina šios svetainės temos nustatymus. Veiksmo atšaukti negalima."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Šios svetainės temos nustatymai atkurti į tinklo numatytąją reikšmę."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Įveskite tinkamą šešioliktainę spalvą, pavyzdžiui #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Pradžios puslapio valdikliai turi būti išdėstyti lygiai @count stulpeliuose."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Nepavyko įkelti numatytosios tinklo temos, todėl šiuose laukuose rodomos integruotos numatytosios reikšmės. Prieš išsaugodami patikrinkite kiekvieną reikšmę."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Įveskite skaičių nuo @min iki @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Palikite tuščią, kad išsaugotumėte dabartinę reikšmę. Norėdami ją pašalinti, naudokite @reset."

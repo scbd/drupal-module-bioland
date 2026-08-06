@@ -1707,3 +1707,91 @@ msgstr "Ta povezava menija prikaže komponento mega menija namesto preprostega s
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Dodaj povezavo menija komponente"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Pripomočke vklopite in izklopite na zavihku Pripomočki domače strani. Shranjene spremembe se na javnem spletišču pokažejo v približno 5 minutah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Barve"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primarna barva znamke"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundarna barva znamke"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundarna barva ozadja"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Stolpci pripomočkov domače strani"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Stolpec @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Prikaži forume v mega meniju"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Največje število stolpcev"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Največje število vrstic na stolpec (0 pomeni brez omejitve)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Največje število vodoravnih kartic"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Jeziki"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Največje število jezikov, prikazanih pred prelomom jezikovne vrstice"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Ponastavi na privzeto vrednost omrežja"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "S tem izbrišete nastavitve teme za to spletišče. Dejanja ni mogoče razveljaviti."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Nastavitve teme za to spletišče so ponastavljene na privzeto vrednost omrežja."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Vnesite veljavno šestnajstiško barvo, na primer #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Pripomočki domače strani morajo biti razporejeni v natanko @count stolpce."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Privzete teme omrežja ni bilo mogoče naložiti, zato ta polja prikazujejo vgrajene privzete vrednosti. Pred shranjevanjem preverite vsako vrednost."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Vnesite število med @min in @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Pustite prazno, da ohranite trenutno vrednost. Za odstranitev uporabite @reset."

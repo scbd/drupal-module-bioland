@@ -1707,3 +1707,91 @@ msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu k
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ku dar xiriirka menu-ga qaybta"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Muuqaal"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widget-yada waxaa laga shido oo laga demiyo tabka Widget-yada Bogga Hore. Isbeddellada la keydiyay waxay ka muuqdaan bogga dadweynaha muddo qiyaastii 5 daqiiqo gudahood ah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Midabada"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Midabka koowaad ee astaanta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Midabka labaad ee astaanta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Midabka labaad ee asalka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Tiirarka widget-yada bogga hore"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Tiirka @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Ku muuji Madallada liiska weyn"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Tirada ugu badan ee tiirar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Tirada ugu badan ee safaf tiir kasta (0 macnaheedu waa xad la'aan)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Tirada ugu badan ee kaararka jiifka ah"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Luqadaha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Tirada ugu badan ee luqadaha la muujinayo ka hor inta aan xariiqda luqadaha duubmin"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Dib ugu celi caadiga shabakadda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tani waxay tirtiraysaa dejinta muuqaalka bogga. Lama celin karo."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Dejinta muuqaalka bogga waxaa dib loogu celiyay caadiga shabakadda."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Geli midab hex ah oo sax ah, tusaale #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget-yada bogga hore waa in lagu habeeyaa saddex @count tiir oo sax ah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Mowduuca caadiga ah ee shabakadda lama soo rari karin, sidaas darteed goobahan waxay muujinayaan qiimayaal caadi ah oo ku dhex jira. Hubi qiime kasta ka hor inta aanad kaydin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Geli tiro u dhaxaysa @min iyo @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "U dhaaf faaruq si aad u haysato qiimaha hadda. Isticmaal @reset si aad u saarto."

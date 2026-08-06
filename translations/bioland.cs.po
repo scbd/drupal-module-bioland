@@ -1774,3 +1774,91 @@ msgstr "Tento odkaz nabídky zobrazuje komponentu mega nabídky místo běžnéh
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Přidat odkaz nabídky komponenty"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Motiv"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgety se zapínají a vypínají na kartě Widgety domovské stránky. Uložené změny se na veřejném webu projeví přibližně do 5 minut."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Barvy"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primární barva značky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundární barva značky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundární barva pozadí"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Sloupce widgetů domovské stránky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Sloupec @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Zobrazit fóra v mega nabídce"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maximální počet sloupců"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maximální počet řádků na sloupec (0 znamená bez omezení)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maximální počet vodorovných karet"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Jazyky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maximální počet jazyků zobrazených před zalomením jazykové lišty"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Obnovit výchozí nastavení sítě"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tímto se odstraní nastavení motivu pro tento web. Akci nelze vrátit zpět."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Nastavení motivu pro tento web bylo obnoveno na výchozí nastavení sítě."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Zadejte platnou šestnáctkovou barvu, například #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgety domovské stránky musí být uspořádány přesně do @count sloupců."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Výchozí motiv sítě se nepodařilo načíst, proto tato pole zobrazují vestavěné výchozí hodnoty. Před uložením zkontrolujte každou hodnotu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Zadejte číslo mezi @min a @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ponechte prázdné, chcete-li zachovat aktuální hodnotu. Pro její odstranění použijte @reset."

@@ -1707,3 +1707,91 @@ msgstr "Bu menü bağlantısı, basit bir alt bağlantı listesi yerine bir mega
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Bileşen menü bağlantısı ekle"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Bileşenler Ana Sayfa Bileşenleri sekmesinden açılıp kapatılır. Kaydedilen değişiklikler herkese açık sitede yaklaşık 5 dakika içinde görünür."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Renkler"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Birincil marka rengi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "İkincil marka rengi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "İkincil arka plan rengi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Ana sayfa bileşen sütunları"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Sütun @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Forumları mega menüde göster"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "En fazla sütun sayısı"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Sütun başına en fazla satır sayısı (0 sınırsız anlamına gelir)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "En fazla yatay kart sayısı"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Diller"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Dil çubuğu alt satıra geçmeden önce gösterilecek en fazla dil sayısı"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Ağ varsayılanına sıfırla"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Bu işlem, bu sitenin tema ayarlarını siler ve geri alınamaz."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Bu sitenin tema ayarları ağ varsayılanına sıfırlandı."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Geçerli bir onaltılık renk girin, örneğin #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Ana sayfa bileşenleri tam olarak @count sütuna yerleştirilmelidir."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Ağın varsayılan teması yüklenemedi, bu nedenle bu alanlar yerleşik varsayılan değerleri gösteriyor. Kaydetmeden önce her değeri kontrol edin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ile @max arasında bir sayı girin."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Mevcut değeri korumak için boş bırakın. Kaldırmak için @reset kullanın."

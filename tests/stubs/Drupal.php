@@ -27,17 +27,28 @@ class Drupal {
   /**
    * Gets a service from the container.
    *
+   * Throws for an unregistered id, exactly as the real container does. It used
+   * to return NULL instead, which quietly unpinned every \Drupal::hasService()
+   * guard in the module: production code that skipped the guard would fatal on
+   * a real site but stayed green here, because the missing service arrived as
+   * a harmless NULL that the caller's `instanceof` check absorbed. Callers
+   * that mean to degrade must ask hasService() first; callers that do not are
+   * now supposed to blow up in the suite.
+   *
    * @param string $id
    *   The service ID.
    *
    * @return mixed
    *   The service.
+   *
+   * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+   *   When the container has no such service.
    */
   public static function service($id) {
     if (isset(static::$container[$id])) {
       return static::$container[$id];
     }
-    
+
     // Provide default stub for extension.list.module.
     if ($id === 'extension.list.module') {
       return new class {
@@ -46,8 +57,26 @@ class Drupal {
         }
       };
     }
-    
-    return NULL;
+
+    throw new \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException($id);
+  }
+
+  /**
+   * Whether a service is registered.
+   *
+   * Mirrors \Drupal::hasService(). The real container THROWS
+   * ServiceNotFoundException from service() for an unregistered id rather
+   * than returning NULL, so callers that mean to degrade instead of fatal
+   * must ask this first.
+   *
+   * @param string $id
+   *   The service ID.
+   *
+   * @return bool
+   *   TRUE when the container has the service.
+   */
+  public static function hasService($id) {
+    return isset(static::$container[$id]) || $id === 'extension.list.module';
   }
 
   /**

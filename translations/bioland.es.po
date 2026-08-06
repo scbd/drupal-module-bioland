@@ -1691,3 +1691,91 @@ msgstr "Este enlace de menú muestra un componente del megamenú en lugar de una
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Añadir enlace de menú de componente"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Los widgets se activan y desactivan en la pestaña Widgets de la página de inicio. Los cambios guardados aparecen en el sitio público en unos 5 minutos."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Colores"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Color primario de la marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Color secundario de la marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Color secundario de fondo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Columnas de widgets de la página de inicio"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Columna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Mostrar los foros en el mega menú"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Número máximo de columnas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Número máximo de filas por columna (0 significa sin límite)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Número máximo de tarjetas horizontales"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Idiomas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Número máximo de idiomas mostrados antes de que la barra de idiomas salte de línea"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Restablecer al valor predeterminado de la red"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Esto elimina la configuración del tema de este sitio. No se puede deshacer."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "La configuración del tema de este sitio se ha restablecido al valor predeterminado de la red."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Introduzca un color hexadecimal válido, por ejemplo #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Los widgets de la página de inicio deben distribuirse en exactamente @count columnas."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "No se pudo cargar el tema predeterminado de la red, por lo que estos campos muestran valores predeterminados integrados. Compruebe cada valor antes de guardar."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Introduzca un número entre @min y @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Déjelo en blanco para conservar el valor actual. Use @reset para eliminarlo."

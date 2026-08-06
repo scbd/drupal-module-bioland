@@ -1707,3 +1707,91 @@ msgstr "Тази връзка от менюто показва компонен�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Добавяне на връзка от меню компонент"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Тема"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Приспособленията се включват и изключват от раздела „Приспособления на началната страница“. Записаните промени се появяват на публичния сайт в рамките на около 5 минути."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Цветове"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Основен цвят на марката"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Вторичен цвят на марката"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Вторичен цвят на фона"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Колони с приспособления на началната страница"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Колона @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Показване на форумите в мега менюто"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Максимален брой колони"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Максимален брой редове в колона (0 означава без ограничение)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Максимален брой хоризонтални карти"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Езици"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Максимален брой езици преди пренасяне на езиковата лента"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Връщане към мрежовата стойност по подразбиране"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Това изтрива настройките на темата за този сайт. Действието е необратимо."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Настройките на темата за този сайт бяха върнати към мрежовата стойност по подразбиране."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Въведете валиден шестнадесетичен цвят, например #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Приспособленията на началната страница трябва да са подредени в точно @count колони."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Мрежовата тема по подразбиране не можа да бъде заредена, затова тези полета показват вградени стойности по подразбиране. Проверете всяка стойност преди запазване."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Въведете число между @min и @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Оставете празно, за да запазите текущата стойност. Използвайте @reset, за да я премахнете."

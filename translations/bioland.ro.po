@@ -1707,3 +1707,91 @@ msgstr "Acest link de meniu afișează o componentă a meniului mare în locul u
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Adaugă legătură de meniu componentă"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Temă"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgeturile se activează și se dezactivează din fila Widgeturi pagina principală. Modificările salvate apar pe site-ul public în aproximativ 5 minute."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Culori"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Culoarea principală a mărcii"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Culoarea secundară a mărcii"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Culoarea secundară de fundal"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Coloane de widgeturi pentru pagina principală"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Coloana @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Afișează forumurile în meniul mare"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Numărul maxim de coloane"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Numărul maxim de rânduri pe coloană (0 înseamnă fără limită)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Numărul maxim de carduri orizontale"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Limbi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Numărul maxim de limbi afișate înainte ca bara de limbi să treacă pe rândul următor"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Reinițializează la valoarea implicită a rețelei"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Această acțiune șterge setările de temă ale acestui site și nu poate fi anulată."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Setările de temă ale acestui site au fost reinițializate la valoarea implicită a rețelei."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Introduceți o culoare hexazecimală validă, de exemplu #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgeturile paginii principale trebuie aranjate în exact @count coloane."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tema implicită a rețelei nu a putut fi încărcată, așa că aceste câmpuri afișează valori implicite încorporate. Verificați fiecare valoare înainte de salvare."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Introduceți un număr între @min și @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lăsați necompletat pentru a păstra valoarea curentă. Folosiți @reset pentru a o elimina."

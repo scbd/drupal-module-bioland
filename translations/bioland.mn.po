@@ -1707,3 +1707,91 @@ msgstr "Энэ цэсний холбоос дэд холбоосын энгий�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Бүрэлдэхүүний цэсний холбоос нэмэх"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Загвар"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Виджетүүдийг Нүүр хуудасны виджет таб дээр асаах, унтраах боломжтой. Хадгалсан өөрчлөлт нийтийн сайт дээр ойролцоогоор 5 минутын дотор харагдана."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Өнгө"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Брэндийн үндсэн өнгө"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Брэндийн хоёрдогч өнгө"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Дэвсгэрийн хоёрдогч өнгө"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Нүүр хуудасны виджет баганууд"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "@number багана"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Мега цэсэнд форумыг харуулах"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Багануудын дээд хязгаар"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Багана тус бүрийн мөрийн дээд хязгаар (0 нь хязгааргүй)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Хэвтээ картын дээд хязгаар"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Хэлүүд"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Хэлний мөр таслагдахаас өмнө харуулах хэлний дээд тоо"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Сүлжээний өгөгдмөл утга руу сэргээх"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Энэ нь тухайн сайтын загварын тохиргоог устгана. Үүнийг буцаах боломжгүй."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Энэ сайтын загварын тохиргоог сүлжээний өгөгдмөл утга руу сэргээлээ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Зөв арван зургаатын өнгө оруулна уу, жишээ нь #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Нүүр хуудасны виджетүүдийг яг @count баганад байрлуулах ёстой."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Сүлжээний өгөгдмөл загварыг ачаалж чадсангүй тул эдгээр талбарт суулгасан өгөгдмөл утгууд харагдаж байна. Хадгалахаас өмнө утга бүрийг шалгана уу."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ба @max хоорондох тоог оруулна уу."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Одоогийн утгыг хадгалахын тулд хоосон орхино уу. Үүнийг устгахын тулд @reset ашиглана уу."

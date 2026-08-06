@@ -1627,3 +1627,91 @@ msgstr "এই মেনু লিঙ্কটি সাধারণ উপ-ল�
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "কম্পোনেন্ট মেনু লিঙ্ক যোগ করুন"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "থিম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "উইজেটগুলি হোম পেজ উইজেট ট্যাব থেকে চালু ও বন্ধ করা হয়। সংরক্ষিত পরিবর্তনগুলি প্রায় ৫ মিনিটের মধ্যে সর্বজনীন সাইটে দেখা যায়।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "প্রাথমিক ব্র্যান্ড রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "গৌণ ব্র্যান্ড রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "গৌণ পটভূমির রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "হোম পেজ উইজেট কলাম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "কলাম @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "মেগা মেনুতে ফোরাম দেখান"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "সর্বাধিক কলাম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "প্রতি কলামে সর্বাধিক সারি (০ মানে সীমাহীন)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "সর্বাধিক অনুভূমিক কার্ড"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "ভাষা"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "ভাষা বার মোড়ানোর আগে সর্বাধিক প্রদর্শিত ভাষা"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "নেটওয়ার্ক ডিফল্টে পুনঃস্থাপন"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "এটি এই সাইটের থিম সেটিংস মুছে ফেলে। এটি ফেরানো যাবে না।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "এই সাইটের থিম সেটিংস নেটওয়ার্ক ডিফল্টে পুনঃস্থাপন করা হয়েছে।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "একটি বৈধ হেক্স রঙ লিখুন, উদাহরণস্বরূপ #1B7B3A।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "হোম পেজ উইজেটগুলি ঠিক @count কলামে সাজাতে হবে।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "নেটওয়ার্কের ডিফল্ট থিম লোড করা যায়নি, তাই এই ক্ষেত্রগুলি অন্তর্নির্মিত ডিফল্ট মান দেখাচ্ছে। সংরক্ষণ করার আগে প্রতিটি মান পরীক্ষা করুন।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min এবং @max এর মধ্যে একটি সংখ্যা লিখুন।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "বর্তমান মান রাখতে ফাঁকা রাখুন। এটি সরাতে @reset ব্যবহার করুন।"

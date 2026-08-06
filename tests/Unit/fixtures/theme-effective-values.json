@@ -1,0 +1,218 @@
+{
+  "$comment": [
+    "Cross-repo value fixture (H2) for the effective-theme rule pinned by",
+    "bioland-head ADR 0012 'Head theme resolution: precedence, merge, and columns'.",
+    "",
+    "The rule under test is a DECLARED INPUT, not something either side re-derives:",
+    "  1. dmsm performs no merge. Its config document carries two independent theme",
+    "     objects: `theme` (the site's own block) and `runTime.theme` (the multiSite",
+    "     block, copied verbatim).",
+    "  2. Merge is PER-LEAF, site over network. A leaf is a scalar or a list; lists",
+    "     (hero.primary, homePageWidgets.columns) are replaced wholesale.",
+    "  3. `hero` is derived to [color.primary, color.secondary] ONLY when",
+    "     hero.primary is absent from every source. Never when authored.",
+    "",
+    "Each case pins TWO DISTINCT CONTRACTS at two distinct depths, and they must",
+    "never be conflated:",
+    "  - expectedEffectiveTheme : the head/dmsm camelCase document depth",
+    "    (backGround, homePageWidgets, megaMenu, maxLangBeforeWrap). Asserted in",
+    "    PHP by BiolandThemeFormTest against",
+    "    BiolandDmsmConfigService::getEffectiveTheme(), and in vitest by p03-01.",
+    "  - expectedSeedDefaults : the Drupal snake_case config depth (back_ground,",
+    "    home_page_widgets, mega_menu, max_lang_before_wrap), limited to the nine",
+    "    live D4 keys. Asserted in PHP only -- head never sees these spellings.",
+    "",
+    "Values are synthetic documents in the real production shapes. The one real",
+    "value carried through deliberately is be's authored hero.primary[1] =",
+    "#CBB279, the live-prod evidence that the derive branch must not fire on an",
+    "authored hero (the formula would replace it)."
+  ],
+  "cases": [
+    {
+      "id": "full-copy-site",
+      "description": "The common bl2 shape: the site carries a full copy of every network leaf with its own palette, so every effective value comes from the site block and the network block contributes nothing.",
+      "input": {
+        "theme": {
+          "homePageWidgets": {
+            "news": true,
+            "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+          },
+          "color": {"primary": "#b7c800", "primaryTextOver": "#ffffff", "secondary": "#4d7a1f", "secondaryTextOver": "#ffffff"},
+          "hero": {"primary": ["#b7c800", "#4d7a1f"]},
+          "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+          "backGround": {"primary": "", "secondary": "#f2f2f2", "tertiary": "#4D4D4D"},
+          "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+          "i18n": {"maxLangBeforeWrap": 6}
+        },
+        "runTime": {
+          "theme": {
+            "homePageWidgets": {
+              "news": true,
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+            },
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
+          }
+        }
+      },
+      "expectedEffectiveTheme": {
+        "homePageWidgets": {
+          "news": true,
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "color": {"primary": "#b7c800", "primaryTextOver": "#ffffff", "secondary": "#4d7a1f", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#b7c800", "#4d7a1f"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#f2f2f2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
+      },
+      "expectedSeedDefaults": {
+        "color": {"primary": "#b7c800", "secondary": "#4d7a1f"},
+        "back_ground": {"secondary": "#f2f2f2"},
+        "home_page_widgets": {
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
+      }
+    },
+    {
+      "id": "theme-less-site",
+      "description": "One of the 35 bl2 sites (and all 11 bsl sites) with no theme block of its own. Everything falls through to runTime.theme, and hero is NOT derived because the network block already defines it.",
+      "input": {
+        "runTime": {
+          "theme": {
+            "homePageWidgets": {
+              "news": true,
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+            },
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
+          }
+        }
+      },
+      "expectedEffectiveTheme": {
+        "homePageWidgets": {
+          "news": true,
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#009edb", "#16c56e"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
+      },
+      "expectedSeedDefaults": {
+        "color": {"primary": "#009edb", "secondary": "#16c56e"},
+        "back_ground": {"secondary": "#F2F2F2"},
+        "home_page_widgets": {
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
+      }
+    },
+    {
+      "id": "be-dual-block-authored-hero",
+      "description": "The be case. The site block carries an AUTHORED hero.primary whose second stop (#CBB279) is not what the derive formula would produce from its own palette (#889262) -- so the derive branch must stay shut. This block also deliberately omits i18n, which the full-copy prod block does not, so the same case exercises per-leaf fallback: maxLangBeforeWrap comes from the network leg while every colour comes from the site leg.",
+      "input": {
+        "theme": {
+          "homePageWidgets": {
+            "news": true,
+            "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+          },
+          "color": {"primary": "#565B29", "primaryTextOver": "#ffffff", "secondary": "#889262", "secondaryTextOver": "#000000"},
+          "hero": {"primary": ["#565B29", "#CBB279"]},
+          "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+          "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3}
+        },
+        "runTime": {
+          "theme": {
+            "homePageWidgets": {
+              "news": true,
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+            },
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
+          }
+        }
+      },
+      "expectedEffectiveTheme": {
+        "homePageWidgets": {
+          "news": true,
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "color": {"primary": "#565B29", "primaryTextOver": "#ffffff", "secondary": "#889262", "secondaryTextOver": "#000000"},
+        "hero": {"primary": ["#565B29", "#CBB279"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
+      },
+      "expectedSeedDefaults": {
+        "color": {"primary": "#565B29", "secondary": "#889262"},
+        "back_ground": {"secondary": "#F2F2F2"},
+        "home_page_widgets": {
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
+        },
+        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
+      }
+    },
+    {
+      "id": "bsl-zero-and-false",
+      "description": "The bsl multiSite block, which is the only place in the whole corpus where megaMenu.maxRowsPerColumn is 0 (meaning unlimited) and megaMenu.forums is false. Both are AUTHORED values and must survive as 0 and false -- presence, not truthiness. Its one-column layout is the live BCH shape; the Theme tab hides the columns field entirely on bsl (D7), so W2a's exactly-3 bound is never applied to it.",
+      "input": {
+        "runTime": {
+          "theme": {
+            "homePageWidgets": {
+              "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]],
+              "columsWidth": ["100%"]
+            },
+            "color": {"primary": "#428BCA", "primaryTextOver": "#ffffff", "secondary": "#2A6496", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#428BCA", "#2A6496"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#428BCA"},
+            "megaMenu": {"forums": false, "maxColumns": 6, "maxRowsPerColumn": 0, "horizontalCardMax": 3},
+            "i18n": {"maxLangBeforeWrap": 6}
+          }
+        }
+      },
+      "expectedEffectiveTheme": {
+        "homePageWidgets": {
+          "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]],
+          "columsWidth": ["100%"]
+        },
+        "color": {"primary": "#428BCA", "primaryTextOver": "#ffffff", "secondary": "#2A6496", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#428BCA", "#2A6496"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#428BCA"},
+        "megaMenu": {"forums": false, "maxColumns": 6, "maxRowsPerColumn": 0, "horizontalCardMax": 3},
+        "i18n": {"maxLangBeforeWrap": 6}
+      },
+      "expectedSeedDefaults": {
+        "color": {"primary": "#428BCA", "secondary": "#2A6496"},
+        "back_ground": {"secondary": "#F2F2F2"},
+        "home_page_widgets": {
+          "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]]
+        },
+        "mega_menu": {"forums": false, "max_columns": 6, "max_rows_per_column": 0, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
+      }
+    }
+  ]
+}

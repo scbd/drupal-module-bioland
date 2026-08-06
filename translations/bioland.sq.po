@@ -1707,3 +1707,91 @@ msgstr "Kjo lidhje e menysë shfaq një komponent të mega menysë në vend të 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Shto lidhje menyje komponenti"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widget-et ndizen dhe fiken te skeda Widget-et e faqes kryesore. Ndryshimet e ruajtura shfaqen në sajtin publik brenda rreth 5 minutash."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Ngjyrat"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Ngjyra kryesore e markës"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Ngjyra dytësore e markës"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Ngjyra dytësore e sfondit"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kolonat e widget-eve të faqes kryesore"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolona @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Shfaq forumet në mega menunë"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Numri maksimal i kolonave"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Numri maksimal i rreshtave për kolonë (0 do të thotë pa kufi)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Numri maksimal i kartave horizontale"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Gjuhët"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Numri maksimal i gjuhëve të shfaqura para se shiriti i gjuhëve të kalojë në rresht tjetër"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Rikthe te parazgjedhja e rrjetit"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Kjo fshin cilësimet e temës për këtë sajt. Veprimi nuk mund të zhbëhet."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Cilësimet e temës për këtë sajt u rikthyen te parazgjedhja e rrjetit."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Jepni një ngjyrë heksadecimale të vlefshme, për shembull #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget-et e faqes kryesore duhet të renditen në saktësisht @count kolona."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tema e parazgjedhur e rrjetit nuk mund të ngarkohej, prandaj këto fusha shfaqin vlera të parazgjedhura të integruara. Kontrolloni çdo vlerë para se të ruani."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Fusni një numër ndërmjet @min dhe @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lëreni bosh për të ruajtur vlerën aktuale. Përdorni @reset për ta hequr."

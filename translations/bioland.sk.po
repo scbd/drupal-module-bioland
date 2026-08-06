@@ -1707,3 +1707,91 @@ msgstr "Tento odkaz ponuky zobrazuje komponent mega ponuky namiesto bežného zo
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Pridať odkaz ponuky komponentu"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Vzhľad"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgety sa zapínajú a vypínajú na karte Widgety domovskej stránky. Uložené zmeny sa na verejnej lokalite prejavia približne do 5 minút."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Farby"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primárna farba značky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundárna farba značky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundárna farba pozadia"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Stĺpce widgetov domovskej stránky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Stĺpec @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Zobraziť fóra v mega ponuke"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maximálny počet stĺpcov"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maximálny počet riadkov na stĺpec (0 znamená bez obmedzenia)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maximálny počet vodorovných kariet"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Jazyky"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maximálny počet jazykov zobrazených pred zalomením jazykového panela"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Obnoviť predvolené nastavenie siete"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Týmto sa odstránia nastavenia vzhľadu tejto lokality. Akciu nemožno vrátiť späť."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Nastavenia vzhľadu tejto lokality boli obnovené na predvolené nastavenie siete."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Zadajte platnú šestnástkovú farbu, napríklad #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgety domovskej stránky musia byť usporiadané presne do @count stĺpcov."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Predvolenú tému siete sa nepodarilo načítať, preto tieto polia zobrazujú vstavané predvolené hodnoty. Pred uložením skontrolujte každú hodnotu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Zadajte číslo medzi @min a @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ponechajte prázdne, ak chcete zachovať aktuálnu hodnotu. Na jej odstránenie použite @reset."

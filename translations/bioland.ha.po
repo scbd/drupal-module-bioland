@@ -1707,3 +1707,91 @@ msgstr "Wannan hanyar menu tana nuna sashen babban menu maimakon jerin hanyoyin 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Ƙara hanyar haɗin menu na sashe"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Jigo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Ana kunna da kashe kayan aiki a shafin Kayan Aikin Shafin Farko. Sauye-sauyen da aka ajiye suna bayyana a shafin jama'a cikin kusan mintuna 5."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Launuka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Babban launin alama"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Launin alama na biyu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Launin bango na biyu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Ginshiƙan kayan aikin shafin farko"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Ginshiƙi @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Nuna Dandalin tattaunawa a cikin babban menu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Iyakar ginshiƙai"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Iyakar layuka a kowane ginshiƙi (0 na nufin babu iyaka)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Iyakar katunan kwance"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Harsuna"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Iyakar harsunan da ake nunawa kafin sandar harshe ta nannaɗe"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Sake saitawa zuwa tsoho na hanyar sadarwa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Wannan yana share saitunan jigo na wannan shafin. Ba za a iya mayar da shi ba."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "An sake saita saitunan jigo na wannan shafin zuwa tsoho na hanyar sadarwa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Shigar da ingantaccen launin hex, misali #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Dole ne a shirya kayan aikin shafin farko a cikin ginshiƙai @count daidai."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "An kasa loda jigon tsoho na hanyar sadarwa, don haka waɗannan filayen suna nuna ƙimomin tsoho na cikin gida. Duba kowace ƙima kafin ka ajiye."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Shigar da lamba tsakanin @min da @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Bar shi fanko don riƙe ƙimar yanzu. Yi amfani da @reset don cire ta."

@@ -1707,3 +1707,91 @@ msgstr "ಈ ಮೆನು ಕೊಂಡಿ ಮಕ್ಕಳ ಕೊಂಡಿಗಳ �
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "ಘಟಕ ಮೆನು ಲಿಂಕ್ ಸೇರಿಸಿ"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "ಥೀಮ್"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "ವಿಜೆಟ್‌ಗಳನ್ನು ಮುಖಪುಟ ವಿಜೆಟ್‌ಗಳ ಟ್ಯಾಬ್‌ನಲ್ಲಿ ಆನ್ ಮತ್ತು ಆಫ್ ಮಾಡಲಾಗುತ್ತದೆ. ಉಳಿಸಿದ ಬದಲಾವಣೆಗಳು ಸುಮಾರು 5 ನಿಮಿಷಗಳಲ್ಲಿ ಸಾರ್ವಜನಿಕ ತಾಣದಲ್ಲಿ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತವೆ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "ಬಣ್ಣಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "ಪ್ರಾಥಮಿಕ ಬ್ರಾಂಡ್ ಬಣ್ಣ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "ದ್ವಿತೀಯ ಬ್ರಾಂಡ್ ಬಣ್ಣ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "ದ್ವಿತೀಯ ಹಿನ್ನೆಲೆ ಬಣ್ಣ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "ಮುಖಪುಟ ವಿಜೆಟ್ ಕಾಲಮ್‌ಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "ಕಾಲಮ್ @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "ಮೆಗಾ ಮೆನುವಿನಲ್ಲಿ ವೇದಿಕೆಗಳನ್ನು ತೋರಿಸಿ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "ಗರಿಷ್ಠ ಕಾಲಮ್‌ಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "ಪ್ರತಿ ಕಾಲಮ್‌ಗೆ ಗರಿಷ್ಠ ಸಾಲುಗಳು (0 ಎಂದರೆ ಮಿತಿಯಿಲ್ಲ)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "ಗರಿಷ್ಠ ಅಡ್ಡ ಕಾರ್ಡ್‌ಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "ಭಾಷೆಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "ಭಾಷಾ ಪಟ್ಟಿ ಸುತ್ತುವ ಮೊದಲು ತೋರಿಸಲಾಗುವ ಗರಿಷ್ಠ ಭಾಷೆಗಳು"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "ನೆಟ್‌ವರ್ಕ್ ಪೂರ್ವನಿಯೋಜಿತಕ್ಕೆ ಮರುಹೊಂದಿಸಿ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "ಇದು ಈ ತಾಣದ ಥೀಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಅಳಿಸುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗದು."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "ಈ ತಾಣದ ಥೀಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೆಟ್‌ವರ್ಕ್ ಪೂರ್ವನಿಯೋಜಿತಕ್ಕೆ ಮರುಹೊಂದಿಸಲಾಗಿದೆ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "ಮಾನ್ಯವಾದ ಹೆಕ್ಸ್ ಬಣ್ಣವನ್ನು ನಮೂದಿಸಿ, ಉದಾಹರಣೆಗೆ #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "ಮುಖಪುಟ ವಿಜೆಟ್‌ಗಳನ್ನು ನಿಖರವಾಗಿ @count ಕಾಲಮ್‌ಗಳಲ್ಲಿ ಜೋಡಿಸಬೇಕು."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "ನೆಟ್‌ವರ್ಕ್‌ನ ಪೂರ್ವನಿಯೋಜಿತ ಥೀಮ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಕ್ಷೇತ್ರಗಳು ಅಂತರ್ನಿರ್ಮಿತ ಪೂರ್ವನಿಯೋಜಿತ ಮೌಲ್ಯಗಳನ್ನು ತೋರಿಸುತ್ತವೆ. ಉಳಿಸುವ ಮೊದಲು ಪ್ರತಿ ಮೌಲ್ಯವನ್ನು ಪರಿಶೀಲಿಸಿ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min ಮತ್ತು @max ನಡುವಿನ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "ಪ್ರಸ್ತುತ ಮೌಲ್ಯವನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ. ಅದನ್ನು ತೆಗೆದುಹಾಕಲು @reset ಬಳಸಿ."

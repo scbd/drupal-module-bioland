@@ -1707,3 +1707,91 @@ msgstr "Šī izvēlnes saite rāda mega izvēlnes komponentu, nevis vienkāršu 
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "Pievienot komponenta izvēlnes saiti"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Motīvs"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Sīkrīkus ieslēdz un izslēdz cilnē „Sākumlapas sīkrīki”. Saglabātās izmaiņas publiskajā vietnē parādās aptuveni 5 minūšu laikā."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Krāsas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Zīmola galvenā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Zīmola sekundārā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Fona sekundārā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Sākumlapas sīkrīku kolonnas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolonna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "Rādīt forumus lielajā izvēlnē"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maksimālais kolonnu skaits"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maksimālais rindu skaits kolonnā (0 nozīmē bez ierobežojuma)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maksimālais horizontālo karšu skaits"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Valodas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maksimālais rādāmo valodu skaits pirms valodu joslas pārnešanas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Atiestatīt uz tīkla noklusējumu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Šī darbība dzēš šīs vietnes motīva iestatījumus. To nevar atsaukt."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Šīs vietnes motīva iestatījumi ir atiestatīti uz tīkla noklusējumu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Ievadiet derīgu heksadecimālo krāsu, piemēram, #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Sākumlapas sīkrīki jāizkārto tieši @count kolonnās."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "Tīkla noklusējuma motīvu neizdevās ielādēt, tāpēc šajos laukos tiek rādītas iebūvētās noklusējuma vērtības. Pirms saglabāšanas pārbaudiet katru vērtību."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Ievadiet skaitli no @min līdz @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Atstājiet tukšu, lai saglabātu pašreizējo vērtību. Lai to noņemtu, izmantojiet @reset."

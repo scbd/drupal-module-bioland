@@ -1707,3 +1707,91 @@ msgstr "이 메뉴 링크는 하위 링크의 단순 목록 대신 메가 메뉴
 #: bioland.routing.yml
 msgid "Add component menu link"
 msgstr "구성 요소 메뉴 링크 추가"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "테마"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "위젯은 홈 위젯 탭에서 켜고 끕니다. 저장한 변경 사항은 약 5분 이내에 공개 사이트에 반영됩니다."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "색상"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "기본 브랜드 색상"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "보조 브랜드 색상"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "보조 배경 색상"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "홈페이지 위젯 열"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "@number번 열"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Show Forums in the mega menu"
+msgstr "메가 메뉴에 포럼 표시"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "최대 열 수"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "열당 최대 행 수(0은 제한 없음)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "최대 가로 카드 수"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "언어"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "언어 표시줄이 줄바꿈되기 전에 표시할 최대 언어 수"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "네트워크 기본값으로 재설정"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "이 사이트의 테마 설정을 삭제합니다. 되돌릴 수 없습니다."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "이 사이트의 테마 설정이 네트워크 기본값으로 재설정되었습니다."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "올바른 16진수 색상을 입력하세요. 예: #1B7B3A"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "홈페이지 위젯은 정확히 @count개의 열로 배치해야 합니다."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
+msgstr "네트워크 기본 테마를 불러오지 못해 이 필드에는 내장 기본값이 표시됩니다. 저장하기 전에 모든 값을 확인하십시오."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min에서 @max 사이의 숫자를 입력하십시오."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "현재 값을 유지하려면 비워 두십시오. 제거하려면 @reset 을 사용하십시오."
