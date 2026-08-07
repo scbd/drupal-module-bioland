@@ -90,3 +90,59 @@ function bioland_update_9073() {
 
   return t('Seeded @count missing bioland.settings default(s) from config/install (home widgets, mega menu position, BSL hero help text).', ['@count' => $seeded]);
 }
+
+/**
+ * Seed the component menu link settings added to config/install since 1.1.6.
+ *
+ * config/install/bioland.settings.yml gained component_menu_add_enabled and
+ * component_menu_show_attributes with the dedicated "Add component menu link"
+ * flow, but existing sites never re-import that file, so both keys are absent
+ * from their active config. The runtime readers fall back safely (the add flow
+ * is on unless the key is explicitly FALSE, the raw Attributes fieldset stays
+ * hidden unless the key is truthy), so this seeds the same defaults a new
+ * install gets, to keep active config aligned with config/install and the
+ * admin settings form backed by explicit values. Only sets keys that are
+ * missing, never overwrites a saved value (idempotent).
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ * Seeding is set-if-missing and the v2 converger is create-or-update /
+ * UUID-preserving, so this is safe to run more than once.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see \Drupal\bioland\Form\BiolandAdminSettingsForm
+ * @see \Drupal\bioland\Access\BiolandComponentMenuAccessCheck
+ */
+function bioland_update_9079() {
+  $messages = [];
+
+  $defaults = [
+    'component_menu_add_enabled' => TRUE,
+    'component_menu_show_attributes' => FALSE,
+  ];
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $seeded = [];
+  foreach ($defaults as $key => $value) {
+    if ($config->get($key) === NULL) {
+      $config->set($key, $value);
+      $seeded[] = $key;
+    }
+  }
+
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+  if ($seeded) {
+    $config->save();
+    $messages[] = 'Seeded missing component menu link setting(s): ' . implode(', ', $seeded) . '.';
+  }
+  else {
+    $messages[] = 'Component menu link settings already present; left untouched.';
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

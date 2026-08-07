@@ -440,6 +440,10 @@ class BiolandComponentMenuFormMode {
     $form['#attributes'][self::FORM_MODE_ATTRIBUTE] = self::OPERATION;
     $form['#attached']['library'][] = self::LIBRARY;
 
+    // The form's shape depends on bioland.settings (showAttributes() above),
+    // so saving that config must invalidate any cached copy of this form.
+    $form['#cache']['tags'][] = 'config:bioland.settings';
+
     // ORDERING PIN: appending here, from bioland_form_alter(), is what puts
     // this builder after menu_link_attributes' — see the class docblock. A
     // named key keeps a rebuild from registering it twice.
@@ -543,15 +547,17 @@ class BiolandComponentMenuFormMode {
    * Tells whether the Attributes fieldset stays visible in Component mode.
    *
    * Reads bioland.settings:component_menu_show_attributes, the "Show
-   * Attributes" sub-setting on the admin settings form. Strictly opt-in: only
-   * an explicit TRUE shows the fieldset, so an absent key (sites configured
-   * before the setting existed) keeps the default hidden state.
+   * Attributes" sub-setting on the admin settings form. Cast rather than
+   * compared to TRUE: a settings.php override bypasses config schema casting,
+   * so an int 1 must still count as opted in. An absent key (sites configured
+   * before the setting existed) casts to FALSE and keeps the default hidden
+   * state.
    *
    * @return bool
    *   TRUE when the site opted in to showing the raw Attributes fieldset.
    */
   public function showAttributes(): bool {
-    return $this->configFactory->get('bioland.settings')->get('component_menu_show_attributes') === TRUE;
+    return (bool) $this->configFactory->get('bioland.settings')->get('component_menu_show_attributes');
   }
 
   /**

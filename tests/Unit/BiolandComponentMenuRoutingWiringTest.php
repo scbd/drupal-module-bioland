@@ -226,11 +226,43 @@ class BiolandComponentMenuRoutingWiringTest extends TestCase {
       class_exists(BiolandComponentMenuAccessCheck::class),
       'The access check class named in bioland.services.yml must exist.'
     );
+    // Asserted against the parsed tag rather than the file's raw text, so
+    // reformatting the same tag from inline to block style does not fail a
+    // test that is about the wiring, not about YAML style.
+    $tags = $this->flattenScalars($service['tags'] ?? []);
     $this->assertStringContainsString(
-      '{ name: access_check, applies_to: _bioland_component_menu_enabled }',
-      file_get_contents($this->moduleRoot() . '/bioland.services.yml'),
+      'access_check',
+      $tags,
+      'The service must carry the access_check tag, or the access manager never runs it.'
+    );
+    $this->assertStringContainsString(
+      '_bioland_component_menu_enabled',
+      $tags,
       'The access_check tag must apply to _bioland_component_menu_enabled, the requirement key the route uses.'
     );
+  }
+
+  /**
+   * Flattens a parsed structure into one searchable "key: value" string.
+   *
+   * parseYaml() renders an inline mapping ("- { name: access_check, ... }") as
+   * a single scalar and the same tag in block style as a key plus a scalar, so
+   * both shapes are folded into one haystack and the assertions above pin the
+   * tag's meaning rather than the file's formatting.
+   *
+   * @param array $parsed
+   *   A parsed fragment, of any depth.
+   *
+   * @return string
+   *   Every key/scalar pair in the fragment, space separated.
+   */
+  private function flattenScalars(array $parsed): string {
+    $parts = [];
+    array_walk_recursive($parsed, static function ($value, $key) use (&$parts): void {
+      $parts[] = $key . ': ' . $value;
+    });
+
+    return implode(' ', $parts);
   }
 
   /**

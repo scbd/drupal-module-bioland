@@ -180,21 +180,20 @@ class BiolandAdminSettingsForm extends BiolandSettingsFormBase {
       '#default_value' => $config->get('component_menu_add_enabled') !== FALSE,
     ];
 
-    // Sub-setting of the switch above: only meaningful while component menu
-    // links exist at all, hence the #states gate on the parent checkbox.
+    // Sub-setting of the switch above, but deliberately NOT gated on it with
+    // '#states': turning the add flow off does not retire the component menu
+    // links a site already has, and this setting still governs their edit
+    // form, so it has to stay visible and reachable either way.
     // Default OFF - the picker owns the component token, so the raw contrib
     // Attributes fieldset is hidden from the component form unless a site
     // explicitly opts back in (read by BiolandComponentMenuFormMode::apply()).
+    // Cast rather than compared to TRUE: a settings.php override bypasses
+    // config schema casting, so an int 1 must still count as on.
     $form['admin_settings']['component_menu']['component_menu_show_attributes'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show Attributes'),
       '#description' => $this->t('Shows the Attributes section on the component menu link form. Hidden by default; the component picker manages these values.'),
-      '#default_value' => $config->get('component_menu_show_attributes') === TRUE,
-      '#states' => [
-        'visible' => [
-          ':input[name="component_menu_add_enabled"]' => ['checked' => TRUE],
-        ],
-      ],
+      '#default_value' => (bool) $config->get('component_menu_show_attributes'),
     ];
 
     return $form;

@@ -105,7 +105,9 @@ bioland.settings.admin:
 # create-access check still applies when it is on. It lives on the route rather
 # than in a local-actions alter because core derives the
 # bioland.menu_link_component_add action's #access from this route, so one
-# decision both hides the button and closes the URL.
+# decision both hides the button and closes the URL. Its 'TRUE' value below is
+# decorative - the requirement's presence is what dispatches the tagged access
+# check, whose access() takes no Route and never reads the value.
 bioland.menu_link_component.add:
   path: '/admin/structure/menu/manage/{menu}/add-component'
   defaults:
