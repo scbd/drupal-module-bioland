@@ -1849,3 +1849,15 @@ msgstr "Shfaq shigjetën"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Shfaq një shigjetë pas titullit të seksionit."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega menyja: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega menyja: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Shto fëmijë të mega menysë"

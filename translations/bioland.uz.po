@@ -1849,3 +1849,15 @@ msgstr "Strelkani ko'rsatish"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Bo'lim sarlavhasidan keyin strelka ko'rsatadi."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega menyu: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega menyu: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Mega menyu quyi elementini qo'shish"

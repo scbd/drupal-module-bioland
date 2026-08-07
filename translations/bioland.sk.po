@@ -1849,3 +1849,15 @@ msgstr "Zobraziť šípku"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Zobrazí šípku za názvom sekcie."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega ponuka: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega ponuka: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Pridať podradenú položku mega ponuky"

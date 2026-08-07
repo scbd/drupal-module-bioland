@@ -1849,3 +1849,15 @@ msgstr "غشی وښایاست"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "د برخې له سرلیک وروسته غشی ښیي."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(لوی مینو: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(لوی مینو: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "د لوی مینو ماشوم زیاته کړئ"

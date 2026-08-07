@@ -1849,3 +1849,15 @@ msgstr "Visa pil"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Visar en pil efter sektionens titel."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Megameny: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Megameny: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Lägg till megameny-underelement"

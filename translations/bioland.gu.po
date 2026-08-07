@@ -1849,3 +1849,15 @@ msgstr "તીર બતાવો"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "વિભાગના શીર્ષક પછી તીર બતાવે છે."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(મેગા મેનુ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(મેગા મેનુ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "મેગા મેનુ ચાઇલ્ડ ઉમેરો"

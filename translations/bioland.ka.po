@@ -1849,3 +1849,15 @@ msgstr "ისრის ჩვენება"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "აჩვენებს ისარს სექციის სათაურის შემდეგ."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(მეგა მენიუ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(მეგა მენიუ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "მეგა მენიუს ქვეელემენტის დამატება"

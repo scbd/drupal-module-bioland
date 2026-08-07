@@ -1849,3 +1849,15 @@ msgstr "ಬಾಣ ತೋರಿಸಿ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "ವಿಭಾಗದ ಶೀರ್ಷಿಕೆಯ ನಂತರ ಬಾಣವನ್ನು ತೋರಿಸುತ್ತದೆ."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(ಮೆಗಾ ಮೆನು: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(ಮೆಗಾ ಮೆನು: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "ಮೆಗಾ ಮೆನು ಚೈಲ್ಡ್ ಸೇರಿಸಿ"

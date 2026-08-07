@@ -1938,3 +1938,15 @@ msgstr "Εμφάνιση βέλους"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Εμφανίζει ένα βέλος μετά τον τίτλο της ενότητας."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Μεγαμενού: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Μεγαμενού: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Προσθήκη θυγατρικού στοιχείου μεγάλου μενού"

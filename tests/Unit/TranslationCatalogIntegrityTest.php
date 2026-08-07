@@ -147,6 +147,15 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // it is a bare arrow character with no words to translate.
     'Show Arrow',
     'Show an arrow after the section title.',
+    // src/Service/BiolandComponentMenuOverview.php: the menu overview screen.
+    // The indicator column's two formats and the row operation. The column's
+    // own header deliberately reuses the 'Mega Menu' msgid already listed
+    // above for the settings tab, so it needs no entry of its own. The
+    // component names interpolated into @type are the registry labels, already
+    // listed; @schema is a machine slug and is never translated.
+    '(Mega Menu: @type)',
+    '(Mega Menu: @type: @schema)',
+    'Add Mega Menu Child',
   ];
 
   /**

@@ -319,6 +319,26 @@ class BiolandComponentRegistry {
   }
 
   /**
+   * Returns the component suffix of a token, or NULL when not component-shaped.
+   *
+   * The public face of tokenSuffix(), so every token-shape rule stays in this
+   * service rather than being re-parsed by callers.
+   *
+   * @param string $token
+   *   A single class token.
+   * @param string|null $siteId
+   *   Optional runtime multisite identifier; see isComponentToken().
+   *
+   * @return string|null
+   *   The non-empty suffix, or NULL when the token is not component-shaped.
+   *   The suffix need not name a KNOWN component - a token left behind by a
+   *   removed one still resolves.
+   */
+  public function componentSuffix(string $token, ?string $siteId = NULL): ?string {
+    return $this->tokenSuffix($token, $siteId);
+  }
+
+  /**
    * Normalizes a stored class value into a flat list of tokens.
    *
    * Handles both storage shapes: the menu_link_attributes shape (a one-element

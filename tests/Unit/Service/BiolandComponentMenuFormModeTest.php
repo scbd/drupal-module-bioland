@@ -538,9 +538,9 @@ class BiolandComponentMenuFormModeTest extends TestCase {
       $this->assertIsString($label, 'Option labels are plain translatable strings.');
     }
     $this->assertSame(
-      'Legacy: bl2-component-<script>',
+      'Legacy: bl2-component-&lt;script&gt;',
       $form[BiolandComponentMenuFormMode::PICKER_ELEMENT]['#options']['bl2-component-<script>'],
-      'A hostile stored token is passed through untouched for the renderer to escape.'
+      'A hostile stored token is escaped by t() at its @-placeholder, the way FormattableMarkup does.'
     );
   }
 

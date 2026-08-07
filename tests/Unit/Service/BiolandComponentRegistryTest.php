@@ -134,6 +134,71 @@ class BiolandComponentRegistryTest extends TestCase {
   }
 
   /**
+   * componentSuffix() resolves every accepted spelling back to its suffix.
+   *
+   * The public seam callers outside this service need: the site-prefixed
+   * family cannot be rebuilt from the public API (the infix is private), so
+   * without this they would have to parse tokens themselves.
+   *
+   * @dataProvider componentSuffixProvider
+   */
+  public function testComponentSuffix(string $token, ?string $siteId, ?string $expected): void {
+    $this->assertSame($expected, $this->registry->componentSuffix($token, $siteId), "componentSuffix($token)");
+  }
+
+  /**
+   * Data for testComponentSuffix().
+   */
+  public static function componentSuffixProvider(): array {
+    return [
+      'canonical' => ['bl2-component-bch', NULL, 'bch'],
+      'canonical, site id irrelevant' => ['bl2-component-forums', 'bsl', 'forums'],
+      'legacy' => ['mm-component-content-type', NULL, 'content-type'],
+      'site-prefixed, site id supplied' => ['bsl-component-content-type', 'bsl', 'content-type'],
+      'site-prefixed, no site id' => ['bsl-component-content-type', NULL, NULL],
+      'site-prefixed, wrong site id' => ['bsl-component-content-type', 'other', NULL],
+      // Component-shaped but not a known component: still resolves, exactly as
+      // isComponentToken() still matches it. Callers decide what to do with an
+      // unknown suffix; the registry does not swallow it.
+      'unknown suffix' => ['bl2-component-retired-thing', NULL, 'retired-thing'],
+      'multi-segment suffix' => ['bl2-component-national-targets-7', NULL, 'national-targets-7'],
+      'empty suffix' => ['bl2-component-', NULL, NULL],
+      'not a component token' => ['bl2-show-thumbs', NULL, NULL],
+      'content-type binding is not a component' => ['bl2-content-type-news', NULL, NULL],
+      'arbitrary class' => ['nav-item', 'bsl', NULL],
+      'empty token' => ['', NULL, NULL],
+    ];
+  }
+
+  /**
+   * componentSuffix() agrees with isComponentToken() on every token.
+   *
+   * The two are one rule seen from two sides; a future edit must not let them
+   * drift apart.
+   */
+  public function testComponentSuffixAgreesWithTheShapePredicate(): void {
+    $tokens = [
+      'bl2-component-bch',
+      'mm-component-bch',
+      'bsl-component-bch',
+      'bl2-component-',
+      'bl2-show-thumbs',
+      'arrow',
+      '',
+    ];
+
+    foreach (['bsl', NULL] as $siteId) {
+      foreach ($tokens as $token) {
+        $this->assertSame(
+          $this->registry->isComponentToken($token, $siteId),
+          $this->registry->componentSuffix($token, $siteId) !== NULL,
+          sprintf('componentSuffix(%s) must agree with isComponentToken()', $token)
+        );
+      }
+    }
+  }
+
+  /**
    * Tests the component-shaped and known predicates over all three families.
    *
    * @dataProvider tokenPredicateProvider

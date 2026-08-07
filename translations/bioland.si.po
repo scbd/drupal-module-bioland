@@ -1849,3 +1849,15 @@ msgstr "ඊතලය පෙන්වන්න"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "කොටසේ මාතෘකාවෙන් පසු ඊතලයක් පෙන්වයි."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(මෙගා මෙනු: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(මෙගා මෙනු: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "මෙගා මෙනු උප අංගය එක් කරන්න"

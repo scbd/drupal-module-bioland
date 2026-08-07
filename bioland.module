@@ -390,6 +390,26 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for menu_edit_form.
+ *
+ * Adds Bioland's two mega-menu affordances to the core menu overview screen at
+ * /admin/structure/menu/manage/{menu}: the greyed component indicator column
+ * and the "Add Mega Menu Child" row operation. A thin dispatcher - all the
+ * logic, and every defensive guard over core's table shape, lives in the
+ * service.
+ *
+ * DELIBERATELY ITS OWN HOOK, not another branch of bioland_form_alter(). That
+ * hook carries the entity-builder ordering contract Component mode depends on
+ * (see bioland_module_implements_alter() below); nothing here needs it, and
+ * keeping the two apart means a change to this screen can never perturb the
+ * menu link save path. The two resolve under different cached listener lists,
+ * so they cannot interfere - see the service's class docblock.
+ */
+function bioland_form_menu_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::service('bioland.component_menu_overview')->alterOverviewForm($form, $form_state);
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter() for node_form.
  */
 function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {

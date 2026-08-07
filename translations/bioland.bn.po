@@ -1769,3 +1769,15 @@ msgstr "তীর দেখান"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "বিভাগের শিরোনামের পরে একটি তীর দেখায়।"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(মেগা মেনু: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(মেগা মেনু: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "মেগা মেনু চাইল্ড যোগ করুন"

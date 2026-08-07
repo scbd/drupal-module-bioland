@@ -97,6 +97,15 @@ component_menu_form:
     - core/drupal
     - core/once
 
+# Greys the mega-menu indicator column on the core menu overview screen.
+# Attached only by Drupal\bioland\Service\BiolandComponentMenuOverview, and only
+# once it has actually spliced the column in. CSS-only; scoped to the
+# .bioland-mega-menu-indicator cells that service adds.
+menu_overview:
+  css:
+    theme:
+      css/bioland-menu-overview.css: {}
+
 # Aligns the CKEditor 5 editing surface with the public frontend rendering
 # (heading sizes + primary-coloured underline). CSS-only; scoped to .ck-content.
 ckeditor_content_styles:

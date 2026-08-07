@@ -6,10 +6,13 @@ namespace Drupal\Core\Access;
  * Stub class for AccessResult.
  *
  * Reproduces only what the module uses: the three constructors, the reason
- * string, cacheability collected from addCacheableDependency(), and the three
+ * string, the full cacheability triple (tags, contexts, max-age), and the three
  * predicates. Enough for a unit test to assert that a check allowed or forbade
- * access AND that it carried the config cache tag that makes the decision
- * refresh on save.
+ * access AND that every part of its cacheability reached the caller.
+ *
+ * ALL THREE GETTERS MUST EXIST. BiolandComponentMenuOverview::applyCacheability()
+ * gates each merge on method_exists(), so a getter missing here does not fail a
+ * test - it silently skips the branch that test was written to cover.
  */
 class AccessResult implements AccessResultInterface {
 
@@ -40,6 +43,20 @@ class AccessResult implements AccessResultInterface {
    * @var array
    */
   protected $cacheTags = [];
+
+  /**
+   * Cache contexts collected from dependencies.
+   *
+   * @var array
+   */
+  protected $cacheContexts = [];
+
+  /**
+   * The maximum age, in seconds. -1 is Cache::PERMANENT.
+   *
+   * @var int
+   */
+  protected $cacheMaxAge = -1;
 
   /**
    * Creates an allowed result.
@@ -133,6 +150,36 @@ class AccessResult implements AccessResultInterface {
   }
 
   /**
+   * Adds cache contexts to the result.
+   *
+   * @param array $contexts
+   *   The cache contexts.
+   *
+   * @return $this
+   *   The result.
+   */
+  public function addCacheContexts(array $contexts) {
+    $this->cacheContexts = array_values(array_unique(array_merge($this->cacheContexts, $contexts)));
+
+    return $this;
+  }
+
+  /**
+   * Sets the result's maximum age.
+   *
+   * @param int $max_age
+   *   The maximum age in seconds, or -1 for Cache::PERMANENT.
+   *
+   * @return $this
+   *   The result.
+   */
+  public function setCacheMaxAge($max_age) {
+    $this->cacheMaxAge = (int) $max_age;
+
+    return $this;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function isAllowed() {
@@ -171,6 +218,26 @@ class AccessResult implements AccessResultInterface {
    */
   public function getCacheTags() {
     return $this->cacheTags;
+  }
+
+  /**
+   * Returns the collected cache contexts.
+   *
+   * @return array
+   *   The cache contexts.
+   */
+  public function getCacheContexts() {
+    return $this->cacheContexts;
+  }
+
+  /**
+   * Returns the maximum age.
+   *
+   * @return int
+   *   The maximum age in seconds; -1 (Cache::PERMANENT) unless set.
+   */
+  public function getCacheMaxAge() {
+    return $this->cacheMaxAge;
   }
 
 }

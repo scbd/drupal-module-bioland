@@ -1849,3 +1849,15 @@ msgstr "ቀስት አሳይ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "ከክፍሉ ርዕስ በኋላ ቀስት ያሳያል።"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(ሜጋ ምናሌ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(ሜጋ ምናሌ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "የሜጋ ምናሌ ልጅ አክል"

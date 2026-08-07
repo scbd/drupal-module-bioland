@@ -1849,3 +1849,15 @@ msgstr "ਤੀਰ ਦਿਖਾਓ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "ਭਾਗ ਦੇ ਸਿਰਲੇਖ ਤੋਂ ਬਾਅਦ ਤੀਰ ਦਿਖਾਉਂਦਾ ਹੈ।"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(ਮੈਗਾ ਮੀਨੂ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(ਮੈਗਾ ਮੀਨੂ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "ਮੈਗਾ ਮੀਨੂ ਚਾਈਲਡ ਸ਼ਾਮਲ ਕਰੋ"

@@ -1849,3 +1849,15 @@ msgstr "Ցուցադրել սլաքը"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "Ցուցադրում է սլաք բաժնի վերնագրից հետո։"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Մեգա ցանկ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Մեգա ցանկ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Ավելացնել մեգա ցանկի ենթատարր"

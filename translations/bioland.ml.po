@@ -1849,3 +1849,15 @@ msgstr "അമ്പടയാളം കാണിക്കുക"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "വിഭാഗ തലക്കെട്ടിനു ശേഷം ഒരു അമ്പടയാളം കാണിക്കുന്നു."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(മെഗാ മെനു: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(മെഗാ മെനു: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "മെഗാ മെനു ചൈൽഡ് ചേർക്കുക"

@@ -1849,3 +1849,15 @@ msgstr "அம்புக்குறியைக் காட்டு"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show an arrow after the section title."
 msgstr "பிரிவுத் தலைப்புக்குப் பிறகு அம்புக்குறியைக் காட்டுகிறது."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(மெகா மெனு: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(மெகா மெனு: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "மெகா மெனு சைல்ட் சேர்க்கவும்"
