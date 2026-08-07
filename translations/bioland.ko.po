@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "@number번 열"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "메가 메뉴에 포럼 표시"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "최대 열 수"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "홈페이지 위젯은 정확히 @count개의 열로 배치해야 합니다."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "네트워크 기본 테마를 불러오지 못해 이 필드에는 내장 기본값이 표시됩니다. 저장하기 전에 모든 값을 확인하십시오."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min에서 @max 사이의 숫자를 입력하십시오."
 
@@ -1803,8 +1795,8 @@ msgstr "콘텐츠 유형"
 msgid "The content type this listing shows."
 msgstr "이 목록에 표시되는 콘텐츠 유형입니다."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "구성 요소 메뉴 링크 사용"
+msgid "Enable Mega Menu components"
+msgstr "메가 메뉴 구성 요소 활성화"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

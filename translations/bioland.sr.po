@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Колона @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Прикажи форуме у мега менију"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Највећи број колона"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Виџети почетне странице морају бити распоређени у тачно @count колоне."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Подразумевана тема мреже није могла да се учита, па ова поља приказују уграђене подразумеване вредности. Проверите сваку вредност пре чувања."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Унесите број између @min и @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Тип садржаја"
 msgid "The content type this listing shows."
 msgstr "Тип садржаја који приказује овај списак."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Омогући везе компонентног менија"
+msgid "Enable Mega Menu components"
+msgstr "Омогући компоненте мега менија"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

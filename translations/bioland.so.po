@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Tiirka @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Ku muuji Madallada liiska weyn"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Tirada ugu badan ee tiirar"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget-yada bogga hore waa in lagu habeeyaa saddex @count tiir oo sax ah."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Mowduuca caadiga ah ee shabakadda lama soo rari karin, sidaas darteed goobahan waxay muujinayaan qiimayaal caadi ah oo ku dhex jira. Hubi qiime kasta ka hor inta aanad kaydin."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Geli tiro u dhaxaysa @min iyo @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Nooca nuxurka"
 msgid "The content type this listing shows."
 msgstr "Nooca nuxurka ee liiskani muujinayo."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Awood u sii xiriirinta menu-ga qaybaha"
+msgid "Enable Mega Menu components"
+msgstr "Daar qaybaha menu-ga weyn"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

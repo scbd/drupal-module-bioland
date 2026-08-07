@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "நெடுவரிசை @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "மெகா மெனுவில் மன்றங்களைக் காட்டு"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "அதிகபட்ச நெடுவரிசைகள்"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "முகப்புப் பக்க விட்ஜெட்டுகள் சரியாக @count நெடுவரிசைகளில் அமைக்கப்பட வேண்டும்."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "நெட்வொர்க்கின் இயல்புநிலைத் தீம் ஏற்ற முடியவில்லை, எனவே இந்தப் புலங்கள் உள்ளமைந்த இயல்புநிலை மதிப்புகளைக் காட்டுகின்றன. சேமிப்பதற்கு முன் ஒவ்வொரு மதிப்பையும் சரிபார்க்கவும்."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min மற்றும் @max இடையே ஒரு எண்ணை உள்ளிடவும்."
 
@@ -1803,8 +1795,8 @@ msgstr "உள்ளடக்க வகை"
 msgid "The content type this listing shows."
 msgstr "இந்தப் பட்டியல் காட்டும் உள்ளடக்க வகை."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "கூறு மெனு இணைப்புகளை இயக்கு"
+msgid "Enable Mega Menu components"
+msgstr "மெகா மெனு கூறுகளை இயக்கவும்"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

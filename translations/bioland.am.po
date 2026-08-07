@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "አምድ @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "መድረኮችን በሜጋ ምናሌ ውስጥ አሳይ"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "ከፍተኛ አምዶች"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "የመነሻ ገጽ መግብሮች በትክክል በ@count አምዶች መደራጀት አለባቸው።"
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "የአውታረ መረቡ ነባሪ ገጽታ መጫን አልተቻለም፤ ስለዚህ እነዚህ መስኮች አብሮ የተሰሩ ነባሪ እሴቶችን ያሳያሉ። ከማስቀመጥዎ በፊት እያንዳንዱን እሴት ያረጋግጡ።"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "ከ@min እስከ @max ያለ ቁጥር ያስገቡ።"
 
@@ -1803,8 +1795,8 @@ msgstr "የይዘት አይነት"
 msgid "The content type this listing shows."
 msgstr "ይህ ዝርዝር የሚያሳየው የይዘት አይነት።"
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "የአካል ምናሌ አገናኞችን አንቃ"
+msgid "Enable Mega Menu components"
+msgstr "የሜጋ ምናሌ አካላትን አንቃ"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

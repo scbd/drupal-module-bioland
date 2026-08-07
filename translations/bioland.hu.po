@@ -1812,10 +1812,6 @@ msgid "Column @number"
 msgstr "@number. oszlop"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Fórumok megjelenítése a mega menüben"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Oszlopok maximális száma"
 
@@ -1856,10 +1852,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "A kezdőlapi modulokat pontosan @count oszlopba kell rendezni."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "A hálózat alapértelmezett témája nem tölthető be, ezért ezek a mezők beépített alapértékeket mutatnak. Mentés előtt ellenőrizzen minden értéket."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Adjon meg egy számot @min és @max között."
 
@@ -1874,8 +1866,8 @@ msgstr "Tartalomtípus"
 msgid "The content type this listing shows."
 msgstr "A tartalomtípus, amelyet ez a lista megjelenít."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Komponens menühivatkozások engedélyezése"
+msgid "Enable Mega Menu components"
+msgstr "Megamenü-összetevők engedélyezése"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

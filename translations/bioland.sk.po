@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Stĺpec @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Zobraziť fóra v mega ponuke"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Maximálny počet stĺpcov"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widgety domovskej stránky musia byť usporiadané presne do @count stĺpcov."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Predvolenú tému siete sa nepodarilo načítať, preto tieto polia zobrazujú vstavané predvolené hodnoty. Pred uložením skontrolujte každú hodnotu."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Zadajte číslo medzi @min a @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Typ obsahu"
 msgid "The content type this listing shows."
 msgstr "Typ obsahu, ktorý tento zoznam zobrazuje."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Povoliť komponentové odkazy ponuky"
+msgid "Enable Mega Menu components"
+msgstr "Povoliť komponenty mega ponuky"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

@@ -1830,10 +1830,6 @@ msgid "Column @number"
 msgstr "Spalte @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Foren im Mega-Menü anzeigen"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Maximale Spaltenanzahl"
 
@@ -1874,10 +1870,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Die Startseiten-Widgets müssen in genau @count Spalten angeordnet sein."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Das Netzwerk-Standarddesign konnte nicht geladen werden, daher zeigen diese Felder integrierte Standardwerte. Prüfen Sie jeden Wert vor dem Speichern."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Geben Sie eine Zahl zwischen @min und @max ein."
 
@@ -1892,8 +1884,8 @@ msgstr "Inhaltstyp"
 msgid "The content type this listing shows."
 msgstr "Der Inhaltstyp, den diese Liste anzeigt."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Komponenten-Menülinks aktivieren"
+msgid "Enable Mega Menu components"
+msgstr "Mega-Menü-Komponenten aktivieren"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

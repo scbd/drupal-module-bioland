@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Kolom @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Wys Forums in die megakieslys"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Maksimum kolomme"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Die tuisblad-legstukke moet in presies @count kolomme gerangskik word."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Die netwerk se verstektema kon nie gelaai word nie, dus wys hierdie velde ingeboude verstekwaardes. Kontroleer elke waarde voordat u stoor."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Voer 'n getal tussen @min en @max in."
 
@@ -1803,8 +1795,8 @@ msgstr "Inhoudstipe"
 msgid "The content type this listing shows."
 msgstr "Die inhoudstipe wat hierdie lys vertoon."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Aktiveer komponent-kieslysskakels"
+msgid "Enable Mega Menu components"
+msgstr "Aktiveer Mega-kieslys-komponente"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

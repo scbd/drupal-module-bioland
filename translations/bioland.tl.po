@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Hanay @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Ipakita ang mga Forum sa mega menu"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Pinakamaraming hanay"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Dapat nakaayos ang mga widget ng home page sa eksaktong @count na hanay."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Hindi ma-load ang default na tema ng network, kaya ipinapakita ng mga field na ito ang mga built-in na default na halaga. Suriin ang bawat halaga bago mag-save."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Maglagay ng numero sa pagitan ng @min at @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Uri ng nilalaman"
 msgid "The content type this listing shows."
 msgstr "Ang uri ng nilalaman na ipinapakita ng listahang ito."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Paganahin ang mga link ng menu ng komponent"
+msgid "Enable Mega Menu components"
+msgstr "Paganahin ang mga bahagi ng mega menu"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

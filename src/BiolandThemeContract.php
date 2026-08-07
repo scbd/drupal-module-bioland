@@ -60,11 +60,6 @@ final class BiolandThemeContract {
   public const KEY_HOME_PAGE_WIDGETS_COLUMNS = 'home_page_widgets.columns';
 
   /**
-   * Whether Forums is shown in the mega menu.
-   */
-  public const KEY_MEGA_MENU_FORUMS = 'mega_menu.forums';
-
-  /**
    * Maximum mega menu columns.
    */
   public const KEY_MEGA_MENU_MAX_COLUMNS = 'mega_menu.max_columns';
@@ -95,7 +90,6 @@ final class BiolandThemeContract {
     self::KEY_COLOR_SECONDARY,
     self::KEY_BACK_GROUND_SECONDARY,
     self::KEY_HOME_PAGE_WIDGETS_COLUMNS,
-    self::KEY_MEGA_MENU_FORUMS,
     self::KEY_MEGA_MENU_MAX_COLUMNS,
     self::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN,
     self::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX,

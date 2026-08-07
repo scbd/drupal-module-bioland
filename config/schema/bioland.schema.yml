@@ -189,7 +189,7 @@ bioland.settings:
       label: 'Lock main menu editing'
     component_menu_add_enabled:
       type: boolean
-      label: 'Enable component menu links'
+      label: 'Enable Mega Menu components'
     component_menu_show_attributes:
       type: boolean
       label: 'Show the Attributes section on component menu link forms'
@@ -519,9 +519,6 @@ bioland.settings:
           type: mapping
           label: 'Mega menu theme settings'
           mapping:
-            forums:
-              type: boolean
-              label: 'Show Forums in the mega menu'
             max_columns:
               type: integer
               label: 'Maximum mega menu columns'

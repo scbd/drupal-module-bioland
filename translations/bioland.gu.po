@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "કૉલમ @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "મેગા મેનૂમાં ફોરમ બતાવો"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "મહત્તમ કૉલમ"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "હોમ પેજ વિજેટ્સ બરાબર @count કૉલમમાં ગોઠવવા આવશ્યક છે."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "નેટવર્કની ડિફોલ્ટ થીમ લોડ કરી શકાઈ નથી, તેથી આ ક્ષેત્રો બિલ્ટ-ઇન ડિફોલ્ટ મૂલ્યો બતાવે છે. સાચવતા પહેલાં દરેક મૂલ્ય તપાસો."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min અને @max વચ્ચેનો એક નંબર દાખલ કરો."
 
@@ -1803,8 +1795,8 @@ msgstr "સામગ્રીનો પ્રકાર"
 msgid "The content type this listing shows."
 msgstr "આ યાદી જે પ્રકારની સામગ્રી બતાવે છે."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "ઘટક મેનુ લિંક્સ સક્ષમ કરો"
+msgid "Enable Mega Menu components"
+msgstr "મેગા મેનુ ઘટકો સક્ષમ કરો"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

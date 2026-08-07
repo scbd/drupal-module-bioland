@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Safu wima @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Onyesha Mabaraza kwenye menyu kubwa"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Idadi ya juu ya safu wima"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Vipengele vya ukurasa wa mwanzo lazima vipangwe katika safu wima @count hasa."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Mandhari chaguo-msingi ya mtandao haikuweza kupakiwa, kwa hivyo sehemu hizi zinaonyesha thamani chaguo-msingi zilizojengwa ndani. Angalia kila thamani kabla ya kuhifadhi."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Weka nambari kati ya @min na @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Aina ya maudhui"
 msgid "The content type this listing shows."
 msgstr "Aina ya maudhui inayoonyeshwa na orodha hii."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Washa viungo vya menyu ya vijenzi"
+msgid "Enable Mega Menu components"
+msgstr "Washa vijenzi vya menyu kuu"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

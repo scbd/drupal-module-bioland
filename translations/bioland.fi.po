@@ -1812,10 +1812,6 @@ msgid "Column @number"
 msgstr "Sarake @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Näytä foorumit megavalikossa"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Sarakkeiden enimmäismäärä"
 
@@ -1856,10 +1852,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Etusivun pienoisohjelmat on järjestettävä täsmälleen @count sarakkeeseen."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Verkon oletusteemaa ei voitu ladata, joten nämä kentät näyttävät sisäänrakennetut oletusarvot. Tarkista jokainen arvo ennen tallentamista."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Anna luku väliltä @min ja @max."
 
@@ -1874,8 +1866,8 @@ msgstr "Sisältötyyppi"
 msgid "The content type this listing shows."
 msgstr "Sisältötyyppi, jonka tämä luettelo näyttää."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Ota komponenttivalikkolinkit käyttöön"
+msgid "Enable Mega Menu components"
+msgstr "Ota megavalikon komponentit käyttöön"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

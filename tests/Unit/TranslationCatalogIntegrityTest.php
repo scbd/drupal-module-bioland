@@ -100,7 +100,6 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Secondary background color',
     'Home Page Widget Columns',
     'Column @number',
-    'Show Forums in the mega menu',
     'Maximum columns',
     'Maximum rows per column (0 for no limit)',
     'Maximum horizontal cards',
@@ -111,11 +110,10 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'The theme settings for this site have been reset to the network default.',
     'Enter a valid hex color, for example #1B7B3A.',
     'The home page widgets must be arranged in exactly @count columns.',
-    // D3's server-side numeric bound, and the warning shown when the dmsm
-    // seed cannot be read and the colour fields fall back to the built-in
-    // network defaults.
+    // D3's server-side numeric bound. An unreadable dmsm seed is deliberately
+    // silent -- the built-in flavor colour defaults are the safety net, so
+    // there is no seed-failure message to translate.
     'Enter a number between @min and @max.',
-    'The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving.',
     // The #description on the three optional mega-menu numbers, telling the
     // editor that blanking one keeps the current value rather than clearing
     // it. @reset interpolates the already-listed 'Reset to network default'
@@ -129,7 +127,7 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'The content type this listing shows.',
     // src/Form/BiolandAdminSettingsForm.php: the on/off switch for the
     // component-menu add flow (checkbox title and description).
-    'Enable Component Menu Links',
+    'Enable Mega Menu components',
     'Shows the "Add Mega Menu component" action on the menu manage screen. When unchecked, the action and its form are unavailable.',
     // src/Service/BiolandComponentMenuFormMode.php: the thumbnails and
     // column-width presentation controls.

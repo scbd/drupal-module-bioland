@@ -1812,10 +1812,6 @@ msgid "Column @number"
 msgstr "Kolòn @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Montre Fowòm yo nan mega meni an"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Kantite kolòn maksimòm"
 
@@ -1856,10 +1852,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget paj dakèy yo dwe ranje nan egzakteman @count kolòn."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Nou pa t kapab chaje tèm rezo a pa defo, kidonk chan sa yo montre valè entegre pa defo. Tcheke chak valè anvan ou anrejistre."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Antre yon nimewo ant @min ak @max."
 
@@ -1874,8 +1866,8 @@ msgstr "Kalite kontni"
 msgid "The content type this listing shows."
 msgstr "Kalite kontni lis sa a montre."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Aktive lyen meni konpozan"
+msgid "Enable Mega Menu components"
+msgstr "Aktive konpozan mega meni yo"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

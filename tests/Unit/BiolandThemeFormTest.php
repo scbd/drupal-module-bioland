@@ -408,8 +408,6 @@ class BiolandThemeFormTest extends TestCase {
       $this->assertTrue($element['#required'], "{$group}.{$key} must be required (D3).");
     }
 
-    $this->assertSame('checkbox', $form['theme']['mega_menu']['forums']['#type']);
-
     $maxColumns = $form['theme']['mega_menu']['max_columns'];
     $this->assertSame('number', $maxColumns['#type']);
     $this->assertSame(1, $maxColumns['#min']);
@@ -468,6 +466,21 @@ class BiolandThemeFormTest extends TestCase {
       $form['theme']['i18n']['max_lang_before_wrap'],
       'A #required number cannot be left blank, so the advice must not appear there.'
     );
+  }
+
+  /**
+   * The retired `mega_menu.forums` checkbox is gone from the tab.
+   *
+   * Deliberately a targeted assertion rather than another
+   * self::FORBIDDEN_KEY_FRAGMENTS entry: `forums` is also the theme-name of
+   * the Latest Discussions widget, so it legitimately appears among the
+   * column selects' #options and a fragment match would fail on that.
+   */
+  public function testRetiredForumsCheckboxIsAbsent(): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    $this->assertArrayNotHasKey('forums', $form['theme']['mega_menu']);
   }
 
   /**
@@ -555,35 +568,33 @@ class BiolandThemeFormTest extends TestCase {
   /**
    * An authored theme made entirely of falsy values still counts as authored.
    *
-   * Presence, not truthiness: `maxRowsPerColumn: 0` and `forums: false` are
-   * real authored values, so the seed must stay away.
+   * Presence, not truthiness: `maxRowsPerColumn: 0` is a real authored value,
+   * so the seed must stay away.
    */
   public function testFalsyAuthoredValuesAreTreatedAsAuthored(): void {
-    $this->stubDmsmService(['megaMenu' => ['maxRowsPerColumn' => 6, 'forums' => TRUE]], 0);
+    $this->stubDmsmService(['megaMenu' => ['maxRowsPerColumn' => 6]], 0);
 
     $form = $this->build($this->config([
       'theme' => [
-        'mega_menu' => ['forums' => FALSE, 'max_rows_per_column' => 0],
+        'mega_menu' => ['max_rows_per_column' => 0],
       ],
     ]));
 
     $this->assertSame(0, $form['theme']['mega_menu']['max_rows_per_column']['#default_value']);
-    $this->assertFalse($form['theme']['mega_menu']['forums']['#default_value']);
   }
 
   /**
-   * A seeded 0 / FALSE survives the mapping into form defaults.
+   * A seeded 0 survives the mapping into form defaults.
    */
-  public function testSeedPreservesZeroAndFalse(): void {
+  public function testSeedPreservesZero(): void {
     $case = $this->fixtureCases()['bsl-zero-and-false'];
     $this->stubDmsmService($case['expectedEffectiveTheme']);
 
     // Built as a non-BSL site so the whole mega menu group is present; the
-    // point here is the 0/FALSE values, not the BSL hiding.
+    // point here is the 0 value, not the BSL hiding.
     $form = $this->build($this->config());
 
     $this->assertSame(0, $form['theme']['mega_menu']['max_rows_per_column']['#default_value']);
-    $this->assertFalse($form['theme']['mega_menu']['forums']['#default_value']);
   }
 
   /**
@@ -621,35 +632,41 @@ class BiolandThemeFormTest extends TestCase {
   /**
    * With no dmsm service in the container the form still builds.
    *
-   * It degrades to the fallback colours rather than to empty fields, and
-   * says so. \Drupal::service() throws for an unregistered id, so the form
-   * must ask \Drupal::hasService() first or this build would fatal.
+   * It degrades to the built-in fallback colours rather than to empty fields.
+   * \Drupal::service() throws for an unregistered id, so the form must ask
+   * \Drupal::hasService() first or this build would fatal.
    */
   public function testMissingDmsmServiceDegradesToFallbackColors(): void {
     [$form, $messenger] = $this->buildWithMessenger($this->config());
 
     $this->assertSame('color', $form['theme']['color']['primary']['#type']);
     $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
-    $this->assertCount(1, $messenger->warnings);
+    $this->assertSame([], $messenger->warnings);
   }
 
   /**
-   * An unreadable seed warns the editor and never leaves a colour empty.
+   * An unreadable seed is silent and never leaves a colour empty.
    *
    * getEffectiveTheme() returns NULL on any HTTP or parse error. With no
    * default, the browser's native `<input type="color">` -- which has no
    * empty state -- would post #000000 on the editor's first Save, the
    * #required check would wave it through, and D5's seed-on-save would make
    * the black permanent, so a dmsm hiccup would silently black out a site.
-   * Two guards: the warning, and the network-default colours.
+   * The built-in network colours are the guard.
+   *
+   * The message that used to accompany them is deliberately gone: sites are
+   * pre-seeded by an ops script, and telling an editor to "check every value"
+   * when the values shown are already this network's correct defaults is
+   * noise, not a warning.
    */
-  public function testSeedFailureWarnsAndFallsBackToNetworkColors(): void {
+  public function testSeedFailureIsSilentAndFallsBackToNetworkColors(): void {
     $this->stubDmsmService(NULL);
 
     [$form, $messenger] = $this->buildWithMessenger($this->config());
 
-    $this->assertCount(1, $messenger->warnings, 'A failed seed must warn the editor exactly once.');
-    $this->assertStringContainsString('could not be loaded', $messenger->warnings[0]);
+    $this->assertSame([], $messenger->warnings, 'A failed seed must not warn.');
+    $this->assertSame([], $messenger->statuses);
+    $this->assertSame([], $messenger->errors);
 
     $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
     $this->assertSame('#16c56e', $form['theme']['color']['secondary']['#default_value']);
@@ -666,22 +683,157 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * A seed that succeeds raises no warning and is not overwritten.
+   * A BSL site with no seed falls back to the BSL palette, not bl2's.
+   *
+   * The flavor is what makes the fallback correct rather than merely
+   * non-empty: bl2 blue on a Biosafety Clearing-House site is just as wrong
+   * as black, only far harder for the editor to notice before saving.
    */
-  public function testSuccessfulSeedRaisesNoWarning(): void {
-    $case = $this->fixtureCases()['theme-less-site'];
+  public function testSeedFailureFallsBackToBslColorsOnBsl(): void {
+    $this->stubDmsmService(NULL);
+
+    [$form, $messenger] = $this->buildWithMessenger($this->config(['is_biosafety_land' => TRUE]));
+
+    $this->assertSame('#fa6938', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#428bca', $form['theme']['color']['secondary']['#default_value']);
+    // Both networks publish the same neutral grey.
+    $this->assertSame('#f2f2f2', $form['theme']['back_ground']['secondary']['#default_value']);
+    $this->assertSame([], $messenger->warnings);
+  }
+
+  /**
+   * Every built-in fallback colour is stored lower-case.
+   *
+   * `<input type="color">` normalizes its value to lower-case, so an
+   * upper-case default would not round-trip: the picker would report a change
+   * the editor never made, and normalizeHex() would then write the lower-case
+   * form on the next unrelated save.
+   *
+   * @dataProvider fallbackColorConstantProvider
+   */
+  public function testFallbackColorsAreLowerCase(string $constant): void {
+    $colors = (new \ReflectionClass(BiolandThemeForm::class))->getConstant($constant);
+
+    $this->assertIsArray($colors);
+    $this->assertSame(
+      [
+        BiolandThemeContract::KEY_COLOR_PRIMARY,
+        BiolandThemeContract::KEY_COLOR_SECONDARY,
+        BiolandThemeContract::KEY_BACK_GROUND_SECONDARY,
+      ],
+      array_keys($colors),
+      $constant . ' must cover exactly the three required colour keys.'
+    );
+
+    foreach ($colors as $key => $value) {
+      $this->assertMatchesRegularExpression(
+        '/^#[0-9a-f]{6}$/',
+        $value,
+        sprintf('%s[%s] must be a lower-case six-digit hex colour.', $constant, $key)
+      );
+    }
+  }
+
+  /**
+   * The per-flavor fallback colour constants.
+   *
+   * @return array
+   *   Test cases.
+   */
+  public function fallbackColorConstantProvider(): array {
+    return [
+      'bl2' => ['FALLBACK_COLORS_BL2'],
+      'bsl' => ['FALLBACK_COLORS_BSL'],
+    ];
+  }
+
+  /**
+   * The two flavors do not share a brand palette.
+   *
+   * Guards the guard: a copy-paste that left both sets identical would pass
+   * every other assertion here while quietly reintroducing the bug -- BSL
+   * editors seeing bl2 blue.
+   */
+  public function testBslAndBl2FallbackPalettesDiffer(): void {
+    $reflection = new \ReflectionClass(BiolandThemeForm::class);
+    $bl2 = $reflection->getConstant('FALLBACK_COLORS_BL2');
+    $bsl = $reflection->getConstant('FALLBACK_COLORS_BSL');
+
+    foreach ([BiolandThemeContract::KEY_COLOR_PRIMARY, BiolandThemeContract::KEY_COLOR_SECONDARY] as $key) {
+      $this->assertNotSame($bl2[$key], $bsl[$key], $key . ' must be flavor-specific.');
+    }
+  }
+
+  /**
+   * A seed that succeeds is not overwritten by the built-in fallbacks.
+   */
+  public function testSuccessfulSeedIsNotOverwrittenByFallbacks(): void {
+    $case = $this->fixtureCases()['full-copy-site'];
     $this->stubDmsmService($case['expectedEffectiveTheme']);
 
     [$form, $messenger] = $this->buildWithMessenger($this->config());
 
     $this->assertSame([], $messenger->warnings);
-    $this->assertSame('#009edb', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#b7c800', $form['theme']['color']['primary']['#default_value']);
   }
 
   /**
-   * An already-authored theme neither warns nor consults the seed.
+   * A seeded BSL site takes its colours from the seed, not the fallbacks.
    */
-  public function testAuthoredThemeRaisesNoSeedWarning(): void {
+  public function testBslSeedWinsOverTheBslFallbacks(): void {
+    $case = $this->fixtureCases()['bsl-zero-and-false'];
+    $this->stubDmsmService($case['expectedEffectiveTheme']);
+
+    $form = $this->build($this->config(['is_biosafety_land' => TRUE]));
+
+    $this->assertSame('#428BCA', $form['theme']['color']['primary']['#default_value']);
+    $this->assertNotSame('#fa6938', $form['theme']['color']['primary']['#default_value']);
+  }
+
+  /**
+   * A partial seed keeps what it defined and gains only what it omitted.
+   *
+   * withFallbackColors() fills per LEAF, not per group: a seed that carries
+   * `color.primary` and nothing else must keep that primary and take only the
+   * two missing colours from the fallbacks. A group-level fill would overwrite
+   * the seeded primary with the built-in one, quietly showing every editor on
+   * a partially-seeded site the network default instead of their own brand.
+   *
+   * Run on BSL so the filled leaves are also flavor-discriminating: bl2's
+   * secondary (#16c56e) and BSL's (#428bca) differ, so a fill that ignored the
+   * flavor would fail here rather than pass by coincidence.
+   */
+  public function testFallbackFillsOnlyTheMissingColourLeaf(): void {
+    $this->stubDmsmService(['color' => ['primary' => '#abc123']]);
+
+    $form = $this->build($this->config(['is_biosafety_land' => TRUE]));
+
+    $this->assertSame(
+      '#abc123',
+      $form['theme']['color']['primary']['#default_value'],
+      'A seeded leaf must survive the fill.'
+    );
+    $this->assertSame(
+      '#428bca',
+      $form['theme']['color']['secondary']['#default_value'],
+      'An omitted leaf must come from the BSL fallbacks.'
+    );
+    $this->assertSame(
+      '#f2f2f2',
+      $form['theme']['back_ground']['secondary']['#default_value'],
+      'back_ground.secondary is omitted here and must be filled too.'
+    );
+    $this->assertNotSame(
+      '#16c56e',
+      $form['theme']['color']['secondary']['#default_value'],
+      'A BSL site must never be filled from the bl2 palette.'
+    );
+  }
+
+  /**
+   * An already-authored theme neither messages nor consults the seed.
+   */
+  public function testAuthoredThemeNeitherSeedsNorMessages(): void {
     // exactly(0): a site with its own theme must not pay for the HTTP call.
     $this->stubDmsmService(NULL, 0);
 
@@ -690,6 +842,7 @@ class BiolandThemeFormTest extends TestCase {
     ]));
 
     $this->assertSame([], $messenger->warnings);
+    $this->assertSame([], $messenger->statuses);
   }
 
   /**
@@ -702,8 +855,37 @@ class BiolandThemeFormTest extends TestCase {
     $form = $this->createForm();
 
     for ($i = 0; $i < 3; $i++) {
-      $this->assertSame('#009edb', $this->invoke($form, 'seedFromDmsm')['color']['primary']);
+      $this->assertSame('#009edb', $this->invoke($form, 'seedFromDmsm', [FALSE])['color']['primary']);
     }
+  }
+
+  /**
+   * A cache hit still answers in the CALLER's flavor, not the first caller's.
+   *
+   * The memo caches the seed BEFORE the colour fallbacks are applied, precisely
+   * so it does not have to be keyed by flavor. Caching the finished map instead
+   * would make the first call's flavor sticky for the whole request: a second
+   * call for the other flavor would be served the first one's palette, and a
+   * BSL editor would be shown bl2 blue with no HTTP call left to notice it. The
+   * exactly(1) matcher pins that the fix costs no extra request.
+   */
+  public function testSeedCacheIsFlavorAware(): void {
+    $this->stubDmsmService(NULL, 1);
+
+    $form = $this->createForm();
+
+    $bl2 = $this->invoke($form, 'seedFromDmsm', [FALSE]);
+    $bsl = $this->invoke($form, 'seedFromDmsm', [TRUE]);
+
+    $this->assertSame('#009edb', $bl2['color']['primary']);
+    $this->assertSame('#16c56e', $bl2['color']['secondary']);
+
+    $this->assertSame(
+      '#fa6938',
+      $bsl['color']['primary'],
+      'The second call must be answered in its own flavor, from the same cached seed.'
+    );
+    $this->assertSame('#428bca', $bsl['color']['secondary']);
   }
 
   // ---------------------------------------------------------------------
@@ -742,6 +924,99 @@ class BiolandThemeFormTest extends TestCase {
       'A hidden field must never be written.'
     );
     $this->assertSame('#123456', $config->get('theme.color.primary'), 'The rest of the tab still saves.');
+  }
+
+  /**
+   * A blind Save after a failed seed must not pin the site to zero widgets.
+   *
+   * When the dmsm seed cannot be read the three column selects render with
+   * nothing selected, so an editor who opens the tab and presses Save without
+   * touching anything posts three EMPTY columns. That shape clears every
+   * guard: W2a counts the outer length and three empty columns is still three
+   * columns, and the writer used to hand it straight to config as
+   * `[[], [], []]` -- silently replacing whatever the site was inheriting with
+   * "no home page widgets at all", with no error shown and nothing to undo it
+   * but re-authoring.
+   *
+   * The writer therefore treats an all-empty column set the same way it treats
+   * a blank optional numeric: not authored, so leave the key alone. RS's
+   * "Reset to network default" stays the deliberate way to un-author.
+   */
+  public function testBlindSaveAfterSeedFailureDoesNotWipeColumns(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    // Exactly what an untouched form posts: each element's rendered default.
+    $columns = [];
+    foreach ($form['theme']['home_page_widgets']['columns'] as $element) {
+      $columns[] = $element['#default_value'];
+    }
+    $this->assertSame(
+      [[], [], []],
+      $columns,
+      'A failed seed must be what leaves all three selects empty, or this test proves nothing.'
+    );
+
+    $values = [
+      'theme' => [
+        'color' => [
+          'primary' => $form['theme']['color']['primary']['#default_value'],
+          'secondary' => $form['theme']['color']['secondary']['#default_value'],
+        ],
+        'back_ground' => [
+          'secondary' => $form['theme']['back_ground']['secondary']['#default_value'],
+        ],
+        'home_page_widgets' => ['columns' => $columns],
+        // The seed defined no numbers either, so the optional three post
+        // blank. i18n is #required, so core rejects a blank there before the
+        // writer runs and a real value is what actually arrives.
+        'mega_menu' => [
+          'max_columns' => '',
+          'max_rows_per_column' => '',
+          'horizontal_card_max' => '',
+        ],
+        'i18n' => ['max_lang_before_wrap' => 6],
+      ],
+    ];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertNull(
+      $config->get('theme.home_page_widgets.columns'),
+      'Three empty columns are "not authored" and must never be written.'
+    );
+    $this->assertNull(
+      $config->get('theme.home_page_widgets'),
+      'Nothing may be fabricated under home_page_widgets either.'
+    );
+    // The guard is scoped to the columns key: the save itself still happened.
+    $this->assertSame('#009edb', $config->get('theme.color.primary'));
+    $this->assertSame(6, $config->get('theme.i18n.max_lang_before_wrap'));
+  }
+
+  /**
+   * A real column selection is still written, blank guard or not.
+   *
+   * The counterpart to testBlindSaveAfterSeedFailureDoesNotWipeColumns(): the
+   * guard keys on "every column empty", so a set with even one widget in it --
+   * including the two-empty-columns layout W2a explicitly allows -- must save.
+   */
+  public function testPartiallyEmptyColumnsAreStillWritten(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    $values['theme']['home_page_widgets']['columns'] = [['gbif', 'tsc', 'geobon'], [], []];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame(
+      [['gbif', 'tsc', 'geobon'], [], []],
+      $config->get('theme.home_page_widgets.columns'),
+      'Only an ALL-empty set counts as unauthored.'
+    );
   }
 
   /**
@@ -872,7 +1147,6 @@ class BiolandThemeFormTest extends TestCase {
           'columns' => [['panorama', 'gbif'], ['implementation', 'tsc'], ['forums', 'geobon']],
         ],
         'mega_menu' => [
-          'forums' => 1,
           'max_columns' => 5,
           'max_rows_per_column' => 0,
           'horizontal_card_max' => 3,
@@ -1023,21 +1297,41 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * The submit leg preserves 0 and FALSE rather than defaulting them away.
+   * The submit leg preserves 0 rather than defaulting it away.
    */
-  public function testSubmitPreservesZeroAndFalse(): void {
+  public function testSubmitPreservesZero(): void {
     $this->stubDmsmService(NULL);
     $config = $this->config();
     $form = $this->build($config);
 
     $values = $this->submittableValues();
-    $values['theme']['mega_menu']['forums'] = 0;
     $values['theme']['mega_menu']['max_rows_per_column'] = 0;
 
     $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
 
-    $this->assertFalse($config->get('theme.mega_menu.forums'));
     $this->assertSame(0, $config->get('theme.mega_menu.max_rows_per_column'));
+  }
+
+  /**
+   * A forged `mega_menu.forums` submission is never written back.
+   *
+   * The element is gone from the build leg, but the writer is the boundary
+   * that matters: a stale bookmarked POST, or a browser replaying an old
+   * form, must not be able to put the retired key back into config -- the
+   * schema no longer declares it, so it would land as a schema violation.
+   */
+  public function testForgedForumsSubmissionIsNotWritten(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    $values['theme']['mega_menu']['forums'] = 1;
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertNull($config->get('theme.mega_menu.forums'));
+    $this->assertArrayNotHasKey('forums', $config->get('theme.mega_menu'));
   }
 
   // ---------------------------------------------------------------------
@@ -1300,6 +1594,10 @@ class BiolandThemeFormTest extends TestCase {
    * Deliberately a separate assertion from the head-depth one above: the two
    * spellings are two distinct contracts, and a single test over one of them
    * would let the other drift unnoticed.
+   *
+   * The flavor argument is FALSE throughout and does not matter: every case
+   * supplies all three colours from the seed, so no fallback is consulted.
+   * The per-flavor fallbacks are covered by their own tests above.
    */
   public function testSeedDefaultsMatchFixtureAtDrupalDepth(): void {
     foreach ($this->fixtureCases() as $id => $case) {
@@ -1307,7 +1605,7 @@ class BiolandThemeFormTest extends TestCase {
 
       $this->assertSame(
         $case['expectedSeedDefaults'],
-        $this->invoke($this->createForm(), 'seedFromDmsm'),
+        $this->invoke($this->createForm(), 'seedFromDmsm', [FALSE]),
         sprintf('Fixture case "%s" (Drupal snake_case depth) does not match.', $id)
       );
     }
@@ -1361,7 +1659,6 @@ class BiolandThemeFormTest extends TestCase {
         'theme' => [
           'color' => ['primary' => '#009edb', 'secondary' => '#16c56e'],
           'megaMenu' => [
-            'forums' => TRUE,
             'maxColumns' => 4,
             'maxRowsPerColumn' => 0,
             'horizontalCardMax' => 3,
@@ -1372,7 +1669,6 @@ class BiolandThemeFormTest extends TestCase {
 
     $this->assertSame(
       [
-        'forums' => TRUE,
         'maxColumns' => 4,
         'maxRowsPerColumn' => 0,
         'horizontalCardMax' => 3,

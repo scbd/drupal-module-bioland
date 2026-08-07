@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "列 @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "メガメニューにフォーラムを表示する"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "列数の上限"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "ホームページのウィジェットはちょうど @count 列に配置する必要があります。"
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "ネットワークの既定テーマを読み込めなかったため、これらの項目には組み込みの既定値が表示されています。保存する前にすべての値を確認してください。"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min から @max までの数値を入力してください。"
 
@@ -1803,8 +1795,8 @@ msgstr "コンテンツタイプ"
 msgid "The content type this listing shows."
 msgstr "この一覧に表示されるコンテンツタイプ。"
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "コンポーネントメニューリンクを有効にする"
+msgid "Enable Mega Menu components"
+msgstr "メガメニューコンポーネントを有効にする"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

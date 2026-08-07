@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Sütun @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Forumları mega menüde göster"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "En fazla sütun sayısı"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Ana sayfa bileşenleri tam olarak @count sütuna yerleştirilmelidir."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Ağın varsayılan teması yüklenemedi, bu nedenle bu alanlar yerleşik varsayılan değerleri gösteriyor. Kaydetmeden önce her değeri kontrol edin."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ile @max arasında bir sayı girin."
 
@@ -1803,8 +1795,8 @@ msgstr "İçerik türü"
 msgid "The content type this listing shows."
 msgstr "Bu listenin gösterdiği içerik türü."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Bileşen menü bağlantılarını etkinleştir"
+msgid "Enable Mega Menu components"
+msgstr "Mega menü bileşenlerini etkinleştir"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

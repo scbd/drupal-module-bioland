@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Ginshiƙi @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Nuna Dandalin tattaunawa a cikin babban menu"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Iyakar ginshiƙai"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Dole ne a shirya kayan aikin shafin farko a cikin ginshiƙai @count daidai."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "An kasa loda jigon tsoho na hanyar sadarwa, don haka waɗannan filayen suna nuna ƙimomin tsoho na cikin gida. Duba kowace ƙima kafin ka ajiye."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Shigar da lamba tsakanin @min da @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Nau'in abun ciki"
 msgid "The content type this listing shows."
 msgstr "Nau'in abun ciki da wannan jerin ke nunawa."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Kunna hanyoyin menu na sassa"
+msgid "Enable Mega Menu components"
+msgstr "Kunna sassan babban menu"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

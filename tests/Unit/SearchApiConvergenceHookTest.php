@@ -134,9 +134,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     );
 
     // The new highest-numbered hook (bioland_update_9079(), added to seed the
-    // component menu link settings defaults into existing sites' active
-    // config) is the last writer for every site, so it must ALSO converge on
-    // the canonical v2 config.
+    // component menu settings defaults into existing sites' active config and
+    // to clear the retired theme.mega_menu.forums key) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
     $helpersFile = $this->moduleRoot() . '/includes/bioland.install.helpers.inc';
     $this->assertFileExists($helpersFile);
     $this->assertMatchesRegularExpression(
@@ -161,7 +161,7 @@ class SearchApiConvergenceHookTest extends TestCase {
     $this->assertSame(
       9079,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9079() now holds that role (it seeds the component menu link settings defaults and re-applies the canonical v2 config after the 9071-9078 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9079() now holds that role (it seeds the component menu settings defaults, clears the retired theme.mega_menu.forums key, and re-applies the canonical v2 config after the 9071-9078 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

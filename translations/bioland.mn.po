@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "@number багана"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Мега цэсэнд форумыг харуулах"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Багануудын дээд хязгаар"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Нүүр хуудасны виджетүүдийг яг @count баганад байрлуулах ёстой."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Сүлжээний өгөгдмөл загварыг ачаалж чадсангүй тул эдгээр талбарт суулгасан өгөгдмөл утгууд харагдаж байна. Хадгалахаас өмнө утга бүрийг шалгана уу."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "@min ба @max хоорондох тоог оруулна уу."
 
@@ -1803,8 +1795,8 @@ msgstr "Агуулгын төрөл"
 msgid "The content type this listing shows."
 msgstr "Энэ жагсаалтад харуулах агуулгын төрөл."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Бүрэлдэхүүн цэсийн холбоосыг идэвхжүүлэх"
+msgid "Enable Mega Menu components"
+msgstr "Мега цэсний бүрэлдэхүүнүүдийг идэвхжүүлэх"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

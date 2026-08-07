@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "第 @number 欄"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "在大型選單中顯示論壇"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "最大欄數"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "首頁小工具必須恰好排成 @count 欄。"
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "無法載入網路預設主題，因此這些欄位顯示的是內建預設值。儲存前請檢查每一項數值。"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "請輸入 @min 到 @max 之間的數字。"
 
@@ -1803,8 +1795,8 @@ msgstr "内容类型"
 msgid "The content type this listing shows."
 msgstr "此列表显示的内容类型。"
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "启用组件菜单链接"
+msgid "Enable Mega Menu components"
+msgstr "启用超级菜单组件"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

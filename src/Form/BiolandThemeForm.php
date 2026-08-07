@@ -12,13 +12,12 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  *
  * ## What this tab authors (plan decision D4)
  *
- * Exactly the nine LIVE keys named by \Drupal\bioland\BiolandThemeContract,
+ * Exactly the eight LIVE keys named by \Drupal\bioland\BiolandThemeContract,
  * and nothing else:
  *
  * - color.primary, color.secondary            (hex colour pickers, required)
  * - back_ground.secondary                     (hex colour picker, required)
  * - home_page_widgets.columns                 (widget selects; hidden on BSL)
- * - mega_menu.forums                          (checkbox)
  * - mega_menu.max_columns                     (1-6)
  * - mega_menu.max_rows_per_column             (>= 0; 0 means unlimited)
  * - mega_menu.horizontal_card_max             (1-6)
@@ -59,13 +58,13 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  *    invisibly, and D2's fall-through chain would stop being reachable.
  *
  * When the seed cannot be read at all -- getEffectiveTheme() returns NULL on
- * any HTTP or parse error -- the editor gets a warning and the colour fields
- * fall back to the network defaults in self::FALLBACK_COLORS instead of
- * rendering empty. Empty is the dangerous outcome, not the safe one: core's
- * Color::validateColor() turns an empty `#type => color` value into #000000,
- * so a silent seed failure followed by one Save would black out the site's
- * brand colours permanently. This changes defaults only -- still zero config
- * writes on GET, so D5 holds.
+ * any HTTP or parse error -- the colour fields fall back to this flavor's
+ * built-in network defaults (self::FALLBACK_COLORS_BL2 /
+ * self::FALLBACK_COLORS_BSL) instead of rendering empty. Empty is the
+ * dangerous outcome, not the safe one: core's Color::validateColor() turns an
+ * empty `#type => color` value into #000000, so a silent seed failure followed
+ * by one Save would black out the site's brand colours permanently. This
+ * changes defaults only -- still zero config writes on GET, so D5 holds.
  *
  * The reset control (plan decision RS) is the way back: it clears the whole
  * `theme` key so the site falls through the D2 chain again
@@ -79,6 +78,10 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  * home page does not use the column mechanism at all, and its live one-column
  * layout would fail the W2a bound. Precedent: BiolandHomeWidgetsForm:56 (build)
  * and :379 (submit).
+ *
+ * The same flag also picks the built-in colour fallbacks: a BSL site with no
+ * authored theme and no reachable seed shows the BSL palette, never bl2's.
+ * See self::FALLBACK_COLORS_BSL.
  *
  * @see \Drupal\bioland\BiolandThemeContract
  * @see \Drupal\bioland\BiolandHomeWidgetRegistry
@@ -114,7 +117,6 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     BiolandThemeContract::KEY_COLOR_SECONDARY => 'color.secondary',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => 'backGround.secondary',
     BiolandThemeContract::KEY_HOME_PAGE_WIDGETS_COLUMNS => 'homePageWidgets.columns',
-    BiolandThemeContract::KEY_MEGA_MENU_FORUMS => 'megaMenu.forums',
     BiolandThemeContract::KEY_MEGA_MENU_MAX_COLUMNS => 'megaMenu.maxColumns',
     BiolandThemeContract::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN => 'megaMenu.maxRowsPerColumn',
     BiolandThemeContract::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX => 'megaMenu.horizontalCardMax',
@@ -122,7 +124,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   ];
 
   /**
-   * Last-resort colours used when the dmsm seed cannot be read.
+   * Last-resort colours for a bl2 site when the dmsm seed cannot be read.
    *
    * getEffectiveTheme() returns NULL on any HTTP or parse error, leaving an
    * unseeded colour field with no default. These fields are `#type => color`
@@ -132,6 +134,10 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * first Save would write black brand colours and D5's seed-on-save would
    * make that permanent. A dmsm hiccup during authoring must not be able to
    * black out a site.
+   *
+   * There is one set per network flavor, chosen by isBiosafetyLand(): a BSL
+   * site falling back to bl2 blue would be just as wrong as falling back to
+   * black, only harder to notice. See self::FALLBACK_COLORS_BSL.
    *
    * These are the live Bioland network defaults, read from the network
    * document itself rather than from a test fixture. Fetched 2026-08-06 from
@@ -152,18 +158,51 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * never run -- pinning all ~211 sites to a private copy of the defaults,
    * which is the exact failure D5 exists to prevent.
    */
-  protected const FALLBACK_COLORS = [
+  protected const FALLBACK_COLORS_BL2 = [
     BiolandThemeContract::KEY_COLOR_PRIMARY => '#009edb',
     BiolandThemeContract::KEY_COLOR_SECONDARY => '#16c56e',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
   ];
 
   /**
-   * Memoized result of seedFromDmsm(), or NULL before the first call.
+   * Last-resort colours for a BSL site when the dmsm seed cannot be read.
+   *
+   * The BSL counterpart of self::FALLBACK_COLORS_BL2 -- every reason given
+   * there for having built-in colours at all, for keeping them lower-case,
+   * and for keeping them out of config/install applies here unchanged.
+   *
+   * Fetched 2026-08-07 from `GET https://dmsm.cbddev.xyz/api/config/dev/bsl`,
+   * whose network-level `config.theme.color` block reads `primary` #fa6938
+   * and `secondary` #428BCA. dev is the only DMSM environment publishing a
+   * bsl network config -- `prod/bsl` and `staging/bsl` both return HTTP 204 --
+   * so unlike the bl2 set these come from the dev projection of the same
+   * document, not from prod.
+   *
+   * `back_ground.secondary` is #f2f2f2 on both networks: the bsl document
+   * carries the same neutral grey, so this is a shared value rather than a
+   * bl2 leak.
+   */
+  protected const FALLBACK_COLORS_BSL = [
+    BiolandThemeContract::KEY_COLOR_PRIMARY => '#fa6938',
+    BiolandThemeContract::KEY_COLOR_SECONDARY => '#428bca',
+    BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
+  ];
+
+  /**
+   * The memoized PRE-fallback seed map, or NULL before the first call.
    *
    * getEffectiveTheme() is a synchronous HTTP call with a 10 second timeout.
    * Without this, an unseeded tab would pay for it on the initial GET and
    * again on every validation rebuild within the same request.
+   *
+   * What is cached is deliberately the seed BEFORE withFallbackColors() runs,
+   * because the fallbacks are flavor-dependent and this cache is not keyed by
+   * flavor: caching the finished map would let a second seedFromDmsm() call
+   * with a different $isBiosafetyLand hand back the first flavor's palette.
+   * seedFromDmsm() therefore applies the fallbacks on every call, cache hit
+   * included. `[]` is a real cached value (the seed was unreadable, or defined
+   * none of the D4 keys) and is distinct from NULL, so an unreadable seed is
+   * still fetched only once.
    *
    * @var array|null
    */
@@ -284,13 +323,6 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     $keepsCurrentValue = $this->t('Leave blank to keep the current value. Use @reset to remove it.', [
       '@reset' => $this->t('Reset to network default'),
     ]);
-    $form['theme']['mega_menu']['forums'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Show Forums in the mega menu'),
-      // Presence, not truthiness: an authored FALSE is a real value and must
-      // not fall back to a default.
-      '#default_value' => (bool) ($this->leaf($defaults, 'mega_menu.forums') ?? FALSE),
-    ];
     $form['theme']['mega_menu']['max_columns'] = [
       '#type' => 'number',
       '#title' => $this->t('Maximum columns'),
@@ -463,13 +495,23 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
 
     // D7: never written where the field was never rendered.
     if (isset($form['theme']['home_page_widgets']['columns'])) {
-      $config->set(
-        'theme.home_page_widgets.columns',
-        $this->normalizeColumns($values['home_page_widgets']['columns'] ?? [])
-      );
+      $columns = $this->normalizeColumns($values['home_page_widgets']['columns'] ?? []);
+      // Three empty selects mean "the editor authored nothing", not "the
+      // editor chose no widgets" -- the same blank-guard doctrine the three
+      // optional numerics use below, applied to the one field whose blank
+      // shape is not '' but [[], [], []].
+      //
+      // The case this exists for: when the dmsm seed cannot be read, the three
+      // column selects render with no options selected. A blind Save then
+      // posts three empty columns, which passes every validator (W2a counts
+      // the OUTER length, and three empty columns is still three columns) and
+      // pins the site to zero home page widgets with no error shown. Skipping
+      // the set() leaves whatever was authored exactly as it was, and RS's
+      // "Reset to network default" stays the deliberate way to un-author.
+      if (array_filter($columns)) {
+        $config->set('theme.home_page_widgets.columns', $columns);
+      }
     }
-
-    $config->set('theme.mega_menu.forums', (bool) ($this->leaf($values, 'mega_menu.forums') ?? FALSE));
 
     // The three optional numerics: a blank field is NOT a zero. `(int) ''` is
     // 0, which for max_columns and horizontal_card_max is outside D3's 1-6
@@ -564,7 +606,8 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * @return array
    *   The snake_case theme defaults. Never empty: when nothing is authored
    *   seedFromDmsm() takes over, and that always returns at least the three
-   *   colour keys (from self::FALLBACK_COLORS when the seed cannot be read).
+   *   colour keys (from this flavor's built-in fallbacks when the seed cannot
+   *   be read).
    */
   protected function themeDefaults($config): array {
     $authored = $config->get(self::CONFIG_KEY);
@@ -573,7 +616,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       return $authored;
     }
 
-    return $this->seedFromDmsm();
+    return $this->seedFromDmsm($this->isBiosafetyLand($config));
   }
 
   /**
@@ -582,24 +625,36 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * Read-only -- still no config write on GET, so D5 is intact. Anything the
    * effective theme does not define is absent from the result and the
    * corresponding field falls back to its own empty default, with ONE
-   * exception: the three colour keys always end up populated, from
-   * self::FALLBACK_COLORS when the seed does not supply them. See that
-   * constant for why an empty colour field is not a safe outcome.
+   * exception: the three colour keys always end up populated, from this
+   * flavor's built-in fallbacks when the seed does not supply them. See
+   * self::FALLBACK_COLORS_BL2 for why an empty colour field is not a safe
+   * outcome.
    *
-   * When the seed is unavailable outright the editor is warned, because the
-   * form can no longer show them what this site currently renders and a
-   * blind Save would author something they never saw.
+   * An unreadable seed is SILENT by design. Sites are pre-seeded by an ops
+   * script, so a missing seed here is a rare infrastructure blip rather than
+   * something the editor can act on, and the built-in flavor defaults already
+   * put a correct network palette in front of them -- a warning telling them
+   * to "check every value" would be advice about values that are already
+   * right, on every unseeded page load.
    *
    * Memoized (M5): the underlying call is a synchronous 10 second HTTP
-   * request, and the build leg runs again on every validation rebuild.
+   * request, and the build leg runs again on every validation rebuild. Only
+   * the PRE-fallback seed is cached; withFallbackColors() runs on every call,
+   * cache hit included, so the flavor argument always decides the palette.
+   * See self::$seedCache.
+   *
+   * @param bool $isBiosafetyLand
+   *   TRUE on a BSL site, which picks the BSL colour fallbacks. Required
+   *   rather than defaulted: a caller that forgets would silently hand a BSL
+   *   editor the bl2 palette.
    *
    * @return array
    *   The snake_case defaults. Never empty: the colour keys are always
    *   present.
    */
-  protected function seedFromDmsm(): array {
+  protected function seedFromDmsm(bool $isBiosafetyLand): array {
     if ($this->seedCache !== NULL) {
-      return $this->seedCache;
+      return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
     }
 
     $service = $this->dmsmConfigService();
@@ -608,9 +663,14 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       : NULL;
 
     if (!is_array($effective)) {
-      $this->messenger()->addWarning($this->t('The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving.'));
+      // Silent to the editor, never to the operator: the built-in defaults
+      // shown in their place are correct for this network, so a warning on
+      // screen would be noise, but nothing else records that the seed failed.
+      \Drupal::logger('bioland')->warning('Could not read the dmsm theme seed for this site; the Theme tab is falling back to the built-in network colour defaults for this flavor.');
 
-      return $this->seedCache = $this->withFallbackColors([]);
+      $this->seedCache = [];
+
+      return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
     }
 
     $defaults = [];
@@ -635,11 +695,13 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       unset($cursor);
     }
 
-    return $this->seedCache = $this->withFallbackColors($defaults);
+    $this->seedCache = $defaults;
+
+    return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
   }
 
   /**
-   * Fills any colour key the seed did not supply from FALLBACK_COLORS.
+   * Fills any colour key the seed did not supply from the flavor's fallbacks.
    *
    * Per leaf, and only for the three colour keys: a seed that carries
    * `color.primary` but not `back_ground.secondary` keeps its own primary and
@@ -649,12 +711,17 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    *
    * @param array $defaults
    *   The snake_case defaults built from the seed.
+   * @param bool $isBiosafetyLand
+   *   TRUE on a BSL site, selecting self::FALLBACK_COLORS_BSL over
+   *   self::FALLBACK_COLORS_BL2.
    *
    * @return array
    *   The same defaults with every colour key present.
    */
-  protected function withFallbackColors(array $defaults): array {
-    foreach (self::FALLBACK_COLORS as $path => $color) {
+  protected function withFallbackColors(array $defaults, bool $isBiosafetyLand): array {
+    $fallbacks = $isBiosafetyLand ? self::FALLBACK_COLORS_BSL : self::FALLBACK_COLORS_BL2;
+
+    foreach ($fallbacks as $path => $color) {
       [$group, $key] = explode('.', $path);
       if (!isset($defaults[$group]) || !is_array($defaults[$group])) {
         $defaults[$group] = [];

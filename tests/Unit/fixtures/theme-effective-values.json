@@ -19,8 +19,13 @@
     "    PHP by BiolandThemeFormTest against",
     "    BiolandDmsmConfigService::getEffectiveTheme(), and in vitest by p03-01.",
     "  - expectedSeedDefaults : the Drupal snake_case config depth (back_ground,",
-    "    home_page_widgets, mega_menu, max_lang_before_wrap), limited to the nine",
+    "    home_page_widgets, mega_menu, max_lang_before_wrap), limited to the eight",
     "    live D4 keys. Asserted in PHP only -- head never sees these spellings.",
+    "",
+    "The two depths are NOT the same key set. megaMenu.forums is still a real leaf",
+    "of the dmsm document and stays in every expectedEffectiveTheme block, but the",
+    "Theme tab no longer authors theme.mega_menu.forums, so it is absent from every",
+    "expectedSeedDefaults block. Do not 'fix' that asymmetry -- it is the contract.",
     "",
     "Values are synthetic documents in the real production shapes. The one real",
     "value carried through deliberately is be's authored hero.primary[1] =",
@@ -77,7 +82,7 @@
         "home_page_widgets": {
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
         "i18n": {"max_lang_before_wrap": 6}
       }
     },
@@ -118,7 +123,7 @@
         "home_page_widgets": {
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
         "i18n": {"max_lang_before_wrap": 6}
       }
     },
@@ -169,13 +174,13 @@
         "home_page_widgets": {
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {"forums": true, "max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
         "i18n": {"max_lang_before_wrap": 6}
       }
     },
     {
       "id": "bsl-zero-and-false",
-      "description": "The bsl multiSite block, which is the only place in the whole corpus where megaMenu.maxRowsPerColumn is 0 (meaning unlimited) and megaMenu.forums is false. Both are AUTHORED values and must survive as 0 and false -- presence, not truthiness. Its one-column layout is the live BCH shape; the Theme tab hides the columns field entirely on bsl (D7), so W2a's exactly-3 bound is never applied to it.",
+      "description": "The bsl multiSite block, which is the only place in the whole corpus where megaMenu.maxRowsPerColumn is 0 (meaning unlimited) and megaMenu.forums is false. Both are AUTHORED values and must survive as 0 and false at the head depth -- presence, not truthiness; only maxRowsPerColumn reaches the Drupal depth, since the Theme tab no longer authors forums. Its one-column layout is the live BCH shape; the Theme tab hides the columns field entirely on bsl (D7), so W2a's exactly-3 bound is never applied to it.",
       "input": {
         "runTime": {
           "theme": {
@@ -210,7 +215,7 @@
         "home_page_widgets": {
           "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]]
         },
-        "mega_menu": {"forums": false, "max_columns": 6, "max_rows_per_column": 0, "horizontal_card_max": 3},
+        "mega_menu": {"max_columns": 6, "max_rows_per_column": 0, "horizontal_card_max": 3},
         "i18n": {"max_lang_before_wrap": 6}
       }
     }

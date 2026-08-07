@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Colún @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Taispeáin na fóraim sa mhórroghchlár"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Uaslíon colún"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Ní mór giuirléidí an leathanaigh bhaile a leagan amach i @count colún go díreach."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Níorbh fhéidir téama réamhshocraithe an líonra a lódáil, mar sin taispeánann na réimsí seo réamhshocruithe ionsuite. Seiceáil gach luach sula sábhálann tú."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Cuir isteach uimhir idir @min agus @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Cineál ábhair"
 msgid "The content type this listing shows."
 msgstr "An cineál ábhair a thaispeánann an liosta seo."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Cumasaigh naisc roghchláir comhpháirte"
+msgid "Enable Mega Menu components"
+msgstr "Cumasaigh comhpháirteanna an ollroghchláir"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

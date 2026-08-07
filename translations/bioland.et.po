@@ -1812,10 +1812,6 @@ msgid "Column @number"
 msgstr "Veerg @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Näita foorumeid megamenüüs"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Veergude ülempiir"
 
@@ -1856,10 +1852,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Avalehe vidinad peavad olema paigutatud täpselt @count veergu."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Võrgu vaiketeemat ei õnnestunud laadida, seega kuvavad need väljad sisseehitatud vaikeväärtusi. Kontrollige enne salvestamist iga väärtust."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Sisestage arv vahemikus @min kuni @max."
 
@@ -1874,8 +1866,8 @@ msgstr "Sisutüüp"
 msgid "The content type this listing shows."
 msgstr "Sisutüüp, mida see loend kuvab."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Luba komponendi menüülingid"
+msgid "Enable Mega Menu components"
+msgstr "Luba megamenüü komponendid"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

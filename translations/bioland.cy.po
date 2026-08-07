@@ -1830,10 +1830,6 @@ msgid "Column @number"
 msgstr "Colofn @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Dangos Fforymau yn y mega ddewislen"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Uchafswm colofnau"
 
@@ -1874,10 +1870,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Rhaid trefnu teclynnau'r dudalen gartref mewn union @count colofn."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Nid oedd modd llwytho thema ddiofyn y rhwydwaith, felly mae'r meysydd hyn yn dangos gwerthoedd diofyn adeiledig. Gwiriwch bob gwerth cyn cadw."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Rhowch rif rhwng @min a @max."
 
@@ -1892,8 +1884,8 @@ msgstr "Math o gynnwys"
 msgid "The content type this listing shows."
 msgstr "Y math o gynnwys y mae'r rhestr hon yn ei ddangos."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Galluogi dolenni dewislen cydran"
+msgid "Enable Mega Menu components"
+msgstr "Galluogi cydrannau'r mega ddewislen"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."

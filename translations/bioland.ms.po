@@ -1741,10 +1741,6 @@ msgid "Column @number"
 msgstr "Lajur @number"
 
 #: src/Form/BiolandThemeForm.php
-msgid "Show Forums in the mega menu"
-msgstr "Tunjukkan Forum dalam mega menu"
-
-#: src/Form/BiolandThemeForm.php
 msgid "Maximum columns"
 msgstr "Bilangan lajur maksimum"
 
@@ -1785,10 +1781,6 @@ msgid "The home page widgets must be arranged in exactly @count columns."
 msgstr "Widget halaman utama mesti disusun dalam tepat @count lajur."
 
 #: src/Form/BiolandThemeForm.php
-msgid "The network default theme could not be loaded, so these fields show built-in defaults. Check every value before saving."
-msgstr "Tema lalai rangkaian tidak dapat dimuatkan, jadi medan ini memaparkan nilai lalai terbina dalam. Semak setiap nilai sebelum menyimpan."
-
-#: src/Form/BiolandThemeForm.php
 msgid "Enter a number between @min and @max."
 msgstr "Masukkan nombor antara @min dan @max."
 
@@ -1803,8 +1795,8 @@ msgstr "Jenis kandungan"
 msgid "The content type this listing shows."
 msgstr "Jenis kandungan yang dipaparkan oleh senarai ini."
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Enable Component Menu Links"
-msgstr "Dayakan pautan menu komponen"
+msgid "Enable Mega Menu components"
+msgstr "Dayakan komponen mega menu"
 
 #: src/Form/BiolandAdminSettingsForm.php
 msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
