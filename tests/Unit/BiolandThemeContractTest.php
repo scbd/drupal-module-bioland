@@ -344,4 +344,66 @@ class BiolandThemeContractTest extends TestCase {
     }
   }
 
+  /**
+   * The CKEditor stylesheet's baked-in primary is the bl2 fallback constant.
+   *
+   * CSS cannot reference a PHP constant, so the value is written out in both
+   * places and this is the only thing keeping them in step. It matters because
+   * the stylesheet's declaration is what an editing surface falls back to when
+   * bioland_form_alter()'s override is not on the page.
+   */
+  public function testCkeditorStylesheetDefaultsToTheBl2FallbackPrimary(): void {
+    $css = file_get_contents(dirname(__DIR__, 2) . '/css/bioland.ckeditor.css');
+
+    $this->assertMatchesRegularExpression(
+      '/\.ck\.ck-content\s*\{\s*--bs-primary:\s*' . preg_quote(BiolandThemeContract::FALLBACK_PRIMARY_BL2, '/') . ';/',
+      $css,
+      'css/bioland.ckeditor.css must default --bs-primary to BiolandThemeContract::FALLBACK_PRIMARY_BL2.'
+    );
+  }
+
+  /**
+   * The node form injects the per-site primary over that baked-in default.
+   *
+   * A structural pin, not a behavioural one: bioland_form_alter() is a
+   * ~700-line procedural hook that reaches for the current user, the route
+   * match and several services long before it gets here, so calling it would
+   * cost a container harness far larger than the six lines under test. What
+   * can still drift silently is pinned instead — that the colour comes from
+   * the validated accessor rather than straight from config, that the style
+   * element keeps its html_head key, and that the config cache tag is there so
+   * saving the Theme tab actually refreshes the form.
+   */
+  public function testNodeFormOverridesTheCkeditorPrimaryFromSettings(): void {
+    $module = file_get_contents(dirname(__DIR__, 2) . '/bioland.module');
+    $attach = strstr($module, "\$form['#attached']['library'][] = 'bioland/ckeditor_content_styles';");
+    $this->assertNotFalse($attach, 'The ckeditor_content_styles attach site has moved or gone.');
+    // Each marker below appears exactly once in the whole file, so the window
+    // is only here to keep the assertions anchored to the attach site rather
+    // than passing on something elsewhere in the hook. Sized with room for the
+    // comments to grow.
+    $block = substr($attach, 0, 2500);
+
+    $this->assertStringContainsString(
+      "\\Drupal::service('bioland.component_menu_form_mode')->primaryColor()",
+      $block,
+      'The colour must come from the validated accessor, never straight from config.'
+    );
+    $this->assertStringContainsString(
+      "'body .ck.ck-content{--bs-primary:'",
+      $block,
+      'The override must OUT-SPECIFY the stylesheet (body .ck.ck-content, 0,2,1): html_head renders before the library CSS, so at equal specificity the stylesheet wins and the override is inert.'
+    );
+    $this->assertStringContainsString(
+      "'bioland-ckeditor-primary'",
+      $block,
+      'The html_head element needs its key, or repeated attaches stack up.'
+    );
+    $this->assertStringContainsString(
+      "\$form['#cache']['tags'][] = 'config:bioland.settings';",
+      $block,
+      'Defensive metadata: the form is currently uncacheable via its CSRF token, but the config dependency should stay declared.'
+    );
+  }
+
 }

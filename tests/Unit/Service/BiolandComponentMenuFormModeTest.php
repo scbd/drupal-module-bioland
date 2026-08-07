@@ -7,6 +7,7 @@ use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\bioland\BiolandThemeContract;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 use Drupal\bioland\Service\BiolandComponentRegistry;
 use PHPUnit\Framework\TestCase;
@@ -1388,11 +1389,60 @@ class BiolandComponentMenuFormModeTest extends TestCase {
         ->apply($form, $this->createFormState(NULL, 'component', TRUE));
 
       $this->assertSame(
-        'color: ' . BiolandComponentMenuFormMode::DEFAULT_PRIMARY_COLOR . ';',
+        'color: ' . BiolandThemeContract::FALLBACK_PRIMARY_BL2 . ';',
         $form[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#description']['preview']['#attributes']['style'],
         'Only a six-digit hex colour is ever interpolated into an inline style.'
       );
     }
+  }
+
+  /**
+   * An authored primary wins on either flavour, whitespace-padded or not.
+   */
+  public function testPrimaryColourPrefersTheAuthoredValueOnEitherFlavour(): void {
+    foreach ([FALSE, TRUE] as $isBsl) {
+      $this->assertSame(
+        '#1b7b3a',
+        $this->createService($isBsl, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, '#1b7b3a')->primaryColor(),
+        'A valid authored colour is never overridden by a flavour default.'
+      );
+      // The trim() is load-bearing on the accept path: a hand-edited config
+      // export with stray whitespace must still count as the authored colour.
+      $this->assertSame(
+        '#1b7b3a',
+        $this->createService($isBsl, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, '  #1b7b3a  ')->primaryColor(),
+        'A padded authored colour is trimmed and accepted, not kicked to the fallback.'
+      );
+    }
+  }
+
+  /**
+   * With nothing usable authored, the fallback follows the site flavour.
+   *
+   * A BSL site falling back to bl2 blue would be wrong in exactly the way a
+   * black fallback is, only harder to notice — so the pair is asserted against
+   * BiolandThemeContract, the single place BiolandThemeForm's colour pickers
+   * read the same two values from.
+   */
+  public function testPrimaryColourFallbackFollowsTheSiteFlavour(): void {
+    // NULL is the unauthored site (no `theme` key at all); the rest are the
+    // shapes a settings.php override or a hand-edited export can produce.
+    foreach ([NULL, '', 'red', '#009ed', '#fa6938; background:url(evil)'] as $stored) {
+      $this->assertSame(
+        BiolandThemeContract::FALLBACK_PRIMARY_BSL,
+        $this->createService(TRUE, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, $stored)->primaryColor()
+      );
+      $this->assertSame(
+        BiolandThemeContract::FALLBACK_PRIMARY_BL2,
+        $this->createService(FALSE, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, $stored)->primaryColor()
+      );
+    }
+
+    $this->assertNotSame(
+      BiolandThemeContract::FALLBACK_PRIMARY_BL2,
+      BiolandThemeContract::FALLBACK_PRIMARY_BSL,
+      'The two flavour defaults must stay distinct, or the test above proves nothing.'
+    );
   }
 
   /**

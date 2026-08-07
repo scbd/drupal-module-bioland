@@ -32,6 +32,14 @@ namespace Drupal\bioland;
  * camelCase only rewrites `config.runTime.biolandSettings`. These keys reach
  * head only once p03-01 lands the precedence leg.
  *
+ * Besides the key names, this class also owns the two per-flavor fallback
+ * PRIMARY colours (self::FALLBACK_PRIMARY_BL2 / self::FALLBACK_PRIMARY_BSL).
+ * The pair is shared by the Theme tab's pickers and by
+ * BiolandComponentMenuFormMode::primaryColor(); the bl2 value is additionally
+ * baked into css/bioland.ckeditor.css. None of those consumers owns the
+ * others, so the constants live here; see them for why only `color.primary`
+ * was hoisted.
+ *
  * @see \Drupal\Tests\bioland\Unit\BiolandThemeContractTest
  */
 final class BiolandThemeContract {
@@ -134,5 +142,46 @@ final class BiolandThemeContract {
    * the enforcement logic lives in p02-01's validators, not here.
    */
   public const HOME_PAGE_WIDGETS_COLUMN_COUNT = 3;
+
+  /**
+   * Last-resort `color.primary` for a bl2 site with nothing authored.
+   *
+   * The live Bioland network default (UN blue), read from the network document
+   * itself rather than from a test fixture. Fetched 2026-08-06 from the
+   * public-allowlisted projection `GET https://dmsm.cbddev.xyz/api/config/prod/bl2`,
+   * whose network-level `config.theme` block reads `color.primary` #009edb --
+   * kept lower-case because `<input type="color">` normalizes to lower-case and
+   * the stored value must round-trip. bl2 is the only prod network
+   * (`prod/bsl`, `prod/chm` and `prod/bch` all return HTTP 204).
+   *
+   * Hoisted here, out of BiolandThemeForm::FALLBACK_COLORS_BL2, because three
+   * consumers that do not own each other need the identical value: that form's
+   * colour pickers, BiolandComponentMenuFormMode::primaryColor() (the arrow
+   * preview and the CKEditor override), and css/bioland.ckeditor.css's baked-in
+   * `--bs-primary`. Only `color.primary` is hoisted -- `color.secondary` and
+   * `back_ground.secondary` are read by the Theme tab alone, so duplicating
+   * them here would add a second source of truth for no consumer.
+   *
+   * @see \Drupal\bioland\Form\BiolandThemeForm::FALLBACK_COLORS_BL2
+   */
+  public const FALLBACK_PRIMARY_BL2 = '#009edb';
+
+  /**
+   * Last-resort `color.primary` for a BSL site with nothing authored.
+   *
+   * The BSL counterpart of self::FALLBACK_PRIMARY_BL2; every reason given
+   * there for having a built-in colour at all, and for keeping it lower-case,
+   * applies unchanged. A BSL site falling back to bl2 blue would be wrong in
+   * the same way a black fallback is, only harder to notice.
+   *
+   * Fetched 2026-08-07 from `GET https://dmsm.cbddev.xyz/api/config/dev/bsl`,
+   * whose network-level `config.theme.color` block reads `primary` #fa6938.
+   * dev is the only DMSM environment publishing a bsl network config --
+   * `prod/bsl` and `staging/bsl` both return HTTP 204 -- so unlike the bl2
+   * value this comes from the dev projection of the same document, not prod.
+   *
+   * @see \Drupal\bioland\Form\BiolandThemeForm::FALLBACK_COLORS_BSL
+   */
+  public const FALLBACK_PRIMARY_BSL = '#fa6938';
 
 }

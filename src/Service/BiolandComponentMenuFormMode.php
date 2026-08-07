@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\bioland\BiolandThemeContract;
 
 /**
  * Turns a menu_link_content form into the Component-menu form.
@@ -138,15 +139,6 @@ class BiolandComponentMenuFormMode {
    * The largest rows-per-column cap the form offers.
    */
   public const MAX_ROWS_LIMIT = 12;
-
-  /**
-   * The colour the arrow preview falls back to.
-   *
-   * The Bioland network default (UN blue), the same constant
-   * css/bioland.ckeditor.css defaults --bs-primary to for the same reason: the
-   * per-site primary is a DMSM value this module cannot always resolve.
-   */
-  public const DEFAULT_PRIMARY_COLOR = '#009edb';
 
   /**
    * Form state key holding the stored binding slugs, for change detection.
@@ -620,9 +612,13 @@ class BiolandComponentMenuFormMode {
    * writes — and re-validates its shape here rather than trusting it: the
    * colour is interpolated into an inline style attribute, and config can also
    * arrive from a settings.php override or a hand-edited export, neither of
-   * which passes through that form's validator. Anything not exactly six hex
-   * digits falls back to the network default, mirroring what
-   * css/bioland.ckeditor.css does with the same colour for the same reason.
+   * which passes through that form's validator.
+   *
+   * Anything not exactly six hex digits falls back to this site's network
+   * default, which is flavor-dependent: BSL orange, never bl2 blue, on a BSL
+   * site. The pair is BiolandThemeContract's, the same one BiolandThemeForm's
+   * colour pickers fall back to, so an unauthored site previews here exactly
+   * what that tab would offer it.
    *
    * @return string
    *   A validated "#rrggbb" colour, never an arbitrary config string.
@@ -631,7 +627,13 @@ class BiolandComponentMenuFormMode {
     $value = $this->configFactory->get('bioland.settings')->get('theme.color.primary');
     $value = is_string($value) ? trim($value) : '';
 
-    return preg_match('/^#[0-9A-Fa-f]{6}\z/', $value) === 1 ? $value : self::DEFAULT_PRIMARY_COLOR;
+    if (preg_match('/^#[0-9A-Fa-f]{6}\z/', $value) === 1) {
+      return $value;
+    }
+
+    return $this->isBsl()
+      ? BiolandThemeContract::FALLBACK_PRIMARY_BSL
+      : BiolandThemeContract::FALLBACK_PRIMARY_BL2;
   }
 
   /**
@@ -644,8 +646,8 @@ class BiolandComponentMenuFormMode {
    * Best effort until the theme precedence leg lands: head still resolves its
    * colours from config.theme || config.runTime.theme (see the note on the
    * theme mapping in config/schema/bioland.schema.yml), so a site whose
-   * primary comes from the DMSM runTime block previews the network default
-   * here while the frontend renders the DMSM colour.
+   * primary comes from the DMSM runTime block previews this flavor's network
+   * default here while the frontend renders the DMSM colour.
    *
    * @return array
    *   An html_tag render array.

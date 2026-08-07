@@ -147,9 +147,12 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * #16c56e and `backGround.secondary` #F2F2F2 -- kept lower-case here
    * because `<input type="color">` normalizes to lower-case and the stored
    * value must round-trip. bl2 is the only prod network (`prod/bsl`,
-   * `prod/chm` and `prod/bch` all return HTTP 204). `#009edb` is separately
-   * documented in-repo as "the Bioland default (UN blue)"
-   * (css/bioland.ckeditor.css:21-26).
+   * `prod/chm` and `prod/bch` all return HTTP 204).
+   *
+   * The primary is NOT spelled out here: this tab is no longer its only
+   * consumer, so it lives on BiolandThemeContract::FALLBACK_PRIMARY_BL2 and is
+   * referenced from there. The other two are read by this tab alone and stay
+   * local.
    *
    * They deliberately do NOT live in config/install/bioland.settings.yml.
    * That file ships no `theme` block at all, and adding one would make
@@ -159,7 +162,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * which is the exact failure D5 exists to prevent.
    */
   protected const FALLBACK_COLORS_BL2 = [
-    BiolandThemeContract::KEY_COLOR_PRIMARY => '#009edb',
+    BiolandThemeContract::KEY_COLOR_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
     BiolandThemeContract::KEY_COLOR_SECONDARY => '#16c56e',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
   ];
@@ -176,14 +179,16 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * and `secondary` #428BCA. dev is the only DMSM environment publishing a
    * bsl network config -- `prod/bsl` and `staging/bsl` both return HTTP 204 --
    * so unlike the bl2 set these come from the dev projection of the same
-   * document, not from prod.
+   * document, not from prod. The primary is referenced from
+   * BiolandThemeContract::FALLBACK_PRIMARY_BSL for the reason given on the bl2
+   * set above.
    *
    * `back_ground.secondary` is #f2f2f2 on both networks: the bsl document
    * carries the same neutral grey, so this is a shared value rather than a
    * bl2 leak.
    */
   protected const FALLBACK_COLORS_BSL = [
-    BiolandThemeContract::KEY_COLOR_PRIMARY => '#fa6938',
+    BiolandThemeContract::KEY_COLOR_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BSL,
     BiolandThemeContract::KEY_COLOR_SECONDARY => '#428bca',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
   ];

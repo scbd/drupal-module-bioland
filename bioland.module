@@ -199,6 +199,39 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // styles the live editing area. Fonts are intentionally left untouched.
   $form['#attached']['library'][] = 'bioland/ckeditor_content_styles';
 
+  // The underline colour is the per-site primary, which a shared CSS file
+  // cannot know, so the stylesheet bakes in a default and this overrides it.
+  // primaryColor() has already validated the value down to six hex digits and
+  // fallen back to this flavor's network default, so nothing arbitrary from
+  // config reaches the style element. Emitted unconditionally rather than only
+  // when it differs from the baked-in default: one always-present declaration
+  // is cheaper to reason about than a comparison against a literal duplicated
+  // out of the CSS file.
+  //
+  // The selector MUST out-specify the stylesheet's `.ck.ck-content` (0,2,0):
+  // html_head renders at <head-placeholder>, BEFORE <css-placeholder>, in
+  // core, Claro and default_admin html.html.twig alike, so at equal
+  // specificity the later library stylesheet wins and this override would be
+  // inert. `body .ck.ck-content` (0,2,1) wins deterministically regardless of
+  // head order.
+  $bioland_primary = \Drupal::service('bioland.component_menu_form_mode')->primaryColor();
+  $form['#attached']['html_head'][] = [
+    [
+      '#type' => 'html_tag',
+      '#tag' => 'style',
+      '#value' => 'body .ck.ck-content{--bs-primary:' . $bioland_primary . ';}',
+    ],
+    'bioland-ckeditor-primary',
+  ];
+
+  // Defensive cache metadata: the style above is read from bioland.settings,
+  // so a cached copy of this form must be invalidated by a Theme tab save.
+  // Today the form is never dynamic-page-cached anyway (the CSRF form_token
+  // carries max-age 0 for authenticated users), so this is cheap insurance,
+  // not a live dependency. Same precedent as
+  // BiolandComponentMenuFormMode::apply().
+  $form['#cache']['tags'][] = 'config:bioland.settings';
+
   // Add custom submit handler to redirect with query parameter.
   $form['actions']['submit']['#submit'][] = 'bioland_node_content_form_submit';
 
