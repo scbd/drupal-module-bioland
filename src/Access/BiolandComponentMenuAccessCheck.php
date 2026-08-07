@@ -10,7 +10,7 @@ use Drupal\Core\Routing\Access\AccessInterface;
  * Gates the Component-menu add flow on the bioland.settings feature flag.
  *
  * WHY THIS IS A ROUTE ACCESS CHECK AND NOT A LOCAL-ACTION ALTER. The
- * "Add component menu link" button is the local action
+ * "Add Mega Menu component" button is the local action
  * bioland.menu_link_component_add, and core builds each local action's
  * '#access' by running the access manager against the action's own route (see
  * \Drupal\Core\Menu\LocalActionManager::getActionsForRoute()). Denying the

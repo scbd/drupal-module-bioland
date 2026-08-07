@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Ushbu menyu havolasi oddiy quyi havolalar ro'yxati o'rniga mega menyu komponentini ko'rsatadi."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Komponent menyu havolasini qo'shish"
+msgid "Add Mega Menu component"
+msgstr "Mega menyu komponentini qo'shish"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Komponent menyu havolalarini yoqish"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Menyuni boshqarish ekranida \"Komponent menyu havolasini qo'shish\" amalini ko‘rsatadi. Belgilanmagan bo‘lsa, amal va uning shakli mavjud bo‘lmaydi."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menyuni boshqarish ekranida \"Mega menyu komponentini qo'shish\" amalini ko‘rsatadi. Belgilanmagan bo‘lsa, amal va uning shakli mavjud bo‘lmaydi."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Sayt standarti"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Har ustunda maksimal yozuvlar; belgilanmasa sayt standarti amal qiladi."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Strelkani ko'rsatish"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Bo'lim sarlavhasidan keyin strelka ko'rsatadi."

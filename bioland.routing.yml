@@ -94,7 +94,7 @@ bioland.settings.admin:
   requirements:
     _role: 'administrator'
 
-# The dedicated "Add component menu link" flow. Deliberately a sibling of
+# The dedicated "Add Mega Menu component" flow. Deliberately a sibling of
 # core's entity.menu.add_link_form rather than a replacement: the regular add
 # path stays byte-identical. Permission-wise this mirrors core's
 # entity.menu.add_link_form exactly - _entity_create_access and nothing more -
@@ -112,7 +112,7 @@ bioland.menu_link_component.add:
   path: '/admin/structure/menu/manage/{menu}/add-component'
   defaults:
     _controller: '\Drupal\bioland\Controller\BiolandMenuController::addComponentLink'
-    _title: 'Add component menu link'
+    _title: 'Add Mega Menu component'
   requirements:
     _entity_create_access: 'menu_link_content'
     _bioland_component_menu_enabled: 'TRUE'

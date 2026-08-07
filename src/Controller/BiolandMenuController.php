@@ -10,7 +10,7 @@ use Drupal\system\MenuInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Serves the dedicated "Add component menu link" form.
+ * Serves the dedicated "Add Mega Menu component" form.
  *
  * A near-copy of core \Drupal\menu_link_content\Controller\MenuController::addLink():
  * create an unsaved menu_link_content entity with menu_name prefilled from the

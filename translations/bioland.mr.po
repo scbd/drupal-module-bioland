@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "ही मेनू लिंक उप-लिंकच्या साध्या यादीऐवजी मेगा मेनू घटक दाखवते."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "घटक मेनू दुवा जोडा"
+msgid "Add Mega Menu component"
+msgstr "मेगा मेनू घटक जोडा"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "घटक मेनू दुवे सक्षम करा"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "मेनू व्यवस्थापन स्क्रीनवर \"घटक मेनू दुवा जोडा\" क्रिया दर्शवते. अनचेक केल्यास, क्रिया आणि तिचा फॉर्म उपलब्ध नसतात."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "मेनू व्यवस्थापन स्क्रीनवर \"मेगा मेनू घटक जोडा\" क्रिया दर्शवते. अनचेक केल्यास, क्रिया आणि तिचा फॉर्म उपलब्ध नसतात."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "साइट डीफॉल्ट"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "प्रति स्तंभ कमाल नोंदी; सेट नसल्यास साइट डीफॉल्ट लागू होते."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "बाण दाखवा"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "विभागाच्या शीर्षकानंतर बाण दाखवते."

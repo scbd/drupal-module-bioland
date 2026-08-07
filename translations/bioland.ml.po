@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "ഈ മെനു ലിങ്ക് ഉപലിങ്കുകളുടെ ലളിതമായ പട്ടികയ്ക്ക് പകരം ഒരു മെഗാ മെനു ഘടകം കാണിക്കുന്നു."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "ഘടക മെനു ലിങ്ക് ചേർക്കുക"
+msgid "Add Mega Menu component"
+msgstr "മെഗാ മെനു ഘടകം ചേർക്കുക"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "ഘടക മെനു ലിങ്കുകൾ പ്രവർത്തനക്ഷമമാക്കുക"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "മെനു മാനേജ്മെന്റ് സ്ക്രീനിൽ \"ഘടക മെനു ലിങ്ക് ചേർക്കുക\" പ്രവർത്തനം കാണിക്കുന്നു. ചെക്ക് ചെയ്തിട്ടില്ലെങ്കിൽ, പ്രവർത്തനവും അതിന്റെ ഫോമും ലഭ്യമല്ല."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "മെനു മാനേജ്മെന്റ് സ്ക്രീനിൽ \"മെഗാ മെനു ഘടകം ചേർക്കുക\" പ്രവർത്തനം കാണിക്കുന്നു. ചെക്ക് ചെയ്തിട്ടില്ലെങ്കിൽ, പ്രവർത്തനവും അതിന്റെ ഫോമും ലഭ്യമല്ല."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "സൈറ്റ് സ്ഥിരം"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "ഓരോ കോളത്തിലും പട്ടികപ്പെടുത്തുന്ന പരമാവധി എൻട്രികൾ; സജ്ജമാക്കിയില്ലെങ്കിൽ സൈറ്റ് സ്ഥിരം ബാധകമാണ്."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "അമ്പടയാളം കാണിക്കുക"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "വിഭാഗ തലക്കെട്ടിനു ശേഷം ഒരു അമ്പടയാളം കാണിക്കുന്നു."

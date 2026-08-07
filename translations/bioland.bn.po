@@ -1625,8 +1625,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "এই মেনু লিঙ্কটি সাধারণ উপ-লিঙ্কের তালিকার পরিবর্তে একটি মেগা মেনু কম্পোনেন্ট প্রদর্শন করে।"
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "কম্পোনেন্ট মেনু লিঙ্ক যোগ করুন"
+msgid "Add Mega Menu component"
+msgstr "মেগা মেনু কম্পোনেন্ট যোগ করুন"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1727,8 +1727,8 @@ msgid "Enable Component Menu Links"
 msgstr "কম্পোনেন্ট মেনু লিঙ্ক সক্ষম করুন"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "মেনু পরিচালনার স্ক্রিনে \"কম্পোনেন্ট মেনু লিঙ্ক যোগ করুন\" ক্রিয়াটি দেখায়। আনচেক করা থাকলে ক্রিয়া এবং এর ফর্ম উপলব্ধ থাকে না।"
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "মেনু পরিচালনার স্ক্রিনে \"মেগা মেনু কম্পোনেন্ট যোগ করুন\" ক্রিয়াটি দেখায়। আনচেক করা থাকলে ক্রিয়া এবং এর ফর্ম উপলব্ধ থাকে না।"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1769,3 +1769,11 @@ msgstr "সাইট ডিফল্ট"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "প্রতি কলামে সর্বাধিক এন্ট্রি; নির্ধারিত না হলে সাইটের ডিফল্ট প্রযোজ্য।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "তীর দেখান"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "বিভাগের শিরোনামের পরে একটি তীর দেখায়।"

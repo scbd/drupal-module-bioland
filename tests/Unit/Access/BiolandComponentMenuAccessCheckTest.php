@@ -8,7 +8,7 @@ use Drupal\Core\Config\ImmutableConfig;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the on/off switch behind the "Add component menu link" action.
+ * Tests the on/off switch behind the "Add Mega Menu component" action.
  *
  * The switch is a route access check precisely so that one decision hides the
  * local action and closes its URL. Three things therefore have to hold, and

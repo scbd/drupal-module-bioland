@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Šī izvēlnes saite rāda mega izvēlnes komponentu, nevis vienkāršu apakšsaišu sarakstu."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Pievienot komponenta izvēlnes saiti"
+msgid "Add Mega Menu component"
+msgstr "Pievienot mega izvēlnes komponentu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Iespējot komponentu izvēlnes saites"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Rāda darbību \"Pievienot komponenta izvēlnes saiti\" izvēlnes pārvaldības ekrānā. Ja nav atzīmēts, darbība un tās veidlapa nav pieejamas."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Rāda darbību \"Pievienot mega izvēlnes komponentu\" izvēlnes pārvaldības ekrānā. Ja nav atzīmēts, darbība un tās veidlapa nav pieejamas."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Vietnes noklusējums"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maksimālais ierakstu skaits kolonnā; ja nav iestatīts, spēkā ir vietnes noklusējums."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Rādīt bultiņu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Rāda bultiņu aiz sadaļas virsraksta."

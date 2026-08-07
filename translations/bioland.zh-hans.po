@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列表。"
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "添加组件菜单链接"
+msgid "Add Mega Menu component"
+msgstr "添加超级菜单组件"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "启用组件菜单链接"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "在菜单管理界面显示\"添加组件菜单链接\"操作。取消勾选后，该操作及其表单将不可用。"
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "在菜单管理界面显示\"添加超级菜单组件\"操作。取消勾选后，该操作及其表单将不可用。"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "站点默认值"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "每栏列出的最大条目数；未设置时采用站点默认值。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "显示箭头"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "在区块标题后显示箭头。"

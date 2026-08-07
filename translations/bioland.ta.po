@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "இந்த மெனு இணைப்பு சேய் இணைப்புகளின் எளிய பட்டியலுக்குப் பதிலாக மெகா மெனு கூறைக் காட்டுகிறது."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "கூறு மெனு இணைப்பைச் சேர்க்கவும்"
+msgid "Add Mega Menu component"
+msgstr "மெகா மெனு கூறைச் சேர்க்கவும்"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "கூறு மெனு இணைப்புகளை இயக்கு"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "மெனு மேலாண்மைத் திரையில் \"கூறு மெனு இணைப்பைச் சேர்க்கவும்\" செயலைக் காட்டுகிறது. தேர்வு செய்யப்படாதபோது, செயலும் அதன் படிவமும் கிடைக்காது."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "மெனு மேலாண்மைத் திரையில் \"மெகா மெனு கூறைச் சேர்க்கவும்\" செயலைக் காட்டுகிறது. தேர்வு செய்யப்படாதபோது, செயலும் அதன் படிவமும் கிடைக்காது."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "தள இயல்புநிலை"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "ஒரு நெடுவரிசையில் அதிகபட்ச பதிவுகள்; அமைக்கப்படாதபோது தள இயல்புநிலை பொருந்தும்."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "அம்புக்குறியைக் காட்டு"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "பிரிவுத் தலைப்புக்குப் பிறகு அம்புக்குறியைக் காட்டுகிறது."

@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Bu menü bağlantısı, basit bir alt bağlantı listesi yerine bir mega menü bileşeni gösterir."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Bileşen menü bağlantısı ekle"
+msgid "Add Mega Menu component"
+msgstr "Mega menü bileşeni ekle"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Bileşen menü bağlantılarını etkinleştir"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Menü yönetim ekranında \"Bileşen menü bağlantısı ekle\" eylemini gösterir. İşaretli değilken eylem ve formu kullanılamaz."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menü yönetim ekranında \"Mega menü bileşeni ekle\" eylemini gösterir. İşaretli değilken eylem ve formu kullanılamaz."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Site varsayılanı"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Sütun başına listelenen en fazla giriş; ayarlanmadığında site varsayılanı geçerlidir."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Ok işaretini göster"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Bölüm başlığından sonra bir ok gösterir."

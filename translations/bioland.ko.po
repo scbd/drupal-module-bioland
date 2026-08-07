@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "이 메뉴 링크는 하위 링크의 단순 목록 대신 메가 메뉴 구성 요소를 표시합니다."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "구성 요소 메뉴 링크 추가"
+msgid "Add Mega Menu component"
+msgstr "메가 메뉴 구성 요소 추가"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "구성 요소 메뉴 링크 사용"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "메뉴 관리 화면에 \"구성 요소 메뉴 링크 추가\" 작업을 표시합니다. 선택을 해제하면 해당 작업과 양식을 사용할 수 없습니다."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "메뉴 관리 화면에 \"메가 메뉴 구성 요소 추가\" 작업을 표시합니다. 선택을 해제하면 해당 작업과 양식을 사용할 수 없습니다."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "사이트 기본값"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "열당 표시되는 최대 항목 수입니다. 설정하지 않으면 사이트 기본값이 적용됩니다."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "화살표 표시"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "섹션 제목 뒤에 화살표를 표시합니다."

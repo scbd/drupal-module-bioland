@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Kiungo hiki cha menyu huonyesha kijenzi cha menyu kuu badala ya orodha rahisi ya viungo vya chini."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ongeza kiungo cha menyu ya kijenzi"
+msgid "Add Mega Menu component"
+msgstr "Ongeza kijenzi cha menyu kuu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Washa viungo vya menyu ya vijenzi"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Huonyesha kitendo cha \"Ongeza kiungo cha menyu ya kijenzi\" kwenye skrini ya usimamizi wa menyu. Kisipochaguliwa, kitendo na fomu yake havipatikani."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Huonyesha kitendo cha \"Ongeza kijenzi cha menyu kuu\" kwenye skrini ya usimamizi wa menyu. Kisipochaguliwa, kitendo na fomu yake havipatikani."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Chaguomsingi cha tovuti"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Idadi ya juu ya maingizo kwa safuwima; bila kuwekwa, chaguomsingi cha tovuti hutumika."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Onyesha mshale"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Huonyesha mshale baada ya kichwa cha sehemu."

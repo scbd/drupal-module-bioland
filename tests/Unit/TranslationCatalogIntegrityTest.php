@@ -85,7 +85,7 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // bioland.routing.yml: route _title / bioland.links.action.yml: local
     // action title. One string, two declaration sites - both must stay in
     // sync with this entry or the action renders untranslated.
-    'Add component menu link',
+    'Add Mega Menu component',
     // bioland.routing.yml: route _title / bioland.links.task.yml: local task
     // title for the Theme tab.
     'Theme',
@@ -123,13 +123,14 @@ class TranslationCatalogIntegrityTest extends TestCase {
     // button itself uses in every catalog.
     'Leave blank to keep the current value. Use @reset to remove it.',
     // src/Service/BiolandComponentMenuFormMode.php: the content-type
-    // sub-select of the Content Type component.
+    // sub-select of the Content Type component, its empty option included.
     'Content type',
+    '- Select -',
     'The content type this listing shows.',
     // src/Form/BiolandAdminSettingsForm.php: the on/off switch for the
     // component-menu add flow (checkbox title and description).
     'Enable Component Menu Links',
-    'Shows the "Add component menu link" action on the menu manage screen. When unchecked, the action and its form are unavailable.',
+    'Shows the "Add Mega Menu component" action on the menu manage screen. When unchecked, the action and its form are unavailable.',
     // src/Service/BiolandComponentMenuFormMode.php: the thumbnails and
     // column-width presentation controls.
     'Show thumbnails',
@@ -143,6 +144,11 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Maximum rows per column',
     'Site default',
     'Maximum entries listed per column; the site default applies when unset.',
+    // src/Service/BiolandComponentMenuFormMode.php: the Content Type title
+    // arrow. The preview glyph beside the checkbox is deliberately absent -
+    // it is a bare arrow character with no words to translate.
+    'Show Arrow',
+    'Show an arrow after the section title.',
   ];
 
   /**

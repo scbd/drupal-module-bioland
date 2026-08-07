@@ -1772,8 +1772,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Dette menupunkt viser en megamenu-komponent i stedet for en almindelig liste over underpunkter."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Tilføj komponent-menulink"
+msgid "Add Mega Menu component"
+msgstr "Tilføj megamenu-komponent"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1874,8 +1874,8 @@ msgid "Enable Component Menu Links"
 msgstr "Aktivér komponentmenulinks"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Viser handlingen \"Tilføj komponent-menulink\" på menuadministrationsskærmen. Når den ikke er markeret, er handlingen og dens formular ikke tilgængelige."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Viser handlingen \"Tilføj megamenu-komponent\" på menuadministrationsskærmen. Når den ikke er markeret, er handlingen og dens formular ikke tilgængelige."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1916,3 +1916,11 @@ msgstr "Webstedsstandard"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maks. antal poster pr. kolonne; webstedsstandarden gaelder, naar intet er valgt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Vis pil"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Viser en pil efter sektionens titel."

@@ -1772,8 +1772,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Ova veza izbornika prikazuje komponentu mega izbornika umjesto obične liste podveza."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Dodaj vezu izbornika komponente"
+msgid "Add Mega Menu component"
+msgstr "Dodaj komponentu mega izbornika"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1874,8 +1874,8 @@ msgid "Enable Component Menu Links"
 msgstr "Omogući veze komponentnog menija"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Prikazuje akciju \"Dodaj vezu izbornika komponente\" na ekranu za upravljanje menijem. Kada nije označeno, akcija i njen obrazac nisu dostupni."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Prikazuje akciju \"Dodaj komponentu mega izbornika\" na ekranu za upravljanje menijem. Kada nije označeno, akcija i njen obrazac nisu dostupni."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1916,3 +1916,11 @@ msgstr "Zadano za sajt"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Najviše unosa po koloni; ako nije postavljeno, važi zadana vrijednost sajta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Prikaži strelicu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Prikazuje strelicu nakon naslova sekcije."

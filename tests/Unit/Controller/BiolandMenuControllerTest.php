@@ -13,7 +13,7 @@ use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Unit tests for the dedicated "Add component menu link" controller.
+ * Unit tests for the dedicated "Add Mega Menu component" controller.
  *
  * Beyond ordinary behaviour coverage this pins the security property the
  * p02-01 dispatcher depends on: BiolandComponentMenuFormMode::applies() trusts

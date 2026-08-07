@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "یہ مینو لنک ذیلی لنکس کی سادہ فہرست کے بجائے ایک میگا مینو جزو دکھاتا ہے۔"
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "جزو مینو لنک شامل کریں"
+msgid "Add Mega Menu component"
+msgstr "میگا مینو جزو شامل کریں"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "کمپوننٹ مینو لنکس فعال کریں"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "مینو مینجمنٹ اسکرین پر \"جزو مینو لنک شامل کریں\" عمل دکھاتا ہے۔ غیر منتخب ہونے پر، عمل اور اس کا فارم دستیاب نہیں ہوتے۔"
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "مینو مینجمنٹ اسکرین پر \"میگا مینو جزو شامل کریں\" عمل دکھاتا ہے۔ غیر منتخب ہونے پر، عمل اور اس کا فارم دستیاب نہیں ہوتے۔"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "سائٹ کا طے شدہ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "فی کالم زیادہ سے زیادہ اندراجات؛ مقرر نہ ہونے پر سائٹ کا طے شدہ لاگو ہوتا ہے۔"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "تیر دکھائیں"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "حصے کے عنوان کے بعد تیر دکھاتا ہے۔"

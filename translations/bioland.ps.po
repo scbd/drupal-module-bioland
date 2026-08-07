@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "دا د مینو لینک د ماشوم لینکونو د ساده لیست پرځای د لوی مینو برخه ښیي."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "د برخې د مینو تړنه زیاته کړئ"
+msgid "Add Mega Menu component"
+msgstr "د لوی مینو برخه زیاته کړئ"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "د برخې مینو اړیکې فعالې کړئ"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "د مینو مدیریت پرده کې د \"د برخې د مینو تړنه زیاته کړئ\" کړنه ښیي. کله چې ونه ټاکل شي، کړنه او د هغې فورمه شتون نه لري."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "د مینو مدیریت پرده کې د \"د لوی مینو برخه زیاته کړئ\" کړنه ښیي. کله چې ونه ټاکل شي، کړنه او د هغې فورمه شتون نه لري."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "د سایټ تلواله"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "په هره ستنه کې اعظمي ننوتنې؛ که ونه ټاکل شي د سایټ تلواله پلي کېږي."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "غشی وښایاست"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "د برخې له سرلیک وروسته غشی ښیي."

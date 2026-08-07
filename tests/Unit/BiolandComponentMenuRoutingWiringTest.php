@@ -9,7 +9,7 @@ use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Guards the wiring of the dedicated "Add component menu link" flow.
+ * Guards the wiring of the dedicated "Add Mega Menu component" flow.
  *
  * Three declarations have to agree for the flow to exist at all, and none of
  * the three can see the other two at runtime:
@@ -45,7 +45,7 @@ class BiolandComponentMenuRoutingWiringTest extends TestCase {
   /**
    * The single translatable string this task introduces.
    */
-  private const TITLE = 'Add component menu link';
+  private const TITLE = 'Add Mega Menu component';
 
   /**
    * Returns the module root directory.

@@ -1772,8 +1772,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Tento odkaz nabídky zobrazuje komponentu mega nabídky místo běžného seznamu podřízených odkazů."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Přidat odkaz nabídky komponenty"
+msgid "Add Mega Menu component"
+msgstr "Přidat komponentu mega nabídky"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1874,8 +1874,8 @@ msgid "Enable Component Menu Links"
 msgstr "Povolit komponentové odkazy v nabídce"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Zobrazí akci \"Přidat odkaz nabídky komponenty\" na obrazovce správy nabídky. Pokud není zaškrtnuto, akce ani její formulář nejsou dostupné."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Zobrazí akci \"Přidat komponentu mega nabídky\" na obrazovce správy nabídky. Pokud není zaškrtnuto, akce ani její formulář nejsou dostupné."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1916,3 +1916,11 @@ msgstr "Výchozí nastavení webu"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maximální počet položek na sloupec; není-li nastaveno, platí výchozí hodnota webu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Zobrazit šipku"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Zobrazí šipku za názvem sekce."

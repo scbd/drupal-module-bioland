@@ -1776,8 +1776,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Tämä valikkolinkki näyttää megavalikon komponentin tavallisen alilinkkiluettelon sijaan."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Lisää komponentin valikkolinkki"
+msgid "Add Mega Menu component"
+msgstr "Lisää megavalikon komponentti"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1878,8 +1878,8 @@ msgid "Enable Component Menu Links"
 msgstr "Ota komponenttivalikkolinkit käyttöön"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Näyttää toiminnon \"Lisää komponentin valikkolinkki\" valikon hallintanäytöllä. Kun valinta on pois, toiminto ja sen lomake eivät ole käytettävissä."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Näyttää toiminnon \"Lisää megavalikon komponentti\" valikon hallintanäytöllä. Kun valinta on pois, toiminto ja sen lomake eivät ole käytettävissä."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1920,3 +1920,11 @@ msgstr "Sivuston oletus"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Kohteiden enimmäismäärä saraketta kohden; ilman valintaa käytetään sivuston oletusta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Näytä nuoli"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Näyttää nuolen osion otsikon jälkeen."

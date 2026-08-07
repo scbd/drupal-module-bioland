@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Kjo lidhje e menysë shfaq një komponent të mega menysë në vend të një liste të thjeshtë lidhjesh bija."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Shto lidhje menyje komponenti"
+msgid "Add Mega Menu component"
+msgstr "Shto komponent të mega menysë"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Aktivizo lidhjet e menusë së komponentëve"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Shfaq veprimin \"Shto lidhje menyje komponenti\" në ekranin e menaxhimit të menusë. Kur nuk është zgjedhur, veprimi dhe formulari i tij nuk janë të disponueshëm."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Shfaq veprimin \"Shto komponent të mega menysë\" në ekranin e menaxhimit të menusë. Kur nuk është zgjedhur, veprimi dhe formulari i tij nuk janë të disponueshëm."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Parazgjedhja e sajtit"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maksimumi i hyrjeve për kolonë; pa u caktuar vlen parazgjedhja e sajtit."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Shfaq shigjetën"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Shfaq një shigjetë pas titullit të seksionit."

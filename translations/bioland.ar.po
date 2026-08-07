@@ -1625,8 +1625,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "يعرض رابط القائمة هذا مكوّن القائمة الضخمة بدلاً من قائمة بسيطة من الروابط الفرعية."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "إضافة رابط قائمة مكوّن"
+msgid "Add Mega Menu component"
+msgstr "إضافة مكوّن القائمة الضخمة"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1727,8 +1727,8 @@ msgid "Enable Component Menu Links"
 msgstr "تمكين روابط قائمة المكونات"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "يعرض إجراء \"إضافة رابط قائمة مكوّن\" في شاشة إدارة القائمة. عند إلغاء التحديد، يصبح الإجراء ونموذجه غير متاحين."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "يعرض إجراء \"إضافة مكوّن القائمة الضخمة\" في شاشة إدارة القائمة. عند إلغاء التحديد، يصبح الإجراء ونموذجه غير متاحين."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1769,3 +1769,11 @@ msgstr "إعداد الموقع الافتراضي"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "الحد الأقصى للإدخالات المعروضة في كل عمود؛ يسري الإعداد الافتراضي للموقع عند عدم التحديد."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "إظهار السهم"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "إظهار سهم بعد عنوان القسم."

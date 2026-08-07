@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Энэ цэсний холбоос дэд холбоосын энгийн жагсаалтын оронд мега цэсний бүрэлдэхүүнийг харуулна."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Бүрэлдэхүүний цэсний холбоос нэмэх"
+msgid "Add Mega Menu component"
+msgstr "Мега цэсний бүрэлдэхүүн нэмэх"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Бүрэлдэхүүн цэсийн холбоосыг идэвхжүүлэх"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Цэсийн удирдлагын дэлгэц дээр \"Бүрэлдэхүүний цэсний холбоос нэмэх\" үйлдлийг харуулна. Сонгоогүй үед үйлдэл болон түүний маягт ашиглах боломжгүй."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Цэсийн удирдлагын дэлгэц дээр \"Мега цэсний бүрэлдэхүүн нэмэх\" үйлдлийг харуулна. Сонгоогүй үед үйлдэл болон түүний маягт ашиглах боломжгүй."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Сайтын үндсэн утга"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Багана тус бүрд жагсаах дээд бичлэг; тохируулаагүй бол сайтын үндсэн утга үйлчилнэ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Сум харуулах"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Хэсгийн гарчгийн дараа сум харуулна."

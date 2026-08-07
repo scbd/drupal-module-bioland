@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Ten odnośnik menu wyświetla komponent mega menu zamiast zwykłej listy odnośników podrzędnych."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Dodaj link menu komponentu"
+msgid "Add Mega Menu component"
+msgstr "Dodaj komponent mega menu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Włącz linki menu komponentów"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Wyświetla akcję \"Dodaj link menu komponentu\" na ekranie zarządzania menu. Gdy odznaczone, akcja i jej formularz są niedostępne."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Wyświetla akcję \"Dodaj komponent mega menu\" na ekranie zarządzania menu. Gdy odznaczone, akcja i jej formularz są niedostępne."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Domyślne ustawienie witryny"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maksymalna liczba pozycji na kolumnę; bez ustawienia obowiązuje domyślna wartość witryny."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Pokaż strzałkę"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Pokazuje strzałkę po tytule sekcji."

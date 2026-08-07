@@ -112,6 +112,16 @@ class BiolandComponentMenuFormMode {
   public const THUMBS_ELEMENT = 'bioland_component_thumbs';
 
   /**
+   * Form array key of the title-arrow checkbox, and its submitted value.
+   *
+   * bioland-head header.vue reads the arrow class off every section's link,
+   * but the checkbox is offered only while the picker selects the Content
+   * Type Listing component (a product scoping, not a frontend limit); other
+   * components' stored arrow tokens are preserved untouched on save.
+   */
+  public const ARROW_ELEMENT = 'bioland_component_arrow';
+
+  /**
    * Form array key of the column-width select, and its submitted value.
    */
   public const WIDTH_ELEMENT = 'bioland_component_width';
@@ -128,6 +138,15 @@ class BiolandComponentMenuFormMode {
    * The largest rows-per-column cap the form offers.
    */
   public const MAX_ROWS_LIMIT = 12;
+
+  /**
+   * The colour the arrow preview falls back to.
+   *
+   * The Bioland network default (UN blue), the same constant
+   * css/bioland.ckeditor.css defaults --bs-primary to for the same reason: the
+   * per-site primary is a DMSM value this module cannot always resolve.
+   */
+  public const DEFAULT_PRIMARY_COLOR = '#009edb';
 
   /**
    * Form state key holding the stored binding slugs, for change detection.
@@ -380,13 +399,39 @@ class BiolandComponentMenuFormMode {
       ],
     ];
 
+    // header.vue reads the arrow class off EVERY section's own link, but the
+    // checkbox is offered on the Content Type Listing only (product call, not
+    // a frontend limit): that is the section editors author by hand here, so
+    // the control lives where the decision is made, and buildEntity() leaves
+    // other components' stored arrow tokens strictly untouched. A link with
+    // nothing stored yet starts checked: every hand-authored Content Type
+    // section carries the arrow, so the default reproduces the house style
+    // instead of quietly dropping it on links created through this form.
+    // The preview glyph rides in #description rather than #field_suffix —
+    // form-element.html.twig prints suffixes BEFORE a checkbox's after-title
+    // label, which would put the arrow on the wrong side of the text.
+    $is_new_link = (method_exists($entity, 'isNew') && $entity->isNew()) || $stored_token === '';
+    $form[self::ARROW_ELEMENT] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show Arrow'),
+      '#description' => [
+        'text' => ['#markup' => $this->t('Show an arrow after the section title.')],
+        'preview' => $this->arrowPreview(),
+      ],
+      '#default_value' => $is_new_link ? TRUE : $this->registry->hasArrowToken($stored_class),
+      '#weight' => -6,
+      '#states' => [
+        'visible' => $this->pickerAnyOf([$this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX)]),
+      ],
+    ];
+
     $form[self::WIDTH_ELEMENT] = [
       '#type' => 'select',
       '#title' => $this->t('Mega menu columns'),
       '#options' => $this->widthOptions(),
       '#default_value' => $this->registry->findWidthToken($stored_class),
       '#description' => $this->t('How many columns of the mega menu this section spans.'),
-      '#weight' => -6,
+      '#weight' => -5,
     ];
 
     $max_rows_default = $this->registry->findMaxRowsValue($stored_class);
@@ -399,7 +444,7 @@ class BiolandComponentMenuFormMode {
       ),
       '#default_value' => ctype_digit($max_rows_default) && (int) $max_rows_default <= self::MAX_ROWS_LIMIT ? $max_rows_default : '',
       '#description' => $this->t('Maximum entries listed per column; the site default applies when unset.'),
-      '#weight' => -5,
+      '#weight' => -4,
       '#states' => [
         'visible' => $this->pickerAnyOf([$this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX)]),
       ],
@@ -506,16 +551,24 @@ class BiolandComponentMenuFormMode {
     $merged = $this->registry->mergeComponentToken($class, $token, $site_id);
     $merged = $this->mergeContentTypeBinding($merged, $token, $form_state);
 
+    $content_type_token = $this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX);
+
     // A thumbnail token on a component whose Vue file never reads it is dead
     // weight; strip it on the way through, whatever the (states-hidden)
     // checkbox submitted.
     $thumbs = $this->registry->componentSupportsThumbs($token, $site_id)
       ? $this->submittedThumbs($form_state)
       : FALSE;
-    $merged = $this->registry->mergeStyleTokens($merged, $thumbs, $this->submittedWidthToken($form_state));
+    // NOT the thumbs rule: header.vue reads the arrow class off EVERY
+    // section's link, this form just only offers the checkbox on the Content
+    // Type Listing. So a non-Content-Type save passes NULL — leave whatever
+    // arrow token the link already carries strictly untouched — where FALSE
+    // would silently strip a live arrow off e.g. a Forums link on an
+    // unrelated edit.
+    $arrow = $token === $content_type_token ? $this->submittedArrow($form_state) : NULL;
+    $merged = $this->registry->mergeStyleTokens($merged, $thumbs, $this->submittedWidthToken($form_state), $arrow);
 
     // Same rule for the rows cap: only the Content Type component reads it.
-    $content_type_token = $this->registry->canonicalToken(BiolandComponentRegistry::CONTENT_TYPE_SUFFIX);
     $max_rows = $token === $content_type_token ? $this->submittedMaxRows($form_state) : '';
     $merged = $this->registry->mergeMaxRows($merged, $max_rows);
 
@@ -558,6 +611,56 @@ class BiolandComponentMenuFormMode {
    */
   public function showAttributes(): bool {
     return (bool) $this->configFactory->get('bioland.settings')->get('component_menu_show_attributes');
+  }
+
+  /**
+   * Returns the site's primary brand colour as a "#rrggbb" string.
+   *
+   * Reads bioland.settings:theme.color.primary — the value BiolandThemeForm
+   * writes — and re-validates its shape here rather than trusting it: the
+   * colour is interpolated into an inline style attribute, and config can also
+   * arrive from a settings.php override or a hand-edited export, neither of
+   * which passes through that form's validator. Anything not exactly six hex
+   * digits falls back to the network default, mirroring what
+   * css/bioland.ckeditor.css does with the same colour for the same reason.
+   *
+   * @return string
+   *   A validated "#rrggbb" colour, never an arbitrary config string.
+   */
+  public function primaryColor(): string {
+    $value = $this->configFactory->get('bioland.settings')->get('theme.color.primary');
+    $value = is_string($value) ? trim($value) : '';
+
+    return preg_match('/^#[0-9A-Fa-f]{6}\z/', $value) === 1 ? $value : self::DEFAULT_PRIMARY_COLOR;
+  }
+
+  /**
+   * Builds the coloured arrow glyph shown beside the "Show Arrow" checkbox.
+   *
+   * A preview of what the frontend renders, not a label: it is a bare glyph
+   * with no words, so it stays out of the translation catalogs and is hidden
+   * from assistive technology, which reads the checkbox title instead.
+   *
+   * Best effort until the theme precedence leg lands: head still resolves its
+   * colours from config.theme || config.runTime.theme (see the note on the
+   * theme mapping in config/schema/bioland.schema.yml), so a site whose
+   * primary comes from the DMSM runTime block previews the network default
+   * here while the frontend renders the DMSM colour.
+   *
+   * @return array
+   *   An html_tag render array.
+   */
+  protected function arrowPreview(): array {
+    return [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => '→',
+      '#attributes' => [
+        'class' => [self::FORM_CLASS . '__arrow-preview'],
+        'style' => 'color: ' . $this->primaryColor() . ';',
+        'aria-hidden' => 'true',
+      ],
+    ];
   }
 
   /**
@@ -979,6 +1082,22 @@ class BiolandComponentMenuFormMode {
    */
   protected function submittedThumbs(FormStateInterface $form_state): ?bool {
     $value = $form_state->getValue(self::THUMBS_ELEMENT);
+
+    return is_scalar($value) ? (bool) $value : NULL;
+  }
+
+  /**
+   * Returns the submitted arrow state, or NULL when it must be ignored.
+   *
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   *
+   * @return bool|null
+   *   The checkbox state, or NULL when the element never rendered (leaving
+   *   stored arrow tokens untouched).
+   */
+  protected function submittedArrow(FormStateInterface $form_state): ?bool {
+    $value = $form_state->getValue(self::ARROW_ELEMENT);
 
     return is_scalar($value) ? (bool) $value : NULL;
   }

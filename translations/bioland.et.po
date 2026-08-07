@@ -1776,8 +1776,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "See menüülink kuvab megamenüü komponendi tavalise alamlinkide loendi asemel."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Lisa komponendi menüülink"
+msgid "Add Mega Menu component"
+msgstr "Lisa megamenüü komponent"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1878,8 +1878,8 @@ msgid "Enable Component Menu Links"
 msgstr "Luba komponendi menüülingid"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Kuvab tegevuse \"Lisa komponendi menüülink\" menüü haldamise ekraanil. Kui see pole märgitud, pole tegevus ja selle vorm saadaval."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Kuvab tegevuse \"Lisa megamenüü komponent\" menüü haldamise ekraanil. Kui see pole märgitud, pole tegevus ja selle vorm saadaval."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1920,3 +1920,11 @@ msgstr "Saidi vaikeväärtus"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maksimaalne kirjete arv veerus; määramata jätmisel kehtib saidi vaikeväärtus."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Kuva nool"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Kuvab noole jaotise pealkirja järel."

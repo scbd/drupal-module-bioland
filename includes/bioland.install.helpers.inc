@@ -95,7 +95,7 @@ function bioland_update_9073() {
  * Seed the component menu link settings added to config/install since 1.1.6.
  *
  * config/install/bioland.settings.yml gained component_menu_add_enabled and
- * component_menu_show_attributes with the dedicated "Add component menu link"
+ * component_menu_show_attributes with the dedicated "Add Mega Menu component"
  * flow, but existing sites never re-import that file, so both keys are absent
  * from their active config. The runtime readers fall back safely (the add flow
  * is on unless the key is explicitly FALSE, the raw Attributes fieldset stays

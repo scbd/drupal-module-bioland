@@ -1776,8 +1776,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Ez a menühivatkozás megamenü-összetevőt jelenít meg az alhivatkozások egyszerű listája helyett."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Összetevő menühivatkozás hozzáadása"
+msgid "Add Mega Menu component"
+msgstr "Megamenü-összetevő hozzáadása"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1878,8 +1878,8 @@ msgid "Enable Component Menu Links"
 msgstr "Komponens menühivatkozások engedélyezése"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Megjeleníti a(z) \"Összetevő menühivatkozás hozzáadása\" műveletet a menükezelő képernyőn. Ha nincs bejelölve, a művelet és annak űrlapja nem érhető el."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Megjeleníti a(z) \"Megamenü-összetevő hozzáadása\" műveletet a menükezelő képernyőn. Ha nincs bejelölve, a művelet és annak űrlapja nem érhető el."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1920,3 +1920,11 @@ msgstr "Webhely alapértelmezése"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Oszloponként megjelenő bejegyzések maximuma; beállítás nélkül a webhely alapértelmezése érvényes."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Nyíl megjelenítése"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Nyilat jelenít meg a szakasz címe után."

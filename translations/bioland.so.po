@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu ka muujin lahaa liis fudud oo xiriiro hoosaad ah."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ku dar xiriirka menu-ga qaybta"
+msgid "Add Mega Menu component"
+msgstr "Ku dar qayb ka mid ah menu-ga weyn"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Awood u sii xiriirinta menu-ga qaybaha"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Wuxuu ku muujinayaa ficilka \"Ku dar xiriirka menu-ga qaybta\" shaashadda maaraynta menu-ga. Marka aan la calaamadin, ficilka iyo foomkiisu lama heli karaan."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Wuxuu ku muujinayaa ficilka \"Ku dar qayb ka mid ah menu-ga weyn\" shaashadda maaraynta menu-ga. Marka aan la calaamadin, ficilka iyo foomkiisu lama heli karaan."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Caadiga goobta"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Gelitaannada ugu badan tiir kasta; haddii aan la dejin waxaa shaqeeya caadiga goobta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Muuji fallaadha"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Waxay muujisaa fallaadh cinwaanka qaybta ka dib."

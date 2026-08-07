@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Din il-ħolqa tal-menu turi komponent tal-mega menu minflok lista sempliċi ta' ħoloq subordinati."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Żid ħolqa tal-menu tal-komponent"
+msgid "Add Mega Menu component"
+msgstr "Żid komponent tal-mega menu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Attiva l-links tal-menu tal-komponenti"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Juri l-azzjoni \"Żid ħolqa tal-menu tal-komponent\" fuq l-iskrin tal-gestjoni tal-menu. Meta ma tkunx immarkata, l-azzjoni u l-formola taghha ma jkunux disponibbli."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Juri l-azzjoni \"Żid komponent tal-mega menu\" fuq l-iskrin tal-gestjoni tal-menu. Meta ma tkunx immarkata, l-azzjoni u l-formola taghha ma jkunux disponibbli."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Default tas-sit"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Massimu ta' entrati f'kull kolonna; meta ma jkunx issettjat japplika d-default tas-sit."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Uri vleġġa"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Turi vleġġa wara t-titlu tat-taqsima."

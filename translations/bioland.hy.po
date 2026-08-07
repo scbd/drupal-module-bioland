@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկի բաղադրիչ՝ ենթահղումների պարզ ցանկի փոխարեն։"
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ավելացնել բաղադրիչի ցանկի հղում"
+msgid "Add Mega Menu component"
+msgstr "Ավելացնել մեգա ցանկի բաղադրիչ"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Միացնել բաղադրիչի մենյուի հղումները"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Ցուցադրում է \"Ավելացնել բաղադրիչի ցանկի հղում\" գործողությունը մենյուի կառավարման էկրանին։ Երբ նշված չէ, գործողությունը և դրա ձևը հասանելի չեն։"
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Ցուցադրում է \"Ավելացնել մեգա ցանկի բաղադրիչ\" գործողությունը մենյուի կառավարման էկրանին։ Երբ նշված չէ, գործողությունը և դրա ձևը հասանելի չեն։"
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Կայքի լռելյայն"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Սյունակում ցուցադրվող առավելագույն գրառումներ. չսահմանելու դեպքում գործում է կայքի լռելյայնը:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Ցուցադրել սլաքը"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Ցուցադրում է սլաք բաժնի վերնագրից հետո։"

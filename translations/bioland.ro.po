@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Acest link de meniu afișează o componentă a meniului mare în locul unei liste simple de linkuri subordonate."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Adaugă legătură de meniu componentă"
+msgid "Add Mega Menu component"
+msgstr "Adaugă o componentă a meniului mare"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Activează linkurile de meniu ale componentelor"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Afișează acțiunea \"Adaugă legătură de meniu componentă\" pe ecranul de administrare a meniului. Când nu este bifat, acțiunea și formularul ei nu sunt disponibile."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Afișează acțiunea \"Adaugă o componentă a meniului mare\" pe ecranul de administrare a meniului. Când nu este bifat, acțiunea și formularul ei nu sunt disponibile."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Valoarea implicită a site-ului"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Numărul maxim de intrări pe coloană; nesetat, se aplică valoarea implicită a site-ului."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Afișează săgeata"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Afișează o săgeată după titlul secțiunii."

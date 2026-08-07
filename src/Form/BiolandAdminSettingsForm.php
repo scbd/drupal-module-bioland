@@ -176,7 +176,7 @@ class BiolandAdminSettingsForm extends BiolandSettingsFormBase {
     $form['admin_settings']['component_menu']['component_menu_add_enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Component Menu Links'),
-      '#description' => $this->t('Shows the "Add component menu link" action on the menu manage screen. When unchecked, the action and its form are unavailable.'),
+      '#description' => $this->t('Shows the "Add Mega Menu component" action on the menu manage screen. When unchecked, the action and its form are unavailable.'),
       '#default_value' => $config->get('component_menu_add_enabled') !== FALSE,
     ];
 

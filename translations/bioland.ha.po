@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Wannan hanyar menu tana nuna sashen babban menu maimakon jerin hanyoyin haɗi na yara."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ƙara hanyar haɗin menu na sashe"
+msgid "Add Mega Menu component"
+msgstr "Ƙara sashen babban menu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Kunna hanyoyin menu na sassa"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Yana nuna aikin \"Ƙara hanyar haɗin menu na sashe\" a allon sarrafa menu. Idan ba a zaba ba, aikin da fom dinsa ba sa samuwa."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Yana nuna aikin \"Ƙara sashen babban menu\" a allon sarrafa menu. Idan ba a zaba ba, aikin da fom dinsa ba sa samuwa."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Tsohon saitin shafi"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Matsakaicin shigarwa a kowane ginshiki; idan ba a saita ba, tsohon saitin shafin ke aiki."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Nuna kibiya"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Yana nuna kibiya bayan taken sashen."

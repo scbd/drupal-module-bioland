@@ -51,10 +51,13 @@ class BiolandComponentMenuFormModeTest extends TestCase {
    * documented degraded state (no sub-select offered); pass term labels to
    * exercise the content-type paths.
    */
-  protected function createService(bool $isBsl = FALSE, bool $hasPermission = TRUE, string $class = BiolandComponentMenuFormMode::class, ?array $contentTypes = NULL, ?bool $showAttributes = NULL): BiolandComponentMenuFormMode {
+  protected function createService(bool $isBsl = FALSE, bool $hasPermission = TRUE, string $class = BiolandComponentMenuFormMode::class, ?array $contentTypes = NULL, ?bool $showAttributes = NULL, ?string $primaryColor = NULL): BiolandComponentMenuFormMode {
     $settings = ['is_biosafety_land' => $isBsl];
     if ($showAttributes !== NULL) {
       $settings['component_menu_show_attributes'] = $showAttributes;
+    }
+    if ($primaryColor !== NULL) {
+      $settings['theme'] = ['color' => ['primary' => $primaryColor]];
     }
     $config = new ImmutableConfig('bioland.settings', $settings);
     $configFactory = $this->createMock(ConfigFactoryInterface::class);
@@ -954,7 +957,7 @@ class BiolandComponentMenuFormModeTest extends TestCase {
     $service = $this->createServiceWithContentTypes();
 
     $form = $this->contribAlteredForm();
-    $service->apply($form, $this->createFormState(['bl2-component-content-type arrow bl2-content-type-news'], 'component'));
+    $service->apply($form, $this->createFormState(['bl2-component-content-type login bl2-content-type-news'], 'component'));
     $this->assertSame('news', $form[BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT]['#default_value']);
 
     $orphaned = $this->contribAlteredForm();
@@ -1011,19 +1014,19 @@ class BiolandComponentMenuFormModeTest extends TestCase {
    */
   public function testBuilderRewritesAChangedBinding(): void {
     $service = $this->createServiceWithContentTypes();
-    $formState = $this->createFormState(['arrow bl2-component-content-type bl2-content-type-news'], 'component');
+    $formState = $this->createFormState(['login bl2-component-content-type bl2-content-type-news'], 'component');
     $entity = $formState->getFormObject()->getEntity();
-    $form = $this->contribAlteredForm('arrow');
+    $form = $this->contribAlteredForm('login');
     $service->apply($form, $formState);
 
     $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
     $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'event');
-    $formState->setValue('attributes', ['class' => 'arrow bl2-content-type-news', 'target' => '']);
+    $formState->setValue('attributes', ['class' => 'login bl2-content-type-news', 'target' => '']);
     $this->runContribEntityBuilder($entity, $formState);
     $service->buildEntity($entity, $formState);
 
     $this->assertSame(
-      ['attributes' => ['class' => ['arrow bl2-component-content-type bl2-content-type-event']]],
+      ['attributes' => ['class' => ['login bl2-component-content-type bl2-content-type-event']]],
       $entity->link->first()->options
     );
   }
@@ -1059,19 +1062,19 @@ class BiolandComponentMenuFormModeTest extends TestCase {
    */
   public function testBuilderStripsBindingsForNonContentTypeComponents(): void {
     $service = $this->createServiceWithContentTypes();
-    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news arrow'], 'component');
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news login'], 'component');
     $entity = $formState->getFormObject()->getEntity();
-    $form = $this->contribAlteredForm('arrow');
+    $form = $this->contribAlteredForm('login');
     $service->apply($form, $formState);
 
     $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
     $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
-    $formState->setValue('attributes', ['class' => 'arrow', 'target' => '']);
+    $formState->setValue('attributes', ['class' => 'login', 'target' => '']);
     $this->runContribEntityBuilder($entity, $formState);
     $service->buildEntity($entity, $formState);
 
     $this->assertSame(
-      ['attributes' => ['class' => ['arrow bl2-component-forums']]],
+      ['attributes' => ['class' => ['login bl2-component-forums']]],
       $entity->link->first()->options,
       'A binding only ever describes the Content Type Listing; it never outlives it.'
     );
@@ -1308,6 +1311,216 @@ class BiolandComponentMenuFormModeTest extends TestCase {
       ['attributes' => ['class' => ['bl2-2x bl2-component-forums']]],
       $entity->link->first()->options,
       'Only a width token the frontend reads (or the empty default) may be written.'
+    );
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* The title arrow.                                                    */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * A new link's arrow checkbox is on by default and gated on Content Type.
+   */
+  public function testArrowCheckboxDefaultsOnForANewLink(): void {
+    $service = $this->createService(FALSE);
+    $form = $this->contribAlteredForm();
+
+    $service->apply($form, $this->createFormState(NULL, 'component', TRUE));
+
+    $element = $form[BiolandComponentMenuFormMode::ARROW_ELEMENT];
+    $this->assertSame('checkbox', $element['#type']);
+    $this->assertSame('Show Arrow', $element['#title']);
+    $this->assertSame('Show an arrow after the section title.', (string) $element['#description']['text']['#markup']);
+    $this->assertSame('html_tag', $element['#description']['preview']['#type'], 'The coloured glyph rides in the description, after the checkbox label.');
+    $this->assertTrue($element['#default_value'], 'A link with nothing stored starts with the arrow on.');
+    $this->assertSame(
+      [':input[name="' . BiolandComponentMenuFormMode::PICKER_ELEMENT . '"]' => ['value' => 'bl2-component-content-type']],
+      $element['#states']['visible'],
+      'Only the Content Type Listing section is read for the arrow class.'
+    );
+  }
+
+  /**
+   * An existing link's checkbox mirrors its stored class, either spelling.
+   */
+  public function testArrowCheckboxReflectsStoredToken(): void {
+    $service = $this->createService(FALSE);
+
+    $canonical = $this->contribAlteredForm();
+    $service->apply($canonical, $this->createFormState(['bl2-component-content-type arrow'], 'component'));
+    $this->assertTrue($canonical[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#default_value']);
+
+    $legacy = $this->contribAlteredForm();
+    $service->apply($legacy, $this->createFormState(['mm-component-content-type mm-arrow'], 'component'));
+    $this->assertTrue($legacy[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#default_value']);
+
+    $without = $this->contribAlteredForm();
+    $service->apply($without, $this->createFormState(['bl2-component-content-type bl2-2x'], 'component'));
+    $this->assertFalse(
+      $without[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#default_value'],
+      'An existing link that never carried the arrow keeps it off; the checked default is for new links only.'
+    );
+  }
+
+  /**
+   * The preview glyph carries the site primary colour, validated first.
+   */
+  public function testArrowPreviewUsesTheValidatedSitePrimaryColour(): void {
+    $branded = $this->contribAlteredForm();
+    $this->createService(FALSE, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, '#1b7b3a')
+      ->apply($branded, $this->createFormState(NULL, 'component', TRUE));
+
+    $preview = $branded[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#description']['preview'];
+    $this->assertSame('html_tag', $preview['#type']);
+    $this->assertSame('→', $preview['#value'], 'A bare glyph, so it never reaches a translation catalog.');
+    $this->assertSame('color: #1b7b3a;', $preview['#attributes']['style']);
+    $this->assertSame(
+      'true',
+      $preview['#attributes']['aria-hidden'],
+      'The glyph only repeats the checkbox title, which assistive technology reads instead.'
+    );
+
+    // An unset colour, and anything that is not six hex digits, falls back to
+    // the network default rather than reaching the style attribute.
+    foreach ([NULL, '', 'red', '#009ed', '#009edb; background:url(evil)'] as $stored) {
+      $form = $this->contribAlteredForm();
+      $this->createService(FALSE, TRUE, BiolandComponentMenuFormMode::class, NULL, NULL, $stored)
+        ->apply($form, $this->createFormState(NULL, 'component', TRUE));
+
+      $this->assertSame(
+        'color: ' . BiolandComponentMenuFormMode::DEFAULT_PRIMARY_COLOR . ';',
+        $form[BiolandComponentMenuFormMode::ARROW_ELEMENT]['#description']['preview']['#attributes']['style'],
+        'Only a six-digit hex colour is ever interpolated into an inline style.'
+      );
+    }
+  }
+
+  /**
+   * Saving a Content Type Listing with the box ticked writes the arrow class.
+   */
+  public function testBuilderWritesArrowToken(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(NULL, 'component', TRUE);
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm();
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::ARROW_ELEMENT, 1);
+    $formState->setValue('attributes', ['class' => '', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-component-content-type bl2-content-type-news arrow']]],
+      $entity->link->first()->options,
+      'The unprefixed "arrow" spelling is the one the frontend reads.'
+    );
+  }
+
+  /**
+   * Unticking the box clears the arrow, in either stored spelling.
+   */
+  public function testBuilderClearsArrowToken(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news mm-arrow'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('bl2-content-type-news mm-arrow');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue(BiolandComponentMenuFormMode::ARROW_ELEMENT, 0);
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news mm-arrow', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['bl2-content-type-news bl2-component-content-type']]],
+      $entity->link->first()->options
+    );
+  }
+
+  /**
+   * A form that submitted no arrow value at all leaves the stored one alone.
+   */
+  public function testUnsubmittedArrowLeavesTheStoredTokenUntouched(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['arrow bl2-component-content-type bl2-content-type-news'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('arrow bl2-content-type-news');
+    $service->apply($form, $formState);
+
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-content-type');
+    $formState->setValue(BiolandComponentMenuFormMode::CONTENT_TYPE_ELEMENT, 'news');
+    $formState->setValue('attributes', ['class' => 'arrow bl2-content-type-news', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['arrow bl2-content-type-news bl2-component-content-type']]],
+      $entity->link->first()->options,
+      'No submitted value means no opinion; the stored token keeps its place.'
+    );
+  }
+
+  /**
+   * Switching component never touches the arrow: header.vue reads it on all.
+   *
+   * The checkbox is only OFFERED on the Content Type Listing, so for every
+   * other component buildEntity() passes NULL (no opinion) - never FALSE -
+   * to mergeStyleTokens(). Stripping here would silently kill a live arrow
+   * on a link whose editor changed something unrelated.
+   */
+  public function testArrowIsLeftUntouchedForNonContentTypeComponents(): void {
+    $service = $this->createServiceWithContentTypes();
+    $formState = $this->createFormState(['bl2-component-content-type bl2-content-type-news arrow'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('bl2-content-type-news arrow');
+    $service->apply($form, $formState);
+
+    // The editor switches to Forums; the states-hidden checkbox still submits
+    // a value, but a non-Content-Type save has no opinion on the arrow.
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::ARROW_ELEMENT, 0);
+    $formState->setValue('attributes', ['class' => 'bl2-content-type-news arrow', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['arrow bl2-component-forums']]],
+      $entity->link->first()->options,
+      'The content-type binding is stripped, the arrow is preserved verbatim.'
+    );
+  }
+
+  /**
+   * An unchanged save of a non-Content-Type link keeps its arrow verbatim.
+   *
+   * The exact regression shape: an existing Forums link carrying the arrow
+   * class, opened and saved with no editor action, must round-trip its class
+   * value byte-identical - the arrow shows on the live site today and a
+   * no-op edit must not turn it off.
+   */
+  public function testArrowSurvivesAnUnrelatedSaveOfANonContentTypeLink(): void {
+    $service = $this->createService(FALSE);
+    $formState = $this->createFormState(['bl2-component-forums arrow'], 'component');
+    $entity = $formState->getFormObject()->getEntity();
+    $form = $this->contribAlteredForm('arrow');
+    $service->apply($form, $formState);
+
+    // No editor action: everything re-submits its stored-derived default.
+    $formState->setValue(BiolandComponentMenuFormMode::PICKER_ELEMENT, 'bl2-component-forums');
+    $formState->setValue(BiolandComponentMenuFormMode::ARROW_ELEMENT, 1);
+    $formState->setValue('attributes', ['class' => 'arrow', 'target' => '']);
+    $this->runContribEntityBuilder($entity, $formState);
+    $service->buildEntity($entity, $formState);
+
+    $this->assertSame(
+      ['attributes' => ['class' => ['arrow bl2-component-forums']]],
+      $entity->link->first()->options,
+      'A save that never offered the arrow checkbox leaves the stored arrow byte-identical.'
     );
   }
 

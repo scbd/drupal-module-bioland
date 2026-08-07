@@ -1794,8 +1794,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Dieser Menülink zeigt eine Mega-Menü-Komponente statt einer einfachen Liste untergeordneter Links."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Komponenten-Menülink hinzufügen"
+msgid "Add Mega Menu component"
+msgstr "Mega-Menü-Komponente hinzufügen"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1896,8 +1896,8 @@ msgid "Enable Component Menu Links"
 msgstr "Komponenten-Menülinks aktivieren"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Zeigt die Aktion \"Komponenten-Menülink hinzufügen\" auf der Menüverwaltungsseite an. Wenn deaktiviert, sind die Aktion und ihr Formular nicht verfügbar."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Zeigt die Aktion \"Mega-Menü-Komponente hinzufügen\" auf der Menüverwaltungsseite an. Wenn deaktiviert, sind die Aktion und ihr Formular nicht verfügbar."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1938,3 +1938,11 @@ msgstr "Website-Standard"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maximale Einträge pro Spalte; ohne Auswahl gilt der Website-Standard."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Pfeil anzeigen"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Zeigt einen Pfeil nach dem Abschnittstitel."

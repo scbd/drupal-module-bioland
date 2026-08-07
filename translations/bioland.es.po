@@ -1689,8 +1689,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Este enlace de menú muestra un componente del megamenú en lugar de una simple lista de enlaces secundarios."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Añadir enlace de menú de componente"
+msgid "Add Mega Menu component"
+msgstr "Añadir componente del megamenú"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1791,8 +1791,8 @@ msgid "Enable Component Menu Links"
 msgstr "Habilitar enlaces de menú de componentes"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Muestra la acción \"Añadir enlace de menú de componente\" en la pantalla de gestión del menú. Cuando no está marcado, la acción y su formulario no están disponibles."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Muestra la acción \"Añadir componente del megamenú\" en la pantalla de gestión del menú. Cuando no está marcado, la acción y su formulario no están disponibles."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1833,3 +1833,11 @@ msgstr "Valor predeterminado del sitio"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Máximo de entradas por columna; si no se define, se aplica el valor predeterminado del sitio."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Mostrar flecha"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Muestra una flecha después del título de la sección."

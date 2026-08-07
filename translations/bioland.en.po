@@ -1745,8 +1745,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "This menu link renders a mega-menu component instead of a plain list of child links."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Add component menu link"
+msgid "Add Mega Menu component"
+msgstr "Add Mega Menu component"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1847,8 +1847,8 @@ msgid "Enable Component Menu Links"
 msgstr "Enable Component Menu Links"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1889,3 +1889,11 @@ msgstr "Site default"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maximum entries listed per column; the site default applies when unset."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Show Arrow"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Show an arrow after the section title."

@@ -8,7 +8,7 @@
 # entity.menu.edit_form always supplies.
 bioland.menu_link_component_add:
   route_name: bioland.menu_link_component.add
-  title: 'Add component menu link'
+  title: 'Add Mega Menu component'
   class: \Drupal\menu_ui\Plugin\Menu\LocalAction\MenuLinkAdd
   weight: 1
   appears_on:

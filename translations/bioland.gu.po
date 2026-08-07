@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "આ મેનુ લિંક બાળ લિંક્સની સાદી યાદીને બદલે મેગા મેનુ ઘટક દર્શાવે છે."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "ઘટક મેનુ લિંક ઉમેરો"
+msgid "Add Mega Menu component"
+msgstr "મેગા મેનુ ઘટક ઉમેરો"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "ઘટક મેનુ લિંક્સ સક્ષમ કરો"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "મેનુ સંચાલન સ્ક્રીન પર \"ઘટક મેનુ લિંક ઉમેરો\" ક્રિયા બતાવે છે. અનચેક કરેલું હોય ત્યારે, ક્રિયા અને તેનું ફોર્મ ઉપલબ્ધ નથી."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "મેનુ સંચાલન સ્ક્રીન પર \"મેગા મેનુ ઘટક ઉમેરો\" ક્રિયા બતાવે છે. અનચેક કરેલું હોય ત્યારે, ક્રિયા અને તેનું ફોર્મ ઉપલબ્ધ નથી."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "સાઇટ ડિફૉલ્ટ"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "કૉલમ દીઠ મહત્તમ એન્ટ્રીઓ; સેટ ન હોય ત્યારે સાઇટ ડિફૉલ્ટ લાગુ પડે છે."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "તીર બતાવો"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "વિભાગના શીર્ષક પછી તીર બતાવે છે."

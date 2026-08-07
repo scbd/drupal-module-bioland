@@ -425,7 +425,7 @@ class BiolandComponentRegistryTest extends TestCase {
   public function testFindContentTypeBindings(): void {
     $this->assertSame(
       ['news', 'event'],
-      $this->registry->findContentTypeBindings(['bl2-component-content-type bl2-content-type-news arrow bl2-content-type-event'])
+      $this->registry->findContentTypeBindings(['bl2-component-content-type bl2-content-type-news login bl2-content-type-event'])
     );
     $this->assertSame([], $this->registry->findContentTypeBindings(['login bl2-component-forums']));
   }
@@ -434,79 +434,139 @@ class BiolandComponentRegistryTest extends TestCase {
    * Merging a binding replaces existing ones and keeps the storage shape.
    */
   public function testMergeContentTypeBinding(): void {
-    $stored = ['arrow bl2-component-content-type bl2-content-type-news'];
+    $stored = ['login bl2-component-content-type bl2-content-type-news'];
     $this->assertSame(
-      ['arrow bl2-component-content-type bl2-content-type-event'],
+      ['login bl2-component-content-type bl2-content-type-event'],
       $this->registry->mergeContentTypeBinding($stored, 'event'),
       'The component token and every other class survive; only the binding changes.'
     );
     $this->assertSame(
-      ['arrow bl2-component-content-type'],
+      ['login bl2-component-content-type'],
       $this->registry->mergeContentTypeBinding($stored, ''),
       'An empty slug unbinds.'
     );
     $this->assertSame(
-      'arrow bl2-content-type-event',
-      $this->registry->mergeContentTypeBinding('arrow bl2-content-type-news', 'event'),
+      'login bl2-content-type-event',
+      $this->registry->mergeContentTypeBinding('login bl2-content-type-news', 'event'),
       'A string value stays a string.'
     );
     $this->assertSame(
-      ['arrow', 'bl2-content-type-event'],
-      $this->registry->mergeContentTypeBinding(['arrow', 'bl2-content-type-news'], 'event'),
+      ['login', 'bl2-content-type-event'],
+      $this->registry->mergeContentTypeBinding(['login', 'bl2-content-type-news'], 'event'),
       'A multi-element array stays one token per element.'
     );
   }
 
   /* ------------------------------------------------------------------ */
-  /* Style tokens: thumbnails and column width.                          */
+  /* Style tokens: thumbnails, column width and the title arrow.         */
   /* ------------------------------------------------------------------ */
 
   /**
    * Thumbnail detection accepts both spellings; writing is canonical only.
    */
   public function testThumbsTokenRules(): void {
-    $this->assertTrue($this->registry->hasThumbsToken(['arrow bl2-show-thumbs']));
+    $this->assertTrue($this->registry->hasThumbsToken(['login bl2-show-thumbs']));
     $this->assertTrue($this->registry->hasThumbsToken(['mm-show-thumbs']), 'The legacy spelling still counts when reading.');
-    $this->assertFalse($this->registry->hasThumbsToken(['arrow bl2-component-forums']));
+    $this->assertFalse($this->registry->hasThumbsToken(['login bl2-component-forums']));
 
-    $written = $this->registry->mergeStyleTokens(['arrow mm-show-thumbs'], TRUE, NULL);
-    $this->assertSame(['arrow bl2-show-thumbs'], $written, 'Writing normalizes a legacy spelling to the canonical token.');
+    $written = $this->registry->mergeStyleTokens(['login mm-show-thumbs'], TRUE, NULL, NULL);
+    $this->assertSame(['login bl2-show-thumbs'], $written, 'Writing normalizes a legacy spelling to the canonical token.');
+  }
+
+  /**
+   * The arrow token is unprefixed, and detection accepts both spellings.
+   *
+   * The bare "arrow" spelling is the frontend contract (bioland-head
+   * header.vue), not an oversight - a "bl2-arrow" token would never match.
+   */
+  public function testArrowTokenRules(): void {
+    $this->assertSame('arrow', BiolandComponentRegistry::ARROW_TOKEN);
+    $this->assertSame('mm-arrow', BiolandComponentRegistry::LEGACY_ARROW_TOKEN);
+
+    $this->assertTrue($this->registry->hasArrowToken(['login arrow bl2-2x']));
+    $this->assertTrue($this->registry->hasArrowToken(['mm-arrow']), 'The legacy spelling still counts when reading.');
+    $this->assertTrue($this->registry->hasArrowToken('arrow'), 'A plain string value is read too.');
+    $this->assertFalse($this->registry->hasArrowToken(['login bl2-component-forums']));
+    $this->assertFalse($this->registry->hasArrowToken(['arrows']), 'Detection is per token, never a substring match.');
+
+    $written = $this->registry->mergeStyleTokens(['login mm-arrow'], NULL, NULL, TRUE);
+    $this->assertSame(['login arrow'], $written, 'Writing normalizes a legacy spelling to the canonical token.');
   }
 
   /**
    * The first stored width token wins; none means the one-column default.
    */
   public function testFindWidthToken(): void {
-    $this->assertSame('bl2-3x', $this->registry->findWidthToken(['arrow bl2-3x bl2-show-thumbs']));
+    $this->assertSame('bl2-3x', $this->registry->findWidthToken(['login bl2-3x bl2-show-thumbs']));
     $this->assertSame('bl2-2x-xl', $this->registry->findWidthToken(['bl2-2x-xl']));
-    $this->assertSame('', $this->registry->findWidthToken(['arrow login']));
+    $this->assertSame('', $this->registry->findWidthToken(['login cooperation']));
   }
 
   /**
    * Style merging: NULL leaves a family untouched, non-NULL owns it.
    */
   public function testMergeStyleTokens(): void {
-    $stored = ['arrow bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'];
+    $stored = ['login bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'];
 
     $this->assertSame(
-      ['arrow bl2-component-content-type bl2-content-type-news bl2-3x bl2-show-thumbs'],
-      $this->registry->mergeStyleTokens($stored, TRUE, 'bl2-3x'),
+      ['login bl2-component-content-type bl2-content-type-news bl2-3x bl2-show-thumbs'],
+      $this->registry->mergeStyleTokens($stored, TRUE, 'bl2-3x', NULL),
       'A new width replaces the old; every other token survives in place or is re-appended.'
     );
     $this->assertSame(
-      ['arrow bl2-component-content-type bl2-content-type-news'],
-      $this->registry->mergeStyleTokens($stored, FALSE, ''),
+      ['login bl2-component-content-type bl2-content-type-news'],
+      $this->registry->mergeStyleTokens($stored, FALSE, '', NULL),
       'FALSE thumbs and the empty width clear both families.'
     );
     $this->assertSame(
-      ['arrow bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'],
-      $this->registry->mergeStyleTokens($stored, NULL, NULL),
+      ['login bl2-component-content-type bl2-content-type-news bl2-2x bl2-show-thumbs'],
+      $this->registry->mergeStyleTokens($stored, NULL, NULL, NULL),
       'NULL controls leave the stored tokens byte-identical.'
     );
     $this->assertSame(
-      ['arrow'],
-      $this->registry->mergeStyleTokens(['arrow'], NULL, 'not-a-width'),
+      ['login'],
+      $this->registry->mergeStyleTokens(['login'], NULL, 'not-a-width', NULL),
       'An unknown width token is never written.'
+    );
+  }
+
+  /**
+   * The arrow control owns its family under the same NULL contract.
+   */
+  public function testMergeStyleTokensArrow(): void {
+    $stored = ['login mm-arrow bl2-component-content-type bl2-2x'];
+
+    $this->assertSame(
+      ['login bl2-component-content-type bl2-2x arrow'],
+      $this->registry->mergeStyleTokens($stored, NULL, NULL, TRUE),
+      'TRUE strips the legacy spelling and appends the canonical token last.'
+    );
+    $this->assertSame(
+      ['login bl2-component-content-type bl2-2x'],
+      $this->registry->mergeStyleTokens($stored, NULL, NULL, FALSE),
+      'FALSE clears the family, legacy spelling included.'
+    );
+    $this->assertSame(
+      $stored,
+      $this->registry->mergeStyleTokens($stored, NULL, NULL, NULL),
+      'NULL leaves a stored arrow byte-identical, in place.'
+    );
+    $this->assertSame(
+      ['login bl2-component-content-type arrow'],
+      $this->registry->mergeStyleTokens(['login mm-arrow bl2-component-content-type bl2-2x'], NULL, '', TRUE),
+      'The arrow and width families are cleared independently.'
+    );
+
+    // Shape preservation follows mergeComponentToken()'s rules.
+    $this->assertSame(
+      'login arrow',
+      $this->registry->mergeStyleTokens('login', NULL, NULL, TRUE),
+      'A string value stays a string.'
+    );
+    $this->assertSame(
+      ['login', 'cooperation', 'arrow'],
+      $this->registry->mergeStyleTokens(['login', 'cooperation'], NULL, NULL, TRUE),
+      'A multi-element array stays one token per element.'
     );
   }
 
@@ -529,23 +589,23 @@ class BiolandComponentRegistryTest extends TestCase {
    * The rows-cap token round-trips and only digits are ever written.
    */
   public function testMaxRowsTokenRules(): void {
-    $stored = ['arrow bl2-component-content-type bl2-ct-max-row-per-column-4'];
+    $stored = ['login bl2-component-content-type bl2-ct-max-row-per-column-4'];
 
     $this->assertSame('4', $this->registry->findMaxRowsValue($stored));
-    $this->assertSame('', $this->registry->findMaxRowsValue(['arrow']));
+    $this->assertSame('', $this->registry->findMaxRowsValue(['login']));
 
     $this->assertSame(
-      ['arrow bl2-component-content-type bl2-ct-max-row-per-column-6'],
+      ['login bl2-component-content-type bl2-ct-max-row-per-column-6'],
       $this->registry->mergeMaxRows($stored, '6')
     );
     $this->assertSame(
-      ['arrow bl2-component-content-type'],
+      ['login bl2-component-content-type'],
       $this->registry->mergeMaxRows($stored, ''),
       'The empty value clears the cap back to the site default.'
     );
     $this->assertSame($stored, $this->registry->mergeMaxRows($stored, NULL), 'NULL leaves the family untouched.');
     $this->assertSame(
-      ['arrow bl2-component-content-type'],
+      ['login bl2-component-content-type'],
       $this->registry->mergeMaxRows($stored, '6; DROP'),
       'A non-digit value is never written.'
     );

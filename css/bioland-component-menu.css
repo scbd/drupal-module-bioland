@@ -62,6 +62,16 @@
   margin: 0.25em 0 1em;
 }
 
+/* Preview of the arrow the frontend renders after the section title. Its
+   colour is the per-site primary and is set inline by
+   BiolandComponentMenuFormMode::arrowPreview(), so nothing is declared here. */
+.bioland-component-menu-form__arrow-preview {
+  margin-inline-start: 0.5em;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1;
+}
+
 /* The content-type sub-select, shown only for the Content Type Listing. */
 .bioland-component-menu-form select[name="bioland_component_content_type"] {
   max-width: 32em;

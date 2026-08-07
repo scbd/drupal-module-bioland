@@ -1794,8 +1794,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Αυτός ο σύνδεσμος μενού εμφανίζει ένα στοιχείο μεγάλου μενού αντί για μια απλή λίστα θυγατρικών συνδέσμων."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Προσθήκη συνδέσμου μενού στοιχείου"
+msgid "Add Mega Menu component"
+msgstr "Προσθήκη στοιχείου μεγάλου μενού"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1896,8 +1896,8 @@ msgid "Enable Component Menu Links"
 msgstr "Ενεργοποίηση συνδέσμων μενού στοιχείων"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Εμφανίζει την ενέργεια \"Προσθήκη συνδέσμου μενού στοιχείου\" στην οθόνη διαχείρισης μενού. Όταν δεν είναι επιλεγμένο, η ενέργεια και η φόρμα της δεν είναι διαθέσιμες."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Εμφανίζει την ενέργεια \"Προσθήκη στοιχείου μεγάλου μενού\" στην οθόνη διαχείρισης μενού. Όταν δεν είναι επιλεγμένο, η ενέργεια και η φόρμα της δεν είναι διαθέσιμες."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1938,3 +1938,11 @@ msgstr "Προεπιλογή ιστότοπου"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Μέγιστες καταχωρίσεις ανά στήλη· χωρίς ρύθμιση ισχύει η προεπιλογή του ιστότοπου."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Εμφάνιση βέλους"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Εμφανίζει ένα βέλος μετά τον τίτλο της ενότητας."

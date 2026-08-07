@@ -1794,8 +1794,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Mae'r ddolen ddewislen hon yn dangos cydran mega ddewislen yn lle rhestr syml o ddolenni plant."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ychwanegu dolen ddewislen cydran"
+msgid "Add Mega Menu component"
+msgstr "Ychwanegu cydran y mega ddewislen"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1896,8 +1896,8 @@ msgid "Enable Component Menu Links"
 msgstr "Galluogi dolenni dewislen cydran"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Yn dangos y weithred \"Ychwanegu dolen ddewislen cydran\" ar sgrin rheoli'r ddewislen. Pan nad yw wedi'i dicio, nid yw'r weithred na'i ffurflen ar gael."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Yn dangos y weithred \"Ychwanegu cydran y mega ddewislen\" ar sgrin rheoli'r ddewislen. Pan nad yw wedi'i dicio, nid yw'r weithred na'i ffurflen ar gael."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1938,3 +1938,11 @@ msgstr "Rhagosodiad y wefan"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Uchafswm cofnodion fesul colofn; heb ei osod, defnyddir rhagosodiad y wefan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Dangos saeth"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Dangos saeth ar ôl teitl yr adran."

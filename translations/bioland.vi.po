@@ -1705,8 +1705,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Liên kết menu này hiển thị một thành phần mega menu thay vì danh sách liên kết con thông thường."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Thêm liên kết menu thành phần"
+msgid "Add Mega Menu component"
+msgstr "Thêm thành phần mega menu"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1807,8 +1807,8 @@ msgid "Enable Component Menu Links"
 msgstr "Bật liên kết menu thành phần"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Hiển thị hành động \"Thêm liên kết menu thành phần\" trên màn hình quản lý menu. Khi bỏ chọn, hành động và biểu mẫu của nó không khả dụng."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Hiển thị hành động \"Thêm thành phần mega menu\" trên màn hình quản lý menu. Khi bỏ chọn, hành động và biểu mẫu của nó không khả dụng."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1849,3 +1849,11 @@ msgstr "Mặc định của trang"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Số mục tối đa mỗi cột; nếu không đặt, áp dụng mặc định của trang."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Hiện mũi tên"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Hiển thị mũi tên sau tiêu đề của phần."

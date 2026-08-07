@@ -1776,8 +1776,8 @@ msgid "This menu link renders a mega-menu component instead of a plain list of c
 msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen pitit."
 
 #: bioland.routing.yml
-msgid "Add component menu link"
-msgstr "Ajoute yon lyen meni konpozan"
+msgid "Add Mega Menu component"
+msgstr "Ajoute yon konpozan mega meni"
 
 #: bioland.routing.yml
 msgid "Theme"
@@ -1878,8 +1878,8 @@ msgid "Enable Component Menu Links"
 msgstr "Aktive lyen meni konpozan"
 
 #: src/Form/BiolandAdminSettingsForm.php
-msgid "Shows the \"Add component menu link\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
-msgstr "Montre aksyon \"Ajoute yon lyen meni konpozan\" sou ekran jesyon meni an. Le li pa tcheke, aksyon an ak fom li pa disponib."
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Montre aksyon \"Ajoute yon konpozan mega meni\" sou ekran jesyon meni an. Le li pa tcheke, aksyon an ak fom li pa disponib."
 
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Show thumbnails"
@@ -1920,3 +1920,11 @@ msgstr "Paran sit la"
 #: src/Service/BiolandComponentMenuFormMode.php
 msgid "Maximum entries listed per column; the site default applies when unset."
 msgstr "Maksimòm antre pa kolòn; si li pa defini, paran sit la aplike."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Montre flech"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Montre yon flech apre tit seksyon an."

@@ -91,6 +91,22 @@ class BiolandComponentRegistry {
   public const LEGACY_THUMBS_TOKEN = 'mm-show-thumbs';
 
   /**
+   * The title-arrow toggle token the picker writes.
+   *
+   * bioland-head header.vue renders a primary-coloured arrow after the section
+   * title when the link carries this class (or the legacy spelling).
+   * Deliberately UNPREFIXED, unlike every other token this service owns: the
+   * frontend contract already reads the bare "arrow" class, so a "bl2-"
+   * spelling would simply never match.
+   */
+  public const ARROW_TOKEN = 'arrow';
+
+  /**
+   * Legacy arrow spelling, still read by the frontend but never written.
+   */
+  public const LEGACY_ARROW_TOKEN = 'mm-arrow';
+
+  /**
    * The column-width tokens, widest last.
    *
    * bioland-head drop-down.vue getSectionScaleClasses(): a bare token flexes
@@ -624,6 +640,23 @@ class BiolandComponentRegistry {
   }
 
   /**
+   * Tells whether a stored class value shows the title arrow.
+   *
+   * Either spelling counts when reading; writing always uses ARROW_TOKEN.
+   *
+   * @param array|string $classValue
+   *   The raw value of options.attributes.class.
+   *
+   * @return bool
+   *   TRUE when an arrow token is present.
+   */
+  public function hasArrowToken(array|string $classValue): bool {
+    $tokens = $this->extractClasses($classValue);
+
+    return in_array(self::ARROW_TOKEN, $tokens, TRUE) || in_array(self::LEGACY_ARROW_TOKEN, $tokens, TRUE);
+  }
+
+  /**
    * Returns the stored column-width token, or an empty string for one column.
    *
    * @param array|string $classValue
@@ -642,7 +675,7 @@ class BiolandComponentRegistry {
   }
 
   /**
-   * Replaces the style tokens (thumbnails, column width) of a class value.
+   * Replaces the style tokens (thumbnails, column width, arrow) of a class.
    *
    * A NULL control leaves that family byte-identical — the caller had no
    * submitted value for it. A non-NULL control owns its family: existing
@@ -657,14 +690,19 @@ class BiolandComponentRegistry {
    * @param string|null $widthToken
    *   A WIDTH_TOKENS entry, an empty string for the one-column default, or
    *   NULL to leave untouched.
+   * @param bool|null $arrow
+   *   TRUE to show the title arrow, FALSE to hide it, NULL to leave untouched.
    *
    * @return array|string
    *   The merged class value, in the same shape as $classValue.
    */
-  public function mergeStyleTokens(array|string $classValue, ?bool $thumbs, ?string $widthToken): array|string {
+  public function mergeStyleTokens(array|string $classValue, ?bool $thumbs, ?string $widthToken, ?bool $arrow): array|string {
     $tokens = [];
     foreach ($this->extractClasses($classValue) as $token) {
       if ($thumbs !== NULL && ($token === self::THUMBS_TOKEN || $token === self::LEGACY_THUMBS_TOKEN)) {
+        continue;
+      }
+      if ($arrow !== NULL && ($token === self::ARROW_TOKEN || $token === self::LEGACY_ARROW_TOKEN)) {
         continue;
       }
       if ($widthToken !== NULL && in_array($token, self::WIDTH_TOKENS, TRUE)) {
@@ -677,6 +715,9 @@ class BiolandComponentRegistry {
     }
     if ($thumbs === TRUE) {
       $tokens[] = self::THUMBS_TOKEN;
+    }
+    if ($arrow === TRUE) {
+      $tokens[] = self::ARROW_TOKEN;
     }
 
     if (!is_array($classValue)) {
