@@ -50,6 +50,9 @@ terms and menus so the one module serves both site types.
    homepage shows only what is relevant.
 8. As a site manager, I want to configure the mega menu (which menus appear and where), so that the
    front-end navigation matches the site's structure.
+8a. As a site manager, I want to set the site's theme (primary/secondary colours, background colour,
+    mega-menu column/row/card limits, language-bar wrap threshold), so that the front end reflects
+    my site's branding. Recorded in `docs/adr/0006-theme-authority.md`.
 9. As a site manager, I want to rebuild the Drupal cache from the settings UI, so that I can clear
    stale content without shell access.
 10. As a site manager, I want the main menu locked against non-administrators, so that navigation is
@@ -62,6 +65,10 @@ terms and menus so the one module serves both site types.
     get guidance in their own language.
 14. As an administrator, I want certain tabs (system functions, admin) restricted to the
     administrator role, so that destructive operations are not exposed to ordinary managers.
+14a. As a content editor building navigation, I want a dedicated "Add Mega Menu component" flow
+    on the menu screen instead of hand-typing `bl2-component-*` classes, so that I pick a valid
+    component from a list rather than risk a silent typo. Recorded in
+    `docs/adr/0005-component-menu-authoring-surface.md`.
 
 ### Content editor
 
@@ -150,8 +157,9 @@ terms and menus so the one module serves both site types.
   comments each have an enable flag; the form alter attaches only the libraries for enabled features
   and passes a single `drupalSettings.bioland` payload.
 - **Provisioning is versioned and idempotent.** Setup is expressed as numbered update hooks
-  (currently through 9061) split into per-concern include files, so installs and upgrades are
-  re-runnable and reviewable. Helpers skip cleanly when an optional dependency module is absent.
+  (currently through 9079; see `docs/UPDATE.md`) split into per-concern include files, so installs
+  and upgrades are re-runnable and reviewable. Helpers skip cleanly when an optional dependency
+  module is absent.
 - **Search uses the database backend.** The `content` index runs on Search API's database backend,
   not Solr. A newer v2 install path applies serialized production config and rebuilds the index.
 - **System cron disabled.** An update hook sets `system.cron_disabled`; scheduling is expected to be
@@ -211,7 +219,7 @@ terms and menus so the one module serves both site types.
 
 ## Further Notes
 
-The top-level `README.md`, `IMPLEMENTATION_COUNTRY_DEFAULTS.md`, and `docs/COUNTRY_MAP_DEFAULTS.md`
-predate the current code in places (versioned JS filenames, a debug route, some API names). When they
-disagree with the source, the source is correct. These documents (`docs/CONTEXT.md`,
-`docs/architecture.md`, this PRD, and the ADRs) are the reverse-engineered, code-checked record.
+The top-level `README.md` and `docs/COUNTRY_MAP_DEFAULTS.md` can drift from the current code in
+places (versioned JS filenames, class names, API details). When they disagree with the source, the
+source is correct. These documents (`docs/CONTEXT.md`, `docs/architecture.md`, this PRD, and the
+ADRs) are the reverse-engineered, code-checked record.

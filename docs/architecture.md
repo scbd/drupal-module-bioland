@@ -114,36 +114,55 @@ The module is small in PHP class count but wide in surface area. The pieces:
   insert/update hooks that drive translation defaults, page attachments that publish home-widget
   settings to every page, menu and link alters, and a Search API index alter that injects
   `field_order`.
-- **`BiolandSettingsForm`** (about 2900 lines): the multi-tab admin UI. The route's `section`
-  parameter selects which tab builds: general, system functions, field visibility, tags, help
-  comments, the front-end group and its mega-menu / home-page / home-widgets subsections, and admin.
-- **Services**: six classes, all registered in `bioland.services.yml`:
+- **Settings forms** (`src/Form/`): the multi-tab admin UI, one form class per section rather than a
+  single monolithic class. `BiolandSettingsFormBase` is the shared abstract base; concrete forms are
+  `BiolandGeneralSettingsForm`, `BiolandFieldVisibilityForm`, `BiolandTagsForm`,
+  `BiolandHelpCommentsForm`, `BiolandFrontEndGeneralForm`, `BiolandMegaMenuForm`,
+  `BiolandHomePageForm`, `BiolandHomeWidgetsForm`, `BiolandThemeForm`, `BiolandFrontEndRedirectForm`,
+  `BiolandSystemFunctionsForm`, `BiolandAdminSettingsForm`, and
+  `BiolandComponentMenuLinkForm` (the dedicated "Add Mega Menu component" flow; see
+  `docs/adr/0005-component-menu-authoring-surface.md`). Each maps to a route in
+  `bioland.routing.yml`.
+- **Services**: registered in `bioland.services.yml`:
   - `BiolandSettingsManager` reads `bioland.settings` and merges country map defaults for the front
     end.
   - `BiolandFieldFunctionalityManager` builds the `drupalSettings.bioland` payload (feature toggles,
     field-visibility rules, additional-tag content-type maps, translated help comments).
   - `BiolandTranslationManager` creates translation defaults on entity save.
   - `BiolandTranslationBatchService` backfills existing nodes through the Batch API.
-  - `BiolandDmsmConfigService` fetches geography from DMSM.
-  - `BiolandCountryMapDefaults` holds the static ~240-country zoom/coordinate preset table.
+  - `BiolandDmsmConfigService` fetches geography (and, for the Theme tab, the per-network theme
+    document) from DMSM.
+  - `BiolandComponentRegistry` (`bioland.component_registry`) holds the canonical list of
+    `bl2-component-*` tokens editors can attach to a menu link.
+  - `BiolandComponentMenuAccessCheck` (`bioland.component_menu_access`) is the route access checker
+    behind `_bioland_component_menu_enabled`.
+  - `BiolandComponentMenuFormMode` (`bioland.component_menu_form_mode`) resolves the mega-menu form
+    mode (columns, arrow, presentation) for a component, including the theme's primary-colour
+    fallback.
+  - `BiolandComponentMenuOverview` (`bioland.component_menu_overview`) drives the mega-menu
+    indicator column on the menu overview screen.
+  - `BiolandCountryMapDefaults` (not a registered service; a static class) holds the ~240-country
+    zoom/coordinate preset table.
 - **Browser behaviours** (`js/*`): Drupal behaviours for field visibility, additional fields, auto
   summary, help comments, home widgets, language redirect, hiding bulk actions, the settings toggle,
-  and a shared debug logger. They are attached per feature based on the toggles.
+  the component-menu link form, and a shared debug logger. They are attached per feature based on
+  the toggles.
 - **Installer and update hooks**: `bioland.install` plus the `includes/bioland.install.*.inc`
   partials, organised by concern (content types, fields, form display, roles, users, menu, search,
-  search v2, translation, linkit, editor, jsonapi, views, dmsm, helpers). Schema version is at
-  `9061`.
+  search v2, translation, linkit, editor, jsonapi, views, dmsm, helpers). The current update-hook
+  ceiling is `bioland_update_9079` (verify with
+  `grep -rho "bioland_update_[0-9]*" includes/*.inc | sort -u | tail -1`); see `docs/UPDATE.md`.
 
 ## 4. Key Components (C4 L3)
 
 ### Settings form sections
 
-`BiolandSettingsForm::buildForm()` branches on `$section` and builds one tab at a time, with a
-matching submit handler per section. The sections map one-to-one to the routes in
-`bioland.routing.yml`. General, front-end, system-functions, and admin require `administer bioland
-settings` or the administrator role; field-visibility, tags, and help-comments require `administer
-bioland field settings`. The form is also where cache rebuild and the translation batch are
-triggered (system functions tab).
+Each settings tab is its own `ConfigFormBase` subclass extending `BiolandSettingsFormBase`, one per
+route in `bioland.routing.yml`: general, system functions, field visibility, tags, help comments,
+the front-end group (general, mega menu, home page, home widgets, theme), and admin. General,
+front-end, system-functions, and admin require `administer bioland settings` or the administrator
+role; field-visibility, tags, and help-comments require `administer bioland field settings`. The
+system functions form is also where cache rebuild and the translation batch are triggered.
 
 ### Field functionality on the content form
 
@@ -328,6 +347,8 @@ Decisions that shape this module are recorded as ADRs in `docs/adr/`:
   translation defaults on save rather than invoking machine translation.
 - `docs/adr/0004-disable-system-cron.md`: system cron is disabled in favour of external scheduling
   (BL-739).
+- `docs/adr/0005-component-menu-authoring-surface.md`: a dedicated add-component route and form
+  replace hand-typed `bl2-component-*` classes with a token picker for mega-menu components.
 - `docs/adr/0006-theme-authority.md`: `bioland.settings.theme` is the per-site theme authoring
   authority, reaching head via dmsm's existing `biolandSettings` attach with zero dmsm changes.
 
@@ -339,18 +360,22 @@ See each ADR for the rationale; it is not restated here.
   contains no `hook_cron` guard reading it. Anything that needs the flag honoured (or that needs
   Search API indexing to still run) depends on infrastructure outside this repo. Worth confirming the
   external scheduler exists for every environment.
-- **Stale top-level docs.** The root `README.md`, `IMPLEMENTATION_COUNTRY_DEFAULTS.md`, and the
-  `docs/COUNTRY_MAP_DEFAULTS.md` reference versioned JS filenames that no longer match (for example
-  `-1-0-21`, `-1-0-47` against the current `-1-0-48`) and describe a `/development` debug route that
-  does not exist. The `getCountryDefaults()` method they mention is still accurate
-  (`src/Service/BiolandCountryMapDefaults.php`), so that reference is fine; it is the versioned
-  filenames and the `/development` route that have drifted. Treat the code as truth.
+- **Versioned JS/CSS filenames.** JS behaviour files and libraries embed the module version in their
+  filename (for example `js/bioland-home-widgets-1-1-6.js`). `docs/COUNTRY_MAP_DEFAULTS.md` and the
+  README reference these by name; a version bump means every reference needs updating in lockstep,
+  or the docs drift again the way they previously did. Treat `bioland.info.yml`'s `version:` and the
+  actual filenames in `js/` as truth if a doc disagrees.
 - **Two Search API install paths.** v1 and v2 both exist. v2 is canonical; v1 is retained only for
-  replay of its historical hooks. `bioland_update_9064` now provides the single convergence switch
-  (highest-numbered, idempotent, runs last for every site), so update history no longer determines
-  the final index state. The remaining risk is only if new code re-wires the deprecated v1 helpers
-  into the install path — the file header of `bioland.install.search.inc` warns against this.
+  replay of its historical hooks. `bioland_update_9064` provided a convergence switch that was the
+  highest-numbered hook at the time it landed (idempotent, re-applies v2 config and reindexes);
+  update hooks have since continued past it (currently through 9079), so it is no longer the
+  highest-numbered hook, only still the last one that touches the Search API index. The remaining
+  risk is only if new code re-wires the deprecated v1 helpers into the install path — the file
+  header of `bioland.install.search.inc` warns against this.
 - **DMSM coupling at update time.** A DMSM outage blocks `drush updb`. That is deliberate, but it
   couples routine deployments to an external service's availability.
-- **Large single form.** `BiolandSettingsForm` is one ~2900-line class. It works, but the section
-  branching makes it the main place new configuration risks accreting without structure.
+- **Theme config duplication.** The bl2/BSL fallback primary colours live in
+  `BiolandThemeContract::FALLBACK_PRIMARY_BL2`/`FALLBACK_PRIMARY_BSL`, consumed by
+  `BiolandThemeForm`, `BiolandComponentMenuFormMode::primaryColor()`, and the baked-in
+  `--bs-primary` in `css/bioland.ckeditor.css`. A future colour change means updating the CSS file
+  by hand alongside the PHP constant.
