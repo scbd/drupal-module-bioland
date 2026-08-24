@@ -37,6 +37,8 @@ PR 0 merges `latest-dev` into `master`, then all tip PRs chain serially 1→14 w
 
 Two sub-chains off the sync point (`mega-menu-2026-08-05` / `latest-dev`), then a convergence PR and docs. All draft. LOC = implementation only (excludes tests, docs, .po, yarn.lock). Branch ticket ids are `BL-XXX` placeholders; existing PRs keep their branches.
 
+**Read the "Content" column as provenance, not as a checkout instruction.** Each seam's content is taken from `HEAD`'s tree (§4); the SHAs listed name which paths and hunks belong to that seam and which are explicitly excluded from it.
+
 **Component chain**
 
 | # | Branch / PR | Base | Content | Impl LOC | Scope | Coupling risks |
@@ -97,9 +99,25 @@ This is a property of the original development history, not of the PR branches o
 
 ## 4. Split prescriptions and travel-with rules
 
-Never rewrite pushed history. Path-level re-cuts only: `git checkout <sha> -- <paths>` onto the seam branch. No hunk-level (`git add -p`) splits of single classes — every previously prescribed hunk split (old 3a/3b core, 7a/7b sections, 13a slice) is withdrawn; oversized cohesive classes ship whole with a justified-breach note in the PR body.
+**Build every seam forward from `HEAD`, never by replaying a historical SHA.** `HEAD` is the only green tree in the range (§3), so a seam that takes its content from `HEAD` starts valid and only has to be proven *sufficient*; a seam that checks out a mid-history SHA starts red and has to be *repaired*. The historical SHAs in the §3 table are the **provenance and boundary** of each seam — they say which paths and which hunks belong to it — not the tree to check out.
 
-**Shared-file clobber hazard (mandatory reading before any path-cut).** The two tracks accreted changes into the same files: `config/schema/bioland.schema.yml`, `bioland.routing.yml`, `bioland.services.yml`, `bioland.module`, `src/Form/BiolandAdminSettingsForm.php`, `tests/Unit/TranslationCatalogIntegrityTest.php`, and all `translations/*.po`. Checking out a component-track SHA's version of such a file onto a branch that already carries theme-track content (or vice versa) **deletes the sibling work** — verified: `git checkout a47532d -- config/schema/bioland.schema.yml` on a theme-bearing base removes the entire `theme:` schema (83 deletions). Rule: for any file both tracks touch, either (a) cut the path from the **FINAL tree (HEAD)** onto a base that already contains all sibling work, or (b) apply the specific hunks by hand. Never cut a mid-history SHA's version of a shared file onto a branch missing sibling changes.
+The per-seam recipe:
+
+```bash
+git checkout -b <seam-branch> <base-branch>     # base = previous seam, or the sync point
+git checkout HEAD -- <paths for this seam>      # content comes from the green tree
+# for a file the seam only partly owns, apply its hunks by hand from `git diff <base> HEAD -- <file>`
+vendor/bin/phpunit --no-coverage                # MUST be green before the PR opens
+npx jest --ci
+```
+
+The phpunit run is the gate, not a formality: it is what distinguishes a seam that is genuinely self-contained from one that is missing a dependency its neighbours were quietly providing. If a seam cannot go green without pulling in another seam's paths, that is the decomposition telling you the boundary is in the wrong place — move the boundary, do not weaken the gate. Repo CI already runs both suites on every `pull_request` (`.github/workflows/ci.yml`), so a red head cannot merge unnoticed either way.
+
+**The five open PRs (#26, #28, #29, #30, #31) predate this rule and carry mid-history content**, which is why their heads fail (#31: 12 failures, 8 after #30 merges in). They need re-cutting from `HEAD` on the same branches — new commits forward, never a force-push or a rewritten history — before they can go green. Their base wiring is enforced separately by `scripts/pr-stack/stack.yml` and the pr-stack-guard workflow.
+
+Never rewrite pushed history. No hunk-level (`git add -p`) splits of single classes — every previously prescribed hunk split (old 3a/3b core, 7a/7b sections, 13a slice) is withdrawn; oversized cohesive classes ship whole with a justified-breach note in the PR body.
+
+**Shared-file clobber hazard (mandatory reading before any path-cut).** The two tracks accreted changes into the same files: `config/schema/bioland.schema.yml`, `bioland.routing.yml`, `bioland.services.yml`, `bioland.module`, `src/Form/BiolandAdminSettingsForm.php`, `tests/Unit/TranslationCatalogIntegrityTest.php`, and all `translations/*.po`. Checking out a component-track SHA's version of such a file onto a branch that already carries theme-track content (or vice versa) **deletes the sibling work** — verified: `git checkout a47532d -- config/schema/bioland.schema.yml` on a theme-bearing base removes the entire `theme:` schema (83 deletions). Under the build-forward rule this hazard mostly dissolves — `HEAD`'s version of a shared file contains *both* tracks' work by definition. What remains is the opposite risk: cutting `HEAD`'s version of a shared file onto an early seam imports sibling content that has not landed yet. So for any file both tracks touch, **apply only this seam's hunks by hand** (`git diff <base> HEAD -- <file>` and take the relevant ones), never the whole file. The whole-file cut is safe only for files a single seam wholly owns.
 
 **Post-merge trees are the same hazard in the other direction (round 3).** `f48e6fe`, `12ff4d4`, `f797bb2`, `572102c` and `5a43914` all sit on or after the `0bc68a4` merge, so *their* trees already contain the sibling family's work. Verified examples: `git show f48e6fe:bioland.routing.yml` declares the `bioland.settings.front_end.theme` route to `BiolandThemeForm` while `a47532d`'s does not — a whole-file cut onto C6/C7 imports a route whose form class has not landed; `git show 12ff4d4:includes/bioland.install.helpers.inc` already defines `bioland_update_9079()`. For every shared file at these SHAs the prescription is **hand-apply the specific hunks**, never a whole-file `git checkout <sha> -- <path>`. The table rows name the specific exclusions; where a row says "minus X", the exclusion is mandatory, not advisory.
 
