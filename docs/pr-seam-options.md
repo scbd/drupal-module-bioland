@@ -77,6 +77,8 @@ Merge commits in the tip (`c11b8ce`, `3b2db7f`, `f5a0341`, `1919104`, `0bc68a4`)
 
 Seam count: 10 component (C1-C10; the round-2 C5/C6 split collapsed to one seam, the two `5a43914` seams are now C9/C10 in the table) + 5 theme + 1 convergence + 2 docs = **18 seams**, of which 5 are already open (#26, #28, #29, #30, #31), plus 1 separate promotion PR.
 
+**The open PR heads are red today, and chaining the bases does not fix that.** Measured with `vendor/bin/phpunit --no-coverage` on 2026-08-24: `mega-menu-dev` HEAD is green (460 tests, 0 failures), but `#30`'s head fails 6, and `#31`'s head fails 12 (8 after `#30` is merged into it). The cause is the travel-with rule being violated in the other direction — the branches carry **test expectations that belong to later seams**. Example: `BiolandComponentRegistryTest::testOptionsForBslSite` on `#31` expects the single narrowed `'bl2-component-content-type' => 'Content Type'` option that `df26462` (C5) introduces, while the branch's registry still returns the full five-option map. Every seam must ship its tests *with* its implementation, not ahead of it; the open PRs need their test files re-cut to the seam they belong to before any of them can satisfy the "valid running state at every PR head" contract.
+
 ## 4. Split prescriptions and travel-with rules
 
 Never rewrite pushed history. Path-level re-cuts only: `git checkout <sha> -- <paths>` onto the seam branch. No hunk-level (`git add -p`) splits of single classes — every previously prescribed hunk split (old 3a/3b core, 7a/7b sections, 13a slice) is withdrawn; oversized cohesive classes ship whole with a justified-breach note in the PR body.
