@@ -1,6 +1,6 @@
 # Bioland Module
 
-Bioland is a comprehensive Drupal module that provides enhanced field management functionality and translation default creation capabilities, originally adapted from the SCBD thesaurus tags module. It offers four main functionalities that can be individually enabled or disabled through the administration interface.
+Bioland is a comprehensive Drupal module that provides enhanced field management functionality and translation default creation capabilities, originally adapted from the SCBD thesaurus tags module. It offers four main functionalities that can be individually enabled or disabled through the administration interface, alongside a front-end settings suite (mega menu, home page, home widgets, theme) and a mega-menu component authoring surface. See `docs/architecture.md`, `docs/prd.md`, and `docs/adr/` for the code-checked, kept-current record of the whole module; this file focuses on the original field/translation feature set below plus a summary of the newer front-end features.
 
 ## Features
 
@@ -46,6 +46,49 @@ Bioland is a comprehensive Drupal module that provides enhanced field management
   - Optional copying of translatable field values to translation defaults
   - Batch operations for processing existing entities
 - **Setting**: `translation.auto_create`
+
+### 5. Front-End Settings (Mega Menu, Home Page, Home Widgets, Theme)
+
+- **Purpose**: Configure the navigation, homepage, and branding that the separate bioland-head
+  Nuxt front end renders
+- **Location**: `/admin/config/bioland/settings/front-end` and its subsections (general,
+  mega menu, home page, home widgets, theme)
+- **Mega Menu tab** (`BiolandMegaMenuForm`, config under `mega_menu.*`): per-content-type-term menu
+  limits and position, a "Content Types Statistics Menu" section, and additional menus (country
+  profiles, focal points, national targets, national report, BCH, ABSCH, forums). BSL sites only
+  expose the content-type-menus section.
+- **Theme tab** (`BiolandThemeForm`, config under `theme.*`, see
+  `docs/adr/0006-theme-authority.md`): the per-site theme authoring surface — primary/secondary
+  colour, secondary background colour, home-page widget columns, mega-menu max columns/rows-per-column/
+  horizontal-card-max, and the language-bar wrap threshold. Fields are lazily pre-filled from DMSM's
+  per-network theme document (`BiolandDmsmConfigService::getEffectiveTheme()`) but nothing is written
+  to config until an editor submits the form. `color.primary` also drives the CKEditor content-style
+  heading underline (see below) and the mega-menu "Show Arrow" preview colour, with per-flavour
+  (bl2/BSL) fallback colours defined on `BiolandThemeContract` when no theme has been authored yet.
+- **CKEditor content styles**: `css/bioland.ckeditor.css` aligns in-editor heading rendering with the
+  public Nuxt front end (heading sizes and a primary-coloured underline), reading `--bs-primary` with
+  a bl2 default when no site colour is available.
+
+### 6. Mega Menu Component Authoring
+
+- **Purpose**: Let editors turn a menu link into a Bioland mega-menu component from a picker instead
+  of hand-typing `bl2-component-*` classes into the class field `menu_link_attributes` provides. See
+  `docs/adr/0005-component-menu-authoring-surface.md`.
+- **"Add Mega Menu component" flow**: a dedicated route,
+  `/admin/structure/menu/manage/{menu}/add-component`, sibling to core's own "Add link" route, gated
+  by the `_bioland_component_menu_enabled` access check (`BiolandComponentMenuAccessCheck`), which is
+  itself controlled by the site-wide mega-menu toggle in Bioland's admin settings.
+- **Component picker**: `BiolandComponentRegistry` supplies the canonical list of `bl2-` prefixed
+  component tokens; `BiolandComponentMenuFormMode` resolves per-component presentation controls
+  (columns, "Show Arrow", thumbnails, column width) and injects them into the menu link form.
+- **Menu overview indicator**: `BiolandComponentMenuOverview` adds a column to the menu link overview
+  screen showing which links are mega-menu components.
+- **Admin toggles**: `component_menu_add_enabled` (on by default; turns the whole add-component flow
+  off) and `component_menu_show_attributes` (off by default; reveals the raw Attributes fieldset
+  `menu_link_attributes` normally hides on the component form).
+- **Retired**: the Theme tab's "Show Forums in the mega menu" checkbox (`theme.mega_menu.forums`) has
+  been removed; the key is dropped from `BiolandThemeContract::KEYS` and the config schema, and
+  update hook 9079 clears it from any site that saved it while the checkbox still existed.
 
 ## Configuration
 
@@ -300,6 +343,13 @@ The module uses a modular JavaScript architecture:
 - **js/bioland-field-visibility-1-1-6.js**: Handles field show/hide logic
 - **js/bioland-additional-fields-1-1-6.js**: Manages Vue.js-based additional field mounting
 - **js/bioland-auto-summary-1-1-6.js**: Provides intelligent summary generation
+- **js/bioland-help-comments-1-1-6.js**: Renders translatable inline field help text
+- **js/bioland-home-widgets-1-1-6.js**: Publishes per-country home-widget settings via `window.Bioland.homeWidgets`
+- **js/bioland-component-menu-form-1-1-6.js**: Behaviours for the mega-menu component link form
+- **js/bioland-language-redirect-1-1-6.js**: Language-redirect behaviour
+- **js/bioland-hide-bulk-actions-1-1-6.js**: Hides selected bulk operations in admin listings
+- **js/bioland-settings-toggle-1-1-6.js**: Show/hide behaviour for settings-form sections
+- **js/bioland-debug-logger-1-1-6.js**: Shared opt-in debug logger used by the other behaviours
 
 ### Libraries
 
@@ -315,6 +365,11 @@ The module uses a modular JavaScript architecture:
 - **bioland.settings_manager**: General settings management
 - **bioland.translation_manager**: Handles translation defaults creation
 - **bioland.translation_batch**: Processes batch translation operations
+- **bioland.dmsm_config**: Fetches geography and the per-network theme document from the DMSM API
+- **bioland.component_registry**: Canonical list of mega-menu `bl2-component-*` tokens
+- **bioland.component_menu_access**: Route access check for the "Add Mega Menu component" flow
+- **bioland.component_menu_form_mode**: Resolves per-component mega-menu presentation controls
+- **bioland.component_menu_overview**: Drives the mega-menu indicator column on the menu overview screen
 
 ## Usage
 
@@ -346,7 +401,8 @@ The module maintains backward compatibility with the original SCBD field module:
 
 ## Requirements
 
-- Drupal 9.4+/10/11
+- Drupal 10/11 (`core_version_requirement: ^10 || ^11`)
+- `menu_link_attributes` ≥ 1.7 (menu link class storage/UI, used by the mega-menu component flow)
 - jQuery (provided by Drupal core)
 - Vue.js (for additional fields functionality)
 - Modern browser with JavaScript enabled
@@ -458,7 +514,7 @@ Translation default creation activities are logged to the 'bioland' log channel.
 
 ### Requirements for Translation Default Feature
 
-- Drupal 9.4+/10/11
+- Drupal 10/11
 - Content Translation module enabled
 - Multiple languages configured on the site
 - Translatable entity types configured on the site
