@@ -1,12 +1,12 @@
 # AI Agent Instructions: Drupal Module Bioland
 
 ## Important!
-- if this exists follow these memory rules every questions `.github/instructions/personal.md`
-- if it exists the default guidance at `.github/instructions/default.instructions.md` is the canonical source of instructions.
-- **CRITICAL**: Follow the Jira and Git workflow at `.github/instructions/workflow.md` for ALL code generation tasks.
+- if it exists follow the memory rules in `.github/instructions/personal.md` (not currently present in this repo)
+- if it exists the default guidance at `.github/instructions/default.instructions.md` is the canonical source of instructions (not currently present in this repo).
+- **CRITICAL**: if it exists, follow the Jira and Git workflow at `.github/instructions/workflow.md` for ALL code generation tasks (not currently present in this repo).
 
 ## Project Overview
-This is a Drupal 9/10/11 custom module (`bioland`) that provides comprehensive field management and translation functionality. The module combines:
+This is a Drupal 10/11 custom module (`bioland`) that provides comprehensive field management and translation functionality. The module combines:
 - **Backend**: Drupal PHP services architecture (Settings, Field Functionality, Translation Management)
 - **Frontend**: jQuery-based behaviors with Vue.js integration for dynamic fields
 - **Features**: Field visibility control, additional fields, auto summary generation, and translation defaults
@@ -18,7 +18,8 @@ This is a Drupal 9/10/11 custom module (`bioland`) that provides comprehensive f
 - **BiolandFieldFunctionalityManager**: `src/Service/BiolandFieldFunctionalityManager.php` - Manages feature toggles and JS settings
 - **BiolandTranslationManager**: `src/Service/BiolandTranslationManager.php` - Handles automatic translation default creation
 - **BiolandTranslationBatchService**: `src/Service/BiolandTranslationBatchService.php` - Batch processing for existing entities
-- **Config Form**: `src/Form/BiolandSettingsForm.php` at `/admin/config/bioland/settings`
+- Plus newer services: `BiolandAdditionalTagDefaults`, `BiolandComponentMenuFormMode`, `BiolandComponentMenuOverview`, `BiolandComponentRegistry`, `BiolandCountryMapDefaults`, `BiolandDmsmConfigService` (all in `src/Service/`)
+- **Config Forms**: per-tab forms in `src/Form/` extending `BiolandSettingsFormBase.php` — General (`/admin/config/bioland/settings`), Field Visibility, Tags, Help Comments, Front End (General, Mega Menu, Home Page, Home Widgets, Theme), System Functions, Admin; plus `BiolandComponentMenuLinkForm` at `/admin/structure/menu/manage/{menu}/add-component`
 
 ### Frontend Integration Pattern
 The module uses a **modular JavaScript behavior approach**:
@@ -76,7 +77,7 @@ composer require drupal/auto_node_translate --with-all-dependencies
 
 ### Git Workflow
 - Use conventional commit prefixes: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
-- Module version: `0.0.1` (see `package.json`, `composer.json`)
+- Module version: `1.1.6` (kept in sync across `bioland.info.yml`, `package.json`, `composer.json`)
 
 ## Code Patterns & Conventions
 
@@ -128,7 +129,7 @@ No PO files in this module—uses standard Drupal translation (`t()` function).
 ## Common Tasks for AI Agents
 
 ### Adding a New Config Option
-1. Update `BiolandSettingsForm::buildForm()` to add form element
+1. Update the relevant per-tab form's `buildForm()` in `src/Form/` to add the form element
 2. Update `submitForm()` to save the value (handle array normalization for textareas)
 3. Add schema entry in `config/schema/bioland.schema.yml`
 4. If frontend-facing: update `BiolandFieldFunctionalityManager::getJavaScriptSettings()`
@@ -164,11 +165,8 @@ No PO files in this module—uses standard Drupal translation (`t()` function).
 
 ## CI/CD & Deployment
 
-### CircleCI Configuration
-Two executors (`node_executor`, `php_executor`) run parallel jobs:
-- **js-tests**: Node 20.11, runs Jest with coverage
-- **php-tests**: PHP 8.2, runs PHPUnit with JUnit output
-- Caches: `~/.npm`, `~/.composer/cache`, `vendor`
+### CI Configuration
+CI runs on GitHub Actions (`.github/workflows/ci.yml`) with lint, PHP (PHPUnit, PHP 8.2), and JS (Jest, Node 20) steps. CircleCI is retired (a stale CircleCI app may still post statuses until unfollowed at the org level).
 
 ### Deployment Commands
 **Note**: `package.json` contains `deploy:dev` script for rsync to staging server. Update path before use.
@@ -176,7 +174,7 @@ Two executors (`node_executor`, `php_executor`) run parallel jobs:
 ## Critical Files Reference
 - **Entry points**: `bioland.info.yml` (module definition), `bioland.module` (hooks), `bioland.libraries.yml` (asset loading)
 - **Core services**: All files in `src/Service`
-- **Form logic**: `src/Form/BiolandSettingsForm.php`
+- **Form logic**: per-tab forms in `src/Form/` (base class `BiolandSettingsFormBase.php`)
 - **Install hooks**: `bioland.install` (role creation, content type validation, update hooks)
 - **Frontend**: `js/bioland.{field-visibility|additional-fields|auto-summary}.js`
 - **Config**: `config/install/bioland.settings.yml`, `config/schema/bioland.schema.yml`
