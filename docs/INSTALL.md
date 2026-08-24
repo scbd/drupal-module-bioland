@@ -17,6 +17,9 @@ Operations performed by `bioland_install()` in order:
 
 ## Configuration Initialization
 - Set default countries from `$settings['scbd_field']['countries']` or fallback to `['lk']`
+- `_bioland_update_countries_from_dmsm()` - Fetch countries (and region/continent when present)
+  from the DMSM API for the current hostname; non-blocking, falls back silently if DMSM is
+  unavailable
 
 ## Translation Import
 - `_bioland_import_translations()` - Import PO files from `/translations` directory
@@ -42,11 +45,33 @@ Operations performed by `bioland_install()` in order:
 - `_bioland_block_cbd_int_users()` - Block all @cbd.int users (except `randy.houlahan@cbd.int`), set to system role
 
 ## Search API & Facets Configuration
-- `_bioland_configure_search_api_index()` - Configure content index with language field and processors
-- `_bioland_configure_facets()` - Configure content_type and language facets, remove others
+- `_bioland_v2_update_search_and_facets_config()` - Apply the v2 (production) Search API index and
+  facets configuration; the canonical path a fresh install runs (see `docs/architecture.md` for the
+  v1/v2 distinction)
 
 ## Form Display Configuration
 - `_bioland_configure_langcode_form_display()` - Add langcode field to sidebar with label "Language", collapsed by default
+- `_bioland_disable_comment_field_display()` - Disable the comment field on view displays
+
+## Content Type & Menu Configuration
+- `_bioland_configure_content_type_available_menus()` - Configure which menus the content type may link into
+- `_bioland_configure_content_types()` - Configure content type taxonomy terms
+- `_bioland_configure_content_type_status_by_site_type()` - Enable/disable taxonomy terms by Bioland vs Biosafety Land
+- `_bioland_configure_system_pages_search_terms()` - Create the BCH/ABSCH search taxonomy terms
+- `_bioland_enable_main_menu_lock()` - Restrict main menu editing to administrators
+- `_bioland_create_content_menu_link()` - Create the "Content" admin menu link
+- `_bioland_disable_translation_menus()` - Hide menu-parent controls on translation forms
+- `_bioland_configure_content_type_weights()` - Set content type ordering weights
+
+## Views Installation
+- `_bioland_install_user_admin_view()` - Install the custom user admin view
+- `_bioland_install_media_library_view()` - Install the custom media library view with sortable columns
+
+## Menu Item Fixups
+- `_bioland_update_menu_item_139()` - Update menu item 139's URL to `/admin/content/media`
+
+## Editor Configuration
+- `_bioland_configure_full_html_editor_toolbar()` - Configure the `full_html` CKEditor toolbar
 
 ## JSON API Resource Disabling
 - `_bioland_disable_jsonapi_resources()` - Disable unused/sensitive JSON API endpoints via `jsonapi_extras` module:
