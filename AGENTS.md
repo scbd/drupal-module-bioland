@@ -106,11 +106,21 @@ Drupal.behaviors.biolandFeatureName = {
 ```
 
 **Key patterns**:
-- **NEVER use `.once()` or `once()`** - jQuery doesn't have a `.once()` method, and Drupal's `once()` function causes errors
-  - **CRITICAL**: Do NOT use any form of `.once()` or `once()` - they don't work and will break the code
-- **Prevent duplicate event binding**: Use `element.dataset.featureInit` flag to check if already initialized
+- **NEVER use jQuery `.once()`** - jQuery has no `.once()` method; `$(selector).once('id')` throws. The jQuery-plugin form was removed from Drupal core in 9.x.
+- **DO use Drupal core's `once()`** (Drupal 10/11) for duplicate-attach prevention. It is the current core API and works correctly. Declare `core/once` as a library dependency:
+  ```yaml
+  dependencies:
+    - core/drupal
+    - core/once
+  ```
+  ```javascript
+  once('bioland-feature-name', '.selector', context).forEach(function (element) {
+    // runs exactly once per element, across every behavior re-run
+  });
+  ```
+  Live example: `js/bioland-component-menu-form-1-1-6.js`.
+- **The `dataset` flag is the legacy fallback**, still present in the older behaviors (`bioland-auto-summary-1-1-6.js`, `bioland-additional-fields-1-1-6.js`). Leave it where it is; do not port it into new code, and do not "fix" a correct `once()` call back into it.
   - Pattern: `if (element.dataset.biolandFeatureInit) return; element.dataset.biolandFeatureInit = 'true';`
-  - This prevents attaching multiple event listeners when Drupal behaviors re-run
 - **Track value changes**: Store `lastContentTypeValue` to detect actual changes before processing
   - Pattern: `if (this.lastContentTypeValue === updatedValue) return;`
   - Only process when value actually changes
@@ -188,8 +198,7 @@ CI runs on GitHub Actions (`.github/workflows/ci.yml`) with lint, PHP (PHPUnit, 
 - ❌ Don't add features without updating `BiolandFieldFunctionalityManager`—breaks conditional loading
 - ❌ Don't use Drupal coding standards—this project inherits PSR-12 from scbd_field architecture
 - ❌ Don't create translation if existing translation has proper source (not 'und')—see `BiolandTranslationManager::createTranslations()` logic
-- ❌ **NEVER use `.once()` or `once()` functions**—jQuery doesn't have `.once()`, causes errors
-  - Instead use data attributes to track initialization: `if (element.dataset.featureInit) return; element.dataset.featureInit = 'true';`
+- ❌ **Never use jQuery `.once()`**—jQuery has no such method (removed from core in 9.x); use Drupal core's `once()` with a `core/once` library dependency instead. Core `once()` is correct on Drupal 10/11 and is NOT banned.
 
 ## Testing Strategy
 - **PHP**: Smoke test in `tests/Unit/SmokeTest.php` (extends PHPUnit\Framework\TestCase)
