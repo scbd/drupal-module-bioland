@@ -1,0 +1,28 @@
+name: PR stack guard
+
+# Chained PRs are only chained if BOTH halves hold: the PR targets the right
+# base branch, and that base is actually merged into the head. A base pointer
+# alone is silently wrong -- the diff looks fine while the dependency never
+# lands. This guard enforces the chain declared in scripts/pr-stack/stack.yml.
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  check-base:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify declared base and ancestry
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: node scripts/pr-stack/check.mjs
