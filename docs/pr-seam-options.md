@@ -113,6 +113,24 @@ npx jest --ci
 
 The phpunit run is the gate, not a formality: it is what distinguishes a seam that is genuinely self-contained from one that is missing a dependency its neighbours were quietly providing. If a seam cannot go green without pulling in another seam's paths, that is the decomposition telling you the boundary is in the wrong place — move the boundary, do not weaken the gate. Repo CI already runs both suites on every `pull_request` (`.github/workflows/ci.yml`), so a red head cannot merge unnoticed either way.
 
+**What build-forward costs, measured.** Because a seam takes its files at final form, every later refinement of a file collapses into the seam that first introduces that file. Verified on C2: cutting `src/Service/BiolandComponentRegistry.php` from `HEAD` onto the sync point is green (191 tests, up from 121 at the base, versus 3 failures when replaying `716179e`) — but the file lands at **797 LOC instead of 391**, because it absorbs the registry changes from `df26462`, `a47532d`, `4db1741`, `12ff4d4` and `5a43914`. Grouping every implementation file in the tip by the commit that first introduces it gives the real build-forward shape:
+
+| Owning commit | Seam | Files | Final LOC |
+|---------------|------|-------|-----------|
+| `716179e` | C2 | 2 | 840 |
+| `1d2d29a` | C3 | 4 | 2,334 |
+| `c6b7c0a` | C4b | 3 | 374 |
+| `df26462` | C5 | 1 | 88 |
+| `a47532d` | C6 | 3 | 517 |
+| `f48e6fe` | C7 | 1 | 192 |
+| `5a43914` | C9/C10 | 2 | 841 |
+| `f6dbcfe` | T1 | 2 | 724 |
+| `dc465d4` | T2 | 2 | 904 |
+| `4bb7bab` | T3/T4 | 2 | 1,292 |
+| `572102c` | X1 | 1 | 82 |
+
+So build-forward trades seam *count and size* for seam *validity*: roughly 11 content-bearing seams instead of 18, six of them over the 400 ceiling and one at nearly 6x it. That is the honest price of green heads, and it is worth paying — a 2,334-LOC PR that reviewers can actually check out and run beats four 500-LOC PRs that none of them can. Where a file genuinely evolves in separable stages, a seam may still be split by hand-applying its hunks (§4), but only if the resulting head passes `phpunit`; the measured history says most such intermediate states do not.
+
 **The five open PRs (#26, #28, #29, #30, #31) predate this rule and carry mid-history content**, which is why their heads fail (#31: 12 failures, 8 after #30 merges in). They need re-cutting from `HEAD` on the same branches — new commits forward, never a force-push or a rewritten history — before they can go green. Their base wiring is enforced separately by `scripts/pr-stack/stack.yml` and the pr-stack-guard workflow.
 
 Never rewrite pushed history. No hunk-level (`git add -p`) splits of single classes — every previously prescribed hunk split (old 3a/3b core, 7a/7b sections, 13a slice) is withdrawn; oversized cohesive classes ship whole with a justified-breach note in the PR body.
