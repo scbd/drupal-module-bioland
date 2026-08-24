@@ -77,7 +77,23 @@ Merge commits in the tip (`c11b8ce`, `3b2db7f`, `f5a0341`, `1919104`, `0bc68a4`)
 
 Seam count: 10 component (C1-C10; the round-2 C5/C6 split collapsed to one seam, the two `5a43914` seams are now C9/C10 in the table) + 5 theme + 1 convergence + 2 docs = **18 seams**, of which 5 are already open (#26, #28, #29, #30, #31), plus 1 separate promotion PR.
 
-**The open PR heads are red today, and chaining the bases does not fix that.** Measured with `vendor/bin/phpunit --no-coverage` on 2026-08-24: `mega-menu-dev` HEAD is green (460 tests, 0 failures), but `#30`'s head fails 6, and `#31`'s head fails 12 (8 after `#30` is merged into it). The cause is the travel-with rule being violated in the other direction — the branches carry **test expectations that belong to later seams**. Example: `BiolandComponentRegistryTest::testOptionsForBslSite` on `#31` expects the single narrowed `'bl2-component-content-type' => 'Content Type'` option that `df26462` (C5) introduces, while the branch's registry still returns the full five-option map. Every seam must ship its tests *with* its implementation, not ahead of it; the open PRs need their test files re-cut to the seam they belong to before any of them can satisfy the "valid running state at every PR head" contract.
+**Every commit in the 36-commit tip fails its own tests; only the final one is green.** Measured 2026-08-24 with `vendor/bin/phpunit --no-coverage` at each commit in `origin/latest-dev..HEAD`:
+
+| Commit | Seam | Result |
+|--------|------|--------|
+| `716179e` | C2 (#28) | 166 tests, 3 failures |
+| `1d2d29a` | C3 (#29) | 203 tests, 10 failures + 1 error |
+| `e686fdf` | C4a (#30) | 205 tests, 6 failures + 1 error |
+| `c6b7c0a` / `dc7af2e` | C4b (#31) | 230/231 tests, 8 failures + 1 error |
+| `df26462` | C5 | 244 tests, 6 failures |
+| `a47532d` / `4db1741` | C6 / C7 | 253/263 tests, 3 failures + 2 errors |
+| `f48e6fe` / `0bc68a4` / `12ff4d4` | C7 / merge / C8 | 353-363 tests, 7 failures + 6-7 errors |
+| `f797bb2` / `572102c` | T5 / X1 | 374/378 tests, 3 failures |
+| `5a43914` | C9 / C10 | **460 tests, 0 failures** |
+
+This is a property of the original development history, not of the PR branches or of this decomposition: the tip was written test-first-ish but only converges at the last feature commit, which lands the test-stub corrections and the remaining expectation updates. The PR branches inherit it faithfully — `#31`'s head fails 12, and 8 once `#30` is merged into it, exactly matching `c6b7c0a`'s own result.
+
+**Consequence for this plan: seams must be built forward from the final tree, never replayed from historical SHAs.** Any seam whose content is `git checkout <mid-history-sha> -- <paths>` inherits that SHA's red state and cannot satisfy the "valid running state at every PR head" contract. The prescription in §4 for shared files — cut from HEAD — must be generalised to *all* files: a seam takes its paths from `HEAD`'s tree (which is green) and is verified with `vendor/bin/phpunit` before its PR opens. The historical SHAs stay in the table as the *provenance and boundary* of each seam's content, not as the thing to check out.
 
 ## 4. Split prescriptions and travel-with rules
 
