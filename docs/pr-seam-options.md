@@ -2,6 +2,17 @@
 
 Status: FINAL after three devil's-advocate rounds (codex, agy, grok, plus seam-critic in round 1). Branch under analysis: `mega-menu-dev` @ `ab085c9`. Round-3 re-cuts are folded into §3/§4 and dispositioned in §6.
 
+## Decision (2026-08-25): sequential on master, one PR at a time
+
+Ratified execution mode, chosen over the stacked layout in Option A below:
+
+1. **Promote first.** The `latest-dev -> master` reconciliation PR (see "Promotion" after the seam table) lands before any feature seam. Until it merges, nothing can base on `master` — `master` is still the initial commit `a2d5c2f`.
+2. **Strictly sequential, single open PR.** The 18 seams run in the §3 order (component chain, theme chain interleavable, X1 after both family tips, docs last), but each PR bases on `master` and is opened only after its predecessor merges. No stacked bases.
+3. **Open PRs #26–#31** are retargeted to `master` in the GitHub UI after promotion (base change only, no history rewrite), then merged one at a time in C1..C4b order before new seams open.
+4. Seam content, LOC accounting, path-cut/hand-apply rules (§4), and the hard constraints are unchanged: the 9079 hook still ships once, final-form, in X1 only, and T5 must not deploy without X1 — under sequential merges this means T5 and X1 merge back-to-back with no deploy between them.
+
+The §3 "Base" column reads as merge ORDER under this mode; the literal base branch is always `master` at time of opening.
+
 ## 1. Context
 
 - Merge-base with `master`: `a2d5c2f`. `master..HEAD` = 206 commits, ~172k insertions across 277 files.
