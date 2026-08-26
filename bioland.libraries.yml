@@ -1,6 +1,0 @@
-debug_logger:
-  js:
-    js/bioland-debug-logger-1-1-6.js: {}
-  dependencies:
-    - core/drupal
-    - core/drupalSettings
