@@ -1,0 +1,15 @@
+name: Bioland
+type: module
+description: 'v1.1.6 — Handles settings for the Bioland tool including locales, countries, region, field visibility, additional fields, auto summary, and translation defaults functionality.'
+package: SCBD
+version: 1.1.6
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:system
+  - drupal:node
+  - drupal:field
+  - drupal:content_translation
+  - drupal:language
+  # Contrib modules required by Bioland. These must be present in the codebase
+  # (installed via Composer) for Bioland to enable successfully.
+  - drupal:fontawesome

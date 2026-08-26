@@ -55,6 +55,7 @@
 
 # Ignore vendor dependencies and scripts
 /vendor
+/composer.lock
 /composer.phar
 /composer
 /robo.phar
@@ -63,3 +64,33 @@
 /drush
 /drupal.phar
 /drupal
+.env
+.DS_Store
+.vscode
+.env*
+.github/prompts*
+node_modules/
+coverage/
+failed-*
+*.log
+*.py
+.env*
+.github/prompts*
+.github/instructions*
+!.github/instructions/workflow.md
+.phpunit.result.cache
+.phpunit.result*
+.php*
+*.backup
+# Yarn Berry / PnP artifacts — this repo is Yarn 1 (classic), keep these out
+.pnp.*
+.yarn/
+.github/*
+!.github/workflows/
+docs/.temp
+test-output.txt
+.claude
+.github*
+!.github/workflows
+# Session-local backlog capture (never committed, never shipped in an image)
+backlog.jsonl
