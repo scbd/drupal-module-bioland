@@ -10,32 +10,3 @@
  */
 function bioland_install() {
 }
-
-/**
- * Implements hook_requirements().
- */
-function bioland_requirements($phase) {
-  $requirements = [];
-
-  if ($phase === 'install' || $phase === 'runtime') {
-    // Verify contrib modules are available (composer) and enabled (Drupal).
-    $contrib_modules = [
-      'fontawesome' => 'drupal/fontawesome',
-    ];
-
-    $module_handler = \Drupal::moduleHandler();
-    foreach ($contrib_modules as $machine_name => $composer_pkg) {
-      $enabled = $module_handler->moduleExists($machine_name);
-      if (!$enabled) {
-        $requirements['bioland_dep_' . $machine_name] = [
-          'title' => t('Required module: @module', ['@module' => $machine_name]),
-          'value' => t('Missing or disabled'),
-          'description' => t('Install and enable the module via Composer: composer require "@pkg" --with-all-dependencies', ['@pkg' => $composer_pkg]),
-          'severity' => ($phase === 'install') ? REQUIREMENT_ERROR : REQUIREMENT_ERROR,
-        ];
-      }
-    }
-  }
-
-  return $requirements;
-}
