@@ -134,7 +134,90 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       ],
     ];
 
+    // Google tag IDs section.
+    $form['front_end_general_settings']['google_analytics_section'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Google tag IDs'),
+      '#open' => FALSE,
+    ];
+
+    $form['front_end_general_settings']['google_analytics_section']['google_analytics_ids'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Google tag IDs'),
+      '#maxlength' => 512,
+      '#default_value' => $config->get('google_analytics_ids') ?? '',
+      '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
+    ];
+
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+
+    $ids = $this->normalizeGoogleTagIds($form_state->getValue('google_analytics_ids'));
+    $invalid = $this->invalidGoogleTagIds($ids);
+
+    if ($invalid) {
+      $form_state->setErrorByName(
+        'google_analytics_ids',
+        $this->t('The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-.', ['@tokens' => implode(', ', $invalid)])
+      );
+    }
+  }
+
+  /**
+   * Normalizes a submitted Google tag ID list to its canonical token list.
+   *
+   * Canonical form means each token is trimmed, upper-cased, non-empty, and
+   * the list carries no duplicates while preserving first-seen order. NULL
+   * and '' both normalize to an empty list: the feature is off, not invalid.
+   *
+   * @param mixed $value
+   *   The raw submitted or stored value.
+   *
+   * @return string[]
+   *   The normalized, de-duplicated tag ID tokens.
+   */
+  protected function normalizeGoogleTagIds($value): array {
+    if (!is_string($value)) {
+      return [];
+    }
+
+    $ids = array_map(
+      static fn (string $token): string => strtoupper(trim($token)),
+      explode(',', $value)
+    );
+    $ids = array_filter($ids, static fn (string $token): bool => $token !== '');
+
+    return array_values(array_unique($ids));
+  }
+
+  /**
+   * Returns every tag ID token that fails the pinned token grammar.
+   *
+   * The regex has no `i` flag because normalizeGoogleTagIds() has already
+   * upper-cased every token, and the alternation order (G before GTM) is safe
+   * because PCRE backtracks: GTM-XYZ789 fails on G at the T, then matches on
+   * the second alternative. A bare prefix like G- fails because [A-Z0-9-]+]
+   * requires at least one character after the hyphen.
+   *
+   * @param string[] $ids
+   *   The normalized tag ID tokens.
+   *
+   * @return string[]
+   *   The tokens that do not match the accepted Google tag ID grammar.
+   */
+  protected function invalidGoogleTagIds(array $ids): array {
+    $invalid = array_filter(
+      $ids,
+      static fn (string $id): bool => preg_match('/^(G|GTM|AW|DC|UA)-[A-Z0-9-]+$/', $id) !== 1
+    );
+
+    return array_values($invalid);
   }
 
   /**
@@ -145,6 +228,10 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // Save Promote and Sticky settings (moved from system_functions)
     $config
       ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
+    // Save the Google tag IDs in their canonical comma-joined form. An empty
+    // submission stores '', which means the feature is off.
+    $config
+      ->set('google_analytics_ids', implode(',', $this->normalizeGoogleTagIds($values['google_analytics_ids'] ?? '')));
   }
 
   /**

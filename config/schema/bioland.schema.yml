@@ -165,6 +165,9 @@ bioland.settings:
         promote_and_sticky_public:
           type: boolean
           label: 'Show Promote and Sticky flags to public users'
+    google_analytics_ids:
+      type: string
+      label: 'Google tag IDs'
     enable_debug_logging:
       type: boolean
       label: 'Enable debug logging'
