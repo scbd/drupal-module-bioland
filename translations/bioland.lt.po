@@ -1861,3 +1861,15 @@ msgstr "(Mega meniu: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Pridėti mega meniu antrinį elementą"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google žymų ID"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Kableliais atskirtas Google žymų ID sąrašas, pavyzdžiui, G-ABC1234567,GTM-XYZ789. Priimami priešdėliai: G-, GTM-, AW-, DC- ir UA-. Viešoji svetainė įkelia po vieną gtag.js konfigūraciją kiekvienam ne GTM ID ir po vieną Tag Manager konteinerį kiekvienam GTM- ID. Scenarijai įkeliami tik lankytojams, kurie sutinka su Google Analytics slapukų kategorija, ir tik bl2 svetainės produkcinėje priegloboje (kitos multisites šiandien Google žymų neįkelia). Išsaugoti pakeitimai viešąją svetainę pasiekia maždaug per 5 minutes; puslapių pakeitimai svetainėje priklauso nuo GA4 Enhanced Measurement, kuri pagal numatytuosius nustatymus įjungta žiniatinklio duomenų srautui. UA- ID priimami senesnėms nuosavybėms, tačiau Google nustojo apdoroti Universal Analytics duomenis 2023 m. liepos 1 d., todėl jie nieko neįrašo."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Šie Google žymų ID netinkami: @tokens. Kiekvienas ID turi prasidėti vienu iš priimamų priešdėlių: G-, GTM-, AW-, DC- arba UA-."

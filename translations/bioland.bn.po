@@ -1781,3 +1781,15 @@ msgstr "(মেগা মেনু: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "মেগা মেনু চাইল্ড যোগ করুন"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google ট্যাগ আইডি"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "কমা দিয়ে পৃথক করা Google ট্যাগ আইডির তালিকা, উদাহরণস্বরূপ G-ABC1234567,GTM-XYZ789। গৃহীত উপসর্গগুলি হল G-, GTM-, AW-, DC- এবং UA-। পাবলিক সাইট প্রতিটি নন-GTM আইডির জন্য একটি gtag.js কনফিগারেশন এবং প্রতিটি GTM- আইডির জন্য একটি Tag Manager কন্টেইনার লোড করে। স্ক্রিপ্টগুলি কেবল সেই দর্শকদের জন্য লোড হয় যারা Google Analytics কুকি বিভাগ গ্রহণ করেন এবং কেবল একটি bl2 সাইটের প্রোডাকশন হোস্টে (অন্যান্য multisites আজ Google ট্যাগ লোড করে না)। সংরক্ষিত পরিবর্তনগুলি প্রায় 5 মিনিটের মধ্যে পাবলিক সাইটে পৌঁছায়; সাইটের মধ্যে পৃষ্ঠা পরিবর্তনগুলি GA4 Enhanced Measurement-এর উপর নির্ভর করে, যা একটি ওয়েব ডেটা স্ট্রিমের জন্য ডিফল্টভাবে চালু থাকে। UA- আইডিগুলি লিগ্যাসি প্রপার্টির জন্য গৃহীত হয়, তবে Google 1 জুলাই 2023-এ Universal Analytics ডেটা প্রক্রিয়া করা বন্ধ করে দিয়েছে, তাই সেগুলি কিছুই রেকর্ড করে না।"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "নিম্নলিখিত Google ট্যাগ আইডিগুলি বৈধ নয়: @tokens. প্রতিটি আইডি অবশ্যই অনুমোদিত উপসর্গগুলির একটি দিয়ে শুরু হতে হবে: G-, GTM-, AW-, DC- বা UA-."

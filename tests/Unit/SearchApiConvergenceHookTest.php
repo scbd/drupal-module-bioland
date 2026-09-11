@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9074()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9080()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -144,6 +144,15 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($helpersFile),
       'bioland_update_9079() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9080(), added to seed the
+    // Google tag IDs setting default and re-import its UI strings) is the
+    // last writer for every site, so it must ALSO converge on the v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9080\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($helpersFile),
+      'bioland_update_9080() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -159,9 +168,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9079,
+      9080,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9079() now holds that role (it seeds the component menu settings defaults, clears the retired theme.mega_menu.forums key, and re-applies the canonical v2 config after the 9071-9078 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9080() now holds that role (it seeds the Google tag IDs setting default, re-imports the new Google tag UI strings, and re-applies the canonical v2 config after the 9071-9079 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

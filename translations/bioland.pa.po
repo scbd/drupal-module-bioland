@@ -1861,3 +1861,15 @@ msgstr "(ਮੈਗਾ ਮੀਨੂ: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "ਮੈਗਾ ਮੀਨੂ ਚਾਈਲਡ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google ਟੈਗ ਆਈਡੀਆਂ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "ਕੌਮੇ ਨਾਲ ਵੱਖ ਕੀਤੀ Google ਟੈਗ ਆਈਡੀਆਂ ਦੀ ਸੂਚੀ, ਉਦਾਹਰਨ ਲਈ G-ABC1234567,GTM-XYZ789. ਸਵੀਕਾਰ ਕੀਤੇ ਗਏ ਪ੍ਰੀਫਿਕਸ G-, GTM-, AW-, DC- ਅਤੇ UA- ਹਨ. ਜਨਤਕ ਸਾਈਟ ਹਰ ਗੈਰ-GTM ਆਈਡੀ ਲਈ ਇੱਕ gtag.js ਕਨਫਿਗਰੇਸ਼ਨ ਅਤੇ ਹਰ GTM- ਆਈਡੀ ਲਈ ਇੱਕ Tag Manager ਕੰਟੇਨਰ ਲੋਡ ਕਰਦੀ ਹੈ. ਸਕ੍ਰਿਪਟਾਂ ਸਿਰਫ਼ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਲਈ ਲੋਡ ਹੁੰਦੀਆਂ ਹਨ ਜੋ Google Analytics ਕੂਕੀ ਸ਼੍ਰੇਣੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰਦੇ ਹਨ ਅਤੇ ਸਿਰਫ਼ bl2 ਸਾਈਟ ਦੇ ਪ੍ਰੋਡਕਸ਼ਨ ਹੋਸਟ 'ਤੇ (ਹੋਰ multisites ਅੱਜ Google ਟੈਗ ਲੋਡ ਨਹੀਂ ਕਰਦੀਆਂ). ਸੰਭਾਲੇ ਗਏ ਬਦਲਾਅ ਲਗਭਗ 5 ਮਿੰਟਾਂ ਵਿੱਚ ਜਨਤਕ ਸਾਈਟ 'ਤੇ ਪਹੁੰਚ ਜਾਂਦੇ ਹਨ; ਸਾਈਟ ਦੇ ਅੰਦਰ ਪੰਨਾ ਬਦਲਾਅ GA4 Enhanced Measurement 'ਤੇ ਨਿਰਭਰ ਕਰਦੇ ਹਨ, ਜੋ ਵੈੱਬ ਡਾਟਾ ਸਟ੍ਰੀਮ ਲਈ ਡਿਫਾਲਟ ਤੌਰ 'ਤੇ ਚਾਲੂ ਹੈ. UA- ਆਈਡੀਆਂ ਪੁਰਾਣੀਆਂ ਪ੍ਰਾਪਰਟੀਆਂ ਲਈ ਸਵੀਕਾਰ ਕੀਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ, ਪਰ Google ਨੇ 1 ਜੁਲਾਈ 2023 ਨੂੰ Universal Analytics ਡਾਟਾ ਦੀ ਪ੍ਰੋਸੈਸਿੰਗ ਬੰਦ ਕਰ ਦਿੱਤੀ, ਇਸ ਲਈ ਉਹ ਕੁਝ ਵੀ ਰਿਕਾਰਡ ਨਹੀਂ ਕਰਦੀਆਂ."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ਹੇਠਾਂ ਦਿੱਤੀਆਂ Google ਟੈਗ ਆਈਡੀਆਂ ਯੋਗ ਨਹੀਂ ਹਨ: @tokens. ਹਰ ਆਈਡੀ ਸਵੀਕਾਰ ਕੀਤੇ ਗਏ ਪ੍ਰੀਫਿਕਸਾਂ ਵਿੱਚੋਂ ਇੱਕ ਨਾਲ ਸ਼ੁਰੂ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ: G-, GTM-, AW-, DC- ਜਾਂ UA-."

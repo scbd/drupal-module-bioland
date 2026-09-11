@@ -1861,3 +1861,15 @@ msgstr "(Mega menyu: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Mega menyu alt elementi əlavə et"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google tag ID-ləri"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Vergüllə ayrılmış Google tag ID-lərinin siyahısı, məsələn G-ABC1234567,GTM-XYZ789. Qəbul edilən prefikslər: G-, GTM-, AW-, DC- və UA-. İctimai sayt GTM olmayan hər ID üçün bir gtag.js konfiqurasiyası və hər GTM- ID üçün bir Tag Manager konteyneri yükləyir. Skriptlər yalnız Google Analytics kuki kateqoriyasını qəbul edən ziyarətçilər üçün və yalnız bl2 saytının istehsal hostunda yüklənir (digər multisites bu gün Google tag yükləmir). Yadda saxlanılan dəyişikliklər ictimai sayta təxminən 5 dəqiqə ərzində çatır; sayt daxilindəki səhifə dəyişiklikləri veb məlumat axını üçün standart olaraq aktiv olan GA4 Enhanced Measurement-dan asılıdır. UA- ID-ləri köhnə mülklər üçün qəbul edilir, lakin Google 1 iyul 2023-cü il tarixində Universal Analytics məlumatlarını emal etməyi dayandırdı, buna görə heç nə qeyd etmirlər."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Aşağıdakı Google tag ID-ləri etibarlı deyil: @tokens. Hər ID qəbul edilən prefikslərdən biri ilə başlamalıdır: G-, GTM-, AW-, DC- və ya UA-."

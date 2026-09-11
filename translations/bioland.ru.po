@@ -1861,3 +1861,15 @@ msgstr "(Мегаменю: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Добавить дочерний элемент мегаменю"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Идентификаторы тегов Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Список идентификаторов тегов Google, разделённых запятыми, например G-ABC1234567,GTM-XYZ789. Допустимые префиксы: G-, GTM-, AW-, DC- и UA-. Публичный сайт загружает одну конфигурацию gtag.js для каждого идентификатора не-GTM и один контейнер Tag Manager для каждого идентификатора GTM-. Скрипты загружаются только для посетителей, принявших категорию cookie Google Analytics, и только на рабочем хосте сайта bl2 (остальные multisite-сайты сейчас не загружают теги Google). Сохранённые изменения появляются на публичном сайте примерно в течение 5 минут; изменения страниц внутри сайта опираются на расширенные измерения GA4, включённые по умолчанию для веб-потока данных. Идентификаторы UA- принимаются для старых ресурсов, но Google прекратил обработку данных Universal Analytics 1 июля 2023 года, поэтому они ничего не записывают."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Следующие идентификаторы тегов Google недействительны: @tokens. Каждый идентификатор должен начинаться с одного из допустимых префиксов: G-, GTM-, AW-, DC- или UA-."

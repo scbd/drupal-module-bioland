@@ -1861,3 +1861,15 @@ msgstr "(เมกะเมนู: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "เพิ่มรายการย่อยเมกะเมนู"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID แท็ก Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "รายการ ID แท็ก Google ที่คั่นด้วยเครื่องหมายจุลภาค เช่น G-ABC1234567,GTM-XYZ789 คำนำหน้าที่รองรับคือ G-, GTM-, AW-, DC- และ UA- เว็บไซต์สาธารณะจะโหลดการกำหนดค่า gtag.js หนึ่งรายการต่อ ID ที่ไม่ใช่ GTM และคอนเทนเนอร์ Tag Manager หนึ่งรายการต่อ ID GTM- สคริปต์จะโหลดเฉพาะสำหรับผู้เข้าชมที่ยอมรับหมวดหมู่คุกกี้ Google Analytics และเฉพาะบนโฮสต์โปรดักชันของเว็บไซต์ bl2 เท่านั้น (multisites อื่นๆ ไม่โหลดแท็ก Google ในปัจจุบัน) การเปลี่ยนแปลงที่บันทึกไว้จะไปถึงเว็บไซต์สาธารณะภายในประมาณ 5 นาที การเปลี่ยนแปลงหน้าเว็บภายในไซต์อาศัย GA4 Enhanced Measurement ซึ่งเปิดใช้งานตามค่าเริ่มต้นสำหรับสตรีมข้อมูลเว็บ ID UA- ได้รับการยอมรับสำหรับพร็อพเพอร์ตี้เดิม แต่ Google หยุดประมวลผลข้อมูล Universal Analytics เมื่อวันที่ 1 กรกฎาคม 2023 ดังนั้นจึงไม่มีการบันทึกข้อมูลใดๆ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ID แท็ก Google ต่อไปนี้ไม่ถูกต้อง: @tokens ID แต่ละรายการต้องขึ้นต้นด้วยคำนำหน้าที่รองรับอย่างใดอย่างหนึ่ง: G-, GTM-, AW-, DC- หรือ UA-"

@@ -1861,3 +1861,15 @@ msgstr "(メガメニュー:@type:@schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "メガメニュー子要素を追加"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google タグ ID"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "カンマ区切りの Google タグ ID のリストです。例: G-ABC1234567,GTM-XYZ789。許容される接頭辞は G-、GTM-、AW-、DC-、UA- です。公開サイトは、GTM 以外の ID ごとに 1 つの gtag.js 設定を、GTM- ID ごとに 1 つの Tag Manager コンテナを読み込みます。スクリプトは、Google Analytics の Cookie カテゴリに同意した訪問者にのみ、また bl2 サイトの本番ホスト上でのみ読み込まれます (他の multisites は現在 Google タグを読み込みません)。保存された変更は約 5 分以内に公開サイトに反映されます。サイト内のページ変更は GA4 Enhanced Measurement に依存しており、これはウェブ データ ストリームではデフォルトで有効になっています。UA- ID はレガシー プロパティ用に受け入れられますが、Google は 2023 年 7 月 1 日に Universal Analytics データの処理を停止したため、何も記録されません。"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "次の Google タグ ID は無効です: @tokens. 各 ID は、許容される接頭辞のいずれかで始まる必要があります: G-、GTM-、AW-、DC-、UA-。"

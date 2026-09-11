@@ -1861,3 +1861,15 @@ msgstr "(Մեգա ցանկ: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Ավելացնել մեգա ցանկի ենթատարր"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google պիտակի ID-ներ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Ստորակետերով բաժանված Google պիտակի ID-ների ցանկ, օրինակ՝ G-ABC1234567,GTM-XYZ789։ Ընդունված նախածանցներն են՝ G-, GTM-, AW-, DC- և UA-։ Հանրային կայքը բեռնում է մեկ gtag.js կոնֆիգուրացիա յուրաքանչյուր ոչ GTM ID-ի համար և մեկ Tag Manager կոնտեյներ յուրաքանչյուր GTM- ID-ի համար։ Սկրիպտները բեռնվում են միայն այն այցելուների համար, ովքեր ընդունում են Google Analytics թխուկների կատեգորիան, և միայն bl2 կայքի արտադրական հոսթի վրա (այլ multisites այսօր Google պիտակներ չեն բեռնում)։ Պահպանված փոփոխությունները հասնում են հանրային կայք մոտ 5 րոպեում. կայքի ներսում էջերի փոփոխությունները հիմնվում են GA4 Enhanced Measurement-ի վրա, որն ի սկզբանե միացված է վեբ տվյալների հոսքի համար։ UA- ID-ները ընդունվում են ժառանգական հատկությունների համար, սակայն Google-ը դադարեցրեց Universal Analytics տվյալների մշակումը 2023 թ. հուլիսի 1-ին, ուստի դրանք ոչինչ չեն գրանցում։"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Հետևյալ Google պիտակի ID-ները վավեր չեն: @tokens. Յուրաքանչյուր ID պետք է սկսվի ընդունված նախածանցներից մեկով՝ G-, GTM-, AW-, DC- կամ UA-։"

@@ -1861,3 +1861,15 @@ msgstr "(Mega menu: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Magdagdag ng anak ng mega menu"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Mga ID ng Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Isang listahan ng mga ID ng Google tag na pinaghihiwalay ng kuwit, halimbawa G-ABC1234567,GTM-XYZ789. Ang mga tinatanggap na prefix ay G-, GTM-, AW-, DC-, at UA-. Naglo-load ang pampublikong site ng isang configuration ng gtag.js para sa bawat ID na hindi GTM at isang container ng Tag Manager para sa bawat ID na GTM-. Naglo-load lamang ang mga script para sa mga bisitang tumatanggap sa kategorya ng cookie ng Google Analytics at sa production host lamang ng isang site na bl2 (ang ibang multisites ay hindi naglo-load ng Google tag ngayon). Ang mga na-save na pagbabago ay umaabot sa pampublikong site sa loob ng mga 5 minuto; ang mga pagbabago sa pahina sa loob ng site ay umaasa sa GA4 Enhanced Measurement, na naka-on bilang default para sa isang web data stream. Ang mga ID na UA- ay tinatanggap para sa mga lumang property, ngunit tumigil ang Google sa pagproseso ng data ng Universal Analytics noong 1 Hulyo 2023, kaya wala silang naitala."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Ang mga sumusunod na ID ng Google tag ay hindi wasto: @tokens. Dapat magsimula ang bawat ID sa isa sa mga tinatanggap na prefix: G-, GTM-, AW-, DC-, o UA-."

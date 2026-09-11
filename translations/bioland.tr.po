@@ -1861,3 +1861,15 @@ msgstr "(Mega menü: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Mega menü alt öğesini ekle"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google etiket kimlikleri"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Virgülle ayrılmış Google etiket kimlikleri listesi, örneğin G-ABC1234567,GTM-XYZ789. Kabul edilen önekler G-, GTM-, AW-, DC- ve UA- şeklindedir. Genel site, GTM olmayan her kimlik için bir gtag.js yapılandırması ve her GTM- kimliği için bir Tag Manager kapsayıcısı yükler. Komut dosyaları yalnızca Google Analytics çerez kategorisini kabul eden ziyaretçiler için ve yalnızca bir bl2 sitesinin üretim ana bilgisayarında yüklenir (diğer multisites bugün Google etiketlerini yüklemez). Kaydedilen değişiklikler genel siteye yaklaşık 5 dakika içinde ulaşır; site içindeki sayfa değişiklikleri, bir web veri akışı için varsayılan olarak açık olan GA4 Gelişmiş Ölçüm'e dayanır. UA- kimlikleri eski mülkler için kabul edilir, ancak Google 1 Temmuz 2023'te Universal Analytics verilerini işlemeyi durdurdu, bu nedenle hiçbir şey kaydetmezler."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Aşağıdaki Google etiket kimlikleri geçerli değil: @tokens. Her kimlik kabul edilen öneklerden biriyle başlamalıdır: G-, GTM-, AW-, DC- veya UA-."

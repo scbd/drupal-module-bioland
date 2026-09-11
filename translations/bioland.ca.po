@@ -1950,3 +1950,15 @@ msgstr "(Mega menú: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Afegeix un fill del mega menú"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID de Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Una llista separada per comes d'ID de Google tag, per exemple G-ABC1234567,GTM-XYZ789. Els prefixos acceptats són G-, GTM-, AW-, DC- i UA-. El lloc públic carrega una configuració de gtag.js per cada ID que no sigui GTM i un contenidor de Tag Manager per cada ID GTM-. Els scripts només es carreguen per als visitants que accepten la categoria de galetes de Google Analytics i només a l'amfitrió de producció d'un lloc bl2 (altres multisites avui no carreguen Google tag). Els canvis desats arriben al lloc públic en uns 5 minuts; els canvis de pàgina dins del lloc depenen de GA4 Enhanced Measurement, que està activat per defecte per a un flux de dades web. Els ID UA- s'accepten per a propietats antigues, però Google va deixar de processar dades de Universal Analytics l'1 de juliol de 2023, així que no registren res."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Els ID de Google tag següents no són vàlids: @tokens. Cada ID ha de començar amb un dels prefixos acceptats: G-, GTM-, AW-, DC- o UA-."

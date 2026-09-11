@@ -1861,3 +1861,15 @@ msgstr "(Mega meni: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "Dodaj podrejeno postavko mega menija"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID-ji Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Z vejicami ločen seznam ID-jev Google tag, na primer G-ABC1234567,GTM-XYZ789. Sprejeti predponi sta G-, GTM-, AW-, DC- in UA-. Javno spletišče naloži eno konfiguracijo gtag.js za vsak ID, ki ni GTM, in en vsebnik Tag Manager za vsak ID GTM-. Skripti se naložijo samo za obiskovalce, ki sprejmejo kategorijo piškotkov Google Analytics, in samo na produkcijskem gostitelju spletišča bl2 (druge multisites danes ne nalagajo Google tag). Shranjene spremembe dosežejo javno spletišče v približno 5 minutah; spremembe strani znotraj spletišča se opirajo na GA4 Enhanced Measurement, ki je privzeto vklopljen za spletni podatkovni tok. ID-ji UA- so sprejeti za stare lastnosti, vendar je Google 1. julija 2023 prenehal obdelovati podatke Universal Analytics, zato ne zabeležijo ničesar."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Naslednji ID-ji Google tag niso veljavni: @tokens. Vsak ID se mora začeti z eno od sprejetih predpon: G-, GTM-, AW-, DC- ali UA-."

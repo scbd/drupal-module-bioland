@@ -1861,3 +1861,15 @@ msgstr "(میگا مینو: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "میگا مینو چائلڈ شامل کریں"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google ٹیگ آئی ڈیز"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "کاما سے الگ کی گئی Google ٹیگ آئی ڈیز کی فہرست، مثال کے طور پر G-ABC1234567,GTM-XYZ789۔ قابل قبول سابقے G-، GTM-، AW-، DC- اور UA- ہیں۔ عوامی سائٹ ہر غیر GTM آئی ڈی کے لیے ایک gtag.js کنفیگریشن اور ہر GTM- آئی ڈی کے لیے ایک Tag Manager کنٹینر لوڈ کرتی ہے۔ اسکرپٹس صرف ان مہمانوں کے لیے لوڈ ہوتے ہیں جو Google Analytics کوکی زمرہ قبول کرتے ہیں اور صرف bl2 سائٹ کے پروڈکشن ہوسٹ پر (دیگر multisites آج Google ٹیگز لوڈ نہیں کرتیں)۔ محفوظ کی گئی تبدیلیاں تقریباً 5 منٹ میں عوامی سائٹ پر پہنچ جاتی ہیں؛ سائٹ کے اندر صفحے کی تبدیلیاں GA4 Enhanced Measurement پر منحصر ہیں، جو ویب ڈیٹا اسٹریم کے لیے بطور ڈیفالٹ فعال ہے۔ UA- آئی ڈیز پرانے پراپرٹیز کے لیے قبول کی جاتی ہیں، لیکن Google نے 1 جولائی 2023 کو Universal Analytics ڈیٹا کی کارروائی بند کر دی، اس لیے وہ کچھ ریکارڈ نہیں کرتیں۔"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "درج ذیل Google ٹیگ آئی ڈیز درست نہیں ہیں: @tokens۔ ہر آئی ڈی کا آغاز قابل قبول سابقوں میں سے کسی ایک سے ہونا چاہیے: G-، GTM-، AW-، DC- یا UA-۔"

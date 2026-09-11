@@ -1861,3 +1861,15 @@ msgstr "(لوی مینو: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "د لوی مینو ماشوم زیاته کړئ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "د Google ټګونو IDونه"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "د Google ټګونو د IDونو د کامې سره جلا شوې لیست، د بېلګې په توګه G-ABC1234567,GTM-XYZ789. منل شوي مخکښونه دا دي: G-، GTM-، AW-، DC- او UA-. عامه سایټ د هر غیر GTM ID لپاره یو gtag.js ترتیب او د هر GTM- ID لپاره یو Tag Manager کانټینر پورته کوي. سکریپټونه یوازې هغو لیدونکو لپاره پورته کیږي چې د Google Analytics کوکی کټګورۍ مني او یوازې د bl2 سایټ د تولید هوسټ کې (نور multisites نن د Google ټګونه نه پورته کوي). خوندي شوي بدلونونه نږدې 5 دقیقو کې عامه سایټ ته رسیږي؛ په سایټ کې دننه د پاڼې بدلونونه د GA4 Enhanced Measurement پورې تړاو لري، کوم چې د ویب ډاټا جریان لپاره په ډیفالټ فعال دی. د UA- IDونه د زړو پراپرټیو لپاره منل کیږي، خو Google د 2023 کال د جولای 1 د Universal Analytics ډاټا پروسس کول بند کړل، نو دوی هېڅ نه ثبتوي."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "لاندې د Google ټګونو IDونه سم نه دي: @tokens. هر ID باید د منل شوو مخکښونو له یو سره پیل شي: G-، GTM-، AW-، DC- یا UA-."

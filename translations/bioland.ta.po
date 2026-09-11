@@ -1861,3 +1861,15 @@ msgstr "(மெகா மெனு: @type: @schema)"
 #: src/Service/BiolandComponentMenuOverview.php
 msgid "Add Mega Menu Child"
 msgstr "மெகா மெனு சைல்ட் சேர்க்கவும்"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google குறிச்சொல் ID-கள்"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "கமாவால் பிரிக்கப்பட்ட Google குறிச்சொல் ID-களின் பட்டியல், எடுத்துக்காட்டாக G-ABC1234567,GTM-XYZ789. ஏற்றுக்கொள்ளப்பட்ட முன்னொட்டுகள் G-, GTM-, AW-, DC-, மற்றும் UA- ஆகும். பொது தளம் GTM அல்லாத ஒவ்வொரு ID-க்கும் ஒரு gtag.js உள்ளமைவையும், ஒவ்வொரு GTM- ID-க்கும் ஒரு Tag Manager கொள்கலனையும் ஏற்றுகிறது. Google Analytics குக்கீ வகையை ஏற்றுக்கொள்ளும் பார்வையாளர்களுக்கு மட்டுமே, மேலும் bl2 தளத்தின் தயாரிப்பு ஹோஸ்ட்டில் மட்டுமே ஸ்கிரிப்ட்கள் ஏற்றப்படும் (மற்ற multisites இன்று Google குறிச்சொற்களை ஏற்றுவதில்லை). சேமிக்கப்பட்ட மாற்றங்கள் சுமார் 5 நிமிடங்களில் பொது தளத்தை அடையும்; தளத்திற்குள் பக்க மாற்றங்கள் GA4 Enhanced Measurement-ஐச் சார்ந்துள்ளன, இது ஒரு இணைய தரவு ஸ்ட்ரீமிற்கு இயல்பாகவே இயக்கப்பட்டிருக்கும். UA- ID-கள் பாரம்பரிய பண்புகளுக்கு ஏற்றுக்கொள்ளப்படுகின்றன, ஆனால் Google 2023 ஜூலை 1 அன்று Universal Analytics தரவை செயலாக்குவதை நிறுத்தியது, எனவே அவை எதையும் பதிவு செய்வதில்லை."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "பின்வரும் Google குறிச்சொல் ID-கள் செல்லுபடியாகாது: @tokens. ஒவ்வொரு ID-யும் ஏற்றுக்கொள்ளப்பட்ட முன்னொட்டுகளில் ஒன்றில் தொடங்க வேண்டும்: G-, GTM-, AW-, DC-, அல்லது UA-."

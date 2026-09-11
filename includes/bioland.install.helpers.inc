@@ -190,3 +190,61 @@ function bioland_update_9079() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Seeds the bioland.settings.google_analytics_ids setting on existing sites.
+ *
+ * The setting holds a site's comma-separated Google tag ID list ('' means
+ * the feature is off). Fresh installs receive it from
+ * config/install/bioland.settings.yml; this hook seeds the same '' default
+ * into every already-installed site's active config so the key is
+ * schema-declared everywhere.
+ *
+ * Seeding is set-if-missing (guarded on === NULL, presence, not truthiness):
+ * an authored '' is a real value and must survive. The hook therefore is
+ * safe to run more than once.
+ *
+ * It also re-imports the translation catalogs so sites with the locale
+ * module gain the three new Google tag UI strings, guarded on locale being
+ * enabled exactly as bioland_update_9078() does.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every
+ * site, so per SearchApiConvergenceHookTest it must also re-apply the
+ * canonical v2 Search API config so the last writer never leaves a
+ * half-configured index.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
+ */
+function bioland_update_9080() {
+  $messages = [];
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+
+  // Presence, not truthiness: a saved '' is a real authored value (the
+  // feature is off) and must survive a re-run.
+  if ($config->get('google_analytics_ids') === NULL) {
+    $config->set('google_analytics_ids', '');
+    $config->save();
+    $messages[] = 'Seeded missing Google tag IDs setting (google_analytics_ids).';
+  }
+  else {
+    $messages[] = 'Google tag IDs setting already present; left untouched.';
+  }
+
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = 'Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.';
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = 'Re-imported Bioland translation catalogs for the Google tag IDs strings. Check logs for details.';
+  }
+
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
