@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9074()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9080()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing

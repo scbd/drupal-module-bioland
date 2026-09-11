@@ -202,7 +202,7 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
    * The regex has no `i` flag because normalizeGoogleTagIds() has already
    * upper-cased every token, and the alternation order (G before GTM) is safe
    * because PCRE backtracks: GTM-XYZ789 fails on G at the T, then matches on
-   * the second alternative. A bare prefix like G- fails because [A-Z0-9-]+]
+   * the second alternative. A bare prefix like G- fails because [A-Z0-9-]+
    * requires at least one character after the hyphen.
    *
    * @param string[] $ids
