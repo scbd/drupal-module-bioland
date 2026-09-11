@@ -1864,12 +1864,12 @@ msgstr "Pievienot mega izvēlnes apakšelementu"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Google tag ID"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Ar komatiem atdalīts Google tag ID saraksts, piemēram, G-ABC1234567,GTM-XYZ789. Pieņemtie prefiksi ir G-, GTM-, AW-, DC- un UA-. Publiskā vietne ielādē vienu gtag.js konfigurāciju katram ID, kas nav GTM, un vienu Tag Manager konteineru katram GTM- ID. Skripti tiek ielādēti tikai apmeklētājiem, kuri pieņem Google Analytics sīkdatņu kategoriju, un tikai bl2 vietnes ražošanas resursdatorā (citas multisites šodien neielādē Google tag). Saglabātās izmaiņas publiskajā vietnē nonāk aptuveni 5 minūšu laikā; lapu izmaiņas vietnē balstās uz GA4 Enhanced Measurement, kas pēc noklusējuma ir iespējots tīmekļa datu plūsmai. UA- ID tiek pieņemti vecajiem rekvizītiem, taču Google pārtrauca Universal Analytics datu apstrādi 2023. gada 1. jūlijā, tāpēc tie neko neieraksta."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Šādi Google tag ID nav derīgi: @tokens. Katram ID jāsākas ar vienu no pieņemtajiem prefiksiem: G-, GTM-, AW-, DC- vai UA-."

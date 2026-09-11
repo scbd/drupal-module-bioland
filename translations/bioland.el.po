@@ -1953,12 +1953,12 @@ msgstr "Προσθήκη θυγατρικού στοιχείου μεγάλου 
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Αναγνωριστικά ετικετών Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Μια λίστα αναγνωριστικών ετικετών Google διαχωρισμένων με κόμμα, για παράδειγμα G-ABC1234567,GTM-XYZ789. Τα αποδεκτά προθέματα είναι G-, GTM-, AW-, DC- και UA-. Ο δημόσιος ιστότοπος φορτώνει μία διαμόρφωση gtag.js ανά μη-GTM αναγνωριστικό και ένα κοντέινερ Tag Manager ανά αναγνωριστικό GTM-. Τα σενάρια φορτώνονται μόνο για επισκέπτες που αποδέχονται την κατηγορία cookie του Google Analytics και μόνο στον host παραγωγής ενός ιστότοπου bl2 (άλλα multisites δεν φορτώνουν ετικέτες Google σήμερα). Οι αποθηκευμένες αλλαγές φτάνουν στον δημόσιο ιστότοπο εντός περίπου 5 λεπτών; οι αλλαγές σελίδων εντός του ιστότοπου βασίζονται στη GA4 Βελτιωμένη μέτρηση, η οποία είναι ενεργοποιημένη από προεπιλογή για μια ροή δεδομένων ιστού. Τα αναγνωριστικά UA- γίνονται δεκτά για παλαιότερες ιδιότητες, αλλά η Google σταμάτησε την επεξεργασία δεδομένων Universal Analytics την 1η Ιουλίου 2023, οπότε δεν καταγράφουν τίποτα."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Τα ακόλουθα αναγνωριστικά ετικετών Google δεν είναι έγκυρα: @tokens. Κάθε αναγνωριστικό πρέπει να ξεκινά με ένα από τα αποδεκτά προθέματα: G-, GTM-, AW-, DC- ή UA-."

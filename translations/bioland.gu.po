@@ -1864,12 +1864,12 @@ msgstr "મેગા મેનુ ચાઇલ્ડ ઉમેરો"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Google ટૅગ ID"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "અલ્પવિરામથી વિભાજિત Google ટૅગ ID ની સૂચિ, ઉદાહરણ તરીકે G-ABC1234567,GTM-XYZ789. સ્વીકૃત ઉપસર્ગો G-, GTM-, AW-, DC-, અને UA- છે. જાહેર સાઇટ દરેક બિન-GTM ID માટે એક gtag.js રૂપરેખાંકન અને દરેક GTM- ID માટે એક Tag Manager કન્ટેનર લોડ કરે છે. સ્ક્રિપ્ટ્સ ફક્ત એવા મુલાકાતીઓ માટે લોડ થાય છે જેઓ Google Analytics કૂકી શ્રેણી સ્વીકારે છે અને ફક્ત bl2 સાઇટના પ્રોડક્શન હોસ્ટ પર (અન્ય multisites આજે Google ટૅગ્સ લોડ કરતી નથી). સાચવેલા ફેરફારો લગભગ 5 મિનિટમાં જાહેર સાઇટ પર પહોંચે છે; સાઇટની અંદરના પૃષ્ઠ ફેરફારો GA4 Enhanced Measurement પર આધાર રાખે છે, જે વેબ ડેટા સ્ટ્રીમ માટે મૂળભૂત રીતે ચાલુ હોય છે. UA- ID લેગસી પ્રોપર્ટીઓ માટે સ્વીકારવામાં આવે છે, પરંતુ Google એ 1 જુલાઈ 2023 ના રોજ Universal Analytics ડેટા પર પ્રક્રિયા કરવાનું બંધ કર્યું, તેથી તે કંઈપણ રેકોર્ડ કરતા નથી."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "નીચેના Google ટૅગ ID માન્ય નથી: @tokens. દરેક ID સ્વીકૃત ઉપસર્ગોમાંથી એકથી શરૂ થવું જોઈએ: G-, GTM-, AW-, DC-, અથવા UA-."

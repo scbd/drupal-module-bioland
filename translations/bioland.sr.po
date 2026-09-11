@@ -1864,12 +1864,12 @@ msgstr "Додај подставку мега менија"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "ID-ови Google ознака"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Листа ID-ова Google ознака одвојених зарезом, на пример G-ABC1234567,GTM-XYZ789. Прихваћени префикси су G-, GTM-, AW-, DC- и UA-. Јавни сајт учитава једну gtag.js конфигурацију по не-GTM ID-у и један Tag Manager контејнер по GTM- ID-у. Скрипте се учитавају само за посетиоце који прихвате категорију колачића Google Analytics и само на продукционом домаћину bl2 сајта (остали multisites данас не учитавају Google ознаке). Сачуване измене стижу на јавни сајт за око 5 минута; измене страница унутар сајта ослањају се на GA4 Enhanced Measurement, које је подразумевано укључено за веб ток података. UA- ID-ови су прихваћени за застарела својства, али Google је престао да обрађује податке Universal Analytics 1. јула 2023, тако да ништа не бележе."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Следећи ID-ови Google ознака нису важећи: @tokens. Сваки ID мора почети једним од прихваћених префикса: G-, GTM-, AW-, DC- или UA-."

@@ -1864,12 +1864,12 @@ msgstr "Cuir leanbh an ollroghchláir leis"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Aitheantóirí clib Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Liosta d'aitheantóirí clib Google scartha le camóga, mar shampla G-ABC1234567,GTM-XYZ789. Is iad na réimíreanna a nglactar leo ná G-, GTM-, AW-, DC- agus UA-. Lódálann an suíomh poiblí cumraíocht amháin gtag.js in aghaidh gach ID nach GTM é agus coimeádán Tag Manager amháin in aghaidh gach ID GTM-. Ní lódáiltear na scripteanna ach do chuairteoirí a nglacann le catagóir fianán Google Analytics agus ní lódáiltear iad ach ar óstach táirgthe suímh bl2 (ní lódálann multisites eile clibeanna Google inniu). Sroicheann athruithe sábháilte an suíomh poiblí laistigh de thart ar 5 nóiméad; braitheann athruithe leathanach laistigh den suíomh ar GA4 Enhanced Measurement, atá ar siúl de réir réamhshocraithe do shruth sonraí gréasáin. Glactar le IDanna UA- le haghaidh réadmhaoine oidhreachta, ach stop Google ag próiseáil sonraí Universal Analytics ar 1 Iúil 2023, mar sin ní thaifeadann siad aon rud."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Níl na haitheantóirí clib Google seo a leanas bailí: @tokens. Caithfidh gach ID tosú le ceann de na réimíreanna a nglactar leo: G-, GTM-, AW-, DC- nó UA-."

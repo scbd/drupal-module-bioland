@@ -1864,12 +1864,12 @@ msgstr "Bæta við undirlið megavalmyndar"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Google tag auðkenni"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Kommu-aðskilin listi yfir Google tag auðkenni, til dæmis G-ABC1234567,GTM-XYZ789. Samþykkt forskeyti eru G-, GTM-, AW-, DC- og UA-. Opinbera vefsvæðið hleður einni gtag.js stillingu fyrir hvert auðkenni sem er ekki GTM og einni Tag Manager gám fyrir hvert GTM- auðkenni. Skriftur hlaðast aðeins fyrir gesti sem samþykkja Google Analytics kexpukategóríuna og aðeins á framleiðsluhýsil bl2 vefsvæðis (önnur multisites hlaða ekki Google tag í dag). Vistaðar breytingar ná til opinbera vefsvæðisins innan um það bil 5 mínútna; síðubreytingar innan vefsvæðisins byggja á GA4 Enhanced Measurement, sem er sjálfgefið virkt fyrir vefgagnastraum. UA- auðkenni eru samþykkt fyrir eldri eignir, en Google hætti að vinna úr Universal Analytics gögnum 1. júlí 2023, svo þau skrá ekkert."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Eftirfarandi Google tag auðkenni eru ekki gild: @tokens. Hvert auðkenni verður að byrja á einu af samþykktu forskeytjunum: G-, GTM-, AW-, DC- eða UA-."

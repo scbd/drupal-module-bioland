@@ -1935,12 +1935,12 @@ msgstr "Ajoute yon pitit mega meni"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "ID Google tag"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Yon lis ID Google tag ki separe pa vigil, pa egzanp G-ABC1234567,GTM-XYZ789. Prefiks ki aksepte yo se G-, GTM-, AW-, DC-, ak UA-. Sit piblik la chaje yon konfigirasyon gtag.js pou chak ID ki pa GTM ak yon kontenè Tag Manager pou chak ID GTM-. Script yo chaje sèlman pou vizitè ki aksepte kategori kouki Google Analytics epi sèlman sou hòt pwodiksyon yon sit bl2 (lòt multisites pa chaje Google tag jodi a). Chanjman ki sove yo rive sou sit piblik la nan anviwon 5 minit; chanjman paj nan sit la depann de GA4 Enhanced Measurement, ki aktive pa defo pou yon flèks done wèb. ID UA- yo aksepte pou pwopriyete ansyen, men Google sispann trete done Universal Analytics nan 1 jiyè 2023, kidonk yo pa anrejistre anyen."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ID Google tag sa yo pa valab: @tokens. Chak ID dwe kòmanse ak youn nan prefiks ki aksepte yo: G-, GTM-, AW-, DC-, oswa UA-."

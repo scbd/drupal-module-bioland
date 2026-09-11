@@ -1864,12 +1864,12 @@ msgstr "Додати дочірній елемент мегаменю"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
-msgstr "Google tag IDs"
+msgstr "Ідентифікатори тегів Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Список ідентифікаторів тегів Google, розділених комами, наприклад G-ABC1234567,GTM-XYZ789. Прийнятні префікси: G-, GTM-, AW-, DC- і UA-. Публічний сайт завантажує одну конфігурацію gtag.js для кожного ідентифікатора, що не є GTM, і один контейнер Tag Manager для кожного ідентифікатора GTM-. Скрипти завантажуються лише для відвідувачів, які приймають категорію файлів cookie Google Analytics, і лише на виробничому хості сайту bl2 (інші multisites сьогодні не завантажують теги Google). Збережені зміни потрапляють на публічний сайт приблизно за 5 хвилин; зміни сторінок у межах сайту покладаються на GA4 Enhanced Measurement, який увімкнено за замовчуванням для потоку веб-даних. Ідентифікатори UA- приймаються для застарілих ресурсів, але Google припинив обробку даних Universal Analytics 1 липня 2023 року, тому вони нічого не записують."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
-msgstr "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Такі ідентифікатори тегів Google недійсні: @tokens. Кожен ідентифікатор має починатися з одного з прийнятних префіксів: G-, GTM-, AW-, DC- або UA-."
