@@ -36,7 +36,10 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: ${{ matrix.node }}
-          cache: yarn
+          # yarn.lock arrives with the JS seam (#34); setup-node fails the job
+          # when the lockfile backing the requested cache is absent, so disable
+          # the cache until it exists.
+          cache: ${{ hashFiles('yarn.lock') != '' && 'yarn' || '' }}
 
       - name: Get composer cache directory
         id: composer-cache
@@ -53,9 +56,14 @@ jobs:
         run: composer install --no-interaction --prefer-dist --no-progress --no-scripts
 
       - name: Install Node deps
+        # package.json + yarn.lock ship with the JS seam (#34); the frozen
+        # lockfile install is meaningless without them.
+        if: hashFiles('yarn.lock') != ''
         run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Lint PHP
+        # The lint:php npm script ships in package.json with #34.
+        if: hashFiles('package.json') != ''
         run: npm run lint:php
 
       - name: Run PHP tests
@@ -64,6 +72,9 @@ jobs:
           vendor/bin/phpunit --configuration phpunit.xml.dist --log-junit test-results/phpunit/junit.xml
 
       - name: Run JS tests
+        # jest.config.js and js/**/*.test.js ship with #34; without them npx
+        # jest would reach out to the registry and fail (or execute nothing).
+        if: hashFiles('jest.config.js') != ''
         run: npx jest --ci --coverage
 
       - name: Upload JS coverage artifact
