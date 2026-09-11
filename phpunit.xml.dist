@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php" colors="true" verbose="true">
+	<php>
+		<!--
+			PHP 8.4 emits deprecation notices from PHPUnit 9.x internals.
+			Keep test output clean by excluding E_DEPRECATED (8192) and E_USER_DEPRECATED (16384).
+			E_ALL (32767) - 8192 - 16384 = 8191
+		-->
+		<ini name="error_reporting" value="8191"/>
+	</php>
+	<testsuites>
+		<testsuite name="Bioland Unit Tests">
+			<directory>tests/Unit</directory>
+		</testsuite>
+	</testsuites>
+	<coverage processUncoveredFiles="true">
+		<include>
+			<directory>src</directory>
+		</include>
+	</coverage>
+</phpunit>
