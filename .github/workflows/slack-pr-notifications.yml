@@ -1,0 +1,85 @@
+name: Slack PR notifications
+
+# Colleagues watch the SCBD GitHub channel for two things only: a pull request
+# that is actually waiting on them, and something landing on master. Dev-branch
+# churn and agent-driven review PRs are noise to everyone but their author, so
+# the base branch is the whole filter -- nothing here keys off who opened the
+# PR. Drafts are excluded, which is what keeps agent PRs quiet: they are opened
+# as drafts and only announce themselves once a human marks one ready.
+
+on:
+  pull_request:
+    branches: [master]
+    types: [ready_for_review, closed]
+
+permissions: {}
+
+jobs:
+  notify:
+    # Two disjoint cases, and the base-branch test applies to both:
+    #   - marked ready, not a draft    -> a human can review it now
+    #   - closed AND merged            -> it landed on master
+    # GitHub emits closed + merged for merge, squash, and rebase-and-merge.
+    # A PR closed without merging, or merged into any branch other than master,
+    # falls through and the job never starts.
+    if: >-
+      github.event.pull_request.base.ref == 'master' &&
+      (
+        (github.event.action == 'ready_for_review' && !github.event.pull_request.draft) ||
+        (github.event.action == 'closed' && github.event.pull_request.merged)
+      )
+    runs-on: ubuntu-latest
+    steps:
+      # secrets is not a context available to job-level or step-level `if`, so
+      # the presence check has to round-trip through a step output. Without it
+      # a repo that has not been given the webhook (a fork, or this repo before
+      # an admin adds the secret) shows a red X on every master PR.
+      - name: Check webhook is configured
+        id: webhook
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -n "$SLACK_WEBHOOK_URL" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SLACK_WEBHOOK_URL is not set; skipping the Slack notification."
+          fi
+
+      # Escape Slack control characters before composing the mrkdwn link label.
+      - name: Escape PR title for Slack
+        id: title
+        if: steps.webhook.outputs.configured == 'true'
+        env:
+          PR_TITLE_JSON: ${{ toJSON(github.event.pull_request.title) }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const title = JSON.parse(process.env.PR_TITLE_JSON)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `escaped=${JSON.stringify(title)}\n`);
+          NODE
+
+      # JSON encoding keeps multiline titles in one step-output line above;
+      # toJSON() below also protects quotes and backslashes in the payload.
+      - name: Notify Slack -- ready for review
+        if: steps.webhook.outputs.configured == 'true' && github.event.action == 'ready_for_review'
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": ${{ toJSON(format(':eyes: *Ready for review* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.user.login)) }}
+            }
+
+      - name: Notify Slack -- merged to master
+        if: steps.webhook.outputs.configured == 'true' && github.event.action == 'closed'
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": ${{ toJSON(format(':white_check_mark: *Merged to master* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.merged_by.login)) }}
+            }
