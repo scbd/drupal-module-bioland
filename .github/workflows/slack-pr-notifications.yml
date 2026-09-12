@@ -44,8 +44,22 @@ jobs:
             echo "::notice::SLACK_WEBHOOK_URL is not set; skipping the Slack notification."
           fi
 
-      # toJSON() escapes the interpolated PR title, so a title containing a
-      # quote or a backslash produces valid JSON instead of a malformed payload.
+      # Escape Slack control characters before composing the mrkdwn link label.
+      - name: Escape PR title for Slack
+        id: title
+        if: steps.webhook.outputs.configured == 'true'
+        env:
+          PR_TITLE_JSON: ${{ toJSON(github.event.pull_request.title) }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const title = JSON.parse(process.env.PR_TITLE_JSON)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `escaped=${JSON.stringify(title)}\n`);
+          NODE
+
+      # JSON encoding keeps multiline titles in one step-output line above;
+      # toJSON() below also protects quotes and backslashes in the payload.
       - name: Notify Slack -- ready for review
         if: steps.webhook.outputs.configured == 'true' && github.event.action != 'closed'
         uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
@@ -54,7 +68,7 @@ jobs:
           webhook-type: incoming-webhook
           payload: |
             {
-              "text": ${{ toJSON(format(':eyes: *Ready for review* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, github.event.pull_request.title, github.event.pull_request.user.login)) }}
+              "text": ${{ toJSON(format(':eyes: *Ready for review* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.user.login)) }}
             }
 
       - name: Notify Slack -- merged to master
@@ -65,5 +79,5 @@ jobs:
           webhook-type: incoming-webhook
           payload: |
             {
-              "text": ${{ toJSON(format(':white_check_mark: *Merged to master* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, github.event.pull_request.title, github.event.pull_request.merged_by.login)) }}
+              "text": ${{ toJSON(format(':white_check_mark: *Merged to master* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.merged_by.login)) }}
             }
