@@ -500,6 +500,16 @@ jobs:
             }
 
             if (payload) {
+              // Inject dual-compatibility variables for Slack Workflow Builder
+              payload.pr_number = prNumber ? parseInt(prNumber, 10) : null;
+              payload.pr_title = prTitle;
+              payload.pr_url = prUrl;
+              payload.pr_files_url = filesUrl;
+              payload.pr_creator = creator;
+              payload.required_reviews = requiredReviews;
+              payload.event_name = eventName;
+              payload.event_action = eventAction;
+
               fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=false\n`);
               fs.appendFileSync(process.env.GITHUB_OUTPUT, `payload_json=${JSON.stringify(payload)}\n`);
             } else {
