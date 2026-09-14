@@ -10,7 +10,7 @@ name: Slack PR notifications
 on:
   pull_request:
     branches: [master]
-    types: [ready_for_review, closed]
+    types: [ready_for_review, review_requested, closed]
   pull_request_review:
     types: [submitted]
 
@@ -22,6 +22,7 @@ jobs:
   notify:
     # Only notify for non-draft master PR events:
     #   - marked ready, not a draft    -> a human can review it now
+    #   - review requested / started   -> announces reviewer starting & remaining capacity
     #   - closed AND merged            -> it landed on master
     #   - review submitted on master   -> review decision / comments to act on
     # GitHub emits closed + merged for merge, squash, and rebase-and-merge.
@@ -31,6 +32,7 @@ jobs:
       github.event.pull_request.base.ref == 'master' &&
       (
         (github.event.action == 'ready_for_review' && !github.event.pull_request.draft) ||
+        (github.event.action == 'review_requested' && !github.event.pull_request.draft) ||
         (github.event.action == 'closed' && github.event.pull_request.merged) ||
         (github.event_name == 'pull_request_review' && !github.event.pull_request.draft)
       )
@@ -52,12 +54,11 @@ jobs:
             echo "::notice::SLACK_WEBHOOK_URL is not set; skipping the Slack notification."
           fi
 
-      # Compose Slack notification text:
-      # - Queries modern rulesets and classic branch protection to check required reviewers
-      # - Checks current PR approval count and fetches review inline comments
-      # - Suggests merge if 1 review is required and met with no comments
-      # - If comments are left (or approved with comments), shares comments on separate lines
-      # - Escapes control characters and serializes safely into JSON
+      # Compose Slack notification:
+      # - Queries modern rulesets, GraphQL branchProtectionRules, and classic branch protection
+      # - Emits rich Block Kit button to start/join review in new tab
+      # - Tracks reviewer capacity: indicates when 1 more is needed or no more are needed
+      # - Handles reviews: merge suggestion if approved without comments; quoted comment lines if feedback left
       - name: Compose Slack notification
         id: compose
         if: steps.webhook.outputs.configured == 'true'
@@ -71,6 +72,8 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_CREATOR: ${{ github.event.pull_request.user.login }}
           PR_MERGED_BY: ${{ github.event.pull_request.merged_by.login }}
+          REQUESTED_REVIEWER: ${{ github.event.requested_reviewer.login }}
+          REQUESTED_REVIEWERS_JSON: ${{ toJSON(github.event.pull_request.requested_reviewers) }}
           REVIEW_ID: ${{ github.event.review.id }}
           REVIEW_STATE: ${{ github.event.review.state }}
           REVIEW_BODY_JSON: ${{ toJSON(github.event.review.body) }}
@@ -92,11 +95,8 @@ jobs:
                 let data = '';
                 res.on('data', chunk => data += chunk);
                 res.on('end', () => {
-                  try {
-                    resolve({ status: res.statusCode, data: JSON.parse(data) });
-                  } catch {
-                    resolve({ status: res.statusCode, data: null });
-                  }
+                  try { resolve({ status: res.statusCode, data: JSON.parse(data) }); }
+                  catch { resolve({ status: res.statusCode, data: null }); }
                 });
               });
               req.on('error', (err) => {
@@ -283,8 +283,11 @@ jobs:
             const prNumber = process.env.PR_NUMBER;
             const prTitle = JSON.parse(process.env.PR_TITLE_JSON || '""');
             const prUrl = process.env.PR_URL;
+            const filesUrl = `${prUrl}/files`;
             const creator = process.env.PR_CREATOR;
             const mergedBy = process.env.PR_MERGED_BY;
+            const requestedReviewer = process.env.REQUESTED_REVIEWER;
+            const requestedReviewers = JSON.parse(process.env.REQUESTED_REVIEWERS_JSON || '[]') || [];
             const reviewId = process.env.REVIEW_ID;
             const reviewState = (process.env.REVIEW_STATE || '').toLowerCase();
             const reviewAuthor = process.env.REVIEW_AUTHOR;
@@ -295,17 +298,106 @@ jobs:
             const requiredReviews = await getRequiredReviewers(repo, branch, prNumber, token);
             console.log(`[INFO] requiredReviews=${requiredReviews}, eventName=${eventName}, eventAction=${eventAction}`);
 
-            let message = null;
+            let payload = null;
 
+            // 1. Ready for review
             if (eventName === 'pull_request' && eventAction === 'ready_for_review') {
-              let reqText = '';
-              if (requiredReviews !== null) {
-                reqText = ` (${requiredReviews === 1 ? '1 review required' : `${requiredReviews} reviews required`})`;
+              const reqText = requiredReviews !== null
+                ? (requiredReviews === 1 ? '1 review required' : `${requiredReviews} reviews required`)
+                : 'Review required';
+              const text = `:eyes: *Ready for review* in \`${repo}\` -- ${titleLink} by ${creator} (${reqText})`;
+              payload = {
+                text,
+                blocks: [
+                  {
+                    type: 'section',
+                    text: {
+                      type: 'mrkdwn',
+                      text: `:eyes: *Ready for review* in \`${repo}\` -- ${titleLink} by ${creator}\n*Requirement*: ${reqText}`
+                    }
+                  },
+                  {
+                    type: 'actions',
+                    elements: [
+                      {
+                        type: 'button',
+                        text: { type: 'plain_text', text: 'Start Review :eyes:', emoji: true },
+                        url: filesUrl,
+                        style: 'primary'
+                      }
+                    ]
+                  }
+                ]
+              };
+            }
+
+            // 2. Someone requested or started review
+            else if (eventName === 'pull_request' && eventAction === 'review_requested') {
+              const reviewers = (requestedReviewers || []).map(r => r.login || r).filter(Boolean);
+              if (requestedReviewer && !reviewers.includes(requestedReviewer)) {
+                reviewers.push(requestedReviewer);
               }
-              message = `:eyes: *Ready for review* in \`${repo}\` -- ${titleLink} by ${creator}${reqText}`;
-            } else if (eventName === 'pull_request' && eventAction === 'closed') {
-              message = `:white_check_mark: *Merged to master* in \`${repo}\` -- ${titleLink} by ${mergedBy || creator}`;
-            } else if (eventName === 'pull_request_review') {
+              const needed = Math.max(0, (requiredReviews || 1) - reviewers.length);
+              const actor = requestedReviewer ? `@${requestedReviewer}` : 'Reviewer';
+
+              if (needed === 0) {
+                const text = `:hourglass_flowing_sand: *${actor} started review* in \`${repo}\` -- ${titleLink} (No more reviewers needed)`;
+                payload = {
+                  text,
+                  blocks: [
+                    {
+                      type: 'section',
+                      text: {
+                        type: 'mrkdwn',
+                        text: `:hourglass_flowing_sand: *${actor} started review* in \`${repo}\` -- ${titleLink}\n*Status*: In review by ${reviewers.map(r => `@${r}`).join(', ')} -- *No more reviewers needed!*`
+                      }
+                    }
+                  ]
+                };
+              } else {
+                const text = `:hourglass_flowing_sand: *${actor} started review* in \`${repo}\` -- ${titleLink} (${needed} more needed)`;
+                payload = {
+                  text,
+                  blocks: [
+                    {
+                      type: 'section',
+                      text: {
+                        type: 'mrkdwn',
+                        text: `:hourglass_flowing_sand: *${actor} started review* in \`${repo}\` -- ${titleLink}\n*Status*: In review by ${reviewers.map(r => `@${r}`).join(', ')} -- *${needed} more reviewer needed!*`
+                      }
+                    },
+                    {
+                      type: 'actions',
+                      elements: [
+                        {
+                          type: 'button',
+                          text: { type: 'plain_text', text: 'Join Review :eyes:', emoji: true },
+                          url: filesUrl,
+                          style: 'primary'
+                        }
+                      ]
+                    }
+                  ]
+                };
+              }
+            }
+
+            // 3. Merged to master
+            else if (eventName === 'pull_request' && eventAction === 'closed') {
+              const text = `:white_check_mark: *Merged to master* in \`${repo}\` -- ${titleLink} by ${mergedBy || creator}`;
+              payload = {
+                text,
+                blocks: [
+                  {
+                    type: 'section',
+                    text: { type: 'mrkdwn', text }
+                  }
+                ]
+              };
+            }
+
+            // 4. Review submitted
+            else if (eventName === 'pull_request_review') {
               const inlineComments = await getReviewComments(repo, prNumber, reviewId, token);
               const comments = [];
               if (reviewBody.trim()) {
@@ -324,33 +416,92 @@ jobs:
                 if (comments.length > 0) {
                   const formatted = formatComments(comments);
                   const reqNotice = requiredReviews === 1 ? ' (1 review required)' : (requiredReviews ? ` (${requiredReviews} reviews required)` : '');
-                  message = `:white_check_mark: *Approved with comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reqNotice}\ncc @${creator} please address comments before merging:\n${formatted}`;
+                  const text = `:white_check_mark: *Approved with comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reqNotice}\ncc @${creator} please address comments before merging:\n${formatted}`;
+                  payload = {
+                    text,
+                    blocks: [
+                      {
+                        type: 'section',
+                        text: { type: 'mrkdwn', text }
+                      }
+                    ]
+                  };
                 } else {
-                  const reviewCountText = requiredReviews !== null
-                    ? ` (${requiredReviews === 1 ? '1 review required' : `${totalApprovals}/${requiredReviews} reviews met`})`
+                  const reqText = requiredReviews !== null
+                    ? (requiredReviews === 1 ? '1 review required' : `${totalApprovals}/${requiredReviews} reviews met`)
                     : '';
 
                   if (requiredReviews === null || requiredReviews <= 1 || totalApprovals >= requiredReviews) {
-                    message = `:white_check_mark: *PR Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reviewCountText} -- *Ready to merge!* :rocket:`;
+                    const text = `:white_check_mark: *PR Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reqText ? ` (${reqText})` : ''} -- *Ready to merge!* :rocket:`;
+                    payload = {
+                      text,
+                      blocks: [
+                        {
+                          type: 'section',
+                          text: { type: 'mrkdwn', text }
+                        }
+                      ]
+                    };
                   } else {
                     const remaining = requiredReviews - totalApprovals;
-                    message = `:white_check_mark: *Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reviewCountText} (${remaining} more review required before merging)`;
+                    const text = `:white_check_mark: *Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor} (${reqText}) -- ${remaining} more review required before merging`;
+                    payload = {
+                      text,
+                      blocks: [
+                        {
+                          type: 'section',
+                          text: {
+                            type: 'mrkdwn',
+                            text: `:white_check_mark: *Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor} (${reqText})\n*Status*: ${remaining} more review required before merging`
+                          }
+                        },
+                        {
+                          type: 'actions',
+                          elements: [
+                            {
+                              type: 'button',
+                              text: { type: 'plain_text', text: 'Join Review :eyes:', emoji: true },
+                              url: filesUrl,
+                              style: 'primary'
+                            }
+                          ]
+                        }
+                      ]
+                    };
                   }
                 }
               } else if (reviewState === 'changes_requested') {
                 const formatted = comments.length > 0 ? '\n' + formatComments(comments) : '';
-                message = `:warning: *Changes requested* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator} please review requested changes:${formatted}`;
+                const text = `:warning: *Changes requested* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator} please review requested changes:${formatted}`;
+                payload = {
+                  text,
+                  blocks: [
+                    {
+                      type: 'section',
+                      text: { type: 'mrkdwn', text }
+                    }
+                  ]
+                };
               } else if (reviewState === 'commented') {
                 if (comments.length > 0) {
                   const formatted = formatComments(comments);
-                  message = `:speech_balloon: *Review comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator}:\n${formatted}`;
+                  const text = `:speech_balloon: *Review comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator}:\n${formatted}`;
+                  payload = {
+                    text,
+                    blocks: [
+                      {
+                        type: 'section',
+                        text: { type: 'mrkdwn', text }
+                      }
+                    ]
+                  };
                 }
               }
             }
 
-            if (message) {
+            if (payload) {
               fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=false\n`);
-              fs.appendFileSync(process.env.GITHUB_OUTPUT, `text_json=${JSON.stringify(message)}\n`);
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `payload_json=${JSON.stringify(payload)}\n`);
             } else {
               fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=true\n`);
             }
@@ -368,7 +519,4 @@ jobs:
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
-          payload: |
-            {
-              "text": ${{ steps.compose.outputs.text_json }}
-            }
+          payload: ${{ steps.compose.outputs.payload_json }}
