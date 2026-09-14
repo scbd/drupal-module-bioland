@@ -86,18 +86,9 @@ jobs:
             return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
           }
 
-          function githubApi(path, token) {
+          function githubRequest(options, postData) {
             return new Promise((resolve) => {
-              const options = {
-                hostname: 'api.github.com',
-                path,
-                headers: {
-                  'User-Agent': 'github-actions-slack-notifier',
-                  'Accept': 'application/vnd.github+json',
-                  ...(token ? { 'Authorization': `Bearer ${token}` } : {})
-                }
-              };
-              https.get(options, (res) => {
+              const req = https.request(options, (res) => {
                 let data = '';
                 res.on('data', chunk => data += chunk);
                 res.on('end', () => {
@@ -107,29 +98,130 @@ jobs:
                     resolve({ status: res.statusCode, data: null });
                   }
                 });
-              }).on('error', () => resolve({ status: 500, data: null }));
+              });
+              req.on('error', (err) => {
+                console.log('[DEBUG] Request error:', err.message);
+                resolve({ status: 500, data: null });
+              });
+              if (postData) req.write(postData);
+              req.end();
             });
           }
 
-          async function getRequiredReviewers(repo, branch, token) {
+          function githubApi(path, token) {
+            return githubRequest({
+              hostname: 'api.github.com',
+              path,
+              method: 'GET',
+              headers: {
+                'User-Agent': 'github-actions-slack-notifier',
+                'Accept': 'application/vnd.github+json',
+                'X-GitHub-Api-Version': '2022-11-28',
+                ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+              }
+            });
+          }
+
+          function githubGraphQL(query, variables, token) {
+            const postData = JSON.stringify({ query, variables });
+            return githubRequest({
+              hostname: 'api.github.com',
+              path: '/graphql',
+              method: 'POST',
+              headers: {
+                'User-Agent': 'github-actions-slack-notifier',
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postData),
+                ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+              }
+            }, postData);
+          }
+
+          async function getRequiredReviewers(repo, branch, prNumber, token) {
+            const [owner, name] = repo.split('/');
+
             // 1. Try Repository Rulesets API
             try {
               const rulesRes = await githubApi(`/repos/${repo}/rules/branches/${encodeURIComponent(branch)}`, token);
               if (rulesRes.status === 200 && Array.isArray(rulesRes.data)) {
                 const prRule = rulesRes.data.find(r => r.type === 'pull_request');
                 if (prRule?.parameters?.required_approving_review_count !== undefined) {
+                  console.log('[DEBUG] Detected required reviews via Ruleset:', prRule.parameters.required_approving_review_count);
                   return prRule.parameters.required_approving_review_count;
                 }
               }
-            } catch {}
+            } catch (e) {
+              console.log('[DEBUG] Ruleset lookup error:', e.message);
+            }
 
-            // 2. Fall back to Classic Branch Protection API
+            // 2. Try GraphQL branchProtectionRules
+            try {
+              const gqlRes = await githubGraphQL(`
+                query($owner: String!, $name: String!) {
+                  repository(owner: $owner, name: $name) {
+                    branchProtectionRules(first: 20) {
+                      nodes {
+                        pattern
+                        requiresApprovingReviews
+                        requiredApprovingReviewCount
+                      }
+                    }
+                  }
+                }
+              `, { owner, name }, token);
+
+              const nodes = gqlRes.data?.data?.repository?.branchProtectionRules?.nodes;
+              if (Array.isArray(nodes)) {
+                const match = nodes.find(n => n.pattern === branch || branch.match(new RegExp('^' + n.pattern.replace(/\*/g, '.*') + '$')));
+                if (match && match.requiresApprovingReviews) {
+                  const count = match.requiredApprovingReviewCount || 1;
+                  console.log('[DEBUG] Detected required reviews via GraphQL branchProtectionRules:', count);
+                  return count;
+                }
+              }
+            } catch (e) {
+              console.log('[DEBUG] GraphQL branchProtectionRules lookup error:', e.message);
+            }
+
+            // 3. Try Classic Branch Protection REST API
             try {
               const protRes = await githubApi(`/repos/${repo}/branches/${encodeURIComponent(branch)}/protection`, token);
               if (protRes.status === 200 && protRes.data?.required_pull_request_reviews) {
-                return protRes.data.required_pull_request_reviews.required_approving_review_count ?? 1;
+                const count = protRes.data.required_pull_request_reviews.required_approving_review_count ?? 1;
+                console.log('[DEBUG] Detected required reviews via Classic REST:', count);
+                return count;
               }
-            } catch {}
+            } catch (e) {
+              console.log('[DEBUG] Classic REST lookup error:', e.message);
+            }
+
+            // 4. Fallback heuristic: check PR reviewDecision or branch.protected
+            try {
+              if (prNumber) {
+                const prRes = await githubGraphQL(`
+                  query($owner: String!, $name: String!, $number: Int!) {
+                    repository(owner: $owner, name: $name) {
+                      pullRequest(number: $number) {
+                        reviewDecision
+                      }
+                    }
+                  }
+                `, { owner, name, number: parseInt(prNumber, 10) }, token);
+                const decision = prRes.data?.data?.repository?.pullRequest?.reviewDecision;
+                if (decision === 'REVIEW_REQUIRED') {
+                  console.log('[DEBUG] Detected review required via PR reviewDecision');
+                  return 1;
+                }
+              }
+
+              const branchRes = await githubApi(`/repos/${repo}/branches/${encodeURIComponent(branch)}`, token);
+              if (branchRes.status === 200 && branchRes.data?.protected) {
+                console.log('[DEBUG] Detected review required via branch.protected');
+                return 1;
+              }
+            } catch (e) {
+              console.log('[DEBUG] Fallback heuristic error:', e.message);
+            }
 
             return null;
           }
@@ -200,7 +292,8 @@ jobs:
 
             const titleLink = `<${prUrl}|#${prNumber} ${escapeSlack(prTitle)}>`;
 
-            const requiredReviews = await getRequiredReviewers(repo, branch, token);
+            const requiredReviews = await getRequiredReviewers(repo, branch, prNumber, token);
+            console.log(`[INFO] requiredReviews=${requiredReviews}, eventName=${eventName}, eventAction=${eventAction}`);
 
             let message = null;
 
