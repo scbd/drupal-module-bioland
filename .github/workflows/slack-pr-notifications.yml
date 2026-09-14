@@ -11,14 +11,19 @@ on:
   pull_request:
     branches: [master]
     types: [ready_for_review, closed]
+  pull_request_review:
+    types: [submitted]
 
-permissions: {}
+permissions:
+  contents: read
+  pull-requests: read
 
 jobs:
   notify:
-    # Two disjoint cases, and the base-branch test applies to both:
+    # Only notify for non-draft master PR events:
     #   - marked ready, not a draft    -> a human can review it now
     #   - closed AND merged            -> it landed on master
+    #   - review submitted on master   -> review decision / comments to act on
     # GitHub emits closed + merged for merge, squash, and rebase-and-merge.
     # A PR closed without merging, or merged into any branch other than master,
     # falls through and the job never starts.
@@ -26,7 +31,8 @@ jobs:
       github.event.pull_request.base.ref == 'master' &&
       (
         (github.event.action == 'ready_for_review' && !github.event.pull_request.draft) ||
-        (github.event.action == 'closed' && github.event.pull_request.merged)
+        (github.event.action == 'closed' && github.event.pull_request.merged) ||
+        (github.event_name == 'pull_request_review' && !github.event.pull_request.draft)
       )
     runs-on: ubuntu-latest
     steps:
@@ -46,40 +52,230 @@ jobs:
             echo "::notice::SLACK_WEBHOOK_URL is not set; skipping the Slack notification."
           fi
 
-      # Escape Slack control characters before composing the mrkdwn link label.
-      - name: Escape PR title for Slack
-        id: title
+      # Compose Slack notification text:
+      # - Queries modern rulesets and classic branch protection to check required reviewers
+      # - Checks current PR approval count and fetches review inline comments
+      # - Suggests merge if 1 review is required and met with no comments
+      # - If comments are left (or approved with comments), shares comments on separate lines
+      # - Escapes control characters and serializes safely into JSON
+      - name: Compose Slack notification
+        id: compose
         if: steps.webhook.outputs.configured == 'true'
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_TITLE_JSON: ${{ toJSON(github.event.pull_request.title) }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_CREATOR: ${{ github.event.pull_request.user.login }}
+          PR_MERGED_BY: ${{ github.event.pull_request.merged_by.login }}
+          REVIEW_ID: ${{ github.event.review.id }}
+          REVIEW_STATE: ${{ github.event.review.state }}
+          REVIEW_BODY_JSON: ${{ toJSON(github.event.review.body) }}
+          REVIEW_AUTHOR: ${{ github.event.review.user.login }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
           node <<'NODE'
+          const https = require('node:https');
           const fs = require('node:fs');
-          const title = JSON.parse(process.env.PR_TITLE_JSON)
-            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `escaped=${JSON.stringify(title)}\n`);
-          NODE
 
-      # JSON encoding keeps multiline titles in one step-output line above;
-      # toJSON() below also protects quotes and backslashes in the payload.
-      - name: Notify Slack -- ready for review
-        if: steps.webhook.outputs.configured == 'true' && github.event.action == 'ready_for_review'
-        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
-          webhook-type: incoming-webhook
-          payload: |
-            {
-              "text": ${{ toJSON(format(':eyes: *Ready for review* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.user.login)) }}
+          function escapeSlack(text) {
+            if (!text) return '';
+            return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          }
+
+          function githubApi(path, token) {
+            return new Promise((resolve) => {
+              const options = {
+                hostname: 'api.github.com',
+                path,
+                headers: {
+                  'User-Agent': 'github-actions-slack-notifier',
+                  'Accept': 'application/vnd.github+json',
+                  ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                }
+              };
+              https.get(options, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => {
+                  try {
+                    resolve({ status: res.statusCode, data: JSON.parse(data) });
+                  } catch {
+                    resolve({ status: res.statusCode, data: null });
+                  }
+                });
+              }).on('error', () => resolve({ status: 500, data: null }));
+            });
+          }
+
+          async function getRequiredReviewers(repo, branch, token) {
+            // 1. Try Repository Rulesets API
+            try {
+              const rulesRes = await githubApi(`/repos/${repo}/rules/branches/${encodeURIComponent(branch)}`, token);
+              if (rulesRes.status === 200 && Array.isArray(rulesRes.data)) {
+                const prRule = rulesRes.data.find(r => r.type === 'pull_request');
+                if (prRule?.parameters?.required_approving_review_count !== undefined) {
+                  return prRule.parameters.required_approving_review_count;
+                }
+              }
+            } catch {}
+
+            // 2. Fall back to Classic Branch Protection API
+            try {
+              const protRes = await githubApi(`/repos/${repo}/branches/${encodeURIComponent(branch)}/protection`, token);
+              if (protRes.status === 200 && protRes.data?.required_pull_request_reviews) {
+                return protRes.data.required_pull_request_reviews.required_approving_review_count ?? 1;
+              }
+            } catch {}
+
+            return null;
+          }
+
+          async function getApprovalCount(repo, prNumber, token) {
+            try {
+              const res = await githubApi(`/repos/${repo}/pulls/${prNumber}/reviews`, token);
+              if (res.status === 200 && Array.isArray(res.data)) {
+                const latestByUser = new Map();
+                for (const r of res.data) {
+                  if (r.user?.login && r.state) {
+                    latestByUser.set(r.user.login, r.state.toUpperCase());
+                  }
+                }
+                let count = 0;
+                for (const state of latestByUser.values()) {
+                  if (state === 'APPROVED') count++;
+                }
+                return count;
+              }
+            } catch {}
+            return 0;
+          }
+
+          async function getReviewComments(repo, prNumber, reviewId, token) {
+            if (!reviewId) return [];
+            try {
+              const res = await githubApi(`/repos/${repo}/pulls/${prNumber}/reviews/${reviewId}/comments`, token);
+              if (res.status === 200 && Array.isArray(res.data)) {
+                return res.data;
+              }
+            } catch {}
+            return [];
+          }
+
+          function formatComments(commentList) {
+            const maxShown = 5;
+            const shown = commentList.slice(0, maxShown);
+            const remaining = commentList.length - maxShown;
+
+            const lines = shown.map(comment => {
+              const truncated = comment.length > 300 ? comment.slice(0, 297) + '...' : comment;
+              return truncated.split(/\r?\n/).map(l => `> ${escapeSlack(l)}`).join('\n');
+            });
+
+            if (remaining > 0) {
+              lines.push(`> _...and ${remaining} more comment(s) on GitHub_`);
             }
 
-      - name: Notify Slack -- merged to master
-        if: steps.webhook.outputs.configured == 'true' && github.event.action == 'closed'
+            return lines.join('\n');
+          }
+
+          async function run() {
+            const token = process.env.GH_TOKEN;
+            const repo = process.env.REPOSITORY;
+            const branch = process.env.BASE_REF || 'master';
+            const eventName = process.env.EVENT_NAME;
+            const eventAction = process.env.EVENT_ACTION;
+            const prNumber = process.env.PR_NUMBER;
+            const prTitle = JSON.parse(process.env.PR_TITLE_JSON || '""');
+            const prUrl = process.env.PR_URL;
+            const creator = process.env.PR_CREATOR;
+            const mergedBy = process.env.PR_MERGED_BY;
+            const reviewId = process.env.REVIEW_ID;
+            const reviewState = (process.env.REVIEW_STATE || '').toLowerCase();
+            const reviewAuthor = process.env.REVIEW_AUTHOR;
+            const reviewBody = JSON.parse(process.env.REVIEW_BODY_JSON || '""') || '';
+
+            const titleLink = `<${prUrl}|#${prNumber} ${escapeSlack(prTitle)}>`;
+
+            const requiredReviews = await getRequiredReviewers(repo, branch, token);
+
+            let message = null;
+
+            if (eventName === 'pull_request' && eventAction === 'ready_for_review') {
+              let reqText = '';
+              if (requiredReviews !== null) {
+                reqText = ` (${requiredReviews === 1 ? '1 review required' : `${requiredReviews} reviews required`})`;
+              }
+              message = `:eyes: *Ready for review* in \`${repo}\` -- ${titleLink} by ${creator}${reqText}`;
+            } else if (eventName === 'pull_request' && eventAction === 'closed') {
+              message = `:white_check_mark: *Merged to master* in \`${repo}\` -- ${titleLink} by ${mergedBy || creator}`;
+            } else if (eventName === 'pull_request_review') {
+              const inlineComments = await getReviewComments(repo, prNumber, reviewId, token);
+              const comments = [];
+              if (reviewBody.trim()) {
+                comments.push(reviewBody.trim());
+              }
+              for (const c of inlineComments) {
+                if (c.body && c.body.trim()) {
+                  const loc = c.path ? `\`${c.path}${c.line ? `:${c.line}` : ''}\`: ` : '';
+                  comments.push(`${loc}${c.body.trim()}`);
+                }
+              }
+
+              const totalApprovals = await getApprovalCount(repo, prNumber, token);
+
+              if (reviewState === 'approved') {
+                if (comments.length > 0) {
+                  const formatted = formatComments(comments);
+                  const reqNotice = requiredReviews === 1 ? ' (1 review required)' : (requiredReviews ? ` (${requiredReviews} reviews required)` : '');
+                  message = `:white_check_mark: *Approved with comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reqNotice}\ncc @${creator} please address comments before merging:\n${formatted}`;
+                } else {
+                  const reviewCountText = requiredReviews !== null
+                    ? ` (${requiredReviews === 1 ? '1 review required' : `${totalApprovals}/${requiredReviews} reviews met`})`
+                    : '';
+
+                  if (requiredReviews === null || requiredReviews <= 1 || totalApprovals >= requiredReviews) {
+                    message = `:white_check_mark: *PR Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reviewCountText} -- *Ready to merge!* :rocket:`;
+                  } else {
+                    const remaining = requiredReviews - totalApprovals;
+                    message = `:white_check_mark: *Approved* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}${reviewCountText} (${remaining} more review required before merging)`;
+                  }
+                }
+              } else if (reviewState === 'changes_requested') {
+                const formatted = comments.length > 0 ? '\n' + formatComments(comments) : '';
+                message = `:warning: *Changes requested* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator} please review requested changes:${formatted}`;
+              } else if (reviewState === 'commented') {
+                if (comments.length > 0) {
+                  const formatted = formatComments(comments);
+                  message = `:speech_balloon: *Review comments* in \`${repo}\` -- ${titleLink} by ${reviewAuthor}\ncc @${creator}:\n${formatted}`;
+                }
+              }
+            }
+
+            if (message) {
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=false\n`);
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `text_json=${JSON.stringify(message)}\n`);
+            } else {
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, `skip=true\n`);
+            }
+          }
+
+          run().catch((err) => {
+            console.error(err);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Notify Slack
+        if: steps.webhook.outputs.configured == 'true' && steps.compose.outputs.skip != 'true'
         uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
           payload: |
             {
-              "text": ${{ toJSON(format(':white_check_mark: *Merged to master* in `{0}` -- <{1}|#{2} {3}> by {4}', github.repository, github.event.pull_request.html_url, github.event.pull_request.number, fromJSON(steps.title.outputs.escaped), github.event.pull_request.merged_by.login)) }}
+              "text": ${{ steps.compose.outputs.text_json }}
             }
