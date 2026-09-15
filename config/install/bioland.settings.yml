@@ -86,6 +86,10 @@ mega_menu:
     show_if_empty: false
 translation:
   auto_create: true
+  # Gates the translation backfill update hook, which writes translation
+  # defaults across every existing content node. Ships off by design: enabling
+  # it is a deliberate, per-site, operator-run act, never a deploy side effect.
+  backfill_enabled: false
   use_all_languages: true
   target_languages: []
   copy_source_values: true

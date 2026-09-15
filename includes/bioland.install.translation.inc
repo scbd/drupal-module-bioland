@@ -163,13 +163,47 @@ function bioland_update_9003() {
 }
 
 /**
- * Create translation defaults for all existing content nodes.
+ * Create translation defaults for every existing content node, if enabled.
+ *
+ * Shared batch routine behind bioland_update_9012() and bioland_update_9079().
+ * It WRITES CONTENT: it loads every node of type "content" with
+ * accessCheck(FALSE) and calls
+ * BiolandTranslationManager::createTranslations($node, 'batch') on each, 20
+ * nodes per pass.
+ *
+ * Two gates must BOTH be TRUE before a single node is touched:
+ * - translation.auto_create — the canonical feature switch. The authority for
+ *   this key name is config/schema/bioland.schema.yml (translation.auto_create);
+ *   the same key is written by BiolandSystemFunctionsForm::submitForm() and read
+ *   by BiolandTranslationManager. It ships TRUE.
+ * - translation.backfill_enabled — the backfill-specific switch. It ships FALSE,
+ *   so this routine is inert on every site until an operator turns it on
+ *   deliberately, per site.
+ *
+ * @param array $sandbox
+ *   The update hook sandbox, passed by reference.
+ *
+ * @return string
+ *   A human-readable status message.
  */
-function bioland_update_9012(&$sandbox) {
-  // Check if translation defaults are enabled.
+function _bioland_run_translation_backfill(array &$sandbox) {
+  // Both gates must be open. The canonical key is translation.auto_create;
+  // config/schema/bioland.schema.yml is the authority for its spelling.
   $config = \Drupal::config('bioland.settings');
-  if (!$config->get('translation.auto_create_enabled')) {
-    return t('Translation auto-create is not enabled; skipping batch processing.');
+  $auto_create = (bool) $config->get('translation.auto_create');
+  $backfill_enabled = (bool) $config->get('translation.backfill_enabled');
+  if (!$auto_create || !$backfill_enabled) {
+    $sandbox['#finished'] = 1;
+    $closed = [];
+    if (!$auto_create) {
+      $closed[] = 'translation.auto_create';
+    }
+    if (!$backfill_enabled) {
+      $closed[] = 'translation.backfill_enabled';
+    }
+    return t('Translation backfill skipped: @closed is not enabled.', [
+      '@closed' => implode(' and ', $closed),
+    ]);
   }
 
   // Initialize sandbox on first run.
@@ -209,7 +243,7 @@ function bioland_update_9012(&$sandbox) {
     }
     catch (\Exception $e) {
       $sandbox['errors']++;
-      \Drupal::logger('bioland')->error('Update 9012: Error processing node @nid: @message', [
+      \Drupal::logger('bioland')->error('Translation backfill: Error processing node @nid: @message', [
         '@nid' => $nid,
         '@message' => $e->getMessage(),
       ]);
@@ -233,6 +267,21 @@ function bioland_update_9012(&$sandbox) {
     '@progress' => $sandbox['progress'],
     '@total' => $sandbox['total'],
   ]);
+}
+
+/**
+ * Create translation defaults for all existing content nodes.
+ *
+ * Historical hook. It has already run on every existing site, where its guard
+ * read a key name that was never written, so it always returned its skip
+ * message. It now delegates to the shared, correctly-gated routine; the
+ * reachable entry point for sites past this schema version is
+ * bioland_update_9079().
+ *
+ * @see _bioland_run_translation_backfill()
+ */
+function bioland_update_9012(&$sandbox) {
+  return _bioland_run_translation_backfill($sandbox);
 }
 
 /**
@@ -526,4 +575,43 @@ function bioland_update_9078() {
   $messages[] = _bioland_v2_update_search_and_facets_config();
 
   return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Re-run the translation backfill guard with the corrected, gated config read.
+ *
+ * bioland_update_9012() guarded its batch on a config key that no writer ever
+ * wrote, so it returned its skip message on every site and Drupal recorded the
+ * schema version. Correcting that read in place therefore changes nothing for
+ * the sites that already passed it: a NEW hook is what makes the corrected
+ * guard reachable. That is this hook.
+ *
+ * It is gated on translation.backfill_enabled, which ships FALSE (see
+ * config/install/bioland.settings.yml). Both that flag AND the canonical
+ * translation.auto_create must be TRUE before a single node is written, so on
+ * a stock site this hook does nothing but report that the gate is closed.
+ * Enabling the backfill is a deliberate, per-site, operator-run act: set
+ * translation.backfill_enabled to TRUE on that site, then run updates.
+ *
+ * WARNING: when both gates are open this WRITES CONTENT — it creates
+ * translation defaults for every existing node of type "content", 20 per pass.
+ *
+ * As the highest-numbered hook it is guaranteed to run LAST on every site, so
+ * per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config once the batch finishes, so the last writer never leaves a
+ * half-configured index.
+ *
+ * @see _bioland_run_translation_backfill()
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9079(&$sandbox) {
+  $message = _bioland_run_translation_backfill($sandbox);
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  // Only on the final pass, so a multi-pass batch does not re-run it per pass.
+  if (($sandbox['#finished'] ?? 1) >= 1) {
+    $message .= ' ' . _bioland_v2_update_search_and_facets_config();
+  }
+
+  return $message;
 }
