@@ -142,6 +142,78 @@ class BiolandTranslationBackfillTest extends TestCase {
   }
 
   /**
+   * Install the stub config factory and entity query with RAW config values.
+   *
+   * Unlike runBackfill(), the values are not coerced to bool before being
+   * handed to the stub, so a caller can pass NULL to simulate a key that has
+   * never been written — the actual state of every one of the ~211
+   * production sites that predate this config, since neither key exists
+   * until a site's config is explicitly updated to include it.
+   *
+   * @param array $values
+   *   Map of config key => raw value (bool|null) to return from get().
+   *
+   * @return array
+   *   ['message' => string, 'config' => object, 'query' => object].
+   */
+  private function runBackfillWithRawValues(array $values): array {
+    $config = new class($values) {
+      public array $requested = [];
+      private array $values;
+
+      public function __construct(array $values) {
+        $this->values = $values;
+      }
+
+      public function get($key) {
+        $this->requested[] = $key;
+        return array_key_exists($key, $this->values) ? $this->values[$key] : NULL;
+      }
+
+    };
+
+    $factory = new class($config) {
+      private $config;
+
+      public function __construct($config) {
+        $this->config = $config;
+      }
+
+      public function get($name) {
+        return $this->config;
+      }
+
+    };
+
+    // A query that records whether the backfill ever reached the node lookup.
+    $query = new class {
+      public bool $executed = FALSE;
+
+      public function condition($field, $value) {
+        return $this;
+      }
+
+      public function accessCheck($check) {
+        return $this;
+      }
+
+      public function execute() {
+        $this->executed = TRUE;
+        return [];
+      }
+
+    };
+
+    \Drupal::setService('config.factory', $factory);
+    \Drupal::setService('entity.queries', ['node' => $query]);
+
+    $sandbox = [];
+    $message = (string) _bioland_run_translation_backfill($sandbox);
+
+    return ['message' => $message, 'config' => $config, 'query' => $query];
+  }
+
+  /**
    * Expose the canonical key to the anonymous config stub.
    */
   public static function canonicalKey(): string {
@@ -201,6 +273,54 @@ class BiolandTranslationBackfillTest extends TestCase {
     $this->assertTrue(
       $result['query']->executed,
       'The backfill must proceed when both translation.auto_create and translation.backfill_enabled are TRUE.'
+    );
+  }
+
+  /**
+   * Gate case 4: the backfill key was never written — the state of every
+   * existing (~211) production site — while the canonical key is TRUE.
+   *
+   * `(bool) $config->get(...)` turns the absent key's NULL into FALSE, which
+   * correctly keeps the gate closed. Nothing here pins that cast: drop it
+   * for `!$config->get(...)` or swap to `!== FALSE`/`isset()` and every
+   * other test in this file still passes, silently arming the backfill on
+   * every site that has never set translation.backfill_enabled.
+   */
+  public function testBackfillSkippedWhenBackfillKeyAbsent(): void {
+    $result = $this->runBackfillWithRawValues([
+      self::CANONICAL_KEY => TRUE,
+      self::BACKFILL_KEY => NULL,
+    ]);
+
+    $this->assertFalse(
+      $result['query']->executed,
+      'A NULL (never-written) translation.backfill_enabled must close the gate, not open it.'
+    );
+    $this->assertStringContainsString(
+      self::BACKFILL_KEY,
+      $result['message'],
+      'The skip message must name the closed gate.'
+    );
+  }
+
+  /**
+   * Mirror of the above: the canonical key was never written, while the
+   * backfill-specific key is TRUE. A NULL on either gate must close it.
+   */
+  public function testBackfillSkippedWhenCanonicalKeyAbsent(): void {
+    $result = $this->runBackfillWithRawValues([
+      self::CANONICAL_KEY => NULL,
+      self::BACKFILL_KEY => TRUE,
+    ]);
+
+    $this->assertFalse(
+      $result['query']->executed,
+      'A NULL (never-written) translation.auto_create must close the gate, not open it.'
+    );
+    $this->assertStringContainsString(
+      self::CANONICAL_KEY,
+      $result['message'],
+      'The skip message must name the closed gate.'
     );
   }
 
