@@ -69,15 +69,24 @@ class BiolandConfigApiAccessCheck implements AccessInterface {
   /**
    * Checks access to the config API route.
    *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The current request.
+   * @param \Symfony\Component\HttpFoundation\Request|null $request
+   *   The current request, or NULL. Core passes NULL when access is checked
+   *   outside an incoming request — a route access check run from the CLI, or
+   *   a link-access check during rendering. With no request there is no header
+   *   to authenticate and no query string to refuse, so the only safe answer
+   *   is forbidden. Typing this non-nullable instead produces a TypeError,
+   *   which is a WSOD rather than a bypass, but a WSOD all the same.
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The account making the request.
    *
    * @return \Drupal\Core\Access\AccessResultInterface
    *   The access result.
    */
-  public function access(Request $request, AccountInterface $account): AccessResultInterface {
+  public function access(?Request $request, AccountInterface $account): AccessResultInterface {
+    if ($request === NULL) {
+      return $this->uncacheable(AccessResult::forbidden('The Bioland config api is only reachable through an HTTP request carrying the ' . self::HEADER . ' header.'));
+    }
+
     foreach (self::REJECTED_QUERY_PARAMS as $param) {
       if ($request->query->has($param)) {
         return $this->uncacheable(AccessResult::forbidden('The Bioland config api key must be sent in the ' . self::HEADER . ' request header, never in the query string.'));

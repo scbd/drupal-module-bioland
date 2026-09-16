@@ -103,3 +103,8 @@ bioland.config_api:
     _format: 'json'
   options:
     no_cache: TRUE
+    # Default access mode is ANY: a contrib module adding a dynamic access
+    # check to this route could then grant access alongside ours. ALL means
+    # every check must allow, so _bioland_config_api can only ever be the
+    # narrowest of them, never one vote among several.
+    _access_mode: 'ALL'

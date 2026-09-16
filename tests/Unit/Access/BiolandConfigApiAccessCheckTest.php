@@ -129,4 +129,20 @@ class BiolandConfigApiAccessCheckTest extends TestCase {
     $this->assertContains('user.permissions', $result->getCacheContexts());
   }
 
+  /**
+   * With no request at all, access is forbidden rather than fatal.
+   *
+   * Core passes NULL when a route's access is checked outside an incoming
+   * request — from the CLI, or while rendering a link to the route. A
+   * non-nullable parameter turns that into a TypeError: a WSOD rather than a
+   * bypass, but still an outage triggered by something other than a caller.
+   */
+  public function testNullRequestIsForbidden() {
+    $result = $this->check()->access(NULL, $this->account(TRUE));
+
+    $this->assertFalse($result->isAllowed());
+    $this->assertTrue($result->isForbidden());
+    $this->assertSame(0, $result->getCacheMaxAge());
+  }
+
 }

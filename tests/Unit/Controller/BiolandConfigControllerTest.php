@@ -55,8 +55,13 @@ class BiolandConfigControllerTest extends TestCase {
     }
     $languageManager = $this->createMock(LanguageManagerInterface::class);
     $languageManager->method('getLanguages')->willReturn($languages);
-    $languageManager->method('getLanguageConfigOverride')->willReturnCallback(static function ($langcode) use ($overrides) {
-      return new ImmutableConfig('system.site', $overrides[$langcode] ?? []);
+    $languageManager->method('getLanguageConfigOverride')->willReturnCallback(static function ($langcode, $name) use ($overrides, &$recorder) {
+      // A language override is a read of a DIFFERENT config object than $name:
+      // `language.config.<langcode>.<name>`, with its own cache tag. Recording
+      // only configFactory->get() left this read invisible to the tag audit
+      // below, which is precisely the read that was missing a tag.
+      $recorder[] = BiolandConfigController::languageOverrideName((string) $langcode, (string) $name);
+      return new ImmutableConfig($name, $overrides[$langcode] ?? []);
     });
 
     $time = $this->createMock(TimeInterface::class);
@@ -79,11 +84,38 @@ class BiolandConfigControllerTest extends TestCase {
   }
 
   /**
-   * The response is marked uncacheable at the edge.
+   * The response declares itself uncacheable, not just the route.
+   *
+   * The route's `no_cache: TRUE` must not be the whole defence: on its own the
+   * response would still declare "cacheable permanently, varies on nothing"
+   * about a key-authenticated body, and one YAML edit would turn that into a
+   * storable response.
+   */
+  public function testResponseCacheabilityIsUncacheableAndContextAware() {
+    $metadata = $this->controller(['region' => 'r'])->document()->getCacheableMetadata();
+
+    $this->assertSame(0, $metadata->getCacheMaxAge());
+    $this->assertContains('user.permissions', $metadata->getCacheContexts());
+    $this->assertContains('headers:X-Bioland-Api-Key', $metadata->getCacheContexts());
+  }
+
+  /**
+   * The response is marked uncacheable at the edge, and says what it varies on.
+   *
+   * The `Cache-Control` asserted here is what this CONTROLLER sets. It is not
+   * what production emits: because the response policy denies caching, core's
+   * FinishResponseSubscriber::onRespond() replaces it with
+   * `must-revalidate, no-cache, private`. Equally non-storable, different
+   * bytes — so this assertion is deliberately scoped to the controller, and
+   * the PHPDoc on the controller names the header core actually sends.
    */
   public function testResponseIsNotEdgeCacheable() {
     $response = $this->controller(['region' => 'r'])->document();
+
     $this->assertSame('private, no-store', $response->headers->get('Cache-Control'));
+    // The access result varies on the key header; without a Vary a proxy that
+    // ignores Cache-Control has nothing saying the body is key-dependent.
+    $this->assertContains('X-Bioland-Api-Key', $response->getVary());
   }
 
   /**
@@ -134,6 +166,24 @@ class BiolandConfigControllerTest extends TestCase {
       $this->assertStringNotContainsString($leak, $body, "Credential-shaped value '$leak' leaked through the controller.");
     }
     $this->assertStringContainsString('G-FAKE123', $body);
+  }
+
+  /**
+   * Renaming the site in one language invalidates the response.
+   *
+   * The per-language name is read from `language.config.<langcode>.system.site`
+   * — a different config object from `system.site`, saved on its own when an
+   * editor renames the site in French. Without its tag, that save invalidates
+   * nothing and the response keeps serving the old French name.
+   */
+  public function testPerLanguageOverridesAreCacheTagged() {
+    $response = $this->controller(['region' => 'r'], ['fr' => ['name' => 'Site Exemple'], 'es' => []]);
+    $tags = $response->document()->getCacheableMetadata()->getCacheTags();
+
+    $this->assertContains('config:language.config.fr.system.site', $tags);
+    // Tagged for every configured language, including one with no override
+    // saved yet: adding the override later must invalidate too.
+    $this->assertContains('config:language.config.es.system.site', $tags);
   }
 
   /**

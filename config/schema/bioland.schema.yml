@@ -165,6 +165,15 @@ bioland.settings:
         promote_and_sticky_public:
           type: boolean
           label: 'Show Promote and Sticky flags to public users'
+    google_analytics_ids:
+      type: string
+      label: 'Google Analytics measurement ids'
+    component_menu_add_enabled:
+      type: boolean
+      label: 'Allow adding component menus'
+    component_menu_show_attributes:
+      type: boolean
+      label: 'Show component menu attributes'
     enable_debug_logging:
       type: boolean
       label: 'Enable debug logging'

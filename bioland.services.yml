@@ -21,6 +21,7 @@ services:
 
   bioland.config_document_builder:
     class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
+    arguments: ['@logger.factory']
 
   bioland.config_api_access_check:
     class: Drupal\bioland\Access\BiolandConfigApiAccessCheck

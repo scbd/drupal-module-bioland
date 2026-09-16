@@ -74,7 +74,44 @@ class CacheableJsonResponse {
   public function addCacheableDependency($dependency) {
     $this->cacheability->setCacheTags(array_values(array_unique(array_merge($this->cacheability->getCacheTags(), $dependency->getCacheTags()))));
     $this->cacheability->setCacheContexts(array_values(array_unique(array_merge($this->cacheability->getCacheContexts(), $dependency->getCacheContexts()))));
+    $current = $this->cacheability->getCacheMaxAge();
+    $incoming = $dependency->getCacheMaxAge();
+    // -1 is permanent, so any finite max age wins, and the lowest one wins.
+    if ($current === -1 || ($incoming !== -1 && $incoming < $current)) {
+      $this->cacheability->setCacheMaxAge($incoming);
+    }
     return $this;
+  }
+
+  /**
+   * Sets the Vary header.
+   *
+   * @param string|string[] $headers
+   *   The header name(s) the response varies on.
+   * @param bool $replace
+   *   Whether to replace an existing Vary header.
+   *
+   * @return $this
+   *   This object.
+   */
+  public function setVary($headers, $replace = TRUE) {
+    $headers = (array) $headers;
+    if (!$replace && $this->headers->get('Vary') !== NULL) {
+      $headers = array_merge(array_map('trim', explode(',', (string) $this->headers->get('Vary'))), $headers);
+    }
+    $this->headers->set('Vary', implode(', ', array_values(array_unique($headers))));
+    return $this;
+  }
+
+  /**
+   * Gets the Vary header as a list of header names.
+   *
+   * @return string[]
+   *   The header names.
+   */
+  public function getVary() {
+    $vary = $this->headers->get('Vary');
+    return $vary === NULL || $vary === '' ? [] : array_map('trim', explode(',', (string) $vary));
   }
 
   /**

@@ -46,6 +46,37 @@ class CacheableMetadata {
   }
 
   /**
+   * Cache max age, in seconds. -1 is permanent.
+   *
+   * @var int
+   */
+  protected $maxAge = -1;
+
+  /**
+   * Sets the cache max age.
+   *
+   * @param int $max_age
+   *   The max age in seconds, or -1 for permanent.
+   *
+   * @return $this
+   *   This object.
+   */
+  public function setCacheMaxAge($max_age) {
+    $this->maxAge = $max_age;
+    return $this;
+  }
+
+  /**
+   * Gets the cache max age.
+   *
+   * @return int
+   *   The max age in seconds.
+   */
+  public function getCacheMaxAge() {
+    return $this->maxAge;
+  }
+
+  /**
    * Sets the cache contexts.
    *
    * @param string[] $contexts
