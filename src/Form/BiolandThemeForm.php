@@ -600,28 +600,87 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   }
 
   /**
-   * The form's default values: the authored theme, else the dmsm seed.
+   * The form's default values: the dmsm seed, with the authored theme on top.
    *
-   * Presence, not truthiness: a stored theme subtree wins as soon as it
-   * exists, even if every value in it is falsy.
+   * Per LEAF, not per subtree. A site that authored only `color` used to hide
+   * the seed from every OTHER field, so its Mega Menu and Languages numbers
+   * rendered empty even though the network document defines all four -- the
+   * editor saw blanks where the values actually in force were 5 / 6 / 3 / 6.
+   * Overlaying instead means an unauthored leaf still shows what the site is
+   * really running, and an authored one still wins.
+   *
+   * Presence, not truthiness: an authored leaf wins as soon as it exists, even
+   * when it is falsy -- `mega_menu.max_rows_per_column: 0` is a real authored
+   * value ("unlimited"), not an absence.
+   *
+   * The cost of the overlay is that an authored site now pays for the seed too
+   * (one memoized 10 second HTTP call per form instance, see
+   * self::$seedCache), where it used to short-circuit. Still read-only, so D5
+   * is intact: nothing here writes the seed into config.
    *
    * @param \Drupal\Core\Config\Config $config
    *   The bioland.settings configuration object.
    *
    * @return array
-   *   The snake_case theme defaults. Never empty: when nothing is authored
-   *   seedFromDmsm() takes over, and that always returns at least the three
-   *   colour keys (from this flavor's built-in fallbacks when the seed cannot
-   *   be read).
+   *   The snake_case theme defaults. Never empty: seedFromDmsm() always
+   *   returns at least the three colour keys (from this flavor's built-in
+   *   fallbacks when the seed cannot be read).
    */
   protected function themeDefaults($config): array {
     $authored = $config->get(self::CONFIG_KEY);
+    $authored = is_array($authored) ? $authored : [];
 
-    if (is_array($authored) && $authored !== []) {
-      return $authored;
+    $seed = $this->seedFromDmsm($this->isBiosafetyLand($config));
+
+    return $this->overlayAuthored($seed, $authored);
+  }
+
+  /**
+   * Overlays the authored theme onto the seed, one leaf at a time.
+   *
+   * Groups (string-keyed maps such as `color`, `mega_menu`) recurse so an
+   * authored `color.primary` does not erase a seeded `color.secondary`. Lists
+   * are LEAVES and replace wholesale: `home_page_widgets.columns` is an
+   * ordered list of lists, and merging it index by index would splice seeded
+   * widgets into an authored column the editor had deliberately shortened.
+   *
+   * @param array $seed
+   *   The snake_case defaults from the dmsm seed.
+   * @param array $authored
+   *   The snake_case theme subtree stored on this site.
+   *
+   * @return array
+   *   The seed with every authored leaf applied over it.
+   */
+  protected function overlayAuthored(array $seed, array $authored): array {
+    foreach ($authored as $key => $value) {
+      $isGroup = is_array($value)
+        && !$this->isList($value)
+        && isset($seed[$key])
+        && is_array($seed[$key])
+        && !$this->isList($seed[$key]);
+
+      $seed[$key] = $isGroup ? $this->overlayAuthored($seed[$key], $value) : $value;
     }
 
-    return $this->seedFromDmsm($this->isBiosafetyLand($config));
+    return $seed;
+  }
+
+  /**
+   * Whether an array is a sequential list rather than a keyed group.
+   *
+   * array_is_list() without the PHP 8.1 floor, so this keeps working on the
+   * oldest runtime the module still supports. An empty array counts as a list:
+   * there is nothing in it to recurse into either way.
+   *
+   * @param array $value
+   *   The array to classify.
+   *
+   * @return bool
+   *   TRUE when the keys are 0..n-1 in order.
+   */
+  protected function isList(array $value): bool {
+    return $value === [] || array_keys($value) === range(0, count($value) - 1);
   }
 
   /**
