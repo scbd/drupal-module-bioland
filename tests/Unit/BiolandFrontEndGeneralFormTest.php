@@ -5,6 +5,7 @@ namespace Drupal\Tests\bioland\Unit;
 use PHPUnit\Framework\TestCase;
 use Drupal\bioland\Form\BiolandFrontEndGeneralForm;
 use Drupal\Core\Config\Config;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -79,6 +80,16 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
       ->willReturn(new Language('en', 'English'));
     $this->languageManager->method('getCurrentLanguage')
       ->willReturn(new Language('en', 'English'));
+
+    \Drupal::resetContainer();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    \Drupal::resetContainer();
+    parent::tearDown();
   }
 
   /**
@@ -129,6 +140,94 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
    */
   protected function config(array $data = []): Config {
     return new Config('bioland.settings', $data);
+  }
+
+  /**
+   * A recording messenger double that captures every message by type.
+   *
+   * @return object
+   *   The messenger double, exposing ->warnings/->statuses/->errors arrays
+   *   of message strings in call order.
+   */
+  protected function recordingMessenger() {
+    return new class {
+      public array $warnings = [];
+      public array $statuses = [];
+      public array $errors = [];
+
+      public function addMessage($message, $type = 'status') {}
+
+      public function addStatus($message) {
+        $this->statuses[] = (string) $message;
+      }
+
+      public function addWarning($message) {
+        $this->warnings[] = (string) $message;
+      }
+
+      public function addError($message) {
+        $this->errors[] = (string) $message;
+      }
+
+    };
+  }
+
+  /**
+   * A recording logger factory + 'bioland' channel pair.
+   *
+   * Register the factory as the 'logger.factory' service so
+   * \Drupal::logger('bioland') resolves to the returned channel.
+   *
+   * @return array{0: object, 1: object}
+   *   [$factory, $channel]. $channel exposes ->notices, each entry a
+   *   ['message' => string, 'context' => array] pair, in call order.
+   */
+  protected function recordingLogger(): array {
+    $channel = new class {
+      public array $notices = [];
+
+      public function notice($message, array $context = []) {
+        $this->notices[] = ['message' => (string) $message, 'context' => $context];
+      }
+
+    };
+
+    $factory = new class($channel) {
+      private $channel;
+
+      public function __construct($channel) {
+        $this->channel = $channel;
+      }
+
+      public function get($channel_name) {
+        return $this->channel;
+      }
+
+    };
+
+    return [$factory, $channel];
+  }
+
+  /**
+   * Injects a config factory returning $config for 'bioland.settings'.
+   *
+   * Production forms get a config factory through create()'s container
+   * lookup; tests construct the form directly, so a full submitForm() pass
+   * must inject one directly onto the protected property FormBase declares.
+   *
+   * @param \Drupal\bioland\Form\BiolandFrontEndGeneralForm $bioForm
+   *   The form instance.
+   * @param \Drupal\Core\Config\Config $config
+   *   The config double submitForm() must read and save.
+   */
+  protected function injectConfigFactory(BiolandFrontEndGeneralForm $bioForm, Config $config): void {
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('get')->with('bioland.settings')->willReturn($config);
+    $factory->method('getEditable')->with('bioland.settings')->willReturn($config);
+
+    $property = (new \ReflectionClass($bioForm))->getProperty('configFactory');
+    $property->setAccessible(TRUE);
+    $property->setValue($bioForm, $factory);
   }
 
   /**
@@ -542,11 +641,74 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
       'google_analytics_enabled' => 1,
       'google_analytics_ids' => '',
     ]);
+    $messenger = $this->recordingMessenger();
+    $bioForm = $this->createForm();
+    $bioForm->setMessenger($messenger);
 
-    $this->createForm()->validateForm($form, $formState);
+    $bioForm->validateForm($form, $formState);
 
     // A warning, not a form error: this is a legitimate order of work.
     $this->assertSame([], $formState->getErrors());
+    $this->assertCount(1, $messenger->warnings);
+    $this->assertStringContainsString('no Google tag IDs are configured', $messenger->warnings[0]);
+  }
+
+  /**
+   * Tests the switch off with no IDs raises no warning: nothing to load.
+   */
+  public function testValidateFormRaisesNoWarningWhenDisabledWithoutIds(): void {
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 0,
+      'google_analytics_ids' => '',
+    ]);
+    $messenger = $this->recordingMessenger();
+    $bioForm = $this->createForm();
+    $bioForm->setMessenger($messenger);
+
+    $bioForm->validateForm($form, $formState);
+
+    $this->assertSame([], $messenger->warnings);
+  }
+
+  /**
+   * Tests the switch on with IDs configured raises no warning.
+   */
+  public function testValidateFormRaisesNoWarningWhenEnabledWithIds(): void {
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => 'G-ABC1234567',
+    ]);
+    $messenger = $this->recordingMessenger();
+    $bioForm = $this->createForm();
+    $bioForm->setMessenger($messenger);
+
+    $bioForm->validateForm($form, $formState);
+
+    $this->assertSame([], $messenger->warnings);
+  }
+
+  /**
+   * Tests the switch on with only invalid IDs raises no warning.
+   *
+   * The `!$invalid` guard suppresses it: the form error already tells the
+   * administrator something is wrong, so the warning would be redundant.
+   */
+  public function testValidateFormRaisesNoWarningWhenEnabledWithOnlyInvalidIds(): void {
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => 'NOT-VALID',
+    ]);
+    $messenger = $this->recordingMessenger();
+    $bioForm = $this->createForm();
+    $bioForm->setMessenger($messenger);
+
+    $bioForm->validateForm($form, $formState);
+
+    $this->assertNotEmpty($formState->getErrors());
+    $this->assertSame([], $messenger->warnings);
   }
 
   /**
@@ -560,6 +722,171 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
 
     $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
 
+    $this->assertFalse($config->get('google_analytics_enabled'));
+  }
+
+  /**
+   * Tests a FALSE-to-TRUE transition logs an 'enabled' audit notice.
+   */
+  public function testSubmitFormLogsEnabledTransition(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+    $this->currentUser->method('id')->willReturn(42);
+
+    $config = $this->config(['google_analytics_enabled' => FALSE]);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => '',
+    ]);
+
+    $bioForm->submitForm($form, $formState);
+
+    $this->assertCount(1, $channel->notices);
+    $this->assertSame(['@state' => 'enabled', '@uid' => 42], $channel->notices[0]['context']);
+  }
+
+  /**
+   * Tests a TRUE-to-FALSE transition logs a 'disabled' audit notice.
+   */
+  public function testSubmitFormLogsDisabledTransition(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+    $this->currentUser->method('id')->willReturn(7);
+
+    $config = $this->config(['google_analytics_enabled' => TRUE]);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    // An unchecked checkbox submits no key at all.
+    $formState = $this->formState(['google_analytics_ids' => '']);
+
+    $bioForm->submitForm($form, $formState);
+
+    $this->assertCount(1, $channel->notices);
+    $this->assertSame(['@state' => 'disabled', '@uid' => 7], $channel->notices[0]['context']);
+  }
+
+  /**
+   * Tests an unrelated save (only the tag IDs change) logs no audit notice.
+   */
+  public function testSubmitFormLogsNoNoticeWhenOnlyIdsChange(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+
+    $config = $this->config(['google_analytics_enabled' => TRUE, 'google_analytics_ids' => '']);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => 'G-ABC1234567',
+    ]);
+
+    $bioForm->submitForm($form, $formState);
+
+    $this->assertSame([], $channel->notices);
+  }
+
+  /**
+   * Tests no audit notice ever carries a Google tag ID in its context.
+   *
+   * The tag IDs are never logged - only the fact that the switch moved and
+   * who moved it.
+   */
+  public function testSubmitFormNeverLogsTagIdsInContext(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+    $this->currentUser->method('id')->willReturn(1);
+
+    $config = $this->config(['google_analytics_enabled' => FALSE]);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => 'G-ABC1234567,GTM-XYZ789',
+    ]);
+
+    $bioForm->submitForm($form, $formState);
+
+    $this->assertNotEmpty($channel->notices);
+    foreach ($channel->notices as $notice) {
+      foreach ($notice['context'] as $value) {
+        $this->assertDoesNotMatchRegularExpression(
+          '/\b(G|GTM|AW|DC|UA)-/',
+          (string) $value,
+          'No audit notice may carry a Google tag ID token in its context.'
+        );
+      }
+    }
+  }
+
+  /**
+   * Tests the audit notice is never written when config->save() throws.
+   *
+   * The audit control exists so the log and the active config agree; writing
+   * it before persistence is the one ordering that breaks that.
+   */
+  public function testSubmitFormWritesNoAuditNoticeWhenSaveThrows(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+    $this->currentUser->method('id')->willReturn(1);
+
+    $config = new class('bioland.settings', ['google_analytics_enabled' => FALSE]) extends Config {
+
+      public function save($has_trusted_data = FALSE) {
+        throw new \RuntimeException('storage failure');
+      }
+
+    };
+
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => '',
+    ]);
+
+    try {
+      $bioForm->submitForm($form, $formState);
+      $this->fail('Expected the config->save() failure to propagate.');
+    }
+    catch (\RuntimeException $e) {
+      $this->assertSame('storage failure', $e->getMessage());
+    }
+
+    $this->assertSame([], $channel->notices);
+  }
+
+  /**
+   * Tests an out-of-band non-boolean stored value logs a distinct notice.
+   *
+   * Both the render and the ordinary change detector already read a
+   * non-boolean as off, so without this the save would silently normalize it
+   * to a real boolean with no record at all.
+   */
+  public function testSubmitFormLogsDistinctNoticeWhenNormalizingNonBoolean(): void {
+    [$factory, $channel] = $this->recordingLogger();
+    \Drupal::setService('logger.factory', $factory);
+    $this->currentUser->method('id')->willReturn(9);
+
+    $config = $this->config(['google_analytics_enabled' => 'true']);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $form = [];
+    // The checkbox rendered unticked (the non-boolean reads as off), so an
+    // unrelated save on this form submits it unchecked.
+    $formState = $this->formState(['google_analytics_ids' => '']);
+
+    $bioForm->submitForm($form, $formState);
+
+    $this->assertCount(1, $channel->notices);
+    $this->assertStringContainsString('normalized', $channel->notices[0]['message']);
+    $this->assertSame(['@state' => 'disabled'], $channel->notices[0]['context']);
     $this->assertFalse($config->get('google_analytics_enabled'));
   }
 
