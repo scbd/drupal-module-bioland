@@ -326,6 +326,20 @@ function bioland_requirements($phase) {
         'severity' => REQUIREMENT_WARNING,
       ];
     }
+
+    $stored = $config->get('google_analytics_enabled');
+    // Mirror the head's isGoogleTagsMisconfigured: !== true && Boolean(value).
+    // For JSON-compatible config, JS also treats '0' and empty arrays as truthy,
+    // unlike PHP. This diagnoses the stored value; it never enables analytics.
+    $truthy = is_string($stored) ? $stored !== '' : (is_array($stored) || (bool) $stored);
+    if ($stored !== TRUE && $truthy) {
+      $requirements['bioland_google_analytics_misconfigured'] = [
+        'title' => t('Google Analytics configuration has an invalid type'),
+        'value' => t('Stored type: @type', ['@type' => gettype($stored)]),
+        'description' => t('The stored Google Analytics switch is truthy but is not boolean true, so the configured Google tags will not load. Save the intended Enable Google Analytics setting at Front End > General to store a boolean value.'),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
   }
 
   // DMSM geography: an unset or refused base URL freezes the site's countries,
