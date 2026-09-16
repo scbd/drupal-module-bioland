@@ -1,5 +1,10 @@
 countries:
   - 'gt'
+# Base URL of the config API the geography fetch reads from. There is no
+# fallback for this value in code: when it is empty the fetch refuses and logs
+# an error. Production deployments MUST override it with their production host
+# - the fetch refuses when a prod site points at a dev or staging host.
+dmsm_config_base_url: 'https://dmsm.cbddev.xyz'
 region: 'north_america'
 is_biosafety_land: false
 enable_field_visibility: true
