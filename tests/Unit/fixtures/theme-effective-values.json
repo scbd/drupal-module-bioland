@@ -40,203 +40,50 @@
         "theme": {
           "homePageWidgets": {
             "news": true,
-            "columns": [
-              [
-                "panorama",
-                "gbif",
-                "eLearning"
-              ],
-              [
-                "implementation",
-                "tsc"
-              ],
-              [
-                "forums",
-                "geobon",
-                "contentStats"
-              ]
-            ]
+            "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
           },
-          "color": {
-            "primary": "#b7c800",
-            "primaryTextOver": "#ffffff",
-            "secondary": "#4d7a1f",
-            "secondaryTextOver": "#ffffff"
-          },
-          "hero": {
-            "primary": [
-              "#b7c800",
-              "#4d7a1f"
-            ]
-          },
-          "text": {
-            "primary": "#222222",
-            "secondary": "#4D4D4D",
-            "tertiary": "rgba(255, 255, 255, 0.75)"
-          },
-          "backGround": {
-            "primary": "",
-            "secondary": "#f2f2f2",
-            "tertiary": "#4D4D4D"
-          },
-          "megaMenu": {
-            "forums": true,
-            "maxColumns": 5,
-            "maxRowsPerColumn": 6,
-            "horizontalCardMax": 3,
-            "horizontalCardWrap": false
-          },
-          "i18n": {
-            "maxLangBeforeWrap": 6
-          }
+          "color": {"primary": "#b7c800", "primaryTextOver": "#ffffff", "secondary": "#4d7a1f", "secondaryTextOver": "#ffffff"},
+          "hero": {"primary": ["#b7c800", "#4d7a1f"]},
+          "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+          "backGround": {"primary": "", "secondary": "#f2f2f2", "tertiary": "#4D4D4D"},
+          "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+          "i18n": {"maxLangBeforeWrap": 6}
         },
         "runTime": {
           "theme": {
             "homePageWidgets": {
               "news": true,
-              "columns": [
-                [
-                  "panorama",
-                  "gbif",
-                  "eLearning"
-                ],
-                [
-                  "implementation",
-                  "tsc"
-                ],
-                [
-                  "forums",
-                  "geobon",
-                  "contentStats"
-                ]
-              ]
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
             },
-            "color": {
-              "primary": "#009edb",
-              "primaryTextOver": "#ffffff",
-              "secondary": "#16c56e",
-              "secondaryTextOver": "#ffffff"
-            },
-            "hero": {
-              "primary": [
-                "#009edb",
-                "#16c56e"
-              ]
-            },
-            "text": {
-              "primary": "#222222",
-              "secondary": "#4D4D4D",
-              "tertiary": "rgba(255, 255, 255, 0.75)"
-            },
-            "backGround": {
-              "primary": "",
-              "secondary": "#F2F2F2",
-              "tertiary": "#4D4D4D"
-            },
-            "megaMenu": {
-              "forums": true,
-              "maxColumns": 5,
-              "maxRowsPerColumn": 6,
-              "horizontalCardMax": 3,
-              "horizontalCardWrap": false
-            },
-            "i18n": {
-              "maxLangBeforeWrap": 6
-            }
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
           }
         }
       },
       "expectedEffectiveTheme": {
         "homePageWidgets": {
           "news": true,
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "color": {
-          "primary": "#b7c800",
-          "primaryTextOver": "#ffffff",
-          "secondary": "#4d7a1f",
-          "secondaryTextOver": "#ffffff"
-        },
-        "hero": {
-          "primary": [
-            "#b7c800",
-            "#4d7a1f"
-          ]
-        },
-        "text": {
-          "primary": "#222222",
-          "secondary": "#4D4D4D",
-          "tertiary": "rgba(255, 255, 255, 0.75)"
-        },
-        "backGround": {
-          "primary": "",
-          "secondary": "#f2f2f2",
-          "tertiary": "#4D4D4D"
-        },
-        "megaMenu": {
-          "forums": true,
-          "maxColumns": 5,
-          "maxRowsPerColumn": 6,
-          "horizontalCardMax": 3,
-          "horizontalCardWrap": false
-        },
-        "i18n": {
-          "maxLangBeforeWrap": 6
-        }
+        "color": {"primary": "#b7c800", "primaryTextOver": "#ffffff", "secondary": "#4d7a1f", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#b7c800", "#4d7a1f"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#f2f2f2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
       },
       "expectedSeedDefaults": {
-        "color": {
-          "primary": "#b7c800",
-          "secondary": "#4d7a1f"
-        },
-        "back_ground": {
-          "secondary": "#f2f2f2"
-        },
+        "color": {"primary": "#b7c800", "secondary": "#4d7a1f"},
+        "back_ground": {"secondary": "#f2f2f2"},
         "home_page_widgets": {
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {
-          "max_columns": 5,
-          "max_rows_per_column": 6,
-          "horizontal_card_max": 3
-        },
-        "i18n": {
-          "max_lang_before_wrap": 6
-        },
-        "hero": {
-          "primary": "#b7c800",
-          "secondary": "#4d7a1f"
-        }
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
       }
     },
     {
@@ -247,149 +94,37 @@
           "theme": {
             "homePageWidgets": {
               "news": true,
-              "columns": [
-                [
-                  "panorama",
-                  "gbif",
-                  "eLearning"
-                ],
-                [
-                  "implementation",
-                  "tsc"
-                ],
-                [
-                  "forums",
-                  "geobon",
-                  "contentStats"
-                ]
-              ]
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
             },
-            "color": {
-              "primary": "#009edb",
-              "primaryTextOver": "#ffffff",
-              "secondary": "#16c56e",
-              "secondaryTextOver": "#ffffff"
-            },
-            "hero": {
-              "primary": [
-                "#009edb",
-                "#16c56e"
-              ]
-            },
-            "text": {
-              "primary": "#222222",
-              "secondary": "#4D4D4D",
-              "tertiary": "rgba(255, 255, 255, 0.75)"
-            },
-            "backGround": {
-              "primary": "",
-              "secondary": "#F2F2F2",
-              "tertiary": "#4D4D4D"
-            },
-            "megaMenu": {
-              "forums": true,
-              "maxColumns": 5,
-              "maxRowsPerColumn": 6,
-              "horizontalCardMax": 3,
-              "horizontalCardWrap": false
-            },
-            "i18n": {
-              "maxLangBeforeWrap": 6
-            }
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
           }
         }
       },
       "expectedEffectiveTheme": {
         "homePageWidgets": {
           "news": true,
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "color": {
-          "primary": "#009edb",
-          "primaryTextOver": "#ffffff",
-          "secondary": "#16c56e",
-          "secondaryTextOver": "#ffffff"
-        },
-        "hero": {
-          "primary": [
-            "#009edb",
-            "#16c56e"
-          ]
-        },
-        "text": {
-          "primary": "#222222",
-          "secondary": "#4D4D4D",
-          "tertiary": "rgba(255, 255, 255, 0.75)"
-        },
-        "backGround": {
-          "primary": "",
-          "secondary": "#F2F2F2",
-          "tertiary": "#4D4D4D"
-        },
-        "megaMenu": {
-          "forums": true,
-          "maxColumns": 5,
-          "maxRowsPerColumn": 6,
-          "horizontalCardMax": 3,
-          "horizontalCardWrap": false
-        },
-        "i18n": {
-          "maxLangBeforeWrap": 6
-        }
+        "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#009edb", "#16c56e"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
       },
       "expectedSeedDefaults": {
-        "color": {
-          "primary": "#009edb",
-          "secondary": "#16c56e"
-        },
-        "back_ground": {
-          "secondary": "#F2F2F2"
-        },
+        "color": {"primary": "#009edb", "secondary": "#16c56e"},
+        "back_ground": {"secondary": "#F2F2F2"},
         "home_page_widgets": {
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {
-          "max_columns": 5,
-          "max_rows_per_column": 6,
-          "horizontal_card_max": 3
-        },
-        "i18n": {
-          "max_lang_before_wrap": 6
-        },
-        "hero": {
-          "primary": "#009edb",
-          "secondary": "#16c56e"
-        }
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
       }
     },
     {
@@ -399,194 +134,48 @@
         "theme": {
           "homePageWidgets": {
             "news": true,
-            "columns": [
-              [
-                "panorama",
-                "gbif",
-                "eLearning"
-              ],
-              [
-                "implementation",
-                "tsc"
-              ],
-              [
-                "forums",
-                "geobon",
-                "contentStats"
-              ]
-            ]
+            "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
           },
-          "color": {
-            "primary": "#565B29",
-            "primaryTextOver": "#ffffff",
-            "secondary": "#889262",
-            "secondaryTextOver": "#000000"
-          },
-          "hero": {
-            "primary": [
-              "#565B29",
-              "#CBB279"
-            ]
-          },
-          "backGround": {
-            "primary": "",
-            "secondary": "#F2F2F2",
-            "tertiary": "#4D4D4D"
-          },
-          "megaMenu": {
-            "forums": true,
-            "maxColumns": 5,
-            "maxRowsPerColumn": 6,
-            "horizontalCardMax": 3
-          }
+          "color": {"primary": "#565B29", "primaryTextOver": "#ffffff", "secondary": "#889262", "secondaryTextOver": "#000000"},
+          "hero": {"primary": ["#565B29", "#CBB279"]},
+          "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+          "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3}
         },
         "runTime": {
           "theme": {
             "homePageWidgets": {
               "news": true,
-              "columns": [
-                [
-                  "panorama",
-                  "gbif",
-                  "eLearning"
-                ],
-                [
-                  "implementation",
-                  "tsc"
-                ],
-                [
-                  "forums",
-                  "geobon",
-                  "contentStats"
-                ]
-              ]
+              "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
             },
-            "color": {
-              "primary": "#009edb",
-              "primaryTextOver": "#ffffff",
-              "secondary": "#16c56e",
-              "secondaryTextOver": "#ffffff"
-            },
-            "hero": {
-              "primary": [
-                "#009edb",
-                "#16c56e"
-              ]
-            },
-            "text": {
-              "primary": "#222222",
-              "secondary": "#4D4D4D",
-              "tertiary": "rgba(255, 255, 255, 0.75)"
-            },
-            "backGround": {
-              "primary": "",
-              "secondary": "#F2F2F2",
-              "tertiary": "#4D4D4D"
-            },
-            "megaMenu": {
-              "forums": true,
-              "maxColumns": 5,
-              "maxRowsPerColumn": 6,
-              "horizontalCardMax": 3,
-              "horizontalCardWrap": false
-            },
-            "i18n": {
-              "maxLangBeforeWrap": 6
-            }
+            "color": {"primary": "#009edb", "primaryTextOver": "#ffffff", "secondary": "#16c56e", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#009edb", "#16c56e"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+            "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+            "i18n": {"maxLangBeforeWrap": 6}
           }
         }
       },
       "expectedEffectiveTheme": {
         "homePageWidgets": {
           "news": true,
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "color": {
-          "primary": "#565B29",
-          "primaryTextOver": "#ffffff",
-          "secondary": "#889262",
-          "secondaryTextOver": "#000000"
-        },
-        "hero": {
-          "primary": [
-            "#565B29",
-            "#CBB279"
-          ]
-        },
-        "text": {
-          "primary": "#222222",
-          "secondary": "#4D4D4D",
-          "tertiary": "rgba(255, 255, 255, 0.75)"
-        },
-        "backGround": {
-          "primary": "",
-          "secondary": "#F2F2F2",
-          "tertiary": "#4D4D4D"
-        },
-        "megaMenu": {
-          "forums": true,
-          "maxColumns": 5,
-          "maxRowsPerColumn": 6,
-          "horizontalCardMax": 3,
-          "horizontalCardWrap": false
-        },
-        "i18n": {
-          "maxLangBeforeWrap": 6
-        }
+        "color": {"primary": "#565B29", "primaryTextOver": "#ffffff", "secondary": "#889262", "secondaryTextOver": "#000000"},
+        "hero": {"primary": ["#565B29", "#CBB279"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#4D4D4D"},
+        "megaMenu": {"forums": true, "maxColumns": 5, "maxRowsPerColumn": 6, "horizontalCardMax": 3, "horizontalCardWrap": false},
+        "i18n": {"maxLangBeforeWrap": 6}
       },
       "expectedSeedDefaults": {
-        "color": {
-          "primary": "#565B29",
-          "secondary": "#889262"
-        },
-        "back_ground": {
-          "secondary": "#F2F2F2"
-        },
+        "color": {"primary": "#565B29", "secondary": "#889262"},
+        "back_ground": {"secondary": "#F2F2F2"},
         "home_page_widgets": {
-          "columns": [
-            [
-              "panorama",
-              "gbif",
-              "eLearning"
-            ],
-            [
-              "implementation",
-              "tsc"
-            ],
-            [
-              "forums",
-              "geobon",
-              "contentStats"
-            ]
-          ]
+          "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
-        "mega_menu": {
-          "max_columns": 5,
-          "max_rows_per_column": 6,
-          "horizontal_card_max": 3
-        },
-        "i18n": {
-          "max_lang_before_wrap": 6
-        },
-        "hero": {
-          "primary": "#565B29",
-          "secondary": "#CBB279"
-        }
+        "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
       }
     },
     {
@@ -596,125 +185,38 @@
         "runTime": {
           "theme": {
             "homePageWidgets": {
-              "columns": [
-                [
-                  "bchNationalBiosafetyFramework",
-                  "bchNews",
-                  "bchResources"
-                ]
-              ],
-              "columsWidth": [
-                "100%"
-              ]
+              "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]],
+              "columsWidth": ["100%"]
             },
-            "color": {
-              "primary": "#428BCA",
-              "primaryTextOver": "#ffffff",
-              "secondary": "#2A6496",
-              "secondaryTextOver": "#ffffff"
-            },
-            "hero": {
-              "primary": [
-                "#428BCA",
-                "#2A6496"
-              ]
-            },
-            "text": {
-              "primary": "#222222",
-              "secondary": "#4D4D4D",
-              "tertiary": "rgba(255, 255, 255, 0.75)"
-            },
-            "backGround": {
-              "primary": "",
-              "secondary": "#F2F2F2",
-              "tertiary": "#428BCA"
-            },
-            "megaMenu": {
-              "forums": false,
-              "maxColumns": 6,
-              "maxRowsPerColumn": 0,
-              "horizontalCardMax": 3
-            },
-            "i18n": {
-              "maxLangBeforeWrap": 6
-            }
+            "color": {"primary": "#428BCA", "primaryTextOver": "#ffffff", "secondary": "#2A6496", "secondaryTextOver": "#ffffff"},
+            "hero": {"primary": ["#428BCA", "#2A6496"]},
+            "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+            "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#428BCA"},
+            "megaMenu": {"forums": false, "maxColumns": 6, "maxRowsPerColumn": 0, "horizontalCardMax": 3},
+            "i18n": {"maxLangBeforeWrap": 6}
           }
         }
       },
       "expectedEffectiveTheme": {
         "homePageWidgets": {
-          "columns": [
-            [
-              "bchNationalBiosafetyFramework",
-              "bchNews",
-              "bchResources"
-            ]
-          ],
-          "columsWidth": [
-            "100%"
-          ]
+          "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]],
+          "columsWidth": ["100%"]
         },
-        "color": {
-          "primary": "#428BCA",
-          "primaryTextOver": "#ffffff",
-          "secondary": "#2A6496",
-          "secondaryTextOver": "#ffffff"
-        },
-        "hero": {
-          "primary": [
-            "#428BCA",
-            "#2A6496"
-          ]
-        },
-        "text": {
-          "primary": "#222222",
-          "secondary": "#4D4D4D",
-          "tertiary": "rgba(255, 255, 255, 0.75)"
-        },
-        "backGround": {
-          "primary": "",
-          "secondary": "#F2F2F2",
-          "tertiary": "#428BCA"
-        },
-        "megaMenu": {
-          "forums": false,
-          "maxColumns": 6,
-          "maxRowsPerColumn": 0,
-          "horizontalCardMax": 3
-        },
-        "i18n": {
-          "maxLangBeforeWrap": 6
-        }
+        "color": {"primary": "#428BCA", "primaryTextOver": "#ffffff", "secondary": "#2A6496", "secondaryTextOver": "#ffffff"},
+        "hero": {"primary": ["#428BCA", "#2A6496"]},
+        "text": {"primary": "#222222", "secondary": "#4D4D4D", "tertiary": "rgba(255, 255, 255, 0.75)"},
+        "backGround": {"primary": "", "secondary": "#F2F2F2", "tertiary": "#428BCA"},
+        "megaMenu": {"forums": false, "maxColumns": 6, "maxRowsPerColumn": 0, "horizontalCardMax": 3},
+        "i18n": {"maxLangBeforeWrap": 6}
       },
       "expectedSeedDefaults": {
-        "color": {
-          "primary": "#428BCA",
-          "secondary": "#2A6496"
-        },
-        "back_ground": {
-          "secondary": "#F2F2F2"
-        },
+        "color": {"primary": "#428BCA", "secondary": "#2A6496"},
+        "back_ground": {"secondary": "#F2F2F2"},
         "home_page_widgets": {
-          "columns": [
-            [
-              "bchNationalBiosafetyFramework",
-              "bchNews",
-              "bchResources"
-            ]
-          ]
+          "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]]
         },
-        "mega_menu": {
-          "max_columns": 6,
-          "max_rows_per_column": 0,
-          "horizontal_card_max": 3
-        },
-        "i18n": {
-          "max_lang_before_wrap": 6
-        },
-        "hero": {
-          "primary": "#428BCA",
-          "secondary": "#2A6496"
-        }
+        "mega_menu": {"max_columns": 6, "max_rows_per_column": 0, "horizontal_card_max": 3},
+        "i18n": {"max_lang_before_wrap": 6}
       }
     }
   ]
