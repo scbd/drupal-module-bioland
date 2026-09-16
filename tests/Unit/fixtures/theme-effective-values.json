@@ -83,7 +83,8 @@
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
         "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
-        "i18n": {"max_lang_before_wrap": 6}
+        "i18n": {"max_lang_before_wrap": 6},
+        "hero": {"primary": "#b7c800", "secondary": "#4d7a1f"}
       }
     },
     {
@@ -124,7 +125,8 @@
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
         "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
-        "i18n": {"max_lang_before_wrap": 6}
+        "i18n": {"max_lang_before_wrap": 6},
+        "hero": {"primary": "#009edb", "secondary": "#16c56e"}
       }
     },
     {
@@ -175,7 +177,8 @@
           "columns": [["panorama", "gbif", "eLearning"], ["implementation", "tsc"], ["forums", "geobon", "contentStats"]]
         },
         "mega_menu": {"max_columns": 5, "max_rows_per_column": 6, "horizontal_card_max": 3},
-        "i18n": {"max_lang_before_wrap": 6}
+        "i18n": {"max_lang_before_wrap": 6},
+        "hero": {"primary": "#565b29", "secondary": "#cbb279"}
       }
     },
     {
@@ -216,7 +219,8 @@
           "columns": [["bchNationalBiosafetyFramework", "bchNews", "bchResources"]]
         },
         "mega_menu": {"max_columns": 6, "max_rows_per_column": 0, "horizontal_card_max": 3},
-        "i18n": {"max_lang_before_wrap": 6}
+        "i18n": {"max_lang_before_wrap": 6},
+        "hero": {"primary": "#428bca", "secondary": "#2a6496"}
       }
     }
   ]

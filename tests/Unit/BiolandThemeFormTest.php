@@ -1635,7 +1635,7 @@ class BiolandThemeFormTest extends TestCase {
    * would let the other drift unnoticed.
    *
    * The flavor argument is FALSE throughout and does not matter: every case
-   * supplies all three colours from the seed, so no fallback is consulted.
+   * supplies all five colours from the seed, so no fallback is consulted.
    * The per-flavor fallbacks are covered by their own tests above.
    */
   public function testSeedDefaultsMatchFixtureAtDrupalDepth(): void {
@@ -1821,7 +1821,7 @@ class BiolandThemeFormTest extends TestCase {
 
     $defaults = $this->invoke($this->createForm(), 'seedFromDmsm', [FALSE]);
 
-    $this->assertSame(['primary' => '#565B29', 'secondary' => '#CBB279'], $defaults['hero']);
+    $this->assertSame(['primary' => '#565b29', 'secondary' => '#cbb279'], $defaults['hero']);
     $this->assertNotSame(
       $defaults['color']['secondary'],
       $defaults['hero']['secondary'],
@@ -1928,6 +1928,51 @@ class BiolandThemeFormTest extends TestCase {
       $config->get('theme.hero'),
       'The stored hero must be a two-key map, not an ordered list.'
     );
+  }
+
+  /**
+   * A site authored before BL-1011 must not render an empty hero picker.
+   *
+   * The regression this exists for: every site that saved the Theme tab before
+   * the hero fields existed has `color`, `back_ground`, `mega_menu` and `i18n`
+   * but NO `hero` key. themeDefaults() used to return that subtree verbatim, so
+   * both new pickers got a NULL #default_value -- and `<input type="color">`
+   * has no empty state. The editor sees black, #required is satisfied by the
+   * #000000 the picker posts, and the next Save writes a black hero
+   * permanently, ending the inherited one downstream.
+   *
+   * The fallback path already covered the UNSEEDED site; this covers the
+   * already-authored one, which is most of the live fleet.
+   */
+  public function testAuthoredThemeWithoutAHeroStillRendersUsableColors(): void {
+    // No seed is consulted on this path at all -- an authored site must not pay
+    // for the dmsm HTTP call just to open the tab.
+    $this->stubDmsmService(NULL, 0);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#abcdef'],
+        'back_ground' => ['secondary' => '#f2f2f2'],
+        'mega_menu' => ['max_columns' => 5],
+        'i18n' => ['max_lang_before_wrap' => 6],
+      ],
+    ]));
+
+    foreach (['primary', 'secondary'] as $slot) {
+      $default = $form['theme']['hero'][$slot]['#default_value'];
+
+      $this->assertIsString($default, sprintf('hero.%s must never default to NULL.', $slot));
+      $this->assertMatchesRegularExpression(
+        '/^#[0-9a-f]{6}$/',
+        $default,
+        sprintf('hero.%s must default to a renderable lower-case hex colour.', $slot)
+      );
+      $this->assertNotSame('#000000', $default, 'A black default is the failure, not the fix.');
+    }
+
+    // The colours this site really did author are untouched by the fallback.
+    $this->assertSame('#123456', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#abcdef', $form['theme']['color']['secondary']['#default_value']);
   }
 
   /**

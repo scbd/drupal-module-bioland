@@ -490,13 +490,12 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // assertion that survives if the element type is ever changed from
     // `color` to `textfield` -- a one-word edit that would otherwise silently
     // remove all hex validation. Do not delete it as dead code.
-    foreach ([
-      'color.primary',
-      'color.secondary',
-      'back_ground.secondary',
-      'hero.primary',
-      'hero.secondary',
-    ] as $path) {
+    // Derived from the colour table, never restated: a sixth colour key added
+    // to the contract would otherwise ship with no server-side hex check, and
+    // surviving exactly that kind of edit is this loop's whole purpose. The
+    // two flavor tables carry identical key sets, pinned by
+    // testFallbackColorsAreLowerCase().
+    foreach (array_keys(self::FALLBACK_COLORS_BL2) as $path) {
       $value = $this->leaf($values, $path);
       if ($value === NULL || $value === '') {
         // Emptiness is #required's business, not this validator's.
@@ -701,7 +700,22 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     $authored = $config->get(self::CONFIG_KEY);
 
     if (is_array($authored) && $authored !== []) {
-      return $authored;
+      // Through withFallbackColors(), NOT returned verbatim. Every site that
+      // saved this tab before BL-1011 has colours but no `hero` key at all, so
+      // a verbatim return leaves both new pickers with a NULL #default_value.
+      // `<input type="color">` has no empty state: the editor sees black,
+      // #required is satisfied by the #000000 it posts, and the next Save --
+      // even one that only touches the mega menu -- writes a black hero and
+      // ends the site's inherited hero downstream. That is the exact outcome
+      // the class docblock calls dangerous, and it was guarded only on the
+      // unseeded path.
+      //
+      // The helper fills missing or empty keys only, so it is a no-op for
+      // every colour these sites did author. It deliberately supplies the
+      // flavor pair rather than fetching the site's real inherited hero: this
+      // branch is the one that must stay free of the seed's HTTP call. A site
+      // that wants its own pair back has "Reset to network default".
+      return $this->withFallbackColors($authored, $this->isBiosafetyLand($config));
     }
 
     return $this->seedFromDmsm($this->isBiosafetyLand($config));
@@ -826,7 +840,10 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
         return $defaults;
       }
       [, $key] = explode('.', $configPath);
-      $pair[$key] = trim($value);
+      // Lower-cased, like the fallback tables and like normalizeHex() on
+      // submit. `<input type="color">` reports a lower-case value, so an
+      // upper-case default would claim a change the editor never made.
+      $pair[$key] = $this->normalizeHex($value);
     }
 
     $defaults['hero'] = $pair;
