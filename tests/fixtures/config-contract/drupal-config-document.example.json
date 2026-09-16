@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "generated": "2026-01-01T00:00:00.000Z",
+  "siteCode": "example",
+  "config": {
+    "biolandSettings": {
+      "countries": ["ZZ"],
+      "region": "example-region",
+      "continent": "example-continent",
+      "isBiosafetyLand": false,
+      "enableFieldVisibility": true,
+      "fieldVisibility": {
+        "urlContentTypes": [1],
+        "publishedContentTypes": [1],
+        "dateRangeContentTypes": [1]
+      },
+      "enableAdditionalFields": false,
+      "additionalTags": [],
+      "enableAutoSummary": true,
+      "enableHelpComments": false,
+      "helpComments": {},
+      "fieldVisibilityRules": [],
+      "config": {
+        "promoteAndStickyPublic": true
+      },
+      "googleAnalyticsIds": "G-EXAMPLE0",
+      "enableDebugLogging": false,
+      "debugLogAreas": [],
+      "mainMenuLock": false,
+      "componentMenuAddEnabled": true,
+      "componentMenuShowAttributes": false,
+      "megaMenu": {
+        "forums": false,
+        "maxColumns": 4,
+        "maxRowsPerColumn": 8,
+        "horizontalCardMax": 3,
+        "horizontalCardWrap": true
+      },
+      "homeWidgets": {
+        "news": true,
+        "columns": ["example-widget"]
+      },
+      "translation": {
+        "autoCreate": false,
+        "backfillEnabled": false
+      },
+      "theme": {
+        "color": {
+          "primary": "#101010",
+          "primaryTextOver": "#ffffff",
+          "secondary": "#202020",
+          "secondaryTextOver": "#ffffff"
+        },
+        "hero": {
+          "primary": []
+        },
+        "text": {
+          "primary": "#101010",
+          "secondary": "#202020",
+          "tertiary": "#303030"
+        },
+        "backGround": {
+          "primary": "#fafafa",
+          "secondary": "#f0f0f0",
+          "tertiary": "#e0e0e0"
+        },
+        "megaMenu": {
+          "maxColumns": 4,
+          "maxRowsPerColumn": 8,
+          "horizontalCardMax": 3,
+          "horizontalCardWrap": true,
+          "forums": false
+        },
+        "i18n": {
+          "maxLangBeforeWrap": 5
+        },
+        "homePageWidgets": {
+          "news": true,
+          "columns": ["example-widget"]
+        }
+      }
+    },
+    "systemSite": {
+      "name": "Example Site",
+      "translations": {
+        "fr": { "name": "Site Exemple" },
+        "es": { "name": "Sitio Ejemplo" }
+      }
+    },
+    "systemDate": {
+      "timezone": {
+        "default": "UTC"
+      }
+    }
+  }
+}
