@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "เพิ่มรายการย่อยเมกะเมนู"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "เปิดใช้งาน Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "ปิดอยู่ตามค่าเริ่มต้น ขณะที่ปิดอยู่ เว็บไซต์สาธารณะจะไม่โหลดแท็ก Google ใดๆ แม้จะมีการกำหนด ID แท็กไว้ด้านล่างก็ตาม การเปิดใช้งานเป็นสิ่งเดียวที่จำเป็นเพื่อให้ ID ที่กำหนดไว้ถูกโหลด โดยมีเงื่อนไขเพียงว่าผู้เข้าชมยอมรับหมวดหมู่คุกกี้ Google Analytics การเปลี่ยนแปลงที่บันทึกไว้จะไปถึงเว็บไซต์สาธารณะภายในประมาณ 5 นาที"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "ID แท็ก Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "รายการ ID แท็ก Google ที่คั่นด้วยเครื่องหมายจุลภาค เช่น G-ABC1234567,GTM-XYZ789 คำนำหน้าที่รองรับคือ G-, GTM-, AW-, DC- และ UA- เว็บไซต์สาธารณะจะโหลดการกำหนดค่า gtag.js หนึ่งรายการต่อ ID ที่ไม่ใช่ GTM และคอนเทนเนอร์ Tag Manager หนึ่งรายการต่อ ID GTM- สคริปต์จะโหลดเฉพาะสำหรับผู้เข้าชมที่ยอมรับหมวดหมู่คุกกี้ Google Analytics และเฉพาะบนโฮสต์โปรดักชันของเว็บไซต์ bl2 เท่านั้น (multisites อื่นๆ ไม่โหลดแท็ก Google ในปัจจุบัน) การเปลี่ยนแปลงที่บันทึกไว้จะไปถึงเว็บไซต์สาธารณะภายในประมาณ 5 นาที การเปลี่ยนแปลงหน้าเว็บภายในไซต์อาศัย GA4 Enhanced Measurement ซึ่งเปิดใช้งานตามค่าเริ่มต้นสำหรับสตรีมข้อมูลเว็บ ID UA- ได้รับการยอมรับสำหรับพร็อพเพอร์ตี้เดิม แต่ Google หยุดประมวลผลข้อมูล Universal Analytics เมื่อวันที่ 1 กรกฎาคม 2023 ดังนั้นจึงไม่มีการบันทึกข้อมูลใดๆ"
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "รายการ ID แท็ก Google ที่คั่นด้วยเครื่องหมายจุลภาค เช่น G-ABC1234567,GTM-XYZ789 คำนำหน้าที่รองรับคือ G-, GTM-, AW-, DC- และ UA- เว็บไซต์สาธารณะจะโหลดการกำหนดค่า gtag.js หนึ่งรายการต่อ ID ที่ไม่ใช่ GTM และคอนเทนเนอร์ Tag Manager หนึ่งรายการต่อ ID GTM- สคริปต์จะโหลดเฉพาะเมื่อเปิดใช้ช่องทำเครื่องหมายด้านบน และเฉพาะสำหรับผู้เข้าชมที่ยอมรับหมวดหมู่คุกกี้ Google Analytics เท่านั้น การเปลี่ยนแปลงที่บันทึกไว้จะไปถึงเว็บไซต์สาธารณะภายในประมาณ 5 นาที การเปลี่ยนแปลงหน้าเว็บภายในไซต์อาศัย GA4 Enhanced Measurement ซึ่งเปิดใช้งานตามค่าเริ่มต้นสำหรับสตรีมข้อมูลเว็บ ID UA- ได้รับการยอมรับสำหรับพร็อพเพอร์ตี้เดิม แต่ Google หยุดประมวลผลข้อมูล Universal Analytics เมื่อวันที่ 1 กรกฎาคม 2023 ดังนั้นจึงไม่มีการบันทึกข้อมูลใดๆ"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "ID แท็ก Google ต่อไปนี้ไม่ถูกต้อง: @tokens ID แต่ละรายการต้องขึ้นต้นด้วยคำนำหน้าที่รองรับอย่างใดอย่างหนึ่ง: G-, GTM-, AW-, DC- หรือ UA-"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics เปิดอยู่ แต่ยังไม่ได้กำหนด ID แท็ก Google ใดๆ จึงจะไม่มีแท็กใดถูกโหลด โปรดเพิ่ม ID อย่างน้อยหนึ่งรายการด้านล่าง"

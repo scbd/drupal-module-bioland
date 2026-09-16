@@ -1847,13 +1847,25 @@ msgid "Add Mega Menu Child"
 msgstr "Añadir hijo del megamenú"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Activar Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Desactivado de forma predeterminada. Mientras esto esté desactivado, el sitio público no carga ninguna etiqueta de Google, aunque haya ID de etiquetas configurados más abajo. Activarlo es todo lo que hace falta para que se carguen los ID configurados, sujeto únicamente a que el visitante acepte la categoría de cookies de Google Analytics. Los cambios guardados llegan al sitio público en unos 5 minutos."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "ID de etiquetas de Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Lista de ID de etiquetas de Google separados por comas, por ejemplo G-ABC1234567,GTM-XYZ789. Los prefijos aceptados son G-, GTM-, AW-, DC- y UA-. El sitio público carga una configuración de gtag.js por cada ID que no sea GTM y un contenedor de Tag Manager por cada ID GTM-. Los scripts se cargan solo para los visitantes que aceptan la categoría de cookies de Google Analytics y solo en el host de producción de un sitio bl2 (los demás multisitios no cargan etiquetas de Google hoy en día). Los cambios guardados llegan al sitio público en unos 5 minutos; los cambios de página dentro del sitio dependen de la medición mejorada de GA4, activada por defecto para un flujo de datos web. Se aceptan ID UA- por propiedades heredadas, pero Google dejó de procesar datos de Universal Analytics el 1 de julio de 2023, por lo que no registran nada."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Lista de ID de etiquetas de Google separados por comas, por ejemplo G-ABC1234567,GTM-XYZ789. Los prefijos aceptados son G-, GTM-, AW-, DC- y UA-. El sitio público carga una configuración de gtag.js por cada ID que no sea GTM y un contenedor de Tag Manager por cada ID GTM-. Los scripts se cargan solo cuando la casilla de arriba está activada y solo para los visitantes que aceptan la categoría de cookies de Google Analytics. Los cambios guardados llegan al sitio público en unos 5 minutos; los cambios de página dentro del sitio dependen de la medición mejorada de GA4, activada por defecto para un flujo de datos web. Se aceptan ID UA- por propiedades heredadas, pero Google dejó de procesar datos de Universal Analytics el 1 de julio de 2023, por lo que no registran nada."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Los siguientes ID de etiquetas de Google no son válidos: @tokens. Cada ID debe comenzar con uno de los prefijos aceptados: G-, GTM-, AW-, DC- o UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics está activado pero no hay ningún ID de etiqueta de Google configurado, por lo que no se cargará ninguna etiqueta. Añada al menos un ID más abajo."

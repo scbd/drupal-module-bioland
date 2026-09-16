@@ -156,6 +156,16 @@ class TranslationCatalogIntegrityTest extends TestCase {
     '(Mega Menu: @type)',
     '(Mega Menu: @type: @schema)',
     'Add Mega Menu Child',
+    // src/Form/BiolandFrontEndGeneralForm.php: the Google Analytics switch -
+    // its checkbox title and description, the reworded Google tag IDs help
+    // text, and the validation warning raised when the switch is on with no
+    // IDs configured. The 'Google tag IDs' field label and the invalid-ID
+    // error are deliberately absent: they predate the switch and are already
+    // translated everywhere, so only the switch's own strings are listed.
+    'Enable Google Analytics',
+    'Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes.',
+    'A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.',
+    'Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below.',
   ];
 
   /**
