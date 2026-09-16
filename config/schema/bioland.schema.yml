@@ -491,6 +491,26 @@ bioland.settings:
             secondary:
               type: string
               label: 'Secondary background color'
+        # Two SCALAR hex strings, not the legacy ordered pair. The network
+        # theme stores the hero as one key holding a list --
+        # `hero.primary: [primary, secondary]` -- which a colour picker cannot
+        # author and which leaves the second slot unnamed. This tab writes two
+        # named keys instead. bioland-head accepts both shapes: an authored
+        # scalar `hero.primary` / `hero.secondary` wins, and a site that has
+        # never saved the Theme tab still resolves the inherited list exactly
+        # as before (bioland-head app/utils/resolve-theme.js,
+        # resolveHeroPrimary). See BiolandThemeForm::HERO_SEED_PATHS for how
+        # the seed bridges the two.
+        hero:
+          type: mapping
+          label: 'Hero banner color settings'
+          mapping:
+            primary:
+              type: string
+              label: 'Primary hero color'
+            secondary:
+              type: string
+              label: 'Secondary hero color'
         home_page_widgets:
           type: mapping
           label: 'Home page widget theme settings'
