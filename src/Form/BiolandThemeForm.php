@@ -643,6 +643,8 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * are LEAVES and replace wholesale: `home_page_widgets.columns` is an
    * ordered list of lists, and merging it index by index would splice seeded
    * widgets into an authored column the editor had deliberately shortened.
+   * An empty authored array inherits a seeded group's shape, contributing no
+   * leaves; against a seeded list it still replaces the list completely.
    *
    * @param array $seed
    *   The snake_case defaults from the dmsm seed.
@@ -655,7 +657,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   protected function overlayAuthored(array $seed, array $authored): array {
     foreach ($authored as $key => $value) {
       $isGroup = is_array($value)
-        && !$this->isList($value)
+        && ($value === [] || !$this->isList($value))
         && isset($seed[$key])
         && is_array($seed[$key])
         && !$this->isList($seed[$key]);
@@ -670,8 +672,8 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * Whether an array is a sequential list rather than a keyed group.
    *
    * array_is_list() without the PHP 8.1 floor, so this keeps working on the
-   * oldest runtime the module still supports. An empty array counts as a list:
-   * there is nothing in it to recurse into either way.
+   * oldest runtime the module still supports. An empty array counts as a list;
+   * overlayAuthored() infers empty authored groups from the seed separately.
    *
    * @param array $value
    *   The array to classify.

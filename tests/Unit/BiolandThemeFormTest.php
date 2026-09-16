@@ -619,6 +619,40 @@ class BiolandThemeFormTest extends TestCase {
     );
   }
 
+  public function testEmptyAuthoredGroupsKeepSeedDefaults(): void {
+    $this->stubDmsmService([
+      'color' => ['primary' => '#abcdef'],
+      'megaMenu' => ['maxColumns' => 5, 'maxRowsPerColumn' => 0, 'horizontalCardMax' => 3],
+      'i18n' => ['maxLangBeforeWrap' => 6],
+      'homePageWidgets' => ['columns' => [['panorama'], [], []]],
+    ], 1);
+
+    $form = $this->build($this->config([
+      'theme' => ['color' => [], 'mega_menu' => [], 'i18n' => [], 'home_page_widgets' => []],
+    ]));
+
+    $this->assertSame('#abcdef', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame(5, $form['theme']['mega_menu']['max_columns']['#default_value']);
+    $this->assertSame(0, $form['theme']['mega_menu']['max_rows_per_column']['#default_value']);
+    $this->assertSame(3, $form['theme']['mega_menu']['horizontal_card_max']['#default_value']);
+    $this->assertSame(6, $form['theme']['i18n']['max_lang_before_wrap']['#default_value']);
+    $this->assertSame(['panorama'], $form['theme']['home_page_widgets']['columns'][0]['#default_value']);
+  }
+
+  public function testEmptyAuthoredColumnListStillReplacesSeed(): void {
+    $this->stubDmsmService([
+      'homePageWidgets' => ['columns' => [['panorama'], ['gbif'], ['eLearning']]],
+    ], 1);
+
+    $form = $this->build($this->config([
+      'theme' => ['home_page_widgets' => ['columns' => []]],
+    ]));
+
+    foreach ([0, 1, 2] as $column) {
+      $this->assertSame([], $form['theme']['home_page_widgets']['columns'][$column]['#default_value']);
+    }
+  }
+
   /**
    * An authored falsy leaf is still authored and still beats the seed.
    *
