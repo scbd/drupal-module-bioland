@@ -74,8 +74,27 @@ Tests for hostname parsing covering all patterns:
 
 ### Endpoint
 ```
-https://dmsm.cbddev.xyz/api/config/{env}/{multiSiteCode}/{siteCode}
+{base}/api/config/{env}/{multiSiteCode}/{siteCode}
 ```
+
+`{base}` is `bioland.settings.dmsm_config_base_url`. There is no default for it, in code or in
+`config/install/bioland.settings.yml`: it is deploy-time configuration. Seed it with
+`$settings['bioland_dmsm_config_base_url']`, the `BIOLAND_DMSM_CONFIG_BASE_URL` environment
+variable (both read by `bioland_update_9079()`), or `drush cset bioland.settings
+dmsm_config_base_url https://...`.
+
+The value is treated as untrusted input, because the fetch runs as CLI on the application host and
+can therefore reach loopback, the container network and the cloud metadata endpoint. Before
+connecting, and again on each redirect, the service requires `https` (plain `http` off production
+only), rejects embedded credentials, rejects forbidden host names and suffixes, resolves the host
+and rejects every private, loopback, link-local, CGNAT or otherwise reserved address. Redirects are
+capped at one checked hop.
+
+On a **production** site the host must also be named in
+`bioland.settings.dmsm_config_prod_host_allowlist` (seeded from
+`$settings['bioland_dmsm_prod_host_allowlist']` or `BIOLAND_DMSM_PROD_HOST_ALLOWLIST`). This is an
+allowlist, not a denylist of dev labels: until it is set, a production site refuses every fetch and
+reports it on `/admin/reports/status`.
 
 ### Expected JSON Response Structure
 ```json
@@ -131,10 +150,20 @@ drush updb
 **Important:** If the DMSM API is unavailable or returns no countries, the update will fail and must be resolved before proceeding. This ensures the site always has valid country configuration.
 
 ### Manual Testing
-You can test the service directly via Drush:
-```php
-drush php-eval "\$service = \Drupal::service('bioland.dmsm_config'); print_r(\$service->updateCountriesFromDmsm());"
+The fetch runs only from the `bioland_dmsm_geography` queue worker, outside any web request; the
+install and update hooks enqueue it rather than calling it. To run it now, drain the queue from the
+CLI:
+```bash
+drush queue:run bioland_dmsm_geography
 ```
+
+A `drush php-eval` that calls `updateCountriesFromDmsm()` directly still works on the CLI, but it
+bypasses the queue and the retry accounting, so prefer `queue:run`. The same call from a web
+request is refused by design: the base URL may point at this site's own Drupal route, so an
+in-request fetch would have one PHP-FPM worker blocking on another worker of the same pool.
+
+Check what the site thinks of its own configuration on `/admin/reports/status`, which reports an
+unset or guard-refused base URL and any queue that is not draining.
 
 ## Configuration Storage
 **CRITICAL:** When updating from DMSM API, the countries array is **completely replaced** - existing values are not preserved or merged. The configuration will only contain the new values returned by the API.

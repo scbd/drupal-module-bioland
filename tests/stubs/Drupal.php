@@ -51,6 +51,30 @@ class Drupal {
   }
 
   /**
+   * Gets the config factory.
+   *
+   * @return \Drupal\Core\Config\ConfigFactoryInterface|null
+   *   The config factory.
+   */
+  public static function configFactory() {
+    return static::$container['config.factory'] ?? NULL;
+  }
+
+  /**
+   * Gets an immutable configuration object.
+   *
+   * @param string $name
+   *   The configuration name.
+   *
+   * @return \Drupal\Core\Config\ImmutableConfig|null
+   *   The configuration object.
+   */
+  public static function config($name) {
+    $factory = static::$container['config.factory'] ?? NULL;
+    return $factory ? $factory->get($name) : NULL;
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

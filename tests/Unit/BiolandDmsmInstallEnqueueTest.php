@@ -29,6 +29,20 @@ class BiolandDmsmInstallEnqueueTest extends TestCase
     /**
      * {@inheritdoc}
      */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // The enqueue helper deduplicates per process, so hook_install and both
+        // update hooks queue ONE item for a host rather than three. That record
+        // outlives a single test, so clear it between cases.
+        $queued = &_bioland_dmsm_enqueue_dedupe_state();
+        $queued = [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function tearDown(): void
     {
         \Drupal::resetContainer();
@@ -103,23 +117,117 @@ class BiolandDmsmInstallEnqueueTest extends TestCase
     }
 
     /**
+     * The same host is enqueued once per process, not once per caller.
+     *
+     * hook_install and both update hooks request the same fetch for the same
+     * host; a single `drush updatedb` run would otherwise queue three identical
+     * items that each repeat the same work.
+     */
+    public function testRepeatedRequestsForOneHostQueueOneItem()
+    {
+        $service = $this->createMock(BiolandDmsmConfigService::class);
+        $service->expects($this->once())
+            ->method('enqueueCountriesUpdate')
+            ->willReturn(['success' => true, 'message' => 'queued', 'queued' => true]);
+
+        \Drupal::setService('bioland.dmsm_config', $service);
+
+        $this->assertNull(_bioland_update_countries_from_dmsm('example.bl2.cbddev.xyz'));
+        $this->assertNull(_bioland_update_countries_from_dmsm('example.bl2.cbddev.xyz'));
+        $this->assertNull(_bioland_update_countries_from_dmsm('example.bl2.cbddev.xyz'));
+    }
+
+    /**
      * No source file still carries the retired hardcoded dev host.
+     *
+     * Scans every .php under src/ and every .inc under includes/ with a
+     * RecursiveDirectoryIterator. The previous version used glob() with "**",
+     * which PHP does not support, so a top-level src/*.php was never scanned at
+     * all and this anti-regression test had a hole in exactly the directory it
+     * most needed to cover.
+     *
+     * Comments are stripped before matching: the docblocks explaining WHY the
+     * dev host was retired legitimately name it, and the regression this guards
+     * against is a host in code, not a host in prose.
      */
     public function testHardcodedDevHostIsGone()
     {
-        $root = dirname(__DIR__, 2);
-        $paths = array_merge(
-            glob($root . '/src/**/*.php') ?: [],
-            glob($root . '/src/*/*/*.php') ?: [],
-            glob($root . '/includes/*.inc') ?: []
+        $paths = $this->sourceFiles();
+
+        $this->assertNotEmpty($paths, 'The source scan found no files to check.');
+        $this->assertContains(
+            dirname(__DIR__, 2) . '/src/Service/BiolandDmsmConfigService.php',
+            $paths,
+            'The scan must reach the service that used to hardcode the host.'
         );
 
         foreach ($paths as $path) {
             $this->assertStringNotContainsString(
                 'dmsm.cbddev.xyz',
-                file_get_contents($path),
+                $this->stripComments(file_get_contents($path)),
                 sprintf('%s still hardcodes the dev config host.', $path)
             );
         }
+    }
+
+    /**
+     * Every PHP source file of the module, at any depth.
+     *
+     * @return string[]
+     *   Absolute paths.
+     */
+    protected function sourceFiles()
+    {
+        $root = dirname(__DIR__, 2);
+        $paths = [];
+
+        foreach (['/src', '/includes'] as $dir) {
+            if (!is_dir($root . $dir)) {
+                continue;
+            }
+
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($root . $dir, \FilesystemIterator::SKIP_DOTS)
+            );
+
+            foreach ($iterator as $file) {
+                if (in_array($file->getExtension(), ['php', 'inc'], true)) {
+                    $paths[] = $file->getPathname();
+                }
+            }
+        }
+
+        sort($paths);
+
+        return $paths;
+    }
+
+    /**
+     * Drops comments and docblocks, leaving the executable source.
+     *
+     * @param string $source
+     *   The PHP source.
+     *
+     * @return string
+     *   The source without comments.
+     */
+    protected function stripComments($source)
+    {
+        $out = '';
+
+        foreach (token_get_all($source) as $token) {
+            if (is_array($token)) {
+                if ($token[0] === T_COMMENT || $token[0] === T_DOC_COMMENT) {
+                    continue;
+                }
+
+                $out .= $token[1];
+                continue;
+            }
+
+            $out .= $token;
+        }
+
+        return $out;
     }
 }

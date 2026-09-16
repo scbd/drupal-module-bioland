@@ -287,5 +287,9 @@ function bioland_requirements($phase) {
     }
   }
 
+  // DMSM geography: an unset or refused base URL freezes the site's countries,
+  // region and continent silently, so it has to surface on the status report.
+  $requirements += _bioland_dmsm_requirements($phase);
+
   return $requirements;
 }

@@ -55,8 +55,11 @@ External systems and how Bioland relates to each:
 
 - **DMSM API** is the upstream authority for a site's countries, region, and continent. Bioland is a
   conformist: it parses its own hostname into `env/multiSiteCode/siteCode`, calls
-  `https://dmsm.cbddev.xyz/api/config/{env}/{ms}/{site}`, and replaces its local geography with the
-  response. It does not own or write back to DMSM.
+  `{base}/api/config/{env}/{ms}/{site}`, and replaces its local geography with the response. It does
+  not own or write back to DMSM. `{base}` is `bioland.settings.dmsm_config_base_url`, deploy-time
+  configuration with no default in code or in `config/install` (see BL-992); a production site must
+  additionally name the host in `bioland.settings.dmsm_config_prod_host_allowlist`. The call is made
+  only from the `bioland_dmsm_geography` queue worker, never inside a web request.
 - **GBIF** is rendered by the front end, not this module. Bioland's contribution is per-country zoom
   and centre coordinates published through home-widget settings.
 - **auto_node_translate** (with DeepL and Amazon providers) is a sibling contrib dependency. Bioland
@@ -337,6 +340,13 @@ See each ADR for the rationale; it is not restated here.
   contains no `hook_cron` guard reading it. Anything that needs the flag honoured (or that needs
   Search API indexing to still run) depends on infrastructure outside this repo. Worth confirming the
   external scheduler exists for every environment.
+- **What the external cron trigger actually is (unresolved, BL-992).** Nothing in this repository -
+  module code, `docs/`, or `.github/workflows/ci.yml` - names the mechanism, so it could not be
+  established here. The `bioland_dmsm_geography` queue worker refuses to run under a web SAPI, so
+  the answer decides whether the geography fetch works at all: `drush cron` / `drush queue:run`
+  drains it, while an HTTP GET to `/cron/{key}` runs as `fpm-fcgi`, is refused on every pass, and
+  lets the queue grow without bound. `hook_requirements('runtime')` warns on a queue that is not
+  draining, which detects the failure but does not prevent it. This needs an operator answer.
 - **Stale top-level docs.** The root `README.md`, `IMPLEMENTATION_COUNTRY_DEFAULTS.md`, and the
   `docs/COUNTRY_MAP_DEFAULTS.md` reference versioned JS filenames that no longer match (for example
   `-1-0-21`, `-1-0-47` against the current `-1-0-48`) and describe a `/development` debug route that
