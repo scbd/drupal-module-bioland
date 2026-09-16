@@ -248,3 +248,50 @@ function bioland_update_9080() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Seeds bioland.settings.google_analytics_enabled, disabled, on every site.
+ *
+ * The setting is the single switch that decides whether the public site loads
+ * any Google tag at all. It is FALSE on every site and every environment,
+ * including sites that already have tag IDs configured: BL-1015 replaced the
+ * old implicit "IDs present plus environment rules" behaviour with this
+ * explicit checkbox, and an existing site must not silently keep measuring on
+ * the strength of an ID that was never an opt-in.
+ *
+ * Fresh installs receive the same FALSE from
+ * config/install/bioland.settings.yml. Seeding here is set-if-missing (guarded
+ * on === NULL, presence, not truthiness) so a site that has since turned the
+ * switch on does not have it turned back off by a re-run.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
+ */
+function bioland_update_9081() {
+  $messages = [];
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+
+  // Presence, not truthiness: a saved FALSE is a real authored value and an
+  // authored TRUE must survive a re-run.
+  if ($config->get('google_analytics_enabled') === NULL) {
+    $config->set('google_analytics_enabled', FALSE);
+    $config->save();
+    $messages[] = 'Seeded the Google Analytics switch (google_analytics_enabled) as disabled.';
+  }
+  else {
+    $messages[] = 'Google Analytics switch already present; left untouched.';
+  }
+
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

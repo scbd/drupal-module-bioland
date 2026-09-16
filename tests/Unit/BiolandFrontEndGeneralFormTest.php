@@ -441,4 +441,73 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
     $this->assertSame('', $config->get('google_analytics_ids'));
   }
 
+  /**
+   * Tests the switch is a checkbox that is off when config has never set it.
+   */
+  public function testGoogleAnalyticsEnabledFieldDefaultsToDisabled(): void {
+    $config = $this->config();
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    $field = $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'];
+
+    $this->assertSame('checkbox', $field['#type']);
+    $this->assertFalse($field['#default_value']);
+  }
+
+  /**
+   * Tests a site that has turned the switch on builds it checked.
+   */
+  public function testGoogleAnalyticsEnabledFieldReflectsSavedValue(): void {
+    $config = $this->config(['google_analytics_enabled' => TRUE]);
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    $field = $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'];
+
+    $this->assertTrue($field['#default_value']);
+  }
+
+  /**
+   * Tests the switch is rendered above the tag IDs field it controls.
+   *
+   * Drupal renders siblings without #weight in declaration order, so the key
+   * order in the section is the rendered order.
+   */
+  public function testGoogleAnalyticsEnabledIsDeclaredAboveTheIdsField(): void {
+    $config = $this->config();
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    $keys = array_keys($form['front_end_general_settings']['google_analytics_section']);
+    $keys = array_values(array_filter($keys, static fn ($key): bool => strpos((string) $key, '#') !== 0));
+
+    $this->assertSame(['google_analytics_enabled', 'google_analytics_ids'], $keys);
+  }
+
+  /**
+   * Tests a checked submission stores a real boolean TRUE.
+   */
+  public function testSubmitSectionFormWritesEnabledAsBoolean(): void {
+    $config = $this->config();
+    $form = [];
+    // Drupal submits a checked checkbox as the integer 1, not TRUE.
+    $values = ['google_analytics_enabled' => 1, 'google_analytics_ids' => ''];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertTrue($config->get('google_analytics_enabled'));
+  }
+
+  /**
+   * Tests an unchecked or absent submission stores FALSE, not NULL.
+   */
+  public function testSubmitSectionFormWritesDisabledWhenUnchecked(): void {
+    $config = $this->config(['google_analytics_enabled' => TRUE]);
+    $form = [];
+    // An unchecked checkbox submits 0; a missing key must behave the same.
+    $values = ['google_analytics_ids' => ''];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertFalse($config->get('google_analytics_enabled'));
+  }
+
 }

@@ -141,12 +141,23 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       '#open' => FALSE,
     ];
 
+    // The single switch. It sits above the IDs field because it is what
+    // decides whether those IDs are ever used: the public site loads no tag
+    // while this is off, whatever is configured below. Off by default on
+    // every site and every environment.
+    $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Google Analytics'),
+      '#default_value' => (bool) $config->get('google_analytics_enabled'),
+      '#description' => $this->t('Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes.'),
+    ];
+
     $form['front_end_general_settings']['google_analytics_section']['google_analytics_ids'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Google tag IDs'),
       '#maxlength' => 512,
       '#default_value' => $config->get('google_analytics_ids') ?? '',
-      '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
+      '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
     ];
 
     return $form;
@@ -228,8 +239,13 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // Save Promote and Sticky settings (moved from system_functions)
     $config
       ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
+    // Save the single Google Analytics switch. An absent value means the
+    // checkbox was unchecked, which stores FALSE.
+    $config
+      ->set('google_analytics_enabled', (bool) ($values['google_analytics_enabled'] ?? FALSE));
     // Save the Google tag IDs in their canonical comma-joined form. An empty
-    // submission stores '', which means the feature is off.
+    // submission stores '', which means there is nothing for the switch above
+    // to load.
     $config
       ->set('google_analytics_ids', implode(',', $this->normalizeGoogleTagIds($values['google_analytics_ids'] ?? '')));
   }
