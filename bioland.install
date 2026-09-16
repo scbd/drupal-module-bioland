@@ -292,8 +292,10 @@ function bioland_requirements($phase) {
   // check), a production database copy restored onto a staging or dev host
   // brings the enabled state - and the configured tag IDs - with it, and
   // that non-production host silently starts loading the production
-  // property for every visitor, including testers and editors. This never
-  // fires at 'install' because bioland.settings does not exist yet.
+  // property for every visitor, including testers and editors. The
+  // $phase === 'runtime' guard below is what keeps this out of the install
+  // and update phases - keep it even if bioland.settings happens to be
+  // absent that early, which is incidental and not something to rely on.
   if ($phase === 'runtime') {
     $config = \Drupal::config('bioland.settings');
 
@@ -303,12 +305,15 @@ function bioland_requirements($phase) {
     // which reads the same key the same way.
     if ($config->get('google_analytics_enabled') === TRUE) {
       $host = '';
-      try {
-        $host = \Drupal::request()->getHost();
-      }
-      catch (\Throwable $e) {
-        // No request available (e.g. drush without --uri); report without
-        // a host rather than fail the requirements check.
+      // No request at all (e.g. drush without --uri), or a Host header the
+      // trusted-host settings reject: report without a host rather than
+      // fail the requirements check.
+      if (\Drupal::hasRequest()) {
+        try {
+          $host = \Drupal::request()->getHost();
+        }
+        catch (\Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException) {
+        }
       }
 
       $requirements['bioland_google_analytics_enabled'] = [
@@ -316,7 +321,7 @@ function bioland_requirements($phase) {
         'value' => $host
           ? t('Enabled on @host', ['@host' => $host])
           : t('Enabled'),
-        'description' => t('The "Enable Google Analytics" switch (Front End > General) is the only control over whether the configured Google tags load: this site is loading them for every visitor, including testers and editors. If this is not the production site - for example, a production database copy restored onto staging or dev - turn the switch off at Front End > General.'),
+        'description' => t('The "Enable Google Analytics" switch (Front End > General) is the only control over whether the configured Google tags load: this site will load the configured Google tags for consenting visitors, including testers and editors. If this is not the production site - for example, a production database copy restored onto staging or dev - turn the switch off at Front End > General.'),
         'severity' => REQUIREMENT_WARNING,
       ];
     }

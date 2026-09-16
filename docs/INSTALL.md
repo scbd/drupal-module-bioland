@@ -102,15 +102,40 @@ production database dump onto a staging or dev host.
 Since BL-1015, the `google_analytics_enabled` checkbox (Front End > General) is the **only**
 control over whether the configured Google tags load - there is no longer a deployment-environment
 or hostname check underneath it. A production dump therefore carries the enabled state, and the
-configured tag IDs, with it: the restored host will silently load the production Google Analytics
-property for every visitor, including testers and editors, until the switch is turned off.
+configured tag IDs, with it: the restored host will load the production Google Analytics property
+for consenting visitors, including testers and editors, until the switch is turned off.
+
+> The old production-host gate is still what runs until **both** halves of BL-1015 are deployed:
+> this module (PR #50) and the `bioland-head` companion (PR #134, branch
+> `feature/BL-1015-ga-enable-toggle`), which is what adds `googleAnalyticsEnabled` to the settings
+> allowlist and swaps `isGoogleTagsSite` for `isGoogleTagsEnabled`. They deploy together.
 
 **After restoring a production database into a non-production environment**, before the site is
-reachable, turn the switch off:
+reachable, turn the switch off at **Front End > General** and save the form. That is the
+unambiguous route.
+
+As a fallback where the admin UI is not reachable (a scripted restore, for instance):
 
 ```
 drush config-set bioland.settings google_analytics_enabled 0 -y
 ```
 
-Until this is done, `/admin/reports/status` will show a warning naming the enabled state (see
+Then verify - the value must print `false`:
+
+```
+drush config:get bioland.settings google_analytics_enabled
+```
+
+Never pass the literal `false` to `config-set`: `drush config-set bioland.settings
+google_analytics_enabled false -y` stores the **string** `"false"`, which is truthy, so analytics
+stays on while the command looks like it worked. The verify step above catches that.
+
+Do **not** reach for a `settings.php` config override
+(`$config['bioland.settings']['google_analytics_enabled'] = FALSE;`) as a durable variant that
+survives the next restore. It is worse than doing nothing: dmsm reads the raw Drupal config table
+by direct SQL and never sees config overrides, so the head keeps serving the production tags,
+while the status-report warning below - which reads override-aware config - goes quiet. You would
+silence the alarm and keep measuring.
+
+Until the switch is off, `/admin/reports/status` will show a warning naming the enabled state (see
 `bioland_requirements()` in `bioland.install`); it clears once the switch is off.
