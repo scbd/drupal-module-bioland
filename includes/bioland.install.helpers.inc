@@ -208,10 +208,10 @@ function bioland_update_9079() {
  * module gain the three new Google tag UI strings, guarded on locale being
  * enabled exactly as bioland_update_9078() does.
  *
- * As the new highest-numbered hook it is guaranteed to run LAST on every
- * site, so per SearchApiConvergenceHookTest it must also re-apply the
- * canonical v2 Search API config so the last writer never leaves a
- * half-configured index.
+ * It runs after the 9071-9079 corrective hooks, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config so it never leaves a half-configured index behind. The last
+ * writer for every site is now bioland_update_9081().
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
