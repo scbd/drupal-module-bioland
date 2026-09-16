@@ -497,6 +497,59 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
   }
 
   /**
+   * Tests a stored non-boolean renders unticked, matching what the head does.
+   *
+   * Drupal does not enforce the boolean schema on a write, so drush or a
+   * hand-edited import can leave a string here. The head gates on === true, so
+   * none of these load a tag; the checkbox must say the same thing.
+   *
+   * @dataProvider nonBooleanStoredValues
+   */
+  public function testGoogleAnalyticsEnabledFieldIsUntickedForNonBooleans($stored): void {
+    $config = $this->config(['google_analytics_enabled' => $stored]);
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    $field = $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'];
+
+    $this->assertFalse($field['#default_value']);
+  }
+
+  /**
+   * Stored values that are not the boolean TRUE.
+   *
+   * @return array<string, array{mixed}>
+   *   Test cases.
+   */
+  public static function nonBooleanStoredValues(): array {
+    return [
+      'string true'  => ['true'],
+      'string false' => ['false'],
+      'string one'   => ['1'],
+      'string zero'  => ['0'],
+      'integer one'  => [1],
+      'integer zero' => [0],
+      'null'         => [NULL],
+      'boolean false' => [FALSE],
+    ];
+  }
+
+  /**
+   * Tests turning the switch on with no tag IDs warns instead of failing.
+   */
+  public function testValidateFormWarnsWhenEnabledWithoutIds(): void {
+    $form = [];
+    $formState = $this->formState([
+      'google_analytics_enabled' => 1,
+      'google_analytics_ids' => '',
+    ]);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    // A warning, not a form error: this is a legitimate order of work.
+    $this->assertSame([], $formState->getErrors());
+  }
+
+  /**
    * Tests an unchecked or absent submission stores FALSE, not NULL.
    */
   public function testSubmitSectionFormWritesDisabledWhenUnchecked(): void {

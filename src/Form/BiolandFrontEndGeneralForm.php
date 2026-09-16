@@ -148,7 +148,12 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Google Analytics'),
-      '#default_value' => (bool) $config->get('google_analytics_enabled'),
+      // Strict, not (bool). Drupal does not enforce the boolean schema on a
+      // write, so drush or a hand-edited import can store the string 'false',
+      // which (bool) would render as ticked while the head - which gates on
+      // === true - loads nothing. Reading strictly keeps the two surfaces
+      // telling the administrator the same story.
+      '#default_value' => $config->get('google_analytics_enabled') === TRUE,
       '#description' => $this->t('Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes.'),
     ];
 
@@ -176,6 +181,15 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       $form_state->setErrorByName(
         'google_analytics_ids',
         $this->t('The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-.', ['@tokens' => implode(', ', $invalid)])
+      );
+    }
+
+    // A warning, not an error: turning the switch on before the IDs arrive is a
+    // legitimate order of work. Saying nothing would let an administrator leave
+    // believing the site measures when it loads no tag at all.
+    if (!$invalid && $form_state->getValue('google_analytics_enabled') && !$ids) {
+      $this->messenger()->addWarning(
+        $this->t('Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below.')
       );
     }
   }
@@ -241,8 +255,20 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
     // Save the single Google Analytics switch. An absent value means the
     // checkbox was unchecked, which stores FALSE.
+    $enabled = (bool) ($values['google_analytics_enabled'] ?? FALSE);
+
+    // Starting or stopping third-party collection on a public site is worth a
+    // record: who did it and which way. The tag IDs are never logged. Only a
+    // real change is logged, so an unrelated save on this form stays quiet.
+    if ($enabled !== ($config->get('google_analytics_enabled') === TRUE)) {
+      \Drupal::logger('bioland')->notice('Google Analytics @state by user @uid.', [
+        '@state' => $enabled ? 'enabled' : 'disabled',
+        '@uid' => $this->currentUser->id(),
+      ]);
+    }
+
     $config
-      ->set('google_analytics_enabled', (bool) ($values['google_analytics_enabled'] ?? FALSE));
+      ->set('google_analytics_enabled', $enabled);
     // Save the Google tag IDs in their canonical comma-joined form. An empty
     // submission stores '', which means there is nothing for the switch above
     // to load.

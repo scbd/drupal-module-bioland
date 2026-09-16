@@ -100,6 +100,7 @@ class Drupal {
     return $factory ? $factory->get($channel) : new class {
       public function debug($message, array $context = []) {}
       public function info($message, array $context = []) {}
+      public function notice($message, array $context = []) {}
       public function warning($message, array $context = []) {}
       public function error($message, array $context = []) {}
       public function log($level, $message, array $context = []) {}

@@ -78,21 +78,43 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
    * The key is schema-declared as a boolean, not an untyped string.
    */
   public function testSchemaDeclaresABoolean(): void {
+    // Indentation is pinned, not skipped over: the key nested one level deeper
+    // would be a different setting, and active-config saves would then fail
+    // schema validation while a looser pattern still passed.
     $this->assertMatchesRegularExpression(
-      '/^\s+' . self::KEY . ':\s*\n\s+type:\s*boolean\s*$/m',
+      '/^ {4}' . self::KEY . ':\n {6}type: boolean$/m',
       $this->read('config/schema/bioland.schema.yml'),
-      'config/schema/bioland.schema.yml must type ' . self::KEY . ' as boolean.'
+      'config/schema/bioland.schema.yml must type ' . self::KEY . ' as boolean, in the top-level mapping.'
     );
   }
 
   /**
-   * The seeding hook exists and writes FALSE.
+   * The seeding hook exists, writes FALSE, and persists it.
    */
   public function testUpdateHookSeedsDisabled(): void {
+    // set() without save() is a no-op that would otherwise keep this green.
     $this->assertMatchesRegularExpression(
-      "/->set\('" . self::KEY . "',\s*FALSE\)/",
+      "/->set\('" . self::KEY . "',\s*FALSE\);\s*\n\s*\\\$config->save\(\);/",
       $this->hookBody(),
-      'bioland_update_9081() must seed the switch as FALSE for already-installed sites.'
+      'bioland_update_9081() must seed the switch as FALSE and save it.'
+    );
+  }
+
+  /**
+   * Existing sites re-import the catalogs, so the new strings are translated.
+   */
+  public function testUpdateHookReimportsTranslations(): void {
+    $body = $this->hookBody();
+
+    $this->assertStringContainsString(
+      '_bioland_import_translations()',
+      $body,
+      'bioland_update_9081() must re-import the translation catalogs so existing sites pick up the switch strings.'
+    );
+    $this->assertStringContainsString(
+      "moduleExists('locale')",
+      $body,
+      'The translation import must stay guarded on the locale module being enabled.'
     );
   }
 
@@ -108,10 +130,14 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
   }
 
   /**
-   * Returns the source of bioland_update_9081().
+   * Returns the source of bioland_update_9081() alone.
+   *
+   * Cut at the next function declaration rather than at the end of the file:
+   * otherwise a later bioland_update_9082() could satisfy this hook's
+   * assertions on its behalf.
    *
    * @return string
-   *   The hook body, from its declaration to the end of the file.
+   *   The hook body.
    */
   private function hookBody(): string {
     $source = $this->read('includes/bioland.install.helpers.inc');
@@ -119,7 +145,13 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
 
     $this->assertIsInt($offset, 'bioland_update_9081() must exist in includes/bioland.install.helpers.inc.');
 
-    return substr($source, $offset);
+    $body = substr($source, $offset);
+
+    if (preg_match('/^function /m', $body, $matches, PREG_OFFSET_CAPTURE, 1)) {
+      $body = substr($body, 0, $matches[0][1]);
+    }
+
+    return $body;
   }
 
 }

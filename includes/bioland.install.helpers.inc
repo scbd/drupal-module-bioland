@@ -264,6 +264,10 @@ function bioland_update_9080() {
  * on === NULL, presence, not truthiness) so a site that has since turned the
  * switch on does not have it turned back off by a re-run.
  *
+ * It also re-imports the translation catalogs, guarded on locale being enabled
+ * exactly as bioland_update_9080() does, so an existing site picks up the
+ * switch's own UI strings and the reworded tag IDs help text.
+ *
  * As the new highest-numbered hook it is guaranteed to run LAST on every site,
  * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
  * Search API config so the last writer never leaves a half-configured index.
@@ -272,6 +276,8 @@ function bioland_update_9080() {
  * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
  */
 function bioland_update_9081() {
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
   $messages = [];
 
   $config = \Drupal::configFactory()->getEditable('bioland.settings');
@@ -287,8 +293,13 @@ function bioland_update_9081() {
     $messages[] = 'Google Analytics switch already present; left untouched.';
   }
 
-  // Plain strings, not t() - the translation system is not dependable
-  // mid-update.
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = 'Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.';
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = 'Re-imported Bioland translation catalogs for the Google Analytics switch strings. Check logs for details.';
+  }
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
