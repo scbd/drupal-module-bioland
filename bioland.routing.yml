@@ -85,3 +85,21 @@ bioland.settings.admin:
     _title: 'Admin Settings'
   requirements:
     _role: 'administrator'
+
+# The module's first JSON/HTTP route. Authorization is the dedicated
+# _bioland_config_api access check: a header api key, or the
+# 'access bioland config api' permission. It is never open to everyone.
+# no_cache keeps Drupal's internal page cache, which does not vary on request
+# headers, from storing a key-authenticated response and replaying it to an
+# unauthenticated caller. See BiolandConfigController for the CDN decision.
+bioland.config_api:
+  path: '/bioland/api/config'
+  defaults:
+    _controller: '\Drupal\bioland\Controller\BiolandConfigController::document'
+    _title: 'Bioland site configuration'
+  methods: [GET]
+  requirements:
+    _bioland_config_api: 'TRUE'
+    _format: 'json'
+  options:
+    no_cache: TRUE
