@@ -127,8 +127,13 @@ drush config:get bioland.settings google_analytics_enabled
 ```
 
 Never pass the literal `false` to `config-set`: `drush config-set bioland.settings
-google_analytics_enabled false -y` stores the **string** `"false"`, which is truthy, so analytics
-stays on while the command looks like it worked. The verify step above catches that.
+google_analytics_enabled false -y` stores the **string** `"false"`, not a boolean. Both
+`BiolandFrontEndGeneralForm` and the `bioland_requirements()` check gate strictly on
+`=== TRUE`, so this malformed value is read as disabled - analytics does not load. Still run
+`0`, not the string: a malformed config value is fragile and code that ever assumes a real
+boolean (rather than a strict `=== TRUE` check) would treat it as truthy. The verify step above
+catches the mistake either way, since the printed value will not be the boolean `false` you
+expect.
 
 Do **not** reach for a `settings.php` config override
 (`$config['bioland.settings']['google_analytics_enabled'] = FALSE;`) as a durable variant that
