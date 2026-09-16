@@ -93,3 +93,24 @@ Operations performed by `bioland_install()` in order:
 
 ## User Provisioning
 - `_bioland_provision_users()` - Create/update test, training, staff, and admin users from environment variables
+
+## Restoring a Production Database Copy
+
+Not part of `bioland_install()` - this is a manual operator step for anyone who restores a
+production database dump onto a staging or dev host.
+
+Since BL-1015, the `google_analytics_enabled` checkbox (Front End > General) is the **only**
+control over whether the configured Google tags load - there is no longer a deployment-environment
+or hostname check underneath it. A production dump therefore carries the enabled state, and the
+configured tag IDs, with it: the restored host will silently load the production Google Analytics
+property for every visitor, including testers and editors, until the switch is turned off.
+
+**After restoring a production database into a non-production environment**, before the site is
+reachable, turn the switch off:
+
+```
+drush config-set bioland.settings google_analytics_enabled 0 -y
+```
+
+Until this is done, `/admin/reports/status` will show a warning naming the enabled state (see
+`bioland_requirements()` in `bioland.install`); it clears once the switch is off.

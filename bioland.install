@@ -286,5 +286,41 @@ function bioland_requirements($phase) {
     }
   }
 
+  // Runtime-only: warn when the Google Analytics switch is on. Since the
+  // switch became the sole server-side control over whether the configured
+  // Google tags load (BL-1015 removed the old production-only/dmsm-gated
+  // check), a production database copy restored onto a staging or dev host
+  // brings the enabled state - and the configured tag IDs - with it, and
+  // that non-production host silently starts loading the production
+  // property for every visitor, including testers and editors. This never
+  // fires at 'install' because bioland.settings does not exist yet.
+  if ($phase === 'runtime') {
+    $config = \Drupal::config('bioland.settings');
+
+    // Strict, not (bool): Drupal does not enforce the boolean schema on a
+    // write, so a hand-edited import can store the string 'false', which
+    // (bool) would read as enabled. Matches BiolandFrontEndGeneralForm,
+    // which reads the same key the same way.
+    if ($config->get('google_analytics_enabled') === TRUE) {
+      $host = '';
+      try {
+        $host = \Drupal::request()->getHost();
+      }
+      catch (\Throwable $e) {
+        // No request available (e.g. drush without --uri); report without
+        // a host rather than fail the requirements check.
+      }
+
+      $requirements['bioland_google_analytics_enabled'] = [
+        'title' => t('Google Analytics is enabled'),
+        'value' => $host
+          ? t('Enabled on @host', ['@host' => $host])
+          : t('Enabled'),
+        'description' => t('The "Enable Google Analytics" switch (Front End > General) is the only control over whether the configured Google tags load: this site is loading them for every visitor, including testers and editors. If this is not the production site - for example, a production database copy restored onto staging or dev - turn the switch off at Front End > General.'),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+
   return $requirements;
 }
