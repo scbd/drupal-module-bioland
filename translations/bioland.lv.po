@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Nacionālie ziņojumi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Nacionālais ziņojums (6.)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH ieraksti"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH ieraksti"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Nacionālie kontaktpunkti"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Valstu profili"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Satura tips"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forumi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Nacionālie mērķi (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Visi satura veidi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Nacionālo ziņojumu saišu saraksts, cilnēs pa valstīm; paslēpts, ja valstij nav ziņojumu."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Sestā nacionālā ziņojuma saites vietnes valstij, kā arī pašas saites apakšsaites; paslēpts, ja tukšs."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Valsts bioloģiskās drošības informācijas apmaiņas centra ieraksti, piemēram, likumi un lēmumi; paslēpts, ja tukšs."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Pieejamības un ieguvumu sadales informācijas apmaiņas centra ieraksti, piemēram, pasākumi un atļaujas; paslēpts, ja tukšs."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Nacionālo kontaktpunktu saraksts, cilnēs pa valstīm; paslēpts, ja tukšs."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Saites uz CBD valstu profilu lapām, cilnēs pa valstīm; vienmēr redzams."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Vietnes jaunākais saturs no šajā saitē norādītajiem satura veidiem; paslēpts, ja ierakstu nav."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Jaunākās foruma tēmas, kā arī pašas saites apakšsaites; paslēpts, ja tukšs."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Nacionālo mērķu kartītes GBF 7. mērķim, cilnēs pa valstīm; vienmēr redzams."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Viena saite katram satura veidam, kuram ir ieraksti, kā arī pašas saites apakšsaites; vienmēr redzams."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Mega izvēlnes komponents"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponents, ko šī izvēlnes saite rāda mega izvēlnē."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Novecojis: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (šajā vietnē nav pieejams)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Šī izvēlnes saite rāda mega izvēlnes komponentu, nevis vienkāršu apakšsaišu sarakstu."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Pievienot mega izvēlnes komponentu"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Motīvs"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Sīkrīkus ieslēdz un izslēdz cilnē „Sākumlapas sīkrīki”. Saglabātās izmaiņas publiskajā vietnē parādās aptuveni 5 minūšu laikā."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Krāsas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Zīmola galvenā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Zīmola sekundārā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Fona sekundārā krāsa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Sākumlapas sīkrīku kolonnas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolonna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Maksimālais kolonnu skaits"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Maksimālais rindu skaits kolonnā (0 nozīmē bez ierobežojuma)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Maksimālais horizontālo karšu skaits"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Valodas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Maksimālais rādāmo valodu skaits pirms valodu joslas pārnešanas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Atiestatīt uz tīkla noklusējumu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Šī darbība dzēš šīs vietnes motīva iestatījumus. To nevar atsaukt."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Šīs vietnes motīva iestatījumi ir atiestatīti uz tīkla noklusējumu."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Ievadiet derīgu heksadecimālo krāsu, piemēram, #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Sākumlapas sīkrīki jāizkārto tieši @count kolonnās."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Ievadiet skaitli no @min līdz @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Atstājiet tukšu, lai saglabātu pašreizējo vērtību. Lai to noņemtu, izmantojiet @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Satura tips"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Satura tips, ko rāda šis saraksts."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Iespējot mega izvēlnes komponentus"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Rāda darbību \"Pievienot mega izvēlnes komponentu\" izvēlnes pārvaldības ekrānā. Ja nav atzīmēts, darbība un tās veidlapa nav pieejamas."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Rādīt sīktēlus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Rāda sīktēlu blakus katram ierakstam."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Mega izvēlnes kolonnas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Cik mega izvēlnes kolonnas aizņem šī sadaļa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Noklusējums (1 kolonna)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolonnas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolonnas (tikai īpaši lielos ekrānos)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimālais rindu skaits kolonnā"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Vietnes noklusējums"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimālais ierakstu skaits kolonnā; ja nav iestatīts, spēkā ir vietnes noklusējums."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Rādīt bultiņu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Rāda bultiņu aiz sadaļas virsraksta."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega izvēlne: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega izvēlne: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Pievienot mega izvēlnes apakšelementu"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google tag ID"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Ar komatiem atdalīts Google tag ID saraksts, piemēram, G-ABC1234567,GTM-XYZ789. Pieņemtie prefiksi ir G-, GTM-, AW-, DC- un UA-. Publiskā vietne ielādē vienu gtag.js konfigurāciju katram ID, kas nav GTM, un vienu Tag Manager konteineru katram GTM- ID. Skripti tiek ielādēti tikai apmeklētājiem, kuri pieņem Google Analytics sīkdatņu kategoriju, un tikai bl2 vietnes ražošanas resursdatorā (citas multisites šodien neielādē Google tag). Saglabātās izmaiņas publiskajā vietnē nonāk aptuveni 5 minūšu laikā; lapu izmaiņas vietnē balstās uz GA4 Enhanced Measurement, kas pēc noklusējuma ir iespējots tīmekļa datu plūsmai. UA- ID tiek pieņemti vecajiem rekvizītiem, taču Google pārtrauca Universal Analytics datu apstrādi 2023. gada 1. jūlijā, tāpēc tie neko neieraksta."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Šādi Google tag ID nav derīgi: @tokens. Katram ID jāsākas ar vienu no pieņemtajiem prefiksiem: G-, GTM-, AW-, DC- vai UA-."

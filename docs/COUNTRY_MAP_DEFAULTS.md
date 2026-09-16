@@ -33,7 +33,7 @@ The module includes preset zoom levels and center coordinates for over 240 count
 - Returns final settings for frontend consumption
 - Respects user customizations (saved values take precedence over defaults)
 
-**BiolandSettingsForm** (`src/Form/BiolandSettingsForm.php`)
+**BiolandHomeWidgetsForm** (`src/Form/BiolandHomeWidgetsForm.php`)
 - Form builder shows preset defaults in field descriptions
 - Uses fallback chain: saved value → preset default → generic default
 - Located at: `/admin/config/bioland/settings/front-end/home-widgets`
@@ -253,5 +253,5 @@ vendor/bin/phpunit
 ## See Also
 
 - [Main README](../README.md)
-- [Settings Form Documentation](BiolandSettingsForm.php)
+- [Settings Form Documentation](../src/Form/BiolandHomeWidgetsForm.php)
 - [GBIF Widget Documentation](https://www.gbif.org/)

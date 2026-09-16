@@ -1674,3 +1674,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Kansalliset raportit"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Kansallinen raportti (6.)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH-tietueet"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH-tietueet"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Kansalliset yhteystahot"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Maaprofiilit"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Sisältötyyppi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Keskustelupalstat"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Kansalliset tavoitteet (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Kaikki sisältötyypit"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Luettelo kansallisten raporttien linkeistä, välilehdillä maittain; piilotetaan, kun maalla ei ole raportteja."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Kuudennen kansallisen raportin linkit sivuston maalle sekä linkin omat alalinkit; piilotetaan, jos tyhjä."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Maan bioturvallisuuden tiedonvälitysjärjestelmän tietueet, kuten lait ja päätökset; piilotetaan, jos tyhjä."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Geenivarojen saatavuutta ja hyötyjen jakoa koskevan tiedonvälitysjärjestelmän tietueet, kuten toimenpiteet ja luvat; piilotetaan, jos tyhjä."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Luettelo kansallisista yhteystahoista, välilehdillä maittain; piilotetaan, jos tyhjä."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Linkit CBD:n maaprofiilisivuille, välilehdillä maittain; näytetään aina."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Sivuston uusin sisältö tähän linkkiin määritetyistä sisältötyypeistä; piilotetaan, kun tietueita ei ole."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Uusimmat keskusteluketjut sekä linkin omat alalinkit; piilotetaan, jos tyhjä."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kansallisten tavoitteiden kortit GBF-tavoitteelle 7, välilehdillä maittain; näytetään aina."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Yksi linkki kutakin tietueita sisältävää sisältötyyppiä kohti sekä linkin omat alalinkit; näytetään aina."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megavalikon komponentti"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponentti, jonka tämä valikkolinkki näyttää megavalikossa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Vanhentunut: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ei käytettävissä tällä sivustolla)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Tämä valikkolinkki näyttää megavalikon komponentin tavallisen alilinkkiluettelon sijaan."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Lisää megavalikon komponentti"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Teema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Pienoisohjelmat kytketään päälle ja pois Etusivun pienoisohjelmat -välilehdellä. Tallennetut muutokset näkyvät julkisella sivustolla noin 5 minuutissa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Värit"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Ensisijainen brändiväri"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Toissijainen brändiväri"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Toissijainen taustaväri"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Etusivun pienoisohjelmasarakkeet"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Sarake @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Sarakkeiden enimmäismäärä"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Rivien enimmäismäärä saraketta kohti (0 tarkoittaa rajoittamatonta)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Vaakasuuntaisten korttien enimmäismäärä"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Kielet"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Näytettävien kielten enimmäismäärä ennen kielipalkin rivitystä"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Palauta verkon oletusarvoon"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tämä poistaa tämän sivuston teema-asetukset. Toimintoa ei voi kumota."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Tämän sivuston teema-asetukset palautettiin verkon oletusarvoon."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Anna kelvollinen heksaväri, esimerkiksi #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Etusivun pienoisohjelmat on järjestettävä täsmälleen @count sarakkeeseen."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Anna luku väliltä @min ja @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Jätä tyhjäksi, jos haluat säilyttää nykyisen arvon. Poista se käyttämällä @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Sisältötyyppi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Sisältötyyppi, jonka tämä luettelo näyttää."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Ota megavalikon komponentit käyttöön"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Näyttää toiminnon \"Lisää megavalikon komponentti\" valikon hallintanäytöllä. Kun valinta on pois, toiminto ja sen lomake eivät ole käytettävissä."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Näytä pikkukuvat"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Näyttää pikkukuvan jokaisen kohteen vieressä."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Megavalikon sarakkeet"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Kuinka monta megavalikon saraketta tämä osio vie."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Oletus (1 sarake)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count saraketta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count saraketta (vain erittäin suuret näytöt)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Rivien enimmäismäärä saraketta kohden"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Sivuston oletus"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Kohteiden enimmäismäärä saraketta kohden; ilman valintaa käytetään sivuston oletusta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Näytä nuoli"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Näyttää nuolen osion otsikon jälkeen."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Megavalikko: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Megavalikko: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Lisää megavalikon alielementti"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google tag -tunnukset"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Pilkuilla erotettu luettelo Google tag -tunnuksista, esimerkiksi G-ABC1234567,GTM-XYZ789. Hyväksytyt etuliitteet ovat G-, GTM-, AW-, DC- ja UA-. Julkinen sivusto lataa yhden gtag.js-määrityksen jokaista ei-GTM-tunnusta kohden ja yhden Tag Manager -säilön jokaista GTM-tunnusta kohden. Skriptit latautuvat vain kävijöille, jotka hyväksyvät Google Analytics -evästeluokan, ja vain bl2-sivuston tuotantopalvelimella (muut multisites eivät tällä hetkellä lataa Google tag -tunnuksia). Tallennetut muutokset saavuttavat julkisen sivuston noin 5 minuutissa; sivuston sisäiset sivumuutokset perustuvat GA4 Enhanced Measurement -toimintoon, joka on oletusarvoisesti käytössä verkkotietovirralle. UA-tunnukset hyväksytään vanhoille ominaisuuksille, mutta Google lopetti Universal Analytics -tietojen käsittelyn 1. heinäkuuta 2023, joten ne eivät tallenna mitään."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Seuraavat Google tag -tunnukset eivät ole kelvollisia: @tokens. Jokaisen tunnuksen on alettava jollakin hyväksytystä etuliitteestä: G-, GTM-, AW-, DC- tai UA-."

@@ -287,3 +287,26 @@ Update hooks run in numerical order during `drush updb`:
 | `user--user` | User | **User accounts** (security-sensitive) |
 
   - **Security rationale**: These endpoints expose configuration and user data that should not be publicly accessible via JSON:API
+
+## 9037-9079
+
+Update hooks continue past 9036, currently through **9079** (`bioland_update_9079` in
+`includes/bioland.install.helpers.inc`; verify the current ceiling with
+`grep -rho "bioland_update_[0-9]*" includes/*.inc | sort -u | tail -1`). They are not individually
+itemised here; notable ones:
+
+- **9046**: refresh `region`/`continent` from the DMSM API (`includes/bioland.install.dmsm.inc`)
+- **9048**: enable the main menu lock and strip main-menu permissions from non-admin roles
+- **9059/9060**: apply the v2 (serialized production) Search API + Facets config — the canonical
+  Search API path (`includes/bioland.install.search.v2.inc`)
+- **9061**: disable system cron (`state.set('system.cron_disabled', TRUE)`); see
+  `docs/adr/0004-disable-system-cron.md`
+- **9064**: terminal, idempotent Search API convergence hook — as the highest-numbered hook at the
+  time, it re-applies the v2 config and reindexes on every site regardless of update history
+- **9071-9079**: translation catalog corrections, content-type term fixes, and
+  `bioland.settings` seed/cleanup work for the mega-menu and theme features (component menu
+  seeding, retiring the `theme.mega_menu.forums` config key) — see
+  `includes/bioland.install.helpers.inc` and `includes/bioland.install.translation.inc` for the
+  per-hook doc comments
+
+Note: hooks 9066-9070 are intentionally absent from the include files on this branch.

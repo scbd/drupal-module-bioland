@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Warbixinnada qaranka"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Warbixinta qaranka (6-aad)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Diiwaannada BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Diiwaannada ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Barxadaha xiriirka qaranka"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Astaamaha wadamada"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Nooca nuxurka"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fooramyada"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Bartilmaameedyada qaranka (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Dhammaan noocyada waxyaabaha"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Liiska xiriirinnada warbixinnada qaranka, tabab wadan kasta; waa la qariyaa marka wadanku uusan warbixinno lahayn."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Xiriirinnada warbixinta lixaad ee qaranka ee wadanka goobta, iyo qaybaha hoose ee xiriirinta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Diiwaannada Xarunta Isweydaarsiga Macluumaadka Badbaadada Noolaha ee wadanka, sida sharciyada iyo go'aannada; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Diiwaannada Xarunta Isweydaarsiga Macluumaadka Helitaanka iyo Qaybsiga Faa'iidooyinka, sida tallaabooyinka iyo oggolaanshaha; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Liiska barxadaha xiriirka qaranka, tabab wadan kasta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Xiriirinno loo maro bogagga astaamaha wadamada ee CBD, tabab wadan kasta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Waxyaabaha ugu dambeeyay ee goobta oo ka socda noocyada waxyaabaha ee lagu dejiyay xiriirintan; waa la qariyaa marka aan diiwaan jirin."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Mawduucyada ugu dambeeyay ee fooramyada, iyo qaybaha hoose ee xiriirinta; waa la qariyaa haddii ay madhan tahay."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kaararka bartilmaameedyada qaranka ee bartilmaameedka 7 ee GBF, tabab wadan kasta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Hal xiriirin nooc kasta oo waxyaabo ah oo diiwaan leh, iyo qaybaha hoose ee xiriirinta; had iyo jeer waa la muujiyaa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Qayb ka mid ah menu-ga weyn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Qaybta uu xiriirkan menu-ga ku muujiyo menu-ga weyn."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Hore: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (laguma heli karo boggan)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Xiriirkan menu-ga wuxuu muujiyaa qayb ka mid ah menu-ga weyn halkii uu ka muujin lahaa liis fudud oo xiriiro hoosaad ah."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Ku dar qayb ka mid ah menu-ga weyn"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Muuqaal"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widget-yada waxaa laga shido oo laga demiyo tabka Widget-yada Bogga Hore. Isbeddellada la keydiyay waxay ka muuqdaan bogga dadweynaha muddo qiyaastii 5 daqiiqo gudahood ah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Midabada"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Midabka koowaad ee astaanta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Midabka labaad ee astaanta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Midabka labaad ee asalka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Tiirarka widget-yada bogga hore"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Tiirka @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Tirada ugu badan ee tiirar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Tirada ugu badan ee safaf tiir kasta (0 macnaheedu waa xad la'aan)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Tirada ugu badan ee kaararka jiifka ah"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Luqadaha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Tirada ugu badan ee luqadaha la muujinayo ka hor inta aan xariiqda luqadaha duubmin"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Dib ugu celi caadiga shabakadda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tani waxay tirtiraysaa dejinta muuqaalka bogga. Lama celin karo."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Dejinta muuqaalka bogga waxaa dib loogu celiyay caadiga shabakadda."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Geli midab hex ah oo sax ah, tusaale #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget-yada bogga hore waa in lagu habeeyaa saddex @count tiir oo sax ah."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Geli tiro u dhaxaysa @min iyo @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "U dhaaf faaruq si aad u haysato qiimaha hadda. Isticmaal @reset si aad u saarto."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Nooca nuxurka"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Nooca nuxurka ee liiskani muujinayo."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Daar qaybaha menu-ga weyn"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Wuxuu ku muujinayaa ficilka \"Ku dar qayb ka mid ah menu-ga weyn\" shaashadda maaraynta menu-ga. Marka aan la calaamadin, ficilka iyo foomkiisu lama heli karaan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Muuji sawirrada yaryar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Waxay muujisaa sawir yar oo ag yaal gelitaan kasta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Tiirarka menu-ga weyn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Immisa tiir oo menu-ga weyn ah ayay qaybtani qaadataa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Caadi (1 tiir)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count tiir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count tiir (shaashadaha aad u waaweyn oo keliya)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Safafka ugu badan tiir kasta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Caadiga goobta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Gelitaannada ugu badan tiir kasta; haddii aan la dejin waxaa shaqeeya caadiga goobta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Muuji fallaadha"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Waxay muujisaa fallaadh cinwaanka qaybta ka dib."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Menu-ga weyn: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Menu-ga weyn: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Ku dar hoosaad menu-ga weyn"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Aqoonsiyada Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Liis aqoonsiyada Google tag oo koma ku kala qaybsan, tusaale ahaan G-ABC1234567,GTM-XYZ789. Horgalayaasha la aqbalo waa G-, GTM-, AW-, DC- iyo UA-. Websaytka dadweynaha wuxuu soo dejiyaa hal habayn gtag.js ee aqoonsi kasta oo aan GTM ahayn iyo hal weel Tag Manager ee aqoonsi kasta oo GTM- ah. Scripts-ka waxaa loo soo dejiyaa oo keliya booqdayaasha aqbala qaybta cookie-ga Google Analytics iyo oo keliya host-ka waxsoosaarka ee sayt bl2 (multisites kale maanta ma soo dejiyaan Google tag). Isbeddelada la keydiyay waxay gaaraan websaytka dadweynaha muddo ku dhow 5 daqiiqo; isbeddelada bogagga gudaha saytka waxay ku tiirsan yihiin GA4 Enhanced Measurement, oo si caadi ah u shidan qulqulka xogta web-ka. Aqoonsiyada UA- waa la aqbalayaa hantida hore, laakiin Google waxay joojisay habaynta xogta Universal Analytics 1 Luulyo 2023, sidaas darteed waxba ma duubaan."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Aqoonsiyada Google tag ee soo socda ma saxna: @tokens. Aqoonsi kastaa waa inuu ku bilaabmaa mid ka mid ah horgalayaasha la aqbalo: G-, GTM-, AW-, DC- ama UA-."

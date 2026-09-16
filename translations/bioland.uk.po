@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Національні доповіді"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Національна доповідь (6-та)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Записи BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Записи ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Національні координаційні центри"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Профілі країн"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Тип вмісту"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Форуми"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Національні цілі (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Усі типи вмісту"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Список посилань на національні доповіді, у вкладках за країнами; приховується, коли в країни немає доповідей."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Посилання шостої національної доповіді для країни сайту та дочірні елементи посилання; приховується, якщо порожньо."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Записи Механізму посередництва з біобезпеки для країни, як-от закони та рішення; приховується, якщо порожньо."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Записи Механізму посередництва з доступу та розподілу вигід, як-от заходи та дозволи; приховується, якщо порожньо."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Список національних координаційних центрів, у вкладках за країнами; приховується, якщо порожньо."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Посилання на сторінки профілів країн КБР, у вкладках за країнами; показується завжди."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Найновіший вміст сайту для типів вмісту, заданих на цьому посиланні; приховується, коли записів немає."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Найновіші теми форумів та дочірні елементи посилання; приховується, якщо порожньо."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Картки національних цілей для цілі 7 GBF, у вкладках за країнами; показується завжди."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "По одному посиланню на кожен тип вмісту, який має записи, та дочірні елементи посилання; показується завжди."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Компонент мегаменю"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Компонент, який це посилання меню відображає в мегаменю."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Застаріле: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (недоступно на цьому сайті)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Це посилання меню відображає компонент мегаменю замість звичайного списку дочірніх посилань."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Додати компонент мегаменю"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Тема оформлення"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Віджети вмикають і вимикають на вкладці «Віджети головної сторінки». Збережені зміни з’являються на публічному сайті приблизно за 5 хвилин."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Кольори"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Основний колір бренду"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Додатковий колір бренду"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Додатковий колір тла"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Стовпці віджетів головної сторінки"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Стовпець @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Найбільша кількість стовпців"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Найбільша кількість рядків у стовпці (0 — без обмежень)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Найбільша кількість горизонтальних карток"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Мови"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Найбільша кількість мов, що показуються до перенесення мовної панелі"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Скинути до типового значення мережі"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Це вилучить налаштування теми оформлення для цього сайту. Дію не можна скасувати."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Налаштування теми оформлення для цього сайту скинуто до типового значення мережі."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Введіть коректний шістнадцятковий колір, наприклад #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Віджети головної сторінки мають бути розміщені рівно у @count стовпцях."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Введіть число від @min до @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Залиште порожнім, щоб зберегти поточне значення. Щоб видалити його, скористайтеся @reset."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Тип вмісту"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Тип вмісту, який показує цей список."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Увімкнути компоненти мегаменю"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Показує дію \"Додати компонент мегаменю\" на екрані керування меню. Якщо не позначено, дія та її форма недоступні."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Показувати мініатюри"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Показує мініатюру поруч із кожним записом."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Колонки мега-меню"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Скільки колонок мега-меню займає цей розділ."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Типово (1 колонка)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count колонки"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count колонки (лише дуже великі екрани)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Максимум рядків у колонці"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Типове значення сайту"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Максимум записів у колонці; якщо не задано, діє типове значення сайту."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Показувати стрілку"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Показує стрілку після заголовка розділу."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Мегаменю: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Мегаменю: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Додати дочірній елемент мегаменю"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Ідентифікатори тегів Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Список ідентифікаторів тегів Google, розділених комами, наприклад G-ABC1234567,GTM-XYZ789. Прийнятні префікси: G-, GTM-, AW-, DC- і UA-. Публічний сайт завантажує одну конфігурацію gtag.js для кожного ідентифікатора, що не є GTM, і один контейнер Tag Manager для кожного ідентифікатора GTM-. Скрипти завантажуються лише для відвідувачів, які приймають категорію файлів cookie Google Analytics, і лише на виробничому хості сайту bl2 (інші multisites сьогодні не завантажують теги Google). Збережені зміни потрапляють на публічний сайт приблизно за 5 хвилин; зміни сторінок у межах сайту покладаються на GA4 Enhanced Measurement, який увімкнено за замовчуванням для потоку веб-даних. Ідентифікатори UA- приймаються для застарілих ресурсів, але Google припинив обробку даних Universal Analytics 1 липня 2023 року, тому вони нічого не записують."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Такі ідентифікатори тегів Google недійсні: @tokens. Кожен ідентифікатор має починатися з одного з прийнятних префіксів: G-, GTM-, AW-, DC- або UA-."

@@ -71,4 +71,18 @@ class ImmutableConfig {
     return $this->name;
   }
 
+  /**
+   * Gets the cache tags of this configuration object.
+   *
+   * Mirrors core: a config object is a cacheable dependency tagged
+   * "config:<name>", which is what lets a decision made from it refresh when
+   * an admin saves the setting.
+   *
+   * @return array
+   *   The cache tags.
+   */
+  public function getCacheTags() {
+    return ['config:' . $this->name];
+  }
+
 }

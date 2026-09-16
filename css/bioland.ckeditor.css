@@ -17,9 +17,23 @@
  *
  * Colour note: the underline colour is the per-Site primary, which on the
  * frontend is a DMSM value resolved per request and injected as `--bs-primary`.
- * Drupal/CKEditor has no access to that value, so we default `--bs-primary` to
- * the Bioland default (UN blue, #009edb). The rules read the variable, so a
- * future per-tenant injection can override it without touching this file.
+ * A shared stylesheet cannot know it, so `--bs-primary` is defaulted here to
+ * the Bioland default (UN blue, #009edb) and the rules read the variable.
+ *
+ * The per-tenant injection this was written for now exists:
+ * bioland_form_alter() attaches an `html_head` style element (keyed
+ * `bioland-ckeditor-primary`) redeclaring `--bs-primary` from
+ * `bioland.settings:theme.color.primary` on every node content form, so a site
+ * that authored a primary on the Theme tab edits in its own colour, and a BSL
+ * site with nothing authored gets #fa6938 rather than this file's blue. That
+ * override selects `body .ck.ck-content` (0,2,1) because it renders in <head>
+ * BEFORE this stylesheet: at the equal specificity of `.ck.ck-content` the
+ * later declaration -- this file -- would win and the override would be inert.
+ * The
+ * value below is what remains when that override is not on the page -- the
+ * no-config last resort for a bl2 site. Keep it in step with
+ * \Drupal\bioland\BiolandThemeContract::FALLBACK_PRIMARY_BL2, which is where
+ * PHP reads the same colour from.
  */
 
 .ck.ck-content {

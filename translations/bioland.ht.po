@@ -1674,3 +1674,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Rapò nasyonal yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Rapò nasyonal (6yèm)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Dosye BCH yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Dosye ABS-CH yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Pwen fokal nasyonal yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Pwofil peyi yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Kalite kontni"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fowòm yo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Objektif nasyonal yo (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Tout kalite kontni"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Lis lyen rapò nasyonal yo, nan onglè dapre peyi; li kache lè peyi a pa gen rapò."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Lyen sizyèm rapò nasyonal la pou peyi sit la, plis pitit lyen an; li kache si li vid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Dosye Sant Echanj Enfòmasyon sou Byosekirite pou peyi a, tankou lwa ak desizyon; li kache si li vid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Dosye Sant Echanj Enfòmasyon sou Aksè ak Pataj Benefis, tankou mezi ak pèmi; li kache si li vid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Lis pwen fokal nasyonal yo, nan onglè dapre peyi; li kache si li vid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Lyen pou paj pwofil peyi CBD yo, nan onglè dapre peyi; li toujou parèt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Dènye kontni sit la pou kalite kontni ki mete sou lyen sa a; li kache lè pa gen dosye."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Dènye sijè fowòm yo, plis pitit lyen an; li kache si li vid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kat objektif nasyonal pou objektif 7 GBF a, nan onglè dapre peyi; li toujou parèt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Yon lyen pou chak kalite kontni ki gen dosye, plis pitit lyen an; li toujou parèt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Konpozan mega meni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Konpozan lyen meni sa a montre nan mega meni an."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Ansyen: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (pa disponib sou sit sa a)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Lyen meni sa a montre yon konpozan mega meni olye pou yon senp lis lyen pitit."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Ajoute yon konpozan mega meni"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tèm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Yo limen ak etenn widget yo nan onglè Widget Paj Dakèy la. Chanjman ki anrejistre yo parèt sou sit piblik la nan anviwon 5 minit."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Koulè"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Koulè prensipal mak la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Koulè segondè mak la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Koulè fon segondè"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kolòn widget paj dakèy la"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolòn @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Kantite kolòn maksimòm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Kantite ranje maksimòm pou chak kolòn (0 vle di san limit)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Kantite kat orizontal maksimòm"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Lang"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Kantite lang maksimòm ki afiche anvan ba lang lan pliye"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Remete valè default rezo a"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Sa efase paramèt tèm sit sa a. Ou pa ka defèt li."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Paramèt tèm sit sa a te remèt nan valè default rezo a."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Antre yon koulè eksadesimal valab, pa egzanp #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget paj dakèy yo dwe ranje nan egzakteman @count kolòn."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Antre yon nimewo ant @min ak @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Kite li vid pou kenbe valè aktyèl la. Sèvi ak @reset pou retire l."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Kalite kontni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Kalite kontni lis sa a montre."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Aktive konpozan mega meni yo"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Montre aksyon \"Ajoute yon konpozan mega meni\" sou ekran jesyon meni an. Le li pa tcheke, aksyon an ak fom li pa disponib."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Montre ti imaj yo"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Montre yon ti imaj bo kote chak antre."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Kolòn gwo meni an"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Konbyen kolòn nan gwo meni an seksyon sa a pran."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Paran (1 kolòn)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolòn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolòn (sèlman sou gwo ekran)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Maksimòm ranje pa kolòn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Paran sit la"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Maksimòm antre pa kolòn; si li pa defini, paran sit la aplike."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Montre flech"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Montre yon flech apre tit seksyon an."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega meni: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega meni: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Ajoute yon pitit mega meni"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Yon lis ID Google tag ki separe pa vigil, pa egzanp G-ABC1234567,GTM-XYZ789. Prefiks ki aksepte yo se G-, GTM-, AW-, DC-, ak UA-. Sit piblik la chaje yon konfigirasyon gtag.js pou chak ID ki pa GTM ak yon kontenè Tag Manager pou chak ID GTM-. Script yo chaje sèlman pou vizitè ki aksepte kategori kouki Google Analytics epi sèlman sou hòt pwodiksyon yon sit bl2 (lòt multisites pa chaje Google tag jodi a). Chanjman ki sove yo rive sou sit piblik la nan anviwon 5 minit; chanjman paj nan sit la depann de GA4 Enhanced Measurement, ki aktive pa defo pou yon flèks done wèb. ID UA- yo aksepte pou pwopriyete ansyen, men Google sispann trete done Universal Analytics nan 1 jiyè 2023, kidonk yo pa anrejistre anyen."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ID Google tag sa yo pa valab: @tokens. Chak ID dwe kòmanse ak youn nan prefiks ki aksepte yo: G-, GTM-, AW-, DC-, oswa UA-."

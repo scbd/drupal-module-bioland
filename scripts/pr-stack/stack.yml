@@ -1,0 +1,22 @@
+# PR stack manifest — the single source of truth for chained PR bases.
+#
+# Each entry declares that a head branch MUST target the given base branch, and
+# that the base must actually be merged into the head (so the chain is real, not
+# just a pointer). The pr-stack-guard workflow enforces both on every PR event.
+#
+# Chain order is the seam order in docs/pr-seam-options.md. Add a row when you
+# open the next seam; delete a row once its PR merges and the branch is gone.
+#
+# A branch absent from this file is unconstrained — the guard only checks what
+# is declared here, so it never blocks ordinary feature PRs.
+
+chains:
+  # Component chain (C1 -> C2 -> C3 -> C4a -> C4b)
+  - head: feature/p01-03-component-registry            # C2 (#28)
+    base: chore/p01-02-declare-menu-link-attributes    # C1 (#26)
+  - head: feature/p02-01-component-mode-service        # C3 (#29)
+    base: feature/p01-03-component-registry            # C2 (#28)
+  - head: feature/p03-02-edit-component-detection      # C4a (#30)
+    base: feature/p02-01-component-mode-service        # C3 (#29)
+  - head: feature/p03-01-add-component-route           # C4b (#31)
+    base: feature/p03-02-edit-component-detection      # C4a (#30)

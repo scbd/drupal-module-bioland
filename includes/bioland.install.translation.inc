@@ -165,7 +165,7 @@ function bioland_update_9003() {
 /**
  * Create translation defaults for every existing content node, if enabled.
  *
- * Shared batch routine behind bioland_update_9012() and bioland_update_9079().
+ * Shared batch routine behind bioland_update_9012() and bioland_update_9081().
  * It WRITES CONTENT: it loads every node of type "content" with
  * accessCheck(FALSE) and calls
  * BiolandTranslationManager::createTranslations($node, 'batch') on each, 20
@@ -276,7 +276,7 @@ function _bioland_run_translation_backfill(array &$sandbox) {
  * read a key name that was never written, so it always returned its skip
  * message. It now delegates to the shared, correctly-gated routine; the
  * reachable entry point for sites past this schema version is
- * bioland_update_9079().
+ * bioland_update_9081().
  *
  * @see _bioland_run_translation_backfill()
  */
@@ -604,7 +604,7 @@ function bioland_update_9078() {
  * @see _bioland_run_translation_backfill()
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9079(&$sandbox) {
+function bioland_update_9081(&$sandbox) {
   $message = _bioland_run_translation_backfill($sandbox);
 
   // Converge canonical Search API v2 config last (highest-numbered hook).

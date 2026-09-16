@@ -90,7 +90,11 @@ failed-*
 docs/.temp
 test-output.txt
 .claude
-.github*
-!.github/workflows
+# The global ignore file excludes `.github` itself; a parent directory cannot be
+# re-included by a child negation, so un-exclude the directory first, then keep
+# everything inside it ignored except the workflows we do track.
+!.github/
+.github/*
+!.github/workflows/
 # Session-local backlog capture (never committed, never shipped in an image)
 backlog.jsonl

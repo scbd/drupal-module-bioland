@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  *
  * These tests prove the corrected, canonical key is the one read, that the
  * backfill-specific flag ships off, that a new reachable update hook
- * (bioland_update_9079) carries the corrected guard, and that the batch is
+ * (bioland_update_9081) carries the corrected guard, and that the batch is
  * skipped unless both gates are open.
  *
  * @group bioland
@@ -353,24 +353,24 @@ class BiolandTranslationBackfillTest extends TestCase {
    * The corrected read lives inside bioland_update_9012(), which has already
    * run on every existing site, so the fix is unreachable without a NEW hook.
    */
-  public function testUpdateHook9079CarriesTheCorrectedGuard(): void {
+  public function testUpdateHook9081CarriesTheCorrectedGuard(): void {
     $file = $this->moduleRoot() . '/includes/bioland.install.translation.inc';
     $this->assertFileExists($file);
     $content = file_get_contents($file);
 
     $this->assertMatchesRegularExpression(
-      '/function\s+bioland_update_9079\s*\(/',
+      '/function\s+bioland_update_9081\s*\(/',
       $content,
-      'bioland_update_9079() must exist: correcting the guard inside the already-run bioland_update_9012() changes nothing for existing sites.'
+      'bioland_update_9081() must exist: correcting the guard inside the already-run bioland_update_9012() changes nothing for existing sites.'
     );
     $this->assertMatchesRegularExpression(
-      '/function\s+bioland_update_9079\s*\([^)]*\)\s*\{.*_bioland_run_translation_backfill\s*\(/s',
+      '/function\s+bioland_update_9081\s*\([^)]*\)\s*\{.*_bioland_run_translation_backfill\s*\(/s',
       $content,
-      'bioland_update_9079() must delegate to the shared, gated backfill routine rather than copying the batch logic.'
+      'bioland_update_9081() must delegate to the shared, gated backfill routine rather than copying the batch logic.'
     );
     $this->assertTrue(
-      function_exists('bioland_update_9079'),
-      'bioland_update_9079() must be defined by the translation install include.'
+      function_exists('bioland_update_9081'),
+      'bioland_update_9081() must be defined by the translation install include.'
     );
   }
 

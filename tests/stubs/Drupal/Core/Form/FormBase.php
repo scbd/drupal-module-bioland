@@ -43,18 +43,43 @@ abstract class FormBase implements FormInterface {
   }
 
   /**
+   * The messenger.
+   *
+   * @var object|null
+   */
+  protected $messenger;
+
+  /**
    * Gets the messenger service.
+   *
+   * Mirrors \Drupal\Core\Messenger\MessengerTrait: an injected messenger
+   * wins, otherwise the container's is resolved once and cached. Tests that
+   * need to assert on the messages a form raises inject a recording double
+   * through setMessenger().
    *
    * @return object
    *   The messenger.
    */
   protected function messenger() {
-    return new class {
-      public function addMessage($message, $type = 'status') {}
-      public function addStatus($message) {}
-      public function addWarning($message) {}
-      public function addError($message) {}
-    };
+    if (!isset($this->messenger)) {
+      $this->messenger = \Drupal::messenger();
+    }
+
+    return $this->messenger;
+  }
+
+  /**
+   * Sets the messenger.
+   *
+   * @param object $messenger
+   *   The messenger.
+   *
+   * @return $this
+   */
+  public function setMessenger($messenger) {
+    $this->messenger = $messenger;
+
+    return $this;
   }
 
 }

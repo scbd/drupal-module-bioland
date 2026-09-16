@@ -200,7 +200,34 @@ class BiolandSettingsRoutingWiringTest extends TestCase {
   }
 
   /**
-   * All 11 settings forms expose distinct form ids; the base route keeps
+   * The Theme tab's route is wired exactly as the plan pins it.
+   *
+   * getSettingsFormRoutes() derives its list from the file, so the two tests
+   * above cover the Theme route generically as soon as it exists. This one
+   * pins the parts a generic sweep cannot see: the exact path, the REUSED
+   * 'administer bioland settings' permission (no new permission is introduced
+   * for a form that ships to ~211 sites), and the form class behind it.
+   */
+  public function testThemeRouteIsWiredWithTheSharedSettingsPermission(): void {
+    $routes = $this->parseRouting();
+
+    $this->assertArrayHasKey('bioland.settings.front_end.theme', $routes, 'The Theme route must be defined.');
+
+    $theme = $routes['bioland.settings.front_end.theme'];
+    $this->assertSame('/admin/config/bioland/settings/front-end/theme', $theme['path']);
+    $this->assertSame('\Drupal\bioland\Form\BiolandThemeForm', $theme['_form']);
+    $this->assertSame('Theme', $theme['_title']);
+    $this->assertSame('administer bioland settings', $theme['_permission']);
+    $this->assertArrayNotHasKey('_access', $theme, 'The Theme route must never be opened with _access.');
+    $this->assertArrayNotHasKey('_role', $theme, 'The Theme route uses the shared permission, not a role.');
+
+    // The permission is reused, not invented: a sibling settings route already
+    // declares it.
+    $this->assertSame('administer bioland settings', $routes['bioland.settings.front_end']['_permission']);
+  }
+
+  /**
+   * All settings forms expose distinct form ids; the base route keeps
    * the historical 'bioland_settings_form' id.
    */
   public function testSettingsFormIdsAreUniqueAndBaseRouteIsPreserved(): void {
