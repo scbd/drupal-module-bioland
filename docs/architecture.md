@@ -371,7 +371,7 @@ See each ADR for the rationale; it is not restated here.
   lets the queue grow without bound. `hook_requirements('runtime')` warns on a queue that is not
   draining, which detects the failure but does not prevent it. This needs an operator answer.
 - **Versioned JS/CSS filenames.** JS behaviour files and libraries embed the module version in their
-  filename (for example `js/bioland-home-widgets-1-1-7.js`). `docs/COUNTRY_MAP_DEFAULTS.md` and the
+  filename (for example `js/bioland-home-widgets-1-1-8.js`). `docs/COUNTRY_MAP_DEFAULTS.md` and the
   README reference these by name; a version bump means every reference needs updating in lockstep,
   or the docs drift again the way they previously did. Treat `bioland.info.yml`'s `version:` and the
   actual filenames in `js/` as truth if a doc disagrees.

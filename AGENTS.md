@@ -77,7 +77,7 @@ composer require drupal/auto_node_translate --with-all-dependencies
 
 ### Git Workflow
 - Use conventional commit prefixes: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
-- Module version: `1.1.7` (kept in sync across `bioland.info.yml`, `package.json`, `composer.json`)
+- Module version: `1.1.8` (kept in sync across `bioland.info.yml`, `package.json`, `composer.json`)
 
 ## Code Patterns & Conventions
 
@@ -118,8 +118,8 @@ Drupal.behaviors.biolandFeatureName = {
     // runs exactly once per element, across every behavior re-run
   });
   ```
-  Live example: `js/bioland-component-menu-form-1-1-7.js`.
-- **The `dataset` flag is the legacy fallback**, still present in the older behaviors (`bioland-auto-summary-1-1-7.js`, `bioland-additional-fields-1-1-7.js`). Leave it where it is; do not port it into new code, and do not "fix" a correct `once()` call back into it.
+  Live example: `js/bioland-component-menu-form-1-1-8.js`.
+- **The `dataset` flag is the legacy fallback**, still present in the older behaviors (`bioland-auto-summary-1-1-8.js`, `bioland-additional-fields-1-1-8.js`). Leave it where it is; do not port it into new code, and do not "fix" a correct `once()` call back into it.
   - Pattern: `if (element.dataset.biolandFeatureInit) return; element.dataset.biolandFeatureInit = 'true';`
 - **Track value changes**: Store `lastContentTypeValue` to detect actual changes before processing
   - Pattern: `if (this.lastContentTypeValue === updatedValue) return;`
