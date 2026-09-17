@@ -1,0 +1,89 @@
+{
+    "countries": [
+        "ZZ"
+    ],
+    "region": "example-region",
+    "continent": "example-continent",
+    "is_biosafety_land": false,
+    "enable_field_visibility": true,
+    "field_visibility": {
+        "url_content_types": [
+            1
+        ],
+        "published_content_types": [
+            1
+        ],
+        "date_range_content_types": [
+            1
+        ]
+    },
+    "enable_additional_fields": false,
+    "additional_tags": [],
+    "enable_auto_summary": true,
+    "enable_help_comments": false,
+    "help_comments": [],
+    "field_visibility_rules": "[{\"field\":\"field_example\",\"operator\":\"visible_if_filled\"}]",
+    "config": {
+        "promote_and_sticky_public": true
+    },
+    "google_analytics_ids": "G-EXAMPLE0",
+    "enable_debug_logging": false,
+    "debug_log_areas": [],
+    "main_menu_lock": false,
+    "component_menu_add_enabled": true,
+    "component_menu_show_attributes": false,
+    "mega_menu": {
+        "forums": false,
+        "max_columns": 4,
+        "max_rows_per_column": 8,
+        "horizontal_card_max": 3,
+        "horizontal_card_wrap": true
+    },
+    "home_widgets": {
+        "news": true,
+        "columns": [
+            "example-widget"
+        ]
+    },
+    "translation": {
+        "auto_create": false,
+        "backfill_enabled": false
+    },
+    "theme": {
+        "color": {
+            "primary": "#101010",
+            "primary_text_over": "#ffffff",
+            "secondary": "#202020",
+            "secondary_text_over": "#ffffff"
+        },
+        "hero": {
+            "primary": []
+        },
+        "text": {
+            "primary": "#101010",
+            "secondary": "#202020",
+            "tertiary": "#303030"
+        },
+        "back_ground": {
+            "primary": "#fafafa",
+            "secondary": "#f0f0f0",
+            "tertiary": "#e0e0e0"
+        },
+        "mega_menu": {
+            "max_columns": 4,
+            "max_rows_per_column": 8,
+            "horizontal_card_max": 3,
+            "horizontal_card_wrap": true,
+            "forums": false
+        },
+        "i18n": {
+            "max_lang_before_wrap": 5
+        },
+        "home_page_widgets": {
+            "news": true,
+            "columns": [
+                "example-widget"
+            ]
+        }
+    }
+}

@@ -2,11 +2,13 @@
 
 namespace Drupal\Core\Access;
 
+use Drupal\Core\Session\AccountInterface;
+
 /**
  * Stub class for AccessResult.
  *
- * Reproduces only what the module uses: the three constructors, the reason
- * string, the full cacheability triple (tags, contexts, max-age), and the three
+ * Reproduces only what the module uses: the constructors, the reason string,
+ * the full cacheability triple (tags, contexts, max-age), and the three
  * predicates. Enough for a unit test to assert that a check allowed or forbade
  * access AND that every part of its cacheability reached the caller.
  *
@@ -130,6 +132,21 @@ class AccessResult implements AccessResultInterface {
    */
   public static function forbiddenIf($condition, $reason = NULL) {
     return $condition ? static::forbidden($reason) : static::neutral();
+  }
+
+  /**
+   * Allowed when the account holds the permission, neutral otherwise.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The account.
+   * @param string $permission
+   *   The permission.
+   *
+   * @return static
+   *   The result.
+   */
+  public static function allowedIfHasPermission(AccountInterface $account, $permission) {
+    return $account->hasPermission($permission) ? static::allowed() : static::neutral("The '$permission' permission is required.");
   }
 
   /**
