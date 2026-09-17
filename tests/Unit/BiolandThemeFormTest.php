@@ -33,7 +33,10 @@ class BiolandThemeFormTest extends TestCase {
    * dead legacy keys the plan drops.
    */
   private const FORBIDDEN_KEY_FRAGMENTS = [
-    'hero',
+    // `hero` is deliberately NOT here as of BL-1011: the tab now authors
+    // `hero.primary` and `hero.secondary` as two scalar colour pickers.
+    // testHeroIsAuthoredAsTwoScalarPickers() below is the assertion that
+    // replaced its forbidden-fragment entry.
     'text_over',
     'textOver',
     'can_auto_translate',
@@ -506,9 +509,42 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * Neither hero nor any dead key is offered as a form element.
+   * The hero is authored as exactly two required colour pickers.
+   *
+   * Pins the shape, not just the presence: the legacy network theme stores
+   * the hero as ONE key holding an ordered pair, and the whole point of
+   * BL-1011 is that this tab writes two named scalars instead. A regression
+   * back to a single multi-value element would still put `hero` on the form
+   * and so would pass a bare presence check.
    */
-  public function testHeroAndDeadKeysAreAbsentFromTheForm(): void {
+  public function testHeroIsAuthoredAsTwoScalarPickers(): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    $hero = $form['theme']['hero'];
+
+    $this->assertSame('fieldset', $hero['#type']);
+    $this->assertSame(
+      ['primary', 'secondary'],
+      array_values(array_filter(
+        array_keys($hero),
+        static fn(string $key): bool => strpos($key, '#') !== 0
+      )),
+      'The hero fieldset must hold exactly the two scalar colour keys.'
+    );
+
+    foreach (['primary', 'secondary'] as $slot) {
+      $this->assertSame('color', $hero[$slot]['#type']);
+      $this->assertTrue($hero[$slot]['#required']);
+      // A scalar default, never the legacy [primary, secondary] list.
+      $this->assertIsString($hero[$slot]['#default_value']);
+    }
+  }
+
+  /**
+   * No dead key is offered as a form element.
+   */
+  public function testDeadKeysAreAbsentFromTheForm(): void {
     $this->stubDmsmService(NULL);
     $form = $this->build($this->config());
 
@@ -575,11 +611,16 @@ class BiolandThemeFormTest extends TestCase {
    * An authored leaf beats the seed for that leaf.
    */
   public function testAuthoredLeafWinsOverTheSeed(): void {
+    // exactly(1): themeDefaults() always consults the seed now (it overlays
+    // authored leaves on top rather than skipping the seed outright), so a
+    // fully-authored theme still costs one call -- see
+    // testSeedPreFillsWhenThemeConfigIsEmpty() for the unauthored case.
     $this->stubDmsmService(['color' => ['primary' => '#ffffff']], 1);
 
     $form = $this->build($this->config([
       'theme' => [
         'color' => ['primary' => '#abcdef', 'secondary' => '#fedcba'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
       ],
     ]));
 
@@ -687,6 +728,7 @@ class BiolandThemeFormTest extends TestCase {
     $form = $this->build($this->config([
       'theme' => [
         'mega_menu' => ['max_rows_per_column' => 0],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
       ],
     ]));
 
@@ -830,9 +872,11 @@ class BiolandThemeFormTest extends TestCase {
         BiolandThemeContract::KEY_COLOR_PRIMARY,
         BiolandThemeContract::KEY_COLOR_SECONDARY,
         BiolandThemeContract::KEY_BACK_GROUND_SECONDARY,
+        BiolandThemeContract::KEY_HERO_PRIMARY,
+        BiolandThemeContract::KEY_HERO_SECONDARY,
       ],
       array_keys($colors),
-      $constant . ' must cover exactly the three required colour keys.'
+      $constant . ' must cover exactly the five required colour keys.'
     );
 
     foreach ($colors as $key => $value) {
@@ -951,7 +995,10 @@ class BiolandThemeFormTest extends TestCase {
     $this->stubDmsmService(NULL, 1);
 
     [, $messenger] = $this->buildWithMessenger($this->config([
-      'theme' => ['color' => ['primary' => '#abcdef']],
+      'theme' => [
+        'color' => ['primary' => '#abcdef'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
     ]));
 
     $this->assertSame([], $messenger->warnings);
@@ -1256,6 +1303,7 @@ class BiolandThemeFormTest extends TestCase {
       'theme' => [
         'color' => ['primary' => '#123456', 'secondary' => '#abcdef'],
         'back_ground' => ['secondary' => '#f2f2f2'],
+        'hero' => ['primary' => '#0a0b0c', 'secondary' => '#d0d1d2'],
         'home_page_widgets' => [
           'columns' => [['panorama', 'gbif'], ['implementation', 'tsc'], ['forums', 'geobon']],
         ],
@@ -1510,7 +1558,10 @@ class BiolandThemeFormTest extends TestCase {
   public function testBlankNumericPreservesAnAuthoredValue(): void {
     $this->stubDmsmService(NULL, 1);
     $config = $this->config([
-      'theme' => ['mega_menu' => ['max_columns' => 4]],
+      'theme' => [
+        'mega_menu' => ['max_columns' => 4],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
     ]);
     $form = $this->build($config);
 
@@ -1709,7 +1760,7 @@ class BiolandThemeFormTest extends TestCase {
    * would let the other drift unnoticed.
    *
    * The flavor argument is FALSE throughout and does not matter: every case
-   * supplies all three colours from the seed, so no fallback is consulted.
+   * supplies all five colours from the seed, so no fallback is consulted.
    * The per-flavor fallbacks are covered by their own tests above.
    */
   public function testSeedDefaultsMatchFixtureAtDrupalDepth(): void {
@@ -1874,6 +1925,278 @@ class BiolandThemeFormTest extends TestCase {
 
     $this->assertStringContainsString('Home Widgets tab', $markup);
     $this->assertStringContainsString('5 minutes', $markup);
+  }
+
+  // ---------------------------------------------------------------------
+  // BL-1011: the hero pair, authored as two scalars.
+  // ---------------------------------------------------------------------
+
+  /**
+   * The seed splits the network's ordered pair into the two scalar keys.
+   *
+   * The `be` fixture is the load-bearing case: its hero pair
+   * ['#565B29', '#CBB279'] is NOT its brand pair (its `color.secondary` is
+   * '#889262'). A seeder that derived the hero from the colours instead of
+   * reading the pair by index would produce '#889262' here and pass on every
+   * other fixture case, where the two happen to coincide.
+   */
+  public function testHeroSeedReadsTheNetworkPairByIndex(): void {
+    $case = $this->fixtureCases()['be-dual-block-authored-hero'];
+    $this->stubDmsmService($case['expectedEffectiveTheme']);
+
+    $defaults = $this->invoke($this->createForm(), 'seedFromDmsm', [FALSE]);
+
+    $this->assertSame(['primary' => '#565b29', 'secondary' => '#cbb279'], $defaults['hero']);
+    $this->assertNotSame(
+      $defaults['color']['secondary'],
+      $defaults['hero']['secondary'],
+      'This fixture only proves anything while its hero and brand secondaries differ.'
+    );
+  }
+
+  /**
+   * A hero pair the picker could not render falls back to the flavor palette.
+   *
+   * The hero seed is the one leaf read out of a LIST by index, so unlike the
+   * named colour keys it carries no type guarantee: a one-element pair, a
+   * null slot, or a non-colour string all reach the same path. Seeding a
+   * `#type => color` element with any of them would render an empty picker,
+   * and core turns an empty picker into #000000 on the first Save.
+   *
+   * @dataProvider unusableHeroPairProvider
+   */
+  public function testUnusableHeroSeedFallsBackToTheFlavorPalette($pair): void {
+    $case = $this->fixtureCases()['be-dual-block-authored-hero'];
+    $effective = $case['expectedEffectiveTheme'];
+    $effective['hero']['primary'] = $pair;
+
+    $this->stubDmsmService($effective);
+
+    $defaults = $this->invoke($this->createForm(), 'seedFromDmsm', [FALSE]);
+
+    $this->assertSame(
+      [
+        'primary' => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
+        'secondary' => '#16c56e',
+      ],
+      $defaults['hero']
+    );
+  }
+
+  /**
+   * Hero pairs that must not reach a colour picker.
+   *
+   * @return array
+   *   Test cases.
+   */
+  public function unusableHeroPairProvider(): array {
+    return [
+      'not a list' => ['#565B29'],
+      'empty list' => [[]],
+      'one slot only' => [['#565B29']],
+      'null slots' => [[NULL, NULL]],
+      'non-colour strings' => [['rebeccapurple', 'rgb(1,2,3)']],
+      'three-digit hex' => [['#abc', '#def']],
+      'numeric slots' => [[1, 2]],
+    ];
+  }
+
+  /**
+   * A partially unusable pair falls back as a PAIR, never half-and-half.
+   *
+   * Filling only the broken slot from the flavor palette would pair a site's
+   * real hero primary with a network-default secondary -- a combination no
+   * document anywhere defines, and one the editor has no way to recognise as
+   * wrong.
+   */
+  public function testHalfUnusableHeroSeedFallsBackForBothSlots(): void {
+    $case = $this->fixtureCases()['be-dual-block-authored-hero'];
+    $effective = $case['expectedEffectiveTheme'];
+    $effective['hero']['primary'] = ['#565B29', 'not-a-colour'];
+
+    $this->stubDmsmService($effective);
+
+    $defaults = $this->invoke($this->createForm(), 'seedFromDmsm', [FALSE]);
+
+    $this->assertSame(
+      [
+        'primary' => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
+        'secondary' => '#16c56e',
+      ],
+      $defaults['hero'],
+      'A broken secondary must not leave an orphaned real primary behind.'
+    );
+  }
+
+  /**
+   * The writer stores two scalar strings, never the legacy list.
+   *
+   * This is the assertion head's resolver depends on: it distinguishes an
+   * authored scalar from an inherited pair by type, so a writer regressing to
+   * a list would make every authored hero read as "inherited".
+   */
+  public function testSubmitWritesTheHeroAsTwoScalars(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+
+    $values = $this->submittableValues();
+    $values['theme']['hero'] = ['primary' => '#0A0B0C', 'secondary' => '#D0D1D2'];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    // Lower-cased on the way in, like every other colour this tab writes.
+    $this->assertSame('#0a0b0c', $config->get('theme.hero.primary'));
+    $this->assertSame('#d0d1d2', $config->get('theme.hero.secondary'));
+    $this->assertSame(
+      ['primary' => '#0a0b0c', 'secondary' => '#d0d1d2'],
+      $config->get('theme.hero'),
+      'The stored hero must be a two-key map, not an ordered list.'
+    );
+  }
+
+  /**
+   * A site authored before BL-1011 must not render an empty hero picker.
+   *
+   * The regression this exists for: every site that saved the Theme tab before
+   * the hero fields existed has `color`, `back_ground`, `mega_menu` and `i18n`
+   * but NO `hero` key. themeDefaults() used to return that subtree verbatim, so
+   * both new pickers got a NULL #default_value -- and `<input type="color">`
+   * has no empty state. The editor sees black, #required is satisfied by the
+   * #000000 the picker posts, and the next Save writes a black hero
+   * permanently, ending the inherited one downstream.
+   *
+   * The fallback path already covered the UNSEEDED site; this covers the
+   * already-authored one, which is most of the live fleet -- and here the
+   * dmsm seed cannot be read at all, so the flavor palette is what fills in.
+   */
+  public function testAuthoredThemeWithoutAHeroStillRendersUsableColors(): void {
+    // Consulted exactly once: an authored site with no usable hero yet must
+    // still ask the seed for its real inherited pair before falling back.
+    $this->stubDmsmService(NULL, 1);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#abcdef'],
+        'back_ground' => ['secondary' => '#f2f2f2'],
+        'mega_menu' => ['max_columns' => 5],
+        'i18n' => ['max_lang_before_wrap' => 6],
+      ],
+    ]));
+
+    foreach (['primary', 'secondary'] as $slot) {
+      $default = $form['theme']['hero'][$slot]['#default_value'];
+
+      $this->assertIsString($default, sprintf('hero.%s must never default to NULL.', $slot));
+      $this->assertMatchesRegularExpression(
+        '/^#[0-9a-f]{6}$/',
+        $default,
+        sprintf('hero.%s must default to a renderable lower-case hex colour.', $slot)
+      );
+      $this->assertNotSame('#000000', $default, 'A black default is the failure, not the fix.');
+    }
+
+    // The colours this site really did author are untouched by the fallback.
+    $this->assertSame('#123456', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#abcdef', $form['theme']['color']['secondary']['#default_value']);
+  }
+
+  /**
+   * An authored theme without a hero yet must inherit its OWN dmsm hero.
+   *
+   * The bug this covers: a site with pre-BL-1011 theme settings (colours
+   * saved, no `hero` key) that inherits a site-specific dmsm hero differing
+   * from its brand palette -- Belgium's `#565b29`/`#cbb279` pair, which is
+   * NOT its `color.secondary` (`#889262`) -- must default its hero pickers to
+   * that inherited pair, not to the flavor's network fallback. Saving even an
+   * unrelated Theme-tab change must not permanently replace it.
+   */
+  public function testAuthoredThemeWithoutAHeroInheritsItsOwnDmsmHero(): void {
+    $case = $this->fixtureCases()['be-dual-block-authored-hero'];
+    $this->stubDmsmService($case['expectedEffectiveTheme']);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#889262'],
+        'back_ground' => ['secondary' => '#f2f2f2'],
+        'mega_menu' => ['max_columns' => 5],
+        'i18n' => ['max_lang_before_wrap' => 6],
+      ],
+    ]));
+
+    $this->assertSame(
+      '#565b29',
+      $form['theme']['hero']['primary']['#default_value'],
+      "The site's own inherited hero must win over the flavor fallback."
+    );
+    $this->assertSame('#cbb279', $form['theme']['hero']['secondary']['#default_value']);
+    $this->assertNotSame(
+      $form['theme']['color']['secondary']['#default_value'],
+      $form['theme']['hero']['secondary']['#default_value'],
+      'This fixture only proves anything while its hero and brand secondaries differ.'
+    );
+
+    // The colours this site really did author remain untouched.
+    $this->assertSame('#123456', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#889262', $form['theme']['color']['secondary']['#default_value']);
+  }
+
+  /**
+   * An authored theme with a usable hero keeps it, never the seed's own.
+   *
+   * The seed IS still consulted -- themeDefaults() now overlays the authored
+   * subtree onto it per leaf, so an authored site's `mega_menu`/`i18n` gaps
+   * still need filling -- but hasUsableHeroPair() keeps `hero` out of that
+   * overlay's discard path, so the editor's own pair is never displaced by
+   * whatever the seed's own effective-theme hero happens to be.
+   */
+  public function testAuthoredThemeWithAUsableHeroIsNeverReseeded(): void {
+    $this->stubDmsmService(NULL, 1);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#abcdef'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
+    ]));
+
+    $this->assertSame('#111111', $form['theme']['hero']['primary']['#default_value']);
+    $this->assertSame('#222222', $form['theme']['hero']['secondary']['#default_value']);
+  }
+
+  /**
+   * A malformed hero colour is rejected by the server-side hex validator.
+   *
+   * Same defence-in-depth role as the brand-colour rows it joins: unreachable
+   * through the UI while the elements stay `#type => color`, and the only
+   * check that survives if they are ever changed to `textfield`.
+   *
+   * @dataProvider heroSlotProvider
+   */
+  public function testValidationRejectsAMalformedHeroColor(string $slot): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    $values = $this->submittableValues();
+    $values['theme']['hero'][$slot] = 'not-a-colour';
+    $formState = $this->formState($values);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    $this->assertArrayHasKey('theme][hero][' . $slot, $formState->getErrors());
+  }
+
+  /**
+   * The two hero slots.
+   *
+   * @return array
+   *   Test cases.
+   */
+  public function heroSlotProvider(): array {
+    return [
+      'primary' => ['primary'],
+      'secondary' => ['secondary'],
+    ];
   }
 
 }

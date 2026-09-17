@@ -60,6 +60,28 @@ final class BiolandThemeContract {
   public const KEY_BACK_GROUND_SECONDARY = 'back_ground.secondary';
 
   /**
+   * Hero banner primary color.
+   *
+   * A hex STRING, deliberately not the two-element list the legacy network
+   * theme stores at the same dot-path. bioland-head's `hero.primary` has
+   * always been `[primary, secondary]` -- one key holding an ordered pair --
+   * which an editor cannot author in a colour picker and which gives the
+   * secondary slot no name of its own. This contract splits the pair into two
+   * scalar keys, and head accepts either shape: an authored scalar
+   * `hero.primary` / `hero.secondary` wins, and a site with neither falls back
+   * to the inherited array exactly as before.
+   *
+   * @see self::KEY_HERO_SECONDARY
+   */
+  public const KEY_HERO_PRIMARY = 'hero.primary';
+
+  /**
+   * Hero banner secondary color. A hex string; see self::KEY_HERO_PRIMARY for
+   * why this slot needs a key of its own rather than an array index.
+   */
+  public const KEY_HERO_SECONDARY = 'hero.secondary';
+
+  /**
    * Home page widget columns: a list of grid columns, each an ordered list
    * of widget machine names (a sequence of sequences, not a flat list -- see
    * bioland-head app/components/page/home-chm.vue:18-20). Vocabulary owned by
@@ -97,6 +119,8 @@ final class BiolandThemeContract {
     self::KEY_COLOR_PRIMARY,
     self::KEY_COLOR_SECONDARY,
     self::KEY_BACK_GROUND_SECONDARY,
+    self::KEY_HERO_PRIMARY,
+    self::KEY_HERO_SECONDARY,
     self::KEY_HOME_PAGE_WIDGETS_COLUMNS,
     self::KEY_MEGA_MENU_MAX_COLUMNS,
     self::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN,
@@ -116,6 +140,14 @@ final class BiolandThemeContract {
     self::KEY_I18N_MAX_LANG_BEFORE_WRAP,
     self::KEY_COLOR_PRIMARY,
     self::KEY_COLOR_SECONDARY,
+    // Required for the same reason the brand colours are: these are
+    // `#type => color` elements, and `<input type="color">` has no empty
+    // state -- an untouched picker posts #000000. Leaving them optional would
+    // not produce "unauthored", it would produce a black hero on the first
+    // Save. Their defaults come from the seed's `hero.primary` pair, falling
+    // back to the flavor's brand pair (see BiolandThemeForm::HERO_SEED_PATHS).
+    self::KEY_HERO_PRIMARY,
+    self::KEY_HERO_SECONDARY,
   ];
 
   /**
