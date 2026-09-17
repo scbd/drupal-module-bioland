@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "test": "jest",
-        "test:php": "composer test",
+        "test:php": "vendor/bin/phpunit",
         "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' \\) -not -path './vendor/*' -not -path './node_modules/*' -not -path './.claude/*' -not -path './.agents/*' -not -path './web/*' -not -path './coverage/*' -print0 | xargs -0 -n 1 php -l",
         "test:all": "npm run lint:php && npm run test:php && npm test",
         "deploy:dev-bsl": "rsync -av --exclude='.agents' --exclude='coverage' --exclude='.git' --exclude='.claude'   --exclude='.github' --exclude='node_modules' --exclude='vendor' --exclude='.DS_Store' ./ ubuntu@staging.infra.cbd.int:/home/ubuntu/dmsm/dev/dev/bsl/modules/custom/scbd-bioland/",
