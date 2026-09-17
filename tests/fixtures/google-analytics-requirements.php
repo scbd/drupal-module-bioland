@@ -4,8 +4,14 @@
  * Isolated facade for executing the real requirements hook without a Drupal site.
  * Run only by BiolandGoogleAnalyticsMisconfigurationTest in a fresh PHP process.
  */
+const REQUIREMENT_OK = 0;
 const REQUIREMENT_WARNING = 1;
 const REQUIREMENT_ERROR = 2;
+
+// The dmsm requirements hook reads a class constant off the config service.
+// The service file loads standalone (no autoloader here); nothing in this
+// facade instantiates it.
+require dirname(__DIR__, 2) . '/src/Service/BiolandDmsmConfigService.php';
 
 class Drupal
 {
@@ -67,6 +73,13 @@ class Drupal
   public static function hasRequest()
   {
     return FALSE;
+  }
+
+  public static function service($id)
+  {
+    // No container in this facade. The dmsm requirements hook catches this
+    // and reports its own refused entry, which this test never asserts on.
+    throw new RuntimeException('No service container: ' . $id);
   }
 
 }
