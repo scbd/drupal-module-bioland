@@ -265,8 +265,9 @@ function bioland_update_9080() {
  * switch on does not have it turned back off by a re-run.
  *
  * It also re-imports the translation catalogs, guarded on locale being enabled
- * exactly as bioland_update_9080() does, so an existing site picks up the
- * switch's own UI strings and the reworded tag IDs help text.
+ * exactly as bioland_update_9080() does. The switch's UI strings and the
+ * reworded tag IDs help text are not in the catalogs yet - they arrive with
+ * BL-1028 - so this re-import cannot translate them.
  *
  * As the new highest-numbered hook it is guaranteed to run LAST on every site,
  * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
@@ -298,7 +299,7 @@ function bioland_update_9081() {
   }
   else {
     _bioland_import_translations();
-    $messages[] = 'Re-imported Bioland translation catalogs for the Google Analytics switch strings. Check logs for details.';
+    $messages[] = 'Re-imported Bioland translation catalogs. The Google Analytics switch strings arrive with BL-1028. Check logs for details.';
   }
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
