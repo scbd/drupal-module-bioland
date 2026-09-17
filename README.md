@@ -340,16 +340,16 @@ $all_settings = $settings_manager->getAllSettings();
 
 The module uses a modular JavaScript architecture:
 
-- **js/bioland-field-visibility-1-1-6.js**: Handles field show/hide logic
-- **js/bioland-additional-fields-1-1-6.js**: Manages Vue.js-based additional field mounting
-- **js/bioland-auto-summary-1-1-6.js**: Provides intelligent summary generation
-- **js/bioland-help-comments-1-1-6.js**: Renders translatable inline field help text
-- **js/bioland-home-widgets-1-1-6.js**: Publishes per-country home-widget settings via `window.Bioland.homeWidgets`
-- **js/bioland-component-menu-form-1-1-6.js**: Behaviours for the mega-menu component link form
-- **js/bioland-language-redirect-1-1-6.js**: Language-redirect behaviour
-- **js/bioland-hide-bulk-actions-1-1-6.js**: Hides selected bulk operations in admin listings
-- **js/bioland-settings-toggle-1-1-6.js**: Show/hide behaviour for settings-form sections
-- **js/bioland-debug-logger-1-1-6.js**: Shared opt-in debug logger used by the other behaviours
+- **js/bioland-field-visibility-1-1-7.js**: Handles field show/hide logic
+- **js/bioland-additional-fields-1-1-7.js**: Manages Vue.js-based additional field mounting
+- **js/bioland-auto-summary-1-1-7.js**: Provides intelligent summary generation
+- **js/bioland-help-comments-1-1-7.js**: Renders translatable inline field help text
+- **js/bioland-home-widgets-1-1-7.js**: Publishes per-country home-widget settings via `window.Bioland.homeWidgets`
+- **js/bioland-component-menu-form-1-1-7.js**: Behaviours for the mega-menu component link form
+- **js/bioland-language-redirect-1-1-7.js**: Language-redirect behaviour
+- **js/bioland-hide-bulk-actions-1-1-7.js**: Hides selected bulk operations in admin listings
+- **js/bioland-settings-toggle-1-1-7.js**: Show/hide behaviour for settings-form sections
+- **js/bioland-debug-logger-1-1-7.js**: Shared opt-in debug logger used by the other behaviours
 
 ### Libraries
 

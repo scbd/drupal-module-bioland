@@ -17,15 +17,28 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  *
  * - color.primary, color.secondary            (hex colour pickers, required)
  * - back_ground.secondary                     (hex colour picker, required)
+ * - hero.primary, hero.secondary              (hex colour pickers, required)
  * - home_page_widgets.columns                 (widget selects; hidden on BSL)
  * - mega_menu.max_columns                     (1-6)
  * - mega_menu.max_rows_per_column             (>= 0; 0 means unlimited)
  * - mega_menu.horizontal_card_max             (1-6)
  * - i18n.max_lang_before_wrap                 (integer, required)
  *
- * `hero` is NEVER authored here: it is derived downstream only when no source
- * defines it (see BiolandDmsmConfigService::getEffectiveTheme()). The dead
- * legacy keys (text.*, *_text_over, can_auto_translate, back_ground.primary,
+ * `hero` IS authored here as of BL-1011, as two scalar hex keys. It used to
+ * be derived downstream only when no source defined it, which left an editor
+ * with no way to set the hero banner at all: the head compensated by letting a
+ * saved brand colour override the inherited hero slot, so the two could never
+ * be set independently. Two named colour pickers replace that guess.
+ *
+ * Note the shape change. The legacy network theme stores the hero as ONE key
+ * holding an ordered pair, `hero.primary: [primary, secondary]`. This tab
+ * writes two scalars instead, `hero.primary` and `hero.secondary`, because a
+ * colour picker authors one colour and the second slot deserves a name. The
+ * head accepts both: authored scalars win, and a site that has never saved
+ * this tab still resolves the inherited array exactly as before. The seed
+ * bridges the two shapes -- see self::HERO_SEED_PATHS.
+ *
+ * The dead legacy keys (text.*, *_text_over, can_auto_translate, back_ground.primary,
  * back_ground.tertiary, mega_menu.column_wrap, mega_menu.horizontal_card_wrap,
  * mega_menu.show_empty, colums_width) are deliberately absent and must never
  * be reintroduced. A conformance test pins the writer's key set against
@@ -124,6 +137,31 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   ];
 
   /**
+   * The hero half of the seed map, kept separate because it changes shape.
+   *
+   * Every other entry in self::SEED_PATHS is a like-for-like leaf copy. These
+   * two are not: the effective dmsm theme stores the hero as the legacy
+   * ordered pair `hero.primary: [primary, secondary]`, and this tab authors it
+   * as two scalars. So the seed reads INDEX 0 and INDEX 1 of that list and
+   * lands them on two separate config keys. leaf() walks a numeric segment the
+   * same way it walks a string one (array_key_exists on a list), so the paths
+   * below need no special reader.
+   *
+   * Merging these into SEED_PATHS would hide the shape change behind two paths
+   * that look like every other entry; splitting them is what makes it
+   * reviewable. Both maps are consumed by the same loop in seedFromDmsm().
+   *
+   * Applied by withHeroPair(), NOT by the generic loop, because the pair is
+   * validated as a UNIT -- see that method for why half of it is worse than
+   * none of it. A site whose seed carries no usable hero pair simply gets no
+   * hero default from here and falls through to withFallbackColors().
+   */
+  protected const HERO_SEED_PATHS = [
+    BiolandThemeContract::KEY_HERO_PRIMARY => 'hero.primary.0',
+    BiolandThemeContract::KEY_HERO_SECONDARY => 'hero.primary.1',
+  ];
+
+  /**
    * Last-resort colours for a bl2 site when the dmsm seed cannot be read.
    *
    * getEffectiveTheme() returns NULL on any HTTP or parse error, leaving an
@@ -165,6 +203,14 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     BiolandThemeContract::KEY_COLOR_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
     BiolandThemeContract::KEY_COLOR_SECONDARY => '#16c56e',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
+    // The same two values again, not a copy-paste slip. The prod/bl2 network
+    // document's `hero.primary` pair is ['#009edb', '#16c56e'] -- byte-identical
+    // to its brand pair -- so the flavor's last-resort hero IS its brand pair.
+    // They are listed separately rather than aliased because the two keys are
+    // independently authorable from here on, and a future network document
+    // that diverges them must only have to change this table.
+    BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
+    BiolandThemeContract::KEY_HERO_SECONDARY => '#16c56e',
   ];
 
   /**
@@ -191,6 +237,11 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     BiolandThemeContract::KEY_COLOR_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BSL,
     BiolandThemeContract::KEY_COLOR_SECONDARY => '#428bca',
     BiolandThemeContract::KEY_BACK_GROUND_SECONDARY => '#f2f2f2',
+    // As on the bl2 set: dev/bsl's `hero.primary` pair is ['#fa6938', '#428BCA'],
+    // the same two colours as its brand pair, lower-cased here to round-trip
+    // through `<input type="color">`.
+    BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BSL,
+    BiolandThemeContract::KEY_HERO_SECONDARY => '#428bca',
   ];
 
   /**
@@ -212,6 +263,35 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * @var array|null
    */
   protected $seedCache = NULL;
+
+  /**
+   * The raw effective dmsm theme, memoized separately from self::$seedCache.
+   *
+   * self::$seedCache stores the translated D4 defaults; the authored branch
+   * of themeDefaults() needs the raw camelCase effective theme instead, to
+   * seed only the hero pair without disturbing colours the editor already
+   * saved. Both branches share this cache so a request that touches both
+   * (authored-with-no-hero, then a later unrelated seedFromDmsm() call)
+   * still makes the 10 second HTTP call only once.
+   *
+   * Stores an array on success or NULL on failure. self::$effectiveThemeFetched
+   * distinguishes a completed fetch from the initial, not-yet-fetched NULL.
+   *
+   * @var array|null
+   */
+  protected $effectiveThemeCache = NULL;
+
+  /**
+   * Whether self::$effectiveThemeCache has been populated yet.
+   *
+   * Needed because `[]` (an unreadable seed) and NULL-not-yet-fetched are
+   * both falsy the same way self::$seedCache distinguishes them, but here
+   * a fetch failure and "never asked" are both represented as NULL in the
+   * cache itself, so a separate flag is required to tell them apart.
+   *
+   * @var bool
+   */
+  protected $effectiveThemeFetched = FALSE;
 
   /**
    * {@inheritdoc}
@@ -280,6 +360,27 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#title' => $this->t('Secondary background color'),
       '#required' => TRUE,
       '#default_value' => $this->leaf($defaults, 'back_ground.secondary'),
+    ];
+
+    // A real fieldset, unlike `back_ground` above: this is a second group as
+    // far as the editor is concerned -- the hero banner is a distinct surface
+    // from the brand palette, and the two are now set independently.
+    $form['theme']['hero'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Hero Banner Colors'),
+      '#tree' => TRUE,
+    ];
+    $form['theme']['hero']['primary'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Primary hero color'),
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'hero.primary'),
+    ];
+    $form['theme']['hero']['secondary'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Secondary hero color'),
+      '#required' => TRUE,
+      '#default_value' => $this->leaf($defaults, 'hero.secondary'),
     ];
 
     // D7: the columns field does not exist at all on BSL sites. Its validator
@@ -418,7 +519,12 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // assertion that survives if the element type is ever changed from
     // `color` to `textfield` -- a one-word edit that would otherwise silently
     // remove all hex validation. Do not delete it as dead code.
-    foreach (['color.primary', 'color.secondary', 'back_ground.secondary'] as $path) {
+    // Derived from the colour table, never restated: a sixth colour key added
+    // to the contract would otherwise ship with no server-side hex check, and
+    // surviving exactly that kind of edit is this loop's whole purpose. The
+    // two flavor tables carry identical key sets, pinned by
+    // testFallbackColorsAreLowerCase().
+    foreach (array_keys(self::FALLBACK_COLORS_BL2) as $path) {
       $value = $this->leaf($values, $path);
       if ($value === NULL || $value === '') {
         // Emptiness is #required's business, not this validator's.
@@ -497,6 +603,11 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     $config->set('theme.color.secondary', $this->normalizeHex($this->leaf($values, 'color.secondary')));
     // Literally `back_ground`, never `background`. See the class docblock.
     $config->set('theme.back_ground.secondary', $this->normalizeHex($this->leaf($values, 'back_ground.secondary')));
+    // Two scalars, never the legacy `hero.primary: [primary, secondary]` list.
+    // See the class docblock for why the shape differs from the network theme
+    // and how the head reconciles the two.
+    $config->set('theme.hero.primary', $this->normalizeHex($this->leaf($values, 'hero.primary')));
+    $config->set('theme.hero.secondary', $this->normalizeHex($this->leaf($values, 'hero.secondary')));
 
     // D7: never written where the field was never rendered.
     if (isset($form['theme']['home_page_widgets']['columns'])) {
@@ -630,6 +741,23 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     $authored = $config->get(self::CONFIG_KEY);
     $authored = is_array($authored) ? $authored : [];
 
+    // The hero pair is authored (and overlaid) as a single atomic unit, not as
+    // two independent leaves. overlayAuthored() otherwise recurses into any
+    // keyed group leaf-by-leaf, and a half-authored pair -- one usable slot,
+    // one missing or corrupt -- would then blend the editor's own primary
+    // with the seed's unrelated secondary: exactly the "no document anywhere
+    // defines this combination" outcome withHeroPair() itself declines to
+    // produce. Dropping an unusable authored pair here lets the seed's own
+    // pair-or-nothing hero (seeded from this site's own effective dmsm theme
+    // in seedFromDmsm(), or the flavor fallback pair when that seed has none)
+    // take over untouched. A site that never authored a hero at all -- every
+    // site that saved this tab before BL-1011 -- takes this same path, which
+    // is what fills both new pickers instead of leaving them at the NULL
+    // #default_value that `<input type="color">` renders as black.
+    if (isset($authored['hero']) && !$this->hasUsableHeroPair($authored)) {
+      unset($authored['hero']);
+    }
+
     $seed = $this->seedFromDmsm($this->isBiosafetyLand($config));
 
     return $this->overlayAuthored($seed, $authored);
@@ -723,17 +851,9 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
     }
 
-    $service = $this->dmsmConfigService();
-    $effective = $service instanceof BiolandDmsmConfigService
-      ? $service->getEffectiveTheme()
-      : NULL;
+    $effective = $this->effectiveDmsmTheme();
 
     if (!is_array($effective)) {
-      // Silent to the editor, never to the operator: the built-in defaults
-      // shown in their place are correct for this network, so a warning on
-      // screen would be noise, but nothing else records that the seed failed.
-      \Drupal::logger('bioland')->warning('Could not read the dmsm theme seed for this site; the Theme tab is falling back to the built-in network colour defaults for this flavor.');
-
       $this->seedCache = [];
 
       return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
@@ -761,15 +881,65 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       unset($cursor);
     }
 
+    $defaults = $this->withHeroPair($defaults, $effective);
+
     $this->seedCache = $defaults;
 
     return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
   }
 
   /**
+   * Applies the seed's hero pair to the defaults, both slots or neither.
+   *
+   * The hero is the one seed value read out of a LIST by index rather than
+   * off a named string key, so it is also the one with no type guarantee: a
+   * short pair, a null slot, or a non-colour string all reach here. Anything
+   * that is not a renderable hex colour has to be dropped, because these are
+   * `#type => color` elements and core turns an empty picker into #000000 on
+   * the first Save.
+   *
+   * It is dropped as a PAIR, deliberately, which is why this does not live in
+   * the generic per-leaf seed loop. Filling only the broken slot from the
+   * flavor palette would pair a site's real hero primary with a network
+   * default secondary -- a combination no document anywhere defines, and one
+   * an editor has no way to recognise as wrong. Falling back to the flavor's
+   * own pair is at least a palette that exists. Either way withFallbackColors()
+   * supplies what this method declines to.
+   *
+   * @param array $defaults
+   *   The snake_case defaults built from the seed so far.
+   * @param array $effective
+   *   The effective camelCase dmsm theme.
+   *
+   * @return array
+   *   The defaults, with the hero pair applied only if both slots are usable.
+   */
+  protected function withHeroPair(array $defaults, array $effective): array {
+    $pair = [];
+
+    foreach (self::HERO_SEED_PATHS as $configPath => $headPath) {
+      $value = $this->leaf($effective, $headPath);
+      if (!$this->isHexColor($value)) {
+        // One unusable slot disqualifies the whole pair.
+        return $defaults;
+      }
+      [, $key] = explode('.', $configPath);
+      // Lower-cased, like the fallback tables and like normalizeHex() on
+      // submit. `<input type="color">` reports a lower-case value, so an
+      // upper-case default would claim a change the editor never made.
+      $pair[$key] = $this->normalizeHex($value);
+    }
+
+    $defaults['hero'] = $pair;
+
+    return $defaults;
+  }
+
+  /**
    * Fills any colour key the seed did not supply from the flavor's fallbacks.
    *
-   * Per leaf, and only for the three colour keys: a seed that carries
+   * Per leaf, and only for the five colour keys (the three brand/background
+   * ones plus the two hero ones): a seed that carries
    * `color.primary` but not `back_ground.secondary` keeps its own primary and
    * gains only the missing background. Nothing else is fabricated -- the
    * numeric and widget fields are safe to leave empty, because an empty
@@ -818,6 +988,63 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     }
 
     return \Drupal::service(self::DMSM_SERVICE_ID);
+  }
+
+  /**
+   * The raw effective dmsm theme, fetched and memoized at most once.
+   *
+   * Shared by seedFromDmsm() (unseeded sites) and themeDefaults()'s authored
+   * branch (a site with saved colours but no hero yet), so a request that
+   * needs the seed from both paths still makes the 10 second HTTP call only
+   * once. See self::$effectiveThemeCache.
+   *
+   * @return array|null
+   *   The camelCase effective theme, or NULL when it could not be read.
+   */
+  protected function effectiveDmsmTheme(): ?array {
+    if ($this->effectiveThemeFetched) {
+      return $this->effectiveThemeCache;
+    }
+
+    $service = $this->dmsmConfigService();
+    $effective = $service instanceof BiolandDmsmConfigService
+      ? $service->getEffectiveTheme()
+      : NULL;
+
+    if (!is_array($effective)) {
+      // Silent to the editor, never to the operator: the built-in defaults
+      // shown in their place are correct for this network, so a warning on
+      // screen would be noise, but nothing else records that the seed failed.
+      \Drupal::logger('bioland')->warning('Could not read the dmsm theme seed for this site; the Theme tab is falling back to the built-in network colour defaults for this flavor.');
+
+      $effective = NULL;
+    }
+
+    $this->effectiveThemeCache = $effective;
+    $this->effectiveThemeFetched = TRUE;
+
+    return $this->effectiveThemeCache;
+  }
+
+  /**
+   * Whether an authored theme already carries a renderable hero pair.
+   *
+   * Guards withHeroPair() on the authored path: that method unconditionally
+   * overwrites `hero` once it finds a usable pair in the seed, which is
+   * correct when building fresh defaults but would clobber an editor's own
+   * saved hero if applied unconditionally here. Both slots are required --
+   * a half-authored hero is exactly the "one unusable slot disqualifies the
+   * pair" case withHeroPair() itself already treats as absent.
+   *
+   * @param array $authored
+   *   The site's saved theme subtree.
+   *
+   * @return bool
+   *   TRUE when both hero slots are present and render-safe.
+   */
+  protected function hasUsableHeroPair(array $authored): bool {
+    return $this->isHexColor($this->leaf($authored, 'hero.primary'))
+      && $this->isHexColor($this->leaf($authored, 'hero.secondary'));
   }
 
   /**
@@ -913,6 +1140,23 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    */
   protected function normalizeHex($value): string {
     return is_string($value) ? strtolower(trim($value)) : '';
+  }
+
+  /**
+   * Whether a value is a six-digit hex colour a picker can render.
+   *
+   * Used on the hero seed only, where the value is read out of a list by index
+   * and so carries no type guarantee. The brand colour seeds land on named
+   * string keys and need no such check.
+   *
+   * @param mixed $value
+   *   The candidate value.
+   *
+   * @return bool
+   *   TRUE when the value is a string of the form #RRGGBB.
+   */
+  protected function isHexColor($value): bool {
+    return is_string($value) && preg_match('/^#[0-9A-Fa-f]{6}$/', trim($value)) === 1;
   }
 
   /**
