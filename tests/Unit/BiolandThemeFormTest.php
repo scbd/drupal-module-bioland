@@ -8,6 +8,7 @@ use Drupal\bioland\BiolandThemeContract;
 use Drupal\bioland\Form\BiolandThemeForm;
 use Drupal\bioland\Service\BiolandDmsmConfigService;
 use Drupal\Core\Config\Config;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\Language;
@@ -335,11 +336,32 @@ class BiolandThemeFormTest extends TestCase {
     $loggerFactory = $this->createMock('Drupal\Core\Logger\LoggerChannelFactoryInterface');
     $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
 
-    $service = new BiolandDmsmConfigService(
-      $this->createMock('Drupal\Core\Config\ConfigFactoryInterface'),
+    // The config API host is deployment configuration, never a literal in
+    // code (BL-992), so the fetch needs the base URL seeded here, plus the
+    // production allowlist that names it. The DNS seam is stubbed so the
+    // fetch guard does not depend on live resolution.
+    $configFactory = $this->createMock('Drupal\Core\Config\ConfigFactoryInterface');
+    $configFactory->method('get')->willReturn(new ImmutableConfig('bioland.settings', [
+      'dmsm_config_base_url' => 'https://config.example.test',
+      'dmsm_config_prod_host_allowlist' => ['config.example.test'],
+    ]));
+
+    $service = new class(
+      $configFactory,
       $httpClient,
-      $loggerFactory
-    );
+      $loggerFactory,
+      $this->createMock('Drupal\Core\Queue\QueueFactory'),
+      $this->createMock('Symfony\Component\HttpFoundation\RequestStack')
+    ) extends BiolandDmsmConfigService {
+
+      /**
+       * {@inheritdoc}
+       */
+      protected function resolveHostAddresses($host) {
+        return ['93.184.216.34'];
+      }
+
+    };
 
     return $service->getEffectiveTheme('demo.bl2.chm-cbd.net');
   }

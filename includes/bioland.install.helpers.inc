@@ -211,7 +211,7 @@ function bioland_update_9079() {
  * It runs after the 9071-9079 corrective hooks, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
  * API config so it never leaves a half-configured index behind. The last
- * writer for every site is now bioland_update_9082().
+ * writer for every site is now bioland_update_9083().
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
@@ -276,7 +276,7 @@ function bioland_update_9080() {
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
  */
-function bioland_update_9082() {
+function bioland_update_9083() {
   // Plain strings, not t() - the translation system is not dependable
   // mid-update.
   $messages = [];

@@ -8,6 +8,15 @@ bioland.settings:
       sequence:
         type: string
         label: 'ISO country code'
+    dmsm_config_base_url:
+      type: string
+      label: 'Config API base URL for the geography fetch'
+    dmsm_config_prod_host_allowlist:
+      type: sequence
+      label: 'Hosts a production site may fetch its geography from'
+      sequence:
+        type: string
+        label: 'Host'
     region:
       type: string
       label: 'Geographic region'

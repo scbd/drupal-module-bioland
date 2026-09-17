@@ -96,7 +96,7 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
     $this->assertMatchesRegularExpression(
       "/->set\('" . self::KEY . "',\s*FALSE\);\s*\n\s*\\\$config->save\(\);/",
       $this->hookBody(),
-      'bioland_update_9082() must seed the switch as FALSE and save it.'
+      'bioland_update_9083() must seed the switch as FALSE and save it.'
     );
   }
 
@@ -109,7 +109,7 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
     $this->assertStringContainsString(
       '_bioland_import_translations()',
       $body,
-      'bioland_update_9082() must re-import the translation catalogs so existing sites pick up the switch strings.'
+      'bioland_update_9083() must re-import the translation catalogs so existing sites pick up the switch strings.'
     );
     $this->assertStringContainsString(
       "moduleExists('locale')",
@@ -125,15 +125,15 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
     $this->assertMatchesRegularExpression(
       "/if\s*\(\\\$config->get\('" . self::KEY . "'\)\s*===\s*NULL\)/",
       $this->hookBody(),
-      'bioland_update_9082() must guard on === NULL so re-running it never turns a site back off.'
+      'bioland_update_9083() must guard on === NULL so re-running it never turns a site back off.'
     );
   }
 
   /**
-   * Returns the source of bioland_update_9082() alone.
+   * Returns the source of bioland_update_9083() alone.
    *
    * Cut at the next function declaration rather than at the end of the file:
-   * otherwise a later bioland_update_9083() could satisfy this hook's
+   * otherwise a later bioland_update_9084() could satisfy this hook's
    * assertions on its behalf.
    *
    * @return string
@@ -141,9 +141,9 @@ class BiolandGoogleAnalyticsToggleTest extends TestCase {
    */
   private function hookBody(): string {
     $source = $this->read('includes/bioland.install.helpers.inc');
-    $offset = strpos($source, 'function bioland_update_9082(');
+    $offset = strpos($source, 'function bioland_update_9083(');
 
-    $this->assertIsInt($offset, 'bioland_update_9082() must exist in includes/bioland.install.helpers.inc.');
+    $this->assertIsInt($offset, 'bioland_update_9083() must exist in includes/bioland.install.helpers.inc.');
 
     $body = substr($source, $offset);
 
