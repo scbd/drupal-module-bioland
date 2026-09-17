@@ -26,7 +26,8 @@ class Drupal
   public static function moduleHandler()
   {
     return new class {
-      public function moduleExists($name) {
+      public function moduleExists($name)
+      {
         // Avoid loading node storage; unrelated dependency requirements are kept.
         return FALSE;
       }
@@ -39,14 +40,16 @@ class Drupal
       throw new RuntimeException('Unexpected configuration read.');
     }
     return new class {
-      public function get($key) {
+      public function get($key)
+      {
         if ($key !== 'google_analytics_enabled') {
           throw new RuntimeException('Unexpected configuration key.');
         }
         return Drupal::$override;
       }
 
-      public function getOriginal($key, $apply_overrides = TRUE) {
+      public function getOriginal($key, $apply_overrides = TRUE)
+      {
         if ($key !== 'google_analytics_enabled') {
           throw new RuntimeException('Unexpected configuration key.');
         }
