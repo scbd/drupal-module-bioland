@@ -98,3 +98,5 @@ test-output.txt
 !.github/workflows/
 # Session-local backlog capture (never committed, never shipped in an image)
 backlog.jsonl
+.agents
+agents
