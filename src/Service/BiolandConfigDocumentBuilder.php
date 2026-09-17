@@ -95,6 +95,21 @@ final class BiolandConfigDocumentBuilder {
   ];
 
   /**
+   * Top-level keys whose schema type is `mapping` (a JSON object) but whose
+   * stored value can legitimately be an empty PHP array — a fresh install's
+   * `help_comments` starts as an empty mapping in
+   * config/install/bioland.settings.yml. An empty array and an empty object
+   * both decode to PHP `[]`, so nothing catches the wire type silently
+   * flipping to `[]` unless it is cast back to an object on the way out.
+   *
+   * Not every schema `mapping` key needs this: most (e.g. `additional_tags`,
+   * `translation`) always ship with their fixed sub-keys populated by
+   * defaults, so they can never actually be empty. Only list a key here once
+   * it is confirmed to reach build() empty in real config.
+   */
+  private const OBJECT_SHAPED_WHEN_EMPTY = ['help_comments'];
+
+  /**
    * Never-ship key names (contract R2), normalized to lowercase alphanumerics.
    */
   private const DENY_KEYS = [
@@ -235,7 +250,14 @@ final class BiolandConfigDocumentBuilder {
         $included[$key] = $raw[$key];
       }
     }
-    return $this->scrub($this->camelCaseKeys($included, 'biolandSettings'), 'biolandSettings');
+    $out = $this->scrub($this->camelCaseKeys($included, 'biolandSettings'), 'biolandSettings');
+    foreach (self::OBJECT_SHAPED_WHEN_EMPTY as $key) {
+      $camelKey = self::camelCase($key);
+      if (array_key_exists($camelKey, $out) && $out[$camelKey] === []) {
+        $out[$camelKey] = (object) [];
+      }
+    }
+    return $out;
   }
 
   /**

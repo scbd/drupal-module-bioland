@@ -50,7 +50,8 @@ class BiolandConfigDocumentBuilderTest extends TestCase {
    * The built document reproduces p01-01's contract example exactly.
    */
   public function testMatchesContractExampleDocument() {
-    $example = $this->fixture('drupal-config-document.example.json');
+    $examplePath = __DIR__ . '/../../fixtures/config-contract/drupal-config-document.example.json';
+    $this->assertFileExists($examplePath);
     $source = $this->fixture('bioland-settings.source.json');
 
     $document = $this->builder->build(
@@ -67,7 +68,15 @@ class BiolandConfigDocumentBuilderTest extends TestCase {
       '2026-01-01T00:00:00.000Z'
     );
 
-    $this->assertSame($example, $document, 'The served document must match the contract example document.');
+    // json_decode(..., FALSE) preserves the {} vs [] distinction that
+    // decoding to an array (as fixture() does for other tests) would erase -
+    // both an empty JSON object and an empty JSON array decode to the same
+    // PHP []. Re-encoding both sides through the identical json_encode() call
+    // CacheableJsonResponse::getContent() uses catches a served empty object
+    // silently regressing to an empty array (or vice versa), which an
+    // array-based assertSame() cannot.
+    $expectedCanonical = json_encode(json_decode(file_get_contents($examplePath), FALSE));
+    $this->assertSame($expectedCanonical, json_encode($document), 'The served document must match the contract example document, including {} vs [] wire types.');
   }
 
   /**
