@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "Thêm mục con mega menu"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Bật Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Tắt theo mặc định. Khi mục này đang tắt, trang web công khai không tải bất kỳ thẻ Google nào, ngay cả khi đã cấu hình ID thẻ bên dưới. Chỉ cần bật nó là đủ để các ID đã cấu hình được tải, với điều kiện duy nhất là khách truy cập chấp nhận danh mục cookie Google Analytics. Các thay đổi đã lưu đến trang web công khai trong khoảng 5 phút."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "ID thẻ Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Danh sách ID thẻ Google được phân tách bằng dấu phẩy, ví dụ G-ABC1234567,GTM-XYZ789. Các tiền tố được chấp nhận là G-, GTM-, AW-, DC- và UA-. Trang web công khai tải một cấu hình gtag.js cho mỗi ID không phải GTM và một vùng chứa Tag Manager cho mỗi ID GTM-. Các tập lệnh chỉ tải cho khách truy cập chấp nhận danh mục cookie Google Analytics và chỉ trên máy chủ sản xuất của một trang bl2 (các multisites khác ngày nay không tải thẻ Google). Các thay đổi đã lưu đến trang web công khai trong khoảng 5 phút; các thay đổi trang trong trang web dựa vào GA4 Đo lường nâng cao, được bật theo mặc định cho một luồng dữ liệu web. ID UA- được chấp nhận cho các thuộc tính cũ, nhưng Google đã ngừng xử lý dữ liệu Universal Analytics vào ngày 1 tháng 7 năm 2023, vì vậy chúng không ghi lại gì."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Danh sách ID thẻ Google được phân tách bằng dấu phẩy, ví dụ G-ABC1234567,GTM-XYZ789. Các tiền tố được chấp nhận là G-, GTM-, AW-, DC- và UA-. Trang web công khai tải một cấu hình gtag.js cho mỗi ID không phải GTM và một vùng chứa Tag Manager cho mỗi ID GTM-. Các tập lệnh chỉ tải khi hộp kiểm ở trên được bật và chỉ cho khách truy cập chấp nhận danh mục cookie Google Analytics. Các thay đổi đã lưu đến trang web công khai trong khoảng 5 phút; các thay đổi trang trong trang web dựa vào GA4 Đo lường nâng cao, được bật theo mặc định cho một luồng dữ liệu web. ID UA- được chấp nhận cho các thuộc tính cũ, nhưng Google đã ngừng xử lý dữ liệu Universal Analytics vào ngày 1 tháng 7 năm 2023, vì vậy chúng không ghi lại gì."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Các ID thẻ Google sau không hợp lệ: @tokens. Mỗi ID phải bắt đầu bằng một trong các tiền tố được chấp nhận: G-, GTM-, AW-, DC- hoặc UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics đang bật nhưng chưa cấu hình ID thẻ Google nào, vì vậy sẽ không có thẻ nào được tải. Hãy thêm ít nhất một ID bên dưới."

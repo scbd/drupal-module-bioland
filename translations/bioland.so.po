@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "Ku dar hoosaad menu-ga weyn"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Shid Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Si caadi ah waa demin. Inta uu kani demin yahay, websaytka dadweynaha ma soo dejiyo wax Google tag ah, xitaa marka aqoonsiyada tag-ga hoos lagu habeeyay. In la shido waa waxa keliya ee loo baahan yahay si aqoonsiyada la habeeyay u soo dejiyaan, iyadoo shuruudda kaliya tahay in booqdaha uu aqbalo qaybta cookie-ga Google Analytics. Isbeddelada la keydiyay waxay gaaraan websaytka dadweynaha muddo ku dhow 5 daqiiqo."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Aqoonsiyada Google tag"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Liis aqoonsiyada Google tag oo koma ku kala qaybsan, tusaale ahaan G-ABC1234567,GTM-XYZ789. Horgalayaasha la aqbalo waa G-, GTM-, AW-, DC- iyo UA-. Websaytka dadweynaha wuxuu soo dejiyaa hal habayn gtag.js ee aqoonsi kasta oo aan GTM ahayn iyo hal weel Tag Manager ee aqoonsi kasta oo GTM- ah. Scripts-ka waxaa loo soo dejiyaa oo keliya booqdayaasha aqbala qaybta cookie-ga Google Analytics iyo oo keliya host-ka waxsoosaarka ee sayt bl2 (multisites kale maanta ma soo dejiyaan Google tag). Isbeddelada la keydiyay waxay gaaraan websaytka dadweynaha muddo ku dhow 5 daqiiqo; isbeddelada bogagga gudaha saytka waxay ku tiirsan yihiin GA4 Enhanced Measurement, oo si caadi ah u shidan qulqulka xogta web-ka. Aqoonsiyada UA- waa la aqbalayaa hantida hore, laakiin Google waxay joojisay habaynta xogta Universal Analytics 1 Luulyo 2023, sidaas darteed waxba ma duubaan."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Liis aqoonsiyada Google tag oo koma ku kala qaybsan, tusaale ahaan G-ABC1234567,GTM-XYZ789. Horgalayaasha la aqbalo waa G-, GTM-, AW-, DC- iyo UA-. Websaytka dadweynaha wuxuu soo dejiyaa hal habayn gtag.js ee aqoonsi kasta oo aan GTM ahayn iyo hal weel Tag Manager ee aqoonsi kasta oo GTM- ah. Scripts-ka waxaa loo soo dejiyaa oo keliya marka sanduuqa calaamadaynta ee kore uu shidan yahay iyo oo keliya booqdayaasha aqbala qaybta cookie-ga Google Analytics. Isbeddelada la keydiyay waxay gaaraan websaytka dadweynaha muddo ku dhow 5 daqiiqo; isbeddelada bogagga gudaha saytka waxay ku tiirsan yihiin GA4 Enhanced Measurement, oo si caadi ah u shidan qulqulka xogta web-ka. Aqoonsiyada UA- waa la aqbalayaa hantida hore, laakiin Google waxay joojisay habaynta xogta Universal Analytics 1 Luulyo 2023, sidaas darteed waxba ma duubaan."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Aqoonsiyada Google tag ee soo socda ma saxna: @tokens. Aqoonsi kastaa waa inuu ku bilaabmaa mid ka mid ah horgalayaasha la aqbalo: G-, GTM-, AW-, DC- ama UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics waa shidan yahay laakiin wax aqoonsi Google tag ah lama habayn, sidaas darteed wax tag ah ma soo dejin doono. Ku dar ugu yaraan hal aqoonsi hoosta."

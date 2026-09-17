@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "የሜጋ ምናሌ ልጅ አክል"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Google Analyticsን አንቃ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "በነባሪ ጠፍቷል. ይህ ጠፍቶ እያለ የህዝብ ገጹ ምንም የGoogle ታግ አይጭንም, ከታች የታግ መለያዎች ቢዋቀሩም እንኳ. እሱን ማብራት የተዋቀሩት መለያዎች እንዲጫኑ የሚያስፈልገው ብቸኛው ነገር ነው, ጎብኚው የGoogle Analytics ኩኪ ምድብን መቀበሉን ብቻ መሰረት አድርጎ. የተቀመጡ ለውጦች በ5 ደቂቃ ውስጥ የህዝብ ገጹ ላይ ይደርሳሉ."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "የGoogle ታግ መለያዎች"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "በነጠላ ሰረዝ የተለዩ የGoogle ታግ መለያዎች ዝርዝር, ለምሳሌ G-ABC1234567,GTM-XYZ789. ተቀባይነት ያላቸው ቅድመ ቅጥያዎች G-, GTM-, AW-, DC- እና UA- ናቸው. የህዝብ ገጹ ለእያንዳንዱ GTM ያልሆነ መለያ አንድ gtag.js አወቃቀር እና ለእያንዳንዱ GTM- መለያ አንድ Tag Manager ኮንቴይነር ይጭናል. ስክሪፕቶች የሚጫኑት የGoogle Analytics ኩኪ ምድብን ለሚቀበሉ ጎብኝዎች ብቻ ነው, እንዲሁም በbl2 ገጽ የምርት አስተናጋጅ ላይ ብቻ ነው (ሌሎች multisites ዛሬ የGoogle ታጎችን አይጭኑም). የተቀመጡ ለውጦች በ5 ደቂቃ ውስጥ የህዝብ ገጹ ላይ ይደርሳሉ; በገጹ ውስጥ ያሉ የገጽ ለውጦች በGA4 Enhanced Measurement ላይ ይመረኮዛሉ, እሱም ለድር ዳታ ጅረት በነባሪ በርቷል. የUA- መለያዎች ለቀድሞ ንብረቶች ተቀባይነት አላቸው, ነገር ግን Google በ1 ጁላይ 2023 የUniversal Analytics ዳታ ማካሄድ አቆመ, ስለዚህ ምንም አይመዘግቡም."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "በነጠላ ሰረዝ የተለዩ የGoogle ታግ መለያዎች ዝርዝር, ለምሳሌ G-ABC1234567,GTM-XYZ789. ተቀባይነት ያላቸው ቅድመ ቅጥያዎች G-, GTM-, AW-, DC- እና UA- ናቸው. የህዝብ ገጹ ለእያንዳንዱ GTM ያልሆነ መለያ አንድ gtag.js አወቃቀር እና ለእያንዳንዱ GTM- መለያ አንድ Tag Manager ኮንቴይነር ይጭናል. ስክሪፕቶች የሚጫኑት ከላይ ያለው ሳጥን ሲበራ ብቻ እና የGoogle Analytics ኩኪ ምድብን ለሚቀበሉ ጎብኝዎች ብቻ ነው. የተቀመጡ ለውጦች በ5 ደቂቃ ውስጥ የህዝብ ገጹ ላይ ይደርሳሉ; በገጹ ውስጥ ያሉ የገጽ ለውጦች በGA4 Enhanced Measurement ላይ ይመረኮዛሉ, እሱም ለድር ዳታ ጅረት በነባሪ በርቷል. የUA- መለያዎች ለቀድሞ ንብረቶች ተቀባይነት አላቸው, ነገር ግን Google በ1 ጁላይ 2023 የUniversal Analytics ዳታ ማካሄድ አቆመ, ስለዚህ ምንም አይመዘግቡም."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "የሚከተሉት የGoogle ታግ መለያዎች ልክ አይደሉም: @tokens. እያንዳንዱ መለያ ከተቀባይነት ካላቸው ቅድመ ቅጥያዎች በአንዱ መጀመር አለበት: G-, GTM-, AW-, DC-, ወይም UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics በርቷል ነገር ግን ምንም የGoogle ታግ መለያዎች አልተዋቀሩም, ስለዚህ ምንም ታግ አይጫንም. ቢያንስ አንድ መለያ ከታች ያክሉ."
