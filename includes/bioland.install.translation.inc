@@ -590,8 +590,21 @@ function bioland_update_9078() {
  * config/install/bioland.settings.yml). Both that flag AND the canonical
  * translation.auto_create must be TRUE before a single node is written, so on
  * a stock site this hook does nothing but report that the gate is closed.
- * Enabling the backfill is a deliberate, per-site, operator-run act: set
- * translation.backfill_enabled to TRUE on that site, then run updates.
+ *
+ * This hook is a ONE-SHOT opportunistic pass, not the operator entry point.
+ * Drupal records the schema version the first time it runs, so a site that
+ * deploys with the gate closed - which is every stock site - never reaches it
+ * again, and turning translation.backfill_enabled on afterwards does NOT bring
+ * it back. That is deliberate and costs nothing, because the rerunnable
+ * operator path is the admin UI:
+ *
+ *   Administration > Configuration > Bioland > System Functions
+ *     > Batch Operations > Create translation defaults for existing entities
+ *
+ * That button runs BiolandTranslationBatchService over the selected entity
+ * type on demand, as many times as needed, and consults neither gate. Use it
+ * for any deliberate backfill. Treat this hook only as the free pass a site
+ * that is already running with both gates open gets on its next update.
  *
  * WARNING: when both gates are open this WRITES CONTENT — it creates
  * translation defaults for every existing node of type "content", 20 per pass.
@@ -602,6 +615,8 @@ function bioland_update_9078() {
  * half-configured index.
  *
  * @see _bioland_run_translation_backfill()
+ * @see \Drupal\bioland\Form\BiolandSystemFunctionsForm::submitBatchForm()
+ * @see \Drupal\bioland\Service\BiolandTranslationBatchService
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
 function bioland_update_9081(&$sandbox) {
