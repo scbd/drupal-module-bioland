@@ -72,6 +72,7 @@ help_comments:
 field_visibility_rules: ''
 config:
   promote_and_sticky_public: true
+google_analytics_enabled: false
 google_analytics_ids: ''
 enable_debug_logging: false
 debug_log_areas:

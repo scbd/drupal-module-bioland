@@ -23,6 +23,7 @@
       "config": {
         "promoteAndStickyPublic": true
       },
+      "googleAnalyticsEnabled": false,
       "googleAnalyticsIds": "G-EXAMPLE0",
       "enableDebugLogging": false,
       "debugLogAreas": [],

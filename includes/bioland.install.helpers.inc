@@ -211,7 +211,7 @@ function bioland_update_9079() {
  * It runs after the 9071-9079 corrective hooks, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
  * API config so it never leaves a half-configured index behind. The last
- * writer for every site is now bioland_update_9081().
+ * writer for every site is now bioland_update_9083().
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
@@ -242,6 +242,65 @@ function bioland_update_9080() {
 
   // Plain strings, not t() - the translation system is not dependable
   // mid-update.
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Seeds bioland.settings.google_analytics_enabled, disabled, on every site.
+ *
+ * The setting is the single switch that decides whether the public site loads
+ * any Google tag at all. It is FALSE on every site and every environment,
+ * including sites that already have tag IDs configured: BL-1015 replaced the
+ * old implicit "IDs present plus environment rules" behaviour with this
+ * explicit checkbox, and an existing site must not silently keep measuring on
+ * the strength of an ID that was never an opt-in.
+ *
+ * Fresh installs receive the same FALSE from
+ * config/install/bioland.settings.yml. Seeding here is set-if-missing (guarded
+ * on === NULL, presence, not truthiness) so a site that has since turned the
+ * switch on does not have it turned back off by a re-run.
+ *
+ * It also re-imports the translation catalogs, guarded on locale being enabled
+ * exactly as bioland_update_9080() does. The switch's UI strings and the
+ * reworded tag IDs help text are not in the catalogs yet - they arrive with
+ * BL-1028 - so this re-import cannot translate them.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see \Drupal\bioland\Form\BiolandFrontEndGeneralForm
+ */
+function bioland_update_9083() {
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+  $messages = [];
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+
+  // Presence, not truthiness: a saved FALSE is a real authored value and an
+  // authored TRUE must survive a re-run.
+  if ($config->get('google_analytics_enabled') === NULL) {
+    $config->set('google_analytics_enabled', FALSE);
+    $config->save();
+    $messages[] = 'Seeded the Google Analytics switch (google_analytics_enabled) as disabled.';
+  }
+  else {
+    $messages[] = 'Google Analytics switch already present; left untouched.';
+  }
+
+  if (!\Drupal::moduleHandler()->moduleExists('locale')) {
+    $messages[] = 'Skipped translation import: locale module is not enabled. Enable the Interface Translation module and run updates again.';
+  }
+  else {
+    _bioland_import_translations();
+    $messages[] = 'Re-imported Bioland translation catalogs. The Google Analytics switch strings arrive with BL-1028. Check logs for details.';
+  }
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();

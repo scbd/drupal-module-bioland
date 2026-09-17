@@ -141,12 +141,32 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       '#open' => FALSE,
     ];
 
+    // The single switch. It sits above the IDs field because it is what
+    // decides whether those IDs are ever used: the public site loads no tag
+    // while this is off, whatever is configured below. Off by default on
+    // every site and every environment.
+    $form['front_end_general_settings']['google_analytics_section']['google_analytics_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Google Analytics'),
+      // Strict, not (bool). Drupal does not enforce the boolean schema on a
+      // write, so drush or a hand-edited import can store the string 'false',
+      // which (bool) would render as ticked while the head - which gates on
+      // === true - loads nothing. Reading strictly keeps the two surfaces
+      // telling the administrator the same story.
+      '#default_value' => $config->get('google_analytics_enabled') === TRUE,
+      '#description' => $this->t('Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on allows the configured IDs to load only for visitors who accept the Google Analytics cookie category, and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes.'),
+    ];
+
     $form['front_end_general_settings']['google_analytics_section']['google_analytics_ids'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Google tag IDs'),
       '#maxlength' => 512,
       '#default_value' => $config->get('google_analytics_ids') ?? '',
-      '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
+      // The production-host caveat stays until scbd/bioland-head#134 removes
+      // the environment/host gating; strip it in the follow-up that lands
+      // with that head change, not here (head-first is the safe deploy
+      // order: it can only turn GA off everywhere, never on early).
+      '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on, only for visitors who accept the Google Analytics cookie category, and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
     ];
 
     return $form;
@@ -165,6 +185,15 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       $form_state->setErrorByName(
         'google_analytics_ids',
         $this->t('The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-.', ['@tokens' => implode(', ', $invalid)])
+      );
+    }
+
+    // A warning, not an error: turning the switch on before the IDs arrive is a
+    // legitimate order of work. Saying nothing would let an administrator leave
+    // believing the site measures when it loads no tag at all.
+    if (!$invalid && $form_state->getValue('google_analytics_enabled') && !$ids) {
+      $this->messenger()->addWarning(
+        $this->t('Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below.')
       );
     }
   }
@@ -228,10 +257,60 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // Save Promote and Sticky settings (moved from system_functions)
     $config
       ->set('config.promote_and_sticky_public', (bool) ($values['promote_and_sticky_public'] ?? TRUE));
+    // Save the single Google Analytics switch. An absent value means the
+    // checkbox was unchecked, which stores FALSE.
+    $enabled = (bool) ($values['google_analytics_enabled'] ?? FALSE);
+    $stored = $config->get('google_analytics_enabled');
+
+    // Starting or stopping third-party collection on a public site is worth a
+    // record: who did it and which way. The tag IDs are never logged. Only a
+    // real change is logged, so an unrelated save on this form stays quiet.
+    // The log is stashed on $form_state, not emitted here: submitForm() below
+    // only writes it after BiolandSettingsFormBase::submitForm() has actually
+    // persisted $config, so a failed save never leaves watchdog claiming a
+    // change that never took effect.
+    if ($stored !== NULL && !is_bool($stored)) {
+      // An out-of-band write (drush, a hand-edited import) left a non-boolean
+      // here. Both the render above and this save read it as off, so this
+      // save silently normalizes it to a real boolean; without a distinct
+      // record that normalization would happen with no audit trail at all.
+      $form_state->set('bioland_google_analytics_normalized_log', [
+        '@state' => $enabled ? 'enabled' : 'disabled',
+      ]);
+    }
+    elseif ($enabled !== ($stored === TRUE)) {
+      $form_state->set('bioland_google_analytics_toggle_log', [
+        '@state' => $enabled ? 'enabled' : 'disabled',
+        '@uid' => $this->currentUser->id(),
+      ]);
+    }
+
+    $config
+      ->set('google_analytics_enabled', $enabled);
     // Save the Google tag IDs in their canonical comma-joined form. An empty
-    // submission stores '', which means the feature is off.
+    // submission stores '', which means there is nothing for the switch above
+    // to load.
     $config
       ->set('google_analytics_ids', implode(',', $this->normalizeGoogleTagIds($values['google_analytics_ids'] ?? '')));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    parent::submitForm($form, $form_state);
+
+    // Only reached once $config->save() in the parent has actually
+    // persisted: see the ordering note in submitSectionForm() above.
+    $normalized = $form_state->get('bioland_google_analytics_normalized_log');
+    if ($normalized) {
+      \Drupal::logger('bioland')->notice('Google Analytics stored value normalized to @state.', $normalized);
+    }
+
+    $toggle = $form_state->get('bioland_google_analytics_toggle_log');
+    if ($toggle) {
+      \Drupal::logger('bioland')->notice('Google Analytics @state by user @uid.', $toggle);
+    }
   }
 
   /**

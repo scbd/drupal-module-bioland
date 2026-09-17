@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "Żid fergħa tal-mega menu"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Attiva Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Mitfi b'mod awtomatiku. Sakemm dan ikun mitfi, is-sit pubbliku ma jillowdja ebda tikketta ta' Google, anke meta l-IDs tat-tikketti jkunu kkonfigurati hawn taħt. Li tixegħlu huwa dak kollu meħtieġ biex l-IDs ikkonfigurati jillowdjaw, bl-unika kundizzjoni li l-viżitatur jaċċetta l-kategorija tal-cookies ta' Google Analytics. Il-bidliet issalvati jilħqu s-sit pubbliku fi żmien madwar 5 minuti."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "L-IDs tat-tikketti ta' Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Lista ta' IDs tat-tikketti ta' Google separati b'virgola, pereżempju G-ABC1234567,GTM-XYZ789. Il-prefissi aċċettati huma G-, GTM-, AW-, DC-, u UA-. Is-sit pubbliku jillowdja konfigurazzjoni waħda ta' gtag.js għal kull ID li mhux GTM u kontenitur wieħed ta' Tag Manager għal kull ID GTM-. L-iskripts jillowdjaw biss għall-viżitaturi li jaċċettaw il-kategorija tal-cookies ta' Google Analytics u biss fuq il-host tal-produzzjoni ta' sit bl2 (multisites oħra llum ma jillowdjawx tikketti ta' Google). Il-bidliet issalvati jilħqu s-sit pubbliku fi żmien madwar 5 minuti; bidliet fil-paġni fis-sit jiddependu fuq GA4 Enhanced Measurement, li huwa mixgħul b'mod awtomatiku għal web data stream. L-IDs UA- huma aċċettati għall-proprjetajiet legacy, iżda Google waqfet milli tipproċessa d-dejta ta' Universal Analytics fl-1 ta' Lulju 2023, għalhekk ma jirreġistraw xejn."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Lista ta' IDs tat-tikketti ta' Google separati b'virgola, pereżempju G-ABC1234567,GTM-XYZ789. Il-prefissi aċċettati huma G-, GTM-, AW-, DC-, u UA-. Is-sit pubbliku jillowdja konfigurazzjoni waħda ta' gtag.js għal kull ID li mhux GTM u kontenitur wieħed ta' Tag Manager għal kull ID GTM-. L-iskripts jillowdjaw biss meta l-kaxxa ta' kontroll ta' hawn fuq tkun mixgħula u biss għall-viżitaturi li jaċċettaw il-kategorija tal-cookies ta' Google Analytics. Il-bidliet issalvati jilħqu s-sit pubbliku fi żmien madwar 5 minuti; bidliet fil-paġni fis-sit jiddependu fuq GA4 Enhanced Measurement, li huwa mixgħul b'mod awtomatiku għal web data stream. L-IDs UA- huma aċċettati għall-proprjetajiet legacy, iżda Google waqfet milli tipproċessa d-dejta ta' Universal Analytics fl-1 ta' Lulju 2023, għalhekk ma jirreġistraw xejn."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "L-IDs tat-tikketti ta' Google li ġejjin mhumiex validi: @tokens. Kull ID irid jibda b'wieħed mill-prefissi aċċettati: G-, GTM-, AW-, DC-, jew UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics huwa mixgħul iżda ebda ID tat-tikketta ta' Google mhuwa kkonfigurat, għalhekk ebda tikketta mhi se tillowdja. Żid mill-inqas ID wieħed hawn taħt."
