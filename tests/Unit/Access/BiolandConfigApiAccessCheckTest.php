@@ -111,6 +111,20 @@ class BiolandConfigApiAccessCheckTest extends TestCase {
   }
 
   /**
+   * A differently-cased spelling of a rejected query key is refused too.
+   */
+  public function testQueryStringKeyRejectionIsCaseInsensitive() {
+    foreach (['apiKey', 'API_KEY', 'Api-Key'] as $param) {
+      $request = new Request([$param => self::FAKE_KEY], [BiolandConfigApiAccessCheck::HEADER => self::FAKE_KEY]);
+      $result = $this->check()->access($request, $this->account(TRUE));
+
+      $this->assertTrue($result->isForbidden(), "A key in ?$param= must be forbidden outright, regardless of case.");
+      $this->assertFalse($result->isAllowed());
+      $this->assertStringContainsString(BiolandConfigApiAccessCheck::HEADER, (string) $result->getReason());
+    }
+  }
+
+  /**
    * A caller holding the dedicated permission is allowed without a key.
    */
   public function testPermissionFallbackAllows() {

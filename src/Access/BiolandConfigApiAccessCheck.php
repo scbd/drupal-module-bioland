@@ -87,8 +87,14 @@ class BiolandConfigApiAccessCheck implements AccessInterface {
       return $this->uncacheable(AccessResult::forbidden('The Bioland config api is only reachable through an HTTP request carrying the ' . self::HEADER . ' header.'));
     }
 
+    // Case-insensitive: array_change_key_case() so ?apiKey=, ?API_KEY= or
+    // ?Api-Key= are refused exactly like their canonical spelling. Without
+    // this a differently-cased query key would still land in web-server/CDN
+    // access logs and referrer chains, defeating the whole point of refusing
+    // it outright.
+    $lowercasedQueryKeys = array_change_key_case($request->query->all(), CASE_LOWER);
     foreach (self::REJECTED_QUERY_PARAMS as $param) {
-      if ($request->query->has($param)) {
+      if (array_key_exists($param, $lowercasedQueryKeys)) {
         return $this->uncacheable(AccessResult::forbidden('The Bioland config api key must be sent in the ' . self::HEADER . ' request header, never in the query string.'));
       }
     }
