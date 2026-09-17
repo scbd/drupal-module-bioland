@@ -8,7 +8,7 @@ namespace Drupal\Core\Access;
 interface AccessResultInterface {
 
   /**
-   * Whether access is allowed.
+   * Whether access is explicitly allowed.
    *
    * @return bool
    *   TRUE when allowed.
@@ -22,5 +22,13 @@ interface AccessResultInterface {
    *   TRUE when forbidden.
    */
   public function isForbidden();
+
+  /**
+   * Whether the result expresses no opinion.
+   *
+   * @return bool
+   *   TRUE when neutral.
+   */
+  public function isNeutral();
 
 }

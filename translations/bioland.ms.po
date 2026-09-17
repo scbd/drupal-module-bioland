@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Laporan kebangsaan"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Laporan kebangsaan (ke-6)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Rekod BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Rekod ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Titik fokal kebangsaan"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Profil negara"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Jenis kandungan"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forum"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Sasaran kebangsaan (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Semua jenis kandungan"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Senarai pautan laporan kebangsaan, dalam tab mengikut negara; disembunyikan apabila negara tiada laporan."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Pautan laporan kebangsaan keenam bagi negara tapak, berserta anak pautan itu sendiri; disembunyikan jika kosong."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Rekod Pusat Penjelasan Biokeselamatan bagi negara tersebut, seperti undang-undang dan keputusan; disembunyikan jika kosong."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Rekod Pusat Penjelasan Akses dan Perkongsian Faedah, seperti langkah dan permit; disembunyikan jika kosong."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Senarai titik fokal kebangsaan, dalam tab mengikut negara; disembunyikan jika kosong."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Pautan ke halaman profil negara CBD, dalam tab mengikut negara; sentiasa dipaparkan."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Kandungan tapak terkini bagi jenis kandungan yang ditetapkan pada pautan ini; disembunyikan apabila tiada rekod."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Topik forum terkini, berserta anak pautan itu sendiri; disembunyikan jika kosong."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kad sasaran kebangsaan bagi sasaran 7 GBF, dalam tab mengikut negara; sentiasa dipaparkan."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Satu pautan bagi setiap jenis kandungan yang mempunyai rekod, berserta anak pautan itu sendiri; sentiasa dipaparkan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponen mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponen yang dipaparkan oleh pautan menu ini dalam mega menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Warisan: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (tidak tersedia di laman ini)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Pautan menu ini memaparkan komponen mega menu dan bukan senarai pautan anak biasa."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Tambah komponen mega menu"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widget dihidupkan dan dimatikan pada tab Widget Halaman Utama. Perubahan yang disimpan muncul di tapak awam dalam masa kira-kira 5 minit."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Warna"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Warna jenama utama"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Warna jenama sekunder"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Warna latar belakang sekunder"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Lajur widget halaman utama"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Lajur @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Bilangan lajur maksimum"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Bilangan baris maksimum bagi setiap lajur (0 bermaksud tiada had)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Bilangan kad mendatar maksimum"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Bahasa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Bilangan bahasa maksimum yang dipaparkan sebelum bar bahasa berbalut"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Tetapkan semula kepada lalai rangkaian"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Tindakan ini memadam tetapan tema untuk tapak ini dan tidak boleh dibatalkan."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Tetapan tema untuk tapak ini telah ditetapkan semula kepada lalai rangkaian."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Masukkan warna heksadesimal yang sah, contohnya #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widget halaman utama mesti disusun dalam tepat @count lajur."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Masukkan nombor antara @min dan @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Biarkan kosong untuk mengekalkan nilai semasa. Gunakan @reset untuk membuangnya."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Jenis kandungan"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Jenis kandungan yang dipaparkan oleh senarai ini."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Dayakan komponen mega menu"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Menunjukkan tindakan \"Tambah komponen mega menu\" pada skrin pengurusan menu. Apabila tidak ditanda, tindakan dan borangnya tidak tersedia."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Tunjukkan imej kecil"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Menunjukkan imej kecil di sebelah setiap entri."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Lajur mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Berapa lajur mega menu yang diliputi bahagian ini."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Lalai (1 lajur)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count lajur"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count lajur (skrin sangat besar sahaja)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Baris maksimum setiap lajur"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Lalai tapak"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Entri maksimum setiap lajur; jika tidak ditetapkan, lalai tapak digunakan."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Tunjukkan anak panah"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Menunjukkan anak panah selepas tajuk bahagian."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega menu: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega menu: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Tambah anak mega menu"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID tag Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Senarai ID tag Google yang dipisahkan dengan koma, contohnya G-ABC1234567,GTM-XYZ789. Prefiks yang diterima ialah G-, GTM-, AW-, DC- dan UA-. Laman awam memuatkan satu konfigurasi gtag.js bagi setiap ID bukan GTM dan satu kontena Tag Manager bagi setiap ID GTM-. Skrip dimuatkan hanya untuk pelawat yang menerima kategori kuki Google Analytics dan hanya pada hos pengeluaran laman bl2 (multisites lain tidak memuatkan tag Google hari ini). Perubahan yang disimpan sampai ke laman awam dalam masa kira-kira 5 minit; perubahan halaman dalam laman bergantung pada GA4 Enhanced Measurement, yang dihidupkan secara lalai untuk strim data web. ID UA- diterima untuk sifat warisan, tetapi Google berhenti memproses data Universal Analytics pada 1 Julai 2023, jadi ia tidak merekodkan apa-apa."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ID tag Google berikut tidak sah: @tokens. Setiap ID mesti bermula dengan salah satu prefiks yang diterima: G-, GTM-, AW-, DC- atau UA-."

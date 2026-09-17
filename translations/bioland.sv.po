@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Nationella rapporter"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Nationell rapport (6:e)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH-poster"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH-poster"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Nationella kontaktpunkter"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Landprofiler"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Innehållstyp"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forum"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Nationella mål (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Alla innehållstyper"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Lista med länkar till nationella rapporter, i flikar per land; döljs när landet saknar rapporter."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Länkar till den sjätte nationella rapporten för webbplatsens land, plus länkens egna underlänkar; döljs om tomma."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Poster från förmedlingscentrumet för biosäkerhet för landet, till exempel lagar och beslut; döljs om tomma."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Poster från förmedlingscentrumet för tillträde och fördelning av nytta, till exempel åtgärder och tillstånd; döljs om tomma."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Lista med nationella kontaktpunkter, i flikar per land; döljs om tom."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Länkar till CBD:s landprofilsidor, i flikar per land; visas alltid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Senaste webbplatsinnehållet för de innehållstyper som angetts på länken; döljs när det inte finns några poster."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Senaste forumtrådarna, plus länkens egna underlänkar; döljs om tomma."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kort för nationella mål för GBF-mål 7, i flikar per land; visas alltid."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "En länk per innehållstyp som har poster, plus länkens egna underlänkar; visas alltid."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Megameny-komponent"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponenten som den här menylänken visar i megamenyn."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Föråldrad: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (inte tillgänglig på den här webbplatsen)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Den här menylänken visar en megameny-komponent i stället för en vanlig lista med underlänkar."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Lägg till megameny-komponent"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgetar slås på och av på fliken Widgetar på startsidan. Sparade ändringar visas på den publika webbplatsen inom cirka 5 minuter."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Färger"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primär varumärkesfärg"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundär varumärkesfärg"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundär bakgrundsfärg"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Widgetkolumner på startsidan"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolumn @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Högsta antal kolumner"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Högsta antal rader per kolumn (0 betyder ingen gräns)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Högsta antal vågräta kort"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Språk"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Högsta antal språk som visas innan språkraden bryts"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Återställ till nätverkets standardvärde"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Detta raderar temainställningarna för den här webbplatsen. Åtgärden kan inte ångras."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Temainställningarna för den här webbplatsen har återställts till nätverkets standardvärde."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Ange en giltig hexfärg, till exempel #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Startsidans widgetar måste fördelas på exakt @count kolumner."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Ange ett tal mellan @min och @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lämna tomt för att behålla det nuvarande värdet. Använd @reset för att ta bort det."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Innehållstyp"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Innehållstypen som den här listan visar."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Aktivera megameny-komponenter"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Visar åtgärden \"Lägg till megameny-komponent\" på menyhanteringsskärmen. När den inte är markerad är åtgärden och dess formulär inte tillgängliga."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Visa miniatyrer"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Visar en miniatyrbild bredvid varje post."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Megamenyns kolumner"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hur många kolumner av megamenyn denna sektion tar upp."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Standard (1 kolumn)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolumner"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolumner (endast extra stora skärmar)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Max antal rader per kolumn"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Webbplatsens standard"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Max antal poster per kolumn; utan val gäller webbplatsens standard."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Visa pil"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Visar en pil efter sektionens titel."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Megameny: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Megameny: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Lägg till megameny-underelement"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google tag-ID:n"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "En kommaavgränsad lista över Google tag-ID:n, till exempel G-ABC1234567,GTM-XYZ789. Godkända prefix är G-, GTM-, AW-, DC- och UA-. Den publika webbplatsen laddar en gtag.js-konfiguration per ID som inte är GTM och en Tag Manager-behållare per GTM-ID. Skript laddas bara för besökare som accepterar cookiekategorin Google Analytics och bara på produktionsvärden för en bl2-webbplats (andra multisites laddar inte Google tag i dag). Sparade ändringar når den publika webbplatsen inom cirka 5 minuter; sidändringar inom webbplatsen bygger på GA4 Enhanced Measurement, som är aktiverat som standard för en webbdataström. UA-ID:n accepteras för äldre egenskaper, men Google slutade bearbeta Universal Analytics-data den 1 juli 2023, så de registrerar ingenting."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Följande Google tag-ID:n är inte giltiga: @tokens. Varje ID måste börja med något av de godkända prefixen: G-, GTM-, AW-, DC- eller UA-."

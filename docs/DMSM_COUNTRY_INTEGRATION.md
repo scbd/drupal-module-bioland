@@ -13,7 +13,10 @@ A new Drupal service that:
 - Makes HTTP requests to the DMSM API
 - Extracts country data from the API response
 - Updates the `bioland.settings` configuration with countries
+- Also extracts and saves `region` and `continent` from the API response when present
 - Sets `is_biosafety_land` flag based on multi-site code (true for bsl, false for bl2)
+- Also provides `getEffectiveTheme()`, which fetches and merges DMSM's per-network theme document
+  as part of the theme precedence chain (see `docs/adr/0006-theme-authority.md`)
 
 **Service Registration:** Added to `bioland.services.yml` as `bioland.dmsm_config`
 

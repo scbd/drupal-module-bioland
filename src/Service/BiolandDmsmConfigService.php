@@ -183,6 +183,159 @@ class BiolandDmsmConfigService
     }
 
     /**
+     * Read the site's EFFECTIVE dmsm theme, per the plan's pinned MD rule.
+     *
+     * Read-only: this method never writes config. It exists so the Theme tab
+     * (\Drupal\bioland\Form\BiolandThemeForm) can pre-populate its fields for a
+     * site that has not authored `bioland.settings:theme` yet (plan decision
+     * D5, lazy seed). The editor's save is what persists anything.
+     *
+     * The MD rule is a DECLARED INPUT, taken from bioland-head ADR 0012
+     * ("Head theme resolution: precedence, merge, and columns") and the shared
+     * fixture tests/Unit/fixtures/theme-effective-values.json. It is not
+     * re-derived here:
+     *
+     * - dmsm performs NO merge. Its config document carries two independent
+     *   theme objects side by side: `theme` (the site's own block) and
+     *   `runTime.theme` (the multiSite/network block copied verbatim). See
+     *   dmsm server/utils/config/index.js:236-251.
+     * - Merge is PER-LEAF, site over network: a leaf the site block omits
+     *   falls through to the network block. A leaf is a scalar or a list
+     *   (`hero.primary`, `homePageWidgets.columns` are replaced wholesale,
+     *   never element-merged).
+     * - `hero` is DERIVED to [color.primary, color.secondary] only when
+     *   `hero.primary` is absent from EVERY source. An authored hero is never
+     *   recomputed: four live prod sites (be, e2e, han, rjh) carry
+     *   `hero.primary[1] = #CBB279`, which the derived formula would replace
+     *   with `#889262`. `hero` itself is never authorable in the Theme tab
+     *   (D4) -- it is carried through here only so the effective value the
+     *   fixture pins is the real one.
+     *
+     * Keys here are the head/dmsm camelCase spellings (`backGround`,
+     * `homePageWidgets`, `megaMenu`, `maxLangBeforeWrap`) at the dmsm document
+     * depth. That is a DIFFERENT contract from the snake_case
+     * `bioland.settings:theme` keys the Theme tab writes (`back_ground`,
+     * `home_page_widgets`, `mega_menu`, `max_lang_before_wrap`); the form owns
+     * the translation between the two, and the two depths are pinned by
+     * separate assertions.
+     *
+     * Deliberately additive: the fetch/decode block below duplicates
+     * self::updateCountriesFromDmsm() (:86-116) rather than extracting a
+     * shared helper, so that live write path keeps a zero-line diff. Factoring
+     * the two together is a separate, base-branched refactor.
+     *
+     * @param string|null $hostname
+     *   The hostname to resolve. If NULL, the current request host is used.
+     *
+     * @return array|null
+     *   The effective theme keyed by the head's camelCase names, or NULL when
+     *   the hostname cannot be parsed, the request fails, or the document
+     *   carries no theme block at either level.
+     */
+    public function getEffectiveTheme($hostname = null)
+    {
+        if ($hostname === null) {
+            $request = \Drupal::request();
+            $hostname = $request->getHost();
+        }
+
+        $params = $this->parseHostname($hostname);
+
+        if (!$params) {
+            $this->logger->error(sprintf('Unable to parse hostname for theme seed: %s', $hostname));
+            return null;
+        }
+
+        $url = sprintf(
+            'https://dmsm.cbddev.xyz/api/config/%s/%s/%s',
+            $params['env'],
+            $params['multiSiteCode'],
+            $params['siteCode']
+        );
+
+        try {
+            $response = $this->httpClient->request('GET', $url, [
+                'timeout' => 10,
+                'headers' => [
+                    'Accept' => 'application/json',
+                ],
+            ]);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            // Handle double-encoded JSON: if the response is a JSON string, decode it again.
+            if (is_string($data)) {
+                $data = json_decode($data, true);
+            }
+
+            if (!$data || !is_array($data)) {
+                throw new \Exception('Invalid JSON response from DMSM API - expected object');
+            }
+
+            $site = (isset($data['theme']) && is_array($data['theme'])) ? $data['theme'] : [];
+            $network = (isset($data['runTime']['theme']) && is_array($data['runTime']['theme']))
+                ? $data['runTime']['theme']
+                : [];
+
+            if ($site === [] && $network === []) {
+                throw new \Exception('No theme block found in DMSM API response - expected theme or runTime.theme');
+            }
+
+            // Per-leaf merge, site over network. A list (hero.primary,
+            // homePageWidgets.columns) is a leaf and is replaced wholesale;
+            // only associative branches recurse.
+            //
+            // The empty-array case is why this is not a bare
+            // !array_is_list() test on each side. json_decode() renders an
+            // empty JSON OBJECT (`"megaMenu": {}`) and an empty JSON ARRAY
+            // (`"megaMenu": []`) as the same PHP `[]`, and array_is_list([])
+            // is TRUE -- so a site block carrying an empty object would be
+            // classified as a list, replace the whole network branch
+            // wholesale, and wipe every leaf the network defined. That is
+            // exactly the per-leaf merge the MD rule forbids. `[]` therefore
+            // counts as a branch on BOTH operands: as an override it
+            // contributes no leaves and the network branch survives intact,
+            // and as a base it is simply filled by the override.
+            $isBranch = static fn($value): bool => is_array($value)
+                && ($value === [] || !array_is_list($value));
+
+            $mergeLeaves = function (array $base, array $override) use (&$mergeLeaves, $isBranch) {
+                foreach ($override as $key => $value) {
+                    $recurse = $isBranch($value)
+                        && isset($base[$key])
+                        && $isBranch($base[$key]);
+                    $base[$key] = $recurse ? $mergeLeaves($base[$key], $value) : $value;
+                }
+
+                return $base;
+            };
+
+            $effective = $mergeLeaves($network, $site);
+
+            // Derive hero ONLY when absent from every source. array_key_exists,
+            // not isset: an explicit NULL still counts as authored.
+            $heroAuthored = (isset($site['hero']) && is_array($site['hero']) && array_key_exists('primary', $site['hero']))
+                || (isset($network['hero']) && is_array($network['hero']) && array_key_exists('primary', $network['hero']));
+
+            if (!$heroAuthored
+                && isset($effective['color']['primary'], $effective['color']['secondary'])) {
+                $effective['hero']['primary'] = [
+                    $effective['color']['primary'],
+                    $effective['color']['secondary'],
+                ];
+            }
+
+            return $effective;
+        } catch (RequestException $e) {
+            $this->logger->error(sprintf('HTTP error fetching DMSM theme: %s', $e->getMessage()));
+            return null;
+        } catch (\Exception $e) {
+            $this->logger->error(sprintf('Error processing DMSM theme: %s', $e->getMessage()));
+            return null;
+        }
+    }
+
+    /**
      * Parse hostname to extract environment, multiSiteCode, and siteCode.
      *
      * @param string $hostname

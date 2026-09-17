@@ -1,0 +1,27 @@
+/**
+ * @file
+ * The mega-menu indicator column on the core menu overview screen.
+ *
+ * Scoped entirely to .bioland-mega-menu-indicator, the class
+ * Drupal\bioland\Service\BiolandComponentMenuOverview puts on the column's
+ * header cell and on every one of its body cells. Nothing else on
+ * /admin/structure/menu/manage/{menu} is touched, and the file is only loaded
+ * once that service has actually added the column.
+ *
+ * The column is an annotation, not data the editor acts on: it is muted and
+ * set smaller so it reads as a note beside the link title rather than
+ * competing with it. Greys follow css/bioland.admin.css.
+ */
+
+.bioland-mega-menu-indicator {
+  color: #6c757d;
+  font-size: 0.85em;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* The header cell inherits the table's heading weight; drop it back so the
+   column reads as muted there too. */
+th.bioland-mega-menu-indicator {
+  font-weight: normal;
+}

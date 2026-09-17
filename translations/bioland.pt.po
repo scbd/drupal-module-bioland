@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Relatórios nacionais"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Relatório nacional (6.º)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Registos do BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Registos do ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Pontos focais nacionais"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Perfis de país"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Tipo de conteúdo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Fóruns"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Metas nacionais (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Todos os tipos de conteúdo"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Lista de ligações para os relatórios nacionais, em separadores por país; oculta quando o país não tem relatórios."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Ligações do sexto relatório nacional do país do sítio, mais os filhos da própria ligação; ocultas se estiverem vazias."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Registos do Centro de Intercâmbio de Informação sobre Segurança Biológica do país, como leis e decisões; ocultos se estiverem vazios."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Registos do Centro de Intercâmbio de Informação sobre Acesso e Partilha de Benefícios, como medidas e licenças; ocultos se estiverem vazios."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Lista de pontos focais nacionais, em separadores por país; oculta se estiver vazia."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Ligações para as páginas de perfil de país da CDB, em separadores por país; sempre visíveis."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Conteúdo mais recente do sítio dos tipos de conteúdo definidos nesta ligação; oculto quando não existem registos."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Últimos tópicos dos fóruns, mais os filhos da própria ligação; ocultos se estiverem vazios."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Cartões de metas nacionais para a meta 7 do GBF, em separadores por país; sempre visíveis."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Uma ligação por cada tipo de conteúdo com registos, mais os filhos da própria ligação; sempre visíveis."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componente do megamenu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "O componente que esta ligação de menu apresenta no megamenu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Antigo: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (não disponível neste site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Esta ligação de menu apresenta um componente do megamenu em vez de uma simples lista de ligações subordinadas."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Adicionar componente do megamenu"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Os widgets são ativados e desativados no separador Widgets da página inicial. As alterações guardadas aparecem no site público em cerca de 5 minutos."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Cores"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Cor principal da marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Cor secundária da marca"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Cor secundária de fundo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Colunas de widgets da página inicial"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Coluna @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Número máximo de colunas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Número máximo de linhas por coluna (0 significa sem limite)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Número máximo de cartões horizontais"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Idiomas"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Número máximo de idiomas apresentados antes de a barra de idiomas mudar de linha"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Repor a predefinição da rede"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Esta ação elimina as definições de tema deste site e não pode ser anulada."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "As definições de tema deste site foram repostas para a predefinição da rede."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Introduza uma cor hexadecimal válida, por exemplo #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Os widgets da página inicial têm de ser distribuídos por exatamente @count colunas."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Introduza um número entre @min e @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Deixe em branco para manter o valor atual. Use @reset para removê-lo."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tipo de conteúdo"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "O tipo de conteúdo que esta listagem mostra."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Ativar componentes do megamenu"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Mostra a ação \"Adicionar componente do megamenu\" na tela de gerenciamento do menu. Quando desmarcado, a ação e seu formulário ficam indisponíveis."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Mostrar miniaturas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Mostra uma miniatura ao lado de cada entrada."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Colunas do mega menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Quantas colunas do mega menu esta secção ocupa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Predefinição (1 coluna)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count colunas"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count colunas (apenas ecrãs muito grandes)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Máximo de linhas por coluna"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Predefinição do site"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Máximo de entradas por coluna; sem definição aplica-se a predefinição do site."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Mostrar seta"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Mostra uma seta após o título da secção."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Megamenu: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Megamenu: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Adicionar filho do megamenu"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "IDs de Google tag"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Uma lista de IDs de Google tag separada por vírgulas, por exemplo G-ABC1234567,GTM-XYZ789. Os prefixos aceites são G-, GTM-, AW-, DC- e UA-. O site público carrega uma configuração gtag.js por cada ID que não seja GTM e um contentor Tag Manager por cada ID GTM-. Os scripts carregam apenas para visitantes que aceitam a categoria de cookies Google Analytics e apenas no anfitrião de produção de um site bl2 (outros multisites não carregam Google tag hoje). As alterações guardadas chegam ao site público dentro de cerca de 5 minutos; as alterações de página dentro do site dependem do GA4 Enhanced Measurement, que está ativado por predefinição para um fluxo de dados da Web. Os IDs UA- são aceites para propriedades antigas, mas a Google deixou de processar dados do Universal Analytics em 1 de julho de 2023, por isso não registam nada."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Os seguintes IDs de Google tag não são válidos: @tokens. Cada ID deve começar com um dos prefixos aceites: G-, GTM-, AW-, DC- ou UA-."

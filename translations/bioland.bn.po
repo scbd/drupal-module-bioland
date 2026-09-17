@@ -1523,3 +1523,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "জাতীয় প্রতিবেদন"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "জাতীয় প্রতিবেদন (৬ষ্ঠ)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH রেকর্ড"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH রেকর্ড"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "জাতীয় ফোকাল পয়েন্ট"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "দেশের প্রোফাইল"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "কনটেন্টের ধরন"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "ফোরাম"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "জাতীয় লক্ষ্যমাত্রা (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "সব ধরনের বিষয়বস্তু"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "জাতীয় প্রতিবেদনের লিঙ্কের তালিকা, দেশ অনুসারে ট্যাবে; দেশের কোনো প্রতিবেদন না থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "সাইটের দেশের ষষ্ঠ জাতীয় প্রতিবেদনের লিঙ্ক এবং লিঙ্কের নিজস্ব উপ-আইটেম; খালি থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "দেশের জৈব নিরাপত্তা তথ্য বিনিময় কেন্দ্রের রেকর্ড, যেমন আইন ও সিদ্ধান্ত; খালি থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "প্রবেশাধিকার ও সুবিধা বণ্টন তথ্য বিনিময় কেন্দ্রের রেকর্ড, যেমন ব্যবস্থা ও অনুমতি; খালি থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "জাতীয় ফোকাল পয়েন্টের তালিকা, দেশ অনুসারে ট্যাবে; খালি থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "CBD-এর দেশের প্রোফাইল পৃষ্ঠাগুলির লিঙ্ক, দেশ অনুসারে ট্যাবে; সবসময় দেখানো হয়।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "এই লিঙ্কে নির্ধারিত বিষয়বস্তুর ধরনের সাইটের সাম্প্রতিকতম বিষয়বস্তু; কোনো রেকর্ড না থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "ফোরামের সাম্প্রতিকতম আলোচনা এবং লিঙ্কের নিজস্ব উপ-আইটেম; খালি থাকলে লুকানো থাকে।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF-এর ৭ নম্বর লক্ষ্যের জাতীয় লক্ষ্যমাত্রার কার্ড, দেশ অনুসারে ট্যাবে; সবসময় দেখানো হয়।"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "রেকর্ড আছে এমন প্রতিটি বিষয়বস্তুর ধরনের জন্য একটি করে লিঙ্ক এবং লিঙ্কের নিজস্ব উপ-আইটেম; সবসময় দেখানো হয়।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "মেগা মেনু কম্পোনেন্ট"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "এই মেনু লিঙ্কটি মেগা মেনুতে যে কম্পোনেন্টটি প্রদর্শন করে।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "পুরনো: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (এই সাইটে উপলব্ধ নয়)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "এই মেনু লিঙ্কটি সাধারণ উপ-লিঙ্কের তালিকার পরিবর্তে একটি মেগা মেনু কম্পোনেন্ট প্রদর্শন করে।"
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "মেগা মেনু কম্পোনেন্ট যোগ করুন"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "থিম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "উইজেটগুলি হোম পেজ উইজেট ট্যাব থেকে চালু ও বন্ধ করা হয়। সংরক্ষিত পরিবর্তনগুলি প্রায় ৫ মিনিটের মধ্যে সর্বজনীন সাইটে দেখা যায়।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "প্রাথমিক ব্র্যান্ড রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "গৌণ ব্র্যান্ড রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "গৌণ পটভূমির রঙ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "হোম পেজ উইজেট কলাম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "কলাম @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "সর্বাধিক কলাম"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "প্রতি কলামে সর্বাধিক সারি (০ মানে সীমাহীন)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "সর্বাধিক অনুভূমিক কার্ড"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "ভাষা"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "ভাষা বার মোড়ানোর আগে সর্বাধিক প্রদর্শিত ভাষা"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "নেটওয়ার্ক ডিফল্টে পুনঃস্থাপন"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "এটি এই সাইটের থিম সেটিংস মুছে ফেলে। এটি ফেরানো যাবে না।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "এই সাইটের থিম সেটিংস নেটওয়ার্ক ডিফল্টে পুনঃস্থাপন করা হয়েছে।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "একটি বৈধ হেক্স রঙ লিখুন, উদাহরণস্বরূপ #1B7B3A।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "হোম পেজ উইজেটগুলি ঠিক @count কলামে সাজাতে হবে।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "@min এবং @max এর মধ্যে একটি সংখ্যা লিখুন।"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "বর্তমান মান রাখতে ফাঁকা রাখুন। এটি সরাতে @reset ব্যবহার করুন।"
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "কনটেন্টের ধরন"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "এই তালিকায় যে ধরনের কনটেন্ট দেখানো হয়।"
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "মেগা মেনু কম্পোনেন্টগুলি সক্রিয় করুন"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "মেনু পরিচালনার স্ক্রিনে \"মেগা মেনু কম্পোনেন্ট যোগ করুন\" ক্রিয়াটি দেখায়। আনচেক করা থাকলে ক্রিয়া এবং এর ফর্ম উপলব্ধ থাকে না।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "থাম্বনেইল দেখান"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "প্রতিটি এন্ট্রির পাশে একটি থাম্বনেইল ছবি দেখায়।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "মেগা মেনুর কলাম"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "এই বিভাগটি মেগা মেনুর কতগুলি কলাম জুড়ে থাকে।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "ডিফল্ট (১ কলাম)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count কলাম"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count কলাম (শুধুমাত্র অতিরিক্ত বড় স্ক্রিনে)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "প্রতি কলামে সর্বাধিক সারি"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "সাইট ডিফল্ট"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "প্রতি কলামে সর্বাধিক এন্ট্রি; নির্ধারিত না হলে সাইটের ডিফল্ট প্রযোজ্য।"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "তীর দেখান"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "বিভাগের শিরোনামের পরে একটি তীর দেখায়।"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(মেগা মেনু: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(মেগা মেনু: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "মেগা মেনু চাইল্ড যোগ করুন"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google ট্যাগ আইডি"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "কমা দিয়ে পৃথক করা Google ট্যাগ আইডির তালিকা, উদাহরণস্বরূপ G-ABC1234567,GTM-XYZ789। গৃহীত উপসর্গগুলি হল G-, GTM-, AW-, DC- এবং UA-। পাবলিক সাইট প্রতিটি নন-GTM আইডির জন্য একটি gtag.js কনফিগারেশন এবং প্রতিটি GTM- আইডির জন্য একটি Tag Manager কন্টেইনার লোড করে। স্ক্রিপ্টগুলি কেবল সেই দর্শকদের জন্য লোড হয় যারা Google Analytics কুকি বিভাগ গ্রহণ করেন এবং কেবল একটি bl2 সাইটের প্রোডাকশন হোস্টে (অন্যান্য multisites আজ Google ট্যাগ লোড করে না)। সংরক্ষিত পরিবর্তনগুলি প্রায় 5 মিনিটের মধ্যে পাবলিক সাইটে পৌঁছায়; সাইটের মধ্যে পৃষ্ঠা পরিবর্তনগুলি GA4 Enhanced Measurement-এর উপর নির্ভর করে, যা একটি ওয়েব ডেটা স্ট্রিমের জন্য ডিফল্টভাবে চালু থাকে। UA- আইডিগুলি লিগ্যাসি প্রপার্টির জন্য গৃহীত হয়, তবে Google 1 জুলাই 2023-এ Universal Analytics ডেটা প্রক্রিয়া করা বন্ধ করে দিয়েছে, তাই সেগুলি কিছুই রেকর্ড করে না।"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "নিম্নলিখিত Google ট্যাগ আইডিগুলি বৈধ নয়: @tokens. প্রতিটি আইডি অবশ্যই অনুমোদিত উপসর্গগুলির একটি দিয়ে শুরু হতে হবে: G-, GTM-, AW-, DC- বা UA-."

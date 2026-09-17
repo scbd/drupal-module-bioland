@@ -40,6 +40,12 @@ bioland.settings_front_end_home_widgets_tab:
   base_route: bioland.settings.front_end
   weight: 3
 
+bioland.settings_front_end_theme_tab:
+  route_name: bioland.settings.front_end.theme
+  title: 'Theme'
+  base_route: bioland.settings.front_end
+  weight: 4
+
 bioland.settings_field_visibility_tab:
   route_name: bioland.settings.field_visibility
   title: 'Field Visibility'

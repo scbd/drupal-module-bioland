@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Rapoarte naționale"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Raport național (al 6-lea)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Înregistrări BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Înregistrări ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Puncte focale naționale"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Profiluri de țară"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Tip de conținut"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forumuri"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Ținte naționale (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Toate tipurile de conținut"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Lista linkurilor către rapoartele naționale, în file pe țări; ascunsă când țara nu are rapoarte."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Linkurile celui de-al șaselea raport național pentru țara sitului, plus copiii linkului; ascunse dacă sunt goale."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Înregistrări ale Centrului de schimb de informații privind biosecuritatea pentru țară, precum legi și decizii; ascunse dacă sunt goale."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Înregistrări ale Centrului de schimb privind accesul și împărțirea beneficiilor, precum măsuri și permise; ascunse dacă sunt goale."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Lista punctelor focale naționale, în file pe țări; ascunsă dacă este goală."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Linkuri către paginile de profil de țară ale CBD, în file pe țări; afișate întotdeauna."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Cel mai recent conținut al sitului pentru tipurile de conținut setate pe acest link; ascuns când nu există înregistrări."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Ultimele discuții din forumuri, plus copiii linkului; ascunse dacă sunt goale."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Fișe ale țintelor naționale pentru ținta 7 GBF, în file pe țări; afișate întotdeauna."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Câte un link pentru fiecare tip de conținut care are înregistrări, plus copiii linkului; afișate întotdeauna."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Componentă a meniului mare"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Componenta pe care acest link de meniu o afișează în meniul mare."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Moștenit: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (indisponibil pe acest site)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Acest link de meniu afișează o componentă a meniului mare în locul unei liste simple de linkuri subordonate."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Adaugă o componentă a meniului mare"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Temă"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgeturile se activează și se dezactivează din fila Widgeturi pagina principală. Modificările salvate apar pe site-ul public în aproximativ 5 minute."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Culori"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Culoarea principală a mărcii"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Culoarea secundară a mărcii"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Culoarea secundară de fundal"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Coloane de widgeturi pentru pagina principală"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Coloana @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Numărul maxim de coloane"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Numărul maxim de rânduri pe coloană (0 înseamnă fără limită)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Numărul maxim de carduri orizontale"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Limbi"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Numărul maxim de limbi afișate înainte ca bara de limbi să treacă pe rândul următor"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Reinițializează la valoarea implicită a rețelei"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Această acțiune șterge setările de temă ale acestui site și nu poate fi anulată."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Setările de temă ale acestui site au fost reinițializate la valoarea implicită a rețelei."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Introduceți o culoare hexazecimală validă, de exemplu #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgeturile paginii principale trebuie aranjate în exact @count coloane."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Introduceți un număr între @min și @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Lăsați necompletat pentru a păstra valoarea curentă. Folosiți @reset pentru a o elimina."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Tip de conținut"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Tipul de conținut afișat de această listă."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Activează componentele meniului mare"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Afișează acțiunea \"Adaugă o componentă a meniului mare\" pe ecranul de administrare a meniului. Când nu este bifat, acțiunea și formularul ei nu sunt disponibile."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Afișează miniaturi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Afișează o miniatură lângă fiecare intrare."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Coloanele mega meniului"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Câte coloane din mega meniu ocupă această secțiune."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Implicit (1 coloană)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count coloane"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count coloane (doar ecrane foarte mari)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Număr maxim de rânduri pe coloană"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Valoarea implicită a site-ului"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Numărul maxim de intrări pe coloană; nesetat, se aplică valoarea implicită a site-ului."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Afișează săgeata"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Afișează o săgeată după titlul secțiunii."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Meniu mare: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Meniu mare: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Adaugă un copil al meniului mare"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID-uri de etichete Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "O listă de ID-uri de etichete Google separate prin virgulă, de exemplu G-ABC1234567,GTM-XYZ789. Prefixele acceptate sunt G-, GTM-, AW-, DC- și UA-. Site-ul public încarcă o configurație gtag.js pentru fiecare ID care nu este GTM și un container Tag Manager pentru fiecare ID GTM-. Scripturile se încarcă doar pentru vizitatorii care acceptă categoria de cookie-uri Google Analytics și doar pe gazda de producție a unui site bl2 (alte multisites nu încarcă etichete Google astăzi). Modificările salvate ajung pe site-ul public în circa 5 minute; modificările paginilor din cadrul site-ului se bazează pe GA4 Măsurare îmbunătățită, care este activată implicit pentru un flux de date web. ID-urile UA- sunt acceptate pentru proprietăți vechi, dar Google a oprit procesarea datelor Universal Analytics la 1 iulie 2023, așa că nu înregistrează nimic."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Următoarele ID-uri de etichete Google nu sunt valide: @tokens. Fiecare ID trebuie să înceapă cu unul dintre prefixele acceptate: G-, GTM-, AW-, DC- sau UA-."

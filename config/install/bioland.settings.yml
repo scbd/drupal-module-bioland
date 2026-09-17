@@ -50,6 +50,7 @@ help_comments:
 field_visibility_rules: ''
 config:
   promote_and_sticky_public: true
+google_analytics_ids: ''
 enable_debug_logging: false
 debug_log_areas:
   field_visibility: true
@@ -57,6 +58,8 @@ debug_log_areas:
   auto_summary: true
   help_comments: true
 main_menu_lock: true
+component_menu_add_enabled: true
+component_menu_show_attributes: false
 mega_menu:
   content_type_menus:
     visible_content_type_menus: []

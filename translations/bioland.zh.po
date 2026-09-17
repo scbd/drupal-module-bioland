@@ -1603,3 +1603,273 @@ msgstr "选择在国家生物安全框架内容轮播中显示的内容类型。
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "选择在此部分显示并由其“查看更多”链接搜索的站点内容类型。留空则使用默认值。除所选内容类型外，此部分还会从生物安全信息交换所中央登记处提取以下记录类型：@registry。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "国家报告"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "国家报告（第六次）"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH 记录"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH 记录"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "国家联络点"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "国家概况"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "内容类型"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "论坛"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "国家目标（GBF 目标7）"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "所有内容类型"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "按国家分标签显示国家报告链接列表；该国没有报告时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "本站所属国家的第六次国家报告链接，以及该链接自身的子链接；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "该国的生物安全信息交换所记录，例如法律和决定；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "获取和惠益分享信息交换所记录，例如措施和许可；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "按国家分标签显示国家联络点列表；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "按国家分标签显示指向《生物多样性公约》国家概况页面的链接；始终显示。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "此链接上设置的内容类型的本站最新内容；没有记录时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "论坛最新主题，以及该链接自身的子链接；为空时隐藏。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "按国家分标签显示 GBF 目标7的国家目标卡片；始终显示。"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "每种有记录的内容类型显示一个链接，以及该链接自身的子链接；始终显示。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "超级菜单组件"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "此菜单链接在超级菜单中呈现的组件。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "旧版：@class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label（本站点不可用）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "此菜单链接呈现超级菜单组件，而不是普通的子链接列表。"
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "添加超级菜单组件"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "主題"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "小工具可在「首頁小工具」分頁中啟用和停用。已儲存的變更約在 5 分鐘內顯示於公開網站上。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "顏色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "品牌主色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "品牌輔色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "背景輔色"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "首頁小工具欄"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "第 @number 欄"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "最大欄數"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "每欄最大列數（0 表示不限）"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "最大水平卡片數"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "語言"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "語言列換行前顯示的最大語言數"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "重設為網路預設值"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "此操作將刪除本網站的佈景主題設定，且無法復原。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "本網站的佈景主題設定已重設為網路預設值。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "請輸入有效的十六進位顏色，例如 #1B7B3A。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "首頁小工具必須恰好排成 @count 欄。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "請輸入 @min 到 @max 之間的數字。"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "留空以保留當前值。使用 @reset 可將其移除。"
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "内容类型"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "此列表显示的内容类型。"
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "启用超级菜单组件"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "在菜单管理界面显示\"添加超级菜单组件\"操作。取消勾选后，该操作及其表单将不可用。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "显示缩略图"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "在每个条目旁显示缩略图。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "超级菜单栏数"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "此区块占超级菜单的几栏。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "默认（1 栏）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count 栏"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count 栏（仅超大屏幕）"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "每栏最大行数"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "站点默认值"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "每栏列出的最大条目数；未设置时采用站点默认值。"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "显示箭头"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "在区块标题后显示箭头。"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "（超级菜单：@type）"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "（超级菜单：@type：@schema）"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "添加超级菜单子项"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google 標記 ID"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "以逗號分隔的 Google 標記 ID 清單，例如 G-ABC1234567,GTM-XYZ789。可接受的字首為 G-、GTM-、AW-、DC- 和 UA-。公眾網站為每個非 GTM 的 ID 載入一個 gtag.js 設定，並為每個 GTM- ID 載入一個 Tag Manager 容器。指令碼僅對接受 Google Analytics Cookie 類別的訪客載入，且僅在 bl2 網站的正式主機上載入（其他多網站目前不載入 Google 標記）。儲存的變更約在 5 分鐘內到達公眾網站；網站內的頁面變更依賴 GA4 增強評估，該功能對網頁資料串流預設開啟。UA- ID 可用於舊版資源，但 Google 已於2023 年 7 月 1 日停止處理 Universal Analytics 資料，因此它們不會記錄任何內容。"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "下列 Google 標記 ID 無效：@tokens。每個 ID 開頭必須是下列可接受的字首之一：G-、GTM-、AW-、DC- 或 UA-。"

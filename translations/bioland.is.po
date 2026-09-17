@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Landsskýrslur"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Landsskýrsla (6.)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH-færslur"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH-færslur"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Landstengiliðir"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Landssnið"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Efnistegund"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Spjallsvæði"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Landsmarkmið (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Allar efnistegundir"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Listi yfir tengla á landsskýrslur, í flipum eftir löndum; falinn þegar landið hefur engar skýrslur."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Tenglar sjöttu landsskýrslunnar fyrir land vefsins, ásamt undirtenglum tengilsins; falið ef tómt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Færslur upplýsingamiðstöðvar um líföryggi fyrir landið, svo sem lög og ákvarðanir; falið ef tómt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Færslur upplýsingamiðstöðvar um aðgang og skiptingu ávinnings, svo sem ráðstafanir og leyfi; falið ef tómt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Listi yfir landstengiliði, í flipum eftir löndum; falinn ef tómur."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Tenglar á landssniðssíður CBD, í flipum eftir löndum; alltaf sýnt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Nýjasta efni vefsins af þeim efnistegundum sem stilltar eru á þennan tengil; falið þegar engar færslur eru til."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Nýjustu spjallþræðirnir, ásamt undirtenglum tengilsins; falið ef tómt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Spjöld landsmarkmiða fyrir GBF-markmið 7, í flipum eftir löndum; alltaf sýnt."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Einn tengill fyrir hverja efnistegund sem hefur færslur, ásamt undirtenglum tengilsins; alltaf sýnt."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Eining megavalmyndar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Einingin sem þessi valmyndartengill birtir í megavalmyndinni."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Eldra: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ekki í boði á þessu vefsvæði)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Þessi valmyndartengill birtir einingu megavalmyndar í stað einfalds lista undirtengla."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Bæta við einingu megavalmyndar"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Þema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Kveikt og slökkt er á smáforritum á flipanum Smáforrit forsíðu. Vistaðar breytingar birtast á opinbera vefnum innan um það bil 5 mínútna."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Litir"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Aðallitur vörumerkis"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Aukalitur vörumerkis"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Aukalitur bakgrunns"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Smáforritadálkar forsíðu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Dálkur @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Hámarksfjöldi dálka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Hámarksfjöldi raða í dálki (0 þýðir engin takmörk)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Hámarksfjöldi láréttra korta"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Tungumál"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Hámarksfjöldi tungumála sem birtast áður en tungumálastikan brotnar"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Endurstilla á sjálfgefið gildi netsins"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Þetta eyðir þemastillingum þessa vefs. Ekki er hægt að afturkalla það."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Þemastillingar þessa vefs hafa verið endurstilltar á sjálfgefið gildi netsins."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Sláðu inn gildan hexlit, til dæmis #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Smáforrit forsíðunnar verða að vera í nákvæmlega @count dálkum."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Sláðu inn tölu á milli @min og @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Skildu eftir autt til að halda núverandi gildi. Notaðu @reset til að fjarlægja það."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Efnistegund"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Þessi listi sýnir þessa efnistegund."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Virkja einingar megavalmyndar"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Sýnir aðgerðina \"Bæta við einingu megavalmyndar\" á valmyndastjórnunarskjánum. Þegar ekki er hakað við eru aðgerðin og eyðublað hennar ekki tiltæk."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Sýna smámyndir"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Sýnir smámynd við hlið hverrar færslu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Dálkar megavalmyndar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Hversu marga dálka megavalmyndarinnar þessi hluti spannar."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Sjálfgefið (1 dálkur)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count dálkar"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count dálkar (aðeins mjög stórir skjáir)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Hámarksraðir í dálki"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Sjálfgefið vefsvæðis"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Hámarksfjöldi færslna í dálki; sé ekkert valið gildir sjálfgefið vefsvæðisins."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Sýna ör"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Sýnir ör á eftir titli hlutans."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Megavalmynd: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Megavalmynd: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Bæta við undirlið megavalmyndar"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google tag auðkenni"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Kommu-aðskilin listi yfir Google tag auðkenni, til dæmis G-ABC1234567,GTM-XYZ789. Samþykkt forskeyti eru G-, GTM-, AW-, DC- og UA-. Opinbera vefsvæðið hleður einni gtag.js stillingu fyrir hvert auðkenni sem er ekki GTM og einni Tag Manager gám fyrir hvert GTM- auðkenni. Skriftur hlaðast aðeins fyrir gesti sem samþykkja Google Analytics kexpukategóríuna og aðeins á framleiðsluhýsil bl2 vefsvæðis (önnur multisites hlaða ekki Google tag í dag). Vistaðar breytingar ná til opinbera vefsvæðisins innan um það bil 5 mínútna; síðubreytingar innan vefsvæðisins byggja á GA4 Enhanced Measurement, sem er sjálfgefið virkt fyrir vefgagnastraum. UA- auðkenni eru samþykkt fyrir eldri eignir, en Google hætti að vinna úr Universal Analytics gögnum 1. júlí 2023, svo þau skrá ekkert."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Eftirfarandi Google tag auðkenni eru ekki gild: @tokens. Hvert auðkenni verður að byrja á einu af samþykktu forskeytjunum: G-, GTM-, AW-, DC- eða UA-."
