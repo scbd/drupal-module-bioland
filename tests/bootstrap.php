@@ -18,6 +18,20 @@ $autoloader->addPsr4('GuzzleHttp\\', __DIR__ . '/stubs/GuzzleHttp/');
 // Load the Drupal stub class.
 require_once __DIR__ . '/stubs/Drupal.php';
 
+// hook_requirements() severity constants, normally defined by Drupal core.
+if (!defined('REQUIREMENT_OK')) {
+    define('REQUIREMENT_OK', 0);
+}
+if (!defined('REQUIREMENT_INFO')) {
+    define('REQUIREMENT_INFO', -1);
+}
+if (!defined('REQUIREMENT_WARNING')) {
+    define('REQUIREMENT_WARNING', 1);
+}
+if (!defined('REQUIREMENT_ERROR')) {
+    define('REQUIREMENT_ERROR', 2);
+}
+
 // Define the t() function if it doesn't exist (used by BiolandMenuLink).
 if (!function_exists('t')) {
     /**

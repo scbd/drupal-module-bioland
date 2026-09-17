@@ -55,8 +55,11 @@ External systems and how Bioland relates to each:
 
 - **DMSM API** is the upstream authority for a site's countries, region, and continent. Bioland is a
   conformist: it parses its own hostname into `env/multiSiteCode/siteCode`, calls
-  `https://dmsm.cbddev.xyz/api/config/{env}/{ms}/{site}`, and replaces its local geography with the
-  response. It does not own or write back to DMSM.
+  `{base}/api/config/{env}/{ms}/{site}`, and replaces its local geography with the response. It does
+  not own or write back to DMSM. `{base}` is `bioland.settings.dmsm_config_base_url`, deploy-time
+  configuration with no default in code or in `config/install` (see BL-992); a production site must
+  additionally name the host in `bioland.settings.dmsm_config_prod_host_allowlist`. The call is made
+  only from the `bioland_dmsm_geography` queue worker, never inside a web request.
 - **GBIF** is rendered by the front end, not this module. Bioland's contribution is per-country zoom
   and centre coordinates published through home-widget settings.
 - **auto_node_translate** (with DeepL and Amazon providers) is a sibling contrib dependency. Bioland
@@ -150,7 +153,7 @@ The module is small in PHP class count but wide in surface area. The pieces:
 - **Installer and update hooks**: `bioland.install` plus the `includes/bioland.install.*.inc`
   partials, organised by concern (content types, fields, form display, roles, users, menu, search,
   search v2, translation, linkit, editor, jsonapi, views, dmsm, helpers). The current update-hook
-  ceiling is `bioland_update_9079` (verify with
+  ceiling is `bioland_update_9082` (verify with
   `grep -rho "bioland_update_[0-9]*" includes/*.inc | sort -u | tail -1`); see `docs/UPDATE.md`.
 
 ## 4. Key Components (C4 L3)
@@ -360,6 +363,13 @@ See each ADR for the rationale; it is not restated here.
   contains no `hook_cron` guard reading it. Anything that needs the flag honoured (or that needs
   Search API indexing to still run) depends on infrastructure outside this repo. Worth confirming the
   external scheduler exists for every environment.
+- **What the external cron trigger actually is (unresolved, BL-992).** Nothing in this repository -
+  module code, `docs/`, or `.github/workflows/ci.yml` - names the mechanism, so it could not be
+  established here. The `bioland_dmsm_geography` queue worker refuses to run under a web SAPI, so
+  the answer decides whether the geography fetch works at all: `drush cron` / `drush queue:run`
+  drains it, while an HTTP GET to `/cron/{key}` runs as `fpm-fcgi`, is refused on every pass, and
+  lets the queue grow without bound. `hook_requirements('runtime')` warns on a queue that is not
+  draining, which detects the failure but does not prevent it. This needs an operator answer.
 - **Versioned JS/CSS filenames.** JS behaviour files and libraries embed the module version in their
   filename (for example `js/bioland-home-widgets-1-1-7.js`). `docs/COUNTRY_MAP_DEFAULTS.md` and the
   README reference these by name; a version bump means every reference needs updating in lockstep,
@@ -368,7 +378,7 @@ See each ADR for the rationale; it is not restated here.
 - **Two Search API install paths.** v1 and v2 both exist. v2 is canonical; v1 is retained only for
   replay of its historical hooks. `bioland_update_9064` provided a convergence switch that was the
   highest-numbered hook at the time it landed (idempotent, re-applies v2 config and reindexes);
-  update hooks have since continued past it (currently through 9079), so it is no longer the
+  update hooks have since continued past it (currently through 9082), so it is no longer the
   highest-numbered hook, only still the last one that touches the Search API index. The remaining
   risk is only if new code re-wires the deprecated v1 helpers into the install path — the file
   header of `bioland.install.search.inc` warns against this.

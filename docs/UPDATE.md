@@ -288,10 +288,10 @@ Update hooks run in numerical order during `drush updb`:
 
   - **Security rationale**: These endpoints expose configuration and user data that should not be publicly accessible via JSON:API
 
-## 9037-9079
+## 9037-9082
 
-Update hooks continue past 9036, currently through **9079** (`bioland_update_9079` in
-`includes/bioland.install.helpers.inc`; verify the current ceiling with
+Update hooks continue past 9036, currently through **9082** (`bioland_update_9082` in
+`includes/bioland.install.dmsm.inc`; verify the current ceiling with
 `grep -rho "bioland_update_[0-9]*" includes/*.inc | sort -u | tail -1`). They are not individually
 itemised here; notable ones:
 

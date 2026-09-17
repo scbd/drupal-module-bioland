@@ -17,8 +17,7 @@ services:
 
   bioland.dmsm_config:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
-    arguments: ['@config.factory', '@http_client', '@logger.factory']
-
+    arguments: ['@config.factory', '@http_client', '@logger.factory', '@queue', '@request_stack']
   bioland.config_document_builder:
     class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
     arguments: ['@logger.factory']
