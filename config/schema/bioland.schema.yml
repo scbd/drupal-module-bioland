@@ -443,6 +443,9 @@ bioland.settings:
         auto_create:
           type: boolean
           label: 'Automatically create translation defaults'
+        backfill_enabled:
+          type: boolean
+          label: 'Allow the backfill update hook to create translation defaults for all existing content (runs a content-writing batch over every existing node; ships off)'
         use_all_languages:
           type: boolean
           label: 'Use all available languages'

@@ -12,3 +12,8 @@ administer bioland translation settings:
   title: 'Administer Bioland translation defaults'
   description: 'Configure Bioland translation defaults.'
   restrict access: TRUE
+
+access bioland config api:
+  title: 'Access the Bioland site configuration API'
+  description: 'Read the allowlisted Bioland site configuration document over HTTP. Intended for the Bioland front-end service account only.'
+  restrict access: TRUE
