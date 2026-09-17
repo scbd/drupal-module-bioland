@@ -603,4 +603,11 @@ class TestContainer implements ContainerInterface {
     return isset($this->services[$id]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getParameter($name) {
+    return NULL;
+  }
+
 }
