@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Ազգային զեկույցներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Ազգային զեկույց (6-րդ)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH գրառումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH գրառումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Ազգային կապի կենտրոններ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Երկրների պրոֆիլներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Բովանդակության տեսակ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Ֆորումներ"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Ազգային թիրախներ (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Բովանդակության բոլոր տեսակները"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Ազգային զեկույցների հղումների ցանկ, ներդիրներով ըստ երկրների; թաքցվում է, երբ երկիրը զեկույցներ չունի:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Կայքի երկրի վեցերորդ ազգային զեկույցի հղումները և հղման ենթատարրերը; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Երկրի կենսաանվտանգության տեղեկատվության փոխանակման կենտրոնի գրառումները, օրինակ՝ օրենքներ և որոշումներ; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Հասանելիության և օգուտների բաշխման տեղեկատվության փոխանակման կենտրոնի գրառումները, օրինակ՝ միջոցառումներ և թույլտվություններ; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Ազգային կապի կենտրոնների ցանկ, ներդիրներով ըստ երկրների; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Հղումներ ԿԲԿ-ի երկրների պրոֆիլների էջերին, ներդիրներով ըստ երկրների; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Այս հղման վրա սահմանված բովանդակության տեսակների կայքի ամենավերջին բովանդակությունը; թաքցվում է, երբ գրառումներ չկան:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Ֆորումների ամենավերջին թեմաները և հղման ենթատարրերը; թաքցվում է, երբ դատարկ է:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "GBF-ի 7-րդ թիրախի ազգային թիրախների քարտերը, ներդիրներով ըստ երկրների; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Մեկ հղում գրառումներ ունեցող յուրաքանչյուր բովանդակության տեսակի համար և հղման ենթատարրերը; ցուցադրվում է միշտ:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Մեգա ցանկի բաղադրիչ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Բաղադրիչը, որը ցանկի այս հղումը ցուցադրում է մեգա ցանկում։"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Հնացած՝ @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (այս կայքում հասանելի չէ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ցանկի այս հղումը ցուցադրում է մեգա ցանկի բաղադրիչ՝ ենթահղումների պարզ ցանկի փոխարեն։"
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Ավելացնել մեգա ցանկի բաղադրիչ"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Ոճ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Վիջեթները միացվում և անջատվում են «Գլխավոր էջի վիջեթներ» ներդիրում։ Պահպանված փոփոխությունները հրապարակային կայքում երևում են մոտ 5 րոպեի ընթացքում։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Գույներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Ապրանքանիշի հիմնական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Ապրանքանիշի երկրորդական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Ֆոնի երկրորդական գույն"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Գլխավոր էջի վիջեթների սյունակներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Սյունակ @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Սյունակների առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Մեկ սյունակի տողերի առավելագույն քանակ (0 նշանակում է առանց սահմանափակման)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Հորիզոնական քարտերի առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Լեզուներ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Լեզուների վահանակի փաթաթումից առաջ ցուցադրվող լեզուների առավելագույն քանակ"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Վերականգնել ցանցի լռելյայն արժեքը"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Սա ջնջում է այս կայքի ոճի կարգավորումները։ Գործողությունը հնարավոր չէ հետարկել։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Այս կայքի ոճի կարգավորումները վերականգնվել են ցանցի լռելյայն արժեքին։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Մուտքագրեք վավեր տասնվեցական գույն, օրինակ՝ #1B7B3A։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Գլխավոր էջի վիջեթները պետք է դասավորվեն ճիշտ @count սյունակում։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Մուտքագրեք @min-ի և @max-ի միջև ընկած թիվ։"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Թողեք դատարկ՝ ընթացիկ արժեքը պահպանելու համար։ Այն հեռացնելու համար օգտագործեք @reset։"
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Բովանդակության տեսակ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Բովանդակության տեսակը, որը ցուցադրում է այս ցանկը:"
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Միացնել մեգա ցանկի բաղադրիչները"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Ցուցադրում է \"Ավելացնել մեգա ցանկի բաղադրիչ\" գործողությունը մենյուի կառավարման էկրանին։ Երբ նշված չէ, գործողությունը և դրա ձևը հասանելի չեն։"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Ցուցադրել մանրապատկերները"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Ցուցադրում է մանրապատկեր յուրաքանչյուր գրառման կողքին:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Մեգա ընտրացանկի սյունակներ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Քանի սյունակ է զբաղեցնում այս բաժինը մեգա ընտրացանկում:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Լռելյայն (1 սյունակ)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count սյունակ"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count սյունակ (միայն շատ մեծ էկրաններին)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Առավելագույն տողեր մեկ սյունակում"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Կայքի լռելյայն"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Սյունակում ցուցադրվող առավելագույն գրառումներ. չսահմանելու դեպքում գործում է կայքի լռելյայնը:"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Ցուցադրել սլաքը"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Ցուցադրում է սլաք բաժնի վերնագրից հետո։"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Մեգա ցանկ: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Մեգա ցանկ: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Ավելացնել մեգա ցանկի ենթատարր"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "Google պիտակի ID-ներ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Ստորակետերով բաժանված Google պիտակի ID-ների ցանկ, օրինակ՝ G-ABC1234567,GTM-XYZ789։ Ընդունված նախածանցներն են՝ G-, GTM-, AW-, DC- և UA-։ Հանրային կայքը բեռնում է մեկ gtag.js կոնֆիգուրացիա յուրաքանչյուր ոչ GTM ID-ի համար և մեկ Tag Manager կոնտեյներ յուրաքանչյուր GTM- ID-ի համար։ Սկրիպտները բեռնվում են միայն այն այցելուների համար, ովքեր ընդունում են Google Analytics թխուկների կատեգորիան, և միայն bl2 կայքի արտադրական հոսթի վրա (այլ multisites այսօր Google պիտակներ չեն բեռնում)։ Պահպանված փոփոխությունները հասնում են հանրային կայք մոտ 5 րոպեում. կայքի ներսում էջերի փոփոխությունները հիմնվում են GA4 Enhanced Measurement-ի վրա, որն ի սկզբանե միացված է վեբ տվյալների հոսքի համար։ UA- ID-ները ընդունվում են ժառանգական հատկությունների համար, սակայն Google-ը դադարեցրեց Universal Analytics տվյալների մշակումը 2023 թ. հուլիսի 1-ին, ուստի դրանք ոչինչ չեն գրանցում։"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Հետևյալ Google պիտակի ID-ները վավեր չեն: @tokens. Յուրաքանչյուր ID պետք է սկսվի ընդունված նախածանցներից մեկով՝ G-, GTM-, AW-, DC- կամ UA-։"

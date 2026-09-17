@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Tests the update hook that seeds the base URL on already-installed sites.
  *
  * config/install/ is imported at module install only, so the sites that were
- * already installed never receive a new key from it. Without bioland_update_9079
+ * already installed never receive a new key from it. Without bioland_update_9082
  * every one of them would have bioland.settings.dmsm_config_base_url unset, the
  * fetch would refuse, and geography sync would stop fleet-wide on deploy -
  * visible only as a watchdog error from a cron worker.
@@ -79,7 +79,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
             'Precondition: the site does not have the key.'
         );
 
-        $message = (string) bioland_update_9079();
+        $message = (string) bioland_update_9082();
 
         $this->assertSame(
             'https://config.example.test',
@@ -96,7 +96,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
     {
         putenv('BIOLAND_DMSM_CONFIG_BASE_URL=https://config.env.test');
 
-        bioland_update_9079();
+        bioland_update_9082();
 
         $this->assertSame(
             'https://config.env.test',
@@ -112,7 +112,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
         Settings::setAll(['bioland_dmsm_config_base_url' => 'https://config.settings.test']);
         putenv('BIOLAND_DMSM_CONFIG_BASE_URL=https://config.env.test');
 
-        bioland_update_9079();
+        bioland_update_9082();
 
         $this->assertSame(
             'https://config.settings.test',
@@ -129,7 +129,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
         $this->config->saved = false;
         Settings::setAll(['bioland_dmsm_config_base_url' => 'https://config.example.test']);
 
-        $message = (string) bioland_update_9079();
+        $message = (string) bioland_update_9082();
 
         $this->assertSame(
             'https://already.example.test',
@@ -149,7 +149,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Cannot seed bioland.settings.dmsm_config_base_url');
 
-        bioland_update_9079();
+        bioland_update_9082();
     }
 
     /**
@@ -163,7 +163,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
 
         $this->expectException(\RuntimeException::class);
 
-        bioland_update_9079();
+        bioland_update_9082();
     }
 
     /**
@@ -195,7 +195,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
             'bioland_dmsm_prod_host_allowlist' => ['Config.Prod.Test.', 'other.prod.test'],
         ]);
 
-        bioland_update_9079();
+        bioland_update_9082();
 
         $this->assertSame(
             ['config.prod.test', 'other.prod.test'],
@@ -211,7 +211,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
         Settings::setAll(['bioland_dmsm_config_base_url' => 'https://config.example.test']);
         putenv('BIOLAND_DMSM_PROD_HOST_ALLOWLIST=a.prod.test, b.prod.test');
 
-        bioland_update_9079();
+        bioland_update_9082();
 
         $this->assertSame(
             ['a.prod.test', 'b.prod.test'],
@@ -226,7 +226,7 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
     {
         Settings::setAll(['bioland_dmsm_config_base_url' => 'https://config.example.test']);
 
-        bioland_update_9079();
+        bioland_update_9082();
 
         $this->assertNull(
             $this->config->get(BiolandDmsmConfigService::CONFIG_PROD_HOST_ALLOWLIST_KEY)

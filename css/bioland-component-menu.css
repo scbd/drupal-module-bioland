@@ -1,0 +1,90 @@
+/**
+ * @file
+ * Admin styles for the mega-menu Component-menu link form.
+ *
+ * Scoped entirely to .bioland-component-menu-form, the wrapper class
+ * Drupal\bioland\Service\BiolandComponentMenuFormMode adds when Component mode
+ * applies. A regular menu link form never carries the class and never loads
+ * this file, so the ordinary authoring surface is untouched.
+ *
+ * Colours and spacing follow css/bioland.admin.css (neutral greys, 4px radii,
+ * 1.5em block rhythm) so the two admin surfaces read as one module.
+ */
+
+/* Accent band identifying the form as a component menu link. */
+.bioland-component-menu-form {
+  border-top: 4px solid #0071b8;
+  padding-top: 1em;
+}
+
+.bioland-component-menu-form__intro {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-left: 4px solid #0071b8;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Emphasise the picker: it is the reason this form exists. */
+.bioland-component-menu-form #edit-bioland-component,
+.bioland-component-menu-form select[name="bioland_component"] {
+  max-width: 32em;
+  width: 100%;
+  font-weight: 600;
+}
+
+.bioland-component-menu-form .form-item-bioland-component {
+  background-color: #fbfbfb;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 0.75em;
+  border-radius: 4px;
+}
+
+.bioland-component-menu-form .form-item-bioland-component > label {
+  font-size: 1.077em;
+  font-weight: 700;
+}
+
+.bioland-component-menu-form .form-item-bioland-component .description {
+  font-style: italic;
+  color: #666;
+  margin-top: 0.25em;
+}
+
+/* The one-line description of the currently selected component (#states
+   shows exactly one at a time). */
+.bioland-component-menu-form__description {
+  font-style: italic;
+  color: #555;
+  margin: 0.25em 0 1em;
+}
+
+/* Preview of the arrow the frontend renders after the section title. Its
+   colour is the per-site primary and is set inline by
+   BiolandComponentMenuFormMode::arrowPreview(), so nothing is declared here. */
+.bioland-component-menu-form__arrow-preview {
+  margin-inline-start: 0.5em;
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* The content-type sub-select, shown only for the Content Type Listing. */
+.bioland-component-menu-form select[name="bioland_component_content_type"] {
+  max-width: 32em;
+  width: 100%;
+}
+
+@media (max-width: 48em) {
+  .bioland-component-menu-form .form-item-bioland-component {
+    padding: 0.75em;
+  }
+
+  .bioland-component-menu-form #edit-bioland-component,
+  .bioland-component-menu-form select[name="bioland_component"] {
+    max-width: 100%;
+  }
+}

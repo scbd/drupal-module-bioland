@@ -154,13 +154,14 @@ function bioland_update_9046() {
  * The update FAILS when it cannot derive a value, so the problem surfaces
  * during deployment rather than silently at the next cron run.
  *
- * As the highest-numbered hook it is also the last writer for every site, so
+ * As the highest-numbered hook (numbered above the 9079-9081 hooks already on
+ * the base branch) it is also the last writer for every site, so
  * per SearchApiConvergenceHookTest it must converge the canonical Search API
  * v2 config. It does that FIRST, not last: the seed below can legitimately
  * fail the update, and convergence must not be skipped because a different
  * key was missing from the deployment.
  */
-function bioland_update_9079() {
+function bioland_update_9082() {
   $key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_BASE_URL_KEY;
   $allowlist_key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_PROD_HOST_ALLOWLIST_KEY;
 

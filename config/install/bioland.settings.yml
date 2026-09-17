@@ -13,7 +13,7 @@ countries:
 # bioland.settings dmsm_config_base_url https://...`, or through
 # $settings['bioland_dmsm_config_base_url'] (or the
 # BIOLAND_DMSM_CONFIG_BASE_URL environment variable), which
-# bioland_update_9079() reads to seed the key on sites that lack it.
+# bioland_update_9082() reads to seed the key on sites that lack it.
 #
 # On production the host must ALSO be named in dmsm_config_prod_host_allowlist,
 # which likewise ships absent: no production host exists in code either, for the
@@ -72,6 +72,7 @@ help_comments:
 field_visibility_rules: ''
 config:
   promote_and_sticky_public: true
+google_analytics_ids: ''
 enable_debug_logging: false
 debug_log_areas:
   field_visibility: true
@@ -79,6 +80,8 @@ debug_log_areas:
   auto_summary: true
   help_comments: true
 main_menu_lock: true
+component_menu_add_enabled: true
+component_menu_show_attributes: false
 mega_menu:
   content_type_menus:
     visible_content_type_menus: []
@@ -108,6 +111,10 @@ mega_menu:
     show_if_empty: false
 translation:
   auto_create: true
+  # Gates the translation backfill update hook, which writes translation
+  # defaults across every existing content node. Ships off by design: enabling
+  # it is a deliberate, per-site, operator-run act, never a deploy side effect.
+  backfill_enabled: false
   use_all_languages: true
   target_languages: []
   copy_source_values: true

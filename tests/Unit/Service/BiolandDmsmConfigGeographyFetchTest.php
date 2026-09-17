@@ -917,7 +917,7 @@ class BiolandDmsmConfigGeographyFetchTest extends TestCase
         $service->sapiName = 'fpm-fcgi';
 
         $this->requestStack->method('getCurrentRequest')
-            ->willReturn(new \Symfony\Component\HttpFoundation\Request(self::DEV_SITE));
+            ->willReturn(new \Symfony\Component\HttpFoundation\Request([], [], self::DEV_SITE));
 
         $this->httpClient->expects($this->never())->method('request');
         $this->queue->expects($this->once())->method('createItem');

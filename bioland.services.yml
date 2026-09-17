@@ -18,3 +18,35 @@ services:
   bioland.dmsm_config:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
     arguments: ['@config.factory', '@http_client', '@logger.factory', '@queue', '@request_stack']
+  bioland.config_document_builder:
+    class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
+    arguments: ['@logger.factory']
+
+  bioland.config_api_access_check:
+    class: Drupal\bioland\Access\BiolandConfigApiAccessCheck
+    arguments: ['@settings']
+    tags:
+      - { name: access_check, applies_to: _bioland_config_api }
+
+  bioland.component_registry:
+    class: Drupal\bioland\Service\BiolandComponentRegistry
+    calls:
+      - [setStringTranslation, ['@string_translation']]
+
+  bioland.component_menu_access:
+    class: Drupal\bioland\Access\BiolandComponentMenuAccessCheck
+    arguments: ['@config.factory']
+    tags:
+      - { name: access_check, applies_to: _bioland_component_menu_enabled }
+
+  bioland.component_menu_form_mode:
+    class: Drupal\bioland\Service\BiolandComponentMenuFormMode
+    arguments: ['@bioland.component_registry', '@config.factory', '@current_user', '@entity_type.manager', '@language_manager']
+    calls:
+      - [setStringTranslation, ['@string_translation']]
+
+  bioland.component_menu_overview:
+    class: Drupal\bioland\Service\BiolandComponentMenuOverview
+    arguments: ['@bioland.component_registry', '@bioland.component_menu_form_mode', '@redirect.destination']
+    calls:
+      - [setStringTranslation, ['@string_translation']]

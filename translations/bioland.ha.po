@@ -1603,3 +1603,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Rahotannin ƙasa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Rahoton ƙasa (na 6)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "Bayanan BCH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "Bayanan ABS-CH"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Cibiyoyin tuntuɓar ƙasa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Bayanan ƙasashe"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Nau'in abun ciki"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Dandalin tattaunawa"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Manufofin ƙasa (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Dukkan nau'ikan abun ciki"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Jerin hanyoyin haɗi zuwa rahotannin ƙasa, cikin shafuka bisa ga ƙasa; ana ɓoye shi idan ƙasar ba ta da rahotanni."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Hanyoyin haɗi na rahoto na shida na ƙasar shafin, tare da ƙananan abubuwan haɗin; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Bayanan Cibiyar Musayar Bayanai kan Tsaron Halittu na ƙasar, kamar dokoki da yanke shawara; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Bayanan Cibiyar Musayar Bayanai kan Samun Dama da Rarraba Amfani, kamar matakai da izini; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Jerin cibiyoyin tuntuɓar ƙasa, cikin shafuka bisa ga ƙasa; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Hanyoyin haɗi zuwa shafukan bayanan ƙasashe na CBD, cikin shafuka bisa ga ƙasa; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Sabon abun ciki na shafin daga nau'ikan abun ciki da aka saita a wannan haɗin; ana ɓoye shi idan babu bayanai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Sabbin tattaunawar dandali, tare da ƙananan abubuwan haɗin; ana ɓoye shi idan babu komai."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Katunan manufofin ƙasa na manufa ta 7 ta GBF, cikin shafuka bisa ga ƙasa; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Haɗi ɗaya ga kowane nau'in abun ciki mai bayanai, tare da ƙananan abubuwan haɗin; ana nuna shi kullum."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Sashen babban menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Sashen da wannan hanyar menu ke nunawa a cikin babban menu."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Tsoho: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (ba ya samuwa a wannan shafin)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Wannan hanyar menu tana nuna sashen babban menu maimakon jerin hanyoyin haɗi na yara."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Ƙara sashen babban menu"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Jigo"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Ana kunna da kashe kayan aiki a shafin Kayan Aikin Shafin Farko. Sauye-sauyen da aka ajiye suna bayyana a shafin jama'a cikin kusan mintuna 5."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Launuka"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Babban launin alama"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Launin alama na biyu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Launin bango na biyu"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Ginshiƙan kayan aikin shafin farko"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Ginshiƙi @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Iyakar ginshiƙai"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Iyakar layuka a kowane ginshiƙi (0 na nufin babu iyaka)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Iyakar katunan kwance"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Harsuna"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Iyakar harsunan da ake nunawa kafin sandar harshe ta nannaɗe"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Sake saitawa zuwa tsoho na hanyar sadarwa"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Wannan yana share saitunan jigo na wannan shafin. Ba za a iya mayar da shi ba."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "An sake saita saitunan jigo na wannan shafin zuwa tsoho na hanyar sadarwa."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Shigar da ingantaccen launin hex, misali #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Dole ne a shirya kayan aikin shafin farko a cikin ginshiƙai @count daidai."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Shigar da lamba tsakanin @min da @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Bar shi fanko don riƙe ƙimar yanzu. Yi amfani da @reset don cire ta."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Nau'in abun ciki"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Nau'in abun ciki da wannan jerin ke nunawa."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Kunna sassan babban menu"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Yana nuna aikin \"Ƙara sashen babban menu\" a allon sarrafa menu. Idan ba a zaba ba, aikin da fom dinsa ba sa samuwa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Nuna kananan hotuna"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Yana nuna karamin hoto kusa da kowane shigarwa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Ginshikan babban menu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Yawan ginshikan babban menu da wannan sashe ke dauka."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Tsoho (ginshiki 1)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "Ginshikai @count"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "Ginshikai @count (manyan allo kawai)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Matsakaicin layuka a kowane ginshiki"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Tsohon saitin shafi"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Matsakaicin shigarwa a kowane ginshiki; idan ba a saita ba, tsohon saitin shafin ke aiki."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Nuna kibiya"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Yana nuna kibiya bayan taken sashen."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Babban menu: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Babban menu: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Ƙara ɗan babban menu"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID na alamu na Google"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Jerin da aka raba da wakafi na ID na alamu na Google, misali G-ABC1234567,GTM-XYZ789. Prefix din da aka yarda da su sune G-, GTM-, AW-, DC- da UA-. Shafin jama'a yana loda saitin gtag.js guda daya ga kowane ID da ba na GTM ba da kwandon Tag Manager guda daya ga kowane ID na GTM-. Ana loda rubutun kawai ga bakin da suka karbi rukunin kuki na Google Analytics kuma kawai a kan uwar garken samarwa na shafin bl2 (sauran multisites ba sa loda alamun Google a yau). Canje-canjen da aka ajiye suna isa shafin jama'a cikin kusan minti 5; canje-canjen shafi a cikin shafin sun dogara da GA4 Enhanced Measurement, wanda aka kunna ta tsohuwa ga rafin bayanan yanar gizo. Ana karbar ID na UA- don kaddarorin da suka gabata, amma Google ya daina sarrafa bayanan Universal Analytics a ranar 1 ga Yuli 2023, don haka ba sa yin rikodin komai."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "ID na alamu na Google da ke biye ba su da inganci: @tokens. Kowane ID dole ne ya fara da daya daga cikin prefix din da aka yarda da su: G-, GTM-, AW-, DC-, ko UA-."

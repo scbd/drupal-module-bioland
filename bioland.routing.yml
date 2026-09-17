@@ -70,6 +70,14 @@ bioland.settings.front_end.home_widgets:
   requirements:
     _permission: 'administer bioland settings'
 
+bioland.settings.front_end.theme:
+  path: '/admin/config/bioland/settings/front-end/theme'
+  defaults:
+    _form: '\Drupal\bioland\Form\BiolandThemeForm'
+    _title: 'Theme'
+  requirements:
+    _permission: 'administer bioland settings'
+
 bioland.settings.system_functions:
   path: '/admin/config/bioland/settings/system-functions'
   defaults:
@@ -85,3 +93,54 @@ bioland.settings.admin:
     _title: 'Admin Settings'
   requirements:
     _role: 'administrator'
+
+# The module's first JSON/HTTP route. Authorization is the dedicated
+# _bioland_config_api access check: a header api key, or the
+# 'access bioland config api' permission. It is never open to everyone.
+# no_cache keeps Drupal's internal page cache, which does not vary on request
+# headers, from storing a key-authenticated response and replaying it to an
+# unauthenticated caller. See BiolandConfigController for the CDN decision.
+bioland.config_api:
+  path: '/bioland/api/config'
+  defaults:
+    _controller: '\Drupal\bioland\Controller\BiolandConfigController::document'
+    _title: 'Bioland site configuration'
+  methods: [GET]
+  requirements:
+    _bioland_config_api: 'TRUE'
+    _format: 'json'
+  options:
+    no_cache: TRUE
+    # Default access mode is ANY: a contrib module adding a dynamic access
+    # check to this route could then grant access alongside ours. ALL means
+    # every check must allow, so _bioland_config_api can only ever be the
+    # narrowest of them, never one vote among several.
+    _access_mode: 'ALL'
+
+# The dedicated "Add Mega Menu component" flow. Deliberately a sibling of
+# core's entity.menu.add_link_form rather than a replacement: the regular add
+# path stays byte-identical. Permission-wise this mirrors core's
+# entity.menu.add_link_form exactly - _entity_create_access and nothing more -
+# so it adds no new permission or role (see ADR 0005).
+#
+# _bioland_component_menu_enabled is the site-wide on/off switch from Bioland's
+# admin settings, not an access widening: it can only take access away, and the
+# create-access check still applies when it is on. It lives on the route rather
+# than in a local-actions alter because core derives the
+# bioland.menu_link_component_add action's #access from this route, so one
+# decision both hides the button and closes the URL. Its 'TRUE' value below is
+# decorative - the requirement's presence is what dispatches the tagged access
+# check, whose access() takes no Route and never reads the value.
+bioland.menu_link_component.add:
+  path: '/admin/structure/menu/manage/{menu}/add-component'
+  defaults:
+    _controller: '\Drupal\bioland\Controller\BiolandMenuController::addComponentLink'
+    _title: 'Add Mega Menu component'
+  requirements:
+    _entity_create_access: 'menu_link_content'
+    _bioland_component_menu_enabled: 'TRUE'
+  options:
+    _admin_route: TRUE
+    parameters:
+      menu:
+        type: 'entity:menu'

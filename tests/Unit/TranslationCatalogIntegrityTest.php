@@ -52,6 +52,110 @@ class TranslationCatalogIntegrityTest extends TestCase {
     'Translate Order Override Help Text',
     // src/Form/BiolandSettingsForm.php: submit button value.
     'Reset Sticky',
+    // src/Service/BiolandComponentRegistry.php: mega-menu component labels.
+    'National Reports',
+    'National Report (6th)',
+    'BCH Records',
+    'ABS-CH Records',
+    'National Focal Points',
+    'Country Profiles',
+    'Content Type',
+    'Forums',
+    'National Targets (GBF 7)',
+    'All Content Types',
+    // src/Service/BiolandComponentRegistry.php: mega-menu component descriptions.
+    'List of national report links, in tabs by country; hidden when the country has no reports.',
+    "Sixth national report links for the site country, plus the link's own children; hidden when empty.",
+    'Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty.',
+    'Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty.',
+    'List of national focal points, in tabs by country; hidden when empty.',
+    'Links to CBD country profile pages, in tabs by country; always shown.',
+    'Latest site content of the content types set on this link; hidden when there are no records.',
+    "Latest forum threads, plus the link's own children; hidden when empty.",
+    'National target cards for GBF target 7, in tabs by country; always shown.',
+    "One link per content type that has records, plus the link's own children; always shown.",
+    // src/Service/BiolandComponentMenuFormMode.php: Component-mode picker
+    // chrome - field label, help text, the two preserved current-value option
+    // labels, and the form intro.
+    'Mega-menu component',
+    'The component this menu link renders in the mega menu.',
+    'Legacy: @class',
+    '@label (not available on this site)',
+    'This menu link renders a mega-menu component instead of a plain list of child links.',
+    // bioland.routing.yml: route _title / bioland.links.action.yml: local
+    // action title. One string, two declaration sites - both must stay in
+    // sync with this entry or the action renders untranslated.
+    'Add Mega Menu component',
+    // bioland.routing.yml: route _title / bioland.links.task.yml: local task
+    // title for the Theme tab.
+    'Theme',
+    // src/Form/BiolandThemeForm.php: the Theme tab's own strings. Its widget
+    // option labels are deliberately NOT listed - that form reuses
+    // BiolandHomeWidgetsForm's existing labels verbatim rather than adding
+    // parallel wording for the same widgets.
+    'Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes.',
+    'Colors',
+    'Primary brand color',
+    'Secondary brand color',
+    'Secondary background color',
+    'Home Page Widget Columns',
+    'Column @number',
+    'Maximum columns',
+    'Maximum rows per column (0 for no limit)',
+    'Maximum horizontal cards',
+    'Languages',
+    'Maximum languages shown before the language bar wraps',
+    'Reset to network default',
+    'This deletes the theme settings for this site. It cannot be undone.',
+    'The theme settings for this site have been reset to the network default.',
+    'Enter a valid hex color, for example #1B7B3A.',
+    'The home page widgets must be arranged in exactly @count columns.',
+    // D3's server-side numeric bound. An unreadable dmsm seed is deliberately
+    // silent -- the built-in flavor colour defaults are the safety net, so
+    // there is no seed-failure message to translate.
+    'Enter a number between @min and @max.',
+    // The #description on the three optional mega-menu numbers, telling the
+    // editor that blanking one keeps the current value rather than clearing
+    // it. @reset interpolates the already-listed 'Reset to network default'
+    // button label, so the sentence names the control in the same words the
+    // button itself uses in every catalog.
+    'Leave blank to keep the current value. Use @reset to remove it.',
+    // src/Service/BiolandComponentMenuFormMode.php: the content-type
+    // sub-select of the Content Type component, its empty option included.
+    'Content type',
+    '- Select -',
+    'The content type this listing shows.',
+    // src/Form/BiolandAdminSettingsForm.php: the on/off switch for the
+    // component-menu add flow (checkbox title and description).
+    'Enable Mega Menu components',
+    'Shows the "Add Mega Menu component" action on the menu manage screen. When unchecked, the action and its form are unavailable.',
+    // src/Service/BiolandComponentMenuFormMode.php: the thumbnails and
+    // column-width presentation controls.
+    'Show thumbnails',
+    'Show a thumbnail image beside each entry.',
+    'Mega menu columns',
+    'How many columns of the mega menu this section spans.',
+    'Default (1 column)',
+    '@count columns',
+    '@count columns (extra-large screens only)',
+    // src/Service/BiolandComponentMenuFormMode.php: the Content Type rows cap.
+    'Maximum rows per column',
+    'Site default',
+    'Maximum entries listed per column; the site default applies when unset.',
+    // src/Service/BiolandComponentMenuFormMode.php: the Content Type title
+    // arrow. The preview glyph beside the checkbox is deliberately absent -
+    // it is a bare arrow character with no words to translate.
+    'Show Arrow',
+    'Show an arrow after the section title.',
+    // src/Service/BiolandComponentMenuOverview.php: the menu overview screen.
+    // The indicator column's two formats and the row operation. The column's
+    // own header deliberately reuses the 'Mega Menu' msgid already listed
+    // above for the settings tab, so it needs no entry of its own. The
+    // component names interpolated into @type are the registry labels, already
+    // listed; @schema is a machine slug and is never translated.
+    '(Mega Menu: @type)',
+    '(Mega Menu: @type: @schema)',
+    'Add Mega Menu Child',
   ];
 
   /**
@@ -129,14 +233,18 @@ class TranslationCatalogIntegrityTest extends TestCase {
   /**
    * Short technical nouns that are legitimately kept as English loanwords
    * in some locales' existing translation style (e.g. "Admin" in German,
-   * "Tags" in Dutch, "Mega Menu" in Malay/Maltese/Tagalog). These are
-   * excluded from the "must differ from English" check below, since an
-   * identical msgstr there is a valid stylistic choice already present
-   * elsewhere in these catalogs, not a missed translation.
+   * "Tags" in Dutch, "Mega Menu" in Malay/Maltese/Tagalog, "Forums" in
+   * French/Dutch/Afrikaans, "Colors" in Catalan). These are excluded from the
+   * "must differ from English" check below, since an identical msgstr there is
+   * a valid stylistic choice already present elsewhere in these catalogs, not
+   * a missed translation.
    */
   private const LOANWORD_TOLERANT_MSGIDS = [
     'Tags',
     'Mega Menu',
+    'Forums',
+    // Catalan spells this exactly as English does.
+    'Colors',
   ];
 
   /**

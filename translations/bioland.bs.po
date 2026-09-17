@@ -1670,3 +1670,273 @@ msgstr "Select the content types shown in the National Biosafety Framework swipe
 #: src/Form/BiolandHomeWidgetsForm.php
 msgid "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
 msgstr "Select the site content types shown in this section and searched by its \"View more\" link. Leave empty to use the defaults. In addition to the selected content types, this section also pulls these record types from the BCH central registry: @registry."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Reports"
+msgstr "Nacionalni izvještaji"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Report (6th)"
+msgstr "Nacionalni izvještaj (6.)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "BCH Records"
+msgstr "BCH zapisi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "ABS-CH Records"
+msgstr "ABS-CH zapisi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Focal Points"
+msgstr "Nacionalne kontakt tačke"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Country Profiles"
+msgstr "Profili zemalja"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Content Type"
+msgstr "Vrsta sadržaja"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Forums"
+msgstr "Forumi"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National Targets (GBF 7)"
+msgstr "Nacionalni ciljevi (GBF 7)"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "All Content Types"
+msgstr "Sve vrste sadržaja"
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national report links, in tabs by country; hidden when the country has no reports."
+msgstr "Popis linkova na nacionalne izvještaje, u karticama po zemljama; skriveno kada zemlja nema izvještaja."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Sixth national report links for the site country, plus the link's own children; hidden when empty."
+msgstr "Linkovi šestog nacionalnog izvještaja za zemlju stranice, uz podređene stavke linka; skriveno ako je prazno."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Biosafety Clearing-House records for the country, such as laws and decisions; hidden when empty."
+msgstr "Zapisi Mehanizma za razmjenu informacija o biosigurnosti za zemlju, kao što su zakoni i odluke; skriveno ako je prazno."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Access and Benefit-sharing Clearing-House records, such as measures and permits; hidden when empty."
+msgstr "Zapisi Mehanizma za razmjenu informacija o pristupu i podjeli koristi, kao što su mjere i dozvole; skriveno ako je prazno."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "List of national focal points, in tabs by country; hidden when empty."
+msgstr "Popis nacionalnih kontakt tačaka, u karticama po zemljama; skriveno ako je prazno."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Links to CBD country profile pages, in tabs by country; always shown."
+msgstr "Linkovi na stranice profila zemalja CBD-a, u karticama po zemljama; uvijek prikazano."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest site content of the content types set on this link; hidden when there are no records."
+msgstr "Najnoviji sadržaj stranice za vrste sadržaja postavljene na ovom linku; skriveno kada nema zapisa."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "Latest forum threads, plus the link's own children; hidden when empty."
+msgstr "Najnovije teme foruma, uz podređene stavke linka; skriveno ako je prazno."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "National target cards for GBF target 7, in tabs by country; always shown."
+msgstr "Kartice nacionalnih ciljeva za cilj 7 GBF-a, u karticama po zemljama; uvijek prikazano."
+
+#: src/Service/BiolandComponentRegistry.php
+msgid "One link per content type that has records, plus the link's own children; always shown."
+msgstr "Po jedan link za svaku vrstu sadržaja koja ima zapise, uz podređene stavke linka; uvijek prikazano."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega-menu component"
+msgstr "Komponenta mega izbornika"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The component this menu link renders in the mega menu."
+msgstr "Komponenta koju ova veza izbornika prikazuje u mega izborniku."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Legacy: @class"
+msgstr "Naslijeđeno: @class"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@label (not available on this site)"
+msgstr "@label (nije dostupno na ovoj stranici)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "This menu link renders a mega-menu component instead of a plain list of child links."
+msgstr "Ova veza izbornika prikazuje komponentu mega izbornika umjesto obične liste podveza."
+
+#: bioland.routing.yml
+msgid "Add Mega Menu component"
+msgstr "Dodaj komponentu mega izbornika"
+
+#: bioland.routing.yml
+msgid "Theme"
+msgstr "Tema"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Widgets are turned on and off on the Home Widgets tab. Saved changes appear on the public site within about 5 minutes."
+msgstr "Widgeti se uključuju i isključuju na kartici Widgeti početne stranice. Sačuvane izmjene pojavljuju se na javnoj stranici u roku od otprilike 5 minuta."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Colors"
+msgstr "Boje"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Primary brand color"
+msgstr "Primarna boja brenda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary brand color"
+msgstr "Sekundarna boja brenda"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Secondary background color"
+msgstr "Sekundarna boja pozadine"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Home Page Widget Columns"
+msgstr "Kolone widgeta početne stranice"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Column @number"
+msgstr "Kolona @number"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum columns"
+msgstr "Najviše kolona"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum rows per column (0 for no limit)"
+msgstr "Najviše redova po koloni (0 znači bez ograničenja)"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum horizontal cards"
+msgstr "Najviše horizontalnih kartica"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Languages"
+msgstr "Jezici"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Maximum languages shown before the language bar wraps"
+msgstr "Najviše jezika prikazanih prije prelamanja jezičke trake"
+
+#: src/Form/BiolandThemeForm.php
+msgid "Reset to network default"
+msgstr "Vrati na mrežnu zadanu vrijednost"
+
+#: src/Form/BiolandThemeForm.php
+msgid "This deletes the theme settings for this site. It cannot be undone."
+msgstr "Ovo briše postavke teme za ovu stranicu. To se ne može poništiti."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The theme settings for this site have been reset to the network default."
+msgstr "Postavke teme za ovu stranicu vraćene su na mrežnu zadanu vrijednost."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a valid hex color, for example #1B7B3A."
+msgstr "Unesite ispravnu heksadecimalnu boju, na primjer #1B7B3A."
+
+#: src/Form/BiolandThemeForm.php
+msgid "The home page widgets must be arranged in exactly @count columns."
+msgstr "Widgeti početne stranice moraju biti raspoređeni u tačno @count kolone."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Enter a number between @min and @max."
+msgstr "Unesite broj između @min i @max."
+
+#: src/Form/BiolandThemeForm.php
+msgid "Leave blank to keep the current value. Use @reset to remove it."
+msgstr "Ostavite prazno da biste zadržali trenutnu vrijednost. Koristite @reset da je uklonite."
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Content type"
+msgstr "Vrsta sadržaja"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "The content type this listing shows."
+msgstr "Vrsta sadržaja koju prikazuje ovaj popis."
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Enable Mega Menu components"
+msgstr "Omogući komponente mega izbornika"
+
+#: src/Form/BiolandAdminSettingsForm.php
+msgid "Shows the \"Add Mega Menu component\" action on the menu manage screen. When unchecked, the action and its form are unavailable."
+msgstr "Prikazuje akciju \"Dodaj komponentu mega izbornika\" na ekranu za upravljanje menijem. Kada nije označeno, akcija i njen obrazac nisu dostupni."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show thumbnails"
+msgstr "Prikaži sličice"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show a thumbnail image beside each entry."
+msgstr "Prikazuje sličicu pored svakog unosa."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Mega menu columns"
+msgstr "Kolone mega menija"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "How many columns of the mega menu this section spans."
+msgstr "Koliko kolona mega menija zauzima ova sekcija."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Default (1 column)"
+msgstr "Zadano (1 kolona)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns"
+msgstr "@count kolone"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "@count columns (extra-large screens only)"
+msgstr "@count kolone (samo na vrlo velikim ekranima)"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum rows per column"
+msgstr "Najviše redova po koloni"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Site default"
+msgstr "Zadano za sajt"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Maximum entries listed per column; the site default applies when unset."
+msgstr "Najviše unosa po koloni; ako nije postavljeno, važi zadana vrijednost sajta."
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show Arrow"
+msgstr "Prikaži strelicu"
+
+#: src/Service/BiolandComponentMenuFormMode.php
+msgid "Show an arrow after the section title."
+msgstr "Prikazuje strelicu nakon naslova sekcije."
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type)"
+msgstr "(Mega izbornik: @type)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "(Mega Menu: @type: @schema)"
+msgstr "(Mega izbornik: @type: @schema)"
+
+#: src/Service/BiolandComponentMenuOverview.php
+msgid "Add Mega Menu Child"
+msgstr "Dodaj podstavku mega izbornika"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google tag IDs"
+msgstr "ID-ovi Google oznaka"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Zarezima razdvojena lista ID-ova Google oznaka, na primjer G-ABC1234567,GTM-XYZ789. Prihvaćeni prefiksi su G-, GTM-, AW-, DC- i UA-. Javni sajt učitava jednu gtag.js konfiguraciju po ne-GTM ID-u i jedan Tag Manager kontejner po GTM- ID-u. Skripte se učitavaju samo za posjetioce koji prihvate kategoriju kolačića Google Analytics i samo na produkcijskom hostu bl2 sajta (drugi multisites danas ne učitavaju Google oznake). Sačuvane izmjene stižu na javni sajt za oko 5 minuta; promjene stranica unutar sajta oslanjaju se na GA4 Enhanced Measurement, koji je prema zadanim postavkama uključen za web tok podataka. UA- ID-ovi su prihvaćeni za naslijeđena svojstva, ali Google je prestao obrađivati podatke Universal Analytics 1. jula 2023, tako da ništa ne bilježe."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
+msgstr "Sljedeći ID-ovi Google oznaka nisu važeći: @tokens. Svaki ID mora počinjati jednim od prihvaćenih prefiksa: G-, GTM-, AW-, DC- ili UA-."
