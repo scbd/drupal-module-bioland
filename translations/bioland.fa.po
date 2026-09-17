@@ -1934,13 +1934,25 @@ msgid "Add Mega Menu Child"
 msgstr "افزودن فرزند برای منوی بزرگ"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "فعال‌سازی Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "به‌طور پیش‌فرض غیرفعال است. تا زمانی که این غیرفعال باشد، سایت عمومی هیچ برچسب Google را بارگذاری نمی‌کند، حتی اگر شناسه‌های برچسب در پایین پیکربندی شده باشند. فعال کردن آن تنها چیزی است که برای بارگذاری شناسه‌های پیکربندی‌شده لازم است و تنها به پذیرش دسته کوکی Google Analytics از سوی بازدیدکننده بستگی دارد. تغییرات ذخیره‌شده ظرف حدود 5 دقیقه به سایت عمومی می‌رسند."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "شناسه‌های برچسب Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "فهرستی جداشده با ویرگول از شناسه‌های برچسب Google، برای مثال G-ABC1234567,GTM-XYZ789. پیشوندهای پذیرفته‌شده عبارت‌اند از G-، GTM-، AW-، DC- و UA-. سایت عمومی برای هر شناسه غیر GTM یک پیکربندی gtag.js و برای هر شناسه GTM- یک کانتینر Tag Manager بارگذاری می‌کند. اسکریپت‌ها فقط برای بازدیدکنندگانی بارگذاری می‌شوند که دسته کوکی Google Analytics را می‌پذیرند و فقط روی میزبان تولید یک سایت bl2 (سایر multisites امروز برچسب‌های Google را بارگذاری نمی‌کنند). تغییرات ذخیره‌شده ظرف حدود 5 دقیقه به سایت عمومی می‌رسند؛ تغییرات صفحه در داخل سایت به GA4 Enhanced Measurement متکی است که به‌طور پیش‌فرض برای یک جریان داده وب فعال است. شناسه‌های UA- برای ویژگی‌های قدیمی پذیرفته می‌شوند، اما Google پردازش داده‌های Universal Analytics را در 1 ژوئیه 2023 متوقف کرد، بنابراین هیچ چیزی ثبت نمی‌کنند."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "فهرستی جداشده با ویرگول از شناسه‌های برچسب Google، برای مثال G-ABC1234567,GTM-XYZ789. پیشوندهای پذیرفته‌شده عبارت‌اند از G-، GTM-، AW-، DC- و UA-. سایت عمومی برای هر شناسه غیر GTM یک پیکربندی gtag.js و برای هر شناسه GTM- یک کانتینر Tag Manager بارگذاری می‌کند. اسکریپت‌ها فقط زمانی بارگذاری می‌شوند که کادر انتخاب بالا فعال باشد و فقط برای بازدیدکنندگانی که دسته کوکی Google Analytics را می‌پذیرند. تغییرات ذخیره‌شده ظرف حدود 5 دقیقه به سایت عمومی می‌رسند؛ تغییرات صفحه در داخل سایت به GA4 Enhanced Measurement متکی است که به‌طور پیش‌فرض برای یک جریان داده وب فعال است. شناسه‌های UA- برای ویژگی‌های قدیمی پذیرفته می‌شوند، اما Google پردازش داده‌های Universal Analytics را در 1 ژوئیه 2023 متوقف کرد، بنابراین هیچ چیزی ثبت نمی‌کنند."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "شناسه‌های برچسب Google زیر معتبر نیستند: @tokens. هر شناسه باید با یکی از پیشوندهای پذیرفته‌شده شروع شود: G-، GTM-، AW-، DC- یا UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics فعال است اما هیچ شناسه برچسب Google پیکربندی نشده است، بنابراین هیچ برچسبی بارگذاری نخواهد شد. در پایین حداقل یک شناسه اضافه کنید."

@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "메가 메뉴 하위 항목 추가"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Google Analytics 사용"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "기본적으로 꺼져 있습니다. 이 옵션이 꺼져 있는 동안에는 아래에 태그 ID가 설정되어 있더라도 공개 사이트가 Google 태그를 전혀 로드하지 않습니다. 설정된 ID가 로드되려면 이 옵션을 켜기만 하면 되며, 방문자가 Google Analytics 쿠키 카테고리에 동의하는 것만이 유일한 조건입니다. 저장된 변경 사항은 약 5분 이내에 공개 사이트에 반영됩니다."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Google 태그 ID"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "쉼표로 구분된 Google 태그 ID 목록입니다(예: G-ABC1234567,GTM-XYZ789). 허용되는 접두사는 G-, GTM-, AW-, DC-, UA-입니다. 공개 사이트는 비 GTM ID마다 하나의 gtag.js 구성을, GTM- ID마다 하나의 Tag Manager 컨테이너를 로드합니다. 스크립트는 Google Analytics 쿠키 카테고리에 동의한 방문자에게만, 그리고 bl2 사이트의 프로덕션 호스트에서만 로드됩니다(다른 multisites는 현재 Google 태그를 로드하지 않습니다). 저장된 변경 사항은 약 5분 이내에 공개 사이트에 반영됩니다. 사이트 내 페이지 변경은 GA4 Enhanced Measurement에 의존하며, 이는 웹 데이터 스트림에 대해 기본적으로 사용 설정되어 있습니다. UA- ID는 레거시 속성에 대해 허용되지만, Google은 2023년 7월 1일부로 Universal Analytics 데이터 처리를 중단했으므로 아무것도 기록하지 않습니다."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "쉼표로 구분된 Google 태그 ID 목록입니다(예: G-ABC1234567,GTM-XYZ789). 허용되는 접두사는 G-, GTM-, AW-, DC-, UA-입니다. 공개 사이트는 비 GTM ID마다 하나의 gtag.js 구성을, GTM- ID마다 하나의 Tag Manager 컨테이너를 로드합니다. 스크립트는 위의 체크박스가 켜져 있을 때만, 그리고 Google Analytics 쿠키 카테고리에 동의한 방문자에게만 로드됩니다. 저장된 변경 사항은 약 5분 이내에 공개 사이트에 반영됩니다. 사이트 내 페이지 변경은 GA4 Enhanced Measurement에 의존하며, 이는 웹 데이터 스트림에 대해 기본적으로 사용 설정되어 있습니다. UA- ID는 레거시 속성에 대해 허용되지만, Google은 2023년 7월 1일부로 Universal Analytics 데이터 처리를 중단했으므로 아무것도 기록하지 않습니다."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "다음 Google 태그 ID는 유효하지 않습니다: @tokens. 각 ID는 허용되는 접두사 중 하나로 시작해야 합니다: G-, GTM-, AW-, DC-, UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics가 켜져 있지만 Google 태그 ID가 설정되어 있지 않아 태그가 로드되지 않습니다. 아래에 ID를 하나 이상 추가하세요."
