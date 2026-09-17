@@ -80,6 +80,47 @@ class Drupal {
   }
 
   /**
+   * Gets immutable config for a config object name.
+   *
+   * @param string $name
+   *   The config object name.
+   *
+   * @return mixed
+   *   The config object from the stubbed 'config.factory' service, or NULL.
+   */
+  public static function config($name) {
+    $factory = static::$container['config.factory'] ?? NULL;
+    return $factory ? $factory->get($name) : NULL;
+  }
+
+  /**
+   * Gets the config factory.
+   *
+   * @return mixed
+   *   The stubbed config factory, or NULL.
+   */
+  public static function configFactory() {
+    return static::$container['config.factory'] ?? NULL;
+  }
+
+  /**
+   * Gets a pre-stubbed entity query for an entity type.
+   *
+   * Tests register these as an ['<entity_type>' => $query] map under the
+   * 'entity.queries' container key.
+   *
+   * @param string $entity_type
+   *   The entity type ID.
+   *
+   * @return mixed
+   *   The stubbed query object, or NULL.
+   */
+  public static function entityQuery($entity_type) {
+    $queries = static::$container['entity.queries'] ?? [];
+    return $queries[$entity_type] ?? NULL;
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

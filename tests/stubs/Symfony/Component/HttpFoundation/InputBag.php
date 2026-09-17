@@ -7,12 +7,17 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 /**
  * Test stub for Symfony InputBag.
  *
- * Only get(), and it REJECTS rather than ignores. The real InputBag::get()
- * throws BadRequestException the moment a stored value is neither scalar nor
+ * get() REJECTS rather than ignores. The real InputBag::get() throws
+ * BadRequestException the moment a stored value is neither scalar nor
  * \Stringable, which is how "?parent[]=x" becomes a 400 in the request layer,
  * before any controller is reached. An earlier version of this stub returned
  * the default instead; that quietly told the controller's tests a lie about
  * where array input is stopped.
+ *
+ * has() is inherited from the real InputBag's parent ParameterBag: a plain
+ * array_key_exists() presence check, with no scalar/Stringable validation.
+ * BiolandConfigApiAccessCheck relies on that presence-only semantic to reject
+ * a query key regardless of what value it carries.
  */
 class InputBag {
 
@@ -31,6 +36,19 @@ class InputBag {
    */
   public function __construct(array $parameters = []) {
     $this->parameters = $parameters;
+  }
+
+  /**
+   * Whether a key is present.
+   *
+   * @param string $key
+   *   The key.
+   *
+   * @return bool
+   *   TRUE when present.
+   */
+  public function has($key) {
+    return array_key_exists($key, $this->parameters);
   }
 
   /**

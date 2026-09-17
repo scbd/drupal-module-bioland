@@ -4,8 +4,6 @@ namespace Symfony\Component\DependencyInjection;
 
 /**
  * Stub interface for the Symfony service container.
- *
- * Only the two accessors Drupal's create() factories use are declared.
  */
 interface ContainerInterface {
 
@@ -30,5 +28,16 @@ interface ContainerInterface {
    *   TRUE when the service exists.
    */
   public function has($id);
+
+  /**
+   * Gets a container parameter.
+   *
+   * @param string $name
+   *   The parameter name.
+   *
+   * @return mixed
+   *   The parameter value.
+   */
+  public function getParameter($name);
 
 }

@@ -711,56 +711,106 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   }
 
   /**
-   * The form's default values: the authored theme, else the dmsm seed.
+   * The form's default values: the dmsm seed, with the authored theme on top.
    *
-   * Presence, not truthiness: a stored theme subtree wins as soon as it
-   * exists, even if every value in it is falsy.
+   * Per LEAF, not per subtree. A site that authored only `color` used to hide
+   * the seed from every OTHER field, so its Mega Menu and Languages numbers
+   * rendered empty even though the network document defines all four -- the
+   * editor saw blanks where the values actually in force were 5 / 6 / 3 / 6.
+   * Overlaying instead means an unauthored leaf still shows what the site is
+   * really running, and an authored one still wins.
+   *
+   * Presence, not truthiness: an authored leaf wins as soon as it exists, even
+   * when it is falsy -- `mega_menu.max_rows_per_column: 0` is a real authored
+   * value ("unlimited"), not an absence.
+   *
+   * The cost of the overlay is that an authored site now pays for the seed too
+   * (one memoized 10 second HTTP call per form instance, see
+   * self::$seedCache), where it used to short-circuit. Still read-only, so D5
+   * is intact: nothing here writes the seed into config.
    *
    * @param \Drupal\Core\Config\Config $config
    *   The bioland.settings configuration object.
    *
    * @return array
-   *   The snake_case theme defaults. Never empty: when nothing is authored
-   *   seedFromDmsm() takes over, and that always returns at least the three
-   *   colour keys (from this flavor's built-in fallbacks when the seed cannot
-   *   be read).
+   *   The snake_case theme defaults. Never empty: seedFromDmsm() always
+   *   returns at least the three colour keys (from this flavor's built-in
+   *   fallbacks when the seed cannot be read).
    */
   protected function themeDefaults($config): array {
     $authored = $config->get(self::CONFIG_KEY);
+    $authored = is_array($authored) ? $authored : [];
 
-    if (is_array($authored) && $authored !== []) {
-      // Through withFallbackColors(), NOT returned verbatim. Every site that
-      // saved this tab before BL-1011 has colours but no `hero` key at all, so
-      // a verbatim return leaves both new pickers with a NULL #default_value.
-      // `<input type="color">` has no empty state: the editor sees black,
-      // #required is satisfied by the #000000 it posts, and the next Save --
-      // even one that only touches the mega menu -- writes a black hero and
-      // ends the site's inherited hero downstream. That is the exact outcome
-      // the class docblock calls dangerous, and it was guarded only on the
-      // unseeded path.
-      //
-      // Seed the hero from the site's own effective dmsm theme first, so a
-      // site whose hero deliberately differs from its brand palette (e.g.
-      // Belgium's) keeps that hero rather than being handed the flavor's
-      // network default. Only the missing/unusable hero is touched here --
-      // withHeroPair() is skipped entirely once a usable pair is already
-      // authored, so an editor's own choice is never overwritten by a seed
-      // fetched on an unrelated Save.
-      if (!$this->hasUsableHeroPair($authored)) {
-        $effective = $this->effectiveDmsmTheme();
-        if (is_array($effective)) {
-          $authored = $this->withHeroPair($authored, $effective);
-        }
-      }
-
-      // The helper fills any colour key still missing or empty (including a
-      // hero the site never had and this dmsm fetch could not supply), so it
-      // is a no-op for every colour these sites did author. A site that
-      // wants its network-supplied pair back has "Reset to network default".
-      return $this->withFallbackColors($authored, $this->isBiosafetyLand($config));
+    // The hero pair is authored (and overlaid) as a single atomic unit, not as
+    // two independent leaves. overlayAuthored() otherwise recurses into any
+    // keyed group leaf-by-leaf, and a half-authored pair -- one usable slot,
+    // one missing or corrupt -- would then blend the editor's own primary
+    // with the seed's unrelated secondary: exactly the "no document anywhere
+    // defines this combination" outcome withHeroPair() itself declines to
+    // produce. Dropping an unusable authored pair here lets the seed's own
+    // pair-or-nothing hero (seeded from this site's own effective dmsm theme
+    // in seedFromDmsm(), or the flavor fallback pair when that seed has none)
+    // take over untouched. A site that never authored a hero at all -- every
+    // site that saved this tab before BL-1011 -- takes this same path, which
+    // is what fills both new pickers instead of leaving them at the NULL
+    // #default_value that `<input type="color">` renders as black.
+    if (isset($authored['hero']) && !$this->hasUsableHeroPair($authored)) {
+      unset($authored['hero']);
     }
 
-    return $this->seedFromDmsm($this->isBiosafetyLand($config));
+    $seed = $this->seedFromDmsm($this->isBiosafetyLand($config));
+
+    return $this->overlayAuthored($seed, $authored);
+  }
+
+  /**
+   * Overlays the authored theme onto the seed, one leaf at a time.
+   *
+   * Groups (string-keyed maps such as `color`, `mega_menu`) recurse so an
+   * authored `color.primary` does not erase a seeded `color.secondary`. Lists
+   * are LEAVES and replace wholesale: `home_page_widgets.columns` is an
+   * ordered list of lists, and merging it index by index would splice seeded
+   * widgets into an authored column the editor had deliberately shortened.
+   * An empty authored array inherits a seeded group's shape, contributing no
+   * leaves; against a seeded list it still replaces the list completely.
+   *
+   * @param array $seed
+   *   The snake_case defaults from the dmsm seed.
+   * @param array $authored
+   *   The snake_case theme subtree stored on this site.
+   *
+   * @return array
+   *   The seed with every authored leaf applied over it.
+   */
+  protected function overlayAuthored(array $seed, array $authored): array {
+    foreach ($authored as $key => $value) {
+      $isGroup = is_array($value)
+        && ($value === [] || !$this->isList($value))
+        && isset($seed[$key])
+        && is_array($seed[$key])
+        && !$this->isList($seed[$key]);
+
+      $seed[$key] = $isGroup ? $this->overlayAuthored($seed[$key], $value) : $value;
+    }
+
+    return $seed;
+  }
+
+  /**
+   * Whether an array is a sequential list rather than a keyed group.
+   *
+   * array_is_list() without the PHP 8.1 floor, so this keeps working on the
+   * oldest runtime the module still supports. An empty array counts as a list;
+   * overlayAuthored() infers empty authored groups from the seed separately.
+   *
+   * @param array $value
+   *   The array to classify.
+   *
+   * @return bool
+   *   TRUE when the keys are 0..n-1 in order.
+   */
+  protected function isList(array $value): bool {
+    return $value === [] || array_keys($value) === range(0, count($value) - 1);
   }
 
   /**
