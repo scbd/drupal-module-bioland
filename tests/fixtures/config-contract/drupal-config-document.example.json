@@ -19,7 +19,7 @@
       "enableAutoSummary": true,
       "enableHelpComments": false,
       "helpComments": {},
-      "fieldVisibilityRules": [],
+      "fieldVisibilityRules": "[{\"field\":\"field_example\",\"operator\":\"visible_if_filled\"}]",
       "config": {
         "promoteAndStickyPublic": true
       },
