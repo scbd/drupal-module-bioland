@@ -327,7 +327,14 @@ function bioland_requirements($phase) {
       ];
     }
 
-    $stored = $config->get('google_analytics_enabled');
+    // Read the override-free active-storage value, not the override-applied
+    // one above: dmsm reads the raw config table by direct SQL and never
+    // sees settings.php overrides (see docs/INSTALL.md), so a FALSE override
+    // must not suppress this warning for a truthy raw value, and a truthy
+    // override must not force this warning open when the raw value is clean
+    // - either way it would report something the settings-form save/clear
+    // cannot actually change.
+    $stored = $config->getOriginal('google_analytics_enabled', FALSE);
     // Mirror the head's isGoogleTagsMisconfigured: !== true && Boolean(value).
     // For JSON-compatible config, JS also treats '0' and empty arrays as truthy,
     // unlike PHP. This diagnoses the stored value; it never enables analytics.
