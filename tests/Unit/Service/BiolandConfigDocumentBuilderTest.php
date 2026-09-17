@@ -157,6 +157,7 @@ class BiolandConfigDocumentBuilderTest extends TestCase {
    */
   public static function camelCaseProvider() {
     return [
+      ['google_analytics_enabled', 'googleAnalyticsEnabled'],
       ['google_analytics_ids', 'googleAnalyticsIds'],
       ['is_biosafety_land', 'isBiosafetyLand'],
       ['url_content_types', 'urlContentTypes'],

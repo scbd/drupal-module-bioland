@@ -82,6 +82,7 @@ final class BiolandConfigDocumentBuilder {
     'help_comments',
     'field_visibility_rules',
     'config',
+    'google_analytics_enabled',
     'google_analytics_ids',
     'enable_debug_logging',
     'debug_log_areas',
