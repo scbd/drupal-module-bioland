@@ -265,6 +265,35 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
   protected $seedCache = NULL;
 
   /**
+   * The raw effective dmsm theme, memoized separately from self::$seedCache.
+   *
+   * self::$seedCache stores the translated D4 defaults; the authored branch
+   * of themeDefaults() needs the raw camelCase effective theme instead, to
+   * seed only the hero pair without disturbing colours the editor already
+   * saved. Both branches share this cache so a request that touches both
+   * (authored-with-no-hero, then a later unrelated seedFromDmsm() call)
+   * still makes the 10 second HTTP call only once.
+   *
+   * `[]` is a real cached value (unreadable seed) distinct from the initial
+   * NULL, exactly like self::$seedCache.
+   *
+   * @var array|null
+   */
+  protected $effectiveThemeCache = NULL;
+
+  /**
+   * Whether self::$effectiveThemeCache has been populated yet.
+   *
+   * Needed because `[]` (an unreadable seed) and NULL-not-yet-fetched are
+   * both falsy the same way self::$seedCache distinguishes them, but here
+   * a fetch failure and "never asked" are both represented as NULL in the
+   * cache itself, so a separate flag is required to tell them apart.
+   *
+   * @var bool
+   */
+  protected $effectiveThemeFetched = FALSE;
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -710,11 +739,24 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       // the class docblock calls dangerous, and it was guarded only on the
       // unseeded path.
       //
-      // The helper fills missing or empty keys only, so it is a no-op for
-      // every colour these sites did author. It deliberately supplies the
-      // flavor pair rather than fetching the site's real inherited hero: this
-      // branch is the one that must stay free of the seed's HTTP call. A site
-      // that wants its own pair back has "Reset to network default".
+      // Seed the hero from the site's own effective dmsm theme first, so a
+      // site whose hero deliberately differs from its brand palette (e.g.
+      // Belgium's) keeps that hero rather than being handed the flavor's
+      // network default. Only the missing/unusable hero is touched here --
+      // withHeroPair() is skipped entirely once a usable pair is already
+      // authored, so an editor's own choice is never overwritten by a seed
+      // fetched on an unrelated Save.
+      if (!$this->hasUsableHeroPair($authored)) {
+        $effective = $this->effectiveDmsmTheme();
+        if (is_array($effective)) {
+          $authored = $this->withHeroPair($authored, $effective);
+        }
+      }
+
+      // The helper fills any colour key still missing or empty (including a
+      // hero the site never had and this dmsm fetch could not supply), so it
+      // is a no-op for every colour these sites did author. A site that
+      // wants its network-supplied pair back has "Reset to network default".
       return $this->withFallbackColors($authored, $this->isBiosafetyLand($config));
     }
 
@@ -759,17 +801,9 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
     }
 
-    $service = $this->dmsmConfigService();
-    $effective = $service instanceof BiolandDmsmConfigService
-      ? $service->getEffectiveTheme()
-      : NULL;
+    $effective = $this->effectiveDmsmTheme();
 
     if (!is_array($effective)) {
-      // Silent to the editor, never to the operator: the built-in defaults
-      // shown in their place are correct for this network, so a warning on
-      // screen would be noise, but nothing else records that the seed failed.
-      \Drupal::logger('bioland')->warning('Could not read the dmsm theme seed for this site; the Theme tab is falling back to the built-in network colour defaults for this flavor.');
-
       $this->seedCache = [];
 
       return $this->withFallbackColors($this->seedCache, $isBiosafetyLand);
@@ -904,6 +938,63 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     }
 
     return \Drupal::service(self::DMSM_SERVICE_ID);
+  }
+
+  /**
+   * The raw effective dmsm theme, fetched and memoized at most once.
+   *
+   * Shared by seedFromDmsm() (unseeded sites) and themeDefaults()'s authored
+   * branch (a site with saved colours but no hero yet), so a request that
+   * needs the seed from both paths still makes the 10 second HTTP call only
+   * once. See self::$effectiveThemeCache.
+   *
+   * @return array|null
+   *   The camelCase effective theme, or NULL when it could not be read.
+   */
+  protected function effectiveDmsmTheme(): ?array {
+    if ($this->effectiveThemeFetched) {
+      return $this->effectiveThemeCache;
+    }
+
+    $service = $this->dmsmConfigService();
+    $effective = $service instanceof BiolandDmsmConfigService
+      ? $service->getEffectiveTheme()
+      : NULL;
+
+    if (!is_array($effective)) {
+      // Silent to the editor, never to the operator: the built-in defaults
+      // shown in their place are correct for this network, so a warning on
+      // screen would be noise, but nothing else records that the seed failed.
+      \Drupal::logger('bioland')->warning('Could not read the dmsm theme seed for this site; the Theme tab is falling back to the built-in network colour defaults for this flavor.');
+
+      $effective = NULL;
+    }
+
+    $this->effectiveThemeCache = $effective;
+    $this->effectiveThemeFetched = TRUE;
+
+    return $this->effectiveThemeCache;
+  }
+
+  /**
+   * Whether an authored theme already carries a renderable hero pair.
+   *
+   * Guards withHeroPair() on the authored path: that method unconditionally
+   * overwrites `hero` once it finds a usable pair in the seed, which is
+   * correct when building fresh defaults but would clobber an editor's own
+   * saved hero if applied unconditionally here. Both slots are required --
+   * a half-authored hero is exactly the "one unusable slot disqualifies the
+   * pair" case withHeroPair() itself already treats as absent.
+   *
+   * @param array $authored
+   *   The site's saved theme subtree.
+   *
+   * @return bool
+   *   TRUE when both hero slots are present and render-safe.
+   */
+  protected function hasUsableHeroPair(array $authored): bool {
+    return $this->isHexColor($this->leaf($authored, 'hero.primary'))
+      && $this->isHexColor($this->leaf($authored, 'hero.secondary'));
   }
 
   /**

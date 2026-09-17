@@ -589,12 +589,15 @@ class BiolandThemeFormTest extends TestCase {
    * An already-authored theme wins and the seed is never fetched.
    */
   public function testSeedIsSkippedWhenThemeConfigIsPopulated(): void {
-    // exactly(0): the service must not be consulted at all.
+    // exactly(0): the service must not be consulted at all, which requires a
+    // usable hero already authored -- an authored theme missing its hero DOES
+    // consult the seed, see testAuthoredThemeWithoutAHeroInheritsItsOwnDmsmHero().
     $this->stubDmsmService(['color' => ['primary' => '#ffffff']], 0);
 
     $form = $this->build($this->config([
       'theme' => [
         'color' => ['primary' => '#abcdef', 'secondary' => '#fedcba'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
       ],
     ]));
 
@@ -613,6 +616,7 @@ class BiolandThemeFormTest extends TestCase {
     $form = $this->build($this->config([
       'theme' => [
         'mega_menu' => ['max_rows_per_column' => 0],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
       ],
     ]));
 
@@ -872,11 +876,15 @@ class BiolandThemeFormTest extends TestCase {
    * An already-authored theme neither messages nor consults the seed.
    */
   public function testAuthoredThemeNeitherSeedsNorMessages(): void {
-    // exactly(0): a site with its own theme must not pay for the HTTP call.
+    // exactly(0): a site with its own theme (hero included) must not pay for
+    // the HTTP call.
     $this->stubDmsmService(NULL, 0);
 
     [, $messenger] = $this->buildWithMessenger($this->config([
-      'theme' => ['color' => ['primary' => '#abcdef']],
+      'theme' => [
+        'color' => ['primary' => '#abcdef'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
     ]));
 
     $this->assertSame([], $messenger->warnings);
@@ -1436,7 +1444,10 @@ class BiolandThemeFormTest extends TestCase {
   public function testBlankNumericPreservesAnAuthoredValue(): void {
     $this->stubDmsmService(NULL, 0);
     $config = $this->config([
-      'theme' => ['mega_menu' => ['max_columns' => 4]],
+      'theme' => [
+        'mega_menu' => ['max_columns' => 4],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
     ]);
     $form = $this->build($config);
 
@@ -1942,12 +1953,13 @@ class BiolandThemeFormTest extends TestCase {
    * permanently, ending the inherited one downstream.
    *
    * The fallback path already covered the UNSEEDED site; this covers the
-   * already-authored one, which is most of the live fleet.
+   * already-authored one, which is most of the live fleet -- and here the
+   * dmsm seed cannot be read at all, so the flavor palette is what fills in.
    */
   public function testAuthoredThemeWithoutAHeroStillRendersUsableColors(): void {
-    // No seed is consulted on this path at all -- an authored site must not pay
-    // for the dmsm HTTP call just to open the tab.
-    $this->stubDmsmService(NULL, 0);
+    // Consulted exactly once: an authored site with no usable hero yet must
+    // still ask the seed for its real inherited pair before falling back.
+    $this->stubDmsmService(NULL, 1);
 
     $form = $this->build($this->config([
       'theme' => [
@@ -1973,6 +1985,68 @@ class BiolandThemeFormTest extends TestCase {
     // The colours this site really did author are untouched by the fallback.
     $this->assertSame('#123456', $form['theme']['color']['primary']['#default_value']);
     $this->assertSame('#abcdef', $form['theme']['color']['secondary']['#default_value']);
+  }
+
+  /**
+   * An authored theme without a hero yet must inherit its OWN dmsm hero.
+   *
+   * The bug this covers: a site with pre-BL-1011 theme settings (colours
+   * saved, no `hero` key) that inherits a site-specific dmsm hero differing
+   * from its brand palette -- Belgium's `#565b29`/`#cbb279` pair, which is
+   * NOT its `color.secondary` (`#889262`) -- must default its hero pickers to
+   * that inherited pair, not to the flavor's network fallback. Saving even an
+   * unrelated Theme-tab change must not permanently replace it.
+   */
+  public function testAuthoredThemeWithoutAHeroInheritsItsOwnDmsmHero(): void {
+    $case = $this->fixtureCases()['be-dual-block-authored-hero'];
+    $this->stubDmsmService($case['expectedEffectiveTheme']);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#889262'],
+        'back_ground' => ['secondary' => '#f2f2f2'],
+        'mega_menu' => ['max_columns' => 5],
+        'i18n' => ['max_lang_before_wrap' => 6],
+      ],
+    ]));
+
+    $this->assertSame(
+      '#565b29',
+      $form['theme']['hero']['primary']['#default_value'],
+      "The site's own inherited hero must win over the flavor fallback."
+    );
+    $this->assertSame('#cbb279', $form['theme']['hero']['secondary']['#default_value']);
+    $this->assertNotSame(
+      $form['theme']['color']['secondary']['#default_value'],
+      $form['theme']['hero']['secondary']['#default_value'],
+      'This fixture only proves anything while its hero and brand secondaries differ.'
+    );
+
+    // The colours this site really did author remain untouched.
+    $this->assertSame('#123456', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame('#889262', $form['theme']['color']['secondary']['#default_value']);
+  }
+
+  /**
+   * An authored theme that already has a usable hero is never re-seeded.
+   *
+   * hasUsableHeroPair() must short-circuit before the dmsm seed is ever
+   * consulted, both so an editor's own saved hero is never overwritten by a
+   * later seed fetch, and so a fully-authored site is not paying for the
+   * seed's HTTP call on every page load.
+   */
+  public function testAuthoredThemeWithAUsableHeroIsNeverReseeded(): void {
+    $this->stubDmsmService(NULL, 0);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#123456', 'secondary' => '#abcdef'],
+        'hero' => ['primary' => '#111111', 'secondary' => '#222222'],
+      ],
+    ]));
+
+    $this->assertSame('#111111', $form['theme']['hero']['primary']['#default_value']);
+    $this->assertSame('#222222', $form['theme']['hero']['secondary']['#default_value']);
   }
 
   /**
