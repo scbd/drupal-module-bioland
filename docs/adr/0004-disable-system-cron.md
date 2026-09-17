@@ -25,3 +25,10 @@ and providing the replacement schedule are the deployment's responsibility, not 
   indexing and other cron tasks will not run.
 - Because enforcement lives outside the repo, this decision is invisible from the module's runtime
   code alone, which is why it is recorded here.
+- **Open question (BL-992): what the external trigger actually is has not been established from
+  this repository.** Nothing in the module, its docs, or `.github/workflows/ci.yml` names the
+  mechanism. This matters for the `bioland_dmsm_geography` queue worker, which refuses to run under
+  a web SAPI: if the trigger is `drush cron` / `drush queue:run` the design works, but if it is an
+  HTTP GET to `/cron/{key}` then `PHP_SAPI` is `fpm-fcgi`, the worker refuses on every pass, and the
+  queue grows without bound. Until an operator confirms the trigger, `hook_requirements('runtime')`
+  reports a non-draining queue as a warning on the status report; that is a detector, not a fix.

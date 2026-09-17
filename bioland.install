@@ -125,13 +125,14 @@ function bioland_install() {
     // Swallow errors to avoid failing installation; values will remain defaults.
   }
 
-  // Fetch and update countries from DMSM API based on hostname.
+  // Queue the countries update based on hostname. Installation never fetches:
+  // the queue is drained by cron, outside this request.
   try {
     _bioland_update_countries_from_dmsm();
   }
   catch (\Throwable $e) {
-    // Log but don't fail installation if DMSM API is unavailable.
-    \Drupal::logger('bioland')->warning('Could not fetch countries from DMSM API during install: @message', ['@message' => $e->getMessage()]);
+    // Log but don't fail installation if the item cannot be queued.
+    \Drupal::logger('bioland')->warning('Could not queue the countries update during install: @message', ['@message' => $e->getMessage()]);
   }
 
   // Import translations from PO files.
@@ -285,6 +286,10 @@ function bioland_requirements($phase) {
       ];
     }
   }
+
+  // DMSM geography: an unset or refused base URL freezes the site's countries,
+  // region and continent silently, so it has to surface on the status report.
+  $requirements += _bioland_dmsm_requirements($phase);
 
   return $requirements;
 }

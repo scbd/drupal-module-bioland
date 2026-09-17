@@ -162,6 +162,20 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($translationFile),
       'bioland_update_9081() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9082(), added for BL-992 to
+    // seed the DMSM config base URL on sites installed before that key existed)
+    // is the last writer for every site, so it must ALSO converge on the v2
+    // config. It converges FIRST within the hook, because its own seed can
+    // legitimately fail the update and convergence must not be skipped because
+    // a different key was missing from the deployment.
+    $dmsmFile = $this->moduleRoot() . '/includes/bioland.install.dmsm.inc';
+    $this->assertFileExists($dmsmFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9082\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($dmsmFile),
+      'bioland_update_9082() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -177,9 +191,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9081,
+      9082,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9081() now holds that role (it carries the corrected, gated translation backfill guard and re-applies the canonical v2 config after the 9071-9080 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9082() now holds that role (it seeds bioland.settings.dmsm_config_base_url on sites installed before the key existed, and re-applies the canonical v2 config after the 9071-9081 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

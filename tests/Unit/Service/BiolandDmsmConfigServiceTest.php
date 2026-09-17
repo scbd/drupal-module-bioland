@@ -27,7 +27,13 @@ class BiolandDmsmConfigServiceTest extends TestCase
         
         $loggerFactory->method('get')->willReturn($logger);
 
-        $service = new BiolandDmsmConfigService($configFactory, $httpClient, $loggerFactory);
+        $service = new BiolandDmsmConfigService(
+            $configFactory,
+            $httpClient,
+            $loggerFactory,
+            $this->createMock('Drupal\\Core\\Queue\\QueueFactory'),
+            $this->createMock('Symfony\\Component\\HttpFoundation\\RequestStack')
+        );
 
         // Use reflection to access protected method.
         $reflection = new \ReflectionClass($service);
@@ -152,7 +158,13 @@ class BiolandDmsmConfigServiceTest extends TestCase
 
         $loggerFactory->method('get')->willReturn($logger);
 
-        $service = new BiolandDmsmConfigService($configFactory, $httpClient, $loggerFactory);
+        $service = new BiolandDmsmConfigService(
+            $configFactory,
+            $httpClient,
+            $loggerFactory,
+            $this->createMock('Drupal\\Core\\Queue\\QueueFactory'),
+            $this->createMock('Symfony\\Component\\HttpFoundation\\RequestStack')
+        );
         $result = $service->updateCountriesFromDmsm('invalid.example.com');
 
         $this->assertFalse($result['success']);
@@ -173,7 +185,13 @@ class BiolandDmsmConfigServiceTest extends TestCase
 
         $loggerFactory->method('get')->willReturn($logger);
 
-        $service = new BiolandDmsmConfigService($configFactory, $httpClient, $loggerFactory);
+        $service = new BiolandDmsmConfigService(
+            $configFactory,
+            $httpClient,
+            $loggerFactory,
+            $this->createMock('Drupal\\Core\\Queue\\QueueFactory'),
+            $this->createMock('Symfony\\Component\\HttpFoundation\\RequestStack')
+        );
 
         // Use reflection to test parseHostname.
         $reflection = new \ReflectionClass($service);
