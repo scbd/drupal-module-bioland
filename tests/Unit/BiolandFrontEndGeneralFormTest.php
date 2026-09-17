@@ -554,6 +554,28 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
   }
 
   /**
+   * Tests both help texts retain the current host and consent restrictions.
+   */
+  public function testGoogleAnalyticsHelpDescribesCurrentLoadingRestrictions(): void {
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $this->config()]);
+    $section = $form['front_end_general_settings']['google_analytics_section'];
+
+    foreach (['google_analytics_enabled', 'google_analytics_ids'] as $key) {
+      $description = (string) $section[$key]['#description'];
+      $this->assertStringContainsString('only on the production host of a bl2 site (other multisites do not load Google tags today)', $description);
+      $this->assertStringContainsString('Google Analytics cookie category', $description);
+      $this->assertStringContainsString('Saved changes reach the public site within about 5 minutes', $description);
+      $this->assertStringNotContainsString('all that is required', $description);
+      $this->assertStringNotContainsString('subject only to', $description);
+    }
+
+    $description = (string) $section['google_analytics_enabled']['#description'];
+    $this->assertStringContainsString('Off by default.', $description);
+    $this->assertStringContainsString('While this is off the public site loads no Google tag, even when tag IDs are configured below.', $description);
+    $this->assertStringContainsString('Turning it on allows the configured IDs to load only for visitors who accept', $description);
+  }
+
+  /**
    * Tests a site that has turned the switch on builds it checked.
    */
   public function testGoogleAnalyticsEnabledFieldReflectsSavedValue(): void {
