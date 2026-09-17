@@ -274,8 +274,8 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
    * (authored-with-no-hero, then a later unrelated seedFromDmsm() call)
    * still makes the 10 second HTTP call only once.
    *
-   * `[]` is a real cached value (unreadable seed) distinct from the initial
-   * NULL, exactly like self::$seedCache.
+   * Stores an array on success or NULL on failure. self::$effectiveThemeFetched
+   * distinguishes a completed fetch from the initial, not-yet-fetched NULL.
    *
    * @var array|null
    */
