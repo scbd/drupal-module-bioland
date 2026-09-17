@@ -1930,13 +1930,25 @@ msgid "Add Mega Menu Child"
 msgstr "Dodaj podstavku mega izbornika"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Omogući Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Prema zadanim postavkama isključeno. Dok je ovo isključeno, javni sajt ne učitava nijednu Google oznaku, čak ni kada su ID-ovi oznaka podešeni ispod. Uključivanje je sve što je potrebno da se podešeni ID-ovi učitaju, uz jedini uslov da posjetilac prihvati kategoriju kolačića Google Analytics. Sačuvane izmjene stižu na javni sajt za oko 5 minuta."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "ID-ovi Google oznaka"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Zarezima razdvojena lista ID-ova Google oznaka, na primjer G-ABC1234567,GTM-XYZ789. Prihvaćeni prefiksi su G-, GTM-, AW-, DC- i UA-. Javni sajt učitava jednu gtag.js konfiguraciju po ne-GTM ID-u i jedan Tag Manager kontejner po GTM- ID-u. Skripte se učitavaju samo za posjetioce koji prihvate kategoriju kolačića Google Analytics i samo na produkcijskom hostu bl2 sajta (drugi multisites danas ne učitavaju Google oznake). Sačuvane izmjene stižu na javni sajt za oko 5 minuta; promjene stranica unutar sajta oslanjaju se na GA4 Enhanced Measurement, koji je prema zadanim postavkama uključen za web tok podataka. UA- ID-ovi su prihvaćeni za naslijeđena svojstva, ali Google je prestao obrađivati podatke Universal Analytics 1. jula 2023, tako da ništa ne bilježe."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Zarezima razdvojena lista ID-ova Google oznaka, na primjer G-ABC1234567,GTM-XYZ789. Prihvaćeni prefiksi su G-, GTM-, AW-, DC- i UA-. Javni sajt učitava jednu gtag.js konfiguraciju po ne-GTM ID-u i jedan Tag Manager kontejner po GTM- ID-u. Skripte se učitavaju samo kada je gornje polje uključeno i samo za posjetioce koji prihvate kategoriju kolačića Google Analytics. Sačuvane izmjene stižu na javni sajt za oko 5 minuta; promjene stranica unutar sajta oslanjaju se na GA4 Enhanced Measurement, koji je prema zadanim postavkama uključen za web tok podataka. UA- ID-ovi su prihvaćeni za naslijeđena svojstva, ali Google je prestao obrađivati podatke Universal Analytics 1. jula 2023, tako da ništa ne bilježe."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Sljedeći ID-ovi Google oznaka nisu važeći: @tokens. Svaki ID mora počinjati jednim od prihvaćenih prefiksa: G-, GTM-, AW-, DC- ili UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics je uključen, ali nijedan ID Google oznake nije podešen, pa se nijedna oznaka neće učitati. Dodajte barem jedan ID ispod."

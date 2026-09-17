@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "Ավելացնել մեգա ցանկի ենթատարր"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Միացնել Google Analytics-ը"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Ի սկզբանե անջատված է։ Քանի դեռ սա անջատված է, հանրային կայքը ոչ մի Google պիտակ չի բեռնում, նույնիսկ եթե ներքևում պիտակի ID-ներ են կարգավորված։ Այն միացնելը միակ պահանջն է, որպեսզի կարգավորված ID-ները բեռնվեն՝ պայմանով միայն, որ այցելուն ընդունի Google Analytics թխուկների կատեգորիան։ Պահպանված փոփոխությունները հասնում են հանրային կայք մոտ 5 րոպեում։"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Google պիտակի ID-ներ"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Ստորակետերով բաժանված Google պիտակի ID-ների ցանկ, օրինակ՝ G-ABC1234567,GTM-XYZ789։ Ընդունված նախածանցներն են՝ G-, GTM-, AW-, DC- և UA-։ Հանրային կայքը բեռնում է մեկ gtag.js կոնֆիգուրացիա յուրաքանչյուր ոչ GTM ID-ի համար և մեկ Tag Manager կոնտեյներ յուրաքանչյուր GTM- ID-ի համար։ Սկրիպտները բեռնվում են միայն այն այցելուների համար, ովքեր ընդունում են Google Analytics թխուկների կատեգորիան, և միայն bl2 կայքի արտադրական հոսթի վրա (այլ multisites այսօր Google պիտակներ չեն բեռնում)։ Պահպանված փոփոխությունները հասնում են հանրային կայք մոտ 5 րոպեում. կայքի ներսում էջերի փոփոխությունները հիմնվում են GA4 Enhanced Measurement-ի վրա, որն ի սկզբանե միացված է վեբ տվյալների հոսքի համար։ UA- ID-ները ընդունվում են ժառանգական հատկությունների համար, սակայն Google-ը դադարեցրեց Universal Analytics տվյալների մշակումը 2023 թ. հուլիսի 1-ին, ուստի դրանք ոչինչ չեն գրանցում։"
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Ստորակետերով բաժանված Google պիտակի ID-ների ցանկ, օրինակ՝ G-ABC1234567,GTM-XYZ789։ Ընդունված նախածանցներն են՝ G-, GTM-, AW-, DC- և UA-։ Հանրային կայքը բեռնում է մեկ gtag.js կոնֆիգուրացիա յուրաքանչյուր ոչ GTM ID-ի համար և մեկ Tag Manager կոնտեյներ յուրաքանչյուր GTM- ID-ի համար։ Սկրիպտները բեռնվում են միայն այն դեպքում, երբ վերևի նշատուփը միացված է, և միայն այն այցելուների համար, ովքեր ընդունում են Google Analytics թխուկների կատեգորիան։ Պահպանված փոփոխությունները հասնում են հանրային կայք մոտ 5 րոպեում. կայքի ներսում էջերի փոփոխությունները հիմնվում են GA4 Enhanced Measurement-ի վրա, որն ի սկզբանե միացված է վեբ տվյալների հոսքի համար։ UA- ID-ները ընդունվում են ժառանգական հատկությունների համար, սակայն Google-ը դադարեցրեց Universal Analytics տվյալների մշակումը 2023 թ. հուլիսի 1-ին, ուստի դրանք ոչինչ չեն գրանցում։"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Հետևյալ Google պիտակի ID-ները վավեր չեն: @tokens. Յուրաքանչյուր ID պետք է սկսվի ընդունված նախածանցներից մեկով՝ G-, GTM-, AW-, DC- կամ UA-։"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics-ը միացված է, սակայն ոչ մի Google պիտակի ID կարգավորված չէ, ուստի ոչ մի պիտակ չի բեռնվի։ Ներքևում ավելացրեք առնվազն մեկ ID։"

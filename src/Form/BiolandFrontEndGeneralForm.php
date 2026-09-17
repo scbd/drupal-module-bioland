@@ -154,7 +154,7 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       // === true - loads nothing. Reading strictly keeps the two surfaces
       // telling the administrator the same story.
       '#default_value' => $config->get('google_analytics_enabled') === TRUE,
-      '#description' => $this->t('Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes.'),
+      '#description' => $this->t('Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on allows the configured IDs to load only for visitors who accept the Google Analytics cookie category, and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes.'),
     ];
 
     $form['front_end_general_settings']['google_analytics_section']['google_analytics_ids'] = [

@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "ಮೆಗಾ ಮೆನು ಚೈಲ್ಡ್ ಸೇರಿಸಿ"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Google Analytics ಸಕ್ರಿಯಗೊಳಿಸಿ"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "ಡೀಫಾಲ್ಟ್ ಆಗಿ ಆಫ್ ಆಗಿದೆ. ಇದು ಆಫ್ ಆಗಿರುವವರೆಗೆ ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಯಾವುದೇ Google ಟ್ಯಾಗ್ ಅನ್ನು ಲೋಡ್ ಮಾಡುವುದಿಲ್ಲ, ಕೆಳಗೆ ಟ್ಯಾಗ್ ಐಡಿಗಳನ್ನು ಸಂರಚಿಸಿದ್ದರೂ ಸಹ. ಸಂರಚಿಸಿದ ಐಡಿಗಳು ಲೋಡ್ ಆಗಲು ಅದನ್ನು ಆನ್ ಮಾಡುವುದೇ ಸಾಕು, ಸಂದರ್ಶಕರು Google Analytics ಕುಕಿ ವರ್ಗವನ್ನು ಸ್ವೀಕರಿಸುವುದೊಂದೇ ಷರತ್ತು. ಉಳಿಸಿದ ಬದಲಾವಣೆಗಳು ಸುಮಾರು 5 ನಿಮಿಷಗಳಲ್ಲಿ ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಅನ್ನು ತಲುಪುತ್ತವೆ."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Google ಟ್ಯಾಗ್ ಐಡಿಗಳು"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Google ಟ್ಯಾಗ್ ಐಡಿಗಳ ಪಟ್ಟಿ, ಉದಾಹರಣೆಗೆ G-ABC1234567,GTM-XYZ789. ಸ್ವೀಕರಿಸಲಾದ ಪೂರ್ವಪ್ರತ್ಯಯಗಳು G-, GTM-, AW-, DC- ಮತ್ತು UA-. ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಪ್ರತಿ GTM-ಅಲ್ಲದ ಐಡಿಗೆ ಒಂದು gtag.js ಸಂರಚನೆಯನ್ನು ಮತ್ತು ಪ್ರತಿ GTM- ಐಡಿಗೆ ಒಂದು Tag Manager ಕಂಟೇನರ್ ಅನ್ನು ಲೋಡ್ ಮಾಡುತ್ತದೆ. Google Analytics ಕುಕಿ ವರ್ಗವನ್ನು ಸ್ವೀಕರಿಸುವ ಸಂದರ್ಶಕರಿಗೆ ಮಾತ್ರ ಮತ್ತು bl2 ಸೈಟ್ನ ಉತ್ಪಾದನಾ ಹೋಸ್ಟ್ನಲ್ಲಿ ಮಾತ್ರ ಸ್ಕ್ರಿಪ್ಟ್ಗಳು ಲೋಡ್ ಆಗುತ್ತವೆ (ಇತರ multisites ಇಂದು Google ಟ್ಯಾಗ್ಗಳನ್ನು ಲೋಡ್ ಮಾಡುವುದಿಲ್ಲ). ಉಳಿಸಿದ ಬದಲಾವಣೆಗಳು ಸುಮಾರು 5 ನಿಮಿಷಗಳಲ್ಲಿ ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಅನ್ನು ತಲುಪುತ್ತವೆ; ಸೈಟ್ನೊಳಗಿನ ಪುಟ ಬದಲಾವಣೆಗಳು GA4 Enhanced Measurement ಅನ್ನು ಅವಲಂಬಿಸಿವೆ, ಇದು ವೆಬ್ ಡೇಟಾ ಸ್ಟ್ರೀಮ್ಗೆ ಡಿಫಾಲ್ಟ್ ಆಗಿ ಆನ್ ಆಗಿರುತ್ತದೆ. UA- ಐಡಿಗಳನ್ನು ಹಿಂದಿನ ಆಸ್ತಿಗಳಿಗೆ ಸ್ವೀಕರಿಸಲಾಗುತ್ತದೆ, ಆದರೆ Google 1 ಜುಲೈ 2023 ರಂದು Universal Analytics ಡೇಟಾ ಸಂಸ್ಕರಣೆಯನ್ನು ನಿಲ್ಲಿಸಿತು, ಆದ್ದರಿಂದ ಅವು ಏನನ್ನೂ ದಾಖಲಿಸುವುದಿಲ್ಲ."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "ಅಲ್ಪವಿರಾಮದಿಂದ ಬೇರ್ಪಡಿಸಿದ Google ಟ್ಯಾಗ್ ಐಡಿಗಳ ಪಟ್ಟಿ, ಉದಾಹರಣೆಗೆ G-ABC1234567,GTM-XYZ789. ಸ್ವೀಕರಿಸಲಾದ ಪೂರ್ವಪ್ರತ್ಯಯಗಳು G-, GTM-, AW-, DC- ಮತ್ತು UA-. ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಪ್ರತಿ GTM-ಅಲ್ಲದ ಐಡಿಗೆ ಒಂದು gtag.js ಸಂರಚನೆಯನ್ನು ಮತ್ತು ಪ್ರತಿ GTM- ಐಡಿಗೆ ಒಂದು Tag Manager ಕಂಟೇನರ್ ಅನ್ನು ಲೋಡ್ ಮಾಡುತ್ತದೆ. ಮೇಲಿನ ಚೆಕ್‌ಬಾಕ್ಸ್ ಆನ್ ಆಗಿರುವಾಗ ಮಾತ್ರ ಮತ್ತು Google Analytics ಕುಕಿ ವರ್ಗವನ್ನು ಸ್ವೀಕರಿಸುವ ಸಂದರ್ಶಕರಿಗೆ ಮಾತ್ರ ಸ್ಕ್ರಿಪ್ಟ್ಗಳು ಲೋಡ್ ಆಗುತ್ತವೆ. ಉಳಿಸಿದ ಬದಲಾವಣೆಗಳು ಸುಮಾರು 5 ನಿಮಿಷಗಳಲ್ಲಿ ಸಾರ್ವಜನಿಕ ಸೈಟ್ ಅನ್ನು ತಲುಪುತ್ತವೆ; ಸೈಟ್ನೊಳಗಿನ ಪುಟ ಬದಲಾವಣೆಗಳು GA4 Enhanced Measurement ಅನ್ನು ಅವಲಂಬಿಸಿವೆ, ಇದು ವೆಬ್ ಡೇಟಾ ಸ್ಟ್ರೀಮ್ಗೆ ಡಿಫಾಲ್ಟ್ ಆಗಿ ಆನ್ ಆಗಿರುತ್ತದೆ. UA- ಐಡಿಗಳನ್ನು ಹಿಂದಿನ ಆಸ್ತಿಗಳಿಗೆ ಸ್ವೀಕರಿಸಲಾಗುತ್ತದೆ, ಆದರೆ Google 1 ಜುಲೈ 2023 ರಂದು Universal Analytics ಡೇಟಾ ಸಂಸ್ಕರಣೆಯನ್ನು ನಿಲ್ಲಿಸಿತು, ಆದ್ದರಿಂದ ಅವು ಏನನ್ನೂ ದಾಖಲಿಸುವುದಿಲ್ಲ."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "ಈ ಕೆಳಗಿನ Google ಟ್ಯಾಗ್ ಐಡಿಗಳು ಅಮಾನ್ಯವಾಗಿವೆ: @tokens. ಪ್ರತಿ ಐಡಿಯು ಸ್ವೀಕರಿಸಲಾದ ಪೂರ್ವಪ್ರತ್ಯಯಗಳಲ್ಲಿ ಒಂದರಿಂದ ಪ್ರಾರಂಭವಾಗಬೇಕು: G-, GTM-, AW-, DC- ಅಥವಾ UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics ಆನ್ ಆಗಿದೆ ಆದರೆ ಯಾವುದೇ Google ಟ್ಯಾಗ್ ಐಡಿಗಳನ್ನು ಸಂರಚಿಸಲಾಗಿಲ್ಲ, ಆದ್ದರಿಂದ ಯಾವುದೇ ಟ್ಯಾಗ್ ಲೋಡ್ ಆಗುವುದಿಲ್ಲ. ಕೆಳಗೆ ಕನಿಷ್ಠ ಒಂದು ಐಡಿಯನ್ನು ಸೇರಿಸಿ."

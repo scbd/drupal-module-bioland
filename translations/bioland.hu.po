@@ -1934,13 +1934,25 @@ msgid "Add Mega Menu Child"
 msgstr "Megamenü-gyermek hozzáadása"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "A Google Analytics engedélyezése"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Alapértelmezés szerint kikapcsolva. Amíg ez ki van kapcsolva, a nyilvános webhely egyetlen Google-címkét sem tölt be, még akkor sem, ha lent címke-azonosítók vannak beállítva. A bekapcsolása minden, ami a beállított azonosítók betöltéséhez szükséges, egyedüli feltételként azzal, hogy a látogató elfogadja a Google Analytics cookie-kategóriát. A mentett módosítások körülbelül 5 percen belül eljutnak a nyilvános webhelyre."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Google-címke-azonosítók"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Vesszővel elválasztott Google-címke-azonosítók listája, például G-ABC1234567,GTM-XYZ789. Az elfogadott előtagok: G-, GTM-, AW-, DC- és UA-. A nyilvános webhely minden nem GTM-azonosítóhoz egy gtag.js konfigurációt tölt be, minden GTM- azonosítóhoz pedig egy Tag Manager konténert. A szkriptek csak azoknak a látogatóknak töltődnek be, akik elfogadják a Google Analytics cookie-kategóriát, és csak egy bl2 webhely éles hosztján (más multisites webhelyek ma nem töltenek be Google-címkéket). A mentett módosítások körülbelül 5 percen belül eljutnak a nyilvános webhelyre; a webhelyen belüli oldalmódosítások a GA4 Kibővített mérésre támaszkodnak, amely webes adatfolyam esetén alapértelmezés szerint be van kapcsolva. Az UA- azonosítók örökölt tulajdonságokhoz elfogadottak, de a Google 2023. július 1-jén leállította a Universal Analytics adatok feldolgozását, így azok semmit sem rögzítenek."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Vesszővel elválasztott Google-címke-azonosítók listája, például G-ABC1234567,GTM-XYZ789. Az elfogadott előtagok: G-, GTM-, AW-, DC- és UA-. A nyilvános webhely minden nem GTM-azonosítóhoz egy gtag.js konfigurációt tölt be, minden GTM- azonosítóhoz pedig egy Tag Manager konténert. A szkriptek csak akkor töltődnek be, ha a fenti jelölőnégyzet be van kapcsolva, és csak azoknak a látogatóknak, akik elfogadják a Google Analytics cookie-kategóriát. A mentett módosítások körülbelül 5 percen belül eljutnak a nyilvános webhelyre; a webhelyen belüli oldalmódosítások a GA4 Kibővített mérésre támaszkodnak, amely webes adatfolyam esetén alapértelmezés szerint be van kapcsolva. Az UA- azonosítók örökölt tulajdonságokhoz elfogadottak, de a Google 2023. július 1-jén leállította a Universal Analytics adatok feldolgozását, így azok semmit sem rögzítenek."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "A következő Google-címke-azonosítók érvénytelenek: @tokens. Minden azonosítónak az elfogadott előtagok egyikével kell kezdődnie: G-, GTM-, AW-, DC- vagy UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "A Google Analytics be van kapcsolva, de nincs beállítva Google-címke-azonosító, ezért egyetlen címke sem töltődik be. Adjon meg lent legalább egy azonosítót."

@@ -8,6 +8,15 @@ bioland.settings:
       sequence:
         type: string
         label: 'ISO country code'
+    dmsm_config_base_url:
+      type: string
+      label: 'Config API base URL for the geography fetch'
+    dmsm_config_prod_host_allowlist:
+      type: sequence
+      label: 'Hosts a production site may fetch its geography from'
+      sequence:
+        type: string
+        label: 'Host'
     region:
       type: string
       label: 'Geographic region'
@@ -443,6 +452,9 @@ bioland.settings:
         auto_create:
           type: boolean
           label: 'Automatically create translation defaults'
+        backfill_enabled:
+          type: boolean
+          label: 'Allow the backfill update hook to create translation defaults for all existing content (runs a content-writing batch over every existing node; ships off)'
         use_all_languages:
           type: boolean
           label: 'Use all available languages'

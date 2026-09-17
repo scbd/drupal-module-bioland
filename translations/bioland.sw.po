@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "Ongeza mtoto wa menyu kuu"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "Washa Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "Imezimwa kwa chaguo-msingi. Wakati hii imezimwa, tovuti ya umma haipakii lebo yoyote ya Google, hata kama vitambulisho vya lebo vimewekwa hapa chini. Kuiwasha ndilo jambo pekee linalohitajika ili vitambulisho vilivyowekwa vipakiwe, kwa sharti moja tu kwamba mgeni akubali kategoria ya vidakuzi ya Google Analytics. Mabadiliko yaliyohifadhiwa hufika kwenye tovuti ya umma ndani ya dakika 5 hivi."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Vitambulisho vya lebo za Google"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "Orodha ya vitambulisho vya lebo za Google vilivyotenganishwa kwa koma, kwa mfano G-ABC1234567,GTM-XYZ789. Viambishi awali vinavyokubaliwa ni G-, GTM-, AW-, DC- na UA-. Tovuti ya umma hupakia usanidi mmoja wa gtag.js kwa kila kitambulisho kisicho cha GTM na kontena moja ya Tag Manager kwa kila kitambulisho cha GTM-. Skripti hupakiwa tu kwa wageni wanaokubali kategoria ya vidakuzi ya Google Analytics na tu kwenye host ya uzalishaji ya tovuti ya bl2 (multisites nyingine hazipakii lebo za Google leo). Mabadiliko yaliyohifadhiwa hufika kwenye tovuti ya umma ndani ya dakika 5 hivi; mabadiliko ya kurasa ndani ya tovuti hutegemea GA4 Enhanced Measurement, ambayo imewashwa kwa chaguo-msingi kwa mtiririko wa data wa wavuti. Vitambulisho vya UA- vinakubaliwa kwa sifa za zamani, lakini Google ilisimamisha kuchakata data ya Universal Analytics tarehe 1 Julai 2023, hivyo havirekodi chochote."
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "Orodha ya vitambulisho vya lebo za Google vilivyotenganishwa kwa koma, kwa mfano G-ABC1234567,GTM-XYZ789. Viambishi awali vinavyokubaliwa ni G-, GTM-, AW-, DC- na UA-. Tovuti ya umma hupakia usanidi mmoja wa gtag.js kwa kila kitambulisho kisicho cha GTM na kontena moja ya Tag Manager kwa kila kitambulisho cha GTM-. Skripti hupakiwa tu wakati kisanduku cha kuteua hapo juu kimewashwa na tu kwa wageni wanaokubali kategoria ya vidakuzi ya Google Analytics. Mabadiliko yaliyohifadhiwa hufika kwenye tovuti ya umma ndani ya dakika 5 hivi; mabadiliko ya kurasa ndani ya tovuti hutegemea GA4 Enhanced Measurement, ambayo imewashwa kwa chaguo-msingi kwa mtiririko wa data wa wavuti. Vitambulisho vya UA- vinakubaliwa kwa sifa za zamani, lakini Google ilisimamisha kuchakata data ya Universal Analytics tarehe 1 Julai 2023, hivyo havirekodi chochote."
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "Vitambulisho vya lebo za Google vifuatavyo si sahihi: @tokens. Kila kitambulisho lazima kianze na kimojawapo cha viambishi awali vinavyokubaliwa: G-, GTM-, AW-, DC- au UA-."
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics imewashwa lakini hakuna kitambulisho cha lebo ya Google kilichowekwa, hivyo hakuna lebo itakayopakiwa. Ongeza angalau kitambulisho kimoja hapa chini."

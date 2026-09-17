@@ -1863,13 +1863,25 @@ msgid "Add Mega Menu Child"
 msgstr "添加超级菜单子项"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Enable Google Analytics"
+msgstr "启用 Google Analytics"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Off by default. While this is off the public site loads no Google tag, even when tag IDs are configured below. Turning it on is all that is required for the configured IDs to load, subject only to the visitor accepting the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes."
+msgstr "默认关闭。在关闭期间，即使下方已配置代码 ID，公共网站也不会加载任何 Google 代码。开启它即可让已配置的 ID 加载，唯一的前提是访问者接受 Google Analytics Cookie 类别。保存的更改约在 5 分钟内到达公共网站。"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
 msgid "Google tag IDs"
 msgstr "Google 代码 ID"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
-msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only for visitors who accept the Google Analytics cookie category and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
-msgstr "以逗号分隔的 Google 代码 ID 列表，例如 G-ABC1234567,GTM-XYZ789。可接受的前缀为 G-、GTM-、AW-、DC- 和 UA-。公共网站为每个非 GTM 的 ID 加载一个 gtag.js 配置，并为每个 GTM- ID 加载一个 Tag Manager 容器。脚本仅对接受 Google Analytics Cookie 类别的访问者加载，且仅在 bl2 站点的生产主机上加载（其他多站点目前不加载 Google 代码）。保存的更改约在 5 分钟内到达公共网站；网站内的页面更改依赖 GA4 增强衡量，该功能对网站数据流默认开启。UA- ID 可用于旧版资源，但 Google 已于2023 年 7 月 1 日停止处理 Universal Analytics 数据，因此它们不会记录任何内容。"
+msgid "A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on and only for visitors who accept the Google Analytics cookie category. Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing."
+msgstr "以逗号分隔的 Google 代码 ID 列表，例如 G-ABC1234567,GTM-XYZ789。可接受的前缀为 G-、GTM-、AW-、DC- 和 UA-。公共网站为每个非 GTM 的 ID 加载一个 gtag.js 配置，并为每个 GTM- ID 加载一个 Tag Manager 容器。脚本仅在上方复选框开启时加载，且仅对接受 Google Analytics Cookie 类别的访问者加载。保存的更改约在 5 分钟内到达公共网站；网站内的页面更改依赖 GA4 增强衡量，该功能对网站数据流默认开启。UA- ID 可用于旧版资源，但 Google 已于2023 年 7 月 1 日停止处理 Universal Analytics 数据，因此它们不会记录任何内容。"
 
 #: src/Form/BiolandFrontEndGeneralForm.php
 msgid "The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-."
 msgstr "以下 Google 代码 ID 无效：@tokens。每个 ID 必须以下列可接受的前缀之一开头：G-、GTM-、AW-、DC- 或 UA-。"
+
+#: src/Form/BiolandFrontEndGeneralForm.php
+msgid "Google Analytics is turned on but no Google tag IDs are configured, so no tag will load. Add at least one ID below."
+msgstr "Google Analytics 已开启，但未配置任何 Google 代码 ID，因此不会加载任何代码。请在下方至少添加一个 ID。"

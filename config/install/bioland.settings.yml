@@ -1,5 +1,27 @@
 countries:
   - 'gt'
+# NOTE: dmsm_config_base_url is deliberately NOT shipped here.
+#
+# The geography fetch reads its config API base URL from
+# bioland.settings.dmsm_config_base_url. There is no fallback for it in code,
+# and no default here either: any value shipped for every environment would
+# have to be the dev host, which is exactly what the production guard must
+# refuse - a fresh production install would then never fetch and would keep
+# the seeded countries above forever. The key is deploy-time configuration.
+#
+# Set it per environment, either through config import / `drush cset
+# bioland.settings dmsm_config_base_url https://...`, or through
+# $settings['bioland_dmsm_config_base_url'] (or the
+# BIOLAND_DMSM_CONFIG_BASE_URL environment variable), which
+# bioland_update_9082() reads to seed the key on sites that lack it.
+#
+# On production the host must ALSO be named in dmsm_config_prod_host_allowlist,
+# which likewise ships absent: no production host exists in code either, for the
+# same reason. Seed it with $settings['bioland_dmsm_prod_host_allowlist'] (array
+# or comma-separated), the BIOLAND_DMSM_PROD_HOST_ALLOWLIST environment
+# variable, or `drush cset bioland.settings dmsm_config_prod_host_allowlist.0
+# <host>`. Until it is set a production site refuses every fetch and says so on
+# /admin/reports/status.
 region: 'north_america'
 is_biosafety_land: false
 enable_field_visibility: true
@@ -90,6 +112,10 @@ mega_menu:
     show_if_empty: false
 translation:
   auto_create: true
+  # Gates the translation backfill update hook, which writes translation
+  # defaults across every existing content node. Ships off by design: enabling
+  # it is a deliberate, per-site, operator-run act, never a deploy side effect.
+  backfill_enabled: false
   use_all_languages: true
   target_languages: []
   copy_source_values: true

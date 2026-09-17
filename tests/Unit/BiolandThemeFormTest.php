@@ -8,6 +8,7 @@ use Drupal\bioland\BiolandThemeContract;
 use Drupal\bioland\Form\BiolandThemeForm;
 use Drupal\bioland\Service\BiolandDmsmConfigService;
 use Drupal\Core\Config\Config;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\Language;
@@ -335,11 +336,32 @@ class BiolandThemeFormTest extends TestCase {
     $loggerFactory = $this->createMock('Drupal\Core\Logger\LoggerChannelFactoryInterface');
     $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
 
-    $service = new BiolandDmsmConfigService(
-      $this->createMock('Drupal\Core\Config\ConfigFactoryInterface'),
+    // The config API host is deployment configuration, never a literal in
+    // code (BL-992), so the fetch needs the base URL seeded here, plus the
+    // production allowlist that names it. The DNS seam is stubbed so the
+    // fetch guard does not depend on live resolution.
+    $configFactory = $this->createMock('Drupal\Core\Config\ConfigFactoryInterface');
+    $configFactory->method('get')->willReturn(new ImmutableConfig('bioland.settings', [
+      'dmsm_config_base_url' => 'https://config.example.test',
+      'dmsm_config_prod_host_allowlist' => ['config.example.test'],
+    ]));
+
+    $service = new class(
+      $configFactory,
       $httpClient,
-      $loggerFactory
-    );
+      $loggerFactory,
+      $this->createMock('Drupal\Core\Queue\QueueFactory'),
+      $this->createMock('Symfony\Component\HttpFoundation\RequestStack')
+    ) extends BiolandDmsmConfigService {
+
+      /**
+       * {@inheritdoc}
+       */
+      protected function resolveHostAddresses($host) {
+        return ['93.184.216.34'];
+      }
+
+    };
 
     return $service->getEffectiveTheme('demo.bl2.chm-cbd.net');
   }
@@ -550,11 +572,10 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * An already-authored theme wins and the seed is never fetched.
+   * An authored leaf beats the seed for that leaf.
    */
-  public function testSeedIsSkippedWhenThemeConfigIsPopulated(): void {
-    // exactly(0): the service must not be consulted at all.
-    $this->stubDmsmService(['color' => ['primary' => '#ffffff']], 0);
+  public function testAuthoredLeafWinsOverTheSeed(): void {
+    $this->stubDmsmService(['color' => ['primary' => '#ffffff']], 1);
 
     $form = $this->build($this->config([
       'theme' => [
@@ -566,13 +587,102 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * An authored theme made entirely of falsy values still counts as authored.
+   * A partly-authored theme still shows the seed for what it did NOT author.
    *
-   * Presence, not truthiness: `maxRowsPerColumn: 0` is a real authored value,
-   * so the seed must stay away.
+   * The reported bug: a site that authored only `color` rendered the Mega Menu
+   * and Languages numbers empty, because the authored subtree used to replace
+   * the seed wholesale instead of being overlaid on it leaf by leaf. Those
+   * fields are what the site is actually running, so a blank was a lie.
+   */
+  public function testUnauthoredLeavesStillShowTheSeed(): void {
+    $this->stubDmsmService([
+      'color' => ['primary' => '#ffffff'],
+      'megaMenu' => [
+        'maxColumns' => 5,
+        'maxRowsPerColumn' => 6,
+        'horizontalCardMax' => 3,
+      ],
+      'i18n' => ['maxLangBeforeWrap' => 6],
+    ], 1);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'color' => ['primary' => '#abcdef'],
+      ],
+    ]));
+
+    $this->assertSame('#abcdef', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame(5, $form['theme']['mega_menu']['max_columns']['#default_value']);
+    $this->assertSame(6, $form['theme']['mega_menu']['max_rows_per_column']['#default_value']);
+    $this->assertSame(3, $form['theme']['mega_menu']['horizontal_card_max']['#default_value']);
+    $this->assertSame(6, $form['theme']['i18n']['max_lang_before_wrap']['#default_value']);
+  }
+
+  /**
+   * An authored column list replaces the seeded one instead of merging into it.
+   *
+   * Lists are leaves: index-by-index merging would splice the seed's third
+   * widget back into a column the editor deliberately shortened to one.
+   */
+  public function testAuthoredColumnsReplaceTheSeededListWholesale(): void {
+    $case = $this->fixtureCases()['theme-less-site'];
+    $this->stubDmsmService($case['expectedEffectiveTheme'], 1);
+
+    $form = $this->build($this->config([
+      'theme' => [
+        'home_page_widgets' => ['columns' => [['panorama'], [], []]],
+      ],
+    ]));
+
+    $this->assertSame(
+      ['panorama'],
+      $form['theme']['home_page_widgets']['columns'][0]['#default_value'],
+      'A shortened authored column must not regain the seeded widgets.'
+    );
+  }
+
+  public function testEmptyAuthoredGroupsKeepSeedDefaults(): void {
+    $this->stubDmsmService([
+      'color' => ['primary' => '#abcdef'],
+      'megaMenu' => ['maxColumns' => 5, 'maxRowsPerColumn' => 0, 'horizontalCardMax' => 3],
+      'i18n' => ['maxLangBeforeWrap' => 6],
+      'homePageWidgets' => ['columns' => [['panorama'], [], []]],
+    ], 1);
+
+    $form = $this->build($this->config([
+      'theme' => ['color' => [], 'mega_menu' => [], 'i18n' => [], 'home_page_widgets' => []],
+    ]));
+
+    $this->assertSame('#abcdef', $form['theme']['color']['primary']['#default_value']);
+    $this->assertSame(5, $form['theme']['mega_menu']['max_columns']['#default_value']);
+    $this->assertSame(0, $form['theme']['mega_menu']['max_rows_per_column']['#default_value']);
+    $this->assertSame(3, $form['theme']['mega_menu']['horizontal_card_max']['#default_value']);
+    $this->assertSame(6, $form['theme']['i18n']['max_lang_before_wrap']['#default_value']);
+    $this->assertSame(['panorama'], $form['theme']['home_page_widgets']['columns'][0]['#default_value']);
+  }
+
+  public function testEmptyAuthoredColumnListStillReplacesSeed(): void {
+    $this->stubDmsmService([
+      'homePageWidgets' => ['columns' => [['panorama'], ['gbif'], ['eLearning']]],
+    ], 1);
+
+    $form = $this->build($this->config([
+      'theme' => ['home_page_widgets' => ['columns' => []]],
+    ]));
+
+    foreach ([0, 1, 2] as $column) {
+      $this->assertSame([], $form['theme']['home_page_widgets']['columns'][$column]['#default_value']);
+    }
+  }
+
+  /**
+   * An authored falsy leaf is still authored and still beats the seed.
+   *
+   * Presence, not truthiness: `max_rows_per_column: 0` is a real authored
+   * value ("unlimited"), not an absence for the seed to fill.
    */
   public function testFalsyAuthoredValuesAreTreatedAsAuthored(): void {
-    $this->stubDmsmService(['megaMenu' => ['maxRowsPerColumn' => 6]], 0);
+    $this->stubDmsmService(['megaMenu' => ['maxRowsPerColumn' => 6]], 1);
 
     $form = $this->build($this->config([
       'theme' => [
@@ -831,11 +941,14 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
-   * An already-authored theme neither messages nor consults the seed.
+   * An already-authored theme stays silent even when the seed fails.
+   *
+   * The seed IS consulted now -- the authored subtree is overlaid on it per
+   * leaf rather than replacing it -- so an unreadable seed is reachable from
+   * an authored site too, and it must stay as silent here as anywhere else.
    */
   public function testAuthoredThemeNeitherSeedsNorMessages(): void {
-    // exactly(0): a site with its own theme must not pay for the HTTP call.
-    $this->stubDmsmService(NULL, 0);
+    $this->stubDmsmService(NULL, 1);
 
     [, $messenger] = $this->buildWithMessenger($this->config([
       'theme' => ['color' => ['primary' => '#abcdef']],
@@ -1395,7 +1508,7 @@ class BiolandThemeFormTest extends TestCase {
    * un-author.
    */
   public function testBlankNumericPreservesAnAuthoredValue(): void {
-    $this->stubDmsmService(NULL, 0);
+    $this->stubDmsmService(NULL, 1);
     $config = $this->config([
       'theme' => ['mega_menu' => ['max_columns' => 4]],
     ]);

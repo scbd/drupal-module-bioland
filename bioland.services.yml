@@ -17,7 +17,16 @@ services:
 
   bioland.dmsm_config:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
-    arguments: ['@config.factory', '@http_client', '@logger.factory']
+    arguments: ['@config.factory', '@http_client', '@logger.factory', '@queue', '@request_stack']
+  bioland.config_document_builder:
+    class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
+    arguments: ['@logger.factory']
+
+  bioland.config_api_access_check:
+    class: Drupal\bioland\Access\BiolandConfigApiAccessCheck
+    arguments: ['@settings']
+    tags:
+      - { name: access_check, applies_to: _bioland_config_api }
 
   bioland.component_registry:
     class: Drupal\bioland\Service\BiolandComponentRegistry
