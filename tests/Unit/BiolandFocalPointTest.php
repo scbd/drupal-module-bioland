@@ -3,6 +3,7 @@
 namespace Drupal\Tests\bioland\Unit;
 
 use Drupal\bioland\BiolandFocalPoint;
+use Drupal\bioland\Plugin\Field\BiolandFocalPointItemList;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -55,19 +56,11 @@ class BiolandFocalPointTest extends TestCase {
       public function isNew() {
         return $this->isNew;
       }
-
-      public function getCacheTags() {
-        return ['crop:7'];
-      }
     };
   }
 
   private function media(string $bundle = 'hero', bool $hasFile = TRUE, int $width = 2000, int $height = 1000, bool $hasField = TRUE): FieldableEntityInterface {
-    $file = $hasFile ? new class {
-      public function getCacheTags() {
-        return ['file:3'];
-      }
-    } : NULL;
+    $file = $hasFile ? new \stdClass() : NULL;
     $item = (object) ['entity' => $file, 'width' => $width, 'height' => $height];
     $items = new class($item) {
       public function __construct(private object $item) {}
@@ -87,12 +80,10 @@ class BiolandFocalPointTest extends TestCase {
   /**
    * @covers ::resolve
    */
-  public function testHeroResolvesRelativePercentagesAndCacheTags(): void {
+  public function testHeroResolvesRelativePercentages(): void {
     $manager = $this->manager($this->crop(1000, 300));
-    $result = (new BiolandFocalPoint($manager, 'focal_point'))->resolve($this->media());
 
-    $this->assertSame('50,30', $result['value']);
-    $this->assertSame(['file:3', 'crop_list', 'crop:7'], $result['tags']);
+    $this->assertSame('50,30', (new BiolandFocalPoint($manager, 'focal_point'))->resolve($this->media()));
     $this->assertSame(['focal_point'], $manager->calls);
   }
 
@@ -100,8 +91,7 @@ class BiolandFocalPointTest extends TestCase {
    * @covers ::resolve
    */
   public function testOtherBundlesResolveToNull(): void {
-    $result = (new BiolandFocalPoint($this->manager($this->crop(1, 1))))->resolve($this->media('image'));
-    $this->assertSame(['value' => NULL, 'tags' => []], $result);
+    $this->assertNull((new BiolandFocalPoint($this->manager($this->crop(1, 1))))->resolve($this->media('image')));
   }
 
   /**
@@ -110,8 +100,7 @@ class BiolandFocalPointTest extends TestCase {
    */
   public function testMissingFocalPointModuleResolvesToNull(): void {
     $this->assertFalse(\Drupal::hasService('focal_point.manager'));
-    $result = BiolandFocalPoint::fromContainer()->resolve($this->media());
-    $this->assertSame(['value' => NULL, 'tags' => []], $result);
+    $this->assertNull(BiolandFocalPoint::fromContainer()->resolve($this->media()));
   }
 
   /**
@@ -119,27 +108,24 @@ class BiolandFocalPointTest extends TestCase {
    */
   public function testMissingFieldOrFileResolvesToNull(): void {
     $resolver = new BiolandFocalPoint($this->manager($this->crop(1, 1)));
-    $this->assertNull($resolver->resolve($this->media('hero', TRUE, 10, 10, FALSE))['value']);
-    $this->assertNull($resolver->resolve($this->media('hero', FALSE))['value']);
+    $this->assertNull($resolver->resolve($this->media('hero', TRUE, 10, 10, FALSE)));
+    $this->assertNull($resolver->resolve($this->media('hero', FALSE)));
   }
 
   /**
-   * An unsaved crop (no point chosen yet) is NULL but still tagged crop_list.
+   * An unsaved crop (no point chosen yet) resolves to NULL.
    *
    * @covers ::resolve
    */
-  public function testNoSavedCropResolvesToNullWithListTag(): void {
-    $result = (new BiolandFocalPoint($this->manager($this->crop(1, 1, TRUE))))->resolve($this->media());
-    $this->assertNull($result['value']);
-    $this->assertSame(['file:3', 'crop_list'], $result['tags']);
+  public function testNoSavedCropResolvesToNull(): void {
+    $this->assertNull((new BiolandFocalPoint($this->manager($this->crop(1, 1, TRUE))))->resolve($this->media()));
   }
 
   /**
    * @covers ::resolve
    */
   public function testMissingDimensionsResolveToNull(): void {
-    $result = (new BiolandFocalPoint($this->manager($this->crop(1, 1))))->resolve($this->media('hero', TRUE, 0, 0));
-    $this->assertNull($result['value']);
+    $this->assertNull((new BiolandFocalPoint($this->manager($this->crop(1, 1))))->resolve($this->media('hero', TRUE, 0, 0)));
   }
 
   /**
@@ -153,8 +139,35 @@ class BiolandFocalPointTest extends TestCase {
     \Drupal::setService('config.factory', $factory);
     \Drupal::setService('focal_point.manager', $manager);
 
-    $this->assertSame('0,0', BiolandFocalPoint::fromContainer()->resolve($this->media())['value']);
+    $this->assertSame('0,0', BiolandFocalPoint::fromContainer()->resolve($this->media()));
     $this->assertSame(['custom_crop'], $manager->calls);
+  }
+
+  /**
+   * The computed field stays empty for non-hero media and entities without
+   * the image field, and holds the "X,Y" value for a hero.
+   *
+   * @covers \Drupal\bioland\Plugin\Field\BiolandFocalPointItemList::computeValue
+   */
+  public function testComputedFieldEarlyReturnsAndHeroValue(): void {
+    \Drupal::setService('focal_point.manager', $this->manager($this->crop(1000, 300)));
+
+    $this->assertSame([], (new BiolandFocalPointItemList($this->media('image')))->getValue());
+    $this->assertSame([], (new BiolandFocalPointItemList($this->media('hero', TRUE, 10, 10, FALSE)))->getValue());
+    $this->assertSame([['value' => '50,30']], (new BiolandFocalPointItemList($this->media()))->getValue());
+  }
+
+  /**
+   * @covers ::baseFieldDefinition
+   */
+  public function testBaseFieldDefinitionIsComputedReadOnlyString(): void {
+    $definition = BiolandFocalPoint::baseFieldDefinition();
+
+    $this->assertSame('string', $definition->type);
+    $this->assertTrue($definition->values['setComputed']);
+    $this->assertTrue($definition->values['setReadOnly']);
+    $this->assertFalse($definition->values['setTranslatable']);
+    $this->assertSame(BiolandFocalPointItemList::class, $definition->values['setClass']);
   }
 
   /**

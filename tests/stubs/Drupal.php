@@ -131,6 +131,16 @@ class Drupal {
   }
 
   /**
+   * Gets the entity definition update manager.
+   *
+   * @return mixed
+   *   The stubbed service registered under 'entity.definition_update_manager'.
+   */
+  public static function entityDefinitionUpdateManager() {
+    return static::$container['entity.definition_update_manager'] ?? NULL;
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
