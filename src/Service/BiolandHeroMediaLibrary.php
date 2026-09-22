@@ -20,9 +20,11 @@ use Drupal\media_library\MediaLibraryUiBuilder;
  * Adds, beside the hero's field_media_image image widget, a link opening the
  * core Media Library modal (image media only, one slot) plus the hidden input
  * and hidden AJAX button BiolandHeroImageOpener fills and fires. The button
- * copies the chosen media's source file (and its alt text, when the hero's is
- * empty) into the widget state and rebuilds, so the preview updates before the
- * editor saves. The field itself stays a plain image field.
+ * copies the chosen media's source file (and its alt and title text, where the
+ * hero's are empty) into the widget state and rebuilds, so the preview updates
+ * before the editor saves. The field itself stays a plain image field. Only a
+ * published image whose file is in public:// can be chosen, so the hero never
+ * republishes a restricted or private image.
  *
  * bioland.module only calls alterWidget() when media_library is enabled, so
  * nothing here loads a media_library class on a site without it.
@@ -48,6 +50,10 @@ class BiolandHeroMediaLibrary {
 
   /**
    * Value tying the opener's AJAX commands to the hidden controls.
+   *
+   * WIDGET_ID, INPUT_KEY and WRAPPER_ID are prefixes: each form instance adds
+   * the suffix idSuffix() derives from its #field_parents, as core's
+   * MediaLibraryWidget does, so two hero forms on one page never collide.
    */
   public const WIDGET_ID = 'bioland-hero-image';
 
@@ -60,6 +66,11 @@ class BiolandHeroMediaLibrary {
    * Id of the element the AJAX refresh replaces.
    */
   public const WRAPPER_ID = 'bioland-hero-media-image-wrapper';
+
+  /**
+   * The only file scheme a hero image may be copied from.
+   */
+  private const PUBLIC_SCHEME = 'public://';
 
   /**
    * Form state key carrying the resolved item from validate to submit.
@@ -94,12 +105,22 @@ class BiolandHeroMediaLibrary {
       return;
     }
 
-    $state = MediaLibraryState::create(self::OPENER_ID, self::ALLOWED_TYPES, self::ALLOWED_TYPES[0], 1, [
-      'widget_id' => self::WIDGET_ID,
-      'entity_id' => $entity->isNew() ? NULL : $entity->id(),
-    ]);
+    $field_parents = $element['widget']['#field_parents'] ?? [];
+    $suffix = self::idSuffix($field_parents);
+    $widget_id = self::WIDGET_ID . $suffix;
+    $input_key = self::INPUT_KEY . str_replace('-', '_', $suffix);
+    $wrapper_id = self::WRAPPER_ID . $suffix;
 
-    $element['#prefix'] = '<div id="' . self::WRAPPER_ID . '">' . ($element['#prefix'] ?? '');
+    // Only what MediaLibraryState::fromRequest() rebuilds from the query
+    // string hashes the same: every value a string, and no NULL (which
+    // http_build_query() drops), as core's MediaLibraryWidget does.
+    $opener_parameters = ['widget_id' => $widget_id];
+    if (!$entity->isNew()) {
+      $opener_parameters['entity_id'] = (string) $entity->id();
+    }
+    $state = MediaLibraryState::create(self::OPENER_ID, self::ALLOWED_TYPES, self::ALLOWED_TYPES[0], 1, $opener_parameters);
+
+    $element['#prefix'] = '<div id="' . $wrapper_id . '">' . ($element['#prefix'] ?? '');
     $element['#suffix'] = ($element['#suffix'] ?? '') . '</div>';
     $element['bioland_media_library'] = [
       '#type' => 'container',
@@ -117,51 +138,73 @@ class BiolandHeroMediaLibrary {
       ],
       'selection' => [
         '#type' => 'hidden',
-        '#parents' => [self::INPUT_KEY, 'selection'],
-        '#attributes' => ['data-bioland-hero-media-value' => self::WIDGET_ID],
+        '#parents' => [$input_key, 'selection'],
+        '#attributes' => ['data-bioland-hero-media-value' => $widget_id],
       ],
       'update' => [
         '#type' => 'submit',
         '#value' => $this->t('Use selected image'),
-        '#name' => 'bioland-hero-media-library-update',
-        '#parents' => [self::INPUT_KEY, 'update'],
-        '#attributes' => ['data-bioland-hero-media-update' => self::WIDGET_ID, 'class' => ['js-hide']],
-        '#limit_validation_errors' => [[self::INPUT_KEY]],
+        '#name' => 'bioland-hero-media-library-update' . $suffix,
+        '#parents' => [$input_key, 'update'],
+        '#attributes' => ['data-bioland-hero-media-update' => $widget_id, 'class' => ['js-hide']],
+        '#limit_validation_errors' => [[$input_key]],
         '#validate' => [[static::class, 'validateSelection']],
         '#submit' => [[static::class, 'submitSelection']],
-        '#ajax' => ['callback' => [static::class, 'ajaxRefresh'], 'wrapper' => self::WRAPPER_ID],
-        '#bioland_field_parents' => $element['widget']['#field_parents'] ?? [],
+        '#ajax' => ['callback' => [static::class, 'ajaxRefresh'], 'wrapper' => $wrapper_id],
+        '#bioland_field_parents' => $field_parents,
+        '#bioland_input_key' => $input_key,
       ],
     ];
   }
 
   /**
+   * Suffix unique to one widget instance, like core MediaLibraryWidget's.
+   *
+   * Lowercased and reduced to [a-z0-9_-] so it stays a valid id, form key and
+   * the widget_id BiolandHeroImageOpener accepts.
+   */
+  private static function idSuffix(array $field_parents): string {
+    return $field_parents ? '-' . preg_replace('/[^a-z0-9_-]+/', '-', strtolower(implode('-', $field_parents))) : '';
+  }
+
+  /**
    * Resolves a Media Library selection into a field_media_image item.
+   *
+   * Beyond view access, the media must be published and its file must live in
+   * public://: the hero is public, so a restricted or private image chosen
+   * here would otherwise become public through it.
    *
    * @param string $selection
    *   Comma-separated media ids posted by the hidden input.
    * @param string $current_alt
    *   The hero's current alt text; kept when not empty.
+   * @param string $current_title
+   *   The hero's current title text; kept when not empty.
    *
    * @return array
    *   [] for an empty selection, ['error' => string] for a rejected one, or
    *   ['item' => array] holding the widget item values.
    */
-  public function resolveSelection(string $selection, string $current_alt): array {
+  public function resolveSelection(string $selection, string $current_alt, string $current_title): array {
     $id = trim(explode(',', $selection)[0]);
     if ($id === '') {
       return [];
     }
 
     $media = ctype_digit($id) ? $this->entityTypeManager->getStorage('media')->load($id) : NULL;
-    if (!$media || !in_array($media->bundle(), self::ALLOWED_TYPES, TRUE) || !$media->access('view', $this->currentUser)) {
+    if (!$media || !in_array($media->bundle(), self::ALLOWED_TYPES, TRUE) || !$media->isPublished()
+      || !$media->access('view', $this->currentUser)) {
       return ['error' => $this->t('The selected media item is not an available image.')];
     }
 
     $source_field = $media->getSource()->getConfiguration()['source_field'] ?? '';
     $value = $source_field !== '' ? ($media->get($source_field)->getValue()[0] ?? []) : [];
-    if (empty($value['target_id'])) {
+    $file = empty($value['target_id']) ? NULL : $this->entityTypeManager->getStorage('file')->load($value['target_id']);
+    if (!$file) {
       return ['error' => $this->t('The selected media item has no image file.')];
+    }
+    if (!str_starts_with((string) $file->getFileUri(), self::PUBLIC_SCHEME)) {
+      return ['error' => $this->t('The selected image is not public, so it cannot be used as a hero image.')];
     }
 
     return [
@@ -169,7 +212,7 @@ class BiolandHeroMediaLibrary {
         'target_id' => $value['target_id'],
         'fids' => [$value['target_id']],
         'alt' => $current_alt !== '' ? $current_alt : (string) ($value['alt'] ?? ''),
-        'title' => (string) ($value['title'] ?? ''),
+        'title' => $current_title !== '' ? $current_title : (string) ($value['title'] ?? ''),
         'width' => $value['width'] ?? NULL,
         'height' => $value['height'] ?? NULL,
       ],
@@ -180,13 +223,16 @@ class BiolandHeroMediaLibrary {
    * #validate for the hidden update button.
    */
   public static function validateSelection(array &$form, FormStateInterface $form_state): void {
-    $parents = $form_state->getTriggeringElement()['#bioland_field_parents'] ?? [];
-    $alt = NestedArray::getValue($form_state->getUserInput(), array_merge($parents, [self::FIELD_NAME, 0, 'alt']));
+    $trigger = $form_state->getTriggeringElement();
+    $parents = $trigger['#bioland_field_parents'] ?? [];
+    $input_key = $trigger['#bioland_input_key'] ?? self::INPUT_KEY;
+    $input = $form_state->getUserInput();
+    $current = static fn (string $key): string => trim((string) NestedArray::getValue($input, array_merge($parents, [self::FIELD_NAME, 0, $key])));
     $result = \Drupal::service('bioland.hero_media_library')
-      ->resolveSelection((string) $form_state->getValue([self::INPUT_KEY, 'selection'], ''), trim((string) $alt));
+      ->resolveSelection((string) $form_state->getValue([$input_key, 'selection'], ''), $current('alt'), $current('title'));
 
     if (isset($result['error'])) {
-      $form_state->setErrorByName(self::INPUT_KEY . '][selection', $result['error']);
+      $form_state->setErrorByName($input_key . '][selection', $result['error']);
     }
     $form_state->set(self::STATE_KEY, $result['item'] ?? NULL);
   }
@@ -201,14 +247,15 @@ class BiolandHeroMediaLibrary {
   public static function submitSelection(array &$form, FormStateInterface $form_state): void {
     $item = $form_state->get(self::STATE_KEY);
     if ($item) {
-      $parents = $form_state->getTriggeringElement()['#bioland_field_parents'] ?? [];
+      $trigger = $form_state->getTriggeringElement();
+      $parents = $trigger['#bioland_field_parents'] ?? [];
       $field_state = WidgetBase::getWidgetState($parents, self::FIELD_NAME, $form_state);
       $field_state['items'] = [$item];
       WidgetBase::setWidgetState($parents, self::FIELD_NAME, $form_state, $field_state);
 
       $input = $form_state->getUserInput();
       NestedArray::unsetValue($input, array_merge($parents, [self::FIELD_NAME]));
-      unset($input[self::INPUT_KEY]);
+      unset($input[$trigger['#bioland_input_key'] ?? self::INPUT_KEY]);
       $form_state->setUserInput($input);
     }
     $form_state->setRebuild();
