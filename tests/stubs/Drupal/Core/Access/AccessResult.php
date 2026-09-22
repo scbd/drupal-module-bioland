@@ -150,6 +150,25 @@ class AccessResult implements AccessResultInterface {
   }
 
   /**
+   * Combines two results with AND semantics, as core does.
+   *
+   * Forbidden wins; allowed needs both; anything else is neutral.
+   *
+   * @param \Drupal\Core\Access\AccessResultInterface $other
+   *   The other result.
+   *
+   * @return static
+   *   The combined result.
+   */
+  public function andIf(AccessResultInterface $other) {
+    if ($this->isForbidden() || $other->isForbidden()) {
+      return static::forbidden($this->isForbidden() ? $this->reason : ($other instanceof self ? $other->reason : NULL));
+    }
+
+    return $this->isAllowed() && $other->isAllowed() ? static::allowed() : static::neutral();
+  }
+
+  /**
    * Merges another object's cacheability into this result.
    *
    * @param mixed $other

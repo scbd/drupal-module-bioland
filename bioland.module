@@ -872,3 +872,16 @@ function bioland_preprocess_html(&$variables) {
   }
   */
 }
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * Adds "Choose from media library" to the hero media image field (BL-807).
+ * Skipped entirely without media_library, so no picker and no media_library
+ * class is ever loaded on such a site.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  if (\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
+  }
+}
