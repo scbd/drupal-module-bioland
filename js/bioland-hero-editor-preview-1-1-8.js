@@ -11,7 +11,15 @@
  * Colours come from drupalSettings.bioland.heroPreview (the site's
  * theme.hero.primary / theme.hero.secondary, with the same BL2/BSL fallback
  * BiolandComponentMenuFormMode::primaryColor() uses - see
- * bioland_hero_editor_preview_settings() in bioland.module).
+ * \Drupal\bioland\Service\BiolandHeroEditorPreview::settings(), called from
+ * bioland_hero_editor_preview_settings() in bioland.module). When that
+ * settings key is entirely absent this behavior skips the preview rather than
+ * guessing a flavour's colours client-side.
+ *
+ * CKEditor 5 mounts its editable asynchronously, so `.ck-content` may not
+ * exist yet when this behavior first attaches (e.g. reopening an edit form
+ * that already has a hero image). A MutationObserver on the field_description
+ * wrapper retries once the editable appears, then disconnects.
  */
 (function (Drupal, once, drupalSettings) {
   'use strict';
@@ -19,8 +27,14 @@
   var WRAPPER_CLASS = 'bioland-hero-preview';
   var WIDGET_SELECTOR = '[data-drupal-selector*="edit-field-media-image"]';
   var IMAGE_SELECTOR = 'img';
+  // Matches the contrib focal_point 2.x widget markup (input.focal-point).
   var FOCAL_POINT_SELECTOR = 'input.focal-point';
   var ORIGINAL_LINK_SELECTOR = '.file-link a, a[type="original"]';
+  // Scoped to the description field's own wrapper, not the first `.ck-content`
+  // in the form: a hero form can carry more than one CKEditor 5 instance, and
+  // the preview must only ever dress up field_description's editable.
+  var DESCRIPTION_WRAPPER_SELECTOR = '[data-drupal-selector*="edit-field-description"]';
+  var EDITABLE_SELECTOR = '.ck-content';
 
   /**
    * Reads the focal point value ("X,Y" percentages) off a widget, if any.
@@ -61,6 +75,21 @@
   }
 
   /**
+   * Finds the field_description CKEditor 5 editable within a form, if mounted.
+   *
+   * @param {HTMLElement} form
+   *   The media hero add/edit form.
+   *
+   * @return {HTMLElement|null}
+   *   The `.ck-content` element scoped to field_description, or null when the
+   *   field wrapper or its editable is not present (yet).
+   */
+  function descriptionEditable(form) {
+    var wrapper = form.querySelector(DESCRIPTION_WRAPPER_SELECTOR);
+    return wrapper ? wrapper.querySelector(EDITABLE_SELECTOR) : null;
+  }
+
+  /**
    * Builds or removes the preview overlay inside the CKEditor editable area.
    *
    * @param {HTMLElement} editable
@@ -78,6 +107,8 @@
       wrapper.classList.remove(WRAPPER_CLASS);
       wrapper.style.backgroundImage = '';
       wrapper.style.backgroundPosition = '';
+      wrapper.style.removeProperty('--bioland-hero-primary');
+      wrapper.style.removeProperty('--bioland-hero-secondary');
       return;
     }
 
@@ -89,18 +120,45 @@
     wrapper.style.backgroundPosition = focalPosition(widget);
   }
 
+  /**
+   * Watches the field_description wrapper until its CKEditor 5 editable mounts.
+   *
+   * @param {HTMLElement} form
+   *   The media hero add/edit form.
+   * @param {Function} update
+   *   Re-runs the preview; returns the resolved editable, or null.
+   */
+  function observeEditorMount(form, update) {
+    var wrapper = form.querySelector(DESCRIPTION_WRAPPER_SELECTOR);
+    if (!wrapper || typeof MutationObserver === 'undefined') {
+      return;
+    }
+
+    var observer = new MutationObserver(function () {
+      if (update()) {
+        observer.disconnect();
+      }
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+  }
+
   Drupal.behaviors.biolandHeroEditorPreview = {
     attach: function (context, settings) {
-      var heroSettings = (settings.bioland && settings.bioland.heroPreview) || {};
+      var heroSettings = settings.bioland && settings.bioland.heroPreview;
+      if (!heroSettings || !heroSettings.primary || !heroSettings.secondary) {
+        // No authored/fallback colours were passed down: skip rather than
+        // guess a flavour's colours in JS.
+        return;
+      }
       var colours = {
-        primary: heroSettings.primary || '#009edb',
-        secondary: heroSettings.secondary || '#16c56e',
+        primary: heroSettings.primary,
+        secondary: heroSettings.secondary,
       };
 
       // Attached to the image widget wrapper rather than the form itself:
       // Drupal's AJAX upload/remove callback replaces just this wrapper, so
       // once() re-fires on the freshly-inserted replacement, keeping the
-      // preview in sync without a MutationObserver.
+      // preview in sync without a MutationObserver for that part of the form.
       once('bioland-hero-editor-preview', WIDGET_SELECTOR, context).forEach(function (widget) {
         var form = widget.closest('form');
         if (!form) {
@@ -108,13 +166,18 @@
         }
 
         var update = function () {
-          var editable = form.querySelector('.ck-content');
+          var editable = descriptionEditable(form);
           if (editable) {
             applyPreview(editable, widget, colours);
           }
+          return editable;
         };
 
-        update();
+        if (!update()) {
+          // CKEditor 5 has not mounted its editable yet; retry once it does.
+          observeEditorMount(form, update);
+        }
+
         widget.addEventListener('change', update);
 
         var focalInput = widget.querySelector(FOCAL_POINT_SELECTOR);
