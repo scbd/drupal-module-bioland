@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
 /**
@@ -428,6 +429,26 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
       $form['field_url']['#title'] = t('URL');
     }
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
 }
 
 /**
