@@ -121,6 +121,16 @@ class Drupal {
   }
 
   /**
+   * Gets the module handler registered under 'module_handler'.
+   *
+   * @return mixed
+   *   The stubbed module handler, or NULL.
+   */
+  public static function moduleHandler() {
+    return static::$container['module_handler'] ?? NULL;
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface

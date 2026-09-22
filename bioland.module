@@ -11,6 +11,10 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
+use Drupal\bioland\BiolandFocalPoint;
+use Drupal\bioland\Plugin\Field\BiolandFocalPointItemList;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -477,6 +481,29 @@ function bioland_entity_type_alter(array &$entity_types) {
       BiolandComponentMenuLinkForm::class
     );
   }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Exposes the hero image focal point on media as a computed, read-only
+ * "X,Y" percentage string (JSON:API: media--hero.bioland_focal_point).
+ *
+ * @see \Drupal\bioland\BiolandFocalPoint
+ */
+function bioland_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'media') {
+    return [];
+  }
+  return [
+    BiolandFocalPoint::FIELD_NAME => BaseFieldDefinition::create('string')
+      ->setLabel(t('Focal point'))
+      ->setDescription(t('Hero image focal point as relative X,Y percentages.'))
+      ->setComputed(TRUE)
+      ->setReadOnly(TRUE)
+      ->setTranslatable(FALSE)
+      ->setClass(BiolandFocalPointItemList::class),
+  ];
 }
 
 /**
