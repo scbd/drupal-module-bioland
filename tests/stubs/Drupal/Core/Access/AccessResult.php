@@ -2,6 +2,7 @@
 
 namespace Drupal\Core\Access;
 
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -16,7 +17,7 @@ use Drupal\Core\Session\AccountInterface;
  * gates each merge on method_exists(), so a getter missing here does not fail a
  * test - it silently skips the branch that test was written to cover.
  */
-class AccessResult implements AccessResultInterface {
+class AccessResult implements AccessResultInterface, RefinableCacheableDependencyInterface {
 
   /**
    * Whether access is allowed.
@@ -171,6 +172,9 @@ class AccessResult implements AccessResultInterface {
   /**
    * Merges another object's cacheability into this result.
    *
+   * Tags always; contexts and max-age (the lower non-permanent one wins, as
+   * Cache::mergeMaxAges() does) when the object exposes them.
+   *
    * @param mixed $other
    *   Any object exposing getCacheTags(), as config objects do.
    *
@@ -180,6 +184,15 @@ class AccessResult implements AccessResultInterface {
   public function addCacheableDependency($other) {
     if (is_object($other) && method_exists($other, 'getCacheTags')) {
       $this->cacheTags = array_values(array_unique(array_merge($this->cacheTags, $other->getCacheTags())));
+    }
+    if (is_object($other) && method_exists($other, 'getCacheContexts')) {
+      $this->addCacheContexts($other->getCacheContexts());
+    }
+    if (is_object($other) && method_exists($other, 'getCacheMaxAge')) {
+      $max_age = (int) $other->getCacheMaxAge();
+      if ($max_age !== -1 && ($this->cacheMaxAge === -1 || $max_age < $this->cacheMaxAge)) {
+        $this->cacheMaxAge = $max_age;
+      }
     }
 
     return $this;

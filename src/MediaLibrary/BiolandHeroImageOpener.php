@@ -2,9 +2,11 @@
 
 namespace Drupal\bioland\MediaLibrary;
 
+use Drupal\bioland\Service\BiolandHeroMediaLibrary;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\media_library\MediaLibraryOpenerInterface;
@@ -40,24 +42,44 @@ class BiolandHeroImageOpener implements MediaLibraryOpenerInterface {
   /**
    * {@inheritdoc}
    *
-   * Whoever may edit (or create) the hero and view media may pick (BL-387).
+   * Mirrors core's MediaLibraryFieldWidgetOpener: update (or create) access
+   * on the hero, then edit access on its image field. 'view media' is not
+   * checked here; MediaLibraryUiBuilder::checkAccess() ANDs it in (BL-387).
    */
   public function checkAccess(MediaLibraryState $state, AccountInterface $account) {
     $entity_id = $state->getOpenerParameters()['entity_id'] ?? NULL;
+    $storage = $this->entityTypeManager->getStorage('media');
+    $access_handler = $this->entityTypeManager->getAccessControlHandler('media');
 
     if ($entity_id) {
-      $hero = $this->entityTypeManager->getStorage('media')->load($entity_id);
-      if (!$hero || $hero->bundle() !== self::HERO_BUNDLE) {
-        return AccessResult::forbidden('The hero media item does not exist.');
+      $hero = $storage->load($entity_id);
+      if (!$hero) {
+        return AccessResult::forbidden('The hero media item does not exist.')->addCacheableDependency($state);
       }
-      $access = $hero->access('update', $account, TRUE);
+      if ($hero->bundle() !== self::HERO_BUNDLE) {
+        return AccessResult::forbidden('The media item is not a hero media item.')->addCacheableDependency($state);
+      }
+      $entity_access = $access_handler->access($hero, 'update', $account, TRUE);
     }
     else {
-      $access = $this->entityTypeManager->getAccessControlHandler('media')
-        ->createAccess(self::HERO_BUNDLE, $account, [], TRUE);
+      $entity_access = $access_handler->createAccess(self::HERO_BUNDLE, $account, [], TRUE);
     }
 
-    return $access->andIf(AccessResult::allowedIfHasPermission($account, 'view media'));
+    if (!$entity_access->isAllowed()) {
+      if ($entity_access instanceof RefinableCacheableDependencyInterface) {
+        $entity_access->addCacheableDependency($state);
+      }
+      return $entity_access;
+    }
+
+    $hero ??= $storage->create(['bundle' => self::HERO_BUNDLE]);
+    $items = $hero->get(BiolandHeroMediaLibrary::FIELD_NAME);
+    $access = $entity_access->andIf($access_handler->fieldAccess('edit', $items->getFieldDefinition(), $account, $items, TRUE));
+    if ($access instanceof RefinableCacheableDependencyInterface) {
+      $access->addCacheableDependency($state);
+    }
+
+    return $access;
   }
 
   /**
