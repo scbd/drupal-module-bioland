@@ -3,6 +3,7 @@
 namespace Drupal\bioland\Form;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Relabels the hero media image widget's remove button.
@@ -60,13 +61,12 @@ class BiolandHeroImageWidget {
       return $element;
     }
 
-    $element['remove_button']['#value'] = t('Replace image');
+    $element['remove_button']['#value'] = new TranslatableMarkup('Replace image');
     $element['bioland_hero_replace_help'] = [
       '#type' => 'html_tag',
       '#tag' => 'div',
-      '#value' => t('Clicking "Replace image" clears the current image so a new one can be uploaded.'),
+      '#value' => new TranslatableMarkup('Clicking "Replace image" clears the current image so a new one can be uploaded.'),
       '#attributes' => ['class' => ['description', 'bioland-hero-image-replace-help']],
-      '#weight' => 100,
     ];
 
     return $element;
