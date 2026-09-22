@@ -50,3 +50,7 @@ services:
     arguments: ['@bioland.component_registry', '@bioland.component_menu_form_mode', '@redirect.destination']
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  bioland.hero_editor_preview:
+    class: Drupal\bioland\Service\BiolandHeroEditorPreview
+    arguments: ['@config.factory']

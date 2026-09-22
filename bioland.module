@@ -8,7 +8,6 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\bioland\BiolandThemeContract;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
@@ -464,47 +463,16 @@ function _bioland_attach_hero_editor_preview(array &$form) {
 /**
  * Returns the hero preview colours for drupalSettings.
  *
- * Reads bioland.settings:theme.hero.primary / .secondary - the scalars
- * BiolandThemeForm writes - re-validating their shape exactly as
- * BiolandComponentMenuFormMode::primaryColor() does, since config can also
- * arrive from a settings.php override or a hand-edited export. Anything not
- * exactly six hex digits falls back to this site's network default; the
- * secondary fallbacks mirror BiolandThemeForm::FALLBACK_COLORS_BL2 / _BSL
- * (private to that form, so restated here rather than exposed for one use).
+ * Thin wrapper around \Drupal\bioland\Service\BiolandHeroEditorPreview,
+ * which owns the config-reading and fallback-colour logic so it is unit
+ * testable without bootstrapping a form alter (matching the pattern set by
+ * BiolandComponentMenuFormMode::primaryColor()).
  *
  * @return array
  *   `['primary' => '#rrggbb', 'secondary' => '#rrggbb']`.
  */
 function bioland_hero_editor_preview_settings(): array {
-  $config = \Drupal::config('bioland.settings');
-  $is_bsl = (bool) $config->get('is_biosafety_land');
-
-  return [
-    'primary' => _bioland_hero_preview_color(
-      $config->get('theme.hero.primary'),
-      $is_bsl ? BiolandThemeContract::FALLBACK_PRIMARY_BSL : BiolandThemeContract::FALLBACK_PRIMARY_BL2
-    ),
-    'secondary' => _bioland_hero_preview_color(
-      $config->get('theme.hero.secondary'),
-      $is_bsl ? '#428bca' : '#16c56e'
-    ),
-  ];
-}
-
-/**
- * Validates a hex colour config value, falling back when it is unusable.
- *
- * @param mixed $value
- *   The raw config value.
- * @param string $fallback
- *   A validated "#rrggbb" fallback.
- *
- * @return string
- *   A validated "#rrggbb" colour, never an arbitrary config string.
- */
-function _bioland_hero_preview_color($value, string $fallback): string {
-  $value = is_string($value) ? trim($value) : '';
-  return preg_match('/^#[0-9A-Fa-f]{6}\z/', $value) === 1 ? $value : $fallback;
+  return \Drupal::service('bioland.hero_editor_preview')->settings();
 }
 
 /**
