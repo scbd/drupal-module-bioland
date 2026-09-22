@@ -54,6 +54,7 @@ require_once __DIR__ . '/includes/bioland.install.menu.inc';
 require_once __DIR__ . '/includes/bioland.install.jsonapi.inc';
 require_once __DIR__ . '/includes/bioland.install.translation.inc';
 require_once __DIR__ . '/includes/bioland.install.dmsm.inc';
+require_once __DIR__ . '/includes/bioland.install.focal_point.inc';
 
 /*
  * =============================================================================
@@ -188,6 +189,10 @@ function bioland_install() {
 
   // Disable comment field on view displays.
   _bioland_disable_comment_field_display();
+
+  // Hero image focal point widget (BL-841); only when focal_point is already
+  // enabled, hook_install never installs modules.
+  _bioland_configure_hero_focal_point();
 
   // Configure timezone settings (disable user timezone configuration).
   $date_config = \Drupal::configFactory()->getEditable('system.date');
@@ -347,6 +352,17 @@ function bioland_requirements($phase) {
         'severity' => REQUIREMENT_WARNING,
       ];
     }
+  }
+
+  // Focal Point is a soft dependency (BL-841): without it the hero image has
+  // no window selector and bioland_focal_point stays empty.
+  if ($phase === 'runtime' && !\Drupal::moduleHandler()->moduleExists('focal_point')) {
+    $requirements['bioland_focal_point'] = [
+      'title' => t('Bioland hero focal point'),
+      'value' => t('Focal Point module not installed'),
+      'description' => t('Editors cannot choose which part of the hero image shows. Run composer require "drupal/focal_point:^2.1" --with-all-dependencies, then drush updb.'),
+      'severity' => REQUIREMENT_WARNING,
+    ];
   }
 
   // DMSM geography: an unset or refused base URL freezes the site's countries,

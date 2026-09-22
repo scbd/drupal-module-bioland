@@ -5,11 +5,14 @@
  * Main module file for Drupal Module Bioland.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -433,19 +436,29 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
 /**
  * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
  *
- * DELIBERATELY ITS OWN HOOK, not another branch of bioland_form_alter() -
- * both this and BiolandComponentMenuFormMode already own a hook_form_alter
- * branch, and neither has anything to do with hero previews, so a shared
- * branch would only invite merge conflicts with sibling work touching either.
+ * BL-841: the relabel logic lives in BiolandHeroImageWidget and the editor
+ * preview in BiolandHeroEditorPreview, rather than growing
+ * bioland_form_alter().
  */
 function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  _bioland_attach_hero_editor_preview($form);
+  _bioland_alter_hero_media_form($form);
 }
 
 /**
  * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
  */
 function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  _bioland_alter_hero_media_form($form);
+}
+
+/**
+ * Applies the shared hero media add/edit form alterations.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_alter_hero_media_form(array &$form) {
+  BiolandHeroImageWidget::alterForm($form);
   _bioland_attach_hero_editor_preview($form);
 }
 
@@ -501,6 +514,21 @@ function bioland_entity_type_alter(array &$entity_types) {
       BiolandComponentMenuLinkForm::class
     );
   }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Exposes the hero image focal point on media as a computed, read-only
+ * "X,Y" percentage string (JSON:API: media--hero.bioland_focal_point).
+ *
+ * @see \Drupal\bioland\BiolandFocalPoint
+ */
+function bioland_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'media') {
+    return [];
+  }
+  return [BiolandFocalPoint::FIELD_NAME => BiolandFocalPoint::baseFieldDefinition()];
 }
 
 /**
@@ -916,4 +944,17 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * Adds "Choose from media library" to the hero media image field (BL-807).
+ * Skipped entirely without media_library, so no picker and no media_library
+ * class is ever loaded on such a site.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  if (\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
+  }
 }
