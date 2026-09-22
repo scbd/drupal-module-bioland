@@ -7,6 +7,7 @@
 
 use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -430,6 +431,26 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
       $form['field_url']['#title'] = t('URL');
     }
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
 }
 
 /**
@@ -888,4 +909,17 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * Adds "Choose from media library" to the hero media image field (BL-807).
+ * Skipped entirely without media_library, so no picker and no media_library
+ * class is ever loaded on such a site.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  if (\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
+  }
 }
