@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\BiolandThemeContract;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -443,6 +444,7 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
  */
 function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
 }
 
 /**
@@ -453,6 +455,64 @@ function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form
  */
 function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Attaches the hero editor preview library and its colour settings.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_attach_hero_editor_preview(array &$form) {
+  $form['#attached']['library'][] = 'bioland/hero_editor_preview';
+  $form['#attached']['drupalSettings']['bioland']['heroPreview'] = bioland_hero_editor_preview_settings();
+}
+
+/**
+ * Returns the hero preview colours for drupalSettings.
+ *
+ * Reads bioland.settings:theme.hero.primary / .secondary - the scalars
+ * BiolandThemeForm writes - re-validating their shape exactly as
+ * BiolandComponentMenuFormMode::primaryColor() does, since config can also
+ * arrive from a settings.php override or a hand-edited export. Anything not
+ * exactly six hex digits falls back to this site's network default; the
+ * secondary fallbacks mirror BiolandThemeForm::FALLBACK_COLORS_BL2 / _BSL
+ * (private to that form, so restated here rather than exposed for one use).
+ *
+ * @return array
+ *   `['primary' => '#rrggbb', 'secondary' => '#rrggbb']`.
+ */
+function bioland_hero_editor_preview_settings(): array {
+  $config = \Drupal::config('bioland.settings');
+  $is_bsl = (bool) $config->get('is_biosafety_land');
+
+  return [
+    'primary' => _bioland_hero_preview_color(
+      $config->get('theme.hero.primary'),
+      $is_bsl ? BiolandThemeContract::FALLBACK_PRIMARY_BSL : BiolandThemeContract::FALLBACK_PRIMARY_BL2
+    ),
+    'secondary' => _bioland_hero_preview_color(
+      $config->get('theme.hero.secondary'),
+      $is_bsl ? '#428bca' : '#16c56e'
+    ),
+  ];
+}
+
+/**
+ * Validates a hex colour config value, falling back when it is unusable.
+ *
+ * @param mixed $value
+ *   The raw config value.
+ * @param string $fallback
+ *   A validated "#rrggbb" fallback.
+ *
+ * @return string
+ *   A validated "#rrggbb" colour, never an arbitrary config string.
+ */
+function _bioland_hero_preview_color($value, string $fallback): string {
+  $value = is_string($value) ? trim($value) : '';
+  return preg_match('/^#[0-9A-Fa-f]{6}\z/', $value) === 1 ? $value : $fallback;
 }
 
 /**
