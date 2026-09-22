@@ -50,3 +50,16 @@ services:
     arguments: ['@bioland.component_registry', '@bioland.component_menu_form_mode', '@redirect.destination']
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  # BL-807: hero media "Choose from media library". The opener id is what
+  # media_library's opener resolver looks up; neither service is instantiated
+  # unless media_library is enabled.
+  bioland.opener.hero_image:
+    class: Drupal\bioland\MediaLibrary\BiolandHeroImageOpener
+    arguments: ['@entity_type.manager']
+
+  bioland.hero_media_library:
+    class: Drupal\bioland\Service\BiolandHeroMediaLibrary
+    arguments: ['@entity_type.manager', '@current_user']
+    calls:
+      - [setStringTranslation, ['@string_translation']]
