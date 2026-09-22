@@ -81,11 +81,11 @@ class BiolandHeroImageWidgetTest extends TestCase {
 
     $result = BiolandHeroImageWidget::processElement($element, $formState, $completeForm);
 
-    $this->assertSame('Replace image', $result['remove_button']['#value']);
+    $this->assertSame('Replace image', (string) $result['remove_button']['#value']);
     $this->assertArrayHasKey('bioland_hero_replace_help', $result);
     $this->assertSame('html_tag', $result['bioland_hero_replace_help']['#type']);
     $this->assertSame('div', $result['bioland_hero_replace_help']['#tag']);
-    $this->assertStringContainsString('Replace image', $result['bioland_hero_replace_help']['#value']);
+    $this->assertStringContainsString('Replace image', (string) $result['bioland_hero_replace_help']['#value']);
     $this->assertContains('bioland-hero-image-replace-help', $result['bioland_hero_replace_help']['#attributes']['class']);
   }
 
