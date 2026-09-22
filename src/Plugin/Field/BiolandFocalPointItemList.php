@@ -21,6 +21,9 @@ class BiolandFocalPointItemList extends FieldItemList {
    * {@inheritdoc}
    */
   protected function computeValue() {
+    if ($this->getEntity()->bundle() !== BiolandFocalPoint::BUNDLE) {
+      return;
+    }
     $value = BiolandFocalPoint::fromContainer()->resolve($this->getEntity());
     if ($value !== NULL) {
       $this->list[0] = $this->createItem(0, $value);
