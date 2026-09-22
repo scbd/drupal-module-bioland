@@ -55,7 +55,7 @@ function _bioland_enable_focal_point_module() {
   try {
     \Drupal::service('module_installer')->install(['focal_point']);
   }
-  catch (\Exception $e) {
+  catch (\Throwable $e) {
     return (string) t('Could not enable Focal Point: @error', ['@error' => $e->getMessage()]);
   }
   return (string) t('Enabled the Focal Point module.');
