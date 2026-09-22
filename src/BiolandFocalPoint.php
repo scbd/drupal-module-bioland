@@ -2,7 +2,9 @@
 
 namespace Drupal\bioland;
 
+use Drupal\bioland\Plugin\Field\BiolandFocalPointItemList;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
  * Resolves the hero image focal point exposed as media.bioland_focal_point.
@@ -18,6 +20,22 @@ final class BiolandFocalPoint {
   public const FIELD_NAME = 'bioland_focal_point';
   public const BUNDLE = 'hero';
   public const IMAGE_FIELD = 'field_media_image';
+
+  /**
+   * Defines the computed media base field.
+   *
+   * Shared by bioland_entity_base_field_info() and bioland_update_9084() so
+   * the installed field storage definition always matches the declared one.
+   */
+  public static function baseFieldDefinition(): BaseFieldDefinition {
+    return BaseFieldDefinition::create('string')
+      ->setLabel(t('Focal point'))
+      ->setDescription(t('Hero image focal point as relative X,Y percentages.'))
+      ->setComputed(TRUE)
+      ->setReadOnly(TRUE)
+      ->setTranslatable(FALSE)
+      ->setClass(BiolandFocalPointItemList::class);
+  }
 
   /**
    * @param object|null $manager
@@ -44,37 +62,34 @@ final class BiolandFocalPoint {
   /**
    * Resolves the focal point of a media entity.
    *
-   * @return array{value: ?string, tags: string[]}
-   *   The "X,Y" value (or NULL) and the cache tags it depends on. crop_list is
-   *   included so a first-ever crop for the file also invalidates the result.
+   * @return string|null
+   *   The "X,Y" value, or NULL.
    */
-  public function resolve(FieldableEntityInterface $media): array {
+  public function resolve(FieldableEntityInterface $media): ?string {
     if (!$this->manager || $media->bundle() !== self::BUNDLE || !$media->hasField(self::IMAGE_FIELD)) {
-      return ['value' => NULL, 'tags' => []];
+      return NULL;
     }
 
     $item = $media->get(self::IMAGE_FIELD)->first();
     $file = $item?->entity;
     if (!$file) {
-      return ['value' => NULL, 'tags' => []];
+      return NULL;
     }
 
-    $tags = array_merge($file->getCacheTags(), ['crop_list']);
     // getCropEntity() returns an unsaved crop when none exists yet.
     $crop = $this->manager->getCropEntity($file, $this->cropType);
     if (!$crop || $crop->isNew()) {
-      return ['value' => NULL, 'tags' => $tags];
+      return NULL;
     }
-    $tags = array_values(array_unique(array_merge($tags, $crop->getCacheTags())));
 
     $width = (int) $item->width;
     $height = (int) $item->height;
     if ($width <= 0 || $height <= 0) {
-      return ['value' => NULL, 'tags' => $tags];
+      return NULL;
     }
 
     $anchor = $this->manager->absoluteToRelative($crop->x->value, $crop->y->value, $width, $height);
-    return ['value' => self::format($anchor), 'tags' => $tags];
+    return self::format($anchor);
   }
 
   /**

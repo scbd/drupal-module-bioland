@@ -12,22 +12,69 @@
 use Drupal\bioland\BiolandFocalPoint;
 
 /**
+ * Installs the computed media.bioland_focal_point field storage definition.
+ *
+ * Without this the status report shows "Mismatched entity and/or field
+ * definitions" on sites that had bioland installed before BL-841. Idempotent,
+ * and a no-op when media is not installed.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_install_hero_focal_point_field() {
+  if (!\Drupal::entityTypeManager()->hasDefinition('media')) {
+    return (string) t('Media is not installed; skipped the @field field.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
+  }
+
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if ($manager->getFieldStorageDefinition(BiolandFocalPoint::FIELD_NAME, 'media')) {
+    return (string) t('The @field field is already installed.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
+  }
+
+  $manager->installFieldStorageDefinition(BiolandFocalPoint::FIELD_NAME, 'media', 'bioland', BiolandFocalPoint::baseFieldDefinition());
+  return (string) t('Installed the @field field on media.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
+}
+
+/**
+ * Enables focal_point when its code is present.
+ *
+ * Only called from bioland_update_9084(); hook_install never installs modules.
+ * A failed install (e.g. crop missing from the codebase) is reported instead of
+ * failing the update hook.
+ *
+ * @return string|null
+ *   Status message, or NULL when focal_point is already enabled.
+ */
+function _bioland_enable_focal_point_module() {
+  if (\Drupal::moduleHandler()->moduleExists('focal_point')) {
+    return NULL;
+  }
+  if (!\Drupal::service('extension.list.module')->exists('focal_point')) {
+    return (string) t('Focal Point is not available (composer require drupal/focal_point).');
+  }
+  try {
+    \Drupal::service('module_installer')->install(['focal_point']);
+  }
+  catch (\Exception $e) {
+    return (string) t('Could not enable Focal Point: @error', ['@error' => $e->getMessage()]);
+  }
+  return (string) t('Enabled the Focal Point module.');
+}
+
+/**
  * Switches the hero media image widget to Focal Point.
  *
- * Installs focal_point when its code is present, points the
- * media.hero.default form display field_media_image widget at
- * image_focal_point, and makes sure a jsonapi_extras media--hero override (if
- * one exists) does not hide bioland_focal_point. Idempotent.
+ * Only acts when focal_point is already enabled: points the media.hero.default
+ * form display field_media_image widget at image_focal_point, and makes sure a
+ * jsonapi_extras media--hero override (if one exists) does not hide
+ * bioland_focal_point. Idempotent.
  *
  * @return string
  *   Status message.
  */
 function _bioland_configure_hero_focal_point() {
   if (!\Drupal::moduleHandler()->moduleExists('focal_point')) {
-    if (!\Drupal::service('extension.list.module')->exists('focal_point')) {
-      return (string) t('Focal Point is not available (composer require drupal/focal_point); skipped the hero focal point widget.');
-    }
-    \Drupal::service('module_installer')->install(['focal_point']);
+    return (string) t('Focal Point is not enabled; skipped the hero focal point widget.');
   }
 
   $messages = [];
@@ -72,24 +119,25 @@ function _bioland_configure_hero_focal_point() {
  *   Status message.
  */
 function _bioland_expose_hero_focal_point_jsonapi() {
-  if (!\Drupal::moduleHandler()->moduleExists('jsonapi_extras')) {
+  $entityTypeManager = \Drupal::entityTypeManager();
+  if (!$entityTypeManager->hasDefinition('jsonapi_resource_config')) {
     return (string) t('jsonapi_extras not enabled; @field is exposed by core JSON:API.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
   }
 
-  $config = \Drupal::configFactory()->getEditable('jsonapi_extras.jsonapi_resource_config.media--hero');
-  if ($config->isNew()) {
+  $resource = $entityTypeManager->getStorage('jsonapi_resource_config')->load('media--hero');
+  if (!$resource) {
     return (string) t('No media--hero JSON:API override; @field is exposed by default.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
   }
 
-  $fields = $config->get('resourceFields') ?: [];
+  $fields = $resource->get('resourceFields') ?: [];
   $fields[BiolandFocalPoint::FIELD_NAME] = [
     'fieldName' => BiolandFocalPoint::FIELD_NAME,
     'publicName' => BiolandFocalPoint::FIELD_NAME,
     'enhancer' => ['id' => ''],
     'disabled' => FALSE,
   ];
-  $config->set('resourceFields', $fields);
-  $config->save(TRUE);
+  $resource->set('resourceFields', $fields);
+  $resource->save();
 
   return (string) t('Exposed @field on the media--hero JSON:API resource.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
 }
@@ -111,6 +159,8 @@ function _bioland_expose_hero_focal_point_jsonapi() {
  */
 function bioland_update_9084() {
   $messages = [_bioland_v2_update_search_and_facets_config()];
+  $messages[] = _bioland_install_hero_focal_point_field();
+  $messages[] = _bioland_enable_focal_point_module();
   $messages[] = _bioland_configure_hero_focal_point();
-  return implode(' ', array_map('strval', $messages));
+  return implode(' ', array_map('strval', array_filter($messages)));
 }

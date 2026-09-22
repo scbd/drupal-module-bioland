@@ -11,9 +11,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 use Drupal\bioland\BiolandFocalPoint;
-use Drupal\bioland\Plugin\Field\BiolandFocalPointItemList;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -474,15 +472,7 @@ function bioland_entity_base_field_info(EntityTypeInterface $entity_type) {
   if ($entity_type->id() !== 'media') {
     return [];
   }
-  return [
-    BiolandFocalPoint::FIELD_NAME => BaseFieldDefinition::create('string')
-      ->setLabel(t('Focal point'))
-      ->setDescription(t('Hero image focal point as relative X,Y percentages.'))
-      ->setComputed(TRUE)
-      ->setReadOnly(TRUE)
-      ->setTranslatable(FALSE)
-      ->setClass(BiolandFocalPointItemList::class),
-  ];
+  return [BiolandFocalPoint::FIELD_NAME => BiolandFocalPoint::baseFieldDefinition()];
 }
 
 /**

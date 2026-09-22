@@ -190,7 +190,8 @@ function bioland_install() {
   // Disable comment field on view displays.
   _bioland_disable_comment_field_display();
 
-  // Hero image focal point widget (BL-841); skips when focal_point is absent.
+  // Hero image focal point widget (BL-841); only when focal_point is already
+  // enabled, hook_install never installs modules.
   _bioland_configure_hero_focal_point();
 
   // Configure timezone settings (disable user timezone configuration).
