@@ -359,7 +359,7 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#optional' => TRUE,
     ];
 
-    // Help text is added via JavaScript (bioland-help-comments-1-1-8.js)
+    // Help text is added via JavaScript (bioland-help-comments-1-1-9.js)
     // to provide close button, cookie persistence, and info icon toggle.
 
     $form['field_order']['#group'] = 'order_override_wrapper';
@@ -436,21 +436,56 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
 /**
  * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
  *
- * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
- * lives in its own class rather than growing bioland_form_alter().
+ * BL-841: the relabel logic lives in BiolandHeroImageWidget and the editor
+ * preview in BiolandHeroEditorPreview, rather than growing
+ * bioland_form_alter().
  */
 function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  BiolandHeroImageWidget::alterForm($form);
+  _bioland_alter_hero_media_form($form);
 }
 
 /**
  * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
- *
- * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
- * lives in its own class rather than growing bioland_form_alter().
  */
 function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  _bioland_alter_hero_media_form($form);
+}
+
+/**
+ * Applies the shared hero media add/edit form alterations.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_alter_hero_media_form(array &$form) {
   BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Attaches the hero editor preview library and its colour settings.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_attach_hero_editor_preview(array &$form) {
+  $form['#attached']['library'][] = 'bioland/hero_editor_preview';
+  $form['#attached']['drupalSettings']['bioland']['heroPreview'] = bioland_hero_editor_preview_settings();
+}
+
+/**
+ * Returns the hero preview colours for drupalSettings.
+ *
+ * Thin wrapper around \Drupal\bioland\Service\BiolandHeroEditorPreview,
+ * which owns the config-reading and fallback-colour logic so it is unit
+ * testable without bootstrapping a form alter (matching the pattern set by
+ * BiolandComponentMenuFormMode::primaryColor()).
+ *
+ * @return array
+ *   `['primary' => '#rrggbb', 'secondary' => '#rrggbb']`.
+ */
+function bioland_hero_editor_preview_settings(): array {
+  return \Drupal::service('bioland.hero_editor_preview')->settings();
 }
 
 /**

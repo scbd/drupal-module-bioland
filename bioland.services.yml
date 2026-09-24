@@ -66,3 +66,7 @@ services:
     arguments: ['@entity_type.manager', '@current_user']
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  bioland.hero_editor_preview:
+    class: Drupal\bioland\Service\BiolandHeroEditorPreview
+    arguments: ['@config.factory']
