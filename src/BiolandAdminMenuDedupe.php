@@ -11,15 +11,22 @@ namespace Drupal\bioland;
  * returns (BL-836: duplicate "Content", "Content (pages)" and
  * "Media (attachments)" entries under Publishing > Add).
  *
- * Two rules, both matching on exact title + link uri:
+ * Two rules, both matching on exact (trimmed) title + link uri:
  *
  * 1. Exact duplicates under one parent: links sharing title, uri AND parent
  *    are the same item repeated (e.g. "Content" -> /node/add/content created
- *    once per update hook 9048, 9051 and 9057). The lowest id is kept, the
- *    rest are deleted.
- * 2. Copies under "Add": a link under the "Add" parent whose title + uri also
- *    exists under a different parent is a stray copy of that other item, so
- *    the copy under "Add" is deleted and the other one is kept.
+ *    once per update hook 9048, 9051 and 9057). The lowest-id ENABLED link is
+ *    kept (the lowest id when none is enabled), the rest are deleted.
+ * 2. Copies under "Add": a link under the "Add" parent whose title is in
+ *    ADD_COPY_TITLES and whose title + uri also exists, ENABLED, under a
+ *    different parent is a stray copy of that other item, so the copy under
+ *    "Add" is deleted and the other one is kept. Rule 2 is limited to that
+ *    allowlist on purpose: the canonical "Content" -> /node/add/content link
+ *    under "Add" (created by this module) must never be removed just because
+ *    a site has a same-named link somewhere else, and nothing would recreate
+ *    it.
+ *
+ * Descriptors without an 'enabled' key are treated as enabled.
  */
 final class BiolandAdminMenuDedupe {
 
@@ -29,11 +36,16 @@ final class BiolandAdminMenuDedupe {
   public const ADD_PARENT = 'menu_link_content:059aed54-bd84-4699-a7c4-5358d5e7c36c';
 
   /**
+   * Titles whose stray copies under "Add" rule 2 may delete.
+   */
+  public const ADD_COPY_TITLES = ['Content (pages)', 'Media (attachments)'];
+
+  /**
    * Returns the ids of duplicate links to delete.
    *
    * @param array $links
    *   List of descriptors, each ['id' => int|string, 'title' => string,
-   *   'uri' => string, 'parent' => string].
+   *   'uri' => string, 'parent' => string, 'enabled' => bool].
    * @param string $addParent
    *   Plugin id of the "Add" parent whose stray copies are removed.
    *
@@ -41,40 +53,78 @@ final class BiolandAdminMenuDedupe {
    *   Ids to delete, ascending, without duplicates.
    */
   public static function idsToDelete(array $links, string $addParent = self::ADD_PARENT): array {
+    return array_keys(self::plan($links, $addParent));
+  }
+
+  /**
+   * Returns each id to delete mapped to the id of the copy that survives.
+   *
+   * The survivor is where children of a deleted link should be re-parented.
+   * It is NULL when no surviving copy is known.
+   *
+   * @param array $links
+   *   Descriptors, as for idsToDelete().
+   * @param string $addParent
+   *   Plugin id of the "Add" parent whose stray copies are removed.
+   *
+   * @return array<int, int|null>
+   *   Delete id => survivor id, sorted by delete id.
+   */
+  public static function plan(array $links, string $addParent = self::ADD_PARENT): array {
     $delete = [];
 
-    // Rule 1: exact duplicates under one parent keep the lowest id.
+    // Rule 1: exact duplicates under one parent keep the lowest enabled id.
     $groups = [];
     foreach ($links as $link) {
       $key = self::key($link) . "\0" . (string) ($link['parent'] ?? '');
-      $groups[$key][] = (int) $link['id'];
+      $groups[$key][] = $link;
     }
-    foreach ($groups as $ids) {
-      if (count($ids) > 1) {
-        sort($ids);
-        array_shift($ids);
-        foreach ($ids as $id) {
-          $delete[$id] = TRUE;
-        }
+    foreach ($groups as $group) {
+      if (count($group) < 2) {
+        continue;
+      }
+      usort($group, [self::class, 'compareKeepFirst']);
+      $keep = (int) array_shift($group)['id'];
+      foreach ($group as $link) {
+        $delete[(int) $link['id']] = $keep;
       }
     }
 
-    // Rule 2: a copy under "Add" of an item that lives under another parent.
+    // Rule 2: an allowlisted copy under "Add" of an item that lives, enabled,
+    // under another parent. The survivor is the lowest surviving enabled copy.
     $elsewhere = [];
     foreach ($links as $link) {
-      if ((string) ($link['parent'] ?? '') !== $addParent) {
-        $elsewhere[self::key($link)] = TRUE;
+      $id = (int) $link['id'];
+      if ((string) ($link['parent'] ?? '') !== $addParent && self::enabled($link) && !isset($delete[$id])) {
+        $key = self::key($link);
+        $elsewhere[$key] = isset($elsewhere[$key]) ? min($elsewhere[$key], $id) : $id;
       }
     }
     foreach ($links as $link) {
-      if ((string) ($link['parent'] ?? '') === $addParent && isset($elsewhere[self::key($link)])) {
-        $delete[(int) $link['id']] = TRUE;
+      $key = self::key($link);
+      if ((string) ($link['parent'] ?? '') === $addParent
+        && in_array(trim((string) ($link['title'] ?? '')), self::ADD_COPY_TITLES, TRUE)
+        && isset($elsewhere[$key])) {
+        $delete[(int) $link['id']] = $elsewhere[$key];
       }
     }
 
-    $ids = array_keys($delete);
-    sort($ids);
-    return $ids;
+    ksort($delete);
+    return $delete;
+  }
+
+  /**
+   * Orders links so the one to keep comes first: enabled, then lowest id.
+   */
+  private static function compareKeepFirst(array $a, array $b): int {
+    return [self::enabled($a) ? 0 : 1, (int) $a['id']] <=> [self::enabled($b) ? 0 : 1, (int) $b['id']];
+  }
+
+  /**
+   * Whether a descriptor is enabled (missing key counts as enabled).
+   */
+  private static function enabled(array $link): bool {
+    return !array_key_exists('enabled', $link) || (bool) $link['enabled'];
   }
 
   /**

@@ -464,6 +464,8 @@ function bioland_update_9058() {
  * loads every menu_link_content in the 'admin' menu, asks
  * \Drupal\bioland\BiolandAdminMenuDedupe which ones are duplicates (exact
  * title + link uri matching) and deletes only those, logging each deletion.
+ * Children of a deleted link are re-parented to the surviving copy; a link
+ * with children and no surviving copy is kept and a warning is logged.
  * A clean site deletes nothing, so it is safe to run more than once.
  *
  * As the highest-numbered hook it runs LAST on every site, so per
@@ -482,6 +484,8 @@ function bioland_update_9087() {
     $messages[] = 'MenuLinkContent entity type not available; skipped admin menu de-duplication.';
   }
   else {
+    // Load/delete failures throw UpdateException so `drush updb` reports the
+    // hook as failed and retries it, instead of marking a partial run done.
     try {
       $storage = $entity_type_manager->getStorage('menu_link_content');
       $links = $storage->loadByProperties(['menu_name' => 'admin']);
@@ -493,15 +497,42 @@ function bioland_update_9087() {
           'title' => (string) $link->get('title')->value,
           'uri' => (string) ($link->get('link')->uri ?? ''),
           'parent' => (string) $link->get('parent')->value,
+          'enabled' => (bool) $link->get('enabled')->value,
         ];
       }
 
       $deleted = 0;
-      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::idsToDelete($descriptors) as $id) {
+      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::plan($descriptors) as $id => $survivor_id) {
         if (!isset($links[$id])) {
           continue;
         }
         $link = $links[$id];
+
+        // Children still point at the deleted link's uuid in their own
+        // 'parent' field; move them to the surviving copy, or keep the link
+        // when there is nowhere safe to move them.
+        $children = $storage->loadByProperties(['parent' => 'menu_link_content:' . $link->uuid()]);
+        if (!empty($children)) {
+          if ($survivor_id === NULL || !isset($links[$survivor_id])) {
+            $logger->warning('BL-836: kept duplicate admin menu link @id "@title": it has @count child link(s) and no surviving copy to move them to.', [
+              '@id' => $id,
+              '@title' => $link->get('title')->value,
+              '@count' => count($children),
+            ]);
+            continue;
+          }
+          $new_parent = 'menu_link_content:' . $links[$survivor_id]->uuid();
+          foreach ($children as $child_id => $child) {
+            $logger->notice('BL-836: moving admin menu link @child from duplicate @id to surviving copy @survivor.', [
+              '@child' => $child_id,
+              '@id' => $id,
+              '@survivor' => $survivor_id,
+            ]);
+            $child->set('parent', $new_parent);
+            $child->save();
+          }
+        }
+
         $logger->notice('BL-836: deleting duplicate admin menu link @id "@title" (@uri, parent @parent).', [
           '@id' => $id,
           '@title' => $link->get('title')->value,
@@ -511,17 +542,24 @@ function bioland_update_9087() {
         $link->delete();
         $deleted++;
       }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: admin menu de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      throw new \Drupal\Core\Utility\UpdateException('BL-836: admin menu de-duplication failed: ' . $e->getMessage(), 0, $e);
+    }
 
+    $messages[] = sprintf('Admin menu de-duplication: checked %d links, deleted %d duplicates.', count($descriptors), $deleted);
+
+    // A cache/menu rebuild failure must not hide the deleted count above.
+    try {
       \Drupal::cache('menu')->invalidateAll();
       if (\Drupal::hasService('plugin.manager.menu.link')) {
         \Drupal::service('plugin.manager.menu.link')->rebuild();
       }
-
-      $messages[] = sprintf('Admin menu de-duplication: checked %d links, deleted %d duplicates.', count($descriptors), $deleted);
     }
     catch (\Exception $e) {
-      $logger->error('BL-836: admin menu de-duplication failed: @message', ['@message' => $e->getMessage()]);
-      $messages[] = 'Admin menu de-duplication failed: ' . $e->getMessage();
+      $logger->error('BL-836: menu cache rebuild after de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      $messages[] = 'Menu cache rebuild failed: ' . $e->getMessage();
     }
   }
 

@@ -192,7 +192,7 @@ class SearchApiConvergenceHookTest extends TestCase {
     $menuFile = $this->moduleRoot() . '/includes/bioland.install.menu.inc';
     $this->assertFileExists($menuFile);
     $this->assertMatchesRegularExpression(
-      '/function\s+bioland_update_9087\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      '/function\s+bioland_update_9087\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
       file_get_contents($menuFile),
       'bioland_update_9087() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );

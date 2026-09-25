@@ -18,8 +18,8 @@ class BiolandAdminMenuDedupeTest extends TestCase {
   /**
    * Builds a descriptor.
    */
-  private function link(int $id, string $title, string $uri, string $parent): array {
-    return ['id' => $id, 'title' => $title, 'uri' => $uri, 'parent' => $parent];
+  private function link(int $id, string $title, string $uri, string $parent, bool $enabled = TRUE): array {
+    return ['id' => $id, 'title' => $title, 'uri' => $uri, 'parent' => $parent, 'enabled' => $enabled];
   }
 
   /**
@@ -92,6 +92,94 @@ class BiolandAdminMenuDedupeTest extends TestCase {
     ];
 
     $this->assertSame([], BiolandAdminMenuDedupe::idsToDelete($links));
+  }
+
+  /**
+   * Rule 1 keeps the lowest enabled id, not a lower disabled one.
+   */
+  public function testExactDuplicatesKeepLowestEnabledId(): void {
+    $links = [
+      $this->link(170, 'Content', 'internal:/node/add/content', self::ADD, FALSE),
+      $this->link(212, 'Content', 'internal:/node/add/content', self::ADD),
+      $this->link(245, 'Content', 'internal:/node/add/content', self::ADD),
+    ];
+
+    $this->assertSame([170 => 212, 245 => 212], BiolandAdminMenuDedupe::plan($links));
+  }
+
+  /**
+   * Rule 1 falls back to the lowest id when every copy is disabled.
+   */
+  public function testExactDuplicatesAllDisabledKeepLowestId(): void {
+    $links = [
+      $this->link(245, 'Content', 'internal:/node/add/content', self::ADD, FALSE),
+      $this->link(170, 'Content', 'internal:/node/add/content', self::ADD, FALSE),
+    ];
+
+    $this->assertSame([245 => 170], BiolandAdminMenuDedupe::plan($links));
+  }
+
+  /**
+   * Rule 2 ignores a disabled copy elsewhere, so the Add copy stays.
+   */
+  public function testCopyUnderAddKeptWhenOnlyDisabledCopyElsewhere(): void {
+    $links = [
+      $this->link(136, 'Content (pages)', 'internal:/admin/content', self::PUBLISHING, FALSE),
+      $this->link(301, 'Content (pages)', 'internal:/admin/content', self::ADD),
+    ];
+
+    $this->assertSame([], BiolandAdminMenuDedupe::idsToDelete($links));
+  }
+
+  /**
+   * Rule 2 maps the deleted Add copy to the enabled copy elsewhere.
+   */
+  public function testCopyUnderAddSurvivorIsEnabledCopyElsewhere(): void {
+    $links = [
+      $this->link(130, 'Media (attachments)', 'internal:/admin/content/media', 'menu_link_content:other', FALSE),
+      $this->link(139, 'Media (attachments)', 'internal:/admin/content/media', self::PUBLISHING),
+      $this->link(302, 'Media (attachments)', 'internal:/admin/content/media', self::ADD),
+    ];
+
+    $this->assertSame([302 => 139], BiolandAdminMenuDedupe::plan($links));
+  }
+
+  /**
+   * The canonical Add > Content link survives a same-named link elsewhere.
+   */
+  public function testCanonicalContentUnderAddIsNeverRemovedByRule2(): void {
+    $links = [
+      $this->link(90, 'Content', 'internal:/node/add/content', self::PUBLISHING),
+      $this->link(170, 'Content', 'internal:/node/add/content', self::ADD),
+    ];
+
+    $this->assertSame([], BiolandAdminMenuDedupe::idsToDelete($links));
+  }
+
+  /**
+   * Surrounding whitespace in title or uri does not hide a duplicate.
+   */
+  public function testTitleAndUriAreTrimmed(): void {
+    $links = [
+      $this->link(170, 'Content', 'internal:/node/add/content', self::ADD),
+      $this->link(212, " Content\t", ' internal:/node/add/content ', self::ADD),
+      $this->link(136, 'Content (pages)', 'internal:/admin/content', self::PUBLISHING),
+      $this->link(301, 'Content (pages) ', 'internal:/admin/content', self::ADD),
+    ];
+
+    $this->assertSame([212 => 170, 301 => 136], BiolandAdminMenuDedupe::plan($links));
+  }
+
+  /**
+   * The Content link helper must not create a second copy (BL-836 guard).
+   */
+  public function testContentLinkHelperChecksForExistingLink(): void {
+    $source = file_get_contents(dirname(__DIR__, 2) . '/includes/bioland.install.menu.inc');
+    $this->assertMatchesRegularExpression(
+      '/function\s+_bioland_create_content_menu_link\s*\(\s*\)\s*\{(?:(?!\nfunction\s).)*loadByProperties\(\s*\[\s*\'title\'\s*=>\s*\'Content\'.*?\'link__uri\'\s*=>\s*\'internal:\/node\/add\/content\'(?:(?!\nfunction\s).)*if\s*\(\s*!empty\(\$existing\)\s*\)\s*\{(?:(?!\nfunction\s).)*return(?:(?!\nfunction\s).)*->create\(/s',
+      $source,
+      '_bioland_create_content_menu_link() must return early when the Content link already exists, before creating one.'
+    );
   }
 
 }
