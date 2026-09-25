@@ -201,6 +201,12 @@
         state.charCount += segment.length;
       }
 
+      // A first sentence longer than maxLength would leave nothing, so cut it
+      // at a word boundary instead (less 3 for the '...' it may append).
+      if (!sentences.length) {
+        return simpleSmartTruncate(workingText, maxLength - 3);
+      }
+
       const result = Array.isArray(sentences.join('')) ? sentences.join('')[0] : sentences.join('');
       const response = result.length > maxLength ? result.substring(0, maxLength) : result;
       const lastIndexOf = response.includes('.') ? response.lastIndexOf('.') + 1 : response.length;

@@ -480,6 +480,23 @@ describe('Bioland Auto Summary', () => {
       // Should end with a period (sentence boundary) or ellipsis
       expect(summaryField.value).toMatch(/\.$|\.{3}$/);
     });
+
+    test('should cut a first sentence longer than the limit at a word', () => {
+      const text = 'The Biosafety Clearing-House '.repeat(12) + 'ends here. Short second sentence.';
+      document.querySelector('#edit-body-0-value').value = text;
+
+      require('./bioland-auto-summary-1-1-10.js');
+
+      const summaryField = document.querySelector('#edit-body-0-summary');
+      const context = document.createElement('div');
+      const settings = { bioland: { enableAutoSummary: true } };
+
+      Drupal.behaviors.biolandAutoSummary.attach(context, settings);
+
+      expect(summaryField.value.length).toBeGreaterThan(200);
+      expect(summaryField.value.length).toBeLessThanOrEqual(255);
+      expect(summaryField.value).toMatch(/^The Biosafety Clearing-House .*\.\.\.$/);
+    });
   });  describe('CKEditor 4 integration', () => {
     beforeEach(() => {
       jest.useFakeTimers();
