@@ -25,7 +25,13 @@
   'use strict';
 
   var WRAPPER_CLASS = 'bioland-hero-preview';
-  var WIDGET_SELECTOR = '[data-drupal-selector*="edit-field-media-image"]';
+  // The field widget's outer container only. A substring match on
+  // "edit-field-media-image" also hits every descendant Drupal stamps with a
+  // data-drupal-selector (filename span, remove button, alt/title inputs, the
+  // focal point input, the thumbnail itself). Those carry no image of their
+  // own, so each one re-ran applyPreview() with an empty URL and stripped the
+  // preview the wrapper had just applied - the last match always won.
+  var WIDGET_SELECTOR = '[data-drupal-selector="edit-field-media-image-wrapper"]';
   var IMAGE_SELECTOR = 'img';
   // Matches the contrib focal_point 2.x widget markup (input.focal-point).
   var FOCAL_POINT_SELECTOR = 'input.focal-point';
@@ -155,10 +161,10 @@
         secondary: heroSettings.secondary,
       };
 
-      // Attached to the image widget wrapper rather than the form itself:
-      // Drupal's AJAX upload/remove callback replaces just this wrapper, so
-      // once() re-fires on the freshly-inserted replacement, keeping the
-      // preview in sync without a MutationObserver for that part of the form.
+      // The field wrapper outlives Drupal's AJAX upload/remove round trips
+      // (only its inner ajax-wrapper is swapped) and the media library pick,
+      // so once() binds here exactly once per form and a MutationObserver on
+      // its subtree re-runs the preview whenever the markup inside changes.
       once('bioland-hero-editor-preview', WIDGET_SELECTOR, context).forEach(function (widget) {
         var form = widget.closest('form');
         if (!form) {
@@ -178,11 +184,20 @@
           observeEditorMount(form, update);
         }
 
+        // Native change events bubble up from any input the wrapper currently
+        // holds (focal point included), so one delegated listener survives
+        // the AJAX re-renders that would orphan a per-input listener.
         widget.addEventListener('change', update);
 
-        var focalInput = widget.querySelector(FOCAL_POINT_SELECTOR);
-        if (focalInput) {
-          focalInput.addEventListener('change', update);
+        // The contrib focal_point widget writes its value with jQuery and
+        // fires the change via jQuery's trigger(), which never reaches a
+        // native listener. It does, however, move its indicator by rewriting
+        // a style attribute, so watching attributes as well as children
+        // catches focal point moves without a jQuery dependency.
+        if (typeof MutationObserver !== 'undefined') {
+          new MutationObserver(function () {
+            update();
+          }).observe(widget, { childList: true, subtree: true, attributes: true });
         }
       });
     }

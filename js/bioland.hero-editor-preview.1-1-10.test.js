@@ -31,13 +31,22 @@ describe('Bioland Hero Editor Preview', () => {
       ? '<div data-drupal-selector="edit-field-caption-0"><div class="ck-editor__editable"><div class="ck-content"><p>Caption</p></div></div></div>'
       : '';
 
+    // Mirrors the real widget: the outer field wrapper survives AJAX, the
+    // inner #ajax-wrapper is what upload/remove swaps out, and Drupal stamps
+    // several descendants with their own "edit-field-media-image-0-*"
+    // selectors (none of which hold an image of their own).
     document.body.innerHTML = `
       <form id="media-hero-add-form">
         ${unrelatedEditable}
-        <div data-drupal-selector="edit-field-media-image-0">
-          ${image}
-          ${originalLink}
-          ${focalPoint}
+        <div data-drupal-selector="edit-field-media-image-wrapper">
+          <div id="ajax-wrapper">
+            ${image}
+            ${originalLink}
+            ${focalPoint}
+            <input data-drupal-selector="edit-field-media-image-0-alt" value="Alt">
+            <input data-drupal-selector="edit-field-media-image-0-remove-button" type="submit">
+            <div data-drupal-selector="edit-field-media-image-0-preview-indicator" class="focal-point-indicator"></div>
+          </div>
         </div>
         <div data-drupal-selector="edit-field-description-0">
           ${descriptionEditable}
@@ -48,7 +57,11 @@ describe('Bioland Hero Editor Preview', () => {
   }
 
   function widget() {
-    return document.querySelector('[data-drupal-selector*="edit-field-media-image"]');
+    return document.querySelector('[data-drupal-selector="edit-field-media-image-wrapper"]');
+  }
+
+  function ajaxWrapper() {
+    return widget().querySelector('#ajax-wrapper');
   }
 
   function descriptionWrapper() {
@@ -115,7 +128,7 @@ describe('Bioland Hero Editor Preview', () => {
     expect(wrapper().style.getPropertyValue('--bioland-hero-primary')).toBe('#009edb');
 
     // Simulate the widget's AJAX re-render: a fresh wrapper node with no image.
-    widget().outerHTML = '<div data-drupal-selector="edit-field-media-image-0"></div>';
+    widget().outerHTML = '<div data-drupal-selector="edit-field-media-image-wrapper"></div>';
     Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
 
     expect(wrapper().style.getPropertyValue('--bioland-hero-primary')).toBe('');
@@ -128,7 +141,7 @@ describe('Bioland Hero Editor Preview', () => {
     expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
 
     // Simulate the widget's AJAX re-render: a fresh wrapper node with no image.
-    widget().outerHTML = '<div data-drupal-selector="edit-field-media-image-0"></div>';
+    widget().outerHTML = '<div data-drupal-selector="edit-field-media-image-wrapper"></div>';
     Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
 
     expect(wrapper().classList.contains('bioland-hero-preview')).toBe(false);
@@ -155,20 +168,64 @@ describe('Bioland Hero Editor Preview', () => {
 
     const focalInput = widget().querySelector('.focal-point');
     focalInput.value = '10,20';
-    focalInput.dispatchEvent(new Event('change'));
+    focalInput.dispatchEvent(new Event('change', { bubbles: true }));
 
     expect(wrapper().style.backgroundPosition).toBe('10% 20%');
   });
 
   test('runs once per widget element across repeated attach calls', () => {
     buildForm({ withFocalPoint: true });
-    const focalInput = widget().querySelector('.focal-point');
-    const addSpy = jest.spyOn(focalInput, 'addEventListener');
+    const addSpy = jest.spyOn(widget(), 'addEventListener');
 
     Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
     Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
 
     expect(addSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('keeps the preview despite nested descendants that share the widget selector prefix', () => {
+    // Regression: a substring selector matched the alt input, remove button and
+    // focal indicator too; each found no image and stripped the preview again.
+    buildForm();
+    Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
+
+    expect(document.querySelectorAll('[data-once-bioland-hero-editor-preview]').length).toBe(1);
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
+    expect(wrapper().style.backgroundImage).toContain('hero.jpg');
+  });
+
+  test('re-syncs when only the inner ajax-wrapper is swapped by Drupal AJAX', async () => {
+    buildForm();
+    Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
+
+    // Image removed: Drupal replaces #ajax-wrapper, the outer wrapper stays.
+    ajaxWrapper().outerHTML = '<div id="ajax-wrapper"><input type="file"></div>';
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(false);
+
+    // New image uploaded / picked from the media library.
+    ajaxWrapper().outerHTML = '<div id="ajax-wrapper"><img src="/files/styles/thumbnail/new.jpg"></div>';
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
+    expect(wrapper().style.backgroundImage).toContain('new.jpg');
+  });
+
+  test('follows a focal point set via jQuery (no native change event)', async () => {
+    buildForm({ withFocalPoint: true });
+    Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
+    expect(wrapper().style.backgroundPosition).toBe('30% 70%');
+
+    // focal_point.js writes the value with $.val() and moves its indicator by
+    // rewriting the style attribute; no native change event is dispatched.
+    widget().querySelector('.focal-point').value = '80,15';
+    widget().querySelector('.focal-point-indicator').style.left = '80%';
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(wrapper().style.backgroundPosition).toBe('80% 15%');
   });
 
   test('scopes the editable lookup to the field_description wrapper', () => {
