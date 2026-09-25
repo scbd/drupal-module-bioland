@@ -80,3 +80,34 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
+
+/*
+ * Body media size presets (BL-917). A media embed set to one of the
+ * bioland_width_* view modes previews at that share of the editing area, the
+ * same as the Nuxt frontend renders it (app.vue), so the size dropdown in the
+ * media toolbar is WYSIWYG.
+ */
+.ck.ck-content .media[class*="media--view-mode-bioland-width-"] {
+  max-width: 100%;
+}
+
+.ck.ck-content .media[class*="media--view-mode-bioland-width-"] img {
+  width: 100%;
+  height: auto;
+}
+
+.ck.ck-content .media--view-mode-bioland-width-25 {
+  width: 25%;
+}
+
+.ck.ck-content .media--view-mode-bioland-width-50 {
+  width: 50%;
+}
+
+.ck.ck-content .media--view-mode-bioland-width-75 {
+  width: 75%;
+}
+
+.ck.ck-content .media--view-mode-bioland-width-100 {
+  width: 100%;
+}
