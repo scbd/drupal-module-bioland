@@ -166,19 +166,26 @@ function bioland_update_9084() {
 }
 
 /**
- * BL-841: remove the stale focal point field storage definition.
+ * BL-841: repair the focal point field storage and the DMSM config.
  *
  * Fixes "The Focal point field needs to be uninstalled" on sites that ran the
- * 1.1.9 bioland_update_9084(), and is a no-op everywhere else.
+ * 1.1.9 bioland_update_9084(). It also seeds bioland.settings
+ * dmsm_config_base_url from BIOLAND_DMSM_CONFIG_BASE_URL on sites that were
+ * freshly installed before bioland_install() did so: a fresh install marks
+ * bioland_update_9082() as run without executing it. Both steps are no-ops
+ * where there is nothing to fix.
  *
  * As the highest-numbered hook it runs LAST on every site, so per
  * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
- * config, first, so a failure below cannot skip it.
+ * config, first, so a failure below cannot skip it. The DMSM seed runs last
+ * and fails the update (like 9082) when the deployment offers no value, so a
+ * misconfigured environment surfaces at deploy time.
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
 function bioland_update_9085() {
   $messages = [_bioland_v2_update_search_and_facets_config()];
   $messages[] = _bioland_remove_stale_hero_focal_point_storage();
+  $messages[] = _bioland_seed_dmsm_config_or_fail();
   return implode(' ', array_map('strval', array_filter($messages)));
 }

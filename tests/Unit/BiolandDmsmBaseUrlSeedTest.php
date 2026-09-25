@@ -300,4 +300,59 @@ class BiolandDmsmBaseUrlSeedTest extends TestCase
     {
         $this->assertSame([], _bioland_dmsm_requirements('install'));
     }
+
+    /**
+     * The shared seed helper reports a missing value instead of throwing.
+     *
+     * bioland_install() relies on this so a fresh install never fails.
+     */
+    public function testSeedHelperReturnsNullWithoutThrowing()
+    {
+        $this->assertNull(_bioland_seed_dmsm_config_from_environment());
+        $this->assertNull($this->config->get(BiolandDmsmConfigService::CONFIG_BASE_URL_KEY));
+    }
+
+    /**
+     * The shared seed helper seeds once, then reports the key as already set.
+     */
+    public function testSeedHelperSeedsOnceFromTheEnvironment()
+    {
+        putenv('BIOLAND_DMSM_CONFIG_BASE_URL=https://config.env.test/');
+        putenv('BIOLAND_DMSM_PROD_HOST_ALLOWLIST=config.env.test');
+
+        $this->assertTrue(_bioland_seed_dmsm_config_from_environment());
+        $this->assertSame(
+            'https://config.env.test',
+            $this->config->get(BiolandDmsmConfigService::CONFIG_BASE_URL_KEY)
+        );
+        $this->assertSame(
+            ['config.env.test'],
+            $this->config->get(BiolandDmsmConfigService::CONFIG_PROD_HOST_ALLOWLIST_KEY)
+        );
+
+        $this->assertFalse(_bioland_seed_dmsm_config_from_environment());
+    }
+
+    /**
+     * Fresh installs and freshly-installed sites both get the seed.
+     *
+     * A fresh install marks bioland_update_9082() as run without executing
+     * it, so bioland_install() must seed before it queues a geography fetch,
+     * and bioland_update_9085() must repair sites installed before that.
+     */
+    public function testInstallAndLatestUpdateSeedTheConfig()
+    {
+        $root = __DIR__ . '/../..';
+
+        $this->assertMatchesRegularExpression(
+            '/function\s+bioland_install\s*\(\)\s*\{.*_bioland_seed_dmsm_config_from_environment\s*\(.*_bioland_update_countries_from_dmsm\s*\(/s',
+            file_get_contents($root . '/bioland.install'),
+            'bioland_install() must seed the DMSM config before queueing the countries update.'
+        );
+        $this->assertMatchesRegularExpression(
+            '/function\s+bioland_update_9085\s*\([^)]*\)\s*\{[^}]*_bioland_seed_dmsm_config_or_fail\s*\(/s',
+            file_get_contents($root . '/includes/bioland.install.focal_point.inc'),
+            'bioland_update_9085() must seed the DMSM config on sites installed before bioland_install() did.'
+        );
+    }
 }

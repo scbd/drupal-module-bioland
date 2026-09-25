@@ -126,6 +126,20 @@ function bioland_install() {
     // Swallow errors to avoid failing installation; values will remain defaults.
   }
 
+  // Seed the DMSM config base URL (and prod allowlist) from the deployment
+  // before anything queues a geography fetch. A fresh install marks
+  // bioland_update_9082() as run without executing it, so this is the only
+  // place a new site picks up BIOLAND_DMSM_CONFIG_BASE_URL. Never fails the
+  // install; bioland_requirements() reports a still-missing value.
+  try {
+    if (_bioland_seed_dmsm_config_from_environment() === NULL) {
+      \Drupal::logger('bioland')->warning('bioland.settings.dmsm_config_base_url is not set and the deployment offers no value (BIOLAND_DMSM_CONFIG_BASE_URL); geography sync will not run.');
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('bioland')->warning('Could not seed the DMSM config during install: @message', ['@message' => $e->getMessage()]);
+  }
+
   // Queue the countries update based on hostname. Installation never fetches:
   // the queue is drained by cron, outside this request.
   try {

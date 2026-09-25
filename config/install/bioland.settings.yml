@@ -13,7 +13,8 @@ countries:
 # bioland.settings dmsm_config_base_url https://...`, or through
 # $settings['bioland_dmsm_config_base_url'] (or the
 # BIOLAND_DMSM_CONFIG_BASE_URL environment variable), which
-# bioland_update_9082() reads to seed the key on sites that lack it.
+# bioland_install() and bioland_update_9082()/9085() read to seed the key
+# on sites that lack it.
 #
 # On production the host must ALSO be named in dmsm_config_prod_host_allowlist,
 # which likewise ships absent: no production host exists in code either, for the
