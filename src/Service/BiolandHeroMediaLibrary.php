@@ -124,7 +124,7 @@ class BiolandHeroMediaLibrary {
     $element['#suffix'] = ($element['#suffix'] ?? '') . '</div>';
     $element['bioland_media_library'] = [
       '#type' => 'container',
-      '#weight' => 10,
+      '#weight' => -10,
       'open' => [
         '#type' => 'link',
         '#title' => $this->t('Choose from media library'),
