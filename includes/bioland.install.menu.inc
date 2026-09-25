@@ -127,6 +127,26 @@ function _bioland_create_content_menu_link() {
   }
   $logger->info('Parent menu link found and verified.');
 
+  // Idempotency (BL-836): update hooks 9048, 9051 and 9057 all call this
+  // helper, so without this guard every run added another "Content" link
+  // under Publishing > Add.
+  $existing = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->loadByProperties([
+      'title' => 'Content',
+      'link__uri' => 'internal:/node/add/content',
+      'menu_name' => 'admin',
+      'parent' => $parent_plugin_id,
+    ]);
+  if (!empty($existing)) {
+    $logger->info('Content menu link already exists (ID: @id); not creating another.', [
+      '@id' => implode(', ', array_keys($existing)),
+    ]);
+    return t('"Content" menu link already exists (parent: @parent); nothing to create.', [
+      '@parent' => $parent_plugin_id,
+    ]);
+  }
+
   // Create the menu link in the admin toolbar.
   $menu_link = $entity_type_manager
     ->getStorage('menu_link_content')
@@ -433,4 +453,80 @@ function bioland_update_9057() {
  */
 function bioland_update_9058() {
   return _bioland_disable_translation_menus();
+}
+
+/**
+ * Remove duplicate Publishing admin menu links (BL-836).
+ *
+ * Sites that ran update hooks 9048, 9051 and 9057 got one "Content" link
+ * (/node/add/content) per run under Publishing > Add, and some also carry
+ * copies of "Content (pages)" / "Media (attachments)" under "Add". This hook
+ * loads every menu_link_content in the 'admin' menu, asks
+ * \Drupal\bioland\BiolandAdminMenuDedupe which ones are duplicates (exact
+ * title + link uri matching) and deletes only those, logging each deletion.
+ * A clean site deletes nothing, so it is safe to run more than once.
+ *
+ * As the highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config.
+ *
+ * @see \Drupal\bioland\BiolandAdminMenuDedupe
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9087() {
+  $messages = [];
+  $logger = \Drupal::logger('bioland');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    $messages[] = 'MenuLinkContent entity type not available; skipped admin menu de-duplication.';
+  }
+  else {
+    try {
+      $storage = $entity_type_manager->getStorage('menu_link_content');
+      $links = $storage->loadByProperties(['menu_name' => 'admin']);
+
+      $descriptors = [];
+      foreach ($links as $id => $link) {
+        $descriptors[] = [
+          'id' => (int) $id,
+          'title' => (string) $link->get('title')->value,
+          'uri' => (string) ($link->get('link')->uri ?? ''),
+          'parent' => (string) $link->get('parent')->value,
+        ];
+      }
+
+      $deleted = 0;
+      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::idsToDelete($descriptors) as $id) {
+        if (!isset($links[$id])) {
+          continue;
+        }
+        $link = $links[$id];
+        $logger->notice('BL-836: deleting duplicate admin menu link @id "@title" (@uri, parent @parent).', [
+          '@id' => $id,
+          '@title' => $link->get('title')->value,
+          '@uri' => $link->get('link')->uri ?? '',
+          '@parent' => $link->get('parent')->value,
+        ]);
+        $link->delete();
+        $deleted++;
+      }
+
+      \Drupal::cache('menu')->invalidateAll();
+      if (\Drupal::hasService('plugin.manager.menu.link')) {
+        \Drupal::service('plugin.manager.menu.link')->rebuild();
+      }
+
+      $messages[] = sprintf('Admin menu de-duplication: checked %d links, deleted %d duplicates.', count($descriptors), $deleted);
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: admin menu de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      $messages[] = 'Admin menu de-duplication failed: ' . $e->getMessage();
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
