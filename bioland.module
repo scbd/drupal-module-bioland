@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\BiolandBodyMediaWidth;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
@@ -871,4 +872,23 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for media.
+ *
+ * Adds the media--view-mode-bioland-width-N class to media rendered at a Body
+ * size preset (BL-917): core's media.html.twig emits no view-mode class, and
+ * the Nuxt head sizes embeds by it.
+ */
+function bioland_preprocess_media(&$variables) {
+  $class = BiolandBodyMediaWidth::viewModeClass((string) ($variables['view_mode'] ?? ''));
+  if ($class === NULL) {
+    return;
+  }
+  $classes = (array) ($variables['attributes']['class'] ?? []);
+  if (!in_array($class, $classes, TRUE)) {
+    $classes[] = $class;
+  }
+  $variables['attributes']['class'] = $classes;
 }

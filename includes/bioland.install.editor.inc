@@ -13,6 +13,7 @@
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\bioland\BiolandBodyMediaWidth;
 
 /*
  * =============================================================================
@@ -484,7 +485,8 @@ function _bioland_configure_full_html_editor_toolbar() {
  * Body media size presets: view mode percent => label.
  *
  * Each preset is a media view mode (media.bioland_width_<percent>) whose
- * rendered wrapper carries the class media--view-mode-bioland-width-<percent>;
+ * rendered wrapper gets the class media--view-mode-bioland-width-<percent>
+ * from bioland_preprocess_media();
  * the Nuxt head and css/bioland.ckeditor.css size that class to the percent of
  * the body width, so the published page honours the size the editor picked.
  *
@@ -507,14 +509,15 @@ function _bioland_body_media_width_presets() {
  * Drupal cannot drag-resize: they rendered at the media "default" view mode,
  * i.e. the 480px "large" image style, whatever the editor wanted. This:
  * - creates one media view mode per width preset, with an image display that
- *   renders the "wide" image style (the original when that style is missing)
- *   so the larger presets stay sharp;
+ *   renders the "wide" image style (then "large", then the original, when a
+ *   style is missing) so the larger presets stay sharp;
  * - allows those view modes (plus the default) in the media_embed filter and
  *   turns on the CKEditor media view mode override, which adds a size
  *   dropdown to the media toolbar;
  * - turns on the resize handles for images inserted with drupalInsertImage.
  *
- * Idempotent: existing view modes and displays are left as authored.
+ * Idempotent: existing view modes and displays are left as authored; an
+ * existing but disabled preset display is logged, not re-enabled.
  *
  * @return string
  *   Status messages. Plain strings, not t(): the translation system is not
@@ -529,14 +532,15 @@ function _bioland_configure_body_media_resize() {
   $entity_type_manager = \Drupal::entityTypeManager();
   $view_mode_storage = $entity_type_manager->getStorage('entity_view_mode');
   $display_storage = $entity_type_manager->getStorage('entity_view_display');
-  $image_style = $entity_type_manager->getStorage('image_style')->load('wide') ? 'wide' : '';
+  $image_style_storage = $entity_type_manager->getStorage('image_style');
+  $image_style = $image_style_storage->load('wide') ? 'wide' : ($image_style_storage->load('large') ? 'large' : '');
   $media_type = $entity_type_manager->getStorage('media_type')->load('image');
   $default_display = $media_type ? $display_storage->load('media.image.default') : NULL;
   $source_field = $media_type ? $media_type->getSource()->getSourceFieldDefinition($media_type)?->getName() : NULL;
   $allowed_view_modes = [];
 
   foreach (_bioland_body_media_width_presets() as $percent => $label) {
-    $mode = 'bioland_width_' . $percent;
+    $mode = BiolandBodyMediaWidth::VIEW_MODE_PREFIX . $percent;
     $allowed_view_modes[$mode] = $mode;
 
     if (!$view_mode_storage->load('media.' . $mode)) {
@@ -549,10 +553,17 @@ function _bioland_configure_body_media_resize() {
       $messages[] = "Created media view mode {$mode}.";
     }
 
-    if ($default_display && !$display_storage->load('media.image.' . $mode)) {
+    $existing_display = $default_display ? $display_storage->load('media.image.' . $mode) : NULL;
+    if ($existing_display && !$existing_display->status()) {
+      \Drupal::logger('bioland')->notice('Skipped disabled media.image.@mode display; media at that size renders the default display until it is enabled.', [
+        '@mode' => $mode,
+      ]);
+      $messages[] = "media.image.{$mode} display exists but is disabled; left as is.";
+    }
+    elseif ($default_display && !$existing_display) {
       $display = $default_display->createCopy($mode);
       $component = $source_field ? $display->getComponent($source_field) : NULL;
-      if ($component) {
+      if ($component && ($component['type'] ?? NULL) === 'image') {
         $component['settings']['image_style'] = $image_style;
         $display->setComponent($source_field, $component);
       }
@@ -679,12 +690,15 @@ function bioland_update_9038() {
  *
  * As the new highest-numbered hook it runs LAST on every site, so per
  * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
- * config.
+ * config. Numbered 9085, not 9084: the open BL-841 branches add
+ * bioland_update_9084() (includes/bioland.install.focal_point.inc). BL-841
+ * should land first; if this ships first, renumber BL-841's hook above 9085,
+ * or sites already at schema 9085 never run it.
  *
  * @see _bioland_configure_body_media_resize()
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9084() {
+function bioland_update_9085() {
   $messages = [_bioland_configure_body_media_resize()];
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
