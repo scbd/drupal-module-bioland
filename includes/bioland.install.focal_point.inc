@@ -12,27 +12,30 @@
 use Drupal\bioland\BiolandFocalPoint;
 
 /**
- * Installs the computed media.bioland_focal_point field storage definition.
+ * Removes a stale media.bioland_focal_point field storage definition.
  *
- * Without this the status report shows "Mismatched entity and/or field
- * definitions" on sites that had bioland installed before BL-841. Idempotent,
- * and a no-op when media is not installed.
+ * bioland_focal_point is computed, and core leaves computed base fields out of
+ * EntityFieldManager::getFieldStorageDefinitions(), so it must never be
+ * installed as field storage. 1.1.9's bioland_update_9084() installed it
+ * anyway, which left every site that ran it with "Mismatched entity and/or
+ * field definitions: The Focal point field needs to be uninstalled". This
+ * drops that record from the last installed schema only: the field has no
+ * table or column, so no data is touched, and bioland_entity_base_field_info()
+ * keeps providing it at runtime. Idempotent.
  *
  * @return string
  *   Status message.
  */
-function _bioland_install_hero_focal_point_field() {
-  if (!\Drupal::entityTypeManager()->hasDefinition('media')) {
-    return (string) t('Media is not installed; skipped the @field field.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
+function _bioland_remove_stale_hero_focal_point_storage() {
+  $repository = \Drupal::service('entity.last_installed_schema.repository');
+  $definitions = $repository->getLastInstalledFieldStorageDefinitions('media');
+
+  if (!isset($definitions[BiolandFocalPoint::FIELD_NAME])) {
+    return (string) t('No stale @field field storage definition to remove.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
   }
 
-  $manager = \Drupal::entityDefinitionUpdateManager();
-  if ($manager->getFieldStorageDefinition(BiolandFocalPoint::FIELD_NAME, 'media')) {
-    return (string) t('The @field field is already installed.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
-  }
-
-  $manager->installFieldStorageDefinition(BiolandFocalPoint::FIELD_NAME, 'media', 'bioland', BiolandFocalPoint::baseFieldDefinition());
-  return (string) t('Installed the @field field on media.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
+  $repository->deleteLastInstalledFieldStorageDefinition($definitions[BiolandFocalPoint::FIELD_NAME]);
+  return (string) t('Removed the stale @field field storage definition from media.', ['@field' => BiolandFocalPoint::FIELD_NAME]);
 }
 
 /**
@@ -151,16 +154,31 @@ function _bioland_expose_hero_focal_point_jsonapi() {
 /**
  * BL-841: enable the hero image focal point (window selector).
  *
- * As the highest-numbered hook it runs LAST on every site, so per
- * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
- * config. Convergence runs first so a focal point failure cannot skip it.
- *
- * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * Re-applies the canonical v2 Search API config first so a focal point
+ * failure cannot skip it. It no longer installs field storage for the computed
+ * bioland_focal_point field; see bioland_update_9085().
  */
 function bioland_update_9084() {
   $messages = [_bioland_v2_update_search_and_facets_config()];
-  $messages[] = _bioland_install_hero_focal_point_field();
   $messages[] = _bioland_enable_focal_point_module();
   $messages[] = _bioland_configure_hero_focal_point();
+  return implode(' ', array_map('strval', array_filter($messages)));
+}
+
+/**
+ * BL-841: remove the stale focal point field storage definition.
+ *
+ * Fixes "The Focal point field needs to be uninstalled" on sites that ran the
+ * 1.1.9 bioland_update_9084(), and is a no-op everywhere else.
+ *
+ * As the highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config, first, so a failure below cannot skip it.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9085() {
+  $messages = [_bioland_v2_update_search_and_facets_config()];
+  $messages[] = _bioland_remove_stale_hero_focal_point_storage();
   return implode(' ', array_map('strval', array_filter($messages)));
 }

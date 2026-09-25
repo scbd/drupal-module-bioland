@@ -24,8 +24,8 @@ final class BiolandFocalPoint {
   /**
    * Defines the computed media base field.
    *
-   * Shared by bioland_entity_base_field_info() and bioland_update_9084() so
-   * the installed field storage definition always matches the declared one.
+   * Used by bioland_entity_base_field_info(). The field is computed, so it
+   * is never installed as field storage (see bioland_update_9085()).
    */
   public static function baseFieldDefinition(): BaseFieldDefinition {
     return BaseFieldDefinition::create('string')

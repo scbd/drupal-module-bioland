@@ -2,11 +2,10 @@
 
 namespace Drupal\Tests\bioland\Unit;
 
-use Drupal\Core\Field\BaseFieldDefinition;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the hero focal point install helpers (bioland_update_9084(), BL-841).
+ * Tests the hero focal point install helpers (bioland_update_9084/9085, BL-841).
  *
  * @group bioland
  */
@@ -18,7 +17,7 @@ class BiolandHeroFocalPointInstallTest extends TestCase {
   private array $entityTypes = ['media', 'entity_form_display'];
   private ?object $display = NULL;
   private ?object $resource = NULL;
-  private object $updateManager;
+  private object $schemaRepository;
 
   public static function setUpBeforeClass(): void {
     parent::setUpBeforeClass();
@@ -53,18 +52,20 @@ class BiolandHeroFocalPointInstallTest extends TestCase {
     });
     \Drupal::setService('entity_type.manager', $etm);
 
-    $this->updateManager = new class {
-      public array $storage = [];
+    $this->schemaRepository = new class {
+      public array $media = [];
+      public array $deleted = [];
 
-      public function getFieldStorageDefinition($name, $entity_type_id) {
-        return $this->storage["$entity_type_id.$name"] ?? NULL;
+      public function getLastInstalledFieldStorageDefinitions($entity_type_id) {
+        return $entity_type_id === 'media' ? $this->media : [];
       }
 
-      public function installFieldStorageDefinition($name, $entity_type_id, $provider, $definition) {
-        $this->storage["$entity_type_id.$name"] = [$provider, $definition];
+      public function deleteLastInstalledFieldStorageDefinition($definition) {
+        $this->deleted[] = $definition;
+        unset($this->media[$definition->name]);
       }
     };
-    \Drupal::setService('entity.definition_update_manager', $this->updateManager);
+    \Drupal::setService('entity.last_installed_schema.repository', $this->schemaRepository);
 
     $this->setAvailable(TRUE);
   }
@@ -237,21 +238,27 @@ class BiolandHeroFocalPointInstallTest extends TestCase {
     $this->assertStringContainsString('jsonapi_extras not enabled', _bioland_configure_hero_focal_point());
   }
 
-  public function testInstallsFieldStorageDefinitionOnce(): void {
-    $this->assertStringContainsString('Installed', _bioland_install_hero_focal_point_field());
-    [$provider, $definition] = $this->updateManager->storage['media.bioland_focal_point'];
-    $this->assertSame('bioland', $provider);
-    $this->assertInstanceOf(BaseFieldDefinition::class, $definition);
+  public function testRemovesStaleFieldStorageDefinitionOnce(): void {
+    $stale = (object) ['name' => 'bioland_focal_point'];
+    $this->schemaRepository->media = ['bioland_focal_point' => $stale, 'name' => (object) ['name' => 'name']];
 
-    $this->assertStringContainsString('already installed', _bioland_install_hero_focal_point_field());
-    $this->assertCount(1, $this->updateManager->storage);
+    $this->assertStringContainsString('Removed', _bioland_remove_stale_hero_focal_point_storage());
+    $this->assertSame([$stale], $this->schemaRepository->deleted);
+    $this->assertArrayHasKey('name', $this->schemaRepository->media);
+
+    $this->assertStringContainsString('No stale', _bioland_remove_stale_hero_focal_point_storage());
+    $this->assertCount(1, $this->schemaRepository->deleted);
   }
 
-  public function testFieldInstallSkipsWithoutMedia(): void {
-    $this->entityTypes = [];
+  public function testRemoveIsNoOpWithoutStaleDefinition(): void {
+    $this->assertStringContainsString('No stale', _bioland_remove_stale_hero_focal_point_storage());
+    $this->assertSame([], $this->schemaRepository->deleted);
+  }
 
-    $this->assertStringContainsString('Media is not installed', _bioland_install_hero_focal_point_field());
-    $this->assertSame([], $this->updateManager->storage);
+  public function testUpdate9084NeverInstallsFieldStorage(): void {
+    $source = file_get_contents(__DIR__ . '/../../includes/bioland.install.focal_point.inc');
+
+    $this->assertStringNotContainsString('installFieldStorageDefinition(', $source);
   }
 
 }
