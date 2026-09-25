@@ -127,6 +127,26 @@ function _bioland_create_content_menu_link() {
   }
   $logger->info('Parent menu link found and verified.');
 
+  // Idempotency (BL-836): update hooks 9048, 9051 and 9057 all call this
+  // helper, so without this guard every run added another "Content" link
+  // under Publishing > Add.
+  $existing = $entity_type_manager
+    ->getStorage('menu_link_content')
+    ->loadByProperties([
+      'title' => 'Content',
+      'link__uri' => 'internal:/node/add/content',
+      'menu_name' => 'admin',
+      'parent' => $parent_plugin_id,
+    ]);
+  if (!empty($existing)) {
+    $logger->info('Content menu link already exists (ID: @id); not creating another.', [
+      '@id' => implode(', ', array_keys($existing)),
+    ]);
+    return t('"Content" menu link already exists (parent: @parent); nothing to create.', [
+      '@parent' => $parent_plugin_id,
+    ]);
+  }
+
   // Create the menu link in the admin toolbar.
   $menu_link = $entity_type_manager
     ->getStorage('menu_link_content')
@@ -433,4 +453,118 @@ function bioland_update_9057() {
  */
 function bioland_update_9058() {
   return _bioland_disable_translation_menus();
+}
+
+/**
+ * Remove duplicate Publishing admin menu links (BL-836).
+ *
+ * Sites that ran update hooks 9048, 9051 and 9057 got one "Content" link
+ * (/node/add/content) per run under Publishing > Add, and some also carry
+ * copies of "Content (pages)" / "Media (attachments)" under "Add". This hook
+ * loads every menu_link_content in the 'admin' menu, asks
+ * \Drupal\bioland\BiolandAdminMenuDedupe which ones are duplicates (exact
+ * title + link uri matching) and deletes only those, logging each deletion.
+ * Children of a deleted link are re-parented to the surviving copy; a link
+ * with children and no surviving copy is kept and a warning is logged.
+ * A clean site deletes nothing, so it is safe to run more than once.
+ *
+ * As the highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config.
+ *
+ * @see \Drupal\bioland\BiolandAdminMenuDedupe
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9087() {
+  $messages = [];
+  $logger = \Drupal::logger('bioland');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    $messages[] = 'MenuLinkContent entity type not available; skipped admin menu de-duplication.';
+  }
+  else {
+    // Load/delete failures throw UpdateException so `drush updb` reports the
+    // hook as failed and retries it, instead of marking a partial run done.
+    try {
+      $storage = $entity_type_manager->getStorage('menu_link_content');
+      $links = $storage->loadByProperties(['menu_name' => 'admin']);
+
+      $descriptors = [];
+      foreach ($links as $id => $link) {
+        $descriptors[] = [
+          'id' => (int) $id,
+          'title' => (string) $link->get('title')->value,
+          'uri' => (string) ($link->get('link')->uri ?? ''),
+          'parent' => (string) $link->get('parent')->value,
+          'enabled' => (bool) $link->get('enabled')->value,
+        ];
+      }
+
+      $deleted = 0;
+      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::plan($descriptors) as $id => $survivor_id) {
+        if (!isset($links[$id])) {
+          continue;
+        }
+        $link = $links[$id];
+
+        // Children still point at the deleted link's uuid in their own
+        // 'parent' field; move them to the surviving copy, or keep the link
+        // when there is nowhere safe to move them.
+        $children = $storage->loadByProperties(['parent' => 'menu_link_content:' . $link->uuid()]);
+        if (!empty($children)) {
+          if ($survivor_id === NULL || !isset($links[$survivor_id])) {
+            $logger->warning('BL-836: kept duplicate admin menu link @id "@title": it has @count child link(s) and no surviving copy to move them to.', [
+              '@id' => $id,
+              '@title' => $link->get('title')->value,
+              '@count' => count($children),
+            ]);
+            continue;
+          }
+          $new_parent = 'menu_link_content:' . $links[$survivor_id]->uuid();
+          foreach ($children as $child_id => $child) {
+            $logger->notice('BL-836: moving admin menu link @child from duplicate @id to surviving copy @survivor.', [
+              '@child' => $child_id,
+              '@id' => $id,
+              '@survivor' => $survivor_id,
+            ]);
+            $child->set('parent', $new_parent);
+            $child->save();
+          }
+        }
+
+        $logger->notice('BL-836: deleting duplicate admin menu link @id "@title" (@uri, parent @parent).', [
+          '@id' => $id,
+          '@title' => $link->get('title')->value,
+          '@uri' => $link->get('link')->uri ?? '',
+          '@parent' => $link->get('parent')->value,
+        ]);
+        $link->delete();
+        $deleted++;
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: admin menu de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      throw new \Drupal\Core\Utility\UpdateException('BL-836: admin menu de-duplication failed: ' . $e->getMessage(), 0, $e);
+    }
+
+    $messages[] = sprintf('Admin menu de-duplication: checked %d links, deleted %d duplicates.', count($descriptors), $deleted);
+
+    // A cache/menu rebuild failure must not hide the deleted count above.
+    try {
+      \Drupal::cache('menu')->invalidateAll();
+      if (\Drupal::hasService('plugin.manager.menu.link')) {
+        \Drupal::service('plugin.manager.menu.link')->rebuild();
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: menu cache rebuild after de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      $messages[] = 'Menu cache rebuild failed: ' . $e->getMessage();
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
