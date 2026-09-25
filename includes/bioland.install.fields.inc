@@ -435,3 +435,77 @@ function bioland_update_9077() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Make the remote video image and its alt text optional (BL-815).
+ *
+ * Editors adding a remote video had to upload an image and alt text on top of
+ * the name and URL. Core already fills the `thumbnail` base field from the
+ * oEmbed provider, so the site-owned field_media_image becomes an optional
+ * override. That field config is not shipped by this module, so this edits
+ * the live config: every image field on media/remote_video that
+ * BiolandRemoteVideoImageField::shouldProcess() selects is made optional,
+ * its alt text stops being required (alt_field stays as configured), and it
+ * gets help text when it has none. Idempotent; skips cleanly when the media
+ * module, the remote_video media type, or the fields are absent.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ *
+ * @see \Drupal\bioland\BiolandRemoteVideoImageField
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9088() {
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+  $messages = [];
+  $etm = \Drupal::entityTypeManager();
+
+  if (!\Drupal::moduleHandler()->moduleExists('media') || !$etm->getStorage('media_type')->load('remote_video')) {
+    $messages[] = 'Skipped remote video image update: the remote_video media type does not exist.';
+  }
+  else {
+    $fields = $etm->getStorage('field_config')->loadByProperties([
+      'entity_type' => 'media',
+      'bundle' => 'remote_video',
+      'field_type' => 'image',
+    ]);
+
+    $updated = [];
+    foreach ($fields as $field) {
+      /** @var \Drupal\field\FieldConfigInterface $field */
+      if (!\Drupal\bioland\BiolandRemoteVideoImageField::qualifies($field->getTargetEntityTypeId(), $field->getTargetBundle(), $field->getType())
+        || !\Drupal\bioland\BiolandRemoteVideoImageField::shouldProcess($field->getName(), (bool) $field->isRequired())) {
+        continue;
+      }
+
+      $plan = \Drupal\bioland\BiolandRemoteVideoImageField::plan((bool) $field->isRequired(), $field->getSettings(), (string) $field->getDescription());
+      if (!$plan['changed']) {
+        continue;
+      }
+
+      $field->setRequired($plan['required']);
+      $field->setSetting('alt_field_required', $plan['settings']['alt_field_required']);
+      $field->setDescription($plan['description']);
+      $field->save();
+      $updated[] = $field->getName();
+    }
+
+    if ($updated) {
+      $message = 'Made the remote video image optional (image and alt text no longer required): ' . implode(', ', $updated) . '.';
+      \Drupal::logger('bioland')->notice($message);
+      $messages[] = $message;
+    }
+    else {
+      $messages[] = $fields
+        ? 'Remote video image fields are already optional; left untouched.'
+        : 'Skipped remote video image update: no image field exists on the remote_video media type.';
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
