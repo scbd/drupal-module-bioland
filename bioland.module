@@ -951,3 +951,13 @@ function bioland_field_widget_complete_image_image_form_alter(array &$field_widg
     \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
   }
 }
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_focal_point.
+ *
+ * The hero form display uses Focal Point's widget once focal_point is enabled
+ * (see _bioland_configure_hero_focal_point()), so the picker hooks it too.
+ */
+function bioland_field_widget_complete_image_focal_point_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  bioland_field_widget_complete_image_image_form_alter($field_widget_complete_form, $form_state, $context);
+}
