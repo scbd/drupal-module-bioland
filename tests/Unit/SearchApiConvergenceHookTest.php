@@ -209,7 +209,8 @@ class SearchApiConvergenceHookTest extends TestCase {
 
     // The new highest-numbered hook (bioland_update_9086(), added for BL-917
     // to let editors resize Body images) is the last writer for every site,
-    // so it must ALSO converge on the canonical v2 config.
+    // so it must ALSO converge on the canonical v2 config. It is 9085, not
+    // 9084, because the open BL-841 branches take 9084.
     $editorFile = $this->moduleRoot() . '/includes/bioland.install.editor.inc';
     $this->assertFileExists($editorFile);
     $this->assertMatchesRegularExpression(
