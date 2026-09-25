@@ -690,15 +690,13 @@ function bioland_update_9038() {
  *
  * As the new highest-numbered hook it runs LAST on every site, so per
  * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
- * config. Numbered 9085, not 9084: the open BL-841 branches add
- * bioland_update_9084() (includes/bioland.install.focal_point.inc). BL-841
- * should land first; if this ships first, renumber BL-841's hook above 9085,
- * or sites already at schema 9085 never run it.
+ * config. Numbered 9086: BL-841 holds bioland_update_9084() and
+ * bioland_update_9085() (includes/bioland.install.focal_point.inc).
  *
  * @see _bioland_configure_body_media_resize()
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9085() {
+function bioland_update_9086() {
   $messages = [_bioland_configure_body_media_resize()];
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
