@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-component-menu-form-1-1-9.js
+ * Unit tests for bioland-component-menu-form-1-1-10.js
  */
 
 describe('Bioland Component Menu Form', () => {
@@ -50,7 +50,7 @@ describe('Bioland Component Menu Form', () => {
         });
     };
     jest.resetModules();
-    require('./bioland-component-menu-form-1-1-9.js');
+    require('./bioland-component-menu-form-1-1-10.js');
   });
 
   test('registers the behavior', () => {
