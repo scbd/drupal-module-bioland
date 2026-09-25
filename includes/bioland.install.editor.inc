@@ -480,6 +480,128 @@ function _bioland_configure_full_html_editor_toolbar() {
   return implode("\n", $messages);
 }
 
+/**
+ * Body media size presets: view mode percent => label.
+ *
+ * Each preset is a media view mode (media.bioland_width_<percent>) whose
+ * rendered wrapper carries the class media--view-mode-bioland-width-<percent>;
+ * the Nuxt head and css/bioland.ckeditor.css size that class to the percent of
+ * the body width, so the published page honours the size the editor picked.
+ *
+ * @return array<int, string>
+ *   Width presets keyed by percent.
+ */
+function _bioland_body_media_width_presets() {
+  return [
+    25 => 'Small (25%)',
+    50 => 'Medium (50%)',
+    75 => 'Large (75%)',
+    100 => 'Full width (100%)',
+  ];
+}
+
+/**
+ * Lets editors resize images in the full_html Body (BL-917).
+ *
+ * Body images are Media Library embeds (<drupal-media>), which CKEditor 5 in
+ * Drupal cannot drag-resize: they rendered at the media "default" view mode,
+ * i.e. the 480px "large" image style, whatever the editor wanted. This:
+ * - creates one media view mode per width preset, with an image display that
+ *   renders the "wide" image style (the original when that style is missing)
+ *   so the larger presets stay sharp;
+ * - allows those view modes (plus the default) in the media_embed filter and
+ *   turns on the CKEditor media view mode override, which adds a size
+ *   dropdown to the media toolbar;
+ * - turns on the resize handles for images inserted with drupalInsertImage.
+ *
+ * Idempotent: existing view modes and displays are left as authored.
+ *
+ * @return string
+ *   Status messages. Plain strings, not t(): the translation system is not
+ *   dependable mid-update.
+ */
+function _bioland_configure_body_media_resize() {
+  if (!\Drupal::moduleHandler()->moduleExists('media')) {
+    return 'Media module not enabled; skipped Body image resize configuration.';
+  }
+
+  $messages = [];
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $view_mode_storage = $entity_type_manager->getStorage('entity_view_mode');
+  $display_storage = $entity_type_manager->getStorage('entity_view_display');
+  $image_style = $entity_type_manager->getStorage('image_style')->load('wide') ? 'wide' : '';
+  $media_type = $entity_type_manager->getStorage('media_type')->load('image');
+  $default_display = $media_type ? $display_storage->load('media.image.default') : NULL;
+  $source_field = $media_type ? $media_type->getSource()->getSourceFieldDefinition($media_type)?->getName() : NULL;
+  $allowed_view_modes = [];
+
+  foreach (_bioland_body_media_width_presets() as $percent => $label) {
+    $mode = 'bioland_width_' . $percent;
+    $allowed_view_modes[$mode] = $mode;
+
+    if (!$view_mode_storage->load('media.' . $mode)) {
+      $view_mode_storage->create([
+        'id' => 'media.' . $mode,
+        'label' => $label,
+        'targetEntityType' => 'media',
+        'cache' => TRUE,
+      ])->save();
+      $messages[] = "Created media view mode {$mode}.";
+    }
+
+    if ($default_display && !$display_storage->load('media.image.' . $mode)) {
+      $display = $default_display->createCopy($mode);
+      $component = $source_field ? $display->getComponent($source_field) : NULL;
+      if ($component) {
+        $component['settings']['image_style'] = $image_style;
+        $display->setComponent($source_field, $component);
+      }
+      $display->setStatus(TRUE)->save();
+      $messages[] = "Created media.image.{$mode} display.";
+    }
+  }
+
+  $config_factory = \Drupal::configFactory();
+
+  $filter_config = $config_factory->getEditable('filter.format.full_html');
+  $media_embed = $filter_config->isNew() ? NULL : $filter_config->get('filters.media_embed');
+  if ($media_embed) {
+    $default_view_mode = $media_embed['settings']['default_view_mode'] ?? 'default';
+    $current = $media_embed['settings']['allowed_view_modes'] ?? [];
+    $merged = $current + [$default_view_mode => $default_view_mode] + $allowed_view_modes;
+    if ($merged !== $current) {
+      $filter_config->set('filters.media_embed.settings.allowed_view_modes', $merged)->save(TRUE);
+      $messages[] = 'Allowed the Body image size view modes in the full_html media embed filter.';
+    }
+  }
+  else {
+    $messages[] = 'full_html has no media_embed filter; skipped allowing the size view modes.';
+  }
+
+  $editor_config = $config_factory->getEditable('editor.editor.full_html');
+  if ($editor_config->isNew()) {
+    $messages[] = 'editor.editor.full_html not found; skipped enabling Body image resize.';
+    return implode(' ', $messages);
+  }
+
+  $toolbar = $editor_config->get('settings.toolbar.items') ?: [];
+  if (in_array('drupalMedia', $toolbar, TRUE) && $editor_config->get('settings.plugins.media_media.allow_view_mode_override') !== TRUE) {
+    $editor_config->set('settings.plugins.media_media.allow_view_mode_override', TRUE);
+    $messages[] = 'Enabled the media size (view mode) dropdown in the full_html editor.';
+  }
+  if (in_array('drupalInsertImage', $toolbar, TRUE) && $editor_config->get('settings.plugins.ckeditor5_imageResize.allow_resize') !== TRUE) {
+    $editor_config->set('settings.plugins.ckeditor5_imageResize.allow_resize', TRUE);
+    $messages[] = 'Enabled image resize handles in the full_html editor.';
+  }
+  $editor_config->save(TRUE);
+
+  \Drupal::logger('bioland')->notice('Body image resize configuration: @messages', [
+    '@messages' => implode(' ', $messages),
+  ]);
+
+  return $messages ? implode(' ', $messages) : 'Body image resize already configured.';
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS
@@ -550,4 +672,23 @@ function bioland_update_9034() {
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * BL-917: let editors resize Body images and honour the size when published.
+ *
+ * As the new highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config.
+ *
+ * @see _bioland_configure_body_media_resize()
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9086() {
+  $messages = [_bioland_configure_body_media_resize()];
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
