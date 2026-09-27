@@ -5,6 +5,7 @@
  * Main module file for Drupal Module Bioland.
  */
 
+use Drupal\bioland\BiolandEmbeddedImageMedia;
 use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
@@ -13,6 +14,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\media\MediaInterface;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -479,6 +481,26 @@ function _bioland_attach_hero_editor_preview(array &$form) {
  */
 function bioland_hero_editor_preview_settings(): array {
   return \Drupal::service('bioland.hero_editor_preview')->settings();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for media.
+ *
+ * Image media embedded in a text body shows the image only, never the extra
+ * field labels and values of its view display (BL-1188).
+ *
+ * @see \Drupal\bioland\BiolandEmbeddedImageMedia
+ */
+function bioland_media_view_alter(array &$build, EntityInterface $media, $display) {
+  if (empty($build['#embed']) || !$media instanceof MediaInterface) {
+    return;
+  }
+  $source = $media->getSource();
+  $build = BiolandEmbeddedImageMedia::strip(
+    $build,
+    $source->getPluginId(),
+    $source->getConfiguration()['source_field'] ?? NULL
+  );
 }
 
 /**
