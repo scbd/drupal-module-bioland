@@ -184,22 +184,29 @@ class BiolandHeroMediaLibrary implements TrustedCallbackInterface {
   }
 
   /**
-   * #pre_render: put the link at the top of the image box.
+   * #pre_render: put the link, and any AJAX messages, at the top of the box.
    *
    * Claro wraps a single image widget in a details element at render time
    * and leaves its description empty; that slot renders between the title
-   * and "Add a new file". Other themes get the link as the first child.
+   * and "Add a new file". Other themes get the link (then the messages) as
+   * the first children. ajaxRefresh() sets #bioland_media_library_messages
+   * on this same element when the link lives here, so the status messages
+   * from the AJAX rebuild land next to it instead of in the container below.
    */
   public static function preRenderPicker(array $element): array {
     $open = $element['#bioland_media_library_open'] ?? NULL;
     if (!$open) {
       return $element;
     }
+    $messages = $element['#bioland_media_library_messages'] ?? NULL;
     if (isset($element['#theme_wrappers']['details'])) {
-      $element['#theme_wrappers']['details']['#description'] = $open;
+      $element['#theme_wrappers']['details']['#description'] = $messages ? ['open' => $open, 'messages' => $messages] : $open;
     }
     else {
       $element['bioland_media_library_open'] = $open + ['#weight' => -100];
+      if ($messages) {
+        $element['bioland_media_library_messages'] = $messages + ['#weight' => -99];
+      }
     }
 
     return $element;
@@ -318,10 +325,21 @@ class BiolandHeroMediaLibrary implements TrustedCallbackInterface {
 
   /**
    * AJAX callback: re-render the whole field so the preview shows the image.
+   *
+   * When the "Choose from media library" link moved onto the upload element
+   * (see alterWidget()), the messages go there too, so preRenderPicker() can
+   * render them next to the link instead of in the container below the box.
+   * Otherwise they stay in the container, as before.
    */
   public static function ajaxRefresh(array &$form, FormStateInterface $form_state): array {
     $element = NestedArray::getValue($form, array_slice($form_state->getTriggeringElement()['#array_parents'], 0, -2));
-    $element['bioland_media_library']['messages'] = ['#type' => 'status_messages', '#weight' => -10];
+    $messages = ['#type' => 'status_messages'];
+    if (isset($element['widget'][0]['#bioland_media_library_open'])) {
+      $element['widget'][0]['#bioland_media_library_messages'] = $messages;
+    }
+    else {
+      $element['bioland_media_library']['messages'] = $messages + ['#weight' => -10];
+    }
 
     return $element;
   }

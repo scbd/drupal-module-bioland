@@ -200,6 +200,12 @@ class BiolandHeroMediaLibraryTest extends TestCase {
     $this->assertArrayHasKey('update', $element['bioland_media_library']);
     $this->assertSame('media_library.ui', $upload['#bioland_media_library_open']['#url']->getRouteName());
     $this->assertSame([['Core', 'processManagedFile'], ['Widget', 'process'], [BiolandHeroMediaLibrary::class, 'processPicker']], $upload['#process']);
+
+    // The moved link keeps its AJAX contract: it still opens the media
+    // library modal without a full page navigation.
+    $this->assertContains('use-ajax', $upload['#bioland_media_library_open']['#attributes']['class']);
+    $this->assertSame('modal', $upload['#bioland_media_library_open']['#attributes']['data-dialog-type']);
+    $this->assertContains('core/drupal.dialog.ajax', $upload['#bioland_media_library_open']['#attached']['library']);
   }
 
   /**
@@ -231,17 +237,61 @@ class BiolandHeroMediaLibraryTest extends TestCase {
   }
 
   /**
+   * With an AJAX-refresh messages element queued, both render in the slot.
+   *
+   * @covers ::preRenderPicker
+   */
+  public function testPreRenderAddsAjaxMessagesNextToTheLinkInTheImageBox(): void {
+    $open = ['#type' => 'link', '#title' => 'Choose from media library'];
+    $messages = ['#type' => 'status_messages'];
+    $element = BiolandHeroMediaLibrary::preRenderPicker([
+      '#bioland_media_library_open' => $open,
+      '#bioland_media_library_messages' => $messages,
+      '#theme_wrappers' => ['form_element', 'details' => ['#title' => 'Image', '#description' => NULL]],
+    ]);
+
+    $this->assertSame(['open' => $open, 'messages' => $messages], $element['#theme_wrappers']['details']['#description']);
+  }
+
+  /**
    * Without the details wrapper the link renders as the first child.
    *
    * @covers ::preRenderPicker
-   * @covers ::trustedCallbacks
    */
-  public function testPreRenderFallsBackToAFirstChildAndIsTrusted(): void {
+  public function testPreRenderFallsBackToAFirstChild(): void {
     $open = ['#type' => 'link'];
     $element = BiolandHeroMediaLibrary::preRenderPicker(['#bioland_media_library_open' => $open, '#theme_wrappers' => ['form_element']]);
 
     $this->assertSame(-100, $element['bioland_media_library_open']['#weight']);
     $this->assertSame(['form_element'], $element['#theme_wrappers']);
+  }
+
+  /**
+   * In the fallback, queued AJAX messages become a child right after the link.
+   *
+   * @covers ::preRenderPicker
+   */
+  public function testPreRenderFallbackAddsAjaxMessagesAfterTheLink(): void {
+    $open = ['#type' => 'link'];
+    $messages = ['#type' => 'status_messages'];
+    $element = BiolandHeroMediaLibrary::preRenderPicker([
+      '#bioland_media_library_open' => $open,
+      '#bioland_media_library_messages' => $messages,
+      '#theme_wrappers' => ['form_element'],
+    ]);
+
+    $this->assertSame(-100, $element['bioland_media_library_open']['#weight']);
+    $this->assertSame(-99, $element['bioland_media_library_messages']['#weight']);
+    $this->assertSame('status_messages', $element['bioland_media_library_messages']['#type']);
+  }
+
+  /**
+   * Without a queued link, preRenderPicker() is a no-op.
+   *
+   * @covers ::preRenderPicker
+   * @covers ::trustedCallbacks
+   */
+  public function testPreRenderIsANoOpWithoutTheLinkAndIsTrusted(): void {
     $this->assertSame(['x' => 1], BiolandHeroMediaLibrary::preRenderPicker(['x' => 1]));
     $this->assertContains('preRenderPicker', BiolandHeroMediaLibrary::trustedCallbacks());
   }
@@ -452,6 +502,48 @@ class BiolandHeroMediaLibraryTest extends TestCase {
     $this->assertSame($input, $form_state->getUserInput());
     $this->assertSame([], $form_state->getStorage());
     $this->assertTrue($form_state->isRebuilding());
+  }
+
+  /**
+   * With the link on the upload element, the messages join it there too.
+   *
+   * @covers ::ajaxRefresh
+   */
+  public function testAjaxRefreshAttachesMessagesToTheUploadElementWithTheLink(): void {
+    $open = ['#type' => 'link'];
+    $form = [
+      'field_media_image' => [
+        'widget' => [0 => ['#bioland_media_library_open' => $open]],
+        'bioland_media_library' => ['update' => ['#array_parents' => ['field_media_image', 'bioland_media_library', 'update']]],
+      ],
+    ];
+    $form_state = new HeroFormState($form['field_media_image']['bioland_media_library']['update'], []);
+
+    $element = BiolandHeroMediaLibrary::ajaxRefresh($form, $form_state);
+
+    $this->assertSame('status_messages', $element['widget'][0]['#bioland_media_library_messages']['#type']);
+    $this->assertArrayNotHasKey('messages', $element['bioland_media_library']);
+  }
+
+  /**
+   * Without the link on the upload element, the messages stay in the
+   * container below the image box, as before.
+   *
+   * @covers ::ajaxRefresh
+   */
+  public function testAjaxRefreshKeepsMessagesInTheContainerWithoutTheLink(): void {
+    $form = [
+      'field_media_image' => [
+        'widget' => ['#field_parents' => []],
+        'bioland_media_library' => ['update' => ['#array_parents' => ['field_media_image', 'bioland_media_library', 'update']]],
+      ],
+    ];
+    $form_state = new HeroFormState($form['field_media_image']['bioland_media_library']['update'], []);
+
+    $element = BiolandHeroMediaLibrary::ajaxRefresh($form, $form_state);
+
+    $this->assertSame('status_messages', $element['bioland_media_library']['messages']['#type']);
+    $this->assertSame(-10, $element['bioland_media_library']['messages']['#weight']);
   }
 
   /**
