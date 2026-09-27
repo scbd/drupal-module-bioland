@@ -13,6 +13,11 @@ const REQUIREMENT_ERROR = 2;
 // facade instantiates it.
 require dirname(__DIR__, 2) . '/src/Service/BiolandDmsmConfigService.php';
 
+// The wrapper-version requirements hook (BL-1189) runs on every phase this
+// facade exercises; BiolandWrapperVersion is a pure PHP class, so it loads
+// standalone the same way.
+require dirname(__DIR__, 2) . '/src/BiolandWrapperVersion.php';
+
 class Drupal
 {
 
