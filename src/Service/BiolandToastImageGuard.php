@@ -27,9 +27,24 @@ final class BiolandToastImageGuard {
   public const MAX_DIMENSION = 10000;
 
   /**
+   * Largest accepted image area, in pixels (25 MP).
+   */
+  public const MAX_PIXELS = 25000000;
+
+  /**
    * Largest accepted decoded payload, in bytes.
    */
   public const MAX_BYTES = 20 * 1024 * 1024;
+
+  /**
+   * GD image type flag for each MIME type.
+   */
+  private const GD_TYPES = [
+    'image/jpeg' => 'IMG_JPG',
+    'image/png' => 'IMG_PNG',
+    'image/gif' => 'IMG_GIF',
+    'image/webp' => 'IMG_WEBP',
+  ];
 
   /**
    * Allowed image MIME types.
@@ -116,8 +131,61 @@ final class BiolandToastImageGuard {
     if ($info[0] > self::MAX_DIMENSION || $info[1] > self::MAX_DIMENSION) {
       return 'image is larger than ' . self::MAX_DIMENSION . ' pixels on a side';
     }
+    // The header is all that has been read so far. A tiny, highly compressed
+    // file can still claim a huge canvas, so bound the decode before GD
+    // allocates it.
+    if ($info[0] * $info[1] > self::MAX_PIXELS) {
+      return 'image is larger than ' . (self::MAX_PIXELS / 1000000) . ' megapixels';
+    }
+
+    $target = self::EXTENSION_MIME[$extension];
+    if (!self::gdSupports($mime) || !self::gdSupports($target)) {
+      return 'this server cannot convert ' . $mime . ' to ' . $target;
+    }
+    if (!self::fitsInMemory($info[0] * $info[1], $target === 'image/jpeg')) {
+      return 'image is too large for the server memory';
+    }
 
     return NULL;
+  }
+
+  /**
+   * Whether GD can read and write a MIME type on this server.
+   */
+  private static function gdSupports(string $mime): bool {
+    return function_exists('imagetypes') && isset(self::GD_TYPES[$mime])
+      && (imagetypes() & constant(self::GD_TYPES[$mime]));
+  }
+
+  /**
+   * Whether decoding (and, for JPEG, flattening) fits in free memory.
+   *
+   * GD holds about 5 bytes per pixel for a truecolor image; the JPEG path
+   * keeps a second copy while it flattens alpha onto white.
+   */
+  private static function fitsInMemory(int $pixels, bool $flatten): bool {
+    $limit = self::bytes((string) ini_get('memory_limit'));
+    if ($limit <= 0) {
+      return TRUE;
+    }
+    return $pixels * 5 * ($flatten ? 2 : 1) < ($limit - memory_get_usage(TRUE));
+  }
+
+  /**
+   * Converts a php.ini size ('256M') to bytes; -1 means unlimited.
+   */
+  private static function bytes(string $value): int {
+    $value = trim($value);
+    if ($value === '' || $value === '-1') {
+      return -1;
+    }
+    $number = (int) $value;
+    return match (strtolower(substr($value, -1))) {
+      'g' => $number * 1024 ** 3,
+      'm' => $number * 1024 ** 2,
+      'k' => $number * 1024,
+      default => $number,
+    };
   }
 
   /**
@@ -152,6 +220,7 @@ final class BiolandToastImageGuard {
       $flat = imagecreatetruecolor(imagesx($image), imagesy($image));
       imagefill($flat, 0, 0, imagecolorallocate($flat, 255, 255, 255));
       imagecopy($flat, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+      imagedestroy($image);
       $image = $flat;
     }
     elseif ($mime !== 'image/gif') {
@@ -160,13 +229,18 @@ final class BiolandToastImageGuard {
     }
 
     ob_start();
-    $ok = match ($mime) {
-      'image/jpeg' => imagejpeg($image, NULL, 90),
-      'image/png' => imagepng($image),
-      'image/gif' => imagegif($image),
-      'image/webp' => imagewebp($image, NULL, 90),
-    };
-    $encoded = ob_get_clean();
+    try {
+      $ok = match ($mime) {
+        'image/jpeg' => imagejpeg($image, NULL, 90),
+        'image/png' => imagepng($image),
+        'image/gif' => imagegif($image),
+        'image/webp' => imagewebp($image, NULL, 90),
+      };
+    }
+    finally {
+      $encoded = ob_get_clean();
+      imagedestroy($image);
+    }
 
     return $ok && $encoded !== '' ? 'data:' . $mime . ';base64,' . base64_encode($encoded) : NULL;
   }
@@ -182,14 +256,20 @@ final class BiolandToastImageGuard {
    *   The current request's POST bag (the same object the module reads).
    * @param string $extension
    *   Extension of the media file being replaced.
+   * @param bool $allowed
+   *   Whether the current user may edit this image (toast_image_editor's own
+   *   permission and media update access). When FALSE every payload is
+   *   removed without being decoded.
    *
    * @return string[]
    *   Reasons for each removed payload, keyed by request key.
    */
-  public static function sanitize(object $post, string $extension): array {
+  public static function sanitize(object $post, string $extension, bool $allowed): array {
     $dropped = [];
     foreach (self::payloads($post->all()) as $key => $payload) {
-      $reason = self::validate($payload, $extension);
+      // toast_image_editor would refuse this user anyway; never decode a
+      // payload they cannot save.
+      $reason = $allowed ? self::validate($payload, $extension) : 'no permission to edit this image';
       $reencoded = $reason === NULL ? self::reencode($payload, $extension) : NULL;
       if ($reencoded === NULL) {
         $post->remove($key);

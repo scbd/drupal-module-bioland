@@ -128,6 +128,9 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
 
     $presave = $this->functionBody($module, 'bioland_media_presave');
     $this->assertStringContainsString('BiolandToastImageGuard::sanitize(\\Drupal::request()->request', $presave);
+    // Permission is checked before any payload is decoded.
+    $this->assertStringContainsString("hasPermission('use toast image editor')", $presave);
+    $this->assertStringContainsString("\$media->access('update', \$user)", $presave);
   }
 
   /**

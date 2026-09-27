@@ -929,7 +929,9 @@ function bioland_media_presave(EntityInterface $media) {
     return;
   }
 
-  $dropped = BiolandToastImageGuard::sanitize(\Drupal::request()->request, _bioland_media_source_extension($media));
+  $user = \Drupal::currentUser();
+  $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
+  $dropped = BiolandToastImageGuard::sanitize(\Drupal::request()->request, _bioland_media_source_extension($media), $allowed);
   foreach ($dropped as $reason) {
     \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
       '@id' => $media->id(),

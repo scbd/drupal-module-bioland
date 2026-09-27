@@ -56,7 +56,12 @@ class BiolandToastImageGuardTest extends TestCase {
     $huge = base64_decode(self::PNG);
     $huge = substr($huge, 0, 16) . pack('NN', 60000, 60000) . substr($huge, 24);
 
+    // A 6000 x 5000 canvas: under the per-side cap, over 25 MP.
+    $wide = base64_decode(self::PNG);
+    $wide = substr($wide, 0, 16) . pack('NN', 6000, 5000) . substr($wide, 24);
+
     return [
+      'over 25 megapixels' => ['data:image/png;base64,' . base64_encode($wide), 'png', 'megapixels'],
       'non-image bytes' => ['data:image/png;base64,' . base64_encode('<?php echo 1;'), 'png', 'not an image'],
       'bad base64' => ['data:image/png;base64,%%%', 'png', 'invalid base64'],
       'empty body' => ['data:image/png;base64,', 'png', 'invalid base64'],
@@ -101,7 +106,7 @@ class BiolandToastImageGuardTest extends TestCase {
       'title' => 'kept',
     ]);
 
-    $dropped = BiolandToastImageGuard::sanitize($post, 'jpg');
+    $dropped = BiolandToastImageGuard::sanitize($post, 'jpg', TRUE);
 
     $this->assertSame(['x_toast_image_editor_data' => 'data is not an image'], $dropped);
     $this->assertFalse($post->has('x_toast_image_editor_data'));
@@ -127,6 +132,36 @@ class BiolandToastImageGuardTest extends TestCase {
       ['toast_image_editor_data', 'x_toast_image_editor_data', 'toast_image_editor_data_2'],
       array_keys(BiolandToastImageGuard::payloads($input))
     );
+  }
+
+  /**
+   * A user who cannot edit the image never gets a payload decoded.
+   */
+  public function testSanitizeDropsEveryPayloadWithoutPermission(): void {
+    $post = new ParameterBag(['toast_image_editor_data' => self::png(), 'title' => 'kept']);
+
+    $dropped = BiolandToastImageGuard::sanitize($post, 'png', FALSE);
+
+    $this->assertSame(['toast_image_editor_data' => 'no permission to edit this image'], $dropped);
+    $this->assertSame(['title' => 'kept'], $post->all());
+  }
+
+  /**
+   * A decode that would not fit in free memory is refused before GD runs.
+   */
+  public function testRejectsDecodeLargerThanFreeMemory(): void {
+    $previous = ini_get('memory_limit');
+    ini_set('memory_limit', (string) (memory_get_usage(TRUE) + 1024 * 1024));
+    try {
+      // 4000 x 4000 = 16 MP, about 80 MB decoded: within the caps, over 1 MB free.
+      $png = base64_decode(self::PNG);
+      $png = substr($png, 0, 16) . pack('NN', 4000, 4000) . substr($png, 24);
+      $reason = BiolandToastImageGuard::validate('data:image/png;base64,' . base64_encode($png), 'png');
+    }
+    finally {
+      ini_set('memory_limit', $previous);
+    }
+    $this->assertSame('image is too large for the server memory', $reason);
   }
 
 }
