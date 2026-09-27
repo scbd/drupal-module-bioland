@@ -21,3 +21,5 @@ dependencies:
   - drupal:linkit
   - drupal:jsonapi_extras
   - menu_link_attributes:menu_link_attributes
+  # BL-1191: composer require convertapi/convertapi-php --with-all-dependencies
+  # (PHP library, not a Drupal module - checked in bioland_requirements()).
