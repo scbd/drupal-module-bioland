@@ -308,4 +308,35 @@ class BiolandDocumentPreviewServiceTest extends TestCase
 
         $this->assertCount(1, $service->convertCalls);
     }
+
+    /**
+     * If the Image field held a module preview at enqueue time (recorded in
+     * the queue payload) and is empty at process() time, an editor
+     * deliberately cleared it: process() must skip, never overwrite it.
+     *
+     * @covers ::process
+     */
+    public function testProcessSkipsWhenModuleImageWasExplicitlyCleared(): void
+    {
+        $service = $this->buildService([], 'public://2026-09/report.pdf', false, null);
+
+        $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf', 'hadModuleImage' => true]);
+
+        $this->assertCount(0, $service->convertCalls, 'No ConvertAPI call should be made once a module image was deliberately cleared.');
+    }
+
+    /**
+     * If the Image field was empty at enqueue time (no 'hadModuleImage' flag)
+     * and is still empty at process() time, process() proceeds normally.
+     *
+     * @covers ::process
+     */
+    public function testProcessProceedsWhenImageWasNeverSet(): void
+    {
+        $service = $this->buildService([new Result(new ResultFile('BYTES'), 1)], 'public://2026-09/report.pdf', true, null);
+
+        $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+
+        $this->assertCount(1, $service->convertCalls);
+    }
 }

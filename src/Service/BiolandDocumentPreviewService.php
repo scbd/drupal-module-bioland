@@ -101,6 +101,9 @@ class BiolandDocumentPreviewService
 
         $this->queueFactory->get(self::QUEUE_ID)->createItem([
             'mid' => (int) $entity->id(), 'fid' => (int) $documentFid, 'extension' => $extension,
+            // $imageFid is null or module-owned here (editor-owned returns above);
+            // non-null means this media already had a module preview at enqueue time.
+            'hadModuleImage' => $imageFid !== null,
         ]);
     }
 
@@ -133,6 +136,13 @@ class BiolandDocumentPreviewService
             // An editor set their own image after this item was enqueued (cron
             // can drain up to 60s later): never overwrite it.
             $this->logger->info('Document preview: media @mid now has an editor-chosen image; skipping.', ['@mid' => $mid]);
+            return;
+        }
+        if ($currentImageFid === null && !empty($item['hadModuleImage'])) {
+            // The field held a module preview at enqueue time and is empty now:
+            // an editor deliberately cleared it. Only this module ever writes a
+            // file here, so a null field can't otherwise appear once populated.
+            $this->logger->info('Document preview: media @mid image was explicitly cleared; skipping.', ['@mid' => $mid]);
             return;
         }
 
