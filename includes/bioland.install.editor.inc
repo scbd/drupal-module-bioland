@@ -481,14 +481,14 @@ function _bioland_configure_full_html_editor_toolbar() {
 }
 
 /**
- * Contrib editor modules Bioland enables when the codebase provides them.
+ * Contrib modules Bioland enables when the codebase provides them (BL-917).
  *
- * All four ship in the drupal-docker-wrapper image from 11.4.7-v7 (BL-917).
+ * All four ship in the drupal-docker-wrapper image from 11.4.7-v7.
  *
  * @return string[]
  *   Module machine names.
  */
-function _bioland_editor_contrib_modules() {
+function _bioland_contrib_feature_modules() {
   return [
     'toast_image_editor',
     'llms_txt',
@@ -498,48 +498,64 @@ function _bioland_editor_contrib_modules() {
 }
 
 /**
- * Enable the editor contrib modules that are present but not yet enabled.
+ * Enable the contrib feature modules that are present but not yet enabled.
  *
  * Already-enabled modules are left alone, so this is safe to run more than
  * once. A module missing from the codebase (an image older than
- * drupal-docker-wrapper 11.4.7-v7) is skipped and reported rather than
- * failing the run; enable it by hand once the image is updated.
+ * drupal-docker-wrapper 11.4.7-v7), or one whose install throws (for example
+ * a missing dependency), is skipped, logged and reported rather than failing
+ * the run. bioland_requirements() keeps flagging it on the status report
+ * until someone enables it by hand.
  *
  * @return string
  *   Plain-text summary. Not t(): translation is not dependable mid-update.
  */
-function _bioland_enable_editor_contrib_modules() {
+function _bioland_enable_contrib_feature_modules() {
   $module_handler = \Drupal::moduleHandler();
-  $module_list = \Drupal::service('extension.list.module');
+  // reset() first: the cached list can predate the image that added these
+  // modules (updb before cache rebuild), which would skip them for good.
+  $module_list = \Drupal::service('extension.list.module')->reset();
+  $installer = \Drupal::service('module_installer');
+  $logger = \Drupal::logger('bioland');
 
+  $installed = [];
   $enabled = [];
   $missing = [];
-  $to_install = [];
-  foreach (_bioland_editor_contrib_modules() as $module) {
+  $failed = [];
+  foreach (_bioland_contrib_feature_modules() as $module) {
     if ($module_handler->moduleExists($module)) {
       $enabled[] = $module;
+      continue;
     }
-    elseif (!$module_list->exists($module)) {
+    if (!$module_list->exists($module)) {
       $missing[] = $module;
+      $logger->warning('Module @module is not in the codebase; skipped enabling it (needs drupal-docker-wrapper 11.4.7-v7 or higher).', ['@module' => $module]);
+      continue;
     }
-    else {
-      $to_install[] = $module;
+    // One module per call: install() resolves every listed module's
+    // dependencies up front, so one bad module would block all of them.
+    try {
+      $installer->install([$module]);
+      $installed[] = $module;
     }
-  }
-
-  if ($to_install) {
-    \Drupal::service('module_installer')->install($to_install);
+    catch (\Exception $e) {
+      $failed[] = $module . ' (' . $e->getMessage() . ')';
+      $logger->warning('Could not enable @module: @message', ['@module' => $module, '@message' => $e->getMessage()]);
+    }
   }
 
   $messages = [];
-  if ($to_install) {
-    $messages[] = 'Enabled: ' . implode(', ', $to_install) . '.';
+  if ($installed) {
+    $messages[] = 'Enabled: ' . implode(', ', $installed) . '.';
   }
   if ($enabled) {
     $messages[] = 'Already enabled: ' . implode(', ', $enabled) . '.';
   }
   if ($missing) {
     $messages[] = 'Not in the codebase, skipped (needs drupal-docker-wrapper 11.4.7-v7 or higher): ' . implode(', ', $missing) . '.';
+  }
+  if ($failed) {
+    $messages[] = 'Failed to enable, skipped: ' . implode('; ', $failed) . '.';
   }
 
   return implode(' ', $messages);
@@ -620,11 +636,15 @@ function bioland_update_9038() {
 /**
  * Enable the toast_image_editor, llms_txt and CKEditor 5 contrib modules.
  *
- * BL-917. See _bioland_enable_editor_contrib_modules() for the skip rules.
+ * BL-917. See _bioland_enable_contrib_feature_modules() for the skip rules.
  *
- * Numbered 9089, above every in-flight hook on the COP-17 integration branch,
- * so no pending lower-numbered hook is skipped once this one has run. As the
- * highest-numbered hook it is the last writer for every site, so per
+ * Numbered 9089 because the COP-17 integration branch (bsl-cop-17-dev)
+ * already carries 9084-9088 from sibling PRs (BL-815, BL-836, BL-841).
+ * MERGE ORDER: land this after those siblings reach the same branch. Drupal
+ * only runs hooks above a site's stored schema, so a site that records 9089
+ * first would never run a later-merged 9084-9088.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
  * API config.
  *
@@ -632,7 +652,7 @@ function bioland_update_9038() {
  */
 function bioland_update_9089() {
   $messages = [];
-  $messages[] = _bioland_enable_editor_contrib_modules();
+  $messages[] = _bioland_enable_contrib_feature_modules();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();

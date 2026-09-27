@@ -5,7 +5,7 @@ namespace Drupal\Tests\bioland\Unit;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Guards the BL-917 editor contrib module enablement.
+ * Guards the BL-917 contrib feature module enablement.
  *
  * Source-level checks, in the style of SearchApiConvergenceHookTest: the
  * update hook and hook_install() both route through one helper, the helper
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * @group bioland
  * @coversNothing
  */
-class BiolandEditorContribModulesHookTest extends TestCase {
+class BiolandContribFeatureModulesHookTest extends TestCase {
 
   /**
    * Reads a module file relative to the module root.
@@ -43,7 +43,7 @@ class BiolandEditorContribModulesHookTest extends TestCase {
    * The helper lists exactly the four BL-917 modules.
    */
   public function testModuleListIsExact(): void {
-    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_editor_contrib_modules');
+    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_contrib_feature_modules');
     preg_match_all("/'([a-z0-9_]+)'/", $body, $m);
     $this->assertSame(
       ['toast_image_editor', 'llms_txt', 'ckeditor5_fullscreen', 'ckeditor5_icons'],
@@ -55,10 +55,23 @@ class BiolandEditorContribModulesHookTest extends TestCase {
    * The helper skips enabled and absent modules and installs the rest.
    */
   public function testHelperOnlyInstallsPresentDisabledModules(): void {
-    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_enable_editor_contrib_modules');
+    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_enable_contrib_feature_modules');
     $this->assertStringContainsString('->moduleExists($module)', $body);
-    $this->assertStringContainsString('->exists($module)', $body);
-    $this->assertMatchesRegularExpression('/if \(\$to_install\) \{\s*\\\\Drupal::service\(\'module_installer\'\)->install\(\$to_install\);/', $body);
+
+    // The module list is reset before the presence check, so a cache built
+    // on an older image cannot mark present modules missing.
+    $reset = strpos($body, "->reset()");
+    $exists = strpos($body, '->exists($module)');
+    $this->assertIsInt($reset, 'The module list must be reset before checking presence.');
+    $this->assertIsInt($exists);
+    $this->assertLessThan($exists, $reset);
+
+    // One module per install() call, each guarded, so one bad module
+    // cannot block the others or fail the run.
+    $this->assertMatchesRegularExpression('/try \{\s*\$installer->install\(\[\$module\]\);/', $body);
+    $this->assertStringContainsString('catch (\\Exception $e)', $body);
+    $this->assertStringContainsString("\\Drupal::logger('bioland')", $body);
+
     $this->assertDoesNotMatchRegularExpression('/\bt\(/', $body, 'Plain strings only: translation is not dependable mid-update.');
   }
 
@@ -67,10 +80,21 @@ class BiolandEditorContribModulesHookTest extends TestCase {
    */
   public function testUpdateHookAndInstallCallHelper(): void {
     $hook = $this->functionBody($this->read('includes/bioland.install.editor.inc'), 'bioland_update_9089');
-    $this->assertStringContainsString('_bioland_enable_editor_contrib_modules()', $hook);
+    $this->assertStringContainsString('_bioland_enable_contrib_feature_modules()', $hook);
 
+    // hook_install() skips it during a config sync, where the synced
+    // core.extension decides which modules are enabled.
     $install = $this->functionBody($this->read('bioland.install'), 'bioland_install');
-    $this->assertStringContainsString('_bioland_enable_editor_contrib_modules();', $install);
+    $this->assertMatchesRegularExpression('/if \(!\\\\Drupal::isConfigSyncing\(\)\) \{\s*_bioland_enable_contrib_feature_modules\(\);/', $install);
+  }
+
+  /**
+   * The status report keeps flagging modules the hook could not enable.
+   */
+  public function testRequirementsFlagDisabledModules(): void {
+    $body = $this->functionBody($this->read('bioland.install'), 'bioland_requirements');
+    $this->assertStringContainsString("\$requirements['bioland_contrib_feature_modules']", $body);
+    $this->assertStringContainsString('_bioland_contrib_feature_modules()', $body);
   }
 
 }

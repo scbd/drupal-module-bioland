@@ -13,6 +13,7 @@ $autoloader->addPsr4('Drupal\\', __DIR__ . '/stubs/Drupal/');
 $autoloader->addPsr4('Drupal\\Component\\', __DIR__ . '/stubs/Drupal/Component/');
 $autoloader->addPsr4('Symfony\\Component\\HttpFoundation\\', __DIR__ . '/stubs/Symfony/Component/HttpFoundation/');
 $autoloader->addPsr4('Symfony\\Component\\DependencyInjection\\', __DIR__ . '/stubs/Symfony/Component/DependencyInjection/');
+$autoloader->addPsr4('Symfony\\Component\\Routing\\', __DIR__ . '/stubs/Symfony/Component/Routing/');
 $autoloader->addPsr4('GuzzleHttp\\', __DIR__ . '/stubs/GuzzleHttp/');
 
 // Load the Drupal stub class.

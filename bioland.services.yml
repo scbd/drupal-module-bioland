@@ -50,3 +50,8 @@ services:
     arguments: ['@bioland.component_registry', '@bioland.component_menu_form_mode', '@redirect.destination']
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  bioland.route_subscriber:
+    class: Drupal\bioland\Routing\BiolandRouteSubscriber
+    tags:
+      - { name: event_subscriber }
