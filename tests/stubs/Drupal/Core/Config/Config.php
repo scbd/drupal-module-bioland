@@ -26,6 +26,23 @@ class Config extends ImmutableConfig {
   public $deleted = FALSE;
 
   /**
+   * Whether the config is not yet in active storage (see isNew()).
+   *
+   * @var bool
+   */
+  public $isNew = FALSE;
+
+  /**
+   * Mirrors StorableConfigBase::isNew().
+   *
+   * @return bool
+   *   TRUE when the config does not exist in active storage yet.
+   */
+  public function isNew() {
+    return $this->isNew;
+  }
+
+  /**
    * Sets a value using dot-notation nested keys.
    *
    * @param string $key
