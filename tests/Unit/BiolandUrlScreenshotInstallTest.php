@@ -49,7 +49,7 @@ class BiolandUrlScreenshotInstallTest extends TestCase {
     $content = file_get_contents($this->moduleRoot() . '/bioland.install');
 
     $this->assertStringContainsString('bioland_dep_convertapi', $content);
-    $this->assertStringContainsString("class_exists('\\\\ConvertApi\\\\ConvertApi\\\\ConvertApi')", $content);
+    $this->assertStringContainsString("class_exists('\\\\ConvertApi\\\\ConvertApi')", $content);
   }
 
   public function testUpdate9090ExistsThrowsAndConverges(): void {

@@ -143,10 +143,10 @@ class BiolandUrlScreenshotService implements DestructableInterface {
         $queue->deleteItem((object) ['item_id' => $row['id']]);
       }
       catch (\Throwable $e) {
-        // Never log $e->getMessage(): a ConvertApiException may embed request
+        // Never log $e->getMessage(): a \ConvertApi\Error\Api may embed request
         // details. Log only the exception class and, when available, the
         // HTTP status code it carries.
-        $status = method_exists($e, 'getHttpStatusCode') ? (int) $e->getHttpStatusCode() : 0;
+        $status = BiolandConvertApiClient::statusFromException($e);
         $this->loggerFactory->get('bioland')->warning(
           'Website screenshot failed for node @nid; left in the retry queue: @class (status @status)',
           ['@nid' => $row['item']['nid'] ?? '?', '@class' => get_class($e), '@status' => $status ?: 'n/a']
