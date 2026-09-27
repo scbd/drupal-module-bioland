@@ -187,6 +187,66 @@ class BiolandHeroMediaLibraryTest extends TestCase {
   }
 
   /**
+   * With the upload element present, the link moves into the image box.
+   *
+   * @covers ::alterWidget
+   */
+  public function testLinkMovesOntoTheUploadElementKeepingItsProcess(): void {
+    $element = ['widget' => ['#field_parents' => [], 0 => ['#process' => [['Core', 'processManagedFile'], ['Widget', 'process']]]]];
+    $this->service()->alterWidget($element, $this->context('hero'));
+
+    $upload = $element['widget'][0];
+    $this->assertArrayNotHasKey('open', $element['bioland_media_library']);
+    $this->assertArrayHasKey('update', $element['bioland_media_library']);
+    $this->assertSame('media_library.ui', $upload['#bioland_media_library_open']['#url']->getRouteName());
+    $this->assertSame([['Core', 'processManagedFile'], ['Widget', 'process'], [BiolandHeroMediaLibrary::class, 'processPicker']], $upload['#process']);
+  }
+
+  /**
+   * #process queues the pre-render after the defaults already merged in.
+   *
+   * @covers ::processPicker
+   */
+  public function testProcessAppendsPreRenderAfterTheThemeDefaults(): void {
+    $element = BiolandHeroMediaLibrary::processPicker(['#pre_render' => [['Core', 'preRenderManagedFile'], ['ClaroPreRender', 'managedFile']]]);
+
+    $this->assertSame([['Core', 'preRenderManagedFile'], ['ClaroPreRender', 'managedFile'], [BiolandHeroMediaLibrary::class, 'preRenderPicker']], $element['#pre_render']);
+  }
+
+  /**
+   * In Claro the link fills the image box's empty description slot.
+   *
+   * @covers ::preRenderPicker
+   */
+  public function testPreRenderPutsTheLinkUnderTheImageBoxTitle(): void {
+    $open = ['#type' => 'link', '#title' => 'Choose from media library'];
+    $element = BiolandHeroMediaLibrary::preRenderPicker([
+      '#bioland_media_library_open' => $open,
+      '#theme_wrappers' => ['form_element', 'details' => ['#title' => 'Image', '#description' => NULL]],
+    ]);
+
+    $this->assertSame($open, $element['#theme_wrappers']['details']['#description']);
+    $this->assertSame('Image', $element['#theme_wrappers']['details']['#title']);
+    $this->assertArrayNotHasKey('bioland_media_library_open', $element);
+  }
+
+  /**
+   * Without the details wrapper the link renders as the first child.
+   *
+   * @covers ::preRenderPicker
+   * @covers ::trustedCallbacks
+   */
+  public function testPreRenderFallsBackToAFirstChildAndIsTrusted(): void {
+    $open = ['#type' => 'link'];
+    $element = BiolandHeroMediaLibrary::preRenderPicker(['#bioland_media_library_open' => $open, '#theme_wrappers' => ['form_element']]);
+
+    $this->assertSame(-100, $element['bioland_media_library_open']['#weight']);
+    $this->assertSame(['form_element'], $element['#theme_wrappers']);
+    $this->assertSame(['x' => 1], BiolandHeroMediaLibrary::preRenderPicker(['x' => 1]));
+    $this->assertContains('preRenderPicker', BiolandHeroMediaLibrary::trustedCallbacks());
+  }
+
+  /**
    * The link's query survives the URL round trip with a valid hash.
    *
    * What MediaLibraryState::fromRequest() rebuilds from the query string must

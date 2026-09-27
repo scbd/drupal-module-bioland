@@ -8,6 +8,7 @@ use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Security\TrustedCallbackInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -17,8 +18,8 @@ use Drupal\media_library\MediaLibraryUiBuilder;
 /**
  * "Choose from media library" for the hero media image field (BL-807).
  *
- * Adds, beside the hero's field_media_image image widget, a link opening the
- * core Media Library modal (image media only, one slot) plus the hidden input
+ * Adds, at the top of the hero's field_media_image image box, a link opening
+ * the core Media Library modal (image media only, one slot) plus the hidden input
  * and hidden AJAX button BiolandHeroImageOpener fills and fires. The button
  * copies the chosen media's source file (and its alt and title text, where the
  * hero's are empty) into the widget state and rebuilds, so the preview updates
@@ -29,7 +30,7 @@ use Drupal\media_library\MediaLibraryUiBuilder;
  * bioland.module only calls alterWidget() when media_library is enabled, so
  * nothing here loads a media_library class on a site without it.
  */
-class BiolandHeroMediaLibrary {
+class BiolandHeroMediaLibrary implements TrustedCallbackInterface {
 
   use StringTranslationTrait;
 
@@ -120,22 +121,23 @@ class BiolandHeroMediaLibrary {
     }
     $state = MediaLibraryState::create(self::OPENER_ID, self::ALLOWED_TYPES, self::ALLOWED_TYPES[0], 1, $opener_parameters);
 
+    $open = [
+      '#type' => 'link',
+      '#title' => $this->t('Choose from media library'),
+      '#url' => Url::fromRoute('media_library.ui', [], ['query' => $state->all()]),
+      '#attributes' => [
+        'class' => ['use-ajax', 'button', 'button--small'],
+        'data-dialog-type' => 'modal',
+        'data-dialog-options' => Json::encode(MediaLibraryUiBuilder::dialogOptions()),
+      ],
+      '#attached' => ['library' => ['core/drupal.dialog.ajax']],
+    ];
+
     $element['#prefix'] = '<div id="' . $wrapper_id . '">' . ($element['#prefix'] ?? '');
     $element['#suffix'] = ($element['#suffix'] ?? '') . '</div>';
     $element['bioland_media_library'] = [
       '#type' => 'container',
       '#weight' => 10,
-      'open' => [
-        '#type' => 'link',
-        '#title' => $this->t('Choose from media library'),
-        '#url' => Url::fromRoute('media_library.ui', [], ['query' => $state->all()]),
-        '#attributes' => [
-          'class' => ['use-ajax', 'button', 'button--small'],
-          'data-dialog-type' => 'modal',
-          'data-dialog-options' => Json::encode(MediaLibraryUiBuilder::dialogOptions()),
-        ],
-        '#attached' => ['library' => ['core/drupal.dialog.ajax']],
-      ],
       'selection' => [
         '#type' => 'hidden',
         '#parents' => [$input_key, 'selection'],
@@ -155,6 +157,59 @@ class BiolandHeroMediaLibrary {
         '#bioland_input_key' => $input_key,
       ],
     ];
+
+    // The link goes inside the image box, under its title and above "Add a
+    // new file". Appending to the upload element's #process keeps its
+    // element-info #process and #pre_render defaults; without that element
+    // the link stays with the hidden controls.
+    if (isset($element['widget'][0]['#process'])) {
+      $element['widget'][0]['#bioland_media_library_open'] = $open;
+      $element['widget'][0]['#process'][] = [static::class, 'processPicker'];
+    }
+    else {
+      $element['bioland_media_library']['open'] = $open;
+    }
+  }
+
+  /**
+   * #process for the upload element: queue preRenderPicker() last.
+   *
+   * By now the element-info defaults are merged in, so appending runs after
+   * the admin theme's own pre-render (Claro's adds the image box there).
+   */
+  public static function processPicker(array $element): array {
+    $element['#pre_render'][] = [static::class, 'preRenderPicker'];
+
+    return $element;
+  }
+
+  /**
+   * #pre_render: put the link at the top of the image box.
+   *
+   * Claro wraps a single image widget in a details element at render time
+   * and leaves its description empty; that slot renders between the title
+   * and "Add a new file". Other themes get the link as the first child.
+   */
+  public static function preRenderPicker(array $element): array {
+    $open = $element['#bioland_media_library_open'] ?? NULL;
+    if (!$open) {
+      return $element;
+    }
+    if (isset($element['#theme_wrappers']['details'])) {
+      $element['#theme_wrappers']['details']['#description'] = $open;
+    }
+    else {
+      $element['bioland_media_library_open'] = $open + ['#weight' => -100];
+    }
+
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function trustedCallbacks() {
+    return ['preRenderPicker'];
   }
 
   /**
