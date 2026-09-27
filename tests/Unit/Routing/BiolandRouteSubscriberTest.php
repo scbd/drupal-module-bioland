@@ -50,7 +50,7 @@ class BiolandRouteSubscriberTest extends TestCase {
    * /llms.txt stays public unless settings.php turns it off.
    */
   public function testLlmsTxtFollowsSetting(): void {
-    foreach ([[NULL, NULL], [TRUE, NULL], [FALSE, 'FALSE']] as [$setting, $expected]) {
+    foreach ([[NULL, NULL], [TRUE, NULL], ['yes', NULL], ['maybe', NULL], [FALSE, 'FALSE'], [0, 'FALSE'], ['0', 'FALSE'], ['false', 'FALSE'], ['off', 'FALSE']] as [$setting, $expected]) {
       new Settings($setting === NULL ? [] : ['bioland_llms_txt_enabled' => $setting]);
       $collection = new RouteCollection();
       $collection->add('llms_txt.llms_txt', new Route('/llms.txt', [], ['_access' => 'TRUE']));

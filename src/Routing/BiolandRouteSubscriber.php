@@ -26,10 +26,12 @@ class BiolandRouteSubscriber extends RouteSubscriberBase {
     // llms_txt serves /llms.txt to anonymous visitors on every site, staging
     // included. An environment that should not publish it sets
     //   $settings['bioland_llms_txt_enabled'] = FALSE;
-    // in settings.php, then rebuilds caches (routes are compiled). Unset
-    // keeps the module's default, served (BL-917).
-    if (Settings::get('bioland_llms_txt_enabled', TRUE) === FALSE
-      && ($route = $collection->get('llms_txt.llms_txt'))) {
+    // in settings.php (0, '0', 'false' and 'off' also count), then rebuilds
+    // caches: routes are compiled, and the page cache holds the anonymous
+    // response. Purge any CDN copy too. Unset, or a value that is not a
+    // boolean, keeps the module's default: served (BL-917).
+    $enabled = filter_var(Settings::get('bioland_llms_txt_enabled', TRUE), FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
+    if ($enabled === FALSE && ($route = $collection->get('llms_txt.llms_txt'))) {
       $route->setRequirement('_access', 'FALSE');
     }
   }

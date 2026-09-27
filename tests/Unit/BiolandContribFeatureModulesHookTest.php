@@ -127,11 +127,23 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
     $this->assertStringContainsString('setErrorByName(', $validate);
 
     $presave = $this->functionBody($module, 'bioland_media_presave');
-    $this->assertStringContainsString('$post->remove($key)', $presave);
+    $this->assertStringContainsString('BiolandToastImageGuard::sanitize(\\Drupal::request()->request', $presave);
+  }
 
-    // bioland's presave must run before toast_image_editor's.
-    $order = $this->functionBody($module, 'bioland_module_implements_alter');
-    $this->assertMatchesRegularExpression("/\\\$hook === 'media_presave'.*\\['bioland' => \\\$implementations\\['bioland'\\]\\] \\+ \\\$implementations/s", $order);
+  /**
+   * bioland's media presave runs before toast_image_editor's.
+   */
+  public function testMediaPresaveRunsBeforeToastImageEditor(): void {
+    require_once dirname(__DIR__, 2) . '/bioland.module';
+
+    $implementations = ['media' => FALSE, 'toast_image_editor' => FALSE, 'bioland' => FALSE];
+    bioland_module_implements_alter($implementations, 'media_presave');
+    $this->assertSame(['bioland', 'media', 'toast_image_editor'], array_keys($implementations));
+
+    // form_alter still moves bioland last.
+    $implementations = ['bioland' => FALSE, 'toast_image_editor' => FALSE];
+    bioland_module_implements_alter($implementations, 'form_alter');
+    $this->assertSame(['toast_image_editor', 'bioland'], array_keys($implementations));
   }
 
 }

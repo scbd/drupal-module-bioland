@@ -883,10 +883,10 @@ function bioland_preprocess_html(&$variables) {
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for media_form.
  *
- * Rejects an edited toast_image_editor image that is not a real image of the
- * media file's own type (BL-917). Added unconditionally while the module is
- * on: its own form alter runs after this one, so its field is not in $form
- * yet.
+ * Rejects an edited toast_image_editor image that is not a real image of an
+ * allowed type and size (BL-917). Added whenever the module is on, without
+ * looking for its hidden field in $form, so the check never depends on the
+ * order the two form alters run in.
  */
 function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
@@ -919,32 +919,22 @@ function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $
 /**
  * Implements hook_ENTITY_TYPE_presave() for media.
  *
- * Backstop for saves that skip the media form validation: removes an
- * invalid toast_image_editor payload from the current request before
- * toast_image_editor_media_presave() reads it (ordering is pinned in
- * bioland_module_implements_alter()).
+ * Runs before toast_image_editor_media_presave() (ordering is pinned in
+ * bioland_module_implements_alter()) on the same request object it reads.
+ * Removes an invalid payload, which also covers saves that skip the media
+ * form validation, and re-encodes a valid one to the media file's format.
  */
 function bioland_media_presave(EntityInterface $media) {
   if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
     return;
   }
 
-  $post = \Drupal::request()->request;
-  $payloads = BiolandToastImageGuard::payloads($post->all());
-  if (!$payloads) {
-    return;
-  }
-
-  $extension = _bioland_media_source_extension($media);
-  foreach ($payloads as $key => $payload) {
-    $reason = BiolandToastImageGuard::validate($payload, $extension);
-    if ($reason !== NULL) {
-      $post->remove($key);
-      \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
-        '@id' => $media->id(),
-        '@reason' => $reason,
-      ]);
-    }
+  $dropped = BiolandToastImageGuard::sanitize(\Drupal::request()->request, _bioland_media_source_extension($media));
+  foreach ($dropped as $reason) {
+    \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
+      '@id' => $media->id(),
+      '@reason' => $reason,
+    ]);
   }
 }
 
