@@ -49,4 +49,16 @@ class BiolandConvertApiClientTest extends TestCase {
     ];
   }
 
+  public function testStatusFromExceptionReadsConvertApiErrorCode(): void {
+    $e = new \ConvertApi\Error\Api('rate limited', 429);
+
+    $this->assertSame(429, BiolandConvertApiClient::statusFromException($e));
+  }
+
+  public function testStatusFromExceptionIgnoresOtherThrowables(): void {
+    $e = new \RuntimeException('unrelated failure', 500);
+
+    $this->assertSame(0, BiolandConvertApiClient::statusFromException($e));
+  }
+
 }

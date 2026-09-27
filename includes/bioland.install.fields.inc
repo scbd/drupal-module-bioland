@@ -574,7 +574,7 @@ function _bioland_install_website_image_field() {
  * deliberately 9090, not the next-plus-one from the recount.
  */
 function bioland_update_9090() {
-  if (!class_exists('\\ConvertApi\\ConvertApi\\ConvertApi')) {
+  if (!class_exists('\\ConvertApi\\ConvertApi')) {
     throw new \Drupal\Core\Utility\UpdateException('convertapi/convertapi-php is not installed; run composer require convertapi/convertapi-php --with-all-dependencies');
   }
 

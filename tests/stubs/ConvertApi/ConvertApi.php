@@ -6,10 +6,10 @@ namespace ConvertApi;
  * Minimal stub of convertapi/convertapi-php's ConvertApi for unit tests.
  *
  * Real signature confirmed against ConvertAPI/convertapi-php@master
- * (lib/ConvertApi/ConvertApi.php) on 2026-09-27. BiolandDocumentPreviewService
- * always overrides its own protected convert() in tests, so this stub is
- * never actually invoked for HTTP - it exists only so class_exists() and the
- * static property assignments resolve.
+ * (lib/ConvertApi/ConvertApi.php) on 2026-09-27. Both BiolandDocumentPreviewService
+ * and BiolandUrlScreenshotService always override or mock the adapter in
+ * tests, so this stub is never actually invoked for HTTP - it exists only so
+ * class_exists() and the static property assignments resolve.
  */
 class ConvertApi
 {
@@ -25,6 +25,6 @@ class ConvertApi
 
     public static function convert($toFormat, $params, $fromFormat = null)
     {
-        throw new \LogicException('ConvertApi::convert() stub must not be called directly in tests; override convert() instead.');
+        throw new \LogicException('ConvertApi::convert() stub must not be called directly in tests; override convert() or mock the adapter instead.');
     }
 }

@@ -70,19 +70,11 @@ class BiolandUrlScreenshotWorkerTest extends TestCase {
   }
 
   protected function transientException(): \Exception {
-    return new class('transient') extends \Exception {
-      public function getHttpStatusCode(): int {
-        return 503;
-      }
-    };
+    return new \ConvertApi\Error\Api('transient', 503);
   }
 
   protected function permanentException(): \Exception {
-    return new class('permanent') extends \Exception {
-      public function getHttpStatusCode(): int {
-        return 400;
-      }
-    };
+    return new \ConvertApi\Error\Api('permanent', 400);
   }
 
 }

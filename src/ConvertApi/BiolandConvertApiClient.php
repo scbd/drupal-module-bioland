@@ -2,10 +2,11 @@
 
 namespace Drupal\bioland\ConvertApi;
 
-use ConvertApi\ConvertApi\ConvertApi;
+use ConvertApi\ConvertApi;
+use ConvertApi\Error\Api as ConvertApiError;
 
 /**
- * Thin adapter over the ConvertApi\ConvertApi\ConvertApi static SDK client.
+ * Thin adapter over the ConvertApi\ConvertApi static SDK client.
  *
  * The static SDK is touched in this file only, so BiolandUrlScreenshotService
  * can be unit tested with a mock of this class instead of the SDK itself.
@@ -18,6 +19,14 @@ use ConvertApi\ConvertApi\ConvertApi;
  * ViewportWidth/ViewportHeight parameter, and no "full page" toggle - the
  * rendered image is exactly the requested width/height, i.e. the first
  * screen only, which is what this ticket needs).
+ *
+ * SDK class names confirmed against ConvertAPI/convertapi-php@master on
+ * 2026-09-27: the client is \ConvertApi\ConvertApi (not the three-segment
+ * \ConvertApi\ConvertApi\ConvertApi the ticket text originally named), and
+ * HTTP-carrying errors are \ConvertApi\Error\Api, which extends
+ * \ConvertApi\Error\Base (itself a bare extension of \Exception) - so the
+ * status code it carries is exposed via the inherited getCode(), not a
+ * bespoke accessor.
  */
 class BiolandConvertApiClient {
 
@@ -71,7 +80,7 @@ class BiolandConvertApiClient {
   }
 
   /**
-   * Classifies a ConvertApiException's HTTP status.
+   * Classifies a \ConvertApi\Error\Api HTTP status.
    *
    * @return string
    *   One of 'transient' (429, 5xx - the worker retries up to its bounded
@@ -82,6 +91,18 @@ class BiolandConvertApiClient {
     return \Drupal\bioland\BiolandUrlScreenshotPolicy::classifyResponse($statusCode) === 'success'
       ? 'permanent'
       : \Drupal\bioland\BiolandUrlScreenshotPolicy::classifyResponse($statusCode);
+  }
+
+  /**
+   * Extracts the HTTP status code carried by a ConvertAPI SDK exception.
+   *
+   * \ConvertApi\Error\Api (extends \ConvertApi\Error\Base extends
+   * \Exception) carries no bespoke status accessor - the status is the
+   * inherited Exception::getCode(). Anything else (a bug, a network-layer
+   * throwable) yields 0, which callers treat as non-classifiable.
+   */
+  public static function statusFromException(\Throwable $e): int {
+    return $e instanceof ConvertApiError ? (int) $e->getCode() : 0;
   }
 
   /**

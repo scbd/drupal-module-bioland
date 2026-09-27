@@ -3,6 +3,7 @@
 namespace Drupal\bioland\Plugin\QueueWorker;
 
 use Drupal\bioland\BiolandUrlScreenshotPolicy;
+use Drupal\bioland\ConvertApi\BiolandConvertApiClient;
 use Drupal\bioland\Service\BiolandUrlScreenshotService;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
@@ -70,10 +71,10 @@ class BiolandUrlScreenshotWorker extends QueueWorkerBase implements ContainerFac
       $this->state->delete($stateKey);
     }
     catch (\Throwable $e) {
-      // A ConvertApiException carries an HTTP status; classify it. Anything
+      // A \ConvertApi\Error\Api carries an HTTP status; classify it. Anything
       // else (a bug, a missing dependency) is treated as permanent so it
       // never retries silently forever.
-      $status = method_exists($e, 'getHttpStatusCode') ? (int) $e->getHttpStatusCode() : 0;
+      $status = BiolandConvertApiClient::statusFromException($e);
       $classification = $status > 0 ? BiolandUrlScreenshotPolicy::classifyResponse($status) : 'permanent';
 
       if ($classification !== 'transient') {
@@ -89,7 +90,7 @@ class BiolandUrlScreenshotWorker extends QueueWorkerBase implements ContainerFac
       }
 
       $this->state->set($stateKey, $attempts);
-      // Never interpolate $e->getMessage(): a ConvertApiException may embed
+      // Never interpolate $e->getMessage(): a \ConvertApi\Error\Api may embed
       // request details. Log only the exception class and HTTP status.
       throw new RequeueException(sprintf(
         'Transient website screenshot failure for node %s (attempt %d of %d); requeued: %s (status %d)',
