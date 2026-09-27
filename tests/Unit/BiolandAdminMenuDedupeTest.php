@@ -171,14 +171,31 @@ class BiolandAdminMenuDedupeTest extends TestCase {
   }
 
   /**
-   * The Content link helper must not create a second copy (BL-836 guard).
+   * Every "Content" -> /node/add/content copy under "Add" is retired.
    */
-  public function testContentLinkHelperChecksForExistingLink(): void {
+  public function testRetiredAddLinkIdsReturnsEveryContentCopyUnderAdd(): void {
+    $links = [
+      $this->link(136, 'Content (pages)', 'internal:/admin/content', self::PUBLISHING),
+      $this->link(90, 'Content', 'internal:/node/add/content', self::PUBLISHING),
+      $this->link(245, 'Content', 'internal:/node/add/content', self::ADD, FALSE),
+      $this->link(170, " Content\t", 'internal:/node/add/content', self::ADD),
+      $this->link(171, 'Content', 'internal:/node/add/page', self::ADD),
+    ];
+
+    $this->assertSame([170, 245], BiolandAdminMenuDedupe::retiredAddLinkIds($links));
+    $this->assertSame([], BiolandAdminMenuDedupe::retiredAddLinkIds([]));
+  }
+
+  /**
+   * The retired Content link helper must never create a link (BL-836).
+   */
+  public function testContentLinkHelperNoLongerCreatesALink(): void {
     $source = file_get_contents(dirname(__DIR__, 2) . '/includes/bioland.install.menu.inc');
-    $this->assertMatchesRegularExpression(
-      '/function\s+_bioland_create_content_menu_link\s*\(\s*\)\s*\{(?:(?!\nfunction\s).)*loadByProperties\(\s*\[\s*\'title\'\s*=>\s*\'Content\'.*?\'link__uri\'\s*=>\s*\'internal:\/node\/add\/content\'(?:(?!\nfunction\s).)*if\s*\(\s*!empty\(\$existing\)\s*\)\s*\{(?:(?!\nfunction\s).)*return(?:(?!\nfunction\s).)*->create\(/s',
-      $source,
-      '_bioland_create_content_menu_link() must return early when the Content link already exists, before creating one.'
+    $this->assertMatchesRegularExpression('/function\s+_bioland_create_content_menu_link\s*\(\s*\)\s*\{\s*return\s+t\(/', $source);
+    $this->assertStringNotContainsString(
+      '_bioland_create_content_menu_link();',
+      file_get_contents(dirname(__DIR__, 2) . '/bioland.install'),
+      'hook_install must not create Publishing > Add > Content.'
     );
   }
 
