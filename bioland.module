@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
 /**
@@ -606,6 +607,12 @@ function bioland_module_implements_alter(&$implementations, $hook) {
     unset($implementations['bioland']);
     $implementations['bioland'] = $group;
   }
+
+  // bioland_media_presave() must run BEFORE toast_image_editor_media_presave()
+  // so an invalid edited image is dropped before that module writes it.
+  if ($hook === 'media_presave' && isset($implementations['bioland'])) {
+    $implementations = ['bioland' => $implementations['bioland']] + $implementations;
+  }
 }
 
 /**
@@ -871,4 +878,90 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for media_form.
+ *
+ * Rejects an edited toast_image_editor image that is not a real image of the
+ * media file's own type (BL-917). Added unconditionally while the module is
+ * on: its own form alter runs after this one, so its field is not in $form
+ * yet.
+ */
+function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
+    $form['#validate'][] = '_bioland_toast_image_editor_validate';
+  }
+}
+
+/**
+ * Form validation handler: checks the submitted toast_image_editor image.
+ *
+ * Reads raw user input, as toast_image_editor does; its hidden field has a
+ * fixed empty #value, so the processed form value is always ''.
+ */
+function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $form_state) {
+  $payloads = BiolandToastImageGuard::payloads($form_state->getUserInput());
+  if (!$payloads) {
+    return;
+  }
+
+  $extension = _bioland_media_source_extension($form_state->getFormObject()->getEntity());
+  foreach ($payloads as $payload) {
+    $reason = BiolandToastImageGuard::validate($payload, $extension);
+    if ($reason !== NULL) {
+      $form_state->setErrorByName(BiolandToastImageGuard::FIELD, t('The edited image was not saved: @reason.', ['@reason' => $reason]));
+      return;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for media.
+ *
+ * Backstop for saves that skip the media form validation: removes an
+ * invalid toast_image_editor payload from the current request before
+ * toast_image_editor_media_presave() reads it (ordering is pinned in
+ * bioland_module_implements_alter()).
+ */
+function bioland_media_presave(EntityInterface $media) {
+  if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
+    return;
+  }
+
+  $post = \Drupal::request()->request;
+  $payloads = BiolandToastImageGuard::payloads($post->all());
+  if (!$payloads) {
+    return;
+  }
+
+  $extension = _bioland_media_source_extension($media);
+  foreach ($payloads as $key => $payload) {
+    $reason = BiolandToastImageGuard::validate($payload, $extension);
+    if ($reason !== NULL) {
+      $post->remove($key);
+      \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
+        '@id' => $media->id(),
+        '@reason' => $reason,
+      ]);
+    }
+  }
+}
+
+/**
+ * Returns the lowercase extension of a media entity's source file.
+ *
+ * @return string
+ *   The extension, or '' when the media has no source file.
+ */
+function _bioland_media_source_extension(EntityInterface $media) {
+  if (!method_exists($media, 'getSource')) {
+    return '';
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($field === '' || !$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
 }

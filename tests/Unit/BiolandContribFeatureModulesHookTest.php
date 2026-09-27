@@ -97,4 +97,41 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
     $this->assertStringContainsString('_bioland_contrib_feature_modules()', $body);
   }
 
+  /**
+   * Bioland never grants the new modules' permissions to its standard roles.
+   *
+   * toast_image_editor writes edited bytes over media files and llms_txt
+   * publishes token-replaced text to anonymous visitors, so both stay with
+   * the administrator role only (BL-917).
+   */
+  public function testStandardRolesGetNoContribFeaturePermissions(): void {
+    require_once dirname(__DIR__, 2) . '/includes/bioland.install.roles.inc';
+    $blocked = '/toast image editor|llms\.txt/';
+    foreach (_bioland_get_standard_permission_matrix() as $role => $permissions) {
+      foreach ($permissions as $permission) {
+        $this->assertDoesNotMatchRegularExpression($blocked, $permission, "Role $role must not be granted '$permission'.");
+      }
+    }
+  }
+
+  /**
+   * The toast_image_editor payload check is wired on form and presave.
+   */
+  public function testToastImageGuardIsWired(): void {
+    $module = $this->read('bioland.module');
+    $alter = $this->functionBody($module, 'bioland_form_media_form_alter');
+    $this->assertStringContainsString("'_bioland_toast_image_editor_validate'", $alter);
+
+    $validate = $this->functionBody($module, '_bioland_toast_image_editor_validate');
+    $this->assertStringContainsString('getUserInput()', $validate);
+    $this->assertStringContainsString('setErrorByName(', $validate);
+
+    $presave = $this->functionBody($module, 'bioland_media_presave');
+    $this->assertStringContainsString('$post->remove($key)', $presave);
+
+    // bioland's presave must run before toast_image_editor's.
+    $order = $this->functionBody($module, 'bioland_module_implements_alter');
+    $this->assertMatchesRegularExpression("/\\\$hook === 'media_presave'.*\\['bioland' => \\\$implementations\\['bioland'\\]\\] \\+ \\\$implementations/s", $order);
+  }
+
 }

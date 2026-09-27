@@ -3,6 +3,7 @@
 namespace Drupal\Tests\bioland\Unit\Routing;
 
 use Drupal\bioland\Routing\BiolandRouteSubscriber;
+use Drupal\Core\Site\Settings;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -43,6 +44,22 @@ class BiolandRouteSubscriberTest extends TestCase {
 
     $this->assertNull($collection->get('system.admin')->getRequirement('_access'));
     $this->assertNull($collection->get('toast_image_editor.media_save'));
+  }
+
+  /**
+   * /llms.txt stays public unless settings.php turns it off.
+   */
+  public function testLlmsTxtFollowsSetting(): void {
+    foreach ([[NULL, NULL], [TRUE, NULL], [FALSE, 'FALSE']] as [$setting, $expected]) {
+      new Settings($setting === NULL ? [] : ['bioland_llms_txt_enabled' => $setting]);
+      $collection = new RouteCollection();
+      $collection->add('llms_txt.llms_txt', new Route('/llms.txt', [], ['_access' => 'TRUE']));
+
+      (new BiolandRouteSubscriber())->onAlterRoutes($collection);
+
+      $this->assertSame($expected ?? 'TRUE', $collection->get('llms_txt.llms_txt')->getRequirement('_access'));
+    }
+    new Settings([]);
   }
 
 }
