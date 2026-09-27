@@ -8,6 +8,8 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\media\MediaInterface;
+use Drupal\bioland\BiolandEmbeddedImageMedia;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
@@ -428,6 +430,26 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
       $form['field_url']['#title'] = t('URL');
     }
   }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for media.
+ *
+ * Image media embedded in a text body shows the image only, never the extra
+ * field labels and values of its view display (BL-1188).
+ *
+ * @see \Drupal\bioland\BiolandEmbeddedImageMedia
+ */
+function bioland_media_view_alter(array &$build, EntityInterface $media, $display) {
+  if (empty($build['#embed']) || !$media instanceof MediaInterface) {
+    return;
+  }
+  $source = $media->getSource();
+  $build = BiolandEmbeddedImageMedia::strip(
+    $build,
+    $source->getPluginId(),
+    $source->getConfiguration()['source_field'] ?? NULL
+  );
 }
 
 /**
