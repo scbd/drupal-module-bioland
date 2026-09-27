@@ -1,0 +1,76 @@
+<?php
+
+namespace Drupal\Tests\bioland\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Guards the BL-917 editor contrib module enablement.
+ *
+ * Source-level checks, in the style of SearchApiConvergenceHookTest: the
+ * update hook and hook_install() both route through one helper, the helper
+ * lists exactly the four modules, and it only installs modules that are in
+ * the codebase and not yet enabled.
+ *
+ * @group bioland
+ * @coversNothing
+ */
+class BiolandEditorContribModulesHookTest extends TestCase {
+
+  /**
+   * Reads a module file relative to the module root.
+   */
+  private function read(string $path): string {
+    $file = dirname(__DIR__, 2) . '/' . $path;
+    $this->assertFileExists($file);
+    return file_get_contents($file);
+  }
+
+  /**
+   * Returns one function's source, cut at the next function declaration.
+   */
+  private function functionBody(string $source, string $name): string {
+    $offset = strpos($source, 'function ' . $name . '(');
+    $this->assertIsInt($offset, $name . '() must exist.');
+    $body = substr($source, $offset);
+    if (preg_match('/^function /m', $body, $matches, PREG_OFFSET_CAPTURE, 1)) {
+      $body = substr($body, 0, $matches[0][1]);
+    }
+    return $body;
+  }
+
+  /**
+   * The helper lists exactly the four BL-917 modules.
+   */
+  public function testModuleListIsExact(): void {
+    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_editor_contrib_modules');
+    preg_match_all("/'([a-z0-9_]+)'/", $body, $m);
+    $this->assertSame(
+      ['toast_image_editor', 'llms_txt', 'ckeditor5_fullscreen', 'ckeditor5_icons'],
+      $m[1]
+    );
+  }
+
+  /**
+   * The helper skips enabled and absent modules and installs the rest.
+   */
+  public function testHelperOnlyInstallsPresentDisabledModules(): void {
+    $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_enable_editor_contrib_modules');
+    $this->assertStringContainsString('->moduleExists($module)', $body);
+    $this->assertStringContainsString('->exists($module)', $body);
+    $this->assertMatchesRegularExpression('/if \(\$to_install\) \{\s*\\\\Drupal::service\(\'module_installer\'\)->install\(\$to_install\);/', $body);
+    $this->assertDoesNotMatchRegularExpression('/\bt\(/', $body, 'Plain strings only: translation is not dependable mid-update.');
+  }
+
+  /**
+   * The update hook and hook_install() both call the helper.
+   */
+  public function testUpdateHookAndInstallCallHelper(): void {
+    $hook = $this->functionBody($this->read('includes/bioland.install.editor.inc'), 'bioland_update_9089');
+    $this->assertStringContainsString('_bioland_enable_editor_contrib_modules()', $hook);
+
+    $install = $this->functionBody($this->read('bioland.install'), 'bioland_install');
+    $this->assertStringContainsString('_bioland_enable_editor_contrib_modules();', $install);
+  }
+
+}

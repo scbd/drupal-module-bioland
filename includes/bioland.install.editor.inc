@@ -480,6 +480,71 @@ function _bioland_configure_full_html_editor_toolbar() {
   return implode("\n", $messages);
 }
 
+/**
+ * Contrib editor modules Bioland enables when the codebase provides them.
+ *
+ * All four ship in the drupal-docker-wrapper image from 11.4.7-v7 (BL-917).
+ *
+ * @return string[]
+ *   Module machine names.
+ */
+function _bioland_editor_contrib_modules() {
+  return [
+    'toast_image_editor',
+    'llms_txt',
+    'ckeditor5_fullscreen',
+    'ckeditor5_icons',
+  ];
+}
+
+/**
+ * Enable the editor contrib modules that are present but not yet enabled.
+ *
+ * Already-enabled modules are left alone, so this is safe to run more than
+ * once. A module missing from the codebase (an image older than
+ * drupal-docker-wrapper 11.4.7-v7) is skipped and reported rather than
+ * failing the run; enable it by hand once the image is updated.
+ *
+ * @return string
+ *   Plain-text summary. Not t(): translation is not dependable mid-update.
+ */
+function _bioland_enable_editor_contrib_modules() {
+  $module_handler = \Drupal::moduleHandler();
+  $module_list = \Drupal::service('extension.list.module');
+
+  $enabled = [];
+  $missing = [];
+  $to_install = [];
+  foreach (_bioland_editor_contrib_modules() as $module) {
+    if ($module_handler->moduleExists($module)) {
+      $enabled[] = $module;
+    }
+    elseif (!$module_list->exists($module)) {
+      $missing[] = $module;
+    }
+    else {
+      $to_install[] = $module;
+    }
+  }
+
+  if ($to_install) {
+    \Drupal::service('module_installer')->install($to_install);
+  }
+
+  $messages = [];
+  if ($to_install) {
+    $messages[] = 'Enabled: ' . implode(', ', $to_install) . '.';
+  }
+  if ($enabled) {
+    $messages[] = 'Already enabled: ' . implode(', ', $enabled) . '.';
+  }
+  if ($missing) {
+    $messages[] = 'Not in the codebase, skipped (needs drupal-docker-wrapper 11.4.7-v7 or higher): ' . implode(', ', $missing) . '.';
+  }
+
+  return implode(' ', $messages);
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS
@@ -550,4 +615,27 @@ function bioland_update_9034() {
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * Enable the toast_image_editor, llms_txt and CKEditor 5 contrib modules.
+ *
+ * BL-917. See _bioland_enable_editor_contrib_modules() for the skip rules.
+ *
+ * Numbered 9089, above every in-flight hook on the COP-17 integration branch,
+ * so no pending lower-numbered hook is skipped once this one has run. As the
+ * highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9089() {
+  $messages = [];
+  $messages[] = _bioland_enable_editor_contrib_modules();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

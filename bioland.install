@@ -235,6 +235,9 @@ function bioland_install() {
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
 
+  // Enable the editor contrib modules the codebase provides (BL-917).
+  _bioland_enable_editor_contrib_modules();
+
   // Rebuild router to register view routes and local tasks.
   \Drupal::service('router.builder')->rebuild();
 
