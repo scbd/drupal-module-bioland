@@ -11,6 +11,7 @@ use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -491,15 +492,21 @@ function bioland_hero_editor_preview_settings(): array {
  *
  * @see \Drupal\bioland\BiolandEmbeddedImageMedia
  */
-function bioland_media_view_alter(array &$build, EntityInterface $media, $display) {
+function bioland_media_view_alter(array &$build, EntityInterface $media, EntityViewDisplayInterface $display) {
   if (empty($build['#embed']) || !$media instanceof MediaInterface) {
     return;
   }
   $source = $media->getSource();
+  // Pseudo/extra fields (registered via hook_entity_extra_field_info(), for
+  // example a computed summary) have a display component but no #field_name,
+  // so BiolandEmbeddedImageMedia::strip() cannot spot them by #field_name
+  // alone; name them explicitly.
+  $extra_fields = array_diff(array_keys($display->getComponents()), array_keys($media->getFieldDefinitions()));
   $build = BiolandEmbeddedImageMedia::strip(
     $build,
     $source->getPluginId(),
-    $source->getConfiguration()['source_field'] ?? NULL
+    $source->getConfiguration()['source_field'] ?? NULL,
+    $extra_fields
   );
 }
 
