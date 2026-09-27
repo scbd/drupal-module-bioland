@@ -7,14 +7,30 @@ use Drupal\Core\Site\Settings;
 /**
  * Pure decision helpers for the document-preview feature (BL-1192).
  *
- * Converter map (checked 2026-09-27 via GET
- * https://v2.convertapi.com/info/openapi/{ext}/to/webp for every allowed
- * extension): direct (a {ext}/to/webp converter exists) is pdf, docx, pptx,
- * xlsx; everything else is routed via-pdf per the item brief's explicit
- * fallback instruction. Spot checks of {ext}/to/pdf found doc, ppt, xls,
- * fodt, fods, fodp, fodg, key, numbers, pages ALSO 404 there (their real
- * route likely needs an office-format intermediate, not pdf) - a known,
- * deferred gap; see the coder report.
+ * Converter map re-verified 2026-09-27 (fix cycle after review finding #1),
+ * against live ConvertAPI endpoints:
+ * - Direct (GET https://v2.convertapi.com/info/openapi/{ext}/to/webp = 200):
+ *   pdf, docx, pptx, xlsx. See https://www.convertapi.com/docx-to-webp
+ *   (PageRange + ImageQuality documented, ScaleProportions is not).
+ * - Via-pdf (no direct webp route, but {ext}/to/pdf = 200; then pdf/to/webp):
+ *   odt, ods, odp, odf, odg, txt, rtf. See https://www.convertapi.com/odt-to-pdf
+ *   and siblings.
+ * - Via-office (no direct webp or pdf route, but an office-format upconvert
+ *   exists; then {office}/to/webp): doc->docx, ppt->pptx, xls->xlsx,
+ *   key->pptx, numbers->xlsx, pages->docx. Verified live: GET
+ *   https://v2.convertapi.com/info/openapi/doc/to/docx (200), .../ppt/to/pptx
+ *   (200), .../xls/to/xlsx (200), .../key/to/pptx (200), .../numbers/to/xlsx
+ *   (200), .../pages/to/docx (200). None of these six intermediate
+ *   conversions document PageRange (confirmed against
+ *   https://www.convertapi.com/doc-to-docx, /ppt-to-pptx, /xls-to-xlsx,
+ *   /pages-to-docx, /key-to-pptx, /numbers-to-xlsx - each lists only File[,
+ *   Password] + StoreFile), so PageRange is applied only on their second
+ *   (webp) step, same as the direct route.
+ * - Dropped, no verified route on any tested target (webp/pdf/docx/pptx/xlsx
+ *   all 404, including their own un-flattened ODF counterpart, e.g.
+ *   fodt/to/odt): fodt, fods, fodp, fodg. These are skipped at enqueue time
+ *   with a notice log naming the extension (see
+ *   BiolandDocumentPreviewService::enqueueIfNeeded()).
  */
 class BiolandDocumentPreviewPolicy
 {
@@ -23,6 +39,7 @@ class BiolandDocumentPreviewPolicy
     public const PREVIEW_URI_PREFIX = 'public://bioland/document-previews/';
     public const ROUTE_DIRECT = 'direct';
     public const ROUTE_VIA_PDF = 'via-pdf';
+    public const ROUTE_VIA_OFFICE = 'via-office';
     public const STATUS_SUCCESS = 'success';
     public const STATUS_TRANSIENT = 'transient';
     public const STATUS_PERMANENT = 'permanent';
@@ -31,9 +48,15 @@ class BiolandDocumentPreviewPolicy
     public const TITLE_MAX_LENGTH = 1024;
 
     private const DIRECT_EXTENSIONS = ['pdf', 'docx', 'pptx', 'xlsx'];
-    private const VIA_PDF_EXTENSIONS = [
-        'txt', 'rtf', 'doc', 'ppt', 'xls', 'odf', 'odg', 'odp', 'ods', 'odt',
-        'fodt', 'fods', 'fodp', 'fodg', 'key', 'numbers', 'pages',
+    private const VIA_PDF_EXTENSIONS = ['txt', 'rtf', 'odf', 'odg', 'odp', 'ods', 'odt'];
+    /** Extension => intermediate office format, each verified to accept a direct {intermediate}/to/webp call. */
+    private const VIA_OFFICE_EXTENSIONS = [
+        'doc' => 'docx',
+        'ppt' => 'pptx',
+        'xls' => 'xlsx',
+        'key' => 'pptx',
+        'numbers' => 'xlsx',
+        'pages' => 'docx',
     ];
 
     /** Whether a document-preview conversion should be considered at all. */
@@ -61,16 +84,30 @@ class BiolandDocumentPreviewPolicy
         if (in_array($extension, self::DIRECT_EXTENSIONS, true)) {
             return self::ROUTE_DIRECT;
         }
+        if ($extension !== '' && isset(self::VIA_OFFICE_EXTENSIONS[$extension])) {
+            return self::ROUTE_VIA_OFFICE;
+        }
         if ($extension !== '' && in_array($extension, self::VIA_PDF_EXTENSIONS, true)) {
             return self::ROUTE_VIA_PDF;
         }
         return null;
     }
 
+    /** The intermediate office format for a ROUTE_VIA_OFFICE extension, or NULL. */
+    public static function officeIntermediateFor(string $extension): ?string
+    {
+        return self::VIA_OFFICE_EXTENSIONS[strtolower($extension)] ?? null;
+    }
+
     /**
      * Builds the ConvertAPI parameter array/arrays for a route. PageRange is
-     * the cost guard and is never dropped. Direct is one call; via-pdf is
-     * two (StoreFile on step 1 so step 2 can chain it, not re-download it).
+     * the cost guard and is never dropped from a step that documents it.
+     * Direct is one call. Via-pdf and via-office are both two chained calls
+     * (StoreFile on step 1 so step 2 can chain the stored file, never
+     * re-downloading it); via-pdf's step 1 (to pdf) documents PageRange and
+     * carries it, via-office's step 1 (to docx/pptx/xlsx) does not document
+     * PageRange for any of its six extensions and never carries it - the
+     * page restriction is still enforced on step 2 (the webp render).
      *
      * @return array[]
      */
@@ -83,6 +120,10 @@ class BiolandDocumentPreviewPolicy
 
         if ($route === self::ROUTE_DIRECT) {
             return [$imageParams];
+        }
+
+        if ($route === self::ROUTE_VIA_OFFICE) {
+            return [['StoreFile' => true], $imageParams];
         }
 
         return [['PageRange' => '1', 'StoreFile' => true], $imageParams];

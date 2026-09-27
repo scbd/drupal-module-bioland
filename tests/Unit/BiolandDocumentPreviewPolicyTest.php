@@ -58,8 +58,31 @@ class BiolandDocumentPreviewPolicyTest extends TestCase
         $this->assertSame(Policy::ROUTE_DIRECT, Policy::converterFor('DOCX'), 'Case-insensitive.');
         $this->assertSame(Policy::ROUTE_VIA_PDF, Policy::converterFor('txt'));
         $this->assertSame(Policy::ROUTE_VIA_PDF, Policy::converterFor('odt'));
+        $this->assertSame(Policy::ROUTE_VIA_OFFICE, Policy::converterFor('doc'));
+        $this->assertSame(Policy::ROUTE_VIA_OFFICE, Policy::converterFor('KEY'), 'Case-insensitive.');
         $this->assertNull(Policy::converterFor('exe'));
         $this->assertNull(Policy::converterFor(''));
+        // No verified ConvertAPI route on any tested target: dropped from the supported set.
+        $this->assertNull(Policy::converterFor('fodt'));
+        $this->assertNull(Policy::converterFor('fods'));
+        $this->assertNull(Policy::converterFor('fodp'));
+        $this->assertNull(Policy::converterFor('fodg'));
+    }
+
+    /**
+     * @covers ::officeIntermediateFor
+     */
+    public function testOfficeIntermediateFor(): void
+    {
+        $this->assertSame('docx', Policy::officeIntermediateFor('doc'));
+        $this->assertSame('pptx', Policy::officeIntermediateFor('ppt'));
+        $this->assertSame('xlsx', Policy::officeIntermediateFor('xls'));
+        $this->assertSame('pptx', Policy::officeIntermediateFor('key'));
+        $this->assertSame('xlsx', Policy::officeIntermediateFor('numbers'));
+        $this->assertSame('docx', Policy::officeIntermediateFor('pages'));
+        $this->assertSame('docx', Policy::officeIntermediateFor('DOC'), 'Case-insensitive.');
+        $this->assertNull(Policy::officeIntermediateFor('pdf'));
+        $this->assertNull(Policy::officeIntermediateFor('fodt'));
     }
 
     /**
@@ -76,6 +99,12 @@ class BiolandDocumentPreviewPolicyTest extends TestCase
         $this->assertSame('1', $viaPdf[0]['PageRange'], 'Step 1 (to pdf) must carry PageRange=1.');
         $this->assertSame('1', $viaPdf[1]['PageRange'], 'Step 2 (pdf to webp) must carry PageRange=1.');
         $this->assertTrue($viaPdf[0]['StoreFile'], 'Step 1 must store the file so step 2 can chain it.');
+
+        $viaOffice = Policy::buildParams(Policy::ROUTE_VIA_OFFICE);
+        $this->assertCount(2, $viaOffice);
+        $this->assertArrayNotHasKey('PageRange', $viaOffice[0], 'Step 1 (to docx/pptx/xlsx) does not document PageRange.');
+        $this->assertTrue($viaOffice[0]['StoreFile'], 'Step 1 must store the file so step 2 can chain it.');
+        $this->assertSame('1', $viaOffice[1]['PageRange'], 'Step 2 (office intermediate to webp) must still carry PageRange=1.');
     }
 
     /**

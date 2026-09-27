@@ -5,6 +5,7 @@ namespace Drupal\Tests\bioland\Unit\Plugin\QueueWorker;
 use ConvertApi\Error\Api as ConvertApiError;
 use Drupal\bioland\Plugin\QueueWorker\BiolandDocumentPreviewWorker;
 use Drupal\bioland\Service\BiolandDocumentPreviewService;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Queue\RequeueException;
 use Drupal\Core\State\StateInterface;
 use PHPUnit\Framework\TestCase;
@@ -53,7 +54,10 @@ class BiolandDocumentPreviewWorkerTest extends TestCase
         $service = $this->createMock(BiolandDocumentPreviewService::class);
         $service->expects($this->once())->method('process')->willReturnCallback($processBehavior);
 
-        return new BiolandDocumentPreviewWorker([], 'bioland_document_preview', [], $service, $this->state);
+        $loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
+        $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
+
+        return new BiolandDocumentPreviewWorker([], 'bioland_document_preview', [], $service, $this->state, $loggerFactory);
     }
 
     /**
@@ -135,16 +139,107 @@ class BiolandDocumentPreviewWorkerTest extends TestCase
     }
 
     /**
+     * A permanent ConvertAPI failure logs the mid and status code, never the message.
+     *
+     * @covers ::processItem
+     */
+    public function testPermanentFailureLogsMidAndStatusCode(): void
+    {
+        $service = $this->createMock(BiolandDocumentPreviewService::class);
+        $service->method('process')->willThrowException(new ConvertApiError('Bad request', 400));
+
+        $logger = $this->createMock('Drupal\Core\Logger\LoggerChannelInterface');
+        $logger->expects($this->once())->method('error')->with(
+            $this->stringContains('@mid'),
+            $this->callback(function ($context) {
+                return $context['@mid'] === 1 && $context['@status'] === 400;
+            })
+        );
+        $loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
+        $loggerFactory->method('get')->willReturn($logger);
+
+        $worker = new BiolandDocumentPreviewWorker([], 'bioland_document_preview', [], $service, $this->state, $loggerFactory);
+        $worker->processItem(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+
+        $this->assertNull($this->state->get(BiolandDocumentPreviewWorker::STATE_ATTEMPT_PREFIX . '1'));
+    }
+
+    /**
+     * A non-ConvertAPI throwable (file-system, FileUpload, ...) is still
+     * bounded by the same retry counter instead of retrying indefinitely.
+     *
+     * @covers ::processItem
+     */
+    public function testNonConvertApiThrowableIsBoundedAndLogsClassOnly(): void
+    {
+        $service = $this->createMock(BiolandDocumentPreviewService::class);
+        $service->method('process')->willThrowException(new \RuntimeException('disk full, path /var/www/secret'));
+
+        $logger = $this->createMock('Drupal\Core\Logger\LoggerChannelInterface');
+        $logger->expects($this->once())->method('error')->with(
+            $this->anything(),
+            $this->callback(function ($context) {
+                return $context['@mid'] === 1 && $context['@class'] === \RuntimeException::class;
+            })
+        );
+        $loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
+        $loggerFactory->method('get')->willReturn($logger);
+
+        $worker = new BiolandDocumentPreviewWorker([], 'bioland_document_preview', [], $service, $this->state, $loggerFactory);
+
+        $threw = false;
+        try {
+            $worker->processItem(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+        } catch (RequeueException $e) {
+            $threw = true;
+        }
+
+        $this->assertTrue($threw, 'A non-ConvertAPI throwable must still be retried through the bounded counter.');
+        $this->assertSame(1, $this->state->get(BiolandDocumentPreviewWorker::STATE_ATTEMPT_PREFIX . '1'));
+    }
+
+    /**
+     * The non-ConvertAPI throwable retry is bounded too: it gives up at MAX_ATTEMPTS.
+     *
+     * @covers ::processItem
+     */
+    public function testNonConvertApiThrowableRequeueIsBounded(): void
+    {
+        $key = BiolandDocumentPreviewWorker::STATE_ATTEMPT_PREFIX . '1';
+        $this->state->set($key, BiolandDocumentPreviewWorker::MAX_ATTEMPTS - 1);
+
+        $service = $this->createMock(BiolandDocumentPreviewService::class);
+        $service->method('process')->willThrowException(new \RuntimeException('boom'));
+
+        $loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
+        $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
+
+        $worker = new BiolandDocumentPreviewWorker([], 'bioland_document_preview', [], $service, $this->state, $loggerFactory);
+        $worker->processItem(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+
+        $this->assertNull($this->state->get($key), 'Must give up, not requeue forever, once MAX_ATTEMPTS is reached.');
+    }
+
+    /**
      * @covers ::create
      */
     public function testCreatePullsTheServiceFromTheContainer(): void
     {
         $service = $this->createMock(BiolandDocumentPreviewService::class);
+        $loggerFactory = $this->createMock(LoggerChannelFactoryInterface::class);
+        $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
+
         $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
-        $container->expects($this->exactly(2))
+        $container->expects($this->exactly(3))
             ->method('get')
-            ->willReturnCallback(function ($id) use ($service) {
-                return $id === 'bioland.document_preview' ? $service : new DocumentPreviewArrayState();
+            ->willReturnCallback(function ($id) use ($service, $loggerFactory) {
+                if ($id === 'bioland.document_preview') {
+                    return $service;
+                }
+                if ($id === 'logger.factory') {
+                    return $loggerFactory;
+                }
+                return new DocumentPreviewArrayState();
             });
 
         $worker = BiolandDocumentPreviewWorker::create($container, [], 'bioland_document_preview', []);

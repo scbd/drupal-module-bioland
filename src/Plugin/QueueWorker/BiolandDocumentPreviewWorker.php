@@ -5,6 +5,8 @@ namespace Drupal\bioland\Plugin\QueueWorker;
 use ConvertApi\Error\Base as ConvertApiError;
 use Drupal\bioland\BiolandDocumentPreviewPolicy as Policy;
 use Drupal\bioland\Service\BiolandDocumentPreviewService;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Queue\RequeueException;
@@ -34,17 +36,20 @@ class BiolandDocumentPreviewWorker extends QueueWorkerBase implements ContainerF
 
     protected BiolandDocumentPreviewService $documentPreviewService;
     protected StateInterface $state;
+    protected LoggerChannelInterface $logger;
 
     public function __construct(
         array $configuration,
         $plugin_id,
         $plugin_definition,
         BiolandDocumentPreviewService $document_preview_service,
-        StateInterface $state
+        StateInterface $state,
+        LoggerChannelFactoryInterface $logger_factory
     ) {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
         $this->documentPreviewService = $document_preview_service;
         $this->state = $state;
+        $this->logger = $logger_factory->get('bioland');
     }
 
     /** {@inheritdoc} */
@@ -55,7 +60,8 @@ class BiolandDocumentPreviewWorker extends QueueWorkerBase implements ContainerF
             $plugin_id,
             $plugin_definition,
             $container->get('bioland.document_preview'),
-            $container->get('state')
+            $container->get('state'),
+            $container->get('logger.factory')
         );
     }
 
@@ -69,8 +75,14 @@ class BiolandDocumentPreviewWorker extends QueueWorkerBase implements ContainerF
             $this->documentPreviewService->process(is_array($data) ? $data : []);
             $this->state->delete($stateKey);
         } catch (ConvertApiError $e) {
-            if (Policy::classifyStatus((int) $e->getCode()) !== Policy::STATUS_TRANSIENT) {
-                $this->state->delete($stateKey); // Permanent failure: give up, do not retry.
+            $statusCode = (int) $e->getCode();
+            if (Policy::classifyStatus($statusCode) !== Policy::STATUS_TRANSIENT) {
+                // Permanent failure: give up, do not retry. Never log the
+                // exception message, which may carry request details.
+                $this->logger->error('Document preview permanently failed for media @mid: HTTP @status.', [
+                    '@mid' => $mid, '@status' => $statusCode,
+                ]);
+                $this->state->delete($stateKey);
                 return;
             }
 
@@ -83,6 +95,28 @@ class BiolandDocumentPreviewWorker extends QueueWorkerBase implements ContainerF
 
             throw new RequeueException(sprintf(
                 'Transient document preview failure for media %d (attempt %d of %d); requeued.',
+                $mid,
+                $attempts,
+                self::MAX_ATTEMPTS
+            ));
+        } catch (\Throwable $e) {
+            // Anything else (file-system, FileUpload, file.repository write
+            // failure, ...) is unbounded unless it is folded into the same
+            // bounded counter; otherwise cron re-leases and retries forever.
+            // Never log the exception message, only its class.
+            $this->logger->error('Document preview failed for media @mid with @class.', [
+                '@mid' => $mid, '@class' => get_class($e),
+            ]);
+
+            $attempts = (int) $this->state->get($stateKey, 0) + 1;
+            if ($attempts >= self::MAX_ATTEMPTS) {
+                $this->state->delete($stateKey);
+                return;
+            }
+            $this->state->set($stateKey, $attempts);
+
+            throw new RequeueException(sprintf(
+                'Non-ConvertAPI document preview failure for media %d (attempt %d of %d); requeued.',
                 $mid,
                 $attempts,
                 self::MAX_ATTEMPTS

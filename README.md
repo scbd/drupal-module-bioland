@@ -441,14 +441,25 @@ stop showing the generic grey placeholder for every document that has no manuall
   parameter — converting the whole document and discarding pages 2..n is billed per page and is
   never acceptable. A direct conversion billed for more than one page logs a warning so a
   regression is caught on staging.
-- **Converters used** (checked 2026-09-27 against `GET https://v2.convertapi.com/info/openapi/{ext}/to/webp`):
-  - Direct (`{ext}/to/webp` exists): `pdf`, `docx`, `pptx`, `xlsx`.
+- **Converters used** (re-verified live 2026-09-27 during the fix cycle, against
+  `GET https://v2.convertapi.com/info/openapi/{ext}/to/{target}` for every allowed extension):
+  - Direct (`{ext}/to/webp` exists, one call): `pdf`, `docx`, `pptx`, `xlsx`.
   - Via-pdf (two chained calls, `{ext}/to/pdf` then `pdf/to/webp`, the stored PDF never
-    re-downloaded): every other extension the document field allows (`txt`, `rtf`, `doc`, `ppt`,
-    `xls`, `odf`, `odg`, `odp`, `ods`, `odt`, `fodt`, `fods`, `fodp`, `fodg`, `key`, `numbers`,
-    `pages`). This route is a documented fallback for formats whose real ConvertAPI conversion
-    graph was not individually verified (some, e.g. `doc`/`ppt`/`xls`, likely need an office-format
-    intermediate rather than PDF) — see the coder report for BL-1192.
+    re-downloaded): `txt`, `rtf`, `odf`, `odg`, `odp`, `ods`, `odt`.
+  - Via-office (two chained calls, `{ext}/to/{office}` then `{office}/to/webp`, the stored
+    intermediate file never re-downloaded; `PageRange` is not documented on the first call for
+    any of these six extensions, so it is applied only on the second): `doc`→`docx`, `ppt`→`pptx`,
+    `xls`→`xlsx`, `key`→`pptx`, `numbers`→`xlsx`, `pages`→`docx`.
+  - Dropped, no verified route (`webp`/`pdf`/`docx`/`pptx`/`xlsx` targets and, for the flat-ODF
+    forms, their own un-flattened counterpart all returned 404): `fodt`, `fods`, `fodp`, `fodg`.
+    An upload with one of these extensions is skipped at enqueue time with a notice-level log
+    naming the extension; no queue item is created and no ConvertAPI call is made.
+- **Manual pre-merge step**: `field_media_document` and `field_media_image` are pinned as class
+  constants on `BiolandDocumentPreviewPolicy` from the ticket's spec and have not been verified
+  against a live site. Before deploying, run `drush field:info media document` on the target site
+  and confirm those are the real machine names; if either differs, update the constants (the
+  feature silently no-ops — no document field found — rather than erroring, so this is easy to
+  miss).
 
 ## Configuration Export/Import
 

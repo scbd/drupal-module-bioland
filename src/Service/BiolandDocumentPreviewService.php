@@ -128,6 +128,14 @@ class BiolandDocumentPreviewService
             return;
         }
 
+        $currentImageFid = $this->targetId($media, Policy::IMAGE_FIELD);
+        if ($currentImageFid !== null && !Policy::isModuleOwnedImage($this->fileUri($currentImageFid))) {
+            // An editor set their own image after this item was enqueued (cron
+            // can drain up to 60s later): never overwrite it.
+            $this->logger->info('Document preview: media @mid now has an editor-chosen image; skipping.', ['@mid' => $mid]);
+            return;
+        }
+
         $route = Policy::converterFor($extension);
         if (!$route) {
             return;
@@ -148,6 +156,16 @@ class BiolandDocumentPreviewService
             }
             $params['File'] = $this->newFileUpload($realpath);
             $result = $this->convert('webp', $params, $extension);
+        } elseif ($route === Policy::ROUTE_VIA_OFFICE) {
+            $officeExt = Policy::officeIntermediateFor($extension);
+            $officeParams = $steps[0];
+            $officeParams['File'] = $this->newFileUpload($realpath);
+            $officeResult = $this->convert($officeExt, $officeParams, $extension);
+
+            $webpParams = $steps[1];
+            unset($webpParams['ScaleProportions']); // Not documented for docx/pptx/xlsx to webp.
+            $webpParams['File'] = $officeResult->getFile();
+            $result = $this->convert('webp', $webpParams, $officeExt);
         } else {
             $pdfParams = $steps[0];
             $pdfParams['File'] = $this->newFileUpload($realpath);
