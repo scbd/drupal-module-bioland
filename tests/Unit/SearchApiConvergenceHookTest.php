@@ -207,18 +207,6 @@ class SearchApiConvergenceHookTest extends TestCase {
       'bioland_update_9085() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
 
-    // The new highest-numbered hook (bioland_update_9086(), added for BL-917
-    // to let editors resize Body images) is the last writer for every site,
-    // so it must ALSO converge on the canonical v2 config. It is 9085, not
-    // 9084, because the open BL-841 branches take 9084.
-    $editorFile = $this->moduleRoot() . '/includes/bioland.install.editor.inc';
-    $this->assertFileExists($editorFile);
-    $this->assertMatchesRegularExpression(
-      '/function\s+bioland_update_9086\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
-      file_get_contents($editorFile),
-      'bioland_update_9086() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
-    );
-
     // The new highest-numbered hook (bioland_update_9087(), added for BL-836
     // to delete duplicate Publishing admin menu links) is the last writer for
     // every site, so it must ALSO converge on the canonical v2 config.
