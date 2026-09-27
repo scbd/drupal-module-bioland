@@ -21,10 +21,11 @@ namespace Drupal\bioland;
  *    ADD_COPY_TITLES and whose title + uri also exists, ENABLED, under a
  *    different parent is a stray copy of that other item, so the copy under
  *    "Add" is deleted and the other one is kept. Rule 2 is limited to that
- *    allowlist on purpose: the canonical "Content" -> /node/add/content link
- *    under "Add" (created by this module) must never be removed just because
- *    a site has a same-named link somewhere else, and nothing would recreate
- *    it.
+ *    allowlist on purpose so it never touches unrelated links under "Add".
+ *
+ * The "Content" -> /node/add/content link under "Add" is retired outright
+ * (see retiredAddLinkIds(), used by bioland_update_9092()), leaving
+ * Publishing with just "Content (pages)" and "Media (attachments)".
  *
  * Descriptors without an 'enabled' key are treated as enabled.
  */
@@ -39,6 +40,34 @@ final class BiolandAdminMenuDedupe {
    * Titles whose stray copies under "Add" rule 2 may delete.
    */
   public const ADD_COPY_TITLES = ['Content (pages)', 'Media (attachments)'];
+
+  /**
+   * Title + uri of the retired Publishing > Add > Content link.
+   */
+  public const RETIRED_ADD_LINK = ['title' => 'Content', 'uri' => 'internal:/node/add/content'];
+
+  /**
+   * Returns the ids of retired "Content" links under "Add", every copy.
+   *
+   * @param array $links
+   *   Descriptors, as for idsToDelete().
+   * @param string $addParent
+   *   Plugin id of the "Add" parent.
+   *
+   * @return int[]
+   *   Ids to delete, ascending.
+   */
+  public static function retiredAddLinkIds(array $links, string $addParent = self::ADD_PARENT): array {
+    $retired = self::key(self::RETIRED_ADD_LINK);
+    $ids = [];
+    foreach ($links as $link) {
+      if ((string) ($link['parent'] ?? '') === $addParent && self::key($link) === $retired) {
+        $ids[] = (int) $link['id'];
+      }
+    }
+    sort($ids);
+    return $ids;
+  }
 
   /**
    * Returns the ids of duplicate links to delete.
