@@ -353,5 +353,10 @@ function bioland_requirements($phase) {
   // region and continent silently, so it has to surface on the status report.
   $requirements += _bioland_dmsm_requirements($phase);
 
+  // drupal-docker-wrapper image version (BL-1189): warns when the running
+  // image predates the BL-917 modules' minimum wrapper version, or when the
+  // version cannot be determined at all.
+  $requirements += _bioland_wrapper_requirements($phase);
+
   return $requirements;
 }

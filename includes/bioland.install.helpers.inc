@@ -28,6 +28,45 @@ function _bioland_require_module($module, $feature = 'operation') {
   return NULL;
 }
 
+/**
+ * Runtime/update requirements for the drupal-docker-wrapper image version.
+ *
+ * Called from bioland_requirements(). BL-917 enables toast_image_editor,
+ * llms_txt, ckeditor5_fullscreen and ckeditor5_icons, but they only ship in
+ * the drupal-docker-wrapper image from BiolandWrapperVersion::MINIMUM
+ * onward; without this check there is no way to tell which image a site is
+ * running short of shelling in. Shown for 'runtime' and 'update' only - the
+ * env var is a property of the running container, not something an install
+ * phase (which may run before the final image is in place) can meaningfully
+ * assess.
+ *
+ * @param string $phase
+ *   The requirements phase.
+ *
+ * @return array
+ *   Requirements keyed as hook_requirements() expects.
+ */
+function _bioland_wrapper_requirements($phase) {
+  if ($phase !== 'runtime' && $phase !== 'update') {
+    return [];
+  }
+
+  $result = \Drupal\bioland\BiolandWrapperVersion::evaluate(getenv(\Drupal\bioland\BiolandWrapperVersion::ENV_VAR) ?: NULL);
+
+  $severity = $result['severity'] === \Drupal\bioland\BiolandWrapperVersion::SEVERITY_OK
+    ? REQUIREMENT_OK
+    : REQUIREMENT_WARNING;
+
+  return [
+    'bioland_docker_wrapper_version' => [
+      'title' => t('Bioland drupal-docker-wrapper image version'),
+      'value' => $result['value'],
+      'description' => $result['message'],
+      'severity' => $severity,
+    ],
+  ];
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS
