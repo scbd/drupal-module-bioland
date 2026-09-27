@@ -97,6 +97,19 @@ function bioland_install() {
   // This MUST happen before any code that references field_order or other optional fields.
   _bioland_install_optional_field_configs();
 
+  // BL-1192: ensure the document-preview feature (ConvertAPI library present,
+  // Image field resolution adequate) is ready on a fresh install too, so it
+  // converges to the same state as an upgraded site. The shared helper always
+  // throws UpdateException (the shape an update hook needs); hook_install()
+  // is not an update hook, so it re-throws as RuntimeException, matching how
+  // the missing-role check above behaves.
+  try {
+    _bioland_ensure_document_preview_ready();
+  }
+  catch (\Drupal\Core\Utility\UpdateException $e) {
+    throw new \RuntimeException($e->getMessage());
+  }
+
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
@@ -269,6 +282,19 @@ function bioland_requirements($phase) {
           'severity' => ($phase === 'install') ? REQUIREMENT_ERROR : REQUIREMENT_ERROR,
         ];
       }
+    }
+
+    // Verify the ConvertAPI PHP library (BL-1192 document previews) is
+    // installed. This module is rsync-deployed, so a require in its own
+    // composer.json installs nothing on a site until composer is actually
+    // run there.
+    if (!class_exists('\ConvertApi\ConvertApi')) {
+      $requirements['bioland_dep_convertapi'] = [
+        'title' => t('Required library: ConvertAPI PHP'),
+        'value' => t('Missing'),
+        'description' => t('Install via Composer: composer require convertapi/convertapi-php --with-all-dependencies'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
     }
 
     $has_type = FALSE;

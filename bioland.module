@@ -469,6 +469,10 @@ function bioland_entity_insert(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'insert');
+
+  // Enqueue a first-page WebP preview for new Document media (BL-1192). This
+  // only pushes a queue item; the conversion itself runs from cron.
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'insert');
 }
 
 /**
@@ -482,6 +486,10 @@ function bioland_entity_update(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'update');
+
+  // Enqueue a fresh preview only when the document file itself changed
+  // (BL-1192); see BiolandDocumentPreviewService::enqueueIfNeeded().
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'update');
 }
 
 /**

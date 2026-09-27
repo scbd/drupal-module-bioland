@@ -422,6 +422,34 @@ The module maintains backward compatibility with the original SCBD field module:
   - Region: `north_america`
   - Settings access: restricted by permission `administer bioland settings`, granted to the `administrator` role only by default.
 
+## Document previews
+
+Auto-generates a first-page WebP image for Document media (BL-1192), so the document listings
+stop showing the generic grey placeholder for every document that has no manually chosen Image.
+
+- **Env var**: `CONVERT_API_SECRET`, read via `getenv()` with a `Settings::get('bioland_convert_api_secret')`
+  fallback (see `BiolandDocumentPreviewPolicy::resolveSecret()`). Never stored in config, never
+  logged, never shown in a form; the settings form only shows a read-only "secret present: yes/no"
+  indicator. Missing the secret silently disables the feature (no queue items, no conversions).
+- **Toggle**: `bioland.settings.enable_document_preview` (default `TRUE`), on the System Functions tab.
+- **Cron dependency**: external HTTP is never performed inside a web request. Saving a qualifying
+  Document media item only enqueues a `bioland_document_preview` queue item; the actual ConvertAPI
+  call happens in `BiolandDocumentPreviewWorker`, drained by cron (or `drush queue:run bioland_document_preview`).
+  An editor-chosen Image is never overwritten, and an edit that does not replace the document file
+  never triggers a new conversion.
+- **PageRange=1 cost rule**: every ConvertAPI call is restricted to page 1 via the `PageRange`
+  parameter — converting the whole document and discarding pages 2..n is billed per page and is
+  never acceptable. A direct conversion billed for more than one page logs a warning so a
+  regression is caught on staging.
+- **Converters used** (checked 2026-09-27 against `GET https://v2.convertapi.com/info/openapi/{ext}/to/webp`):
+  - Direct (`{ext}/to/webp` exists): `pdf`, `docx`, `pptx`, `xlsx`.
+  - Via-pdf (two chained calls, `{ext}/to/pdf` then `pdf/to/webp`, the stored PDF never
+    re-downloaded): every other extension the document field allows (`txt`, `rtf`, `doc`, `ppt`,
+    `xls`, `odf`, `odg`, `odp`, `ods`, `odt`, `fodt`, `fods`, `fodp`, `fodg`, `key`, `numbers`,
+    `pages`). This route is a documented fallback for formats whose real ConvertAPI conversion
+    graph was not individually verified (some, e.g. `doc`/`ppt`/`xls`, likely need an office-format
+    intermediate rather than PDF) — see the coder report for BL-1192.
+
 ## Configuration Export/Import
 
 The module's configuration can be exported/imported using Drupal's configuration management system. The configuration is stored in `bioland.settings`.

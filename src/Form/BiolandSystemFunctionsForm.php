@@ -5,6 +5,7 @@ namespace Drupal\bioland\Form;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
+use Drupal\bioland\BiolandDocumentPreviewPolicy;
 
 /**
  * Configure System Functions settings for the Bioland module.
@@ -71,6 +72,27 @@ class BiolandSystemFunctionsForm extends BiolandSettingsFormBase {
           'message' => $this->t('Rebuilding cache...'),
         ],
       ],
+    ];
+
+    // Document previews section (BL-1192).
+    $form['system_functions']['document_preview_section'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Document Previews'),
+      '#collapsible' => FALSE,
+    ];
+
+    $secret_present = BiolandDocumentPreviewPolicy::resolveSecret() !== '';
+    $form['system_functions']['document_preview_section']['secret_status'] = [
+      '#markup' => '<p>' . $this->t('ConvertAPI secret present: @status', [
+        '@status' => $secret_present ? $this->t('yes') : $this->t('no'),
+      ]) . '</p>',
+    ];
+
+    $form['system_functions']['document_preview_section']['enable_document_preview'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically generate a first-page preview image for Document media'),
+      '#description' => $this->t('When enabled, saving a Document media item with no manually chosen Image renders the first page of the uploaded document as a WebP image via ConvertAPI. Requires the CONVERT_API_SECRET environment variable.'),
+      '#default_value' => $config->get('enable_document_preview') !== FALSE,
     ];
 
     // Translation Defaults section (moved from translation tab)
@@ -209,6 +231,8 @@ class BiolandSystemFunctionsForm extends BiolandSettingsFormBase {
    */
   protected function submitSectionForm(array &$form, FormStateInterface $form_state, $config): void {
     $values = $form_state->getValues();
+
+    $config->set('enable_document_preview', (bool) ($values['enable_document_preview'] ?? FALSE));
 
     // Save translation settings (moved from translation section)
     $target_languages = array_filter($values['target_languages'] ?? []);

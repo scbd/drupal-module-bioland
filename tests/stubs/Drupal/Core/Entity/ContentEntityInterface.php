@@ -24,6 +24,22 @@ interface ContentEntityInterface {
   public function id();
 
   /**
+   * Gets the bundle of the entity.
+   *
+   * @return string
+   *   The bundle.
+   */
+  public function bundle();
+
+  /**
+   * Gets the label of the entity.
+   *
+   * @return string
+   *   The label.
+   */
+  public function label();
+
+  /**
    * Checks if the entity is translatable.
    *
    * @return bool
