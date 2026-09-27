@@ -89,12 +89,15 @@ class BiolandUrlScreenshotWorker extends QueueWorkerBase implements ContainerFac
       }
 
       $this->state->set($stateKey, $attempts);
+      // Never interpolate $e->getMessage(): a ConvertApiException may embed
+      // request details. Log only the exception class and HTTP status.
       throw new RequeueException(sprintf(
-        'Transient website screenshot failure for node %s (attempt %d of %d); requeued: %s',
+        'Transient website screenshot failure for node %s (attempt %d of %d); requeued: %s (status %d)',
         $nid,
         $attempts,
         self::MAX_ATTEMPTS,
-        $e->getMessage()
+        get_class($e),
+        $status
       ));
     }
   }

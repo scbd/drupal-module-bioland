@@ -24,6 +24,12 @@ use Drupal\media\Entity\Media;
  * the queue (bioland_url_screenshot) is the retry path only, drained by
  * BiolandUrlScreenshotWorker for items that failed transiently or whose
  * request ended before destruct() ran (CLI, fatal errors).
+ *
+ * Known constraint: destruct() deletes a successfully-processed queue item
+ * with `$queue->deleteItem((object) ['item_id' => $id])`, a shape that works
+ * for core's default DatabaseQueue/Memory backends but is not the full
+ * claimed-item object some other queue backends require. This module only
+ * ever uses core's default queue, so this is acceptable as-is.
  */
 class BiolandUrlScreenshotService implements DestructableInterface {
 
@@ -137,9 +143,13 @@ class BiolandUrlScreenshotService implements DestructableInterface {
         $queue->deleteItem((object) ['item_id' => $row['id']]);
       }
       catch (\Throwable $e) {
+        // Never log $e->getMessage(): a ConvertApiException may embed request
+        // details. Log only the exception class and, when available, the
+        // HTTP status code it carries.
+        $status = method_exists($e, 'getHttpStatusCode') ? (int) $e->getHttpStatusCode() : 0;
         $this->loggerFactory->get('bioland')->warning(
-          'Website screenshot failed for node @nid; left in the retry queue: @message',
-          ['@nid' => $row['item']['nid'] ?? '?', '@message' => $e->getMessage()]
+          'Website screenshot failed for node @nid; left in the retry queue: @class (status @status)',
+          ['@nid' => $row['item']['nid'] ?? '?', '@class' => get_class($e), '@status' => $status ?: 'n/a']
         );
       }
     }

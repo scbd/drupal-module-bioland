@@ -494,6 +494,10 @@ function _bioland_install_website_image_field() {
 
 /**
  * BL-1191: website screenshot field, config default and ConvertAPI requirement.
+ *
+ * Hook number 9089 is reserved by open PR #65 (BL-917); 9090/9091 were
+ * pre-assigned to the parallel BL-1191/BL-1192 branches, so this hook is
+ * deliberately 9090, not the next-plus-one from the recount.
  */
 function bioland_update_9090() {
   if (!class_exists('\\ConvertApi\\ConvertApi\\ConvertApi')) {
