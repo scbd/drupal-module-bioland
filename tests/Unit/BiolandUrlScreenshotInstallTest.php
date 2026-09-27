@@ -48,8 +48,16 @@ class BiolandUrlScreenshotInstallTest extends TestCase {
   public function testRequirementsDeclaresConvertApiDependency(): void {
     $content = file_get_contents($this->moduleRoot() . '/bioland.install');
 
+    // BL-1191 and BL-1192 (auto-document-preview) both depend on the same
+    // convertapi/convertapi-php library; bsl-cop-17-dev merges the two
+    // identical bioland_dep_convertapi requirement blocks into one, using
+    // the correct \ConvertApi\ConvertApi class (the triple-segment
+    // \ConvertApi\ConvertApi\ConvertApi this test previously asserted on was
+    // a copy-paste bug that never matched the real library, so the
+    // requirement would have shown permanently "Missing" even once
+    // composer had installed it).
     $this->assertStringContainsString('bioland_dep_convertapi', $content);
-    $this->assertStringContainsString("class_exists('\\\\ConvertApi\\\\ConvertApi\\\\ConvertApi')", $content);
+    $this->assertStringContainsString("class_exists('\\ConvertApi\\ConvertApi')", $content);
   }
 
   public function testUpdate9090ExistsThrowsAndConverges(): void {
