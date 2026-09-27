@@ -567,6 +567,10 @@ function bioland_entity_insert(EntityInterface $entity) {
 
   // BL-1191: enqueue an auto website screenshot for qualifying nodes.
   \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'insert');
+
+  // Enqueue a first-page WebP preview for new Document media (BL-1192). This
+  // only pushes a queue item; the conversion itself runs from cron.
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'insert');
 }
 
 /**
@@ -583,6 +587,10 @@ function bioland_entity_update(EntityInterface $entity) {
 
   // BL-1191: enqueue a refreshed website screenshot when the URL changed.
   \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'update');
+
+  // Enqueue a fresh preview only when the document file itself changed
+  // (BL-1192); see BiolandDocumentPreviewService::enqueueIfNeeded().
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'update');
 }
 
 /**

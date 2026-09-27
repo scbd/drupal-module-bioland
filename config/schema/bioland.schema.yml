@@ -180,6 +180,9 @@ bioland.settings:
     google_analytics_enabled:
       type: boolean
       label: 'Enable Google Analytics'
+    enable_document_preview:
+      type: boolean
+      label: 'Auto-generate a first-page preview image for Document media'
     google_analytics_ids:
       type: string
       label: 'Google tag IDs'

@@ -422,6 +422,45 @@ The module maintains backward compatibility with the original SCBD field module:
   - Region: `north_america`
   - Settings access: restricted by permission `administer bioland settings`, granted to the `administrator` role only by default.
 
+## Document previews
+
+Auto-generates a first-page WebP image for Document media (BL-1192), so the document listings
+stop showing the generic grey placeholder for every document that has no manually chosen Image.
+
+- **Env var**: `CONVERT_API_SECRET`, read via `getenv()` with a `Settings::get('bioland_convert_api_secret')`
+  fallback (see `BiolandDocumentPreviewPolicy::resolveSecret()`). Never stored in config, never
+  logged, never shown in a form; the settings form only shows a read-only "secret present: yes/no"
+  indicator. Missing the secret silently disables the feature (no queue items, no conversions).
+- **Toggle**: `bioland.settings.enable_document_preview` (default `TRUE`), on the System Functions tab.
+- **Cron dependency**: external HTTP is never performed inside a web request. Saving a qualifying
+  Document media item only enqueues a `bioland_document_preview` queue item; the actual ConvertAPI
+  call happens in `BiolandDocumentPreviewWorker`, drained by cron (or `drush queue:run bioland_document_preview`).
+  An editor-chosen Image is never overwritten, and an edit that does not replace the document file
+  never triggers a new conversion.
+- **PageRange=1 cost rule**: every ConvertAPI call is restricted to page 1 via the `PageRange`
+  parameter — converting the whole document and discarding pages 2..n is billed per page and is
+  never acceptable. A direct conversion billed for more than one page logs a warning so a
+  regression is caught on staging.
+- **Converters used** (re-verified live 2026-09-27 during the fix cycle, against
+  `GET https://v2.convertapi.com/info/openapi/{ext}/to/{target}` for every allowed extension):
+  - Direct (`{ext}/to/webp` exists, one call): `pdf`, `docx`, `pptx`, `xlsx`.
+  - Via-pdf (two chained calls, `{ext}/to/pdf` then `pdf/to/webp`, the stored PDF never
+    re-downloaded): `txt`, `rtf`, `odf`, `odg`, `odp`, `ods`, `odt`.
+  - Via-office (two chained calls, `{ext}/to/{office}` then `{office}/to/webp`, the stored
+    intermediate file never re-downloaded; `PageRange` is not documented on the first call for
+    any of these six extensions, so it is applied only on the second): `doc`→`docx`, `ppt`→`pptx`,
+    `xls`→`xlsx`, `key`→`pptx`, `numbers`→`xlsx`, `pages`→`docx`.
+  - Dropped, no verified route (`webp`/`pdf`/`docx`/`pptx`/`xlsx` targets and, for the flat-ODF
+    forms, their own un-flattened counterpart all returned 404): `fodt`, `fods`, `fodp`, `fodg`.
+    An upload with one of these extensions is skipped at enqueue time with a notice-level log
+    naming the extension; no queue item is created and no ConvertAPI call is made.
+- **Manual pre-merge step**: `field_media_document` and `field_media_image` are pinned as class
+  constants on `BiolandDocumentPreviewPolicy` from the ticket's spec and have not been verified
+  against a live site. Before deploying, run `drush field:info media document` on the target site
+  and confirm those are the real machine names; if either differs, update the constants (the
+  feature silently no-ops — no document field found — rather than erroring, so this is easy to
+  miss).
+
 ## Configuration Export/Import
 
 The module's configuration can be exported/imported using Drupal's configuration management system. The configuration is stored in `bioland.settings`.
