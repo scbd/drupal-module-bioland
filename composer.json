@@ -18,7 +18,8 @@
         "source": "https://github.com/scbd/drupal-module-bioland"
     },
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "convertapi/convertapi-php": "3.0.0"
     },
     "suggest": {
         "drupal/focal_point": "^2.1 - Hero image focal point window selector (tested with 2.1.2); enabled by bioland_update_9084()"

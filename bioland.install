@@ -98,6 +98,9 @@ function bioland_install() {
   // This MUST happen before any code that references field_order or other optional fields.
   _bioland_install_optional_field_configs();
 
+  // BL-1191: website screenshot media field on the "content" bundle.
+  _bioland_install_website_image_field();
+
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
@@ -377,6 +380,36 @@ function bioland_requirements($phase) {
       'description' => t('Editors cannot choose which part of the hero image shows. Run composer require "drupal/focal_point:^2.1" --with-all-dependencies, then drush updb.'),
       'severity' => REQUIREMENT_WARNING,
     ];
+  }
+
+  if ($phase === 'install' || $phase === 'runtime') {
+    // BL-1191: convertapi/convertapi-php is a hard requirement for the
+    // website screenshot feature (composer library, not a Drupal module).
+    if (!class_exists('\\ConvertApi\\ConvertApi\\ConvertApi')) {
+      $requirements['bioland_dep_convertapi'] = [
+        'title' => t('Required library: ConvertAPI PHP'),
+        'value' => t('Missing'),
+        'description' => t('composer require convertapi/convertapi-php --with-all-dependencies'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+  }
+
+  if ($phase === 'runtime') {
+    $screenshot_config = \Drupal::config('bioland.settings');
+    if ($screenshot_config->get('enable_url_screenshot') !== FALSE) {
+      $secret = \Drupal\bioland\BiolandUrlScreenshotPolicy::resolveSecret(
+        [\Drupal\Core\Site\Settings::class, 'get']
+      );
+      if ($secret === '') {
+        $requirements['bioland_convert_api_secret'] = [
+          'title' => t('ConvertAPI secret (website screenshots)'),
+          'value' => t('Not set'),
+          'description' => t('CONVERT_API_SECRET is not set in the environment (or bioland_convert_api_secret in settings.php). Website screenshots (BL-1191) will not run until it is set. No value is ever printed here.'),
+          'severity' => REQUIREMENT_WARNING,
+        ];
+      }
+    }
   }
 
   // DMSM geography: an unset or refused base URL freezes the site's countries,

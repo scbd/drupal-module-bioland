@@ -564,6 +564,9 @@ function bioland_entity_insert(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'insert');
+
+  // BL-1191: enqueue an auto website screenshot for qualifying nodes.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'insert');
 }
 
 /**
@@ -577,6 +580,9 @@ function bioland_entity_update(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'update');
+
+  // BL-1191: enqueue a refreshed website screenshot when the URL changed.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'update');
 }
 
 /**

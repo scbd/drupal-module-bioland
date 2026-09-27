@@ -25,6 +25,8 @@ countries:
 # /admin/reports/status.
 region: 'north_america'
 is_biosafety_land: false
+# BL-1191: auto screenshot image for "Related websites" nodes via ConvertAPI.
+enable_url_screenshot: true
 enable_field_visibility: true
 field_visibility:
   url_content_types:

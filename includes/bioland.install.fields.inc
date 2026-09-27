@@ -509,3 +509,89 @@ function bioland_update_9088() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * BL-1191: creates field_website_image (media, bundle image, unlimited) on
+ * node.content if no suitable field already exists, and adds it to the
+ * default form and view displays. Idempotent: safe on both a fresh install
+ * and a re-run update. Follows the field_order pattern (bioland_update_9004()).
+ *
+ * @return string
+ *   A plain-string status message (no t() - callers include update hooks).
+ */
+function _bioland_install_website_image_field() {
+  if (!\Drupal::moduleHandler()->moduleExists('node') || !\Drupal\node\Entity\NodeType::load('content')) {
+    return 'Skipped field_website_image creation: Node module or the "content" content type is not available.';
+  }
+
+  $field_storage = \Drupal\field\Entity\FieldStorageConfig::loadByName('node', 'field_website_image');
+  if (!$field_storage) {
+    $field_storage = \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_website_image',
+      'entity_type' => 'node',
+      'type' => 'entity_reference',
+      'settings' => ['target_type' => 'media'],
+      'cardinality' => \Drupal\Core\Field\FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
+      'translatable' => FALSE,
+    ]);
+    $field_storage->save();
+  }
+
+  $field = \Drupal\field\Entity\FieldConfig::loadByName('node', 'content', 'field_website_image');
+  if (!$field) {
+    $field = \Drupal\field\Entity\FieldConfig::create([
+      'field_name' => 'field_website_image',
+      'entity_type' => 'node',
+      'bundle' => 'content',
+      'label' => 'Website image',
+      'required' => FALSE,
+      'translatable' => FALSE,
+      'settings' => ['handler_settings' => ['target_bundles' => ['image' => 'image']]],
+    ]);
+    $field->save();
+  }
+
+  $form_display = \Drupal::entityTypeManager()->getStorage('entity_form_display')->load('node.content.default');
+  if ($form_display && !$form_display->getComponent('field_website_image')) {
+    $form_display->setComponent('field_website_image', ['type' => 'entity_reference_autocomplete', 'weight' => 15]);
+    $form_display->save();
+  }
+
+  $view_display = \Drupal::entityTypeManager()->getStorage('entity_view_display')->load('node.content.default');
+  if ($view_display && !$view_display->getComponent('field_website_image')) {
+    $view_display->setComponent('field_website_image', ['type' => 'entity_reference_entity_view', 'weight' => 15]);
+    $view_display->save();
+  }
+
+  return 'Ensured field_website_image field exists on the Content content type and is visible on the form and view displays.';
+}
+
+/**
+ * BL-1191: website screenshot field, config default and ConvertAPI requirement.
+ *
+ * Hook number 9089 is reserved by open PR #65 (BL-917); 9090/9091 were
+ * pre-assigned to the parallel BL-1191/BL-1192 branches, so this hook is
+ * deliberately 9090, not the next-plus-one from the recount.
+ */
+function bioland_update_9090() {
+  if (!class_exists('\\ConvertApi\\ConvertApi\\ConvertApi')) {
+    throw new \Drupal\Core\Utility\UpdateException('convertapi/convertapi-php is not installed; run composer require convertapi/convertapi-php --with-all-dependencies');
+  }
+
+  $messages = [];
+  $messages[] = _bioland_install_website_image_field();
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('enable_url_screenshot') === NULL) {
+    $config->set('enable_url_screenshot', TRUE)->save();
+    $messages[] = 'Seeded the website screenshot switch (enable_url_screenshot) as enabled.';
+  }
+  else {
+    $messages[] = 'Website screenshot switch already present; left untouched.';
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

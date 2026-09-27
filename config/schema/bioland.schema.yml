@@ -26,6 +26,9 @@ bioland.settings:
     is_biosafety_land:
       type: boolean
       label: 'Is Biosafety Land'
+    enable_url_screenshot:
+      type: boolean
+      label: 'Enable auto website screenshot for Related websites nodes'
     enable_field_visibility:
       type: boolean
       label: 'Enable field visibility control'
