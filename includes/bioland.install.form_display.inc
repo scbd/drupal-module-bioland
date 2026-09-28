@@ -225,8 +225,32 @@ function _bioland_configure_media_view_displays() {
       $messages[] = t('No image field found on media.document; skipping media_library display image swap.');
     }
     else {
-      $image_field = reset($image_fields);
-      $image_field_name = $image_field->getName();
+      // Choose deterministically: prefer field_media_image when present,
+      // otherwise fall back to the alphabetically first field name so the
+      // outcome does not depend on storage/load order.
+      $image_fields_by_name = [];
+      foreach ($image_fields as $image_field_candidate) {
+        $image_fields_by_name[$image_field_candidate->getName()] = $image_field_candidate;
+      }
+
+      if (isset($image_fields_by_name['field_media_image'])) {
+        $image_field_name = 'field_media_image';
+      }
+      else {
+        $sorted_field_names = array_keys($image_fields_by_name);
+        sort($sorted_field_names);
+        $image_field_name = reset($sorted_field_names);
+      }
+
+      $image_field = $image_fields_by_name[$image_field_name];
+
+      if (count($image_fields_by_name) > 1) {
+        \Drupal::logger('bioland')->notice('BL-1206: media.document has @count image fields (@names); using @chosen for the media_library display.', [
+          '@count' => count($image_fields_by_name),
+          '@names' => implode(', ', array_keys($image_fields_by_name)),
+          '@chosen' => $image_field_name,
+        ]);
+      }
 
       $changed = FALSE;
 
