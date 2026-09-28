@@ -23,10 +23,17 @@ class BiolandEmbedAllowedOriginConstraint extends SymfonyConstraint {
   public const PLUGIN_ID = 'BiolandEmbedAllowedOrigin';
 
   /**
-   * Shown when the URL matches no allowlist entry.
+   * Shown when no entry has the URL's scheme, host and port.
    *
    * @var string
    */
-  public $message = 'The URL %url must be on an allowed host: %hosts. Site administrators can add a host under Front End General settings (@settings). The embedded site must also allow being framed: an X-Frame-Options or Content-Security-Policy frame-ancestors header that blocks this site leaves the embed blank.';
+  public $message = 'The URL %url is not on an allowed embed host. It must start with one of: %allowed. Site administrators can add an entry under Front End General settings (@settings); the embedded site must also allow being framed (no X-Frame-Options or Content-Security-Policy frame-ancestors header blocking this site).';
+
+  /**
+   * Shown when the host is allowed but the path is not, or is malformed.
+   *
+   * @var string
+   */
+  public $pathMessage = 'The URL %url is on an allowed embed host but not under an allowed path, or it is malformed (encoded slashes, dot segments, backslashes or spaces). It must start with one of: %allowed.';
 
 }
