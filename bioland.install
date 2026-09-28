@@ -23,6 +23,7 @@
  * - jsonapi.inc     : JSON:API configuration
  * - translation.inc : Translation & locale
  * - dmsm.inc        : DMSM country data integration
+ * - home_node.inc   : Editable home node 1000 as the front page
  */
 
 use Drupal\Core\Site\Settings;
@@ -54,6 +55,7 @@ require_once __DIR__ . '/includes/bioland.install.menu.inc';
 require_once __DIR__ . '/includes/bioland.install.jsonapi.inc';
 require_once __DIR__ . '/includes/bioland.install.translation.inc';
 require_once __DIR__ . '/includes/bioland.install.dmsm.inc';
+require_once __DIR__ . '/includes/bioland.install.home_node.inc';
 
 /*
  * =============================================================================
@@ -237,6 +239,10 @@ function bioland_install() {
 
   // Rebuild router to register view routes and local tasks.
   \Drupal::service('router.builder')->rebuild();
+
+  // Create the editable home node 1000 and make it the front page (BL-838).
+  // Never throws; a conflict or failure is logged and left for an editor.
+  _bioland_ensure_home_node();
 
   // FINAL STEP: Rebuild search index tracking and trigger reindex.
   // This MUST be the last operation to ensure all configuration changes
