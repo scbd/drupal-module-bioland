@@ -202,7 +202,7 @@ function bioland_install() {
   _bioland_configure_full_html_format();
 
   // Restrict media types selectable in the CKEditor Insert Media dialog
-  // (all except document); BL-1206.
+  // (image + remote_video only); BL-1206.
   _bioland_configure_media_embed_allowed_types();
 
   // Sync scbd_staff permissions with site_manager.

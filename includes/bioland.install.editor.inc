@@ -22,6 +22,15 @@ use Drupal\field\Entity\FieldStorageConfig;
  */
 const BIOLAND_EDITOR_IMAGE_MAX_SIZE = '10 MB';
 
+/**
+ * Media types selectable in the CKEditor "Insert Media" dialog (BL-1206).
+ *
+ * Mirrors the BL-1205 allowlist in
+ * _bioland_restrict_media_embed_allowed_types(): image + remote_video only.
+ * document and hero are intentionally absent.
+ */
+const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['image', 'remote_video'];
+
 /*
  * =============================================================================
  * HELPER FUNCTIONS
@@ -509,22 +518,27 @@ function _bioland_configure_full_html_editor_toolbar() {
 /**
  * Pure helper: build the media_embed allowed_media_types list (BL-1206).
  *
- * Every existing media type is selectable in the CKEditor "Insert Media"
- * dialog except 'document' (documents should be inserted/linked, not
- * embedded inline). Returns the keyed shape MediaEmbed's checkboxes
- * settings form stores in config: id => id, stable sorted, empty in ->
- * empty out.
+ * Only 'image' and 'remote_video' are selectable in the CKEditor "Insert
+ * Media" dialog, the same allowlist BL-1205 established in
+ * _bioland_restrict_media_embed_allowed_types(). 'document' (inserted /
+ * linked, not embedded) and 'hero' (a page-level banner, never inline
+ * body content) are deliberately excluded, as is any other type. The
+ * allowlist is intersected with the media types that actually exist on
+ * the site so a missing type is never written into config. Returns the
+ * keyed shape MediaEmbed's checkboxes settings form stores in config:
+ * id => id, stable sorted, empty in -> empty out.
  *
  * @param string[] $type_ids
- *   Media type machine names.
+ *   Media type machine names that exist on the site.
  *
  * @return array
  *   Allowed media type ids, keyed by id.
  */
 function _bioland_media_embed_allowed_types(array $type_ids): array {
-  $allowed = array_values(array_filter($type_ids, function ($id) {
-    return $id !== 'document';
-  }));
+  $allowed = array_values(array_intersect(
+    BIOLAND_MEDIA_EMBED_ALLOWED_TYPES,
+    $type_ids
+  ));
   sort($allowed, SORT_STRING);
   return array_combine($allowed, $allowed);
 }
@@ -534,9 +548,9 @@ function _bioland_media_embed_allowed_types(array $type_ids): array {
  * "Insert Media" (media_embed) dialog on full_html (BL-1206).
  *
  * Loads filter.format.full_html, ensures the media_embed filter exists and
- * is enabled, and sets settings.allowed_media_types to every existing media
- * type except 'document' (built dynamically from media_type storage, never
- * hard-coded). allowed_view_modes is left untouched. Idempotent; skips with
+ * is enabled, and sets settings.allowed_media_types to image + remote_video
+ * (BIOLAND_MEDIA_EMBED_ALLOWED_TYPES, intersected with the media types that
+ * exist on the site). allowed_view_modes is left untouched. Idempotent; skips with
  * a message when media / media_library is not enabled, or the format is
  * missing.
  *
@@ -589,7 +603,7 @@ function _bioland_configure_media_embed_allowed_types() {
     $current_types = $filters['media_embed']['settings']['allowed_media_types'] ?? [];
     if ($current_types !== $allowed_types) {
       $filters['media_embed']['settings']['allowed_media_types'] = $allowed_types;
-      $messages[] = t('Restricted full_html media_embed allowed types to all media types except document.');
+      $messages[] = t('Restricted full_html media_embed allowed types to image + remote_video.');
       $changed = TRUE;
     }
   }

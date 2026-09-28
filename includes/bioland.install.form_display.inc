@@ -372,7 +372,7 @@ function bioland_update_9055() {
  * view displays (BL-1206).
  *
  * Restricts the media types selectable in the CKEditor "Insert Media"
- * dialog (all except document), drops the generic 'name' field from the
+ * dialog (image + remote_video only), drops the generic 'name' field from the
  * remote_video default display, and swaps the generic thumbnail for the
  * document's own image field on the document media_library display.
  *
