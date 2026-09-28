@@ -6,9 +6,12 @@
  */
 
 use Drupal\bioland\BiolandEmbeddedImageMedia;
+use Drupal\bioland\BiolandEmbedPreviewSandbox;
 use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
 use Drupal\bioland\Service\BiolandMediaImageEditor;
 use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -537,6 +540,78 @@ function bioland_entity_type_alter(array &$entity_types) {
       BiolandComponentMenuFormMode::OPERATION,
       BiolandComponentMenuLinkForm::class
     );
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field templates.
+ *
+ * Sandboxes the embed media type's allowlisted iframes (media page, media
+ * library, CKEditor preview) the way the head does. An off-list iframe is
+ * replaced by a notice only in the CKEditor preview; elsewhere, including
+ * the body markup the head consumes, it is left for the head to drop
+ * (BL-1218).
+ *
+ * @see \Drupal\bioland\BiolandEmbedPreviewSandbox
+ */
+function bioland_preprocess_field(&$variables) {
+  $element = $variables['element'] ?? [];
+  if (($element['#entity_type'] ?? NULL) !== 'media' || ($element['#bundle'] ?? NULL) !== 'embed') {
+    return;
+  }
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'));
+  $route = \Drupal::hasService('current_route_match') ? \Drupal::service('current_route_match')->getRouteName() : NULL;
+  foreach ($variables['items'] ?? [] as $delta => $item) {
+    if (($item['content']['#theme'] ?? NULL) === 'iframe') {
+      $variables['items'][$delta]['content'] = BiolandEmbedPreviewSandbox::apply($item['content'], $entries, $route === BiolandEmbedPreviewSandbox::EDITOR_PREVIEW_ROUTE);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_library_add_form_iframe.
+ *
+ * media_iframe's media library add form (the CKEditor media picker path)
+ * validates the new media through the media_library form display, which
+ * holds no source field, so the embed URL constraint's violation is dropped
+ * there. Validate the URL element directly instead, as core's OEmbedForm
+ * does (BL-1218).
+ */
+function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['container']['url'])) {
+    $form['container']['url']['#element_validate'][] = 'bioland_media_library_embed_url_validate';
+  }
+}
+
+/**
+ * Element validate: the media library iframe URL is on the embed allowlist.
+ */
+function bioland_media_library_embed_url_validate(array &$element, FormStateInterface $form_state) {
+  $error = BiolandEmbedAllowedOriginConstraintValidator::formError(
+    (string) $form_state->getValue('url'),
+    BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'))
+  );
+  if ($error !== NULL) {
+    $form_state->setErrorByName('url', $error);
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ *
+ * Validates the embed media type's source field against the bioland.settings
+ * embed allowlist (BL-1218). The field name is read from the media type's
+ * stored source configuration, not the source plugin, so this never
+ * re-enters the entity field manager.
+ */
+function bioland_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() !== 'media' || $bundle !== 'embed') {
+    return;
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  $name = $type ? ($type->get('source_configuration')['source_field'] ?? NULL) : NULL;
+  if ($name && isset($fields[$name])) {
+    $fields[$name]->addConstraint(BiolandEmbedAllowedOriginConstraint::PLUGIN_ID);
   }
 }
 

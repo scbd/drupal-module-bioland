@@ -137,6 +137,113 @@ final class BiolandEmbedAllowlist {
   }
 
   /**
+   * classify(): the URL matches an entry.
+   */
+  public const MATCH = 'match';
+
+  /**
+   * classify(): no entry has the URL's scheme, host and port.
+   */
+  public const HOST_NOT_ALLOWED = 'host';
+
+  /**
+   * classify(): the origin is allowed, but the path is not or is malformed.
+   */
+  public const PATH_NOT_ALLOWED = 'path';
+
+  /**
+   * Whether a URL may be framed under the given allowlist entries.
+   */
+  public static function matches(string $url, array $entries): bool {
+    return self::findEntry($url, $entries) !== NULL;
+  }
+
+  /**
+   * Returns the first entry the URL matches, or NULL.
+   */
+  public static function findEntry(string $url, array $entries): ?array {
+    return self::scan($url, $entries)[1];
+  }
+
+  /**
+   * Returns MATCH, HOST_NOT_ALLOWED or PATH_NOT_ALLOWED for a URL.
+   */
+  public static function classify(string $url, array $entries): string {
+    return self::scan($url, $entries)[0];
+  }
+
+  /**
+   * Matches a URL against the entries.
+   *
+   * The URL's scheme, host and port must equal an entry's exactly (userinfo
+   * is refused), and its path must equal the entry's path or extend it past
+   * a '/'. Query and fragment are ignored. Encoded '/' or '\', dot segments
+   * (encoded or not), backslashes and whitespace fail the path.
+   *
+   * @return array
+   *   The classify() status and the matched entry (NULL unless MATCH).
+   */
+  private static function scan(string $url, array $entries): array {
+    $origin = preg_match('~^(https?://[^/?#]*)([^?#]*)~i', $url, $m) ? self::normalizeUrl($m[1]) : NULL;
+    $paths = [];
+    foreach ($origin === NULL ? [] : $entries as $entry) {
+      $allowed = is_array($entry) ? self::normalizeUrl((string) ($entry['url'] ?? '')) : NULL;
+      if ($allowed !== NULL && ($allowed === $origin || str_starts_with($allowed, $origin . '/'))) {
+        $paths[] = [substr($allowed, strlen($origin)), $entry];
+      }
+    }
+    if (!$paths) {
+      return [self::HOST_NOT_ALLOWED, NULL];
+    }
+    if (preg_match('/[\x00-\x20\x7f\\\\]/', $url) || preg_match('~%(2f|5c)|(^|/)(\.|%2e){1,2}(/|$)~i', $m[2])) {
+      return [self::PATH_NOT_ALLOWED, NULL];
+    }
+    $path = rtrim($m[2], '/');
+    foreach ($paths as [$allowed_path, $entry]) {
+      if ($allowed_path === '' || $path === $allowed_path || str_starts_with($path, $allowed_path . '/')) {
+        return [self::MATCH, $entry];
+      }
+    }
+    return [self::PATH_NOT_ALLOWED, NULL];
+  }
+
+  /**
+   * The normalised URLs of the valid entries, de-duplicated.
+   *
+   * @return string[]
+   *   Canonical entry URLs in list order.
+   */
+  public static function entryUrls(array $entries): array {
+    $urls = [];
+    foreach ($entries as $entry) {
+      $url = is_array($entry) ? self::normalizeUrl((string) ($entry['url'] ?? '')) : NULL;
+      if ($url !== NULL) {
+        $urls[$url] = $url;
+      }
+    }
+    return array_values($urls);
+  }
+
+  /**
+   * The sandbox attribute the head applies for an entry (html.js toSandbox).
+   *
+   * Unknown and never-allowed tokens are dropped, as is allow-same-origin
+   * beside allow-scripts. NULL when the entry sets no sandbox; '' when every
+   * token was filtered out, so a typo never fails open.
+   */
+  public static function frameSandbox(array $entry): ?string {
+    $tokens = self::sandboxTokens((string) ($entry['sandbox'] ?? ''));
+    if (!$tokens) {
+      return NULL;
+    }
+    $tokens = array_diff(array_intersect($tokens, self::SANDBOX_TOKENS), self::NEVER_ALLOWED_TOKENS);
+    if (in_array('allow-scripts', $tokens, TRUE)) {
+      $tokens = array_diff($tokens, ['allow-same-origin']);
+    }
+    return implode(' ', $tokens);
+  }
+
+  /**
    * Returns an entry in its stored shape. Call only after validateEntry().
    */
   public static function normalizeEntry(array $entry): array {

@@ -158,4 +158,141 @@ class BiolandEmbedAllowlistTest extends TestCase {
     }
   }
 
+  /**
+   * matches() compares parsed scheme, host, port and path segments.
+   *
+   * @dataProvider matchProvider
+   */
+  public function testMatches(string $url, bool $expected): void {
+    $entries = [
+      ['url' => 'https://app.powerbi.com/view'],
+      ['url' => 'https://www.youtube.com'],
+      ['url' => 'http://localhost:8080/sites/x/files'],
+      ['url' => 'not a url'],
+      'not an entry',
+    ];
+    $this->assertSame($expected, BiolandEmbedAllowlist::matches($url, $entries));
+  }
+
+  /**
+   * URLs and whether they match the entries above.
+   */
+  public static function matchProvider(): array {
+    return [
+      'powerbi report' => ['https://app.powerbi.com/view?r=eyJrIjoiYWJjIn0%3D', TRUE],
+      'powerbi trailing slash' => ['https://app.powerbi.com/view/?r=1', TRUE],
+      'deeper path' => ['https://app.powerbi.com/view/sub', TRUE],
+      'host case ignored' => ['HTTPS://APP.POWERBI.COM/view', TRUE],
+      'default port' => ['https://app.powerbi.com:443/view', TRUE],
+      'origin entry any path' => ['https://www.youtube.com/embed/abc#t=1', TRUE],
+      'files with port' => ['http://localhost:8080/sites/x/files/2026-09/flow.html', TRUE],
+      'at in path on origin entry' => ['https://www.youtube.com/@user/videos', TRUE],
+      'at in path under entry path' => ['https://app.powerbi.com/view/x@y', TRUE],
+      'at in query' => ['https://app.powerbi.com/view?r=a@b', TRUE],
+      'path not on segment boundary' => ['https://app.powerbi.com/view-evil', FALSE],
+      'path prefix only' => ['https://app.powerbi.com/vie', FALSE],
+      'path case differs' => ['https://app.powerbi.com/View', FALSE],
+      'other path' => ['https://app.powerbi.com/reportEmbed', FALSE],
+      'lookalike suffix host' => ['https://app.powerbi.com.evil.example/view', FALSE],
+      'lookalike prefix host' => ['https://evil-app.powerbi.com/view', FALSE],
+      'parent domain' => ['https://powerbi.com/view', FALSE],
+      'subdomain of origin entry' => ['https://m.youtube.com/embed/abc', FALSE],
+      'scheme differs' => ['http://app.powerbi.com/view', FALSE],
+      'port differs' => ['http://localhost:8081/sites/x/files/a.html', FALSE],
+      'missing port' => ['http://localhost/sites/x/files/a.html', FALSE],
+      'userinfo' => ['https://user@app.powerbi.com/view', FALSE],
+      'userinfo spoof' => ['https://app.powerbi.com/view@evil.example/', FALSE],
+      'password userinfo' => ['https://app.powerbi.com:pw@evil.example/view', FALSE],
+      'encoded slash' => ['https://app.powerbi.com/view%2F..%2Fother', FALSE],
+      'encoded backslash' => ['https://app.powerbi.com/view%5cother', FALSE],
+      'raw backslash' => ['https://app.powerbi.com\\@evil.example/view', FALSE],
+      'dot segment' => ['https://app.powerbi.com/view/../other', FALSE],
+      'encoded dot segment' => ['https://app.powerbi.com/view/%2e%2e/other', FALSE],
+      'whitespace' => ['https://app.powerbi.com/view x', FALSE],
+      'protocol relative' => ['//app.powerbi.com/view', FALSE],
+      'relative' => ['/view', FALSE],
+      'javascript' => ['javascript:alert(1)//https://app.powerbi.com/view', FALSE],
+      'empty' => ['', FALSE],
+    ];
+  }
+
+  /**
+   * classify() separates a wrong host from a wrong or malformed path.
+   *
+   * @dataProvider classifyProvider
+   */
+  public function testClassify(string $url, string $expected): void {
+    $entries = [['url' => 'https://app.powerbi.com/view'], ['url' => 'https://www.youtube.com']];
+    $this->assertSame($expected, BiolandEmbedAllowlist::classify($url, $entries));
+  }
+
+  /**
+   * URLs and their classification.
+   */
+  public static function classifyProvider(): array {
+    return [
+      'match' => ['https://app.powerbi.com/view?r=1', BiolandEmbedAllowlist::MATCH],
+      'other host' => ['https://evil.example/view', BiolandEmbedAllowlist::HOST_NOT_ALLOWED],
+      'userinfo' => ['https://u@app.powerbi.com/view', BiolandEmbedAllowlist::HOST_NOT_ALLOWED],
+      'relative' => ['/view', BiolandEmbedAllowlist::HOST_NOT_ALLOWED],
+      'port differs' => ['https://app.powerbi.com:8443/view', BiolandEmbedAllowlist::HOST_NOT_ALLOWED],
+      'path outside entry' => ['https://app.powerbi.com/reportEmbed', BiolandEmbedAllowlist::PATH_NOT_ALLOWED],
+      'encoded slash' => ['https://app.powerbi.com/view%2fx', BiolandEmbedAllowlist::PATH_NOT_ALLOWED],
+      'dot segment' => ['https://app.powerbi.com/view/../x', BiolandEmbedAllowlist::PATH_NOT_ALLOWED],
+      'space' => ['https://app.powerbi.com/view x', BiolandEmbedAllowlist::PATH_NOT_ALLOWED],
+    ];
+  }
+
+  /**
+   * findEntry() returns the entry that matched, first one wins.
+   */
+  public function testFindEntry(): void {
+    $entries = [['url' => 'https://www.youtube.com', 'label' => 'A'], ['url' => 'https://www.youtube.com/embed', 'label' => 'B']];
+    $this->assertSame('A', BiolandEmbedAllowlist::findEntry('https://www.youtube.com/embed/x', $entries)['label']);
+    $this->assertNull(BiolandEmbedAllowlist::findEntry('https://youtube.com/embed/x', $entries));
+  }
+
+  /**
+   * entryUrls() lists the valid entries in canonical form, de-duplicated.
+   */
+  public function testEntryUrls(): void {
+    $this->assertSame(
+      ['https://app.powerbi.com/view', 'https://www.youtube.com'],
+      BiolandEmbedAllowlist::entryUrls([['url' => 'HTTPS://app.powerbi.com/view/'], ['url' => 'nope'], 'x', ['url' => 'https://www.youtube.com'], ['url' => 'https://app.powerbi.com/view']])
+    );
+  }
+
+  /**
+   * frameSandbox() mirrors the head's toSandbox().
+   *
+   * @dataProvider sandboxProvider
+   */
+  public function testFrameSandbox(string $sandbox, ?string $expected): void {
+    $this->assertSame($expected, BiolandEmbedAllowlist::frameSandbox(['url' => 'https://x.example', 'sandbox' => $sandbox]));
+  }
+
+  /**
+   * Entry sandbox values and the attribute they produce.
+   */
+  public static function sandboxProvider(): array {
+    return [
+      'none set' => ['', NULL],
+      'whitespace only' => ['   ', NULL],
+      'scripts' => ['allow-scripts', 'allow-scripts'],
+      'same-origin dropped beside scripts' => ['allow-same-origin allow-scripts allow-forms', 'allow-scripts allow-forms'],
+      'same-origin alone kept' => ['allow-same-origin', 'allow-same-origin'],
+      'never-allowed dropped' => ['allow-top-navigation allow-popups', 'allow-popups'],
+      'all filtered becomes empty' => ['allow-top-navigation bogus', ''],
+      'case folded' => ['ALLOW-SCRIPTS', 'allow-scripts'],
+    ];
+  }
+
+  /**
+   * An empty or missing list matches nothing.
+   */
+  public function testEmptyListMatchesNothing(): void {
+    $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/view', []));
+    $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/view', [[]]));
+  }
+
 }
