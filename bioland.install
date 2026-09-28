@@ -281,6 +281,12 @@ function bioland_install() {
   // during a config sync: the synced core.extension decides what is enabled.
   if (!\Drupal::isConfigSyncing()) {
     _bioland_enable_contrib_feature_modules();
+
+    // Embed media type on iframe + media_iframe, offered in the CKEditor
+    // media picker; BL-1218.
+    _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
+    _bioland_create_embed_media_type();
+    _bioland_configure_media_embed_allowed_types();
   }
 
   // Rebuild router to register view routes and local tasks.
