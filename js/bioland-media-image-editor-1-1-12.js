@@ -12,7 +12,7 @@
 (function (Drupal, once) {
   'use strict';
 
-  var COLLAPSED_CLASS = 'bioland-image-editor--collapsed';
+  const COLLAPSED_CLASS = 'bioland-image-editor--collapsed';
 
   /**
    * Applies the expanded/collapsed state to a toggle and its editor region.
@@ -27,7 +27,7 @@
   function setExpanded(button, editor, expanded) {
     editor.classList.toggle(COLLAPSED_CLASS, !expanded);
     button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    var label = expanded ? button.dataset.labelHide : button.dataset.labelShow;
+    const label = expanded ? button.dataset.labelHide : button.dataset.labelShow;
     if (label) {
       button.textContent = label;
     }
@@ -41,7 +41,7 @@
   Drupal.behaviors.biolandMediaImageEditor = {
     attach: function (context) {
       once('bioland-media-image-editor', '[data-bioland-image-editor-toggle]', context).forEach(function (button) {
-        var editor = document.getElementById(button.getAttribute('aria-controls'));
+        const editor = document.getElementById(button.getAttribute('aria-controls'));
         if (!editor) {
           return;
         }

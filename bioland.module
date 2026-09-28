@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Service\BiolandMediaImageEditor;
 use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
@@ -939,7 +940,11 @@ function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $
     return;
   }
 
-  $extension = _bioland_media_source_extension($form_state->getFormObject()->getEntity());
+  // Validate against the field the editor targets, the same one presave
+  // writes (BiolandMediaImageEditor::editableField()).
+  $media = $form_state->getFormObject()->getEntity();
+  $field = $media instanceof MediaInterface ? \Drupal::service('bioland.media_image_editor')->editableField($media) : NULL;
+  $extension = _bioland_media_image_extension($media, $field);
   foreach ($payloads as $payload) {
     $reason = BiolandToastImageGuard::validate($payload, $extension);
     if ($reason !== NULL) {
@@ -968,6 +973,16 @@ function bioland_media_presave(EntityInterface $media) {
 
   $user = \Drupal::currentUser();
   $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
+  // The widget input can name any permanent fid; only the media's own file
+  // (stored, or the user's own temporary upload) may be overwritten. This
+  // gate covers the contrib write on image sources too.
+  if ($allowed && $field !== NULL) {
+    $file = $media->get($field)->isEmpty() ? NULL : $media->get($field)->entity;
+    $original = $media->original ?? NULL;
+    $stored_fid = $original && !$original->get($field)->isEmpty() ? (int) $original->get($field)->target_id : NULL;
+    $allowed = $file instanceof FileInterface && BiolandMediaImageEditor::fileEditable(
+      $stored_fid, (int) $file->id(), $file->isTemporary(), (int) $file->getOwnerId(), (int) $user->id());
+  }
   $post = \Drupal::request()->request;
   $dropped = BiolandToastImageGuard::sanitize($post, _bioland_media_image_extension($media, $field), $allowed);
   foreach ($dropped as $reason) {
