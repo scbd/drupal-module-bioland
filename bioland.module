@@ -694,6 +694,23 @@ function bioland_theme() {
 }
 
 /**
+ * Implements hook_modules_installed().
+ *
+ * BL-1218: when media_iframe is enabled after bioland_update_9098() ran on an
+ * image without it (for example drush en media_iframe once the new docker
+ * wrapper image is deployed), create the embed media type and offer it in the
+ * CKEditor media picker exactly as the update hook does. Not during a config
+ * sync: the synced config carries the media type.
+ */
+function bioland_modules_installed($modules, $is_syncing) {
+  if ($is_syncing || !in_array('media_iframe', $modules, TRUE)) {
+    return;
+  }
+  \Drupal::moduleHandler()->loadInclude('bioland', 'install');
+  _bioland_setup_embed_media();
+}
+
+/**
  * Implements hook_module_implements_alter().
  *
  * Moves bioland's hook_form_alter to run last so the Save-button relabel in
