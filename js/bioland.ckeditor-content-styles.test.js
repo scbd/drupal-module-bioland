@@ -31,6 +31,14 @@ describe('Bioland CKEditor content styles - remote video width (BL-1207)', () =>
     );
   });
 
+  test('makes the media widget holding an oEmbed iframe full width (core styles it display: table)', () => {
+    const match = css.match(
+      /\.ck\.ck-content\s+\.drupal-media:has\(iframe\.media-oembed-content\)\s*\{([^}]*)\}/
+    );
+    expect(match).not.toBeNull();
+    expect(match[1]).toMatch(/width:\s*100%/);
+  });
+
   test('sets the oEmbed iframe to full width with a preserved 16:9 aspect ratio', () => {
     const match = css.match(
       /\.ck\.ck-content\s+\.drupal-media\s+iframe\.media-oembed-content\s*\{([^}]*)\}/
