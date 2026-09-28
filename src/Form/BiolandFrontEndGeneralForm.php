@@ -5,6 +5,7 @@ namespace Drupal\bioland\Form;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
+use Drupal\bioland\Service\BiolandEmbedAllowlist;
 
 /**
  * Configure Front End General settings for the Bioland module.
@@ -169,6 +170,43 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       '#description' => $this->t('A comma-separated list of Google tag IDs, for example G-ABC1234567,GTM-XYZ789. Accepted prefixes are G-, GTM-, AW-, DC-, and UA-. The public site loads one gtag.js configuration per non-GTM ID and one Tag Manager container per GTM- ID. Scripts load only when the checkbox above is on, only for visitors who accept the Google Analytics cookie category, and only on the production host of a bl2 site (other multisites do not load Google tags today). Saved changes reach the public site within about 5 minutes; page changes within the site rely on GA4 Enhanced Measurement, which is on by default for a web data stream. UA- IDs are accepted for legacy properties, but Google stopped processing Universal Analytics data on 1 July 2023, so they record nothing.'),
     ];
 
+    // BL-1218: origins the public site may frame in content pages.
+    $origins = array_values((array) ($config->get('embed.allowed_origins') ?? []));
+    $count = $form_state->get('embed_origin_count') ?? count($origins) + 1;
+    $form['front_end_general_settings']['embed_section'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Embedded content origins'),
+      '#open' => FALSE,
+    ];
+    $form['front_end_general_settings']['embed_section']['embed_description'] = [
+      '#markup' => '<p>' . $this->t('The public site shows an embedded frame only when its URL has exactly the scheme and host of an entry below and its path starts with the entry path, for example https://app.powerbi.com/view. Sandbox tokens restrict what the framed page may do; leave it empty for no sandbox. For the site files URL use allow-scripts only. Tick Remove and save to delete a row.') . '</p>',
+    ];
+    $table = [
+      '#type' => 'table',
+      '#header' => [$this->t('URL'), $this->t('Label'), $this->t('Sandbox tokens'), $this->t('Remove')],
+    ];
+    for ($i = 0; $i < $count; $i++) {
+      $row = $origins[$i] ?? [];
+      foreach (['url' => $this->t('URL'), 'label' => $this->t('Label'), 'sandbox' => $this->t('Sandbox tokens')] as $key => $title) {
+        $table[$i][$key] = [
+          '#type' => 'textfield',
+          '#title' => $title,
+          '#title_display' => 'invisible',
+          '#default_value' => $row[$key] ?? '',
+          '#maxlength' => 2048,
+        ];
+      }
+      $table[$i]['remove'] = ['#type' => 'checkbox', '#title' => $this->t('Remove'), '#title_display' => 'invisible'];
+    }
+    $form['front_end_general_settings']['embed_section']['embed_allowed_origins'] = $table;
+    $form['front_end_general_settings']['embed_section']['embed_add'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Add another origin'),
+      '#name' => 'embed_add',
+      '#submit' => ['::submitAddEmbedOrigin'],
+      '#limit_validation_errors' => [],
+    ];
+
     return $form;
   }
 
@@ -186,6 +224,17 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
         'google_analytics_ids',
         $this->t('The following Google tag IDs are not valid: @tokens. Each ID must start with one of the accepted prefixes: G-, GTM-, AW-, DC-, or UA-.', ['@tokens' => implode(', ', $invalid)])
       );
+    }
+
+    $messages = [
+      'url' => $this->t('Enter an absolute http or https URL with a host and no user name, password, query or fragment.'),
+      'sandbox_token' => $this->t('Use only HTML iframe sandbox tokens, for example allow-scripts allow-forms.'),
+      'sandbox_escape' => $this->t('allow-scripts together with allow-same-origin lets the framed page remove its own sandbox. Remove one of them.'),
+    ];
+    foreach ($this->submittedEmbedOrigins($form_state) as $i => $row) {
+      foreach (BiolandEmbedAllowlist::validateEntry($row) as $code) {
+        $form_state->setErrorByName('embed_allowed_origins][' . $i . '][' . ($code === 'url' ? 'url' : 'sandbox'), $messages[$code]);
+      }
     }
 
     // A warning, not an error: turning the switch on before the IDs arrive is a
@@ -292,6 +341,36 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // to load.
     $config
       ->set('google_analytics_ids', implode(',', $this->normalizeGoogleTagIds($values['google_analytics_ids'] ?? '')));
+    // Only when the table was submitted, so a partial value tree never
+    // wipes the stored list.
+    if (array_key_exists('embed_allowed_origins', $values)) {
+      $config->set('embed.allowed_origins', array_values(array_map(
+        [BiolandEmbedAllowlist::class, 'normalizeEntry'],
+        $this->submittedEmbedOrigins($form_state)
+      )));
+    }
+  }
+
+  /**
+   * Returns the submitted embed rows to keep: not removed, URL not blank.
+   *
+   * @return array[]
+   *   The rows, keyed by their table index.
+   */
+  protected function submittedEmbedOrigins(FormStateInterface $form_state): array {
+    $rows = (array) ($form_state->getValue('embed_allowed_origins') ?? []);
+    return array_filter($rows, static fn ($row): bool => is_array($row)
+      && empty($row['remove'])
+      && trim((string) ($row['url'] ?? '')) !== '');
+  }
+
+  /**
+   * Submit handler for the Add another origin button.
+   */
+  public function submitAddEmbedOrigin(array &$form, FormStateInterface $form_state) {
+    $count = count((array) ($form_state->getUserInput()['embed_allowed_origins'] ?? []));
+    $form_state->set('embed_origin_count', $count + 1);
+    $form_state->setRebuild();
   }
 
   /**

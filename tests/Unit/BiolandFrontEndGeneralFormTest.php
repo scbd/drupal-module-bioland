@@ -912,4 +912,79 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
     $this->assertFalse($config->get('google_analytics_enabled'));
   }
 
+  /**
+   * BL-1218: the embed table lists stored rows plus one blank row.
+   */
+  public function testEmbedTableListsStoredRowsPlusABlankRow(): void {
+    $config = $this->config(['embed' => ['allowed_origins' => [
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
+    ]]]);
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+
+    $table = $form['front_end_general_settings']['embed_section']['embed_allowed_origins'];
+    $this->assertSame('table', $table['#type']);
+    $this->assertSame('https://app.powerbi.com/view', $table[0]['url']['#default_value']);
+    $this->assertSame('Power BI', $table[0]['label']['#default_value']);
+    $this->assertSame('', $table[1]['url']['#default_value']);
+    $this->assertArrayNotHasKey(2, $table);
+    $this->assertSame(['::submitAddEmbedOrigin'], $form['front_end_general_settings']['embed_section']['embed_add']['#submit']);
+  }
+
+  /**
+   * BL-1218: each bad row is flagged on the field at fault.
+   */
+  public function testValidateFormFlagsBadEmbedRows(): void {
+    $form = [];
+    $formState = $this->formState(['embed_allowed_origins' => [
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'ok', 'sandbox' => 'allow-scripts', 'remove' => 0],
+      ['url' => 'https://user:pw@app.powerbi.com/view', 'label' => '', 'sandbox' => '', 'remove' => 0],
+      ['url' => 'https://example.org', 'label' => '', 'sandbox' => 'allow-scripts allow-same-origin', 'remove' => 0],
+      ['url' => 'https://example.org', 'label' => '', 'sandbox' => 'allow-magic', 'remove' => 0],
+      ['url' => 'not a url', 'label' => '', 'sandbox' => '', 'remove' => 1],
+      ['url' => '  ', 'label' => 'blank', 'sandbox' => 'allow-magic', 'remove' => 0],
+    ]]);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    $this->assertSame([
+      'embed_allowed_origins][1][url',
+      'embed_allowed_origins][2][sandbox',
+      'embed_allowed_origins][3][sandbox',
+    ], array_keys($formState->getErrors()));
+    $this->assertStringContainsString('remove its own sandbox', $formState->getErrors()['embed_allowed_origins][2][sandbox']);
+  }
+
+  /**
+   * BL-1218: submit stores kept rows in canonical form, re-indexed.
+   */
+  public function testSubmitStoresNormalizedEmbedRows(): void {
+    $config = $this->config(['embed' => ['allowed_origins' => [['url' => 'https://old.example', 'label' => '', 'sandbox' => '']]]]);
+    $form = [];
+    $values = ['embed_allowed_origins' => [
+      ['url' => 'https://old.example', 'label' => '', 'sandbox' => '', 'remove' => 1],
+      ['url' => '', 'label' => '', 'sandbox' => '', 'remove' => 0],
+      ['url' => 'HTTPS://App.PowerBI.com/view/', 'label' => ' Power BI ', 'sandbox' => '', 'remove' => 0],
+    ]];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame(
+      [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']],
+      $config->get('embed.allowed_origins')
+    );
+  }
+
+  /**
+   * BL-1218: a submit without the table never wipes the stored list.
+   */
+  public function testSubmitWithoutEmbedTableKeepsStoredList(): void {
+    $list = [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']];
+    $config = $this->config(['embed' => ['allowed_origins' => $list]]);
+    $form = [];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState(['google_analytics_ids' => '']), $config]);
+
+    $this->assertSame($list, $config->get('embed.allowed_origins'));
+  }
+
 }
