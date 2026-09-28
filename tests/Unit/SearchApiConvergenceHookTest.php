@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9096()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9097()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -300,6 +300,18 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($editorFile),
       'bioland_update_9096() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9097(), added for BL-784
+    // to grant 'delete any media' to content manager and above) is the last
+    // writer for every site, so it must ALSO converge on the canonical v2
+    // config.
+    $rolesFile = $this->moduleRoot() . '/includes/bioland.install.roles.inc';
+    $this->assertFileExists($rolesFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9097\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($rolesFile),
+      'bioland_update_9097() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -315,9 +327,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9096,
+      9097,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9096() now holds that role (it enables the BL-917 editor contrib modules and re-applies the canonical v2 config after the corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9097() now holds that role (it grants the BL-784 delete any media permission and re-applies the canonical v2 config after the corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 
