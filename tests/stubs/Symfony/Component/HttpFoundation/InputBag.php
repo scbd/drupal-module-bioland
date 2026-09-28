@@ -86,13 +86,28 @@ class InputBag {
   }
 
   /**
-   * Returns every parameter.
+   * Returns every parameter, or the array held under $key.
+   *
+   * Mirrors Symfony's InputBag::all(?string $key): a missing key is [], a
+   * non-array value under the key is a BadRequestException.
+   *
+   * @param string|null $key
+   *   The key whose array to return, or NULL for every parameter.
    *
    * @return array
    *   The parameters.
    */
-  public function all() {
-    return $this->parameters;
+  public function all($key = NULL) {
+    if ($key === NULL) {
+      return $this->parameters;
+    }
+
+    $value = $this->parameters[$key] ?? [];
+    if (!is_array($value)) {
+      throw new BadRequestException(sprintf('Unexpected value for parameter "%s": expecting "array", got "%s".', $key, get_debug_type($value)));
+    }
+
+    return $value;
   }
 
 }

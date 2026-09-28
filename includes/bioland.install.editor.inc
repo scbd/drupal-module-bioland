@@ -14,6 +14,15 @@
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
+/**
+ * Media types selectable in the CKEditor "Insert Media" dialog (BL-1206).
+ *
+ * Mirrors the BL-1205 allowlist in
+ * _bioland_restrict_media_embed_allowed_types(): image + remote_video only.
+ * document and hero are intentionally absent.
+ */
+const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['image', 'remote_video'];
+
 /*
  * =============================================================================
  * HELPER FUNCTIONS
@@ -478,6 +487,125 @@ function _bioland_configure_full_html_editor_toolbar() {
   }
 
   return implode("\n", $messages);
+}
+
+/**
+ * Pure helper: build the media_embed allowed_media_types list (BL-1206).
+ *
+ * Only 'image' and 'remote_video' are selectable in the CKEditor "Insert
+ * Media" dialog, the same allowlist BL-1205 established in
+ * _bioland_restrict_media_embed_allowed_types(). 'document' (inserted /
+ * linked, not embedded) and 'hero' (a page-level banner, never inline
+ * body content) are deliberately excluded, as is any other type. The
+ * allowlist is intersected with the media types that actually exist on
+ * the site so a missing type is never written into config. Returns the
+ * keyed shape MediaEmbed's checkboxes settings form stores in config:
+ * id => id, stable sorted, empty in -> empty out.
+ *
+ * @param string[] $type_ids
+ *   Media type machine names that exist on the site.
+ *
+ * @return array
+ *   Allowed media type ids, keyed by id.
+ */
+function _bioland_media_embed_allowed_types(array $type_ids): array {
+  $allowed = array_values(array_intersect(
+    BIOLAND_MEDIA_EMBED_ALLOWED_TYPES,
+    $type_ids
+  ));
+  sort($allowed, SORT_STRING);
+  return array_combine($allowed, $allowed);
+}
+
+/**
+ * Helper function to restrict media types selectable in the CKEditor
+ * "Insert Media" (media_embed) dialog on full_html (BL-1206).
+ *
+ * Loads filter.format.full_html, ensures the media_embed filter exists and
+ * is enabled, and sets settings.allowed_media_types to image + remote_video
+ * (BIOLAND_MEDIA_EMBED_ALLOWED_TYPES, intersected with the media types that
+ * exist on the site). allowed_view_modes is left untouched. Idempotent; skips with
+ * a message when media / media_library is not enabled, or the format is
+ * missing.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_media_embed_allowed_types() {
+  if ($skip = _bioland_require_module('media', 'media_embed allowed types configuration')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('media_library', 'media_embed allowed types configuration')) {
+    return $skip;
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $filter_config = $config_factory->getEditable('filter.format.full_html');
+  if (!$filter_config || $filter_config->isNew()) {
+    return t('filter.format.full_html not found; skipping media_embed configuration.');
+  }
+
+  $media_type_ids = array_keys(\Drupal::entityTypeManager()->getStorage('media_type')->loadMultiple());
+  $allowed_types = _bioland_media_embed_allowed_types($media_type_ids);
+
+  $messages = [];
+  $changed = FALSE;
+
+  $filters = $filter_config->get('filters') ?: [];
+  if (!isset($filters['media_embed'])) {
+    $filters['media_embed'] = [
+      'id' => 'media_embed',
+      'provider' => 'media',
+      'status' => TRUE,
+      'weight' => 0,
+      'settings' => [
+        'default_view_mode' => 'default',
+        'allowed_media_types' => $allowed_types,
+        'allowed_view_modes' => [],
+      ],
+    ];
+    $messages[] = t('Added media_embed filter to full_html format.');
+    $changed = TRUE;
+  }
+  else {
+    if (empty($filters['media_embed']['status'])) {
+      $filters['media_embed']['status'] = TRUE;
+      $messages[] = t('Enabled media_embed filter on full_html format.');
+      $changed = TRUE;
+    }
+
+    $current_types = $filters['media_embed']['settings']['allowed_media_types'] ?? [];
+    if ($current_types !== $allowed_types) {
+      $filters['media_embed']['settings']['allowed_media_types'] = $allowed_types;
+      $messages[] = t('Restricted full_html media_embed allowed types to image + remote_video.');
+      $changed = TRUE;
+    }
+  }
+
+  if ($changed) {
+    $filter_config->set('filters', $filters);
+
+    // Ensure the media module dependency is declared.
+    $dependencies = $filter_config->get('dependencies') ?: [];
+    $modules = $dependencies['module'] ?? [];
+    if (!in_array('media', $modules, TRUE)) {
+      $modules[] = 'media';
+      sort($modules);
+      $dependencies['module'] = array_values($modules);
+      $filter_config->set('dependencies', $dependencies);
+    }
+
+    $filter_config->save(TRUE);
+  }
+  else {
+    $messages[] = t('full_html media_embed allowed types already configured.');
+  }
+
+  \Drupal::logger('bioland')->notice('media_embed allowed types configuration: @messages', [
+    '@messages' => implode(' ', $messages),
+  ]);
+
+  return implode(' ', $messages);
 }
 
 /*

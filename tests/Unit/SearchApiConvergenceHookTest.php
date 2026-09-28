@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9083()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9092()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -185,6 +185,86 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($helpersFile),
       'bioland_update_9083() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9084(), added for BL-841
+    // to enable the hero image focal point widget) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $focalPointFile = $this->moduleRoot() . '/includes/bioland.install.focal_point.inc';
+    $this->assertFileExists($focalPointFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9084\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($focalPointFile),
+      'bioland_update_9084() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9085(), added for BL-841
+    // to remove the stale computed focal point field storage definition) is
+    // the last writer for every site, so it must ALSO converge on the
+    // canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9085\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($focalPointFile),
+      'bioland_update_9085() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9087(), added for BL-836
+    // to delete duplicate Publishing admin menu links) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $menuFile = $this->moduleRoot() . '/includes/bioland.install.menu.inc';
+    $this->assertFileExists($menuFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9087\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($menuFile),
+      'bioland_update_9087() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9088(), added for BL-815
+    // to make the remote video image optional) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9088\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9088() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9090(), added for BL-1191
+    // to install the website screenshot field and switch) is the last writer
+    // for every site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9090\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9090() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9091(), added for
+    // BL-1192 to ready the document-preview feature) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9091\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9091() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9092(), added for BL-836
+    // to retire Publishing > Add > Content) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9092\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($menuFile),
+      'bioland_update_9092() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9095(), added for
+    // BL-1206 to fix CKEditor media insert types and the remote video /
+    // document view displays) is the last writer for every site, so it must
+    // ALSO converge on the canonical v2 config.
+    $formDisplayFile = $this->moduleRoot() . '/includes/bioland.install.form_display.inc';
+    $this->assertFileExists($formDisplayFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9095\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($formDisplayFile),
+      'bioland_update_9095() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -200,9 +280,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9083,
+      9095,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9083() now holds that role (it seeds the Google Analytics switch as disabled and re-applies the canonical v2 config after the 9071-9082 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9095() now holds that role (it fixes CKEditor media insert types and the remote video / document view displays for BL-1206 and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

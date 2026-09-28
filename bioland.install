@@ -54,6 +54,7 @@ require_once __DIR__ . '/includes/bioland.install.menu.inc';
 require_once __DIR__ . '/includes/bioland.install.jsonapi.inc';
 require_once __DIR__ . '/includes/bioland.install.translation.inc';
 require_once __DIR__ . '/includes/bioland.install.dmsm.inc';
+require_once __DIR__ . '/includes/bioland.install.focal_point.inc';
 
 /*
  * =============================================================================
@@ -97,6 +98,22 @@ function bioland_install() {
   // This MUST happen before any code that references field_order or other optional fields.
   _bioland_install_optional_field_configs();
 
+  // BL-1191: website screenshot media field on the "content" bundle.
+  _bioland_install_website_image_field();
+
+  // BL-1192: ensure the document-preview feature (ConvertAPI library present,
+  // Image field resolution adequate) is ready on a fresh install too, so it
+  // converges to the same state as an upgraded site. The shared helper always
+  // throws UpdateException (the shape an update hook needs); hook_install()
+  // is not an update hook, so it re-throws as RuntimeException, matching how
+  // the missing-role check above behaves.
+  try {
+    _bioland_ensure_document_preview_ready();
+  }
+  catch (\Drupal\Core\Utility\UpdateException $e) {
+    throw new \RuntimeException($e->getMessage());
+  }
+
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
@@ -123,6 +140,20 @@ function bioland_install() {
   }
   catch (\Throwable $e) {
     // Swallow errors to avoid failing installation; values will remain defaults.
+  }
+
+  // Seed the DMSM config base URL (and prod allowlist) from the deployment
+  // before anything queues a geography fetch. A fresh install marks
+  // bioland_update_9082() as run without executing it, so this is the only
+  // place a new site picks up BIOLAND_DMSM_CONFIG_BASE_URL. Never fails the
+  // install; bioland_requirements() reports a still-missing value.
+  try {
+    if (_bioland_seed_dmsm_config_from_environment() === NULL) {
+      \Drupal::logger('bioland')->warning('bioland.settings.dmsm_config_base_url is not set and the deployment offers no value (BIOLAND_DMSM_CONFIG_BASE_URL); geography sync will not run.');
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('bioland')->warning('Could not seed the DMSM config during install: @message', ['@message' => $e->getMessage()]);
   }
 
   // Queue the countries update based on hostname. Installation never fetches:
@@ -173,6 +204,10 @@ function bioland_install() {
   // Configure full_html format with Linkit and disable basic_html.
   _bioland_configure_full_html_format();
 
+  // Restrict media types selectable in the CKEditor Insert Media dialog
+  // (image + remote_video only); BL-1206.
+  _bioland_configure_media_embed_allowed_types();
+
   // Sync scbd_staff permissions with site_manager.
   _bioland_sync_scbd_staff_permissions();
 
@@ -188,6 +223,10 @@ function bioland_install() {
 
   // Disable comment field on view displays.
   _bioland_disable_comment_field_display();
+
+  // Hero image focal point widget (BL-841); only when focal_point is already
+  // enabled, hook_install never installs modules.
+  _bioland_configure_hero_focal_point();
 
   // Configure timezone settings (disable user timezone configuration).
   $date_config = \Drupal::configFactory()->getEditable('system.date');
@@ -212,9 +251,6 @@ function bioland_install() {
   // Enable Main Menu Lock and remove permissions from specific roles.
   _bioland_enable_main_menu_lock();
 
-  // Create Content menu link in admin toolbar.
-  _bioland_create_content_menu_link();
-
   // Disable auto_node_translate admin me`nu items.
   _bioland_disable_translation_menus();
 
@@ -225,6 +261,10 @@ function bioland_install() {
   _bioland_install_user_admin_view();
   // _bioland_install_comment_admin_view();
   _bioland_install_media_library_view();
+
+  // Configure media view displays: remote_video default (drop name field)
+  // and document media_library (image field instead of thumbnail); BL-1206.
+  _bioland_configure_media_view_displays();
 
   // Update menu item 139 URL to /admin/content/media.
   _bioland_update_menu_item_139();
@@ -269,6 +309,19 @@ function bioland_requirements($phase) {
           'severity' => ($phase === 'install') ? REQUIREMENT_ERROR : REQUIREMENT_ERROR,
         ];
       }
+    }
+
+    // Verify the ConvertAPI PHP library (BL-1192 document previews) is
+    // installed. This module is rsync-deployed, so a require in its own
+    // composer.json installs nothing on a site until composer is actually
+    // run there.
+    if (!class_exists('\ConvertApi\ConvertApi')) {
+      $requirements['bioland_dep_convertapi'] = [
+        'title' => t('Required library: ConvertAPI PHP'),
+        'value' => t('Missing'),
+        'description' => t('Install via Composer: composer require convertapi/convertapi-php --with-all-dependencies'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
     }
 
     $has_type = FALSE;
@@ -349,9 +402,42 @@ function bioland_requirements($phase) {
     }
   }
 
+  // Focal Point is a soft dependency (BL-841): without it the hero image has
+  // no window selector and bioland_focal_point stays empty.
+  if ($phase === 'runtime' && !\Drupal::moduleHandler()->moduleExists('focal_point')) {
+    $requirements['bioland_focal_point'] = [
+      'title' => t('Bioland hero focal point'),
+      'value' => t('Focal Point module not installed'),
+      'description' => t('Editors cannot choose which part of the hero image shows. Run composer require "drupal/focal_point:^2.1" --with-all-dependencies, then drush updb.'),
+      'severity' => REQUIREMENT_WARNING,
+    ];
+  }
+
+  if ($phase === 'runtime') {
+    $screenshot_config = \Drupal::config('bioland.settings');
+    if ($screenshot_config->get('enable_url_screenshot') !== FALSE) {
+      $secret = \Drupal\bioland\BiolandUrlScreenshotPolicy::resolveSecret(
+        [\Drupal\Core\Site\Settings::class, 'get']
+      );
+      if ($secret === '') {
+        $requirements['bioland_convert_api_secret'] = [
+          'title' => t('ConvertAPI secret (website screenshots)'),
+          'value' => t('Not set'),
+          'description' => t('CONVERT_API_SECRET is not set in the environment (or bioland_convert_api_secret in settings.php). Website screenshots (BL-1191) will not run until it is set. No value is ever printed here.'),
+          'severity' => REQUIREMENT_WARNING,
+        ];
+      }
+    }
+  }
+
   // DMSM geography: an unset or refused base URL freezes the site's countries,
   // region and continent silently, so it has to surface on the status report.
   $requirements += _bioland_dmsm_requirements($phase);
+
+  // drupal-docker-wrapper image version (BL-1189): warns when the running
+  // image predates the BL-917 modules' minimum wrapper version, or when the
+  // version cannot be determined at all.
+  $requirements += _bioland_wrapper_requirements($phase);
 
   return $requirements;
 }
