@@ -71,9 +71,25 @@ class BiolandEditorImageUploadLimitTest extends TestCase {
       'BIOLAND_EDITOR_IMAGE_MAX_SIZE must be defined as \'10 MB\'.'
     );
 
+    // Extract just the target function's body (up to the next top-level
+    // function declaration, or end of file) so the assertion cannot match
+    // BIOLAND_EDITOR_IMAGE_MAX_SIZE usages that live in unrelated functions.
     $this->assertMatchesRegularExpression(
-      '/function\s+_bioland_configure_full_html_editor_toolbar\s*\([^)]*\)\s*\{.*BIOLAND_EDITOR_IMAGE_MAX_SIZE.*\}/s',
+      '/function\s+_bioland_configure_full_html_editor_toolbar\s*\([^)]*\)\s*\{.*?(?=\n^function\s|\z)/ms',
       $content,
+      '_bioland_configure_full_html_editor_toolbar() must be defined in bioland.install.editor.inc.'
+    );
+
+    preg_match(
+      '/function\s+_bioland_configure_full_html_editor_toolbar\s*\([^)]*\)\s*\{.*?(?=\n^function\s|\z)/ms',
+      $content,
+      $matches
+    );
+    $function_body = $matches[0] ?? '';
+
+    $this->assertStringContainsString(
+      'BIOLAND_EDITOR_IMAGE_MAX_SIZE',
+      $function_body,
       '_bioland_configure_full_html_editor_toolbar() must write BIOLAND_EDITOR_IMAGE_MAX_SIZE.'
     );
   }
