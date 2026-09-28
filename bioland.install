@@ -97,9 +97,6 @@ function bioland_install() {
   // This MUST happen before any code that references field_order or other optional fields.
   _bioland_install_optional_field_configs();
 
-  // BL-1191: website screenshot media field on the "content" bundle.
-  _bioland_install_website_image_field();
-
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
