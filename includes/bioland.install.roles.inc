@@ -190,12 +190,18 @@ function _bioland_sync_scbd_staff_permissions() {
  * and anonymous are deliberately left out.
  *
  * Idempotent: roles that already hold the permission are not re-saved. A
- * missing role is skipped and logged.
+ * missing role is skipped and logged. Skips entirely when media is not
+ * enabled, because Drupal refuses to save a role holding an undefined
+ * permission.
  *
  * @return string
  *   Status message.
  */
 function _bioland_grant_media_delete_permissions() {
+  if (!\Drupal::moduleHandler()->moduleExists('media')) {
+    return t('Media module not enabled; delete any media not granted.');
+  }
+
   $roles = ['content_manager', 'site_manager', 'scbd_staff', 'administrator'];
 
   $matrix = [];

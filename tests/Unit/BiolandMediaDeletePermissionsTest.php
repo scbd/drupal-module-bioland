@@ -11,7 +11,8 @@ use PHPUnit\Framework\TestCase;
  * Covers _bioland_grant_media_delete_permissions(), called from
  * bioland_update_9097() and bioland_install(): content manager and above get
  * the permission, reruns are no-ops, missing roles are skipped with a logged
- * notice, and lower roles are never granted it.
+ * notice, the grant is skipped without media, and lower roles are never
+ * granted it.
  *
  * @group bioland
  */
@@ -37,6 +38,8 @@ class BiolandMediaDeletePermissionsTest extends TestCase {
 
   protected function setUp(): void {
     parent::setUp();
+
+    $this->setMediaEnabled(TRUE);
 
     $this->notices = [];
     $logger = new class($this->notices) {
@@ -64,6 +67,19 @@ class BiolandMediaDeletePermissionsTest extends TestCase {
     Role::resetStore();
     \Drupal::resetContainer();
     parent::tearDown();
+  }
+
+  /**
+   * Registers a module handler reporting whether media is enabled.
+   */
+  private function setMediaEnabled(bool $enabled): void {
+    \Drupal::setService('module_handler', new class($enabled) {
+      public function __construct(private bool $enabled) {}
+
+      public function moduleExists($module) {
+        return $module === 'media' && $this->enabled;
+      }
+    });
   }
 
   /**
@@ -128,6 +144,19 @@ class BiolandMediaDeletePermissionsTest extends TestCase {
       $this->assertFalse(Role::load($rid)->hasPermission(self::PERMISSION), "$rid must never be granted '" . self::PERMISSION . "'.");
       $this->assertSame(1, Role::load($rid)->saveCount, "$rid must never be re-saved.");
     }
+  }
+
+  public function testSkipsWhenMediaModuleIsDisabled(): void {
+    $this->seedRoles(self::GRANTED_ROLES);
+    $this->setMediaEnabled(FALSE);
+
+    $result = (string) _bioland_grant_media_delete_permissions();
+
+    foreach (self::GRANTED_ROLES as $rid) {
+      $this->assertFalse(Role::load($rid)->hasPermission(self::PERMISSION));
+      $this->assertSame(1, Role::load($rid)->saveCount);
+    }
+    $this->assertSame('Media module not enabled; delete any media not granted.', $result);
   }
 
   public function testStandardMatrixIsUnchanged(): void {
