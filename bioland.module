@@ -9,6 +9,7 @@ use Drupal\bioland\BiolandEmbeddedImageMedia;
 use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
 use Drupal\bioland\Service\BiolandMediaImageEditor;
 use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -537,6 +538,25 @@ function bioland_entity_type_alter(array &$entity_types) {
       BiolandComponentMenuFormMode::OPERATION,
       BiolandComponentMenuLinkForm::class
     );
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ *
+ * Validates the embed media type's source field against the bioland.settings
+ * embed allowlist (BL-1218). The field name is read from the media type's
+ * stored source configuration, not the source plugin, so this never
+ * re-enters the entity field manager.
+ */
+function bioland_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() !== 'media' || $bundle !== 'embed') {
+    return;
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  $name = $type ? ($type->get('source_configuration')['source_field'] ?? NULL) : NULL;
+  if ($name && isset($fields[$name])) {
+    $fields[$name]->addConstraint(BiolandEmbedAllowedOriginConstraint::PLUGIN_ID);
   }
 }
 

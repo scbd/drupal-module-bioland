@@ -158,4 +158,67 @@ class BiolandEmbedAllowlistTest extends TestCase {
     }
   }
 
+  /**
+   * matches() compares parsed scheme, host, port and path segments.
+   *
+   * @dataProvider matchProvider
+   */
+  public function testMatches(string $url, bool $expected): void {
+    $entries = [
+      ['url' => 'https://app.powerbi.com/view'],
+      ['url' => 'https://www.youtube.com'],
+      ['url' => 'http://localhost:8080/sites/x/files'],
+      ['url' => 'not a url'],
+      'not an entry',
+    ];
+    $this->assertSame($expected, BiolandEmbedAllowlist::matches($url, $entries));
+  }
+
+  /**
+   * URLs and whether they match the entries above.
+   */
+  public static function matchProvider(): array {
+    return [
+      'powerbi report' => ['https://app.powerbi.com/view?r=eyJrIjoiYWJjIn0%3D', TRUE],
+      'powerbi trailing slash' => ['https://app.powerbi.com/view/?r=1', TRUE],
+      'deeper path' => ['https://app.powerbi.com/view/sub', TRUE],
+      'host case ignored' => ['HTTPS://APP.POWERBI.COM/view', TRUE],
+      'default port' => ['https://app.powerbi.com:443/view', TRUE],
+      'origin entry any path' => ['https://www.youtube.com/embed/abc#t=1', TRUE],
+      'files with port' => ['http://localhost:8080/sites/x/files/2026-09/flow.html', TRUE],
+      'path not on segment boundary' => ['https://app.powerbi.com/view-evil', FALSE],
+      'path prefix only' => ['https://app.powerbi.com/vie', FALSE],
+      'path case differs' => ['https://app.powerbi.com/View', FALSE],
+      'other path' => ['https://app.powerbi.com/reportEmbed', FALSE],
+      'lookalike suffix host' => ['https://app.powerbi.com.evil.example/view', FALSE],
+      'lookalike prefix host' => ['https://evil-app.powerbi.com/view', FALSE],
+      'parent domain' => ['https://powerbi.com/view', FALSE],
+      'subdomain of origin entry' => ['https://m.youtube.com/embed/abc', FALSE],
+      'scheme differs' => ['http://app.powerbi.com/view', FALSE],
+      'port differs' => ['http://localhost:8081/sites/x/files/a.html', FALSE],
+      'missing port' => ['http://localhost/sites/x/files/a.html', FALSE],
+      'userinfo' => ['https://user@app.powerbi.com/view', FALSE],
+      'userinfo spoof' => ['https://app.powerbi.com/view@evil.example/', FALSE],
+      'password userinfo' => ['https://app.powerbi.com:pw@evil.example/view', FALSE],
+      'encoded slash' => ['https://app.powerbi.com/view%2F..%2Fother', FALSE],
+      'encoded backslash' => ['https://app.powerbi.com/view%5cother', FALSE],
+      'raw backslash' => ['https://app.powerbi.com\\@evil.example/view', FALSE],
+      'dot segment' => ['https://app.powerbi.com/view/../other', FALSE],
+      'encoded dot segment' => ['https://app.powerbi.com/view/%2e%2e/other', FALSE],
+      'whitespace' => ['https://app.powerbi.com/view x', FALSE],
+      'protocol relative' => ['//app.powerbi.com/view', FALSE],
+      'relative' => ['/view', FALSE],
+      'javascript' => ['javascript:alert(1)//https://app.powerbi.com/view', FALSE],
+      'empty' => ['', FALSE],
+    ];
+  }
+
+  /**
+   * An empty or missing list matches nothing.
+   */
+  public function testEmptyListMatchesNothing(): void {
+    $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/view', []));
+    $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/view', [[]]));
+  }
+
 }

@@ -137,6 +137,48 @@ final class BiolandEmbedAllowlist {
   }
 
   /**
+   * Whether a URL may be framed under the given allowlist entries.
+   *
+   * The URL's scheme, host and port must equal an entry's exactly, and its
+   * path must equal the entry's path or extend it past a '/'. Query and
+   * fragment are ignored. Userinfo, encoded '/' or '\', dot segments
+   * (encoded or not) and whitespace reject the URL outright.
+   */
+  public static function matches(string $url, array $entries): bool {
+    if (preg_match('/[\x00-\x20\x7f]/', $url) || !preg_match('~^(https?://[^/?#]*)([^?#]*)~i', $url, $m)
+      || preg_match('~%(2f|5c)|(^|/)(\.|%2e){1,2}(/|$)~i', $m[2])) {
+      return FALSE;
+    }
+    $candidate = self::normalizeUrl($m[1] . $m[2]);
+    if ($candidate === NULL) {
+      return FALSE;
+    }
+    [$origin, $path] = self::splitOrigin($candidate);
+    foreach ($entries as $entry) {
+      $allowed = is_array($entry) ? self::normalizeUrl((string) ($entry['url'] ?? '')) : NULL;
+      if ($allowed === NULL) {
+        continue;
+      }
+      [$allowed_origin, $allowed_path] = self::splitOrigin($allowed);
+      if ($origin === $allowed_origin && ($allowed_path === '' || $path === $allowed_path || str_starts_with($path, $allowed_path . '/'))) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+  /**
+   * Splits a normalizeUrl() result into its origin and path.
+   *
+   * @return string[]
+   *   The origin (scheme://host[:port]) and the path ('' for none).
+   */
+  private static function splitOrigin(string $url): array {
+    $slash = strpos($url, '/', strpos($url, '://') + 3);
+    return $slash === FALSE ? [$url, ''] : [substr($url, 0, $slash), substr($url, $slash)];
+  }
+
+  /**
    * Returns an entry in its stored shape. Call only after validateEntry().
    */
   public static function normalizeEntry(array $entry): array {
