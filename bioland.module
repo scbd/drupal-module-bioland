@@ -546,9 +546,11 @@ function bioland_entity_type_alter(array &$entity_types) {
 /**
  * Implements hook_preprocess_HOOK() for field templates.
  *
- * Sandboxes the embed media type's iframe output (media page, media library,
- * CKEditor preview) the way the head does, and blocks an iframe whose URL is
- * off the allowlist (BL-1218).
+ * Sandboxes the embed media type's allowlisted iframes (media page, media
+ * library, CKEditor preview) the way the head does. An off-list iframe is
+ * replaced by a notice only in the CKEditor preview; elsewhere, including
+ * the body markup the head consumes, it is left for the head to drop
+ * (BL-1218).
  *
  * @see \Drupal\bioland\BiolandEmbedPreviewSandbox
  */
@@ -558,9 +560,10 @@ function bioland_preprocess_field(&$variables) {
     return;
   }
   $entries = BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'));
+  $route = \Drupal::hasService('current_route_match') ? \Drupal::service('current_route_match')->getRouteName() : NULL;
   foreach ($variables['items'] ?? [] as $delta => $item) {
     if (($item['content']['#theme'] ?? NULL) === 'iframe') {
-      $variables['items'][$delta]['content'] = BiolandEmbedPreviewSandbox::apply($item['content'], $entries);
+      $variables['items'][$delta]['content'] = BiolandEmbedPreviewSandbox::apply($item['content'], $entries, $route === BiolandEmbedPreviewSandbox::EDITOR_PREVIEW_ROUTE);
     }
   }
 }
@@ -584,12 +587,12 @@ function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInter
  * Element validate: the media library iframe URL is on the embed allowlist.
  */
 function bioland_media_library_embed_url_validate(array &$element, FormStateInterface $form_state) {
-  $violation = BiolandEmbedAllowedOriginConstraintValidator::violation(
+  $error = BiolandEmbedAllowedOriginConstraintValidator::formError(
     (string) $form_state->getValue('url'),
     BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'))
   );
-  if ($violation !== NULL) {
-    $form_state->setErrorByName('url', t($violation[0], $violation[1]));
+  if ($error !== NULL) {
+    $form_state->setErrorByName('url', $error);
   }
 }
 
