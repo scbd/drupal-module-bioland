@@ -185,6 +185,17 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($helpersFile),
       'bioland_update_9083() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9100(), added for BL-838
+    // to create the editable home node 1000) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $homeNodeFile = $this->moduleRoot() . '/includes/bioland.install.home_node.inc';
+    $this->assertFileExists($homeNodeFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9100\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($homeNodeFile),
+      'bioland_update_9100() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -200,9 +211,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9083,
+      9100,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9083() now holds that role (it seeds the Google Analytics switch as disabled and re-applies the canonical v2 config after the 9071-9082 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9100() now holds that role (it creates the editable home node 1000 and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 
