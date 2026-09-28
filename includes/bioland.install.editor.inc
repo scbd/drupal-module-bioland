@@ -14,6 +14,14 @@
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
+/**
+ * Canonical CKEditor5 inline image upload size limit for full_html (BL-1202).
+ *
+ * Shared by _bioland_configure_full_html_editor_toolbar() (the write) and its
+ * own post-save verification, so the two can never drift out of sync.
+ */
+const BIOLAND_EDITOR_IMAGE_MAX_SIZE = '10 MB';
+
 /*
  * =============================================================================
  * HELPER FUNCTIONS
@@ -234,7 +242,9 @@ function _bioland_update_content_to_full_html() {
  * Helper function to configure full_html text format.
  *
  * - Adds Linkit extension to editor.editor.full_html
- * - Sets image upload max size to 250kb
+ * - Removes the dead settings.plugins.ckeditor5_imageUpload.max_size key
+ *   (core never reads it; see _bioland_configure_full_html_editor_toolbar()
+ *   for the actual image upload limit, at the top-level image_upload key)
  * - Adds Linkit filter to filter.format.full_html
  * - Grants scbd_staff access to full_html format
  * - Disables basic_html editor
@@ -264,12 +274,16 @@ function _bioland_configure_full_html_format() {
       $messages[] = t('Added Linkit extension to full_html editor.');
     }
 
-    // Update image upload max size.
-    if (!isset($settings['plugins']['ckeditor5_imageUpload'])) {
-      $settings['plugins']['ckeditor5_imageUpload'] = [];
+    // Remove the dead ckeditor5_imageUpload plugin key (BL-1202). Core never
+    // reads settings.plugins.ckeditor5_imageUpload.max_size — the effective
+    // limit lives at the top-level image_upload.max_size key, written by
+    // _bioland_configure_full_html_editor_toolbar(). Unsetting here (rather
+    // than simply no longer writing it) also clears it from already-installed
+    // sites, where it can trip config validation on Drupal 10.3+/11.
+    if (isset($settings['plugins']['ckeditor5_imageUpload'])) {
+      unset($settings['plugins']['ckeditor5_imageUpload']);
+      $messages[] = t('Removed dead ckeditor5_imageUpload plugin key from full_html editor settings.');
     }
-    $settings['plugins']['ckeditor5_imageUpload']['max_size'] = '250kb';
-    $messages[] = t('Set image upload max size to 250kb.');
 
     $editor_config->set('settings', $settings);
     $editor_config->save(TRUE);
@@ -369,7 +383,8 @@ function _bioland_configure_full_html_format() {
 /**
  * Helper function to configure full_html editor toolbar and image upload limit.
  *
- * - Sets image upload max size to 50kb
+ * - Sets image upload max size to BIOLAND_EDITOR_IMAGE_MAX_SIZE (10 MB)
+ * - Ensures image upload is enabled (image_upload.status)
  * - Updates CKEditor5 toolbar with comprehensive button configuration
  *
  * @return string
@@ -388,12 +403,19 @@ function _bioland_configure_full_html_editor_toolbar() {
     // Get current values for debugging
     $current_max_size = $editor_config->get('image_upload.max_size');
     $current_toolbar = $editor_config->get('settings.toolbar.items');
-    
-    // Update image upload max size to 50kb.
-    $editor_config->set('image_upload.max_size', '50kb');
-    $messages[] = t('Set image upload max size to 50kb (was: @old).', [
+
+    // Update image upload max size to the canonical limit.
+    $editor_config->set('image_upload.max_size', BIOLAND_EDITOR_IMAGE_MAX_SIZE);
+    $messages[] = t('Set image upload max size to @size (was: @old).', [
+      '@size' => BIOLAND_EDITOR_IMAGE_MAX_SIZE,
       '@old' => $current_max_size ?: 'not set',
     ]);
+
+    // Ensure image upload is enabled.
+    if ($editor_config->get('image_upload.status') !== TRUE) {
+      $editor_config->set('image_upload.status', TRUE);
+      $messages[] = t('Enabled image upload for full_html editor.');
+    }
 
     // Define the new toolbar items.
     $toolbar_items = [
@@ -454,9 +476,11 @@ function _bioland_configure_full_html_editor_toolbar() {
     $saved_max_size = $editor_config_verify->get('image_upload.max_size');
     $saved_toolbar = $editor_config_verify->get('settings.toolbar.items');
     
-    if ($saved_max_size === '50kb' && is_array($saved_toolbar) && count($saved_toolbar) === count($toolbar_items)) {
+    if ($saved_max_size === BIOLAND_EDITOR_IMAGE_MAX_SIZE && is_array($saved_toolbar) && count($saved_toolbar) === count($toolbar_items)) {
       $messages[] = t('✓ Verified: Changes saved successfully.');
-      \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and 50kb image limit - VERIFIED.');
+      \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and @size image limit - VERIFIED.', [
+        '@size' => BIOLAND_EDITOR_IMAGE_MAX_SIZE,
+      ]);
     }
     else {
       $messages[] = t('⚠ Warning: Save verification failed. Max size: @size, Toolbar items: @items', [
@@ -550,4 +574,31 @@ function bioland_update_9034() {
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * Raise the CKEditor inline image upload limit to 10 MB (BL-1202).
+ *
+ * Two prior hooks disagreed about the image upload limit for full_html:
+ * bioland_update_9022() (via _bioland_configure_full_html_format()) wrote a
+ * dead settings.plugins.ckeditor5_imageUpload.max_size = 250kb key that core
+ * never reads, and bioland_update_9038() (via
+ * _bioland_configure_full_html_editor_toolbar()) wrote the real limit,
+ * image_upload.max_size, as 50kb. Re-running both helpers here converges
+ * every site on the single canonical limit (BIOLAND_EDITOR_IMAGE_MAX_SIZE)
+ * and clears the dead key.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every
+ * site, so per SearchApiConvergenceHookTest it must also re-apply the
+ * canonical v2 Search API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9093() {
+  $messages = [];
+  $messages[] = _bioland_configure_full_html_format();
+  $messages[] = _bioland_configure_full_html_editor_toolbar();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
