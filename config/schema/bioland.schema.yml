@@ -186,6 +186,26 @@ bioland.settings:
     google_analytics_ids:
       type: string
       label: 'Google tag IDs'
+    embed:
+      type: mapping
+      label: 'Embedded content'
+      mapping:
+        allowed_origins:
+          type: sequence
+          label: 'Origins or URL prefixes the public site may frame'
+          sequence:
+            type: mapping
+            label: 'Allowed embed origin'
+            mapping:
+              url:
+                type: string
+                label: 'Origin or URL prefix'
+              label:
+                type: string
+                label: 'Label'
+              sandbox:
+                type: string
+                label: 'Space-separated iframe sandbox tokens; empty means no sandbox'
     enable_debug_logging:
       type: boolean
       label: 'Enable debug logging'

@@ -967,3 +967,87 @@ function bioland_update_9098() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Returns the site's own public files URL as an allowlist entry, or NULL.
+ *
+ * Seeded from the public files URL, not the site base URL: it honours
+ * $settings['file_public_base_url'] and narrows the entry to the files path.
+ * The head matches the scheme exactly and pages are served over https, so
+ * only an https URL on a public-looking host is seeded. drush without --uri
+ * (http://default), http behind a TLS proxy, localhost, IP literals and
+ * dotless container names seed nothing; the admin adds the row by hand.
+ */
+function _bioland_embed_files_origin_entry() {
+  try {
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString('public://');
+  }
+  catch (\Throwable $e) {
+    return NULL;
+  }
+  $url = \Drupal\bioland\Service\BiolandEmbedAllowlist::normalizeUrl((string) $url);
+  $host = (string) parse_url((string) $url, PHP_URL_HOST);
+  if ($url === NULL || !str_starts_with($url, 'https://') || !str_contains($host, '.')
+    || $host === 'localhost' || \Drupal\bioland\Service\BiolandEmbedAllowlist::isDottedQuad($host)) {
+    return NULL;
+  }
+  return ['url' => $url, 'label' => 'Site files', 'sandbox' => 'allow-scripts'];
+}
+
+/**
+ * Appends the site files entry to a list that does not already hold its url.
+ */
+function _bioland_embed_with_files_origin(array $origins) {
+  $files = _bioland_embed_files_origin_entry();
+  if ($files && !in_array($files['url'], array_column($origins, 'url'), TRUE)) {
+    $origins[] = $files;
+  }
+  return $origins;
+}
+
+/**
+ * Adds the site files entry to the installed list (hook_install()).
+ */
+function _bioland_seed_embed_files_origin() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $origins = $config->get('embed.allowed_origins');
+  if (is_array($origins) && ($seeded = _bioland_embed_with_files_origin($origins)) !== $origins) {
+    $config->set('embed.allowed_origins', $seeded)->save();
+  }
+}
+
+/**
+ * Seeds embed.allowed_origins on a site that has never stored the key.
+ *
+ * Any stored list, including an empty one, is an admin decision and is kept.
+ */
+function _bioland_backfill_embed_allowed_origins() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('embed.allowed_origins') !== NULL) {
+    return 'embed.allowed_origins already set; left unchanged.';
+  }
+  $defaults = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
+  $origins = _bioland_embed_with_files_origin($defaults);
+  $config->set('embed.allowed_origins', $origins)->save();
+  return count($origins) > count($defaults)
+    ? 'Seeded embed.allowed_origins, including the site files URL ' . end($origins)['url'] . '.'
+    : 'Seeded embed.allowed_origins without the site files URL (no public https host resolved); add it on the Front End General settings form.';
+}
+
+/**
+ * Backfill the BL-1218 embed allowlist on existing sites.
+ *
+ * As the highest-numbered hook it must also re-apply the canonical v2 Search
+ * API config last.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9099() {
+  $messages = [];
+  $messages[] = _bioland_backfill_embed_allowed_origins();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

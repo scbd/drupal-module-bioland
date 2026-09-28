@@ -110,6 +110,17 @@ class BiolandConfigDocumentBuilderTest extends TestCase {
   }
 
   /**
+   * BL-1218: the embed allowlist ships as embed.allowedOrigins, unscrubbed.
+   */
+  public function testEmbedAllowedOriginsProjectIntact() {
+    $origins = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
+    $origins[] = ['url' => 'https://example.org/sites/example/files', 'label' => 'Site files', 'sandbox' => 'allow-scripts'];
+    $projected = $this->builder->projectBiolandSettings(['embed' => ['allowed_origins' => $origins]]);
+
+    $this->assertSame(['embed' => ['allowedOrigins' => $origins]], $projected);
+  }
+
+  /**
    * A key not on the allowlist never ships, however innocuous it looks.
    */
   public function testKeysOutsideTheAllowlistAreNeverEmitted() {
