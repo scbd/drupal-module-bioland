@@ -4,6 +4,7 @@ namespace Drupal\bioland\Service;
 
 use ConvertApi\ConvertApi;
 use ConvertApi\FileUpload;
+use ConvertApi\ResultFile;
 use Drupal\bioland\BiolandDocumentPreviewPolicy as Policy;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DestructableInterface;
@@ -232,7 +233,7 @@ class BiolandDocumentPreviewService implements DestructableInterface
             $result = $this->convert('webp', $webpParams, 'pdf');
         }
 
-        $bytes = $result->getFile()->getContents();
+        $bytes = $this->resultBytes($result->getFile());
         $cost = $result->getConversionCost();
         if ($route === Policy::ROUTE_DIRECT && $cost > 1) {
             $this->logger->warning('Document preview for media @mid billed for @cost pages; PageRange was not honoured.', [
@@ -265,6 +266,33 @@ class BiolandDocumentPreviewService implements DestructableInterface
         $this->logger->info('Document preview generated for media @mid: @bytes bytes, conversion cost @cost.', [
             '@mid' => $mid, '@bytes' => strlen($bytes), '@cost' => $cost,
         ]);
+    }
+
+    /**
+     * Reads the converted bytes from a ConvertAPI result file.
+     *
+     * The final webp step sends StoreFile=false (Policy::buildParams()), so
+     * ConvertAPI returns the file inline as base64 FileData and no Url.
+     * convertapi-php 3.0.0's ResultFile::getContents() only downloads from
+     * Url, which surfaces as "Undefined array key Url" followed by a
+     * ValueError from file_get_contents(null); decode the inline data here
+     * and only fall back to getContents() for a stored (Url) result.
+     *
+     * @throws \RuntimeException
+     *   When the inline FileData is not valid base64.
+     */
+    protected function resultBytes(ResultFile $file): string
+    {
+        $info = $file->fileInfo ?? [];
+        if (isset($info['FileData'])) {
+            $bytes = base64_decode((string) $info['FileData'], true);
+            if ($bytes === false) {
+                throw new \RuntimeException('ConvertAPI returned inline FileData that is not valid base64.');
+            }
+            return $bytes;
+        }
+
+        return (string) $file->getContents();
     }
 
     /**
