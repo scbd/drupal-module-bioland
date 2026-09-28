@@ -275,6 +275,8 @@ class BiolandMediaImageEditorTest extends TestCase {
       public function getStorage($entity_type_id) { return $this->styles; }
       public function getDefinitions() { return []; }
       public function getDefinition($entity_type_id) { return NULL; }
+      public function hasDefinition($entity_type_id) { return FALSE; }
+      public function getAccessControlHandler($entity_type_id) { return NULL; }
     };
     $fs = new class($test, $realpath, $save_ok) implements FileSystemInterface {
       public function __construct(private $test, private $realpath, private $ok) {}
