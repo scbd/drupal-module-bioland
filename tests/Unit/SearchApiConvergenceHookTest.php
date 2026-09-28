@@ -277,6 +277,18 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($viewsFile),
       'bioland_update_9094() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9095(), added for
+    // BL-1206 to fix CKEditor media insert types and the remote video /
+    // document view displays) is the last writer for every site, so it must
+    // ALSO converge on the canonical v2 config.
+    $formDisplayFile = $this->moduleRoot() . '/includes/bioland.install.form_display.inc';
+    $this->assertFileExists($formDisplayFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9095\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($formDisplayFile),
+      'bioland_update_9095() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -292,9 +304,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9094,
+      9095,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9094() now holds that role (it cleans up document media cards in the media library picker for BL-1205 and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9095() now holds that role (it fixes CKEditor media insert types and the remote video / document view displays for BL-1206 and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 
