@@ -18,6 +18,12 @@ services:
   bioland.dmsm_config:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
     arguments: ['@config.factory', '@http_client', '@logger.factory', '@queue', '@request_stack']
+
+  bioland.document_preview:
+    class: Drupal\bioland\Service\BiolandDocumentPreviewService
+    arguments: ['@entity_type.manager', '@file_system', '@file.repository', '@logger.factory', '@queue', '@config.factory', '@state']
+    tags:
+      - { name: needs_destruction }
   bioland.config_document_builder:
     class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
     arguments: ['@logger.factory']

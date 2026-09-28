@@ -435,3 +435,71 @@ function bioland_update_9077() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Ensures the BL-1192 document-preview feature is ready (idempotent).
+ *
+ * Called from bioland_install() and bioland_update_9091(). It never performs
+ * a conversion; it only checks the ConvertAPI library is installed and,
+ * separately, widens the media.document Image field's max_resolution when it
+ * is empty or unhelpfully small, so a generated 1024px-wide preview is not
+ * rejected by the field's own constraints.
+ *
+ * @return string[]
+ *   Plain-string status messages.
+ *
+ * @throws \Drupal\Core\Utility\UpdateException
+ *   When the convertapi/convertapi-php library is not installed. An update
+ *   hook cannot run composer; it can only refuse to continue.
+ */
+function _bioland_ensure_document_preview_ready() {
+  $messages = [];
+
+  if (!class_exists('\ConvertApi\ConvertApi')) {
+    throw new \Drupal\Core\Utility\UpdateException('The convertapi/convertapi-php library is required for document previews. Run: composer require convertapi/convertapi-php --with-all-dependencies');
+  }
+
+  $field = \Drupal\field\Entity\FieldConfig::loadByName('media', 'document', \Drupal\bioland\BiolandDocumentPreviewPolicy::IMAGE_FIELD);
+
+  if (!$field) {
+    $messages[] = 'media.document Image field config not found; skipped the max_resolution check.';
+    return $messages;
+  }
+
+  $settings = $field->getSettings();
+  $max_resolution = $settings['max_resolution'] ?? '';
+  $needs_widening = TRUE;
+
+  if (preg_match('/^(\d+)x(\d+)$/', (string) $max_resolution, $m)) {
+    $needs_widening = ((int) $m[1] <= 128 && (int) $m[2] <= 128);
+  }
+
+  if ($needs_widening) {
+    $settings['max_resolution'] = '1600x1600';
+    $field->set('settings', $settings);
+    $field->save();
+    $messages[] = 'Widened media.document Image field max_resolution to 1600x1600 for document previews.';
+  }
+  else {
+    $messages[] = 'media.document Image field max_resolution already adequate; left untouched.';
+  }
+
+  return $messages;
+}
+
+/**
+ * Ensures document previews are ready and converges the canonical v2 config.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every
+ * site, so per SearchApiConvergenceHookTest it must also re-apply the
+ * canonical v2 Search API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see _bioland_ensure_document_preview_ready()
+ */
+function bioland_update_9091() {
+  $messages = _bioland_ensure_document_preview_ready();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
