@@ -210,7 +210,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // independently authorable from here on, and a future network document
     // that diverges them must only have to change this table.
     BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
-    BiolandThemeContract::KEY_HERO_SECONDARY => '#16c56e',
+    BiolandThemeContract::KEY_HERO_SECONDARY => BiolandThemeContract::FALLBACK_HERO_SECONDARY_BL2,
   ];
 
   /**
@@ -241,7 +241,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // the same two colours as its brand pair, lower-cased here to round-trip
     // through `<input type="color">`.
     BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BSL,
-    BiolandThemeContract::KEY_HERO_SECONDARY => '#428bca',
+    BiolandThemeContract::KEY_HERO_SECONDARY => BiolandThemeContract::FALLBACK_HERO_SECONDARY_BSL,
   ];
 
   /**

@@ -26,6 +26,9 @@ bioland.settings:
     is_biosafety_land:
       type: boolean
       label: 'Is Biosafety Land'
+    enable_url_screenshot:
+      type: boolean
+      label: 'Enable auto website screenshot for Related websites nodes'
     enable_field_visibility:
       type: boolean
       label: 'Enable field visibility control'
@@ -177,6 +180,9 @@ bioland.settings:
     google_analytics_enabled:
       type: boolean
       label: 'Enable Google Analytics'
+    enable_document_preview:
+      type: boolean
+      label: 'Auto-generate a first-page preview image for Document media'
     google_analytics_ids:
       type: string
       label: 'Google tag IDs'
