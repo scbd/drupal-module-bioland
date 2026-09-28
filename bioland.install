@@ -272,6 +272,12 @@ function bioland_install() {
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
 
+  // Enable the contrib feature modules the codebase provides (BL-917). Not
+  // during a config sync: the synced core.extension decides what is enabled.
+  if (!\Drupal::isConfigSyncing()) {
+    _bioland_enable_contrib_feature_modules();
+  }
+
   // Rebuild router to register view routes and local tasks.
   \Drupal::service('router.builder')->rebuild();
 
@@ -333,6 +339,26 @@ function bioland_requirements($phase) {
         'value' => t('Missing node type with machine name "content" (form id: node_content_form).'),
         'description' => t('Bioland requires a content type named "Content" with machine name "content". It will be created automatically on install; if still missing at runtime, please create it.'),
         'severity' => $severity,
+      ];
+    }
+  }
+
+  // Runtime-only: flag BL-917 contrib feature modules that are still off.
+  // bioland_update_9096() skips a module it cannot enable (not in the
+  // codebase, or its install threw) and never runs again, so this is the
+  // lasting reminder.
+  if ($phase === 'runtime') {
+    $module_handler = \Drupal::moduleHandler();
+    $disabled = array_values(array_filter(
+      _bioland_contrib_feature_modules(),
+      static fn ($module) => !$module_handler->moduleExists($module)
+    ));
+    if ($disabled) {
+      $requirements['bioland_contrib_feature_modules'] = [
+        'title' => t('Bioland contrib feature modules'),
+        'value' => t('Not enabled: @modules', ['@modules' => implode(', ', $disabled)]),
+        'description' => t('These modules ship in drupal-docker-wrapper 11.4.7-v7 or higher. Update the image if they are missing, then enable them (drush en @modules).', ['@modules' => implode(' ', $disabled)]),
+        'severity' => REQUIREMENT_WARNING,
       ];
     }
   }

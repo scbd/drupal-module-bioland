@@ -83,3 +83,8 @@ services:
   bioland.hero_editor_preview:
     class: Drupal\bioland\Service\BiolandHeroEditorPreview
     arguments: ['@config.factory']
+
+  bioland.route_subscriber:
+    class: Drupal\bioland\Routing\BiolandRouteSubscriber
+    tags:
+      - { name: event_subscriber }
