@@ -172,14 +172,14 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
 
     // BL-1218: origins the public site may frame in content pages.
     $origins = array_values((array) ($config->get('embed.allowed_origins') ?? []));
-    $count = $form_state->get('embed_origin_count') ?? count($origins) + 1;
+    $count = min($form_state->get('embed_origin_count') ?? count($origins) + 1, BiolandEmbedAllowlist::MAX_ENTRIES);
     $form['front_end_general_settings']['embed_section'] = [
       '#type' => 'details',
       '#title' => $this->t('Embedded content origins'),
       '#open' => FALSE,
     ];
     $form['front_end_general_settings']['embed_section']['embed_description'] = [
-      '#markup' => '<p>' . $this->t('The public site shows an embedded frame only when its URL has exactly the scheme and host of an entry below and its path starts with the entry path, for example https://app.powerbi.com/view. Sandbox tokens restrict what the framed page may do; leave it empty for no sandbox. For the site files URL use allow-scripts only. Tick Remove and save to delete a row.') . '</p>',
+      '#markup' => '<p>' . $this->t('The public site shows an embedded frame only when its URL has exactly the scheme and host of an entry below and its path starts with the entry path, for example https://app.powerbi.com/view. Sandbox tokens restrict what the framed page may do; leave it empty for no sandbox. For the site files URL use allow-scripts only. Tick Remove and save to delete a row. A repeated URL keeps only its first row. At most @max rows.', ['@max' => BiolandEmbedAllowlist::MAX_ENTRIES]) . '</p>',
     ];
     $table = [
       '#type' => 'table',
@@ -205,6 +205,7 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
       '#name' => 'embed_add',
       '#submit' => ['::submitAddEmbedOrigin'],
       '#limit_validation_errors' => [],
+      '#access' => $count < BiolandEmbedAllowlist::MAX_ENTRIES,
     ];
 
     return $form;
@@ -227,8 +228,9 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     }
 
     $messages = [
-      'url' => $this->t('Enter an absolute http or https URL with a host and no user name, password, query or fragment.'),
+      'url' => $this->t('Enter an absolute http or https URL with a host and no user name, password, query, fragment, dot segments or encoded slashes. Type an internationalised host in its punycode form (xn--...), and an IPv4 host as four plain decimal numbers.'),
       'sandbox_token' => $this->t('Use only HTML iframe sandbox tokens, for example allow-scripts allow-forms.'),
+      'sandbox_never' => $this->t('allow-top-navigation, allow-popups-to-escape-sandbox and allow-top-navigation-to-custom-protocols let the frame escape its sandbox and are never applied. Remove them.'),
       'sandbox_escape' => $this->t('allow-scripts together with allow-same-origin lets the framed page remove its own sandbox. Remove one of them.'),
     ];
     foreach ($this->submittedEmbedOrigins($form_state) as $i => $row) {
@@ -344,10 +346,13 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // Only when the table was submitted, so a partial value tree never
     // wipes the stored list.
     if (array_key_exists('embed_allowed_origins', $values)) {
-      $config->set('embed.allowed_origins', array_values(array_map(
-        [BiolandEmbedAllowlist::class, 'normalizeEntry'],
-        $this->submittedEmbedOrigins($form_state)
-      )));
+      // Keyed by url: the head uses the first match, so a repeat is dead.
+      $origins = [];
+      foreach ($this->submittedEmbedOrigins($form_state) as $row) {
+        $entry = BiolandEmbedAllowlist::normalizeEntry($row);
+        $origins[$entry['url']] ??= $entry;
+      }
+      $config->set('embed.allowed_origins', array_slice(array_values($origins), 0, BiolandEmbedAllowlist::MAX_ENTRIES));
     }
   }
 
@@ -369,7 +374,7 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
    */
   public function submitAddEmbedOrigin(array &$form, FormStateInterface $form_state) {
     $count = count((array) ($form_state->getUserInput()['embed_allowed_origins'] ?? []));
-    $form_state->set('embed_origin_count', $count + 1);
+    $form_state->set('embed_origin_count', min($count + 1, BiolandEmbedAllowlist::MAX_ENTRIES));
     $form_state->setRebuild();
   }
 

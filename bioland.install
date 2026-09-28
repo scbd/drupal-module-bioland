@@ -286,6 +286,8 @@ function bioland_install() {
     // media picker; BL-1218.
     _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
     _bioland_setup_embed_media();
+    // The allowlist default cannot know this site's files URL.
+    _bioland_seed_embed_files_origin();
   }
 
   // Rebuild router to register view routes and local tasks.
