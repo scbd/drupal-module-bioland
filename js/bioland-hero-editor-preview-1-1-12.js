@@ -6,7 +6,7 @@
  * editable area is dressed up to match hero-image.vue on the front end: the
  * image as a cover background, the same tint + overlay gradient layers, and
  * white text. Purely cosmetic - the editor content and its saved value are
- * untouched, only the editable surface's own background/foreground styling.
+ * untouched, only the CKEditor wrapper's background/foreground styling.
  *
  * Colours come from drupalSettings.bioland.heroPreview (the site's
  * theme.hero.primary / theme.hero.secondary, with the same BL2/BSL fallback
@@ -96,7 +96,13 @@
   }
 
   /**
-   * Builds or removes the preview overlay inside the CKEditor editable area.
+   * Builds or removes the preview on the CKEditor wrapper around the editable.
+   *
+   * The preview lands on `.ck-editor__main` (or `.ck-editor`), never on the
+   * editable itself: `.ck-content` is the CKEditor 5 root editable, whose DOM
+   * attributes the view renderer re-syncs on every focus/blur, dropping any
+   * class or inline style it does not own. The wrapper elements are never
+   * rewritten, so the preview survives focus and typing.
    *
    * @param {HTMLElement} editable
    *   The `.ck-content` editable element.
@@ -107,11 +113,14 @@
    */
   function applyPreview(editable, widget, colours) {
     var url = imageUrl(widget);
-    var wrapper = editable.closest('.ck-editor__editable') || editable;
+    var wrapper = editable.closest('.ck-editor__main')
+      || editable.closest('.ck-editor')
+      || editable;
 
     if (!url) {
       wrapper.classList.remove(WRAPPER_CLASS);
       wrapper.style.backgroundImage = '';
+      wrapper.style.backgroundSize = '';
       wrapper.style.backgroundPosition = '';
       wrapper.style.removeProperty('--bioland-hero-primary');
       wrapper.style.removeProperty('--bioland-hero-secondary');

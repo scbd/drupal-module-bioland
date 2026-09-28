@@ -4,7 +4,12 @@
  * Replicates bioland-head's hero-image.vue tint + overlay layers (see
  * bioland-head app/components/page/header/hero-image.vue) using the two
  * colours the JS behavior writes as custom properties, so the toolbar stays
- * untouched and only the editable surface itself gets the hero treatment.
+ * untouched and only the area behind the editable gets the hero treatment.
+ *
+ * The class and custom properties sit on the CKEditor wrapper
+ * (.ck-editor__main), not on the editable: CKEditor 5 re-syncs the root
+ * editable's attributes on focus and would drop them (BL-1230). The editable
+ * inside is made see-through so the wrapper's background shows behind it.
  */
 .bioland-hero-preview {
   position: relative;
@@ -36,15 +41,22 @@
     linear-gradient(90deg, var(--bioland-hero-primary) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.bioland-hero-preview > * {
+/*
+ * !important: CKEditor's own `.ck.ck-editor__main > .ck-editor__editable`
+ * background rule out-specifies this selector.
+ */
+.bioland-hero-preview .ck-editor__editable {
   position: relative;
   z-index: 1;
+  min-height: 300px;
+  background: transparent !important;
+  color: #fff !important;
 }
 
-.bioland-hero-preview p,
-.bioland-hero-preview h1,
-.bioland-hero-preview h2,
-.bioland-hero-preview h3,
-.bioland-hero-preview a {
+.bioland-hero-preview .ck-content p,
+.bioland-hero-preview .ck-content h1,
+.bioland-hero-preview .ck-content h2,
+.bioland-hero-preview .ck-content h3,
+.bioland-hero-preview .ck-content a {
   color: #fff !important;
 }

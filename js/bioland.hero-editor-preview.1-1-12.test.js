@@ -5,7 +5,8 @@
 
 describe('Bioland Hero Editor Preview', () => {
   /**
-   * Builds a media_hero form DOM: image widget + CKEditor 5 editable.
+   * Builds a media_hero form DOM: image widget + CKEditor 5 editor, whose
+   * root editable carries both .ck-content and .ck-editor__editable.
    *
    * @param {Object} options
    *   `{ withImage, withOriginalLink, withFocalPoint, withDescriptionEditable,
@@ -23,12 +24,12 @@ describe('Bioland Hero Editor Preview', () => {
       ? '<input class="focal-point" name="field_media_image[0][focal_point]" value="30,70">'
       : '';
     const descriptionEditable = opts.withDescriptionEditable !== false
-      ? '<div class="ck-editor__editable"><div class="ck-content"><p>Hero text</p></div></div>'
+      ? '<div class="ck ck-editor"><div class="ck ck-editor__main"><div class="ck ck-content ck-editor__editable"><p>Hero text</p></div></div></div>'
       : '';
     // An unrelated CKEditor instance elsewhere in the form (e.g. a caption
     // field) that the preview must never touch.
     const unrelatedEditable = opts.withUnrelatedEditable
-      ? '<div data-drupal-selector="edit-field-caption-0"><div class="ck-editor__editable"><div class="ck-content"><p>Caption</p></div></div></div>'
+      ? '<div data-drupal-selector="edit-field-caption-0"><div class="ck ck-editor"><div class="ck ck-editor__main"><div class="ck ck-content ck-editor__editable"><p>Caption</p></div></div></div></div>'
       : '';
 
     // Mirrors the real widget: the outer field wrapper survives AJAX, the
@@ -68,12 +69,18 @@ describe('Bioland Hero Editor Preview', () => {
     return document.querySelector('[data-drupal-selector*="edit-field-description"]');
   }
 
+  // The preview lands on the CKEditor wrapper, not the root editable that
+  // CKEditor 5 re-renders on focus (BL-1230).
   function wrapper() {
-    return descriptionWrapper().querySelector('.ck-editor__editable');
+    return descriptionWrapper().querySelector('.ck-editor__main');
+  }
+
+  function editable() {
+    return descriptionWrapper().querySelector('.ck-content');
   }
 
   function unrelatedWrapper() {
-    return document.querySelector('[data-drupal-selector*="edit-field-caption"] .ck-editor__editable');
+    return document.querySelector('[data-drupal-selector*="edit-field-caption"] .ck-editor__main');
   }
 
   beforeEach(() => {
@@ -254,7 +261,7 @@ describe('Bioland Hero Editor Preview', () => {
     expect(descriptionWrapper().querySelector('.ck-content')).toBeNull();
 
     // Simulate CKEditor 5 finishing its async mount.
-    descriptionWrapper().innerHTML = '<div class="ck-editor__editable"><div class="ck-content"><p>Hero text</p></div></div>';
+    descriptionWrapper().innerHTML = '<div class="ck ck-editor"><div class="ck ck-editor__main"><div class="ck ck-content ck-editor__editable"><p>Hero text</p></div></div></div>';
 
     // MutationObserver callbacks run as a microtask; flush it.
     await Promise.resolve();
@@ -262,5 +269,42 @@ describe('Bioland Hero Editor Preview', () => {
 
     expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
     expect(wrapper().style.backgroundImage).toContain('hero.jpg');
+  });
+
+  test('puts the preview on the CKEditor wrapper, not the root editable', () => {
+    buildForm();
+    Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
+
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
+    expect(editable().classList.contains('bioland-hero-preview')).toBe(false);
+    expect(editable().getAttribute('style')).toBeNull();
+  });
+
+  test('keeps the preview when CKEditor re-renders the editable on focus and typing', () => {
+    buildForm();
+    Drupal.behaviors.biolandHeroEditorPreview.attach(document, drupalSettings);
+
+    // CKEditor 5 re-syncs the root editable's attributes on focus, dropping
+    // any class or inline style its view does not know about.
+    const root = editable();
+    root.setAttribute('class', 'ck ck-content ck-editor__editable ck-focused');
+    root.removeAttribute('style');
+    root.dispatchEvent(new Event('focus'));
+    root.dispatchEvent(new Event('input', { bubbles: true }));
+
+    expect(wrapper().classList.contains('bioland-hero-preview')).toBe(true);
+    expect(wrapper().style.backgroundImage).toContain('hero.jpg');
+    expect(wrapper().style.getPropertyValue('--bioland-hero-primary')).toBe('#009edb');
+    expect(wrapper().style.getPropertyValue('--bioland-hero-secondary')).toBe('#16c56e');
+  });
+
+  test('stylesheet makes the editable inside the preview see-through', () => {
+    const css = require('fs').readFileSync(
+      require('path').join(__dirname, '../css/bioland-hero-editor-preview.css'),
+      'utf8'
+    );
+    const match = css.match(/\.bioland-hero-preview\s+\.ck-editor__editable\s*\{([^}]*)\}/);
+    expect(match).not.toBeNull();
+    expect(match[1]).toMatch(/background:\s*transparent/);
   });
 });
