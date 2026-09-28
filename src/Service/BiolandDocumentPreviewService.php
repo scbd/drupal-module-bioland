@@ -6,6 +6,7 @@ use ConvertApi\ConvertApi;
 use ConvertApi\FileUpload;
 use Drupal\bioland\BiolandDocumentPreviewPolicy as Policy;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\DestructableInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
@@ -17,12 +18,17 @@ use Drupal\file\FileRepositoryInterface;
 /**
  * Generates a first-page WebP preview for Document media via ConvertAPI.
  *
- * External HTTP never happens inside a web request: ::enqueueIfNeeded() only
- * pushes a queue item; ::process() (called by BiolandDocumentPreviewWorker,
- * drained by cron) does the actual conversion. Mirrors the constraint on
- * BiolandDmsmConfigService elsewhere in this module.
+ * External HTTP never happens inside the editor's request: ::enqueueIfNeeded()
+ * only pushes a queue item and remembers it; ::destruct() (this service is
+ * tagged needs_destruction in bioland.services.yml, so core's kernel destruct
+ * subscriber calls it after the response is flushed) converts every item
+ * recorded in the request and deletes it from the queue on success. The queue
+ * is the retry path only: BiolandDocumentPreviewWorker (cron) drains items
+ * that failed here, or whose request never reached destruct() (CLI, fatal).
+ * Same shape as BiolandUrlScreenshotService (BL-1191); a site with no cron
+ * still gets its preview right after the media is saved.
  */
-class BiolandDocumentPreviewService
+class BiolandDocumentPreviewService implements DestructableInterface
 {
     public const QUEUE_ID = 'bioland_document_preview';
 
@@ -34,8 +40,13 @@ class BiolandDocumentPreviewService
     protected ConfigFactoryInterface $configFactory;
     protected StateInterface $state;
 
-    /** Per-process dedupe of enqueued (mid, fid) pairs: one item per save. */
-    private static array $enqueued = [];
+    /**
+     * Queue items recorded during this request, keyed by "mid:fid" so one
+     * save produces one item; processed by ::destruct().
+     *
+     * @var array<string, array{id: int|string, item: array}>
+     */
+    protected array $pending = [];
 
     public function __construct(
         EntityTypeManagerInterface $entity_type_manager,
@@ -94,17 +105,52 @@ class BiolandDocumentPreviewService
         }
 
         $dedupeKey = $entity->id() . ':' . $documentFid;
-        if (isset(self::$enqueued[$dedupeKey])) {
+        if (isset($this->pending[$dedupeKey])) {
             return;
         }
-        self::$enqueued[$dedupeKey] = true;
 
-        $this->queueFactory->get(self::QUEUE_ID)->createItem([
+        $item = [
             'mid' => (int) $entity->id(), 'fid' => (int) $documentFid, 'extension' => $extension,
             // $imageFid is null or module-owned here (editor-owned returns above);
             // non-null means this media already had a module preview at enqueue time.
             'hadModuleImage' => $imageFid !== null,
-        ]);
+        ];
+        $id = $this->queueFactory->get(self::QUEUE_ID)->createItem($item);
+        $this->pending[$dedupeKey] = ['id' => $id, 'item' => $item];
+    }
+
+    /**
+     * Converts every item recorded this request, right after the response.
+     *
+     * A successful conversion deletes its queue item so cron never repeats
+     * it; a failure leaves the item for BiolandDocumentPreviewWorker, which
+     * owns the bounded retry policy. Deletion uses the (object) ['item_id']
+     * shape core's DatabaseQueue/Memory backends accept, the only backends
+     * this module uses.
+     *
+     * {@inheritdoc}
+     */
+    public function destruct(): void
+    {
+        if ($this->pending === []) {
+            return;
+        }
+
+        $queue = $this->queueFactory->get(self::QUEUE_ID);
+        foreach ($this->pending as $row) {
+            try {
+                $this->process($row['item']);
+                $queue->deleteItem((object) ['item_id' => $row['id']]);
+            } catch (\Throwable $e) {
+                // Never log the message: a \ConvertApi\Error\Api may carry
+                // request details. Class and HTTP code only.
+                $this->logger->warning('Document preview failed for media @mid; left in the retry queue: @class (status @status).', [
+                    '@mid' => $row['item']['mid'], '@class' => get_class($e), '@status' => (int) $e->getCode() ?: 'n/a',
+                ]);
+            }
+        }
+
+        $this->pending = [];
     }
 
     /**
@@ -133,8 +179,8 @@ class BiolandDocumentPreviewService
 
         $currentImageFid = $this->targetId($media, Policy::IMAGE_FIELD);
         if ($currentImageFid !== null && !Policy::isModuleOwnedImage($this->fileUri($currentImageFid))) {
-            // An editor set their own image after this item was enqueued (cron
-            // can drain up to 60s later): never overwrite it.
+            // An editor set their own image after this item was enqueued (a
+            // cron retry can run much later): never overwrite it.
             $this->logger->info('Document preview: media @mid now has an editor-chosen image; skipping.', ['@mid' => $mid]);
             return;
         }
