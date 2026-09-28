@@ -80,3 +80,17 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
+
+/*
+ * BL-1207: remote video (YouTube oEmbed) media embeds render at the
+ * provider's default iframe size (e.g. 200x113) inside CKEditor, while the
+ * public frontend renders them full width. Force the oEmbed iframe to match
+ * the display width in the editor too, using the same `.ck.ck-content`
+ * two-class scope (see header comment) so this out-specifies CKEditor's own
+ * `.ck-content` defaults.
+ */
+.ck.ck-content .drupal-media iframe.media-oembed-content {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
