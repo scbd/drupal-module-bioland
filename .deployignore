@@ -1,0 +1,37 @@
+# rsync --exclude-from list for the deploy:* scripts in package.json.
+# Ships only what Drupal loads at runtime.
+
+# VCS, editor, and agent tooling
+.git
+.github
+.gitignore
+.dockerignore
+.deployignore
+.agents
+.claude
+.vscode
+.DS_Store
+AGENTS.md
+CLAUDE.md
+backlog.jsonl
+graphify-out
+
+# Dependencies and build/test output
+node_modules
+vendor
+coverage
+.phpunit.result*
+*.log
+
+# Dev-only tooling and lockfiles
+package.json
+yarn.lock
+composer.lock
+jest.config.js
+phpunit.xml.dist
+scripts
+
+# Tests and docs
+tests
+js/*.test.js
+docs
