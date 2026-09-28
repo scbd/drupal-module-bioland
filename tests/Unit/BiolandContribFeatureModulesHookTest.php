@@ -127,10 +127,49 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
     $this->assertStringContainsString('setErrorByName(', $validate);
 
     $presave = $this->functionBody($module, 'bioland_media_presave');
-    $this->assertStringContainsString('BiolandToastImageGuard::sanitize(\\Drupal::request()->request', $presave);
+    $this->assertStringContainsString('$post = \\Drupal::request()->request;', $presave);
+    $this->assertStringContainsString('BiolandToastImageGuard::sanitize($post', $presave);
     // Permission is checked before any payload is decoded.
     $this->assertStringContainsString("hasPermission('use toast image editor')", $presave);
     $this->assertStringContainsString("\$media->access('update', \$user)", $presave);
+  }
+
+  /**
+   * The editor under the image widget is wired on widget, form and presave.
+   *
+   * @see \Drupal\bioland\Service\BiolandMediaImageEditor
+   */
+  public function testMediaImageEditorIsWired(): void {
+    $module = $this->read('bioland.module');
+
+    $widget = $this->functionBody($module, 'bioland_field_widget_complete_image_image_form_alter');
+    $this->assertStringContainsString("service('bioland.media_image_editor')->alterWidget(", $widget);
+    // The hero focal point widget routes through the same alter.
+    $focal = $this->functionBody($module, 'bioland_field_widget_complete_image_focal_point_form_alter');
+    $this->assertStringContainsString('bioland_field_widget_complete_image_image_form_alter(', $focal);
+
+    $alter = $this->functionBody($module, 'bioland_form_media_form_alter');
+    $this->assertStringContainsString("\$form['#after_build'][] = '_bioland_media_image_editor_after_build';", $alter);
+    $after = $this->functionBody($module, '_bioland_media_image_editor_after_build');
+    $this->assertStringContainsString("service('bioland.media_image_editor')->afterBuild(", $after);
+
+    // Non-source image fields are written by bioland, after sanitize() and
+    // with the payload removed from the request.
+    $presave = $this->functionBody($module, 'bioland_media_presave');
+    $this->assertStringContainsString('$editor->contribWrites($media, $field)', $presave);
+    $this->assertStringContainsString('$post->remove($key);', $presave);
+    $this->assertStringContainsString('$editor->writeEditedImage($media, $field, $payload)', $presave);
+    $this->assertLessThan(strpos($presave, 'writeEditedImage('), strpos($presave, 'BiolandToastImageGuard::sanitize('));
+
+    $services = $this->read('bioland.services.yml');
+    $this->assertStringContainsString('bioland.media_image_editor:', $services);
+    $this->assertStringContainsString('Drupal\\bioland\\Service\\BiolandMediaImageEditor', $services);
+
+    $libraries = $this->read('bioland.libraries.yml');
+    $this->assertStringContainsString('media_image_editor:', $libraries);
+    $this->assertStringContainsString('js/bioland-media-image-editor-1-1-12.js', $libraries);
+    $this->assertFileExists(dirname(__DIR__, 2) . '/js/bioland-media-image-editor-1-1-12.js');
+    $this->assertFileExists(dirname(__DIR__, 2) . '/css/bioland-media-image-editor.css');
   }
 
   /**
