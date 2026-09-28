@@ -26,10 +26,15 @@ const BIOLAND_EDITOR_IMAGE_MAX_SIZE = '10 MB';
  * Media types selectable in the CKEditor "Insert Media" dialog (BL-1206).
  *
  * Mirrors the BL-1205 allowlist in
- * _bioland_restrict_media_embed_allowed_types(): image + remote_video only.
- * document and hero are intentionally absent.
+ * _bioland_restrict_media_embed_allowed_types(): image + remote_video, plus
+ * embed (BL-1218, inline frames). document and hero are intentionally absent.
  */
-const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['image', 'remote_video'];
+const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['embed', 'image', 'remote_video'];
+
+/**
+ * Contrib modules behind the embed media type (BL-1218).
+ */
+const BIOLAND_EMBED_MODULES = ['iframe', 'media_iframe'];
 
 /*
  * =============================================================================
@@ -518,7 +523,7 @@ function _bioland_configure_full_html_editor_toolbar() {
 /**
  * Pure helper: build the media_embed allowed_media_types list (BL-1206).
  *
- * Only 'image' and 'remote_video' are selectable in the CKEditor "Insert
+ * Only 'embed', 'image' and 'remote_video' are selectable in the CKEditor "Insert
  * Media" dialog, the same allowlist BL-1205 established in
  * _bioland_restrict_media_embed_allowed_types(). 'document' (inserted /
  * linked, not embedded) and 'hero' (a page-level banner, never inline
@@ -548,7 +553,7 @@ function _bioland_media_embed_allowed_types(array $type_ids): array {
  * "Insert Media" (media_embed) dialog on full_html (BL-1206).
  *
  * Loads filter.format.full_html, ensures the media_embed filter exists and
- * is enabled, and sets settings.allowed_media_types to image + remote_video
+ * is enabled, and sets settings.allowed_media_types to embed, image and remote_video
  * (BIOLAND_MEDIA_EMBED_ALLOWED_TYPES, intersected with the media types that
  * exist on the site). allowed_view_modes is left untouched. Idempotent; skips with
  * a message when media / media_library is not enabled, or the format is
@@ -603,7 +608,7 @@ function _bioland_configure_media_embed_allowed_types() {
     $current_types = $filters['media_embed']['settings']['allowed_media_types'] ?? [];
     if ($current_types !== $allowed_types) {
       $filters['media_embed']['settings']['allowed_media_types'] = $allowed_types;
-      $messages[] = t('Restricted full_html media_embed allowed types to image + remote_video.');
+      $messages[] = t('Restricted full_html media_embed allowed types to embed, image and remote_video.');
       $changed = TRUE;
     }
   }
@@ -662,10 +667,13 @@ function _bioland_contrib_feature_modules() {
  * the run. bioland_requirements() keeps flagging it on the status report
  * until someone enables it by hand.
  *
+ * @param string[]|null $modules
+ *   Modules to enable; defaults to _bioland_contrib_feature_modules().
+ *
  * @return string
  *   Plain-text summary. Not t(): translation is not dependable mid-update.
  */
-function _bioland_enable_contrib_feature_modules() {
+function _bioland_enable_contrib_feature_modules(?array $modules = NULL) {
   $module_handler = \Drupal::moduleHandler();
   // reset() first: the cached list can predate the image that added these
   // modules (updb before cache rebuild), which would skip them for good.
@@ -677,14 +685,14 @@ function _bioland_enable_contrib_feature_modules() {
   $enabled = [];
   $missing = [];
   $failed = [];
-  foreach (_bioland_contrib_feature_modules() as $module) {
+  foreach ($modules ?? _bioland_contrib_feature_modules() as $module) {
     if ($module_handler->moduleExists($module)) {
       $enabled[] = $module;
       continue;
     }
     if (!$module_list->exists($module)) {
       $missing[] = $module;
-      $logger->warning('Module @module is not in the codebase; skipped enabling it (needs drupal-docker-wrapper 11.4.7-v7 or higher).', ['@module' => $module]);
+      $logger->warning('Module @module is not in the codebase; skipped enabling it (update the drupal-docker-wrapper image).', ['@module' => $module]);
       continue;
     }
     // One module per call: install() resolves every listed module's
@@ -707,13 +715,60 @@ function _bioland_enable_contrib_feature_modules() {
     $messages[] = 'Already enabled: ' . implode(', ', $enabled) . '.';
   }
   if ($missing) {
-    $messages[] = 'Not in the codebase, skipped (needs drupal-docker-wrapper 11.4.7-v7 or higher): ' . implode(', ', $missing) . '.';
+    $messages[] = 'Not in the codebase, skipped (update the drupal-docker-wrapper image): ' . implode(', ', $missing) . '.';
   }
   if ($failed) {
     $messages[] = 'Failed to enable, skipped: ' . implode('; ', $failed) . '.';
   }
 
   return implode(' ', $messages);
+}
+
+/**
+ * Create the embed media type on media_iframe's inline_frame source (BL-1218).
+ *
+ * Holds external pages (a PowerBI report) or uploaded HTML files shown in an
+ * inline frame. Creates the type, its iframe source field, and the form and
+ * view displays the source prepares (iframe_urlwidthheight widget,
+ * iframe_default formatter). An existing embed type is left untouched so
+ * admin changes survive a re-run.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_create_embed_media_type() {
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed media type.';
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('media_type');
+  if ($storage->load('embed')) {
+    return 'Media type embed already exists.';
+  }
+
+  $type = $storage->create([
+    'id' => 'embed',
+    'label' => 'Embed',
+    'description' => 'An external page or uploaded HTML file shown in an inline frame, for example a PowerBI report.',
+    'source' => 'inline_frame',
+  ]);
+  $source = $type->getSource();
+  $field = $source->createSourceField($type);
+  $source->setConfiguration(['source_field' => $field->getName()] + $source->getConfiguration());
+  $type->save();
+  $field->getFieldStorageDefinition()->save();
+  $field->save();
+
+  $display_repository = \Drupal::service('entity_display.repository');
+  $form_display = $display_repository->getFormDisplay('media', 'embed');
+  $source->prepareFormDisplay($type, $form_display);
+  $form_display->save();
+  $view_display = $display_repository->getViewDisplay('media', 'embed');
+  $source->prepareViewDisplay($type, $view_display);
+  $view_display->save();
+
+  return 'Created media type embed with source field ' . $field->getName() . '.';
 }
 
 /*
@@ -838,6 +893,31 @@ function bioland_update_9093() {
 function bioland_update_9096() {
   $messages = [];
   $messages[] = _bioland_enable_contrib_feature_modules();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Add the embed media type and offer it in the CKEditor media picker.
+ *
+ * BL-1218. Enables iframe + media_iframe (skipped when the docker wrapper
+ * image does not ship them), creates the embed media type, then re-applies
+ * the media_embed allowlist so embed joins image and remote_video.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9098() {
+  $messages = [];
+  $messages[] = _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
+  $messages[] = _bioland_create_embed_media_type();
+  $messages[] = _bioland_configure_media_embed_allowed_types();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
