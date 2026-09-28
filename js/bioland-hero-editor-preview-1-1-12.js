@@ -113,7 +113,7 @@
    */
   function applyPreview(editable, widget, colours) {
     var url = imageUrl(widget);
-    var wrapper = editable.closest('.ck-editor__main')
+    const wrapper = editable.closest('.ck-editor__main')
       || editable.closest('.ck-editor')
       || editable;
 
