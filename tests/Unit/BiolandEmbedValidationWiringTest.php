@@ -3,13 +3,16 @@
 namespace Drupal\Tests\bioland\Unit;
 
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Guards the BL-1218 embed URL constraint wiring.
+ * Guards the BL-1218 embed URL constraint and media library form wiring.
  *
  * @group bioland
  * @coversNothing
@@ -80,6 +83,57 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     $this->alter('node', 'embed', ['field_media_iframe' => $this->field(0)]);
     $this->alter('media', 'embed', ['field_media_iframe' => $this->field(0)], NULL);
     $this->alter('media', 'embed', ['field_other' => $this->field(0)]);
+  }
+
+  /**
+   * The media library iframe add form validates its URL element.
+   */
+  public function testMediaLibraryAddFormGetsElementValidate(): void {
+    $form = ['container' => ['url' => ['#type' => 'url']]];
+    bioland_form_media_library_add_form_iframe_alter($form, $this->createMock(FormStateInterface::class), 'media_library_add_form_iframe');
+    $this->assertSame(['bioland_media_library_embed_url_validate'], $form['container']['url']['#element_validate']);
+
+    // After "Add" the form shows the new media item and has no URL element.
+    $form = ['media' => []];
+    bioland_form_media_library_add_form_iframe_alter($form, $this->createMock(FormStateInterface::class), 'media_library_add_form_iframe');
+    $this->assertSame(['media' => []], $form);
+  }
+
+  /**
+   * The element validate sets the constraint's message on the url element.
+   *
+   * @dataProvider elementValidateProvider
+   */
+  public function testMediaLibraryUrlElementValidate(string $url, ?string $expected): void {
+    $config = new ImmutableConfig('bioland.settings', ['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view']]]]);
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('get')->with('bioland.settings')->willReturn($config);
+    \Drupal::setService('config.factory', $factory);
+
+    $form_state = $this->createMock(FormStateInterface::class);
+    $form_state->method('getValue')->with('url')->willReturn($url);
+    if ($expected === NULL) {
+      $form_state->expects($this->never())->method('setErrorByName');
+    }
+    else {
+      $form_state->expects($this->once())->method('setErrorByName')->with('url', $this->callback(
+        fn ($message) => str_contains((string) $message, $expected) && str_contains((string) $message, 'https://app.powerbi.com/view')
+      ));
+    }
+    $element = [];
+    bioland_media_library_embed_url_validate($element, $form_state);
+  }
+
+  /**
+   * URLs typed into the picker and the message fragment each should raise.
+   */
+  public static function elementValidateProvider(): array {
+    return [
+      'allowed' => ['https://app.powerbi.com/view?r=1', NULL],
+      'empty' => ['', NULL],
+      'host not allowed' => ['https://evil.example/view', 'not on an allowed embed host'],
+      'path not allowed' => ['https://app.powerbi.com/view-evil', 'not under an allowed path'],
+    ];
   }
 
 }

@@ -10,6 +10,7 @@ use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
 use Drupal\bioland\Service\BiolandMediaImageEditor;
 use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -538,6 +539,34 @@ function bioland_entity_type_alter(array &$entity_types) {
       BiolandComponentMenuFormMode::OPERATION,
       BiolandComponentMenuLinkForm::class
     );
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_library_add_form_iframe.
+ *
+ * media_iframe's media library add form (the CKEditor media picker path)
+ * validates the new media through the media_library form display, which
+ * holds no source field, so the embed URL constraint's violation is dropped
+ * there. Validate the URL element directly instead, as core's OEmbedForm
+ * does (BL-1218).
+ */
+function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['container']['url'])) {
+    $form['container']['url']['#element_validate'][] = 'bioland_media_library_embed_url_validate';
+  }
+}
+
+/**
+ * Element validate: the media library iframe URL is on the embed allowlist.
+ */
+function bioland_media_library_embed_url_validate(array &$element, FormStateInterface $form_state) {
+  $violation = BiolandEmbedAllowedOriginConstraintValidator::violation(
+    (string) $form_state->getValue('url'),
+    BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'))
+  );
+  if ($violation !== NULL) {
+    $form_state->setErrorByName('url', t($violation[0], $violation[1]));
   }
 }
 

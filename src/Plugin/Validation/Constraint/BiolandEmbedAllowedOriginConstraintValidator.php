@@ -32,34 +32,53 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    * {@inheritdoc}
    */
   public function validate(mixed $items, Constraint $constraint): void {
-    $entries = $this->configFactory->get('bioland.settings')->get('embed.allowed_origins');
-    $entries = is_array($entries) ? $entries : [];
+    $entries = self::entries($this->configFactory->get('bioland.settings'));
     foreach ($items ?? [] as $delta => $item) {
-      $url = trim((string) ($item->url ?? ''));
-      if ($url === '' || BiolandEmbedAllowlist::matches($url, $entries)) {
+      $violation = self::violation((string) ($item->url ?? ''), $entries, $constraint);
+      if ($violation === NULL) {
         continue;
       }
-      $this->context->buildViolation($constraint->message)
-        ->setParameter('%url', $url)
-        ->setParameter('%hosts', self::hosts($entries))
-        ->setParameter('@settings', self::SETTINGS_PATH)
-        ->atPath($delta . '.url')
-        ->addViolation();
+      $builder = $this->context->buildViolation($violation[0]);
+      foreach ($violation[1] as $key => $value) {
+        $builder->setParameter($key, $value);
+      }
+      $builder->atPath($delta . '.url')->addViolation();
     }
   }
 
   /**
-   * Lists the distinct hosts of the valid entries, or "none".
+   * The allowlist entries stored in bioland.settings, or [].
    */
-  public static function hosts(array $entries): string {
-    $hosts = [];
-    foreach ($entries as $entry) {
-      $url = is_array($entry) ? BiolandEmbedAllowlist::normalizeUrl((string) ($entry['url'] ?? '')) : NULL;
-      if ($url !== NULL) {
-        $hosts[parse_url($url, PHP_URL_HOST)] = TRUE;
-      }
+  public static function entries(?object $config): array {
+    $entries = $config ? $config->get('embed.allowed_origins') : NULL;
+    return is_array($entries) ? $entries : [];
+  }
+
+  /**
+   * The message and parameters for a rejected URL, or NULL when it is fine.
+   *
+   * Shared by this validator and the media library add form, so both paths
+   * say the same thing. An empty URL is left to the field's required check.
+   *
+   * @return array|null
+   *   [message template, parameters] or NULL.
+   */
+  public static function violation(string $url, array $entries, ?BiolandEmbedAllowedOriginConstraint $constraint = NULL): ?array {
+    $url = trim($url);
+    $status = $url === '' ? BiolandEmbedAllowlist::MATCH : BiolandEmbedAllowlist::classify($url, $entries);
+    if ($status === BiolandEmbedAllowlist::MATCH) {
+      return NULL;
     }
-    return $hosts ? implode(', ', array_keys($hosts)) : 'none';
+    $constraint ??= new BiolandEmbedAllowedOriginConstraint();
+    $allowed = BiolandEmbedAllowlist::entryUrls($entries);
+    return [
+      $status === BiolandEmbedAllowlist::HOST_NOT_ALLOWED ? $constraint->message : $constraint->pathMessage,
+      [
+        '%url' => $url,
+        '%allowed' => $allowed ? implode(', ', $allowed) : 'none',
+        '@settings' => self::SETTINGS_PATH,
+      ],
+    ];
   }
 
 }

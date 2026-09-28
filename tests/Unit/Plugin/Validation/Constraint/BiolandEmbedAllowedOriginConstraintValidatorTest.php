@@ -7,6 +7,7 @@ use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstra
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
@@ -28,7 +29,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
    * Runs the validator over the URLs and returns the violations it raised.
    *
    * @return array[]
-   *   One ['path' => ..., 'params' => [...]] per violation.
+   *   One ['message' => ..., 'path' => ..., 'params' => [...]] per violation.
    */
   private function violations(array $urls, mixed $origins): array {
     $settings = $origins === NULL ? [] : ['embed' => ['allowed_origins' => $origins]];
@@ -37,8 +38,8 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
 
     $violations = [];
     $context = $this->createMock(ExecutionContextInterface::class);
-    $context->method('buildViolation')->willReturnCallback(function () use (&$violations) {
-      $violation = ['path' => NULL, 'params' => []];
+    $context->method('buildViolation')->willReturnCallback(function ($message) use (&$violations) {
+      $violation = ['message' => $message, 'path' => NULL, 'params' => []];
       $builder = $this->createMock(ConstraintViolationBuilderInterface::class);
       $builder->method('setParameter')->willReturnCallback(function ($key, $value) use (&$violation, &$builder) {
         $violation['params'][$key] = $value;
@@ -76,40 +77,44 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
   }
 
   /**
-   * Near misses fail, each on its own delta, naming the URL and hosts.
+   * Near misses fail on their own delta, with the message for their cause.
    *
    * @dataProvider rejectedProvider
    */
-  public function testRejected(string $url): void {
+  public function testRejected(string $url, string $message_property): void {
     $violations = $this->violations(['https://www.youtube.com/embed/x', $url], self::ORIGINS);
     $this->assertCount(1, $violations);
+    $this->assertSame((new BiolandEmbedAllowedOriginConstraint())->{$message_property}, $violations[0]['message']);
     $this->assertSame('1.url', $violations[0]['path']);
     $this->assertSame($url, $violations[0]['params']['%url']);
-    $this->assertSame('app.powerbi.com, www.youtube.com', $violations[0]['params']['%hosts']);
+    $this->assertSame('https://app.powerbi.com/view, https://www.youtube.com, https://www.youtube.com/embed', $violations[0]['params']['%allowed']);
     $this->assertSame(BiolandEmbedAllowedOriginConstraintValidator::SETTINGS_PATH, $violations[0]['params']['@settings']);
   }
 
   /**
-   * URLs that must not pass.
+   * URLs that must not pass, and the message property each one gets.
    */
   public static function rejectedProvider(): array {
     return [
-      'path not on segment boundary' => ['https://app.powerbi.com/view-evil'],
-      'lookalike host' => ['https://app.powerbi.com.evil.example/view'],
-      'lookalike youtube' => ['https://evil-youtube.com/embed/x'],
-      'userinfo' => ['https://attacker@app.powerbi.com/view'],
+      'path not on segment boundary' => ['https://app.powerbi.com/view-evil', 'pathMessage'],
+      'dot segment on allowed host' => ['https://app.powerbi.com/view/../x', 'pathMessage'],
+      'lookalike host' => ['https://app.powerbi.com.evil.example/view', 'message'],
+      'lookalike youtube' => ['https://evil-youtube.com/embed/x', 'message'],
+      'userinfo' => ['https://attacker@app.powerbi.com/view', 'message'],
+      'relative' => ['/view', 'message'],
     ];
   }
 
   /**
-   * A missing or empty list rejects every URL, and says no hosts are allowed.
+   * A missing or empty list rejects every URL, and says none are allowed.
    *
    * @dataProvider emptyListProvider
    */
   public function testMissingOrEmptyListRejectsEverything(mixed $origins): void {
     $violations = $this->violations(['https://app.powerbi.com/view', 'https://www.youtube.com/embed/x'], $origins);
     $this->assertCount(2, $violations);
-    $this->assertSame('none', $violations[0]['params']['%hosts']);
+    $this->assertSame('none', $violations[0]['params']['%allowed']);
+    $this->assertSame((new BiolandEmbedAllowedOriginConstraint())->message, $violations[0]['message']);
   }
 
   /**
@@ -125,6 +130,24 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
   }
 
   /**
+   * create() pulls the config factory from the container.
+   */
+  public function testCreateUsesConfigFactory(): void {
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->expects($this->once())->method('get')->with('bioland.settings')
+      ->willReturn(new ImmutableConfig('bioland.settings', []));
+    $container = $this->createMock(ContainerInterface::class);
+    $container->expects($this->once())->method('get')->with('config.factory')->willReturn($factory);
+
+    $validator = BiolandEmbedAllowedOriginConstraintValidator::create($container);
+    $this->assertInstanceOf(BiolandEmbedAllowedOriginConstraintValidator::class, $validator);
+    $context = $this->createMock(ExecutionContextInterface::class);
+    $context->expects($this->never())->method('buildViolation');
+    $validator->initialize($context);
+    $validator->validate([], new BiolandEmbedAllowedOriginConstraint());
+  }
+
+  /**
    * The plugin attribute id is the one the bundle field alter attaches.
    */
   public function testPluginIdMatchesAttribute(): void {
@@ -134,15 +157,19 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
   }
 
   /**
-   * The message names the hosts, where admins add one, and the framing requirement.
+   * Both messages list the allowed entries; the host one also names the
+   * settings form and the framing requirement.
    */
-  public function testMessageNamesHostsAndSettingsForm(): void {
-    $message = (new BiolandEmbedAllowedOriginConstraint())->message;
-    $this->assertStringContainsString('%hosts', $message);
-    $this->assertStringContainsString('@settings', $message);
-    $this->assertStringContainsString('Front End General', $message);
-    $this->assertStringContainsString('must be on an allowed host', $message);
-    $this->assertStringContainsString('allow being framed', $message);
+  public function testMessages(): void {
+    $constraint = new BiolandEmbedAllowedOriginConstraint();
+    foreach ([$constraint->message, $constraint->pathMessage] as $message) {
+      $this->assertStringContainsString('%url', $message);
+      $this->assertStringContainsString('It must start with one of: %allowed.', $message);
+    }
+    $this->assertStringContainsString('not on an allowed embed host', $constraint->message);
+    $this->assertStringContainsString('Front End General settings (@settings)', $constraint->message);
+    $this->assertStringContainsString('allow being framed', $constraint->message);
+    $this->assertStringContainsString('on an allowed embed host but not under an allowed path', $constraint->pathMessage);
   }
 
 }
