@@ -7,8 +7,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Tests the pure builder behind the BL-1206 media_embed allowed types fix.
  *
- * CKEditor's "Insert Media" dialog must offer image + remote_video only,
- * the allowlist BL-1205 established. document (inserted / linked, not
+ * CKEditor's "Insert Media" dialog must offer embed (BL-1218), image and
+ * remote_video only, the allowlist BL-1205 established plus embed. document (inserted / linked, not
  * embedded) and hero (a page banner, never inline body content) must never
  * be re-admitted, and the allowlist is intersected with the media types
  * that actually exist on the site.
@@ -28,19 +28,21 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
     }
 
     /**
-     * Only image + remote_video survive; document and hero are dropped.
+     * Only embed, image and remote_video survive; document and hero drop.
      */
-    public function testAllowsOnlyImageAndRemoteVideo(): void
+    public function testAllowsOnlyEmbedImageAndRemoteVideo(): void
     {
         $result = _bioland_media_embed_allowed_types([
             'remote_video',
             'document',
+            'embed',
             'image',
             'hero',
         ]);
 
         $this->assertSame(
             [
+                'embed' => 'embed',
                 'image' => 'image',
                 'remote_video' => 'remote_video',
             ],
@@ -53,11 +55,11 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
      */
     public function testResultIsStableSortedRegardlessOfInputOrder(): void
     {
-        $a = _bioland_media_embed_allowed_types(['remote_video', 'hero', 'image']);
-        $b = _bioland_media_embed_allowed_types(['image', 'hero', 'remote_video']);
+        $a = _bioland_media_embed_allowed_types(['remote_video', 'hero', 'image', 'embed']);
+        $b = _bioland_media_embed_allowed_types(['embed', 'image', 'hero', 'remote_video']);
 
         $this->assertSame($a, $b);
-        $this->assertSame(['image', 'remote_video'], array_keys($a));
+        $this->assertSame(['embed', 'image', 'remote_video'], array_keys($a));
     }
 
     /**
@@ -100,8 +102,8 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
     /**
      * The allowlist constant is the single source of truth.
      */
-    public function testAllowlistConstantIsImageAndRemoteVideo(): void
+    public function testAllowlistConstantIsEmbedImageAndRemoteVideo(): void
     {
-        $this->assertSame(['image', 'remote_video'], BIOLAND_MEDIA_EMBED_ALLOWED_TYPES);
+        $this->assertSame(['embed', 'image', 'remote_video'], BIOLAND_MEDIA_EMBED_ALLOWED_TYPES);
     }
 }
