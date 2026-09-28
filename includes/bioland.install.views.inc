@@ -672,9 +672,10 @@ function bioland_update_9050() {
  * thumbnail. This also restricts the CKEditor "Insert media" picker to
  * image + remote_video so it no longer offers a Document tab.
  *
- * As the new highest-numbered hook it is guaranteed to run LAST on every
- * site, so per SearchApiConvergenceHookTest it must also re-apply the
- * canonical v2 Search API config.
+ * This is the highest-numbered hook at the time of writing, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config; SearchApiConvergenceHookTest enforces that whichever
+ * hook is highest re-converges that config.
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  * @see _bioland_remove_media_library_bundle_field()
