@@ -22,6 +22,8 @@ services:
   bioland.document_preview:
     class: Drupal\bioland\Service\BiolandDocumentPreviewService
     arguments: ['@entity_type.manager', '@file_system', '@file.repository', '@logger.factory', '@queue', '@config.factory', '@state']
+    tags:
+      - { name: needs_destruction }
   bioland.config_document_builder:
     class: Drupal\bioland\Service\BiolandConfigDocumentBuilder
     arguments: ['@logger.factory']

@@ -97,7 +97,8 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         string $documentUri = 'public://2026-09/report.pdf',
         bool $expectSave = true,
         ?int $existingImageFid = null,
-        string $existingImageUri = 'public://2026-09/editor-photo.jpg'
+        string $existingImageUri = 'public://2026-09/editor-photo.jpg',
+        $queueFactory = null
     ): RecordingDocumentPreviewService {
         $file = $this->createMock('Drupal\file\FileInterface');
         $file->method('getFileUri')->willReturn($documentUri);
@@ -135,8 +136,9 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         $loggerFactory = $this->createMock('Drupal\Core\Logger\LoggerChannelFactoryInterface');
         $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
 
-        $queueFactory = $this->createMock('Drupal\Core\Queue\QueueFactory');
+        $queueFactory = $queueFactory ?: $this->createMock('Drupal\Core\Queue\QueueFactory');
         $configFactory = $this->createMock('Drupal\Core\Config\ConfigFactoryInterface');
+        $configFactory->method('get')->willReturn(new \Drupal\Core\Config\ImmutableConfig('bioland.settings', ['enable_document_preview' => true]));
         $state = $this->createMock('Drupal\Core\State\StateInterface');
 
         $service = new RecordingDocumentPreviewService(
@@ -338,5 +340,115 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
 
         $this->assertCount(1, $service->convertCalls);
+    }
+
+    /**
+     * Builds a queue factory whose queue records createItem/deleteItem calls.
+     *
+     * @return array{0: object, 1: object}
+     *   The QueueFactory mock and the QueueInterface mock.
+     */
+    private function buildQueue(): array
+    {
+        $queue = $this->createMock('Drupal\Core\Queue\QueueInterface');
+        $queueFactory = $this->createMock('Drupal\Core\Queue\QueueFactory');
+        $queueFactory->method('get')->with(BiolandDocumentPreviewService::QUEUE_ID)->willReturn($queue);
+
+        return [$queueFactory, $queue];
+    }
+
+    /**
+     * Builds the media entity as hook_entity_insert() hands it over.
+     */
+    private function buildSavedMedia(int $fid): ContentEntityInterface
+    {
+        $media = $this->createMock(ContentEntityInterface::class);
+        $media->method('id')->willReturn(1);
+        $media->method('getEntityTypeId')->willReturn('media');
+        $media->method('bundle')->willReturn('document');
+        $media->method('hasField')->willReturn(true);
+        $media->method('get')->willReturnMap([
+            [Policy::DOCUMENT_FIELD, new FakeFieldItem($fid)],
+            [Policy::IMAGE_FIELD, new FakeFieldItem(null, true)],
+        ]);
+
+        return $media;
+    }
+
+    /**
+     * Saving a Document media converts right after the response, not on cron:
+     * destruct() runs process() and deletes the queue item it recorded.
+     *
+     * @covers ::enqueueIfNeeded
+     * @covers ::destruct
+     */
+    public function testDestructConvertsPendingItemAndDeletesItFromQueue(): void
+    {
+        putenv('CONVERT_API_SECRET=secret');
+        [$queueFactory, $queue] = $this->buildQueue();
+        $queue->expects($this->once())->method('createItem')->willReturn(42);
+        $queue->expects($this->once())->method('deleteItem')->with($this->callback(function ($item) {
+            return $item->item_id === 42;
+        }));
+
+        $service = $this->buildService(
+            [new Result(new ResultFile('BYTES'), 1)],
+            'public://2026-09/report.pdf',
+            true,
+            null,
+            'public://2026-09/editor-photo.jpg',
+            $queueFactory
+        );
+
+        $service->enqueueIfNeeded($this->buildSavedMedia(10), 'insert');
+        $this->assertCount(0, $service->convertCalls, 'Nothing converts inside the request.');
+
+        $service->destruct();
+
+        $this->assertCount(1, $service->convertCalls);
+        $service->destruct();
+        $this->assertCount(1, $service->convertCalls, 'A second destruct() has nothing pending.');
+        putenv('CONVERT_API_SECRET');
+    }
+
+    /**
+     * Two saves of the same media/document in one request enqueue one item.
+     *
+     * @covers ::enqueueIfNeeded
+     */
+    public function testEnqueueDedupesSameMediaAndDocumentWithinRequest(): void
+    {
+        putenv('CONVERT_API_SECRET=secret');
+        [$queueFactory, $queue] = $this->buildQueue();
+        $queue->expects($this->once())->method('createItem')->willReturn(7);
+
+        $service = $this->buildService([], 'public://2026-09/report.pdf', false, null, 'public://x.jpg', $queueFactory);
+        $media = $this->buildSavedMedia(10);
+        $service->enqueueIfNeeded($media, 'insert');
+        $service->enqueueIfNeeded($media, 'insert');
+        putenv('CONVERT_API_SECRET');
+    }
+
+    /**
+     * A conversion failure in destruct() leaves the item queued for the
+     * cron worker's bounded retry, and never throws past the destructor.
+     *
+     * @covers ::destruct
+     */
+    public function testDestructLeavesFailedItemInQueue(): void
+    {
+        putenv('CONVERT_API_SECRET=secret');
+        [$queueFactory, $queue] = $this->buildQueue();
+        $queue->method('createItem')->willReturn(42);
+        $queue->expects($this->never())->method('deleteItem');
+
+        // No convert results injected: convert() returns null and process() fails.
+        $service = $this->buildService([], 'public://2026-09/report.pdf', false, null, 'public://x.jpg', $queueFactory);
+        $service->enqueueIfNeeded($this->buildSavedMedia(10), 'insert');
+
+        $service->destruct();
+
+        $this->assertCount(1, $service->convertCalls);
+        putenv('CONVERT_API_SECRET');
     }
 }

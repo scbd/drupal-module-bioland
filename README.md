@@ -432,9 +432,14 @@ stop showing the generic grey placeholder for every document that has no manuall
   logged, never shown in a form; the settings form only shows a read-only "secret present: yes/no"
   indicator. Missing the secret silently disables the feature (no queue items, no conversions).
 - **Toggle**: `bioland.settings.enable_document_preview` (default `TRUE`), on the System Functions tab.
-- **Cron dependency**: external HTTP is never performed inside a web request. Saving a qualifying
-  Document media item only enqueues a `bioland_document_preview` queue item; the actual ConvertAPI
-  call happens in `BiolandDocumentPreviewWorker`, drained by cron (or `drush queue:run bioland_document_preview`).
+- **When it runs**: external HTTP is never performed inside the editor's request. Saving a
+  qualifying Document media item enqueues a `bioland_document_preview` queue item and remembers it;
+  the service is tagged `needs_destruction`, so right after the response is flushed its `destruct()`
+  performs the ConvertAPI call and fills the Image field (same shape as the BL-1191 website
+  screenshot). A successful conversion deletes its queue item. The queue is the retry path only:
+  `BiolandDocumentPreviewWorker` (cron, or `drush queue:run bioland_document_preview`) drains items
+  that failed transiently. This matters because `bioland_update_9061` disables Drupal system cron
+  (ADR 0004), so a cron-only design never produced an image on those sites.
   An editor-chosen Image is never overwritten, and an edit that does not replace the document file
   never triggers a new conversion.
 - **PageRange=1 cost rule**: every ConvertAPI call is restricted to page 1 via the `PageRange`

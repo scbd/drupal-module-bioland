@@ -14,11 +14,12 @@ use Drupal\Core\State\StateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Drains document-preview conversions outside any web request.
+ * Retry path for document-preview conversions.
  *
- * Modelled on BiolandDmsmGeographyWorker: the conversion itself is HTTP to
- * ConvertAPI, so it never runs inside a request; only this worker, drained
- * by cron, calls BiolandDocumentPreviewService::process().
+ * BiolandDocumentPreviewService::destruct() performs the conversion right
+ * after the editor's response and deletes the queue item on success; this
+ * worker (cron, or drush queue:run) only sees items that failed there or
+ * whose request never reached destruct(), and owns the bounded retry policy.
  *
  * @QueueWorker(
  *   id = "bioland_document_preview",
