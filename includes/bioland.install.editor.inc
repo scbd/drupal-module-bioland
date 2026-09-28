@@ -967,3 +967,64 @@ function bioland_update_9098() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Returns the site's own public files URL as an allowlist entry, or NULL.
+ *
+ * Seeded from the public files URL, not the site base URL: it honours
+ * $settings['file_public_base_url'] and narrows the entry to the files path.
+ * A drush run without --uri resolves to http://default, which is not a real
+ * host, so that case seeds nothing and the admin adds the entry by hand.
+ */
+function _bioland_embed_files_origin_entry() {
+  try {
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString('public://');
+  }
+  catch (\Throwable $e) {
+    return NULL;
+  }
+  $url = \Drupal\bioland\Service\BiolandEmbedAllowlist::normalizeUrl((string) $url);
+  if ($url === NULL || parse_url($url, PHP_URL_HOST) === 'default') {
+    return NULL;
+  }
+  return ['url' => $url, 'label' => 'Site files', 'sandbox' => 'allow-scripts'];
+}
+
+/**
+ * Seeds embed.allowed_origins on a site that has never stored the key.
+ *
+ * Any stored list, including an empty one, is an admin decision and is kept.
+ */
+function _bioland_backfill_embed_allowed_origins() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('embed.allowed_origins') !== NULL) {
+    return 'embed.allowed_origins already set; left unchanged.';
+  }
+  $origins = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
+  $files = _bioland_embed_files_origin_entry();
+  if ($files) {
+    $origins[] = $files;
+  }
+  $config->set('embed.allowed_origins', $origins)->save();
+  return $files
+    ? 'Seeded embed.allowed_origins, including the site files URL ' . $files['url'] . '.'
+    : 'Seeded embed.allowed_origins without the site files URL (no real host resolved); add it on the Front End General settings form.';
+}
+
+/**
+ * Backfill the BL-1218 embed allowlist on existing sites.
+ *
+ * As the highest-numbered hook it must also re-apply the canonical v2 Search
+ * API config last.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9099() {
+  $messages = [];
+  $messages[] = _bioland_backfill_embed_allowed_origins();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

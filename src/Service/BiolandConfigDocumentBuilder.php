@@ -84,6 +84,7 @@ final class BiolandConfigDocumentBuilder {
     'config',
     'google_analytics_enabled',
     'google_analytics_ids',
+    'embed',
     'enable_debug_logging',
     'debug_log_areas',
     'main_menu_lock',
