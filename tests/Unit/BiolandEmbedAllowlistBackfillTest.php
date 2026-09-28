@@ -111,8 +111,50 @@ class BiolandEmbedAllowlistBackfillTest extends TestCase {
   public static function noFilesHostProvider(): array {
     return [
       'drush default host' => ['http://default/sites/default/files'],
+      'https default host' => ['https://default/sites/default/files'],
+      'http behind a TLS proxy' => ['http://site.example.org/sites/x/files'],
+      'localhost' => ['https://localhost/sites/x/files'],
+      'dotless container name' => ['https://drupal/sites/x/files'],
+      'ip literal' => ['https://10.0.0.5/sites/x/files'],
       'generator failure' => [new \RuntimeException('no request')],
     ];
+  }
+
+  /**
+   * hook_install() adds a usable files URL to the installed list, once.
+   */
+  public function testInstallSeedAppendsTheFilesUrlOnce(): void {
+    $config = $this->site(['embed' => ['allowed_origins' => BiolandEmbedAllowlist::DEFAULTS]], 'https://example.org/sites/example/files/');
+
+    _bioland_seed_embed_files_origin();
+    $once = $config->get('embed.allowed_origins');
+    $config->saved = FALSE;
+    _bioland_seed_embed_files_origin();
+
+    $this->assertCount(count(BiolandEmbedAllowlist::DEFAULTS) + 1, $once);
+    $this->assertSame('https://example.org/sites/example/files', end($once)['url']);
+    $this->assertSame($once, $config->get('embed.allowed_origins'));
+    $this->assertFalse($config->saved, 'A second run finds the entry and writes nothing.');
+  }
+
+  /**
+   * hook_install() writes nothing when the files URL is not usable.
+   */
+  public function testInstallSeedSkipsAnUnusableFilesUrl(): void {
+    $config = $this->site(['embed' => ['allowed_origins' => BiolandEmbedAllowlist::DEFAULTS]], 'http://default/sites/default/files');
+
+    _bioland_seed_embed_files_origin();
+
+    $this->assertSame(BiolandEmbedAllowlist::DEFAULTS, $config->get('embed.allowed_origins'));
+    $this->assertFalse($config->saved);
+  }
+
+  /**
+   * hook_install() seeds the files entry inside the non-sync block.
+   */
+  public function testInstallCallsTheSeedOutsideConfigSync(): void {
+    $install = file_get_contents(__DIR__ . '/../../bioland.install');
+    $this->assertMatchesRegularExpression('/if \(!\\\\Drupal::isConfigSyncing\(\)\) \{[^}]*_bioland_setup_embed_media\(\);[^}]*_bioland_seed_embed_files_origin\(\);/', $install);
   }
 
   /**

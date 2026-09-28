@@ -973,8 +973,10 @@ function bioland_update_9098() {
  *
  * Seeded from the public files URL, not the site base URL: it honours
  * $settings['file_public_base_url'] and narrows the entry to the files path.
- * A drush run without --uri resolves to http://default, which is not a real
- * host, so that case seeds nothing and the admin adds the entry by hand.
+ * The head matches the scheme exactly and pages are served over https, so
+ * only an https URL on a public-looking host is seeded. drush without --uri
+ * (http://default), http behind a TLS proxy, localhost, IP literals and
+ * dotless container names seed nothing; the admin adds the row by hand.
  */
 function _bioland_embed_files_origin_entry() {
   try {
@@ -984,10 +986,34 @@ function _bioland_embed_files_origin_entry() {
     return NULL;
   }
   $url = \Drupal\bioland\Service\BiolandEmbedAllowlist::normalizeUrl((string) $url);
-  if ($url === NULL || parse_url($url, PHP_URL_HOST) === 'default') {
+  $host = (string) parse_url((string) $url, PHP_URL_HOST);
+  if ($url === NULL || !str_starts_with($url, 'https://') || !str_contains($host, '.')
+    || $host === 'localhost' || \Drupal\bioland\Service\BiolandEmbedAllowlist::isDottedQuad($host)) {
     return NULL;
   }
   return ['url' => $url, 'label' => 'Site files', 'sandbox' => 'allow-scripts'];
+}
+
+/**
+ * Appends the site files entry to a list that does not already hold its url.
+ */
+function _bioland_embed_with_files_origin(array $origins) {
+  $files = _bioland_embed_files_origin_entry();
+  if ($files && !in_array($files['url'], array_column($origins, 'url'), TRUE)) {
+    $origins[] = $files;
+  }
+  return $origins;
+}
+
+/**
+ * Adds the site files entry to the installed list (hook_install()).
+ */
+function _bioland_seed_embed_files_origin() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $origins = $config->get('embed.allowed_origins');
+  if (is_array($origins) && ($seeded = _bioland_embed_with_files_origin($origins)) !== $origins) {
+    $config->set('embed.allowed_origins', $seeded)->save();
+  }
 }
 
 /**
@@ -1000,15 +1026,12 @@ function _bioland_backfill_embed_allowed_origins() {
   if ($config->get('embed.allowed_origins') !== NULL) {
     return 'embed.allowed_origins already set; left unchanged.';
   }
-  $origins = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
-  $files = _bioland_embed_files_origin_entry();
-  if ($files) {
-    $origins[] = $files;
-  }
+  $defaults = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
+  $origins = _bioland_embed_with_files_origin($defaults);
   $config->set('embed.allowed_origins', $origins)->save();
-  return $files
-    ? 'Seeded embed.allowed_origins, including the site files URL ' . $files['url'] . '.'
-    : 'Seeded embed.allowed_origins without the site files URL (no real host resolved); add it on the Front End General settings form.';
+  return count($origins) > count($defaults)
+    ? 'Seeded embed.allowed_origins, including the site files URL ' . end($origins)['url'] . '.'
+    : 'Seeded embed.allowed_origins without the site files URL (no public https host resolved); add it on the Front End General settings form.';
 }
 
 /**

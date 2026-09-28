@@ -79,8 +79,9 @@ google_analytics_enabled: false
 enable_document_preview: true
 google_analytics_ids: ''
 # BL-1218: iframe origins the public site may frame. The site's own public
-# files URL is site-specific, so bioland_update_9099() adds it on existing
-# sites; add it on a new site from the Front End General settings form.
+# files URL is site-specific: bioland_install() and bioland_update_9099() add
+# it when it resolves to a public https host; otherwise add it on the Front End
+# General settings form.
 embed:
   allowed_origins:
     - { url: 'https://www.youtube.com', label: 'YouTube', sandbox: '' }

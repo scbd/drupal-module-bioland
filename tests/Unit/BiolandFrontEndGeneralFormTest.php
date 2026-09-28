@@ -987,4 +987,66 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
     $this->assertSame($list, $config->get('embed.allowed_origins'));
   }
 
+  /**
+   * BL-1218: never-applied tokens get their own error on the sandbox field.
+   */
+  public function testValidateFormRejectsNeverAllowedTokens(): void {
+    $form = [];
+    $formState = $this->formState(['embed_allowed_origins' => [
+      ['url' => 'https://a.example', 'label' => '', 'sandbox' => 'allow-top-navigation', 'remove' => 0],
+    ]]);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    $this->assertStringContainsString('never applied', $formState->getErrors()['embed_allowed_origins][0][sandbox']);
+  }
+
+  /**
+   * BL-1218: the url error tells the admin to use punycode.
+   */
+  public function testUrlErrorMentionsPunycode(): void {
+    $form = [];
+    $formState = $this->formState(['embed_allowed_origins' => [
+      ['url' => 'https://bücher.example', 'label' => '', 'sandbox' => '', 'remove' => 0],
+    ]]);
+
+    $this->createForm()->validateForm($form, $formState);
+
+    $this->assertStringContainsString('punycode', $formState->getErrors()['embed_allowed_origins][0][url']);
+  }
+
+  /**
+   * BL-1218: a repeated normalised url keeps only its first row on save.
+   */
+  public function testSubmitDeduplicatesByNormalizedUrl(): void {
+    $config = $this->config();
+    $form = [];
+    $values = ['embed_allowed_origins' => [
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'First', 'sandbox' => '', 'remove' => 0],
+      ['url' => 'HTTPS://APP.powerbi.com/view/', 'label' => 'Second', 'sandbox' => 'allow-scripts', 'remove' => 0],
+    ]];
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame([['url' => 'https://app.powerbi.com/view', 'label' => 'First', 'sandbox' => '']], $config->get('embed.allowed_origins'));
+  }
+
+  /**
+   * BL-1218: the table, the add button and the saved list stop at 50 rows.
+   */
+  public function testEmbedRowsAreCappedAtFifty(): void {
+    $rows = array_map(static fn (int $i): array => ['url' => 'https://h' . $i . '.example', 'label' => '', 'sandbox' => '', 'remove' => 0], range(1, 60));
+    $config = $this->config(['embed' => ['allowed_origins' => $rows]]);
+
+    $form = $this->invoke($this->createForm(), 'buildSectionForm', [[], $this->formState([]), $config]);
+    $section = $form['front_end_general_settings']['embed_section'];
+    $this->assertArrayHasKey(49, $section['embed_allowed_origins']);
+    $this->assertArrayNotHasKey(50, $section['embed_allowed_origins']);
+    $this->assertFalse($section['embed_add']['#access']);
+
+    $empty = [];
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$empty, $this->formState(['embed_allowed_origins' => $rows]), $config]);
+    $this->assertCount(50, $config->get('embed.allowed_origins'));
+  }
+
 }

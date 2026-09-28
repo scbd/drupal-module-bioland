@@ -13,15 +13,29 @@ namespace Drupal\bioland\Service;
 final class BiolandEmbedAllowlist {
 
   /**
-   * The WHATWG iframe sandbox tokens.
+   * The iframe sandbox tokens the head accepts (bioland-head app/utils/html.js).
    */
   public const SANDBOX_TOKENS = [
     'allow-downloads', 'allow-forms', 'allow-modals', 'allow-orientation-lock',
     'allow-pointer-lock', 'allow-popups', 'allow-popups-to-escape-sandbox',
     'allow-presentation', 'allow-same-origin', 'allow-scripts',
-    'allow-top-navigation', 'allow-top-navigation-by-user-activation',
+    'allow-storage-access-by-user-activation', 'allow-top-navigation',
+    'allow-top-navigation-by-user-activation',
     'allow-top-navigation-to-custom-protocols',
   ];
+
+  /**
+   * Tokens the head always drops, so saving one would be dead config.
+   */
+  public const NEVER_ALLOWED_TOKENS = [
+    'allow-top-navigation', 'allow-popups-to-escape-sandbox',
+    'allow-top-navigation-to-custom-protocols',
+  ];
+
+  /**
+   * Most rows the settings form keeps.
+   */
+  public const MAX_ENTRIES = 50;
 
   /**
    * Entries every site ships with. The site's own files URL is site-specific.
@@ -50,7 +64,8 @@ final class BiolandEmbedAllowlist {
     }
     $parts = parse_url(trim($url));
     $host = strtolower($parts['host'] ?? '');
-    if (!preg_match('/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/', $host)) {
+    if (!preg_match('/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/', $host)
+      || (self::isNumericHost($host) && !self::isDottedQuad($host))) {
       return NULL;
     }
     $scheme = strtolower($parts['scheme']);
@@ -62,10 +77,26 @@ final class BiolandEmbedAllowlist {
       $port = NULL;
     }
     $path = rtrim($parts['path'] ?? '', '/');
-    if (preg_match('~(^|/)\.{1,2}(/|$)~', $path)) {
+    // Encoded slashes and dots: the head refuses the first and decodes the
+    // second, so either would make the stored prefix mean something else.
+    if (preg_match('~(^|/)(\.|%2e){1,2}(/|$)|%2f|%5c~i', $path)) {
       return NULL;
     }
     return $scheme . '://' . $host . ($port !== NULL ? ':' . $port : '') . $path;
+  }
+
+  /**
+   * Whether WHATWG would parse the host as IPv4 (last label numeric or hex).
+   */
+  private static function isNumericHost(string $host): bool {
+    return (bool) preg_match('/(^|\.)(\d+|0x[0-9a-f]*)$/', $host);
+  }
+
+  /**
+   * Whether the host is canonical dotted-quad IPv4, as WHATWG serialises it.
+   */
+  public static function isDottedQuad(string $host): bool {
+    return (bool) preg_match('/^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$/', $host);
   }
 
   /**
@@ -83,7 +114,8 @@ final class BiolandEmbedAllowlist {
    * Validates one entry.
    *
    * @return string[]
-   *   Error codes: 'url', 'sandbox_token' or 'sandbox_escape'. Empty = valid.
+   *   Error codes: 'url', 'sandbox_token', 'sandbox_never' or
+   *   'sandbox_escape'. Empty = valid.
    */
   public static function validateEntry(array $entry): array {
     $errors = [];
@@ -93,6 +125,9 @@ final class BiolandEmbedAllowlist {
     $tokens = self::sandboxTokens((string) ($entry['sandbox'] ?? ''));
     if (array_diff($tokens, self::SANDBOX_TOKENS)) {
       $errors[] = 'sandbox_token';
+    }
+    if (array_intersect($tokens, self::NEVER_ALLOWED_TOKENS)) {
+      $errors[] = 'sandbox_never';
     }
     // Together these let the framed page remove its own sandbox attribute.
     if (!array_diff(['allow-scripts', 'allow-same-origin'], $tokens)) {
