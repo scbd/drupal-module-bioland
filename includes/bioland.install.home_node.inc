@@ -233,6 +233,10 @@ function _bioland_ensure_home_node() {
       return 'Home node: ' . $conflict;
     }
 
+    // Before anything resolves /node/1000 (the attachment source, the front
+    // page), so a bl1 leftover alias cannot redirect it to another node.
+    $aliases_deleted = _bioland_home_node_delete_hijacking_aliases($messages);
+
     $system_site = \Drupal::configFactory()->getEditable('system.site');
     // The previous front page is read before anything changes it.
     $previous_front = (string) $system_site->get('page.front');
@@ -271,7 +275,7 @@ function _bioland_ensure_home_node() {
       $messages[] = 'Front page changed from "' . $previous_front . '" to ' . $front . '.';
     }
 
-    if (!$changed && $previous_front === $front) {
+    if (!$changed && $previous_front === $front && !$aliases_deleted) {
       $messages[] = 'Home node ' . BIOLAND_HOME_NODE_NID . ' already complete; nothing changed.';
     }
 
@@ -307,6 +311,53 @@ function _bioland_home_node_identity_conflict($node, array $by_uuid) {
     }
   }
   return NULL;
+}
+
+/**
+ * Delete path aliases that hijack /node/1000 (dmsm step 3).
+ *
+ * The bl1 -> bl2 migration kept old /node/<nid> links alive as aliases, so
+ * some sites hold alias "/node/1000" -> "/node/11000". Inbound path processing
+ * resolves the front page to /node/1000 and then that alias, so the site would
+ * render the other node. Same rule as the dmsm script: alias "/node/1000" in
+ * any langcode whose path is anything but "/node/1000". Runs on every call, so
+ * a re-run removes an alias created since.
+ *
+ * @param string[] $messages
+ *   Collected messages.
+ *
+ * @return int
+ *   The number of aliases deleted.
+ */
+function _bioland_home_node_delete_hijacking_aliases(array &$messages) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if (!$entity_type_manager->hasDefinition('path_alias')) {
+    return 0;
+  }
+
+  $front = '/node/' . BIOLAND_HOME_NODE_NID;
+  $storage = $entity_type_manager->getStorage('path_alias');
+  $hijacking = array_filter(
+    $storage->loadByProperties(['alias' => $front]),
+    static fn($alias) => $alias->getPath() !== $front
+  );
+  if (!$hijacking) {
+    return 0;
+  }
+
+  $logger = \Drupal::logger('bioland');
+  foreach ($hijacking as $alias) {
+    $logger->warning('Home node: deleting path_alias @id (@langcode) "@alias" -> "@path".', [
+      '@id' => $alias->id(),
+      '@langcode' => $alias->language()->getId(),
+      '@alias' => $front,
+      '@path' => $alias->getPath(),
+    ]);
+    $messages[] = sprintf('Deleted path_alias %s (%s) "%s" -> "%s".', $alias->id(), $alias->language()->getId(), $front, $alias->getPath());
+  }
+  $storage->delete($hijacking);
+
+  return count($hijacking);
 }
 
 /**
@@ -488,21 +539,38 @@ function _bioland_home_node_fill_translations($node, array &$messages) {
   }
 
   $skipped = _bioland_home_node_skipped_langcodes();
+  $missing = array_filter(
+    array_keys(\Drupal::service('language_manager')->getLanguages()),
+    static fn($langcode) => !in_array($langcode, $skipped, TRUE) && !$node->hasTranslation($langcode)
+  );
+  if (!$missing) {
+    return FALSE;
+  }
+
+  // addTranslation() throws on an untranslatable bundle; that must not abort
+  // the node and the front page.
+  if (!$node->isTranslatable()) {
+    $messages[] = 'Warning: content is not translatable; translation(s) skipped: ' . implode(', ', $missing) . '.';
+    return FALSE;
+  }
+
   $metadata = \Drupal::hasService('content_translation.manager') ? \Drupal::service('content_translation.manager') : NULL;
   $added = [];
 
-  foreach (array_keys(\Drupal::service('language_manager')->getLanguages()) as $langcode) {
-    if (in_array($langcode, $skipped, TRUE) || $node->hasTranslation($langcode)) {
-      continue;
-    }
-
+  foreach ($missing as $langcode) {
     $title = _bioland_home_node_title_for($langcode);
     if ($title === NULL) {
       $messages[] = 'Warning: no "Home" title for ' . $langcode . '; translation skipped.';
       continue;
     }
 
-    $translation = $node->addTranslation($langcode, ['title' => $title, 'status' => 1]);
+    // uid is translatable and would otherwise default to the current user
+    // (anonymous under drush updb); dmsm mirrors the source row's owner.
+    $translation = $node->addTranslation($langcode, [
+      'title' => $title,
+      'status' => 1,
+      'uid' => $node->getOwnerId(),
+    ]);
     if ($metadata) {
       $metadata->getTranslationMetadata($translation)->setSource(BIOLAND_HOME_NODE_LANGCODE);
     }
@@ -524,6 +592,10 @@ function _bioland_home_node_fill_translations($node, array &$messages) {
 
 /**
  * BL-838: create the editable home node 1000 and make it the front page.
+ *
+ * The helper is idempotent, so it can be re-run by hand when this update
+ * logged a failure (the schema version still advances):
+ * drush php:eval "\Drupal::moduleHandler()->loadInclude('bioland', 'install'); echo _bioland_ensure_home_node();"
  */
 function bioland_update_9100() {
   $messages = [_bioland_ensure_home_node()];

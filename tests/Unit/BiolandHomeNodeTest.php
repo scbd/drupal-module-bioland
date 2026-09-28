@@ -37,6 +37,11 @@ class BiolandHomeNodeTest extends TestCase
     private array $languages = [];
 
     /**
+     * Logged warnings, as [message, context].
+     */
+    private array $warnings = [];
+
+    /**
      * {@inheritdoc}
      */
     public static function setUpBeforeClass(): void
@@ -56,6 +61,7 @@ class BiolandHomeNodeTest extends TestCase
             $this->storages[$type] = new HomeNodeFakeStorage();
         }
         $this->storages['node_type']->add(new HomeNodeFakeEntity('content', 'x', 'node_type'));
+        $this->storages['path_alias'] = new HomeNodeFakeAliasStorage();
 
         // A bl2 site on the legacy taxonomy-term home.
         $this->configs['system.site'] = new HomeNodeFakeConfig(['page.front' => '/home']);
@@ -87,6 +93,11 @@ class BiolandHomeNodeTest extends TestCase
             {
                 return $this->storages[$type];
             }
+
+            public function hasDefinition($type)
+            {
+                return isset($this->storages[$type]);
+            }
         });
 
         $configs = &$this->configs;
@@ -109,10 +120,54 @@ class BiolandHomeNodeTest extends TestCase
             }
         });
 
-        \Drupal::setService('path_alias.manager', new class {
+        // Resolves through the fake path_alias storage, so a stale alias is
+        // visible to the helper exactly as long as it exists.
+        $aliases = $this->storages['path_alias'];
+        \Drupal::setService('path_alias.manager', new class($aliases) {
+            public function __construct(private HomeNodeFakeAliasStorage $aliases)
+            {
+            }
+
             public function getPathByAlias($alias)
             {
+                foreach ($this->aliases->entities as $entity) {
+                    if ($entity->alias === $alias) {
+                        return $entity->getPath();
+                    }
+                }
                 return $alias === '/home' ? '/taxonomy/term/20' : $alias;
+            }
+        });
+
+        $warnings = &$this->warnings;
+        \Drupal::setService('logger.factory', new class($warnings) {
+            private $warnings;
+
+            public function __construct(array &$warnings)
+            {
+                $this->warnings = &$warnings;
+            }
+
+            public function get($channel)
+            {
+                $warnings = &$this->warnings;
+                return new class($warnings) {
+                    private $warnings;
+
+                    public function __construct(array &$warnings)
+                    {
+                        $this->warnings = &$warnings;
+                    }
+
+                    public function warning($message, array $context = [])
+                    {
+                        $this->warnings[] = [$message, $context];
+                    }
+
+                    public function __call($name, $args)
+                    {
+                    }
+                };
             }
         });
 
@@ -209,6 +264,7 @@ class BiolandHomeNodeTest extends TestCase
     {
         $other = new HomeNodeFakeEntity(1000, 'someone-else', 'content');
         $this->storages['node']->add($other);
+        $this->storages['path_alias']->add(new HomeNodeFakePathAlias(5, '/node/1000', '/node/11000', 'en'));
 
         $message = _bioland_ensure_home_node();
 
@@ -217,6 +273,7 @@ class BiolandHomeNodeTest extends TestCase
         $this->assertSame(0, $other->saves);
         $this->assertSame('/home', $this->configs['system.site']->get('page.front'));
         $this->assertSame(0, $this->configs['system.site']->saves);
+        $this->assertArrayHasKey(5, $this->storages['path_alias']->entities, 'A conflict must not delete aliases.');
     }
 
     /**
@@ -317,6 +374,68 @@ class BiolandHomeNodeTest extends TestCase
         $this->assertArrayNotHasKey('en', $translations);
         $this->assertArrayNotHasKey('no', $translations);
         $this->assertStringContainsString('no "Home" title for no', $message);
+        foreach (['fr', 'zh-hans', 'fil'] as $langcode) {
+            $this->assertSame(1, $translations[$langcode]['uid'], "The $langcode translation must keep the source owner.");
+        }
+    }
+
+    /**
+     * An untranslatable bundle skips translations but still creates the home.
+     */
+    public function testUntranslatableContentSkipsTranslations(): void
+    {
+        $this->storages['node']->translatable = FALSE;
+
+        $message = _bioland_ensure_home_node();
+
+        $node = $this->homeNode();
+        $this->assertNotNull($node, $message);
+        $this->assertSame([], $node->translations);
+        $this->assertSame(1, $node->saves);
+        $this->assertStringContainsString('not translatable; translation(s) skipped: fr, zh-hans, fil', $message);
+        $this->assertSame('/node/1000', $this->configs['system.site']->get('page.front'));
+    }
+
+    /**
+     * A bl1 alias "/node/1000" -> another node is deleted before it is resolved.
+     */
+    public function testHijackingAliasIsDeletedBeforeTheAttachmentSource(): void
+    {
+        $this->configs['system.site']->set('page.front', '/node/1000');
+        $this->storages['node']->add(new HomeNodeFakeEntity(11000, 'old-node', 'content', 'Old', [
+            'field_attachments' => [['target_id' => 32]],
+        ]));
+        $aliases = $this->storages['path_alias'];
+        $aliases->add(new HomeNodeFakePathAlias(5, '/node/1000', '/node/11000', 'en'))
+            ->add(new HomeNodeFakePathAlias(6, '/node/1000', '/node/11000', 'fr'))
+            ->add(new HomeNodeFakePathAlias(7, '/node/1000', '/node/1000', 'en'))
+            ->add(new HomeNodeFakePathAlias(8, '/about', '/node/11000', 'en'));
+
+        $message = _bioland_ensure_home_node();
+
+        $this->assertSame([7, 8], array_keys($aliases->entities));
+        $this->assertSame([['target_id' => 31], ['target_id' => 32], ['target_id' => 33]], $this->homeNode()->fields['field_attachments']);
+        $this->assertStringContainsString('Deleted path_alias 5 (en) "/node/1000" -> "/node/11000".', $message);
+        $this->assertStringContainsString('Deleted path_alias 6 (fr)', $message);
+        $this->assertCount(2, $this->warnings);
+        $this->assertSame(['@id' => 5, '@langcode' => 'en', '@alias' => '/node/1000', '@path' => '/node/11000'], $this->warnings[0][1]);
+    }
+
+    /**
+     * A hijacking alias added after the first run is deleted on a re-run.
+     */
+    public function testHijackingAliasIsDeletedOnReRun(): void
+    {
+        _bioland_ensure_home_node();
+        $node = $this->homeNode();
+        $this->storages['path_alias']->add(new HomeNodeFakePathAlias(9, '/node/1000', '/node/11000', 'und'));
+
+        $message = _bioland_ensure_home_node();
+
+        $this->assertSame([], $this->storages['path_alias']->entities);
+        $this->assertStringContainsString('Deleted path_alias 9 (und)', $message);
+        $this->assertStringNotContainsString('already complete', $message);
+        $this->assertSame(1, $node->saves, 'Deleting an alias must not re-save the node.');
     }
 
     /**
@@ -383,6 +502,11 @@ class HomeNodeFakeStorage
      */
     public bool $failOnSave = FALSE;
 
+    /**
+     * Whether created entities are translatable.
+     */
+    public bool $translatable = TRUE;
+
     public function add(HomeNodeFakeEntity $entity): self
     {
         $entity->storage = $this;
@@ -429,6 +553,7 @@ class HomeNodeFakeStorage
         $entity->values = $values;
         $entity->storage = $this;
         $entity->pendingNew = TRUE;
+        $entity->translatable = $this->translatable;
         return $entity;
     }
 
@@ -471,6 +596,7 @@ class HomeNodeFakeEntity
     public int $saves = 0;
     public bool $enforcedNew = FALSE;
     public bool $pendingNew = FALSE;
+    public bool $translatable = TRUE;
     public ?HomeNodeFakeStorage $storage = NULL;
 
     /**
@@ -535,6 +661,16 @@ class HomeNodeFakeEntity
         return $this;
     }
 
+    public function isTranslatable(): bool
+    {
+        return $this->translatable;
+    }
+
+    public function getOwnerId()
+    {
+        return $this->values['uid'] ?? NULL;
+    }
+
     public function enforceIsNew(bool $value = TRUE): self
     {
         $this->enforcedNew = $value;
@@ -546,6 +682,72 @@ class HomeNodeFakeEntity
         $this->storage?->persist($this);
         $this->saves++;
         return 1;
+    }
+}
+
+/**
+ * In-memory path_alias storage: loadByProperties(['alias']) and delete().
+ */
+class HomeNodeFakeAliasStorage
+{
+    /**
+     * Aliases keyed by id.
+     *
+     * @var \Drupal\Tests\bioland\Unit\HomeNodeFakePathAlias[]
+     */
+    public array $entities = [];
+
+    public function add(HomeNodeFakePathAlias $alias): self
+    {
+        $this->entities[$alias->id()] = $alias;
+        return $this;
+    }
+
+    public function loadByProperties(array $values)
+    {
+        return array_filter($this->entities, static fn(HomeNodeFakePathAlias $alias) => $alias->alias === $values['alias']);
+    }
+
+    public function delete(array $entities): void
+    {
+        foreach ($entities as $entity) {
+            unset($this->entities[$entity->id()]);
+        }
+    }
+}
+
+/**
+ * A path_alias entity exposing id(), getPath() and language().
+ */
+class HomeNodeFakePathAlias
+{
+    public function __construct(private int $id, public string $alias, private string $path, private string $langcode)
+    {
+    }
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function language(): object
+    {
+        $langcode = $this->langcode;
+        return new class($langcode) {
+            public function __construct(private string $langcode)
+            {
+            }
+
+            public function getId(): string
+            {
+                return $this->langcode;
+            }
+        };
     }
 }
 
