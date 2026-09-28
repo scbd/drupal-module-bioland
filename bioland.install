@@ -114,6 +114,9 @@ function bioland_install() {
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
 
+  // BL-784: 'delete any media' for content manager and above.
+  _bioland_grant_media_delete_permissions();
+
   // Configure maintenance mode access (administrator and scbd_staff only).
   _bioland_configure_maintenance_mode_access();
 
