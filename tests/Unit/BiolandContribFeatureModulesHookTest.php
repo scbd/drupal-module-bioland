@@ -159,6 +159,15 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
     $this->assertStringContainsString('$editor->contribWrites($media, $field)', $presave);
     $this->assertStringContainsString('$post->remove($key);', $presave);
     $this->assertStringContainsString('$editor->writeEditedImage($media, $field, $payload)', $presave);
+    // Only the media's own file may be overwritten (IDOR by fid otherwise).
+    $this->assertStringContainsString('BiolandMediaImageEditor::fileEditable(', $presave);
+    $this->assertLessThan(strpos($presave, 'BiolandToastImageGuard::sanitize('), strpos($presave, 'fileEditable('));
+
+    // The form validator keys on the same target field as presave.
+    $validate = $this->functionBody($module, '_bioland_toast_image_editor_validate');
+    $this->assertStringContainsString("service('bioland.media_image_editor')->editableField(", $validate);
+    $this->assertStringContainsString('_bioland_media_image_extension($media, $field)', $validate);
+    $this->assertStringNotContainsString('_bioland_media_source_extension(', $validate);
     $this->assertLessThan(strpos($presave, 'writeEditedImage('), strpos($presave, 'BiolandToastImageGuard::sanitize('));
 
     $services = $this->read('bioland.services.yml');

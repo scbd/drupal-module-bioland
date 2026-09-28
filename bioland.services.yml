@@ -97,6 +97,7 @@ services:
       - '@file_system'
       - '@datetime.time'
       - '@logger.factory'
+      - '@request_stack'
     calls:
       - [setStringTranslation, ['@string_translation']]
 
