@@ -253,6 +253,18 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($menuFile),
       'bioland_update_9092() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9093(), added for
+    // BL-1202 to converge the CKEditor image upload limit at 10 MB) is the
+    // last writer for every site, so it must ALSO converge on the canonical
+    // v2 config.
+    $editorFile = $this->moduleRoot() . '/includes/bioland.install.editor.inc';
+    $this->assertFileExists($editorFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9093\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9093() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -268,9 +280,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9092,
+      9093,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9092() now holds that role (it retires Publishing > Add > Content for BL-836 and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9093() now holds that role (it converges the CKEditor image upload limit at 10 MB for BL-1202 and re-applies the canonical v2 config); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 
