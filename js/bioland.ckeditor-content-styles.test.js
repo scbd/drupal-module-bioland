@@ -45,9 +45,16 @@ describe('Bioland CKEditor content styles - remote video width (BL-1207)', () =>
 
   test('keeps the two-class .ck.ck-content scope (out-specifies CKEditor defaults)', () => {
     // Never regress to the single-class `.ck-content` CKEditor uses itself,
-    // which this file must out-specify per the header comment.
-    expect(css).not.toMatch(
-      /(?<!\.ck)\.ck-content\s+\.drupal-media\s+iframe\.media-oembed-content/
-    );
+    // which this file must out-specify per the header comment. Every
+    // occurrence of the unscoped selector text must actually be part of the
+    // two-class scoped selector, i.e. the counts must match.
+    const unscopedSelector = '.ck-content .drupal-media iframe.media-oembed-content';
+    const scopedSelector = `.ck${unscopedSelector}`;
+
+    const unscopedCount = css.split(unscopedSelector).length - 1;
+    const scopedCount = css.split(scopedSelector).length - 1;
+
+    expect(unscopedCount).toBeGreaterThan(0);
+    expect(unscopedCount).toBe(scopedCount);
   });
 });
