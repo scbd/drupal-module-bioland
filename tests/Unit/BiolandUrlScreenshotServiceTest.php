@@ -154,15 +154,15 @@ class BiolandUrlScreenshotServiceTest extends TestCase {
     $node->method('hasField')->willReturnMap([
       ['field_url', TRUE],
       ['field_description', FALSE],
-      ['field_website_image', TRUE],
+      ['field_attachments', TRUE],
     ]);
     $node->method('get')->willReturnMap([
       ['field_url', $this->fieldItem($url)],
-      ['field_website_image', $this->fieldItem(NULL, NULL, [])],
+      ['field_attachments', $this->fieldItem(NULL, NULL, [])],
     ]);
     $node->method('label')->willReturn('CBD');
     $node->method('getOwnerId')->willReturn(1);
-    $node->expects($this->once())->method('set')->with('field_website_image', $this->callback(
+    $node->expects($this->once())->method('set')->with('field_attachments', $this->callback(
       fn ($value) => is_array($value) && isset($value[0]['target_id'])
     ));
     $node->expects($this->once())->method('save');

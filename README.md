@@ -592,8 +592,11 @@ tid 13) get an automatic screenshot of the linked site's first screen
   is no separate "viewport" parameter and no full-page mode) chained into
   [JPG to WebP](https://www.convertapi.com/jpg-to-webp) by the stored file
   URL, so the JPG is never re-uploaded.
-- Newest screenshot is stored at delta 0 on `field_website_image`; older
-  ones are kept (deleting superseded screenshots is out of scope).
+- The screenshot is attached to the node's existing Attachments field
+  (`field_attachments`) at delta 0, so it becomes the record's main image;
+  older items are kept (deleting superseded screenshots is out of scope).
+  No extra field is created; `bioland_update_9090()` removes the
+  `field_website_image` field an earlier revision of this feature added.
 
 ## Troubleshooting
 

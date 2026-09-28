@@ -36,6 +36,11 @@ class BiolandUrlScreenshotService implements DestructableInterface {
   const QUEUE_NAME = 'bioland_url_screenshot';
 
   /**
+   * The node.content media field screenshots are attached to.
+   */
+  const ATTACHMENTS_FIELD = 'field_attachments';
+
+  /**
    * Queue items recorded during this request, keyed by a dedupe key.
    *
    * @var array<string, array{id: int, item: array}>
@@ -203,9 +208,11 @@ class BiolandUrlScreenshotService implements DestructableInterface {
     ]);
     $media->save();
 
-    $existing = $node->hasField('field_website_image') ? $node->get('field_website_image')->getValue() : [];
+    // Attach to the existing Attachments field; delta 0 is the record's main
+    // image, so the newest screenshot goes first.
+    $existing = $node->hasField(self::ATTACHMENTS_FIELD) ? $node->get(self::ATTACHMENTS_FIELD)->getValue() : [];
     array_unshift($existing, ['target_id' => $media->id()]);
-    $node->set('field_website_image', $existing);
+    $node->set(self::ATTACHMENTS_FIELD, $existing);
     $node->bioland_screenshot_saving = TRUE;
     $node->save();
     unset($node->bioland_screenshot_saving);
