@@ -36,6 +36,9 @@ class RecordingDocumentPreviewService extends BiolandDocumentPreviewService
 {
     public array $convertCalls = [];
 
+    /** The bytes handed to FileRepository::writeData(), or NULL when nothing was written. */
+    public ?string $writtenBytes = null;
+
     /** @var \ConvertApi\Result[] */
     public array $convertResults = [];
 
@@ -131,7 +134,11 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         $fileSystem->method('realpath')->willReturn('/tmp/report');
 
         $fileRepository = $this->createMock('Drupal\file\FileRepositoryInterface');
-        $fileRepository->method('writeData')->willReturn($newFile);
+        $service = null;
+        $fileRepository->method('writeData')->willReturnCallback(function ($data) use ($newFile, &$service) {
+            $service->writtenBytes = $data;
+            return $newFile;
+        });
 
         $loggerFactory = $this->createMock('Drupal\Core\Logger\LoggerChannelFactoryInterface');
         $loggerFactory->method('get')->willReturn($this->createMock('Drupal\Core\Logger\LoggerChannelInterface'));
@@ -170,6 +177,41 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         $this->assertCount(1, $service->convertCalls);
         $this->assertSame('webp', $service->convertCalls[0]['to']);
         $this->assertSame('1', $service->convertCalls[0]['params']['PageRange']);
+    }
+
+    /**
+     * An inline (StoreFile=false) result is decoded from FileData, not downloaded.
+     *
+     * Regression for BL-1192: the webp step never stores its file, so the
+     * result carries base64 FileData and no Url; convertapi-php's
+     * getContents() cannot read that shape.
+     *
+     * @covers ::process
+     */
+    public function testProcessDecodesInlineFileDataWhenResultIsNotStored(): void
+    {
+        $result = new Result(new ResultFile([
+            'FileName' => 'report.webp', 'FileSize' => 9, 'FileData' => base64_encode('WEBPBYTES'),
+        ]), 1);
+        $service = $this->buildService([$result]);
+
+        $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+
+        $this->assertSame('WEBPBYTES', $service->writtenBytes);
+    }
+
+    /**
+     * Corrupt inline FileData fails loudly instead of writing garbage.
+     *
+     * @covers ::process
+     */
+    public function testProcessRejectsInvalidInlineFileData(): void
+    {
+        $result = new Result(new ResultFile(['FileName' => 'report.webp', 'FileData' => '%%not-base64%%']), 1);
+        $service = $this->buildService([$result], 'public://2026-09/report.pdf', false);
+
+        $this->expectException(\RuntimeException::class);
+        $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
     }
 
     /**
