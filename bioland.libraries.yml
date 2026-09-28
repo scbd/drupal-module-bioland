@@ -127,3 +127,16 @@ hero_editor_preview:
     - core/drupal
     - core/once
     - core/drupalSettings
+
+# BL-917: "Edit image" toggle for the toast image editor bioland places under
+# the media image widget (BiolandMediaImageEditor). The editor itself comes
+# from toast_image_editor/toast-image-editor-integration, attached alongside.
+media_image_editor:
+  css:
+    theme:
+      css/bioland-media-image-editor.css: {}
+  js:
+    js/bioland-media-image-editor-1-1-12.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

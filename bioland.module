@@ -1000,6 +1000,9 @@ function bioland_field_widget_complete_image_image_form_alter(array &$field_widg
   if (\Drupal::moduleHandler()->moduleExists('media_library')) {
     \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
   }
+  // BL-917: the toast image editor under the media image field, available as
+  // soon as a file is uploaded and behind an "Edit image" button afterwards.
+  \Drupal::service('bioland.media_image_editor')->alterWidget($field_widget_complete_form, $form_state, $context);
 }
 
 /**
@@ -1009,11 +1012,25 @@ function bioland_field_widget_complete_image_image_form_alter(array &$field_widg
  * allowed type and size (BL-917). Added whenever the module is on, without
  * looking for its hidden field in $form, so the check never depends on the
  * order the two form alters run in.
+ *
+ * The #after_build runs after toast_image_editor's own form alter (which
+ * comes later than this one) and swaps its bottom-of-form fieldset for the
+ * one bioland placed under the image widget.
  */
 function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
     $form['#validate'][] = '_bioland_toast_image_editor_validate';
+    $form['#after_build'][] = '_bioland_media_image_editor_after_build';
   }
+}
+
+/**
+ * After-build callback for media forms: finishes the image editor placement.
+ *
+ * @see \Drupal\bioland\Service\BiolandMediaImageEditor::afterBuild()
+ */
+function _bioland_media_image_editor_after_build(array $form, FormStateInterface $form_state) {
+  return \Drupal::service('bioland.media_image_editor')->afterBuild($form, $form_state);
 }
 
 /**
@@ -1061,15 +1078,59 @@ function bioland_media_presave(EntityInterface $media) {
     return;
   }
 
+  /** @var \Drupal\bioland\Service\BiolandMediaImageEditor $editor */
+  $editor = \Drupal::service('bioland.media_image_editor');
+  $field = $media instanceof MediaInterface ? $editor->editableField($media) : NULL;
+
   $user = \Drupal::currentUser();
   $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
-  $dropped = BiolandToastImageGuard::sanitize(\Drupal::request()->request, _bioland_media_source_extension($media), $allowed);
+  $post = \Drupal::request()->request;
+  $dropped = BiolandToastImageGuard::sanitize($post, _bioland_media_image_extension($media, $field), $allowed);
   foreach ($dropped as $reason) {
     \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
       '@id' => $media->id(),
       '@reason' => $reason,
     ]);
   }
+
+  // toast_image_editor only writes a media type's image *source* field. When
+  // the edited field is another image field (remote_video, document), write
+  // the sanitized payload here and take it off the request so nothing else
+  // acts on it.
+  if ($field === NULL || $editor->contribWrites($media, $field)) {
+    return;
+  }
+  foreach (BiolandToastImageGuard::payloads($post->all()) as $key => $payload) {
+    $post->remove($key);
+    if ($editor->writeEditedImage($media, $field, $payload)) {
+      \Drupal::messenger()->addStatus(t('Your image changes have been saved.'));
+    }
+    else {
+      \Drupal::messenger()->addError(t('The edited image could not be saved.'));
+    }
+  }
+}
+
+/**
+ * Returns the lowercase extension of the file in a media image field.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $media
+ *   The media entity.
+ * @param string|null $field
+ *   The image field the editor targets; NULL falls back to the source field.
+ *
+ * @return string
+ *   The extension, or '' when the field holds no file.
+ */
+function _bioland_media_image_extension(EntityInterface $media, ?string $field) {
+  if ($field === NULL) {
+    return _bioland_media_source_extension($media);
+  }
+  if (!$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
 }
 
 /**
