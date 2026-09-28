@@ -411,8 +411,10 @@ function _bioland_configure_full_html_editor_toolbar() {
       '@old' => $current_max_size ?: 'not set',
     ]);
 
-    // Ensure image upload is enabled.
-    if ($editor_config->get('image_upload.status') !== TRUE) {
+    // Ensure image upload is enabled, but only default it on when the key
+    // is missing entirely; never override an admin's intentional FALSE.
+    $image_upload_settings = $editor_config->get('image_upload') ?? [];
+    if (!array_key_exists('status', $image_upload_settings)) {
       $editor_config->set('image_upload.status', TRUE);
       $messages[] = t('Enabled image upload for full_html editor.');
     }
@@ -570,7 +572,8 @@ function bioland_update_9034() {
 }
 
 /**
- * Update full_html editor: max image size 50kb and new toolbar configuration.
+ * Update full_html editor: max image size (BIOLAND_EDITOR_IMAGE_MAX_SIZE)
+ * and new toolbar configuration.
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
