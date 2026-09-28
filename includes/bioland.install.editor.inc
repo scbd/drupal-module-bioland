@@ -483,7 +483,7 @@ function _bioland_configure_full_html_editor_toolbar() {
 /**
  * Contrib modules Bioland enables when the codebase provides them (BL-917).
  *
- * All four ship in the drupal-docker-wrapper image from 11.4.7-v7.
+ * All five ship in the drupal-docker-wrapper image from 11.4.7-v7.
  *
  * @return string[]
  *   Module machine names.
@@ -491,6 +491,7 @@ function _bioland_configure_full_html_editor_toolbar() {
 function _bioland_contrib_feature_modules() {
   return [
     'toast_image_editor',
+    'ckeditor_media_resizer',
     'llms_txt',
     'ckeditor5_fullscreen',
     'ckeditor5_icons',
@@ -634,15 +635,17 @@ function bioland_update_9038() {
 }
 
 /**
- * Enable the toast_image_editor, llms_txt and CKEditor 5 contrib modules.
+ * Enable the toast_image_editor, ckeditor_media_resizer, llms_txt and
+ * CKEditor 5 contrib modules.
  *
  * BL-917. See _bioland_enable_contrib_feature_modules() for the skip rules.
  *
- * Numbered 9089 because the COP-17 integration branch (bsl-cop-17-dev)
- * already carries 9084-9088 from sibling PRs (BL-815, BL-836, BL-841).
+ * Numbered 9096 because the COP-17 integration branch (bsl-cop-17-dev)
+ * already carries 9084-9095 from sibling PRs (BL-815 through BL-1206); the
+ * original 9089 sat below those and never ran on a site already past them.
  * MERGE ORDER: land this after those siblings reach the same branch. Drupal
- * only runs hooks above a site's stored schema, so a site that records 9089
- * first would never run a later-merged 9084-9088.
+ * only runs hooks above a site's stored schema, so a site that records 9096
+ * first would never run a later-merged 9084-9095.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
@@ -650,7 +653,7 @@ function bioland_update_9038() {
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9089() {
+function bioland_update_9096() {
   $messages = [];
   $messages[] = _bioland_enable_contrib_feature_modules();
 

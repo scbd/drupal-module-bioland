@@ -294,7 +294,7 @@ function bioland_requirements($phase) {
   }
 
   // Runtime-only: flag BL-917 contrib feature modules that are still off.
-  // bioland_update_9089() skips a module it cannot enable (not in the
+  // bioland_update_9096() skips a module it cannot enable (not in the
   // codebase, or its install threw) and never runs again, so this is the
   // lasting reminder.
   if ($phase === 'runtime') {

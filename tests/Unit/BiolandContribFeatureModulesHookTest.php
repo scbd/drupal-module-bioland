@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  *
  * Source-level checks, in the style of SearchApiConvergenceHookTest: the
  * update hook and hook_install() both route through one helper, the helper
- * lists exactly the four modules, and it only installs modules that are in
+ * lists exactly the five modules, and it only installs modules that are in
  * the codebase and not yet enabled.
  *
  * @group bioland
@@ -40,13 +40,13 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
   }
 
   /**
-   * The helper lists exactly the four BL-917 modules.
+   * The helper lists exactly the five BL-917 modules.
    */
   public function testModuleListIsExact(): void {
     $body = $this->functionBody($this->read('includes/bioland.install.editor.inc'), '_bioland_contrib_feature_modules');
     preg_match_all("/'([a-z0-9_]+)'/", $body, $m);
     $this->assertSame(
-      ['toast_image_editor', 'llms_txt', 'ckeditor5_fullscreen', 'ckeditor5_icons'],
+      ['toast_image_editor', 'ckeditor_media_resizer', 'llms_txt', 'ckeditor5_fullscreen', 'ckeditor5_icons'],
       $m[1]
     );
   }
@@ -79,7 +79,7 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
    * The update hook and hook_install() both call the helper.
    */
   public function testUpdateHookAndInstallCallHelper(): void {
-    $hook = $this->functionBody($this->read('includes/bioland.install.editor.inc'), 'bioland_update_9089');
+    $hook = $this->functionBody($this->read('includes/bioland.install.editor.inc'), 'bioland_update_9096');
     $this->assertStringContainsString('_bioland_enable_contrib_feature_modules()', $hook);
 
     // hook_install() skips it during a config sync, where the synced
