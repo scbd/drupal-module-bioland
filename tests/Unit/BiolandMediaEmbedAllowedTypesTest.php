@@ -7,10 +7,11 @@ use PHPUnit\Framework\TestCase;
 /**
  * Tests the pure builder behind the BL-1206 media_embed allowed types fix.
  *
- * CKEditor's "Insert Media" dialog should offer every media type except
- * 'document' (documents are inserted/linked, not embedded inline). The
- * builder must derive the list from whatever media types actually exist on
- * the site, never a hard-coded list.
+ * CKEditor's "Insert Media" dialog must offer image + remote_video only,
+ * the allowlist BL-1205 established. document (inserted / linked, not
+ * embedded) and hero (a page banner, never inline body content) must never
+ * be re-admitted, and the allowlist is intersected with the media types
+ * that actually exist on the site.
  *
  * @group bioland
  * @coversDefaultClass \_bioland_media_embed_allowed_types
@@ -27,9 +28,9 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
     }
 
     /**
-     * Every type is allowed except 'document', stable sorted.
+     * Only image + remote_video survive; document and hero are dropped.
      */
-    public function testAllowsEveryTypeExceptDocument(): void
+    public function testAllowsOnlyImageAndRemoteVideo(): void
     {
         $result = _bioland_media_embed_allowed_types([
             'remote_video',
@@ -40,7 +41,6 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
 
         $this->assertSame(
             [
-                'hero' => 'hero',
                 'image' => 'image',
                 'remote_video' => 'remote_video',
             ],
@@ -53,11 +53,11 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
      */
     public function testResultIsStableSortedRegardlessOfInputOrder(): void
     {
-        $a = _bioland_media_embed_allowed_types(['remote_video', 'audio', 'image']);
-        $b = _bioland_media_embed_allowed_types(['image', 'audio', 'remote_video']);
+        $a = _bioland_media_embed_allowed_types(['remote_video', 'hero', 'image']);
+        $b = _bioland_media_embed_allowed_types(['image', 'hero', 'remote_video']);
 
         $this->assertSame($a, $b);
-        $this->assertSame(['audio', 'image', 'remote_video'], array_keys($a));
+        $this->assertSame(['image', 'remote_video'], array_keys($a));
     }
 
     /**
@@ -77,15 +77,31 @@ class BiolandMediaEmbedAllowedTypesTest extends TestCase
     }
 
     /**
-     * A future media type the module has never seen is included automatically.
+     * An allowlisted type that does not exist on the site is never written.
      */
-    public function testUnknownFutureMediaTypeIsIncluded(): void
+    public function testMissingAllowlistedTypeIsNotInvented(): void
+    {
+        $this->assertSame(
+            ['image' => 'image'],
+            _bioland_media_embed_allowed_types(['image', 'document', 'hero'])
+        );
+    }
+
+    /**
+     * A future media type the module has never seen is NOT auto-admitted.
+     */
+    public function testUnknownFutureMediaTypeIsExcluded(): void
     {
         $result = _bioland_media_embed_allowed_types(['image', 'some_new_type']);
 
-        $this->assertSame(
-            ['image' => 'image', 'some_new_type' => 'some_new_type'],
-            $result
-        );
+        $this->assertSame(['image' => 'image'], $result);
+    }
+
+    /**
+     * The allowlist constant is the single source of truth.
+     */
+    public function testAllowlistConstantIsImageAndRemoteVideo(): void
+    {
+        $this->assertSame(['image', 'remote_video'], BIOLAND_MEDIA_EMBED_ALLOWED_TYPES);
     }
 }
