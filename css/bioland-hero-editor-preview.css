@@ -1,0 +1,50 @@
+/**
+ * Hero gradient preview inside the field_description CKEditor 5 editable.
+ *
+ * Replicates bioland-head's hero-image.vue tint + overlay layers (see
+ * bioland-head app/components/page/header/hero-image.vue) using the two
+ * colours the JS behavior writes as custom properties, so the toolbar stays
+ * untouched and only the editable surface itself gets the hero treatment.
+ */
+.bioland-hero-preview {
+  position: relative;
+  min-height: 300px;
+  color: #fff;
+  background-color: #666;
+  background-repeat: no-repeat;
+}
+
+.bioland-hero-preview::before,
+.bioland-hero-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Color tint - blends with the image via mix-blend-mode: color. */
+.bioland-hero-preview::before {
+  background: linear-gradient(0deg, var(--bioland-hero-secondary) 0%, var(--bioland-hero-primary) 100%);
+  mix-blend-mode: color;
+}
+
+/* Dark-top vignette + left-side primary fade (normal blending). */
+.bioland-hero-preview::after {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.33) 0%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(90deg, var(--bioland-hero-primary) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.bioland-hero-preview > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bioland-hero-preview p,
+.bioland-hero-preview h1,
+.bioland-hero-preview h2,
+.bioland-hero-preview h3,
+.bioland-hero-preview a {
+  color: #fff !important;
+}

@@ -411,6 +411,213 @@ function _bioland_fix_user_admin_email_formatter() {
   }
 }
 
+/**
+ * Removes the stray hand-added "bundle" field from the media_library view.
+ *
+ * The gt site had a "bundle" field added by hand to the media_library view's
+ * widget and widget_table displays, which is what renders the stray
+ * "Document" link on every card in the "Add or select media" picker.
+ * Idempotent: a no-op when the field is already absent from both displays.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_remove_media_library_bundle_field() {
+  if ($skip = _bioland_require_module('media_library', 'media library bundle field removal')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.media_library');
+
+  if ($config->isNew()) {
+    return t('View media_library not found; skipped bundle field removal.');
+  }
+
+  try {
+    $removed = [];
+    foreach (['widget', 'widget_table'] as $display_id) {
+      $fields = $config->get('display.' . $display_id . '.display_options.fields');
+      if (is_array($fields) && array_key_exists('bundle', $fields)) {
+        unset($fields['bundle']);
+        $config->set('display.' . $display_id . '.display_options.fields', $fields);
+        $removed[] = $display_id;
+      }
+    }
+
+    if (empty($removed)) {
+      return t('media_library view widget displays already have no bundle field.');
+    }
+
+    $config->save();
+
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+
+    \Drupal::logger('bioland')->notice('Removed stray bundle field from media_library view: @displays.', [
+      '@displays' => implode(', ', $removed),
+    ]);
+    return t('Removed stray bundle field from media_library view: @displays.', [
+      '@displays' => implode(', ', $removed),
+    ]);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to remove bundle field from media_library view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error removing bundle field from media_library view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Fixes the media.document media_library view display (BL-1205).
+ *
+ * Blank grey document cards in the "Add or select media" picker happen
+ * because the media_library view display for the document bundle shows only
+ * the (currently unstyled) thumbnail field. This makes the display show the
+ * document's own image field and name instead, and hides the thumbnail.
+ * Idempotent: a no-op once the display already has the desired shape.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_fix_document_media_library_display() {
+  if ($skip = _bioland_require_module('media', 'document media library display fix')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.media.document.media_library');
+
+  if ($config->isNew()) {
+    return t('core.entity_view_display.media.document.media_library not found; skipped document card fix.');
+  }
+
+  try {
+    $content = $config->get('content') ?: [];
+    $hidden = $config->get('hidden') ?: [];
+
+    $desired_image = [
+      'type' => 'image',
+      'label' => 'hidden',
+      'settings' => [
+        'image_style' => 'medium',
+        'image_link' => '',
+        'image_loading' => ['attribute' => 'lazy'],
+      ],
+      'third_party_settings' => [],
+      'weight' => 0,
+      'region' => 'content',
+    ];
+    $desired_name = [
+      'type' => 'string',
+      'label' => 'hidden',
+      'settings' => [],
+      'third_party_settings' => [],
+      'weight' => 1,
+      'region' => 'content',
+    ];
+
+    $changed = FALSE;
+
+    if (($content['field_media_image'] ?? NULL) !== $desired_image) {
+      $content['field_media_image'] = $desired_image;
+      $changed = TRUE;
+    }
+    if (($content['name'] ?? NULL) !== $desired_name) {
+      $content['name'] = $desired_name;
+      $changed = TRUE;
+    }
+    if (isset($content['thumbnail'])) {
+      unset($content['thumbnail']);
+      $hidden['thumbnail'] = TRUE;
+      $changed = TRUE;
+    }
+    elseif (($hidden['thumbnail'] ?? NULL) !== TRUE) {
+      $hidden['thumbnail'] = TRUE;
+      $changed = TRUE;
+    }
+
+    if (!$changed) {
+      return t('Document media_library display already shows the image and name; left untouched.');
+    }
+
+    $config->set('content', $content);
+    $config->set('hidden', $hidden);
+    $config->save();
+
+    \Drupal::logger('bioland')->notice('Fixed document media_library display: shows field_media_image + name, hides thumbnail.');
+    return t('Fixed document media_library display: shows field_media_image + name, hides thumbnail.');
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to fix document media_library display: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error fixing document media_library display: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Restricts the CKEditor "Insert media" picker to image + remote_video.
+ *
+ * Removes the Document tab from the CKEditor media picker on full_html and
+ * basic_html by restricting the media_embed filter's allowed_media_types.
+ * Idempotent: skips a format that does not exist or has no media_embed
+ * filter, and does nothing once a format is already restricted.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_restrict_media_embed_allowed_types() {
+  $messages = [];
+  $allowed = ['image' => 'image', 'remote_video' => 'remote_video'];
+  $changed_formats = [];
+
+  foreach (['full_html', 'basic_html'] as $format_id) {
+    $config = \Drupal::configFactory()->getEditable('filter.format.' . $format_id);
+
+    if ($config->isNew()) {
+      $messages[] = t('filter.format.@format not found; skipped media_embed restriction.', ['@format' => $format_id]);
+      continue;
+    }
+
+    $filters = $config->get('filters') ?: [];
+    if (!isset($filters['media_embed'])) {
+      $messages[] = t('@format has no media_embed filter; skipped media_embed restriction.', ['@format' => $format_id]);
+      continue;
+    }
+
+    $settings = $filters['media_embed']['settings'] ?? [];
+    if (($settings['allowed_media_types'] ?? NULL) === $allowed) {
+      $messages[] = t('@format media_embed allowed types already restricted to image + remote_video.', ['@format' => $format_id]);
+      continue;
+    }
+
+    $settings['allowed_media_types'] = $allowed;
+    $filters['media_embed']['settings'] = $settings;
+    $config->set('filters', $filters);
+    $config->save();
+    $changed_formats[] = $format_id;
+    $messages[] = t('Restricted @format media_embed allowed types to image + remote_video.', ['@format' => $format_id]);
+  }
+
+  if (!empty($changed_formats)) {
+    // Clear the editor plugin and filter caches so the Document tab
+    // actually disappears from the CKEditor media picker.
+    if (\Drupal::hasService('plugin.manager.filter')) {
+      \Drupal::service('plugin.manager.filter')->clearCachedDefinitions();
+    }
+    if (\Drupal::hasService('plugin.manager.ckeditor5.plugin')) {
+      \Drupal::service('plugin.manager.ckeditor5.plugin')->clearCachedDefinitions();
+    }
+    \Drupal::logger('bioland')->notice('Restricted media_embed allowed media types on: @formats.', [
+      '@formats' => implode(', ', $changed_formats),
+    ]);
+  }
+
+  return implode(' ', array_map('strval', $messages));
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Views Installation & Configuration
@@ -453,4 +660,34 @@ function bioland_update_9049() {
  */
 function bioland_update_9050() {
   return _bioland_fix_user_admin_email_formatter();
+}
+
+/**
+ * Clean up document media cards in the media library picker (BL-1205).
+ *
+ * Document media in the "Add or select media" picker rendered blank grey
+ * cards with no name and a stray "Document" link, because a "bundle" field
+ * had been added by hand to the media_library view's widget displays and
+ * the media.document media_library view display only showed the (unstyled)
+ * thumbnail. This also restricts the CKEditor "Insert media" picker to
+ * image + remote_video so it no longer offers a Document tab.
+ *
+ * This is the highest-numbered hook at the time of writing, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config; SearchApiConvergenceHookTest enforces that whichever
+ * hook is highest re-converges that config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see _bioland_remove_media_library_bundle_field()
+ * @see _bioland_fix_document_media_library_display()
+ * @see _bioland_restrict_media_embed_allowed_types()
+ */
+function bioland_update_9094() {
+  $messages = [];
+  $messages[] = _bioland_remove_media_library_bundle_field();
+  $messages[] = _bioland_fix_document_media_library_display();
+  $messages[] = _bioland_restrict_media_embed_allowed_types();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
