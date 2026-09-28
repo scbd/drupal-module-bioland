@@ -11,8 +11,10 @@ use Drupal\bioland\Service\BiolandEmbedAllowlist;
  * microphone, geolocation and payment, so media pages, the media library and
  * CKEditor previews would frame allowlisted pages more loosely than the
  * public site. This applies the matching allowlist entry's sandbox and the
- * head's allow policy (bioland-head app/utils/html.js applyEmbedEntry), and
- * replaces an iframe that matches no entry with a short notice.
+ * head's allow policy (bioland-head app/utils/html.js applyEmbedEntry) to
+ * every matched iframe. An unmatched iframe is left as is, since that markup
+ * also feeds the head, which drops it; only the CKEditor preview replaces it
+ * with a notice, and that output varies by route.
  */
 final class BiolandEmbedPreviewSandbox {
 
@@ -22,18 +24,31 @@ final class BiolandEmbedPreviewSandbox {
   public const MEDIA_PLAYER_HOST = '/^(?:(?:www\.)?youtube(?:-nocookie)?\.com|player\.vimeo\.com)$/';
 
   /**
+   * The CKEditor 5 media preview route, the only place a notice replaces an
+   * unmatched iframe.
+   */
+  public const EDITOR_PREVIEW_ROUTE = 'media.filter.preview';
+
+  /**
    * The head's permission policy for the players above.
    */
   public const PLAYER_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;';
 
   /**
-   * Sandboxes one '#theme' => 'iframe' render element, or blocks it.
+   * Sandboxes one matched '#theme' => 'iframe' element.
+   *
+   * An unmatched one comes back unchanged, or as a notice when
+   * $editor_preview is set; either way it carries the route cache context.
    */
-  public static function apply(array $element, array $entries): array {
-    $cache = ['tags' => ['config:bioland.settings']];
+  public static function apply(array $element, array $entries, bool $editor_preview = FALSE): array {
     $src = (string) ($element['#src'] ?? '');
     $entry = BiolandEmbedAllowlist::findEntry($src, $entries);
     if ($entry === NULL) {
+      $cache = ['tags' => ['config:bioland.settings'], 'contexts' => ['route']];
+      if (!$editor_preview) {
+        $element['#cache'] = array_merge_recursive($element['#cache'] ?? [], $cache);
+        return $element;
+      }
       return [
         '#type' => 'html_tag',
         '#tag' => 'p',

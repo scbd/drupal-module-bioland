@@ -172,4 +172,16 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
     $this->assertStringContainsString('on an allowed embed host but not under an allowed path', $constraint->pathMessage);
   }
 
+  /**
+   * formError() uses literals identical to the constraint's two messages.
+   */
+  public function testFormErrorMatchesConstraintMessages(): void {
+    $entries = [['url' => 'https://app.powerbi.com/view']];
+    $this->assertNull(BiolandEmbedAllowedOriginConstraintValidator::formError('https://app.powerbi.com/view?r=1', $entries));
+    foreach (['https://evil.example/', 'https://app.powerbi.com/view-evil'] as $url) {
+      [$template, $params] = BiolandEmbedAllowedOriginConstraintValidator::violation($url, $entries);
+      $this->assertSame(strtr($template, $params), (string) BiolandEmbedAllowedOriginConstraintValidator::formError($url, $entries), $url);
+    }
+  }
+
 }

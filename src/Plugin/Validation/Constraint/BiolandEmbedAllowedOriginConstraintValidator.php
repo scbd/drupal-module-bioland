@@ -5,6 +5,7 @@ namespace Drupal\bioland\Plugin\Validation\Constraint;
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -79,6 +80,22 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
         '@settings' => self::SETTINGS_PATH,
       ],
     ];
+  }
+
+  /**
+   * The translated form error for a rejected URL, or NULL when it is fine.
+   *
+   * The literals repeat the constraint's two messages so they are extracted
+   * and translated once for both paths; a test keeps them identical.
+   */
+  public static function formError(string $url, array $entries): ?TranslatableMarkup {
+    $violation = self::violation($url, $entries);
+    if ($violation === NULL) {
+      return NULL;
+    }
+    return $violation[0] === (new BiolandEmbedAllowedOriginConstraint())->message
+      ? new TranslatableMarkup('The URL %url is not on an allowed embed host. It must start with one of: %allowed. Site administrators can add an entry under Front End General settings (@settings); the embedded site must also allow being framed (no X-Frame-Options or Content-Security-Policy frame-ancestors header blocking this site).', $violation[1])
+      : new TranslatableMarkup('The URL %url is on an allowed embed host but not under an allowed path, or it is malformed (encoded slashes, dot segments, backslashes or spaces). It must start with one of: %allowed.', $violation[1]);
   }
 
 }
