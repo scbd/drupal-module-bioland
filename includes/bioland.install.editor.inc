@@ -25,9 +25,10 @@ const BIOLAND_EDITOR_IMAGE_MAX_SIZE = '10 MB';
 /**
  * Media types selectable in the CKEditor "Insert Media" dialog (BL-1206).
  *
- * Mirrors the BL-1205 allowlist in
- * _bioland_restrict_media_embed_allowed_types(): image + remote_video, plus
- * embed (BL-1218, inline frames). document and hero are intentionally absent.
+ * Applied to full_html only: image + remote_video plus embed (BL-1218, inline
+ * frames). basic_html deliberately keeps the BL-1205 image + remote_video list
+ * written by _bioland_restrict_media_embed_allowed_types() (hook 9094).
+ * document and hero are intentionally absent.
  */
 const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['embed', 'image', 'remote_video'];
 
@@ -661,11 +662,11 @@ function _bioland_contrib_feature_modules() {
  * Enable the contrib feature modules that are present but not yet enabled.
  *
  * Already-enabled modules are left alone, so this is safe to run more than
- * once. A module missing from the codebase (an image older than
- * drupal-docker-wrapper 11.4.7-v7), or one whose install throws (for example
+ * once. A module missing from the codebase (a drupal-docker-wrapper image
+ * that does not ship it yet), or one whose install throws (for example
  * a missing dependency), is skipped, logged and reported rather than failing
  * the run. bioland_requirements() keeps flagging it on the status report
- * until someone enables it by hand.
+ * (with the image version each module list needs) until someone enables it.
  *
  * @param string[]|null $modules
  *   Modules to enable; defaults to _bioland_contrib_feature_modules().
@@ -725,50 +726,91 @@ function _bioland_enable_contrib_feature_modules(?array $modules = NULL) {
 }
 
 /**
- * Create the embed media type on media_iframe's inline_frame source (BL-1218).
+ * Create or finish the embed media type on media_iframe's inline_frame source.
  *
- * Holds external pages (a PowerBI report) or uploaded HTML files shown in an
- * inline frame. Creates the type, its iframe source field, and the form and
- * view displays the source prepares (iframe_urlwidthheight widget,
- * iframe_default formatter). An existing embed type is left untouched so
- * admin changes survive a re-run.
+ * BL-1218. Holds external pages (a PowerBI report) or uploaded HTML files
+ * shown in an inline frame. Creates the type and its iframe source field with
+ * the displays the source prepares (iframe_urlwidthheight widget,
+ * iframe_default formatter). Resumable: an existing type without a source
+ * field is finished rather than skipped. An existing, complete type keeps its
+ * admin changes; one on another source is left alone. The media_library form
+ * and view displays core only adds from the media type UI are ensured every
+ * run, so the picker grid never renders a live iframe per tile.
  *
  * @return string
  *   Plain-text summary, untranslated: translation is not dependable
  *   mid-update.
  */
 function _bioland_create_embed_media_type() {
-  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+  $module_handler = \Drupal::moduleHandler();
+  if (!$module_handler->moduleExists('media_iframe')) {
     return 'media_iframe is not enabled; skipped the embed media type.';
   }
 
   $storage = \Drupal::entityTypeManager()->getStorage('media_type');
-  if ($storage->load('embed')) {
-    return 'Media type embed already exists.';
+  $type = $storage->load('embed');
+  if ($type && $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed exists on another source; left it untouched.';
   }
 
-  $type = $storage->create([
+  $messages = [];
+  $type = $type ?: $storage->create([
     'id' => 'embed',
     'label' => 'Embed',
     'description' => 'An external page or uploaded HTML file shown in an inline frame, for example a PowerBI report.',
     'source' => 'inline_frame',
   ]);
   $source = $type->getSource();
-  $field = $source->createSourceField($type);
-  $source->setConfiguration(['source_field' => $field->getName()] + $source->getConfiguration());
-  $type->save();
-  $field->getFieldStorageDefinition()->save();
-  $field->save();
+  if (!$source->getSourceFieldDefinition($type)) {
+    $field = $source->createSourceField($type);
+    $source->setConfiguration(['source_field' => $field->getName()] + $source->getConfiguration());
+    // The bundle must exist before its field can be saved.
+    $type->save();
+    $field_storage = $field->getFieldStorageDefinition();
+    if ($field_storage->isNew()) {
+      $field_storage->save();
+    }
+    $field->save();
 
-  $display_repository = \Drupal::service('entity_display.repository');
-  $form_display = $display_repository->getFormDisplay('media', 'embed');
-  $source->prepareFormDisplay($type, $form_display);
-  $form_display->save();
-  $view_display = $display_repository->getViewDisplay('media', 'embed');
-  $source->prepareViewDisplay($type, $view_display);
-  $view_display->save();
+    $display_repository = \Drupal::service('entity_display.repository');
+    $form_display = $display_repository->getFormDisplay('media', 'embed');
+    $source->prepareFormDisplay($type, $form_display);
+    $form_display->save();
+    $view_display = $display_repository->getViewDisplay('media', 'embed');
+    $source->prepareViewDisplay($type, $view_display);
+    $view_display->save();
+    $messages[] = 'Created media type embed with source field ' . $field->getName() . '.';
+  }
 
-  return 'Created media type embed with source field ' . $field->getName() . '.';
+  if ($module_handler->moduleExists('media_library')
+    && function_exists('_media_library_configure_form_display')
+    && function_exists('_media_library_configure_view_display')) {
+    // Both return FALSE when the media_library display already exists.
+    $form_added = _media_library_configure_form_display($type);
+    $view_added = _media_library_configure_view_display($type);
+    if ($form_added || $view_added) {
+      $messages[] = 'Added the embed media_library displays.';
+    }
+  }
+
+  return $messages ? implode(' ', $messages) : 'Media type embed already exists.';
+}
+
+/**
+ * Create the embed media type and offer it in the CKEditor media picker.
+ *
+ * BL-1218. Shared by bioland_update_9098(), bioland_install() and
+ * bioland_modules_installed(), so a site that enables media_iframe after the
+ * update hook ran still converges.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_setup_embed_media() {
+  return implode(' ', array_map('strval', [
+    _bioland_create_embed_media_type(),
+    _bioland_configure_media_embed_allowed_types(),
+  ]));
 }
 
 /*
@@ -905,7 +947,9 @@ function bioland_update_9096() {
  *
  * BL-1218. Enables iframe + media_iframe (skipped when the docker wrapper
  * image does not ship them), creates the embed media type, then re-applies
- * the media_embed allowlist so embed joins image and remote_video.
+ * the media_embed allowlist so embed joins image and remote_video. A site
+ * whose image lacks the modules converges later through
+ * bioland_modules_installed(); bioland_requirements() flags it meanwhile.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
@@ -916,8 +960,7 @@ function bioland_update_9096() {
 function bioland_update_9098() {
   $messages = [];
   $messages[] = _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
-  $messages[] = _bioland_create_embed_media_type();
-  $messages[] = _bioland_configure_media_embed_allowed_types();
+  $messages[] = _bioland_setup_embed_media();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();

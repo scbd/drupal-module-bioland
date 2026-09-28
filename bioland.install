@@ -283,8 +283,7 @@ function bioland_install() {
     // Embed media type on iframe + media_iframe, offered in the CKEditor
     // media picker; BL-1218.
     _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
-    _bioland_create_embed_media_type();
-    _bioland_configure_media_embed_allowed_types();
+    _bioland_setup_embed_media();
   }
 
   // Rebuild router to register view routes and local tasks.
@@ -367,6 +366,33 @@ function bioland_requirements($phase) {
         'title' => t('Bioland contrib feature modules'),
         'value' => t('Not enabled: @modules', ['@modules' => implode(', ', $disabled)]),
         'description' => t('These modules ship in drupal-docker-wrapper 11.4.7-v7 or higher. Update the image if they are missing, then enable them (drush en @modules).', ['@modules' => implode(' ', $disabled)]),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+
+  // Runtime-only: flag a missing BL-1218 embed media type. bioland_update_9098()
+  // skips it when the image lacks iframe/media_iframe and never runs again;
+  // bioland_modules_installed() creates it once media_iframe is enabled.
+  if ($phase === 'runtime') {
+    $module_handler = \Drupal::moduleHandler();
+    $embed_disabled = array_values(array_filter(
+      BIOLAND_EMBED_MODULES,
+      static fn ($module) => !$module_handler->moduleExists($module)
+    ));
+    if ($embed_disabled) {
+      $requirements['bioland_embed_media'] = [
+        'title' => t('Bioland embed media type'),
+        'value' => t('Not enabled: @modules', ['@modules' => implode(', ', $embed_disabled)]),
+        'description' => t('The embed media type needs these modules from the drupal-docker-wrapper image. Update the image if they are missing, then enable them (drush en @modules); the embed media type is created when media_iframe is enabled.', ['@modules' => implode(' ', $embed_disabled)]),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+    elseif (!\Drupal::entityTypeManager()->getStorage('media_type')->load('embed')) {
+      $requirements['bioland_embed_media'] = [
+        'title' => t('Bioland embed media type'),
+        'value' => t('Media type embed is missing.'),
+        'description' => t('Recreate it with drush php:eval "\\Drupal::moduleHandler()->loadInclude(\'bioland\', \'install\'); _bioland_setup_embed_media();"'),
         'severity' => REQUIREMENT_WARNING,
       ];
     }
