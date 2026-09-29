@@ -3,12 +3,15 @@
 namespace Drupal\Tests\bioland\Unit;
 
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\media\MediaInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -134,6 +137,105 @@ class BiolandEmbedValidationWiringTest extends TestCase {
       'host not allowed' => ['https://evil.example/view', 'not on an allowed embed host'],
       'path not allowed' => ['https://app.powerbi.com/view-evil', 'not under an allowed path'],
     ];
+  }
+
+  /**
+   * Registers a current user that has, or lacks, the auto-allow permission.
+   */
+  private function setCurrentUser(bool $auto_allow): void {
+    $account = $this->createMock(AccountInterface::class);
+    $account->method('id')->willReturn(7);
+    $account->method('hasPermission')->willReturnCallback(fn ($permission) => $auto_allow && $permission === 'auto allow embed origins');
+    \Drupal::setService('current_user', $account);
+  }
+
+  /**
+   * The picker lets a trusted user add a URL on an unlisted host.
+   */
+  public function testMediaLibraryUrlElementValidateAutoAllow(): void {
+    $config = new ImmutableConfig('bioland.settings', ['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view']]]]);
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('get')->with('bioland.settings')->willReturn($config);
+    \Drupal::setService('config.factory', $factory);
+    $this->setCurrentUser(TRUE);
+
+    $form_state = $this->createMock(FormStateInterface::class);
+    $form_state->method('getValue')->with('url')->willReturn('https://claude.ai/artifact/x');
+    $form_state->expects($this->never())->method('setErrorByName');
+    $element = [];
+    bioland_media_library_embed_url_validate($element, $form_state);
+  }
+
+  /**
+   * A media double whose embed source field holds $urls.
+   */
+  private function embedMedia(array $urls): MediaInterface {
+    $source = new class {
+
+      public function getConfiguration(): array {
+        return ['source_field' => 'field_media_inline_frame'];
+      }
+
+    };
+    $media = $this->createMock(MediaInterface::class);
+    $media->method('id')->willReturn(12);
+    $media->method('bundle')->willReturn('embed');
+    $media->method('getSource')->willReturn($source);
+    $media->method('hasField')->willReturnCallback(fn ($name) => $name === 'field_media_inline_frame');
+    $media->method('get')->with('field_media_inline_frame')->willReturn(array_map(fn ($url) => (object) ['url' => $url], $urls));
+    return $media;
+  }
+
+  /**
+   * Runs the auto-allow for a saved embed; returns the settings.
+   */
+  private function autoAllow(array $urls, bool $auto_allow, array $original_urls = NULL): Config {
+    $settings = new Config('bioland.settings', ['embed' => ['allowed_origins' => [
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
+    ]]]);
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('getEditable')->with('bioland.settings')->willReturn($settings);
+    \Drupal::setService('config.factory', $factory);
+    $this->setCurrentUser($auto_allow);
+    _bioland_embed_auto_allow($this->embedMedia($urls), $original_urls === NULL ? NULL : $this->embedMedia($original_urls));
+    return $settings;
+  }
+
+  /**
+   * A trusted user's save appends each new URL's scoped entry once.
+   */
+  public function testAutoAllowAddsUnlistedUrlsForTrustedUser(): void {
+    $settings = $this->autoAllow(['https://claude.ai/artifact/a', 'https://claude.ai/artifact/b', 'https://app.powerbi.com/view?r=1'], TRUE);
+    $this->assertTrue($settings->saved);
+    $this->assertSame([
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
+      ['url' => 'https://claude.ai/artifact', 'label' => 'claude.ai/artifact', 'sandbox' => ''],
+    ], $settings->get('embed.allowed_origins'));
+  }
+
+  /**
+   * Nothing is written without the permission, for listed URLs, or for a
+   * URL the embed already had (a reviewer's removal sticks).
+   */
+  public function testAutoAllowLeavesListAlone(): void {
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], FALSE)->saved);
+    $this->assertFalse($this->autoAllow(['https://app.powerbi.com/view?r=1'], TRUE)->saved);
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/b?x=2'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+    $this->assertTrue($this->autoAllow(['https://claude.ai/other/b'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+  }
+
+  /**
+   * The insert and update hooks run the auto-allow for embeds, after save.
+   */
+  public function testInsertAndUpdateHooksCallAutoAllow(): void {
+    $source = file_get_contents(__DIR__ . '/../../bioland.module');
+    foreach (['bioland_media_insert', 'bioland_media_update'] as $hook) {
+      $body = substr($source, strpos($source, "function $hook("));
+      $this->assertMatchesRegularExpression('/^[^}]*\$media->bundle\(\) === \'embed\'\) \{[^}]*_bioland_embed_auto_allow\(\$media/', $body, $hook);
+    }
+    $presave = substr($source, strpos($source, 'function bioland_media_presave('));
+    $this->assertStringNotContainsString('_bioland_embed_auto_allow(', substr($presave, 0, strpos($presave, "\n}\n")));
   }
 
 }
