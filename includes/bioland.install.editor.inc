@@ -802,6 +802,9 @@ function _bioland_create_embed_media_type() {
  * BL-1271. The auto-generated default renders every base field (created,
  * author, a broken generic thumbnail) before the frame. This leaves the frame
  * with a visually hidden label, so the name is still read by screen readers.
+ * The frame uses iframe_only: iframe_default prints the frame's title as a
+ * visible heading over it, in CKEditor and in the rendered body. iframe_only
+ * keeps that title as the iframe title attribute only.
  * A display that already matches is not saved again. Does nothing unless the
  * embed media type exists on the inline_frame source; the frame field name is
  * read from the type's source configuration.
@@ -833,7 +836,7 @@ function _bioland_configure_embed_default_display() {
   $hidden = ['created', 'uid', 'thumbnail', 'name'];
   $component = $display->getComponent($frame);
   $frame_ok = $component
-    && ($component['type'] ?? '') === 'iframe_default'
+    && ($component['type'] ?? '') === 'iframe_only'
     && ($component['label'] ?? '') === 'visually_hidden';
   $changed = !$frame_ok;
   foreach ($hidden as $field) {
@@ -847,7 +850,7 @@ function _bioland_configure_embed_default_display() {
     $display->removeComponent($field);
   }
   $display->setComponent($frame, [
-    'type' => 'iframe_default',
+    'type' => 'iframe_only',
     'label' => 'visually_hidden',
     'weight' => 0,
     'region' => 'content',
@@ -1348,6 +1351,30 @@ function bioland_update_9105() {
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
 function bioland_update_9106() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_default_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Drops the visible title heading over embed frames.
+ *
+ * BL-1271. 9106 left the frame on iframe_default, which prints the frame title
+ * as a heading above the iframe in CKEditor and on the front end. Sites
+ * already past 9106 need this hook to switch the Default display to
+ * iframe_only.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9111() {
   $messages = [];
   $messages[] = _bioland_configure_embed_default_display();
 

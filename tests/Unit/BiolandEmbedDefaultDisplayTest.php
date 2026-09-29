@@ -121,8 +121,21 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
     ]);
     $this->assertSame('Configured the embed default view display.', _bioland_configure_embed_default_display());
     $this->assertSame(['field_media_inline_frame'], array_keys($display->components));
-    $this->assertSame('iframe_default', $display->components['field_media_inline_frame']['type']);
+    $this->assertSame('iframe_only', $display->components['field_media_inline_frame']['type']);
     $this->assertSame('visually_hidden', $display->components['field_media_inline_frame']['label']);
+    $this->assertSame(1, $display->saves);
+  }
+
+  /**
+   * A frame left on iframe_default by 9106 is switched to iframe_only.
+   */
+  public function testSwitchesTitledFormatterToFrameOnly(): void {
+    $display = $this->registerDisplay([
+      'field_media_inline_frame' => ['type' => 'iframe_default', 'label' => 'visually_hidden', 'settings' => ['width' => '100%']],
+    ]);
+    $this->assertSame('Configured the embed default view display.', _bioland_configure_embed_default_display());
+    $this->assertSame('iframe_only', $display->components['field_media_inline_frame']['type']);
+    $this->assertSame(['width' => '100%'], $display->components['field_media_inline_frame']['settings']);
     $this->assertSame(1, $display->saves);
   }
 
@@ -176,16 +189,18 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
   }
 
   /**
-   * The setup and hook 9106 both run it, and 9106 converges search last.
+   * The setup and hooks 9106 and 9111 run it, and 9111 converges search last.
    */
   public function testWiring(): void {
     $source = file_get_contents(dirname(__DIR__, 2) . '/includes/bioland.install.editor.inc');
     $setup = substr($source, strpos($source, 'function _bioland_setup_embed_media('));
     $setup = substr($setup, 0, strpos($setup, "\n}\n"));
     $this->assertStringContainsString('_bioland_configure_embed_default_display()', $setup);
-    $hook = substr($source, strpos($source, 'function bioland_update_9106('));
-    $this->assertStringContainsString('_bioland_configure_embed_default_display()', $hook);
-    $this->assertStringContainsString('_bioland_v2_update_search_and_facets_config()', $hook);
+    foreach (['9106', '9111'] as $number) {
+      $hook = substr($source, strpos($source, "function bioland_update_$number("));
+      $this->assertStringContainsString('_bioland_configure_embed_default_display()', $hook, $number);
+      $this->assertStringContainsString('_bioland_v2_update_search_and_facets_config()', $hook, $number);
+    }
   }
 
 }
