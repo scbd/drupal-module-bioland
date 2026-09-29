@@ -435,3 +435,196 @@ function bioland_update_9077() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Make the remote video image and its alt text optional (BL-815).
+ *
+ * Editors adding a remote video had to upload an image and alt text on top of
+ * the name and URL. Core already fills the `thumbnail` base field from the
+ * oEmbed provider, so the site-owned field_media_image becomes an optional
+ * override. That field config is not shipped by this module, so this edits
+ * the live config: every image field on media/remote_video that
+ * BiolandRemoteVideoImageField::shouldProcess() selects is made optional,
+ * its alt text stops being required (alt_field stays as configured), and it
+ * gets help text when it has none. Idempotent; skips cleanly when the media
+ * module, the remote_video media type, or the fields are absent.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config so the last writer never leaves a half-configured index.
+ *
+ * @see \Drupal\bioland\BiolandRemoteVideoImageField
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9088() {
+  // Plain strings, not t() - the translation system is not dependable
+  // mid-update.
+  $messages = [];
+  $etm = \Drupal::entityTypeManager();
+
+  if (!\Drupal::moduleHandler()->moduleExists('media') || !$etm->getStorage('media_type')->load('remote_video')) {
+    $messages[] = 'Skipped remote video image update: the remote_video media type does not exist.';
+  }
+  else {
+    $fields = $etm->getStorage('field_config')->loadByProperties([
+      'entity_type' => 'media',
+      'bundle' => 'remote_video',
+      'field_type' => 'image',
+    ]);
+
+    $updated = [];
+    foreach ($fields as $field) {
+      /** @var \Drupal\field\FieldConfigInterface $field */
+      if (!\Drupal\bioland\BiolandRemoteVideoImageField::qualifies($field->getTargetEntityTypeId(), $field->getTargetBundle(), $field->getType())
+        || !\Drupal\bioland\BiolandRemoteVideoImageField::shouldProcess($field->getName(), (bool) $field->isRequired())) {
+        continue;
+      }
+
+      $plan = \Drupal\bioland\BiolandRemoteVideoImageField::plan((bool) $field->isRequired(), $field->getSettings(), (string) $field->getDescription());
+      if (!$plan['changed']) {
+        continue;
+      }
+
+      $field->setRequired($plan['required']);
+      $field->setSetting('alt_field_required', $plan['settings']['alt_field_required']);
+      $field->setDescription($plan['description']);
+      $field->save();
+      $updated[] = $field->getName();
+    }
+
+    if ($updated) {
+      $message = 'Made the remote video image optional (image and alt text no longer required): ' . implode(', ', $updated) . '.';
+      \Drupal::logger('bioland')->notice($message);
+      $messages[] = $message;
+    }
+    else {
+      $messages[] = $fields
+        ? 'Remote video image fields are already optional; left untouched.'
+        : 'Skipped remote video image update: no image field exists on the remote_video media type.';
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * BL-1191: removes the field_website_image field an earlier revision of this
+ * feature created on node.content. Screenshots attach to the existing
+ * Attachments field (field_attachments) instead, so the extra field must not
+ * exist. Idempotent: a no-op when the field was never created.
+ *
+ * @return string
+ *   A plain-string status message (no t() - callers include update hooks).
+ */
+function _bioland_remove_website_image_field() {
+  $field_storage = \Drupal\field\Entity\FieldStorageConfig::loadByName('node', 'field_website_image');
+  if (!$field_storage) {
+    return 'No field_website_image field to remove.';
+  }
+  // Deleting the storage also deletes every FieldConfig instance and drops
+  // the field from the form and view displays.
+  $field_storage->delete();
+  return 'Removed the obsolete field_website_image field from the Content content type.';
+}
+
+/**
+ * BL-1191: website screenshot config default, ConvertAPI requirement, and
+ * removal of the obsolete field_website_image field.
+ *
+ * Hook number 9089 is reserved by open PR #65 (BL-917); 9090/9091 were
+ * pre-assigned to the parallel BL-1191/BL-1192 branches, so this hook is
+ * deliberately 9090, not the next-plus-one from the recount.
+ */
+function bioland_update_9090() {
+  if (!class_exists('\\ConvertApi\\ConvertApi')) {
+    throw new \Drupal\Core\Utility\UpdateException('convertapi/convertapi-php is not installed; run composer require convertapi/convertapi-php --with-all-dependencies');
+  }
+
+  $messages = [];
+  $messages[] = _bioland_remove_website_image_field();
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('enable_url_screenshot') === NULL) {
+    $config->set('enable_url_screenshot', TRUE)->save();
+    $messages[] = 'Seeded the website screenshot switch (enable_url_screenshot) as enabled.';
+  }
+  else {
+    $messages[] = 'Website screenshot switch already present; left untouched.';
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Ensures the BL-1192 document-preview feature is ready (idempotent).
+ *
+ * Called from bioland_install() and bioland_update_9091(). It never performs
+ * a conversion; it only checks the ConvertAPI library is installed and,
+ * separately, widens the media.document Image field's max_resolution when it
+ * is empty or unhelpfully small, so a generated 1024px-wide preview is not
+ * rejected by the field's own constraints.
+ *
+ * @return string[]
+ *   Plain-string status messages.
+ *
+ * @throws \Drupal\Core\Utility\UpdateException
+ *   When the convertapi/convertapi-php library is not installed. An update
+ *   hook cannot run composer; it can only refuse to continue.
+ */
+function _bioland_ensure_document_preview_ready() {
+  $messages = [];
+
+  if (!class_exists('\ConvertApi\ConvertApi')) {
+    throw new \Drupal\Core\Utility\UpdateException('The convertapi/convertapi-php library is required for document previews. Run: composer require convertapi/convertapi-php --with-all-dependencies');
+  }
+
+  $field = \Drupal\field\Entity\FieldConfig::loadByName('media', 'document', \Drupal\bioland\BiolandDocumentPreviewPolicy::IMAGE_FIELD);
+
+  if (!$field) {
+    $messages[] = 'media.document Image field config not found; skipped the max_resolution check.';
+    return $messages;
+  }
+
+  $settings = $field->getSettings();
+  $max_resolution = $settings['max_resolution'] ?? '';
+  $needs_widening = TRUE;
+
+  if (preg_match('/^(\d+)x(\d+)$/', (string) $max_resolution, $m)) {
+    $needs_widening = ((int) $m[1] <= 128 && (int) $m[2] <= 128);
+  }
+
+  if ($needs_widening) {
+    $settings['max_resolution'] = '1600x1600';
+    $field->set('settings', $settings);
+    $field->save();
+    $messages[] = 'Widened media.document Image field max_resolution to 1600x1600 for document previews.';
+  }
+  else {
+    $messages[] = 'media.document Image field max_resolution already adequate; left untouched.';
+  }
+
+  return $messages;
+}
+
+/**
+ * Ensures document previews are ready and converges the canonical v2 config.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every
+ * site, so per SearchApiConvergenceHookTest it must also re-apply the
+ * canonical v2 Search API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ * @see _bioland_ensure_document_preview_ready()
+ */
+function bioland_update_9091() {
+  $messages = _bioland_ensure_document_preview_ready();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
