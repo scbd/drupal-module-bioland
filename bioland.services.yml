@@ -19,6 +19,10 @@ services:
     class: Drupal\bioland\Service\BiolandDmsmConfigService
     arguments: ['@config.factory', '@http_client', '@logger.factory', '@queue', '@request_stack']
 
+  bioland.embed_frameability:
+    class: Drupal\bioland\Service\BiolandEmbedFrameability
+    arguments: ['@http_client', '@cache.default', '@logger.factory', '@request_stack']
+
   bioland.url_screenshot:
     class: Drupal\bioland\Service\BiolandUrlScreenshotService
     arguments: ['@entity_type.manager', '@file_system', '@file.repository', '@logger.factory', '@queue', '@config.factory', '@state']

@@ -3,6 +3,7 @@
 namespace Drupal\bioland\Plugin\Validation\Constraint;
 
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
+use Drupal\bioland\Service\BiolandEmbedFrameability;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -26,13 +27,13 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    */
   public const AUTO_ALLOW_PERMISSION = 'auto allow embed origins';
 
-  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL) {}
+  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL, protected ?BiolandEmbedFrameability $frameability = NULL) {}
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static($container->get('config.factory'), $container->get('current_user'));
+    return new static($container->get('config.factory'), $container->get('current_user'), $container->get('bioland.embed_frameability'));
   }
 
   /**
@@ -40,10 +41,17 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    */
   public function validate(mixed $items, Constraint $constraint): void {
     $entries = self::entries($this->configFactory->get('bioland.settings'));
+    $previous = $this->previousUrls($items);
     foreach ($items ?? [] as $delta => $item) {
       $url = (string) ($item->url ?? '');
       $violation = self::violation($url, self::entriesFor($url, $entries, $this->currentUser), $constraint);
       if ($violation === NULL) {
+        // Allowlist passed: only now is the page fetched, and only for a URL
+        // the embed did not already hold, so old embeds never re-fetch.
+        $error = trim($url) === '' || in_array($url, $previous, TRUE) ? NULL : $this->frameability?->error($url);
+        if ($error !== NULL) {
+          $this->context->buildViolation((string) $error)->atPath($delta . '.url')->addViolation();
+        }
         continue;
       }
       $builder = $this->context->buildViolation($violation[0]);
@@ -52,6 +60,18 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
       }
       $builder->atPath($delta . '.url')->addViolation();
     }
+  }
+
+  /**
+   * The URLs the field held before this save (none for a new entity).
+   */
+  protected function previousUrls(mixed $items): array {
+    $original = is_object($items) && method_exists($items, 'getEntity') ? ($items->getEntity()->original ?? NULL) : NULL;
+    $urls = [];
+    foreach ($original ? $original->get($items->getName()) : [] as $item) {
+      $urls[] = (string) ($item->url ?? '');
+    }
+    return $urls;
   }
 
   /**

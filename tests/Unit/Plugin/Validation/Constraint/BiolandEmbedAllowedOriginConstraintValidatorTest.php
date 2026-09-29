@@ -4,9 +4,11 @@ namespace Drupal\Tests\bioland\Unit\Plugin\Validation\Constraint;
 
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
+use Drupal\bioland\Service\BiolandEmbedFrameability;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -32,7 +34,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
    * @return array[]
    *   One ['message' => ..., 'path' => ..., 'params' => [...]] per violation.
    */
-  private function violations(array $urls, mixed $origins, ?AccountInterface $account = NULL): array {
+  private function violations(array $urls, mixed $origins, ?AccountInterface $account = NULL, ?BiolandEmbedFrameability $frameability = NULL, mixed $items = NULL): array {
     $settings = $origins === NULL ? [] : ['embed' => ['allowed_origins' => $origins]];
     $factory = $this->createMock(ConfigFactoryInterface::class);
     $factory->method('get')->with('bioland.settings')->willReturn(new ImmutableConfig('bioland.settings', $settings));
@@ -56,11 +58,72 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
       return $builder;
     });
 
-    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory, $account);
+    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory, $account, $frameability);
     $validator->initialize($context);
-    $items = array_map(fn ($url) => (object) ['url' => $url], $urls);
+    $items ??= array_map(fn ($url) => (object) ['url' => $url], $urls);
     $validator->validate($items, new BiolandEmbedAllowedOriginConstraint());
     return $violations;
+  }
+
+  /**
+   * A frameability service double that refuses claude.ai and counts calls.
+   */
+  private function frameability(int $calls): BiolandEmbedFrameability {
+    $service = $this->createMock(BiolandEmbedFrameability::class);
+    $service->expects($this->exactly($calls))->method('error')->willReturnCallback(
+      fn ($url) => str_contains($url, 'claude.ai') ? new TranslatableMarkup('This page cannot be embedded: @host', ['@host' => 'claude.ai']) : NULL
+    );
+    return $service;
+  }
+
+  /**
+   * An allowlisted URL that refuses framing puts the error on the URL field.
+   */
+  public function testFrameabilityErrorLandsOnUrlField(): void {
+    $origins = [['url' => 'https://claude.ai/artifact', 'label' => 'c', 'sandbox' => '']];
+    $violations = $this->violations(['https://claude.ai/artifact/1'], $origins, NULL, $this->frameability(1));
+    $this->assertSame([['message' => 'This page cannot be embedded: claude.ai', 'path' => '0.url', 'params' => []]], $violations);
+    $this->assertSame([], $this->violations(['https://app.powerbi.com/view?r=1'], self::ORIGINS, NULL, $this->frameability(1)));
+  }
+
+  /**
+   * A URL that already failed the allowlist is never fetched.
+   */
+  public function testNoFetchWhenAllowlistFails(): void {
+    $violations = $this->violations(['https://claude.ai/artifact/1', ''], self::ORIGINS, NULL, $this->frameability(0));
+    $this->assertCount(1, $violations);
+    $this->assertStringContainsString('not on an allowed embed host', $violations[0]['message']);
+  }
+
+  /**
+   * On edit, only a URL the embed did not already hold is fetched.
+   */
+  public function testUnchangedUrlIsNotRefetched(): void {
+    $origins = [['url' => 'https://claude.ai/artifact', 'label' => 'c', 'sandbox' => '']];
+    $original = new class {
+
+      public function get($name) {
+        return [(object) ['url' => 'https://claude.ai/artifact/old']];
+      }
+
+    };
+    $items = new class([(object) ['url' => 'https://claude.ai/artifact/old'], (object) ['url' => 'https://claude.ai/artifact/new']], $original) extends \ArrayObject {
+
+      public function __construct(array $items, private object $original) {
+        parent::__construct($items);
+      }
+
+      public function getEntity(): object {
+        return (object) ['original' => $this->original];
+      }
+
+      public function getName(): string {
+        return 'field_media_inline_frame';
+      }
+
+    };
+    $violations = $this->violations([], $origins, NULL, $this->frameability(1), $items);
+    $this->assertSame(['1.url'], array_column($violations, 'path'));
   }
 
   /**
@@ -138,8 +201,8 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
     $factory->expects($this->once())->method('get')->with('bioland.settings')
       ->willReturn(new ImmutableConfig('bioland.settings', []));
     $container = $this->createMock(ContainerInterface::class);
-    $services = ['config.factory' => $factory, 'current_user' => $this->account(FALSE)];
-    $container->expects($this->exactly(2))->method('get')->willReturnCallback(fn ($id) => $services[$id]);
+    $services = ['config.factory' => $factory, 'current_user' => $this->account(FALSE), 'bioland.embed_frameability' => $this->createMock(BiolandEmbedFrameability::class)];
+    $container->expects($this->exactly(3))->method('get')->willReturnCallback(fn ($id) => $services[$id]);
 
     $validator = BiolandEmbedAllowedOriginConstraintValidator::create($container);
     $this->assertInstanceOf(BiolandEmbedAllowedOriginConstraintValidator::class, $validator);
