@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9107()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9108()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -373,6 +373,14 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($editorFile),
       'bioland_update_9107() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // bioland_update_9108() (BL-1274 embed media permissions) is now the
+    // highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9108\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9108() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -388,9 +396,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9107,
+      9108,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9107() now holds that role (it removes the BL-1272 media library type filter, lays out the embed media_library display, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9108() now holds that role (it mirrors the image media permissions to embed media for BL-1274, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

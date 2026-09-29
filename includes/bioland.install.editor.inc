@@ -876,6 +876,7 @@ function _bioland_setup_embed_media() {
     _bioland_configure_media_embed_allowed_types(),
     _bioland_add_embed_to_media_alias_pattern(),
     _bioland_configure_embed_media_library_display(),
+    _bioland_mirror_image_media_permissions_to_embed(),
   ]));
 }
 
@@ -1477,6 +1478,28 @@ function bioland_update_9107() {
   $messages = [];
   $messages[] = _bioland_remove_media_library_type_filter();
   $messages[] = _bioland_configure_embed_media_library_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Grants embed media permissions to every role that holds them for images.
+ *
+ * BL-1274. Only administrators could create or edit embed media because
+ * nothing granted the per-bundle permissions Drupal registers for it.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9108() {
+  $messages = [];
+  $messages[] = _bioland_mirror_image_media_permissions_to_embed();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
