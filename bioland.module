@@ -606,6 +606,10 @@ function bioland_media_library_embed_url_validate(array &$element, FormStateInte
     $url,
     BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, $entries, \Drupal::currentUser())
   );
+  // Frameability (BL-1273) only after the allowlist passes: no fetch otherwise.
+  if ($error === NULL && trim($url) !== '') {
+    $error = \Drupal::service('bioland.embed_frameability')->error($url);
+  }
   if ($error !== NULL) {
     $form_state->setErrorByName('url', $error);
   }

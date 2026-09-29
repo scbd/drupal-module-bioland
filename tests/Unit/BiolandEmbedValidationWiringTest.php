@@ -3,6 +3,7 @@
 namespace Drupal\Tests\bioland\Unit;
 
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\bioland\Service\BiolandEmbedFrameability;
 use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
@@ -11,6 +12,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\media\MediaInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -108,6 +110,8 @@ class BiolandEmbedValidationWiringTest extends TestCase {
    * @dataProvider elementValidateProvider
    */
   public function testMediaLibraryUrlElementValidate(string $url, ?string $expected): void {
+    // Only an allowlisted URL reaches the frameability check (BL-1273).
+    $this->setFrameability($expected === NULL && $url !== '' ? 1 : 0);
     $config = new ImmutableConfig('bioland.settings', ['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view']]]]);
     $factory = $this->createMock(ConfigFactoryInterface::class);
     $factory->method('get')->with('bioland.settings')->willReturn($config);
@@ -123,6 +127,31 @@ class BiolandEmbedValidationWiringTest extends TestCase {
         fn ($message) => str_contains((string) $message, $expected) && str_contains((string) $message, 'https://app.powerbi.com/view')
       ));
     }
+    $element = [];
+    bioland_media_library_embed_url_validate($element, $form_state);
+  }
+
+  /**
+   * Registers a frameability double that allows every URL, expecting $calls.
+   */
+  private function setFrameability(int $calls, ?string $error = NULL): void {
+    $service = $this->createMock(BiolandEmbedFrameability::class);
+    $service->expects($this->exactly($calls))->method('error')->willReturn($error === NULL ? NULL : new TranslatableMarkup($error));
+    \Drupal::setService('bioland.embed_frameability', $service);
+  }
+
+  /**
+   * An allowlisted URL that refuses framing fails the picker's URL element.
+   */
+  public function testMediaLibraryUrlElementSurfacesFrameabilityError(): void {
+    $config = new ImmutableConfig('bioland.settings', ['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view']]]]);
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('get')->with('bioland.settings')->willReturn($config);
+    \Drupal::setService('config.factory', $factory);
+    $this->setFrameability(1, 'This page cannot be embedded: app.powerbi.com');
+    $form_state = $this->createMock(FormStateInterface::class);
+    $form_state->method('getValue')->with('url')->willReturn('https://app.powerbi.com/view?r=1');
+    $form_state->expects($this->once())->method('setErrorByName')->with('url', $this->callback(fn ($m) => str_contains((string) $m, 'cannot be embedded')));
     $element = [];
     bioland_media_library_embed_url_validate($element, $form_state);
   }
@@ -158,6 +187,7 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     $factory->method('get')->with('bioland.settings')->willReturn($config);
     \Drupal::setService('config.factory', $factory);
     $this->setCurrentUser(TRUE);
+    $this->setFrameability(1);
 
     $form_state = $this->createMock(FormStateInterface::class);
     $form_state->method('getValue')->with('url')->willReturn('https://claude.ai/artifact/x');
