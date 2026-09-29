@@ -27,7 +27,7 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    */
   public const AUTO_ALLOW_PERMISSION = 'auto allow embed origins';
 
-  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL, protected ?BiolandEmbedFrameability $frameability = NULL) {}
+  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL, protected BiolandEmbedFrameability $frameability) {}
 
   /**
    * {@inheritdoc}
@@ -48,9 +48,14 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
       if ($violation === NULL) {
         // Allowlist passed: only now is the page fetched, and only for a URL
         // the embed did not already hold, so old embeds never re-fetch.
-        $error = trim($url) === '' || in_array($url, $previous, TRUE) ? NULL : $this->frameability?->error($url);
+        $error = trim($url) === '' || in_array($url, $previous, TRUE) ? NULL : $this->frameability->error($url);
         if ($error !== NULL) {
-          $this->context->buildViolation((string) $error)->atPath($delta . '.url')->addViolation();
+          // Template plus arguments, so the message is translated and escaped once.
+          $builder = $this->context->buildViolation($error->getUntranslatedString());
+          foreach ($error->getArguments() as $key => $value) {
+            $builder->setParameter($key, $value);
+          }
+          $builder->atPath($delta . '.url')->addViolation();
         }
         continue;
       }

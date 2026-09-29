@@ -49,6 +49,20 @@ class TranslatableMarkup {
   }
 
   /**
+   * Returns the untranslated template string.
+   */
+  public function getUntranslatedString() {
+    return $this->string;
+  }
+
+  /**
+   * Returns the replacement arguments.
+   */
+  public function getArguments() {
+    return $this->args;
+  }
+
+  /**
    * Returns the string representation of the object.
    *
    * @return string

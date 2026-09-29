@@ -45,6 +45,11 @@ class BiolandEmbedFrameabilityTest extends TestCase {
       'deny refuses' => [[], ['deny'], 'X-Frame-Options: deny'],
       'allow-from other refuses' => [[], ['ALLOW-FROM https://other.example'], 'X-Frame-Options: ALLOW-FROM https://other.example'],
       'allow-from site allows' => [[], ['ALLOW-FROM https://co.bsl.cbddev.xyz'], NULL],
+      'scheme wildcard allows' => [['frame-ancestors https://*'], [], NULL],
+      'wrong scheme wildcard refuses' => [['frame-ancestors http://*'], [], 'Content-Security-Policy: frame-ancestors http://*'],
+      'portless host allows default port' => [['frame-ancestors https://co.bsl.cbddev.xyz'], [], NULL],
+      'explicit default port allows' => [['frame-ancestors https://co.bsl.cbddev.xyz:443'], [], NULL],
+      'other port refuses' => [['frame-ancestors https://co.bsl.cbddev.xyz:8443'], [], 'Content-Security-Policy: frame-ancestors https://co.bsl.cbddev.xyz:8443'],
       'frame-ancestors overrides xfo' => [['frame-ancestors *'], ['DENY'], NULL],
     ];
   }
@@ -122,6 +127,18 @@ class BiolandEmbedFrameabilityTest extends TestCase {
     $this->assertNull($service->error('https://www.youtube.com/embed/x'));
     $this->assertNull($service->error('https://www.youtube.com/embed/x'));
     $this->assertCount(1, $history, 'second call is served from the cache');
+  }
+
+  public function testUnverifiedVerdictIsNotCached(): void {
+    $service = $this->service([$this->fakeResponse(503), $this->fakeResponse(200)], $history);
+    $this->assertSame('unverified', $service->verdict('https://a.example/x')['status']);
+    $this->assertSame('ok', $service->verdict('https://a.example/x')['status'], 'a retry re-fetches');
+    $this->assertCount(2, $history);
+  }
+
+  public function testEchoedHeaderIsTruncated(): void {
+    $verdict = $this->service([$this->fakeResponse(200, ['X-Frame-Options' => 'ALLOW-FROM https://' . str_repeat('a', 500) . '.example'])])->verdict('https://claude.ai/x');
+    $this->assertLessThanOrEqual(BiolandEmbedFrameability::MAX_HEADER_ECHO, mb_strlen($verdict['header']));
   }
 
   public function testRedirectChainEndingInRefusal(): void {
