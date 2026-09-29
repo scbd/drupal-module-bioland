@@ -781,11 +781,18 @@ function bioland_theme() {
  * sync: the synced config carries the media type.
  */
 function bioland_modules_installed($modules, $is_syncing) {
-  if ($is_syncing || !in_array('media_iframe', $modules, TRUE)) {
+  if ($is_syncing) {
     return;
   }
-  \Drupal::moduleHandler()->loadInclude('bioland', 'install');
-  _bioland_setup_embed_media();
+  if (in_array('media_iframe', $modules, TRUE)) {
+    \Drupal::moduleHandler()->loadInclude('bioland', 'install');
+    _bioland_setup_embed_media();
+  }
+  elseif (in_array('pathauto', $modules, TRUE)) {
+    // Pathauto enabled after the embed type: give embeds URL aliases.
+    \Drupal::moduleHandler()->loadInclude('bioland', 'install');
+    _bioland_add_embed_to_media_alias_pattern();
+  }
 }
 
 /**

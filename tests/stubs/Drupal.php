@@ -188,6 +188,17 @@ class Drupal {
   }
 
   /**
+   * Gets a key/value collection.
+   *
+   * @return mixed
+   *   The stubbed 'keyvalue' service's collection, or NULL.
+   */
+  public static function keyValue($collection) {
+    $factory = static::$container['keyvalue'] ?? NULL;
+    return $factory ? $factory->get($collection) : NULL;
+  }
+
+  /**
    * Gets the current user.
    *
    * @return \Drupal\Core\Session\AccountInterface|null
