@@ -1274,7 +1274,7 @@ function _bioland_embed_auto_allow(MediaInterface $media, ?MediaInterface $origi
   $previous = [];
   if ($original && $original->hasField($field)) {
     foreach ($original->get($field) as $item) {
-      $previous[] = trim((string) ($item->url ?? ''));
+      $previous[] = BiolandEmbedAllowlist::autoEntry((string) ($item->url ?? ''))['url'] ?? NULL;
     }
   }
   $config = \Drupal::configFactory()->getEditable('bioland.settings');
@@ -1282,7 +1282,9 @@ function _bioland_embed_auto_allow(MediaInterface $media, ?MediaInterface $origi
   $added = [];
   foreach ($media->get($field) as $item) {
     $url = trim((string) ($item->url ?? ''));
-    $next = in_array($url, $previous, TRUE) ? NULL : BiolandEmbedAllowlist::withAutoEntry($url, $entries);
+    // Compared by entry, so a changed query on an old embed is not new.
+    $is_old = in_array(BiolandEmbedAllowlist::autoEntry($url)['url'] ?? NULL, array_filter($previous), TRUE);
+    $next = $is_old ? NULL : BiolandEmbedAllowlist::withAutoEntry($url, $entries);
     if ($next !== NULL) {
       $entries = $next;
       $added[] = end($next)['url'];
