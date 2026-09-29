@@ -19,6 +19,14 @@ interface QueueInterface {
   public function createItem($data);
 
   /**
+   * Deletes an item from the queue.
+   *
+   * @param object $item
+   *   The item, carrying an item_id property.
+   */
+  public function deleteItem($item);
+
+  /**
    * Counts the items in the queue.
    *
    * @return int

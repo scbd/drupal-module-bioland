@@ -8,6 +8,14 @@ namespace Drupal\Core\Entity;
 interface EntityTypeInterface {
 
   /**
+   * Gets the entity type ID.
+   *
+   * @return string
+   *   The entity type ID.
+   */
+  public function id();
+
+  /**
    * Gets the label.
    *
    * @return string
