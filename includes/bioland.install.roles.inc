@@ -300,7 +300,7 @@ function _bioland_mirror_image_media_permissions_to_embed() {
   $matrix = [];
   foreach (\Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple() as $rid => $role) {
     foreach (BIOLAND_IMAGE_TO_EMBED_MEDIA_PERMISSIONS as $image => $embed) {
-      if ($role->hasPermission($image) && isset($defined[$embed])) {
+      if ($role->hasPermission($image) && !$role->hasPermission($embed) && isset($defined[$embed])) {
         $matrix[$rid][] = $embed;
       }
     }

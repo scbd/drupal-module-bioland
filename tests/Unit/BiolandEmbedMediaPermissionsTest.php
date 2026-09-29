@@ -153,6 +153,29 @@ class BiolandEmbedMediaPermissionsTest extends TestCase {
     $this->assertTrue(Role::load('content_manager')->hasPermission('view any embed media revisions'));
   }
 
+  public function testMessageListsOnlyRolesThatGainedPermissions(): void {
+    $this->setUpSite([
+      'scbd_staff' => ['create image media', 'create embed media'],
+      'site_manager' => ['create image media'],
+    ]);
+
+    $result = (string) _bioland_mirror_image_media_permissions_to_embed();
+
+    $this->assertStringContainsString('for: site_manager.', $result);
+    $this->assertStringNotContainsString('scbd_staff', $result);
+  }
+
+  public function testSetupAndUpdateHookCallTheMirror(): void {
+    $source = file_get_contents(__DIR__ . '/../../includes/bioland.install.editor.inc');
+    foreach (['_bioland_setup_embed_media', 'bioland_update_9108'] as $function) {
+      $this->assertMatchesRegularExpression(
+        '/function ' . $function . '\(\)\s*\{.*?_bioland_mirror_image_media_permissions_to_embed\(\).*?\n\}/s',
+        $source,
+        $function . ' must call the mirror'
+      );
+    }
+  }
+
   public function testNothingIsRevoked(): void {
     $this->setUpSite(['contributor' => ['edit any embed media', 'access content']]);
 
