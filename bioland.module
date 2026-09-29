@@ -26,6 +26,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\media\MediaInterface;
 use Drupal\bioland\BiolandUrlScreenshotPolicy;
 use Drupal\Core\Url;
+use Drupal\iframe\Plugin\Field\FieldWidget\IframeUrlwidthheightWidget;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -625,12 +626,14 @@ function bioland_media_library_embed_url_validate(array &$element, FormStateInte
  *
  * Swaps the iframe_default widget class so an embed URL violation is shown
  * under the URL sub-field only, not repeated under every sub-field
- * (BL-1273).
+ * (BL-1273). Only contrib's own class is swapped, so a future iframe
+ * release that ships a different widget is left alone.
  *
  * @see \Drupal\bioland\Plugin\Field\FieldWidget\BiolandIframeWidget
  */
 function bioland_field_widget_info_alter(array &$info) {
-  if (isset($info['iframe_default'])) {
+  $class = $info['iframe_default']['class'] ?? NULL;
+  if (is_string($class) && is_a($class, IframeUrlwidthheightWidget::class, TRUE)) {
     $info['iframe_default']['class'] = BiolandIframeWidget::class;
   }
 }

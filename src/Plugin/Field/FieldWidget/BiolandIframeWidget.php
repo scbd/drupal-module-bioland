@@ -33,7 +33,7 @@ class BiolandIframeWidget extends IframeUrlwidthheightWidget {
    * WidgetBase::flagErrors() sets arrayPropertyPath to the property path with
    * the delta removed, so "0.url" arrives as ['url'].
    */
-  public static function childFor(ConstraintViolationInterface $violation): ?string {
+  protected static function childFor(ConstraintViolationInterface $violation): ?string {
     $path = $violation->arrayPropertyPath ?? [];
     $child = is_array($path) ? ($path[0] ?? NULL) : NULL;
     return is_string($child) && $child !== '' ? $child : NULL;

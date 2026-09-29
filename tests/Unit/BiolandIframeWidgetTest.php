@@ -97,6 +97,10 @@ class BiolandIframeWidgetTest extends TestCase {
     $without = ['link_default' => ['class' => 'X']];
     bioland_field_widget_info_alter($without);
     $this->assertSame(['link_default' => ['class' => 'X']], $without, 'Nothing is added when iframe is absent.');
+
+    $foreign = ['iframe_default' => ['class' => 'Drupal\\other\\Widget']];
+    bioland_field_widget_info_alter($foreign);
+    $this->assertSame('Drupal\\other\\Widget', $foreign['iframe_default']['class'], 'A widget that is not contrib iframe\'s own is left alone.');
   }
 
 }
