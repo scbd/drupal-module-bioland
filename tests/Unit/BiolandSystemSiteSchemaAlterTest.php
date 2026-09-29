@@ -17,12 +17,7 @@ class BiolandSystemSiteSchemaAlterTest extends TestCase {
    */
   public static function setUpBeforeClass(): void {
     parent::setUpBeforeClass();
-    if (!function_exists('bioland_config_schema_info_alter')) {
-      // Load only the hook: the full module file pulls in Drupal-only code.
-      $source = file_get_contents(__DIR__ . '/../../bioland.module');
-      $start = strpos($source, 'function bioland_config_schema_info_alter(');
-      eval(substr($source, $start));
-    }
+    require_once dirname(__DIR__, 2) . '/bioland.module';
   }
 
   /**
@@ -35,6 +30,7 @@ class BiolandSystemSiteSchemaAlterTest extends TestCase {
     $key = $definitions['system.site']['mapping']['nameEnglish'];
     $this->assertSame('string', $key['type']);
     $this->assertFalse($key['requiredKey']);
+    $this->assertTrue($key['nullable']);
   }
 
   /**

@@ -1367,5 +1367,6 @@ function bioland_config_schema_info_alter(array &$definitions) {
     'type' => 'string',
     'label' => 'English site name (written by dmsm provisioning)',
     'requiredKey' => FALSE,
+    'nullable' => TRUE,
   ];
 }
