@@ -602,6 +602,16 @@ tid 13) get an automatic screenshot of the linked site's first screen
   older items are kept (deleting superseded screenshots is out of scope).
   No extra field is created; `bioland_update_9090()` removes the
   `field_website_image` field an earlier revision of this feature added.
+- **Title and description fill**: on the node form, when the editor leaves
+  the URL field with a valid http(s) URL while the type is Related websites,
+  `js/bioland-url-metadata-1-1-8.js` asks `GET /bioland/url-metadata`
+  (`BiolandUrlMetadataController`, node-form permission + CSRF token, 30
+  lookups/minute/user) for the site's `og:title`/`<title>` and
+  `og:description`/meta description, and writes them into Title and Body.
+  A field is only written while empty or still holding the previous fill,
+  so typed text is never overwritten. The fetch is SSRF-guarded: public
+  addresses only, connection pinned to the checked IP, redirects re-checked
+  (max 3), 6 s timeout. Same toggle as the screenshot.
 
 ## Troubleshooting
 

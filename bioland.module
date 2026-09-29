@@ -277,6 +277,14 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
   }
 
+  // BL-1191: fill title and description from a Related websites URL.
+  if (\Drupal::config('bioland.settings')->get('enable_url_screenshot') !== FALSE) {
+    $form['#attached']['library'][] = 'bioland/url_metadata';
+    // toString() without bubbleable metadata embeds the real CSRF token.
+    $form['#attached']['drupalSettings']['bioland']['urlMetadataEndpoint'] = \Drupal\Core\Url::fromRoute('bioland.url_metadata')->toString();
+    $form['#attached']['drupalSettings']['bioland']['relatedWebsitesTid'] = \Drupal\bioland\BiolandUrlScreenshotPolicy::RELATED_WEBSITES_TID;
+  }
+
   // Ensure the advanced sidebar exists for our custom elements.
   if (!isset($form['advanced'])) {
     $form['advanced'] = [
