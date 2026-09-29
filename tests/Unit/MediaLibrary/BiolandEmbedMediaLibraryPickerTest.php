@@ -131,11 +131,15 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
     $this->assertTrue($config->saved);
     $this->assertStringContainsString('Laid out', $message);
     $content = $config->get('content');
-    $this->assertSame(['field_media_inline_frame'], array_keys($content));
+    $this->assertSame(['field_media_inline_frame', 'name'], array_keys($content));
     $this->assertSame('visually_hidden', $content['field_media_inline_frame']['label']);
     $this->assertSame('iframe_default', $content['field_media_inline_frame']['type']);
+    $this->assertSame('hidden', $content['name']['label']);
+    $this->assertSame('string', $content['name']['type']);
+    $this->assertContains('core.entity_view_mode.media.media_library', $config->get('dependencies.config'));
     $hidden = $config->get('hidden');
-    foreach (['name', 'langcode', 'created', 'uid', 'thumbnail'] as $field) {
+    $this->assertArrayNotHasKey('name', $hidden);
+    foreach (['langcode', 'created', 'uid', 'thumbnail'] as $field) {
       $this->assertTrue($hidden[$field], $field);
     }
     $this->assertSame('media.embed.media_library', $config->get('id'));
@@ -159,7 +163,8 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
           'settings' => ['url' => '0'],
           'third_party_settings' => [],
         ],
-        'name' => ['type' => 'string', 'label' => 'hidden', 'region' => 'content'],
+        'name' => ['type' => 'string', 'label' => 'above', 'region' => 'content', 'weight' => 5],
+        'created' => ['type' => 'timestamp', 'label' => 'hidden', 'region' => 'content'],
       ],
       'hidden' => ['thumbnail' => TRUE],
     ]);
@@ -168,11 +173,14 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
 
     $config = $this->config('core.entity_view_display.media.embed.media_library');
     $content = $config->get('content');
-    $this->assertSame(['field_media_inline_frame'], array_keys($content));
+    $this->assertSame(['field_media_inline_frame', 'name'], array_keys($content));
+    $this->assertSame('hidden', $content['name']['label']);
+    $this->assertSame(5, $content['name']['weight']);
     $this->assertSame('visually_hidden', $content['field_media_inline_frame']['label']);
     $this->assertSame(3, $content['field_media_inline_frame']['weight']);
     $this->assertSame(['url' => '0'], $content['field_media_inline_frame']['settings']);
-    $this->assertTrue($config->get('hidden')['name']);
+    $this->assertTrue($config->get('hidden')['created']);
+    $this->assertArrayNotHasKey('name', $config->get('hidden'));
   }
 
   public function testWiring(): void {
