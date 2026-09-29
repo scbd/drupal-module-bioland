@@ -65,8 +65,8 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
   /**
    * The entries a URL is checked against for an account.
    *
-   * A user with AUTO_ALLOW_PERMISSION may save a URL on an unlisted host;
-   * bioland_media_presave() adds its origin to the list on save.
+   * A user with AUTO_ALLOW_PERMISSION may save a URL that is not on the list;
+   * _bioland_embed_auto_allow() adds it once the media is saved.
    */
   public static function entriesFor(string $url, array $entries, ?AccountInterface $account): array {
     if ($account === NULL || !$account->hasPermission(self::AUTO_ALLOW_PERMISSION)) {

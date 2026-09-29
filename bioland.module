@@ -1186,10 +1186,6 @@ function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $
  * form validation, and re-encodes a valid one to the media file's format.
  */
 function bioland_media_presave(EntityInterface $media) {
-  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
-    _bioland_embed_auto_allow($media);
-  }
-
   if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
     return;
   }
@@ -1238,14 +1234,35 @@ function bioland_media_presave(EntityInterface $media) {
 }
 
 /**
- * Adds an embed's unlisted host to the allowlist (BL-1218).
+ * Implements hook_ENTITY_TYPE_insert() for media.
+ */
+function bioland_media_insert(EntityInterface $media) {
+  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
+    _bioland_embed_auto_allow($media);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for media.
+ */
+function bioland_media_update(EntityInterface $media) {
+  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
+    $original = method_exists($media, 'getOriginal') ? $media->getOriginal() : ($media->original ?? NULL);
+    _bioland_embed_auto_allow($media, $original instanceof MediaInterface ? $original : NULL);
+  }
+}
+
+/**
+ * Adds an embed's unlisted URL to the allowlist (BL-1218).
  *
  * Only for users with the auto-allow permission (SCBD staff, site managers,
- * administrators), whose save the URL constraint already let through. The
- * host joins bioland.settings embed.allowed_origins without a sandbox, so it
- * shows on the Front End General settings page for review.
+ * administrators), whose save the URL constraint already let through. Runs
+ * after the save succeeds, and only for URLs that are new on this save, so
+ * re-saving an old embed never re-adds a host a reviewer removed. The entry
+ * is scoped to the URL's first path segment, without a sandbox, and shows on
+ * the Front End General settings page for review.
  */
-function _bioland_embed_auto_allow(MediaInterface $media) {
+function _bioland_embed_auto_allow(MediaInterface $media, ?MediaInterface $original = NULL) {
   $account = \Drupal::currentUser();
   if (!$account->hasPermission(BiolandEmbedAllowedOriginConstraintValidator::AUTO_ALLOW_PERMISSION)) {
     return;
@@ -1254,11 +1271,18 @@ function _bioland_embed_auto_allow(MediaInterface $media) {
   if (!$field || !$media->hasField($field)) {
     return;
   }
+  $previous = [];
+  if ($original && $original->hasField($field)) {
+    foreach ($original->get($field) as $item) {
+      $previous[] = trim((string) ($item->url ?? ''));
+    }
+  }
   $config = \Drupal::configFactory()->getEditable('bioland.settings');
   $entries = BiolandEmbedAllowedOriginConstraintValidator::entries($config);
   $added = [];
   foreach ($media->get($field) as $item) {
-    $next = BiolandEmbedAllowlist::withAutoEntry((string) ($item->url ?? ''), $entries);
+    $url = trim((string) ($item->url ?? ''));
+    $next = in_array($url, $previous, TRUE) ? NULL : BiolandEmbedAllowlist::withAutoEntry($url, $entries);
     if ($next !== NULL) {
       $entries = $next;
       $added[] = end($next)['url'];
@@ -1269,9 +1293,10 @@ function _bioland_embed_auto_allow(MediaInterface $media) {
   }
   $config->set('embed.allowed_origins', $entries)->save();
   $origins = implode(', ', $added);
-  \Drupal::logger('bioland')->notice('Added @origins to the embed allowlist when user @uid saved an embed.', [
+  \Drupal::logger('bioland')->notice('Added @origins to the embed allowlist when user @uid saved embed media @mid.', [
     '@origins' => $origins,
     '@uid' => $account->id(),
+    '@mid' => $media->id(),
   ]);
   \Drupal::messenger()->addStatus(t('Added @origins to the allowed embed hosts. Review it under Front End General settings.', ['@origins' => $origins]));
 }

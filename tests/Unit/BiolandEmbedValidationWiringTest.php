@@ -167,17 +167,9 @@ class BiolandEmbedValidationWiringTest extends TestCase {
   }
 
   /**
-   * Saves an embed whose source field holds $urls; returns the settings.
+   * A media double whose embed source field holds $urls.
    */
-  private function presave(array $urls, bool $auto_allow): Config {
-    $settings = new Config('bioland.settings', ['embed' => ['allowed_origins' => [
-      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
-    ]]]);
-    $factory = $this->createMock(ConfigFactoryInterface::class);
-    $factory->method('getEditable')->with('bioland.settings')->willReturn($settings);
-    \Drupal::setService('config.factory', $factory);
-    $this->setCurrentUser($auto_allow);
-
+  private function embedMedia(array $urls): MediaInterface {
     $source = new class {
 
       public function getConfiguration(): array {
@@ -186,44 +178,63 @@ class BiolandEmbedValidationWiringTest extends TestCase {
 
     };
     $media = $this->createMock(MediaInterface::class);
+    $media->method('id')->willReturn(12);
     $media->method('bundle')->willReturn('embed');
     $media->method('getSource')->willReturn($source);
     $media->method('hasField')->willReturnCallback(fn ($name) => $name === 'field_media_inline_frame');
     $media->method('get')->with('field_media_inline_frame')->willReturn(array_map(fn ($url) => (object) ['url' => $url], $urls));
-    _bioland_embed_auto_allow($media);
+    return $media;
+  }
+
+  /**
+   * Runs the auto-allow for a saved embed; returns the settings.
+   */
+  private function autoAllow(array $urls, bool $auto_allow, array $original_urls = NULL): Config {
+    $settings = new Config('bioland.settings', ['embed' => ['allowed_origins' => [
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
+    ]]]);
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('getEditable')->with('bioland.settings')->willReturn($settings);
+    \Drupal::setService('config.factory', $factory);
+    $this->setCurrentUser($auto_allow);
+    _bioland_embed_auto_allow($this->embedMedia($urls), $original_urls === NULL ? NULL : $this->embedMedia($original_urls));
     return $settings;
   }
 
   /**
-   * A trusted user's save appends each unlisted host once.
+   * A trusted user's save appends each new URL's scoped entry once.
    */
-  public function testPresaveAddsUnlistedHostsForTrustedUser(): void {
-    $settings = $this->presave(['https://claude.ai/artifact/a', 'https://claude.ai/artifact/b', 'https://app.powerbi.com/view?r=1'], TRUE);
+  public function testAutoAllowAddsUnlistedUrlsForTrustedUser(): void {
+    $settings = $this->autoAllow(['https://claude.ai/artifact/a', 'https://claude.ai/artifact/b', 'https://app.powerbi.com/view?r=1'], TRUE);
     $this->assertTrue($settings->saved);
     $this->assertSame([
       ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => ''],
-      ['url' => 'https://claude.ai', 'label' => 'claude.ai', 'sandbox' => ''],
+      ['url' => 'https://claude.ai/artifact', 'label' => 'claude.ai/artifact', 'sandbox' => ''],
     ], $settings->get('embed.allowed_origins'));
   }
 
   /**
-   * Nothing is written without the permission or for listed hosts.
+   * Nothing is written without the permission, for listed URLs, or for a
+   * URL the embed already had (a reviewer's removal sticks).
    */
-  public function testPresaveLeavesListAlone(): void {
-    $this->assertFalse($this->presave(['https://claude.ai/artifact/a'], FALSE)->saved);
-    $this->assertFalse($this->presave(['https://app.powerbi.com/view?r=1'], TRUE)->saved);
-    $this->assertFalse($this->presave(['https://app.powerbi.com/other'], TRUE)->saved);
+  public function testAutoAllowLeavesListAlone(): void {
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], FALSE)->saved);
+    $this->assertFalse($this->autoAllow(['https://app.powerbi.com/view?r=1'], TRUE)->saved);
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+    $this->assertTrue($this->autoAllow(['https://claude.ai/artifact/b'], TRUE, ['https://claude.ai/artifact/a'])->saved);
   }
 
   /**
-   * bioland_media_presave() runs the auto-allow for embeds only, before the
-   * toast_image_editor early return.
+   * The insert and update hooks run the auto-allow for embeds, after save.
    */
-  public function testPresaveCallsAutoAllowForEmbedsFirst(): void {
+  public function testInsertAndUpdateHooksCallAutoAllow(): void {
     $source = file_get_contents(__DIR__ . '/../../bioland.module');
-    $body = substr($source, strpos($source, 'function bioland_media_presave('));
-    $this->assertMatchesRegularExpression('/^[^}]*\$media->bundle\(\) === \'embed\'\) \{\s*_bioland_embed_auto_allow\(\$media\);/', $body);
-    $this->assertLessThan(strpos($body, "moduleExists('toast_image_editor')"), strpos($body, '_bioland_embed_auto_allow('));
+    foreach (['bioland_media_insert', 'bioland_media_update'] as $hook) {
+      $body = substr($source, strpos($source, "function $hook("));
+      $this->assertMatchesRegularExpression('/^[^}]*\$media->bundle\(\) === \'embed\'\) \{[^}]*_bioland_embed_auto_allow\(\$media/', $body, $hook);
+    }
+    $presave = substr($source, strpos($source, 'function bioland_media_presave('));
+    $this->assertStringNotContainsString('_bioland_embed_auto_allow(', substr($presave, 0, strpos($presave, "\n}\n")));
   }
 
 }

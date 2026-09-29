@@ -244,31 +244,40 @@ final class BiolandEmbedAllowlist {
   }
 
   /**
-   * The entry that would admit a URL's origin, or NULL.
+   * The entry that would admit a URL, or NULL.
    *
    * For users who add hosts by saving an embed: https only, on a dotted host
-   * that is not an IP literal. No sandbox, like the shipped defaults.
+   * that is not an IP literal. Scoped to the URL's first path segment (for
+   * example https://claude.ai/artifact), so one save never opens a whole
+   * shared host. No sandbox, like the shipped defaults; a reviewer can add
+   * one on the settings page.
    */
   public static function autoEntry(string $url): ?array {
-    $origin = preg_match('~^(https://[^/?#]*)~i', trim($url), $m) ? self::normalizeUrl($m[1]) : NULL;
+    if (!preg_match('~^(https://[^/?#]*)(/[^/?#]*)?~i', trim($url), $m)) {
+      return NULL;
+    }
+    $origin = self::normalizeUrl($m[1]);
     $host = (string) parse_url((string) $origin, PHP_URL_HOST);
     if ($origin === NULL || !str_contains($host, '.') || self::isDottedQuad($host)) {
       return NULL;
     }
-    return ['url' => $origin, 'label' => $host, 'sandbox' => ''];
+    $entry_url = self::normalizeUrl($origin . ($m[2] ?? ''));
+    if ($entry_url === NULL) {
+      return NULL;
+    }
+    return ['url' => $entry_url, 'label' => substr($entry_url, strlen('https://')), 'sandbox' => ''];
   }
 
   /**
    * The entries plus an auto entry admitting the URL, or NULL.
    *
-   * Only a URL on no listed host qualifies, so a host listed under a narrower
-   * path keeps that restriction. NULL too when the list is full or the URL
-   * would still not match (a malformed path).
+   * NULL when the URL already matches, the list is full, or the URL would
+   * still not match (a malformed path).
    */
   public static function withAutoEntry(string $url, array $entries): ?array {
     $url = trim($url);
     $entry = self::autoEntry($url);
-    if ($entry === NULL || count($entries) >= self::MAX_ENTRIES || self::classify($url, $entries) !== self::HOST_NOT_ALLOWED) {
+    if ($entry === NULL || count($entries) >= self::MAX_ENTRIES || self::classify($url, $entries) === self::MATCH) {
       return NULL;
     }
     $entries[] = $entry;

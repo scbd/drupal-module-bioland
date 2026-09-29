@@ -208,18 +208,11 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
   }
 
   /**
-   * The permission never widens a listed host's path or admits bad URLs.
-   *
-   * @dataProvider rejectedProvider
+   * The permission never admits malformed or non-https URLs.
    */
-  public function testAutoAllowStillRejectsPathAndLookalikeMisses(string $url, string $message_property): void {
-    $violations = $this->violations([$url], self::ORIGINS, $this->account(TRUE));
-    if ($message_property === 'pathMessage' || in_array($url, ['https://attacker@app.powerbi.com/view', '/view'], TRUE)) {
-      $this->assertCount(1, $violations);
-    }
-    else {
-      // A lookalike host is just another unlisted host to a trusted user.
-      $this->assertSame([], $violations);
+  public function testAutoAllowStillRejectsBadUrls(): void {
+    foreach (['https://app.powerbi.com/view/../x', 'https://attacker@app.powerbi.com/view', '/view', 'http://claude.ai/x'] as $url) {
+      $this->assertCount(1, $this->violations([$url], self::ORIGINS, $this->account(TRUE)), $url);
     }
   }
 
