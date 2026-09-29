@@ -8,6 +8,7 @@
 use Drupal\bioland\BiolandEmbeddedImageMedia;
 use Drupal\bioland\BiolandEmbedPreviewSandbox;
 use Drupal\bioland\BiolandFocalPoint;
+use Drupal\bioland\BiolandToolbarEmbedLink;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
@@ -28,7 +29,8 @@ use Drupal\Core\Url;
 /**
  * Implements hook_menu_links_discovered_alter().
  *
- * Hides auto_node_translate menu items from the admin menu.
+ * Hides auto_node_translate menu items from the admin menu and disables the
+ * stray embed add link in the admin toolbar (BL-1276).
  */
 function bioland_menu_links_discovered_alter(&$links) {
   // Menu items to hide (system-defined menu links).
@@ -45,6 +47,8 @@ function bioland_menu_links_discovered_alter(&$links) {
       unset($links[$menu_id]);
     }
   }
+
+  BiolandToolbarEmbedLink::disable($links);
 }
 
 /**
