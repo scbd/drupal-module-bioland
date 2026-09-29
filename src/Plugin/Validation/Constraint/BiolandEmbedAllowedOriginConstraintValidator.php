@@ -27,7 +27,7 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    */
   public const AUTO_ALLOW_PERMISSION = 'auto allow embed origins';
 
-  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL, protected BiolandEmbedFrameability $frameability) {}
+  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser, protected BiolandEmbedFrameability $frameability) {}
 
   /**
    * {@inheritdoc}
