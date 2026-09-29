@@ -875,7 +875,91 @@ function _bioland_setup_embed_media() {
     _bioland_configure_embed_default_display(),
     _bioland_configure_media_embed_allowed_types(),
     _bioland_add_embed_to_media_alias_pattern(),
+    _bioland_configure_embed_media_library_display(),
   ]));
+}
+
+/**
+ * Lays out the embed media type's Media library view display.
+ *
+ * BL-1272. The picker card shows the inline frame URL (label visually
+ * hidden) and nothing else: name and every other field sit in the hidden
+ * region. Loads or creates core.entity_view_display.media.embed.media_library.
+ * Idempotent: an admin's iframe formatter settings and weight are kept, only
+ * the component set and the label are enforced.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_configure_embed_media_library_display() {
+  $field = 'field_media_inline_frame';
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed media_library display.';
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('media_type');
+  if (!$storage->load('embed')) {
+    return 'Media type embed does not exist; skipped the embed media_library display.';
+  }
+
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.media.embed.media_library');
+  $creating = $config->isNew();
+  if ($creating) {
+    $defaults = [
+      'langcode' => 'en',
+      'status' => TRUE,
+      'dependencies' => [
+        'config' => ['field.field.media.embed.' . $field, 'media.type.embed'],
+        'module' => ['iframe'],
+      ],
+      'id' => 'media.embed.media_library',
+      'targetEntityType' => 'media',
+      'bundle' => 'embed',
+      'mode' => 'media_library',
+      'content' => [],
+      'hidden' => [],
+    ];
+    foreach ($defaults as $key => $value) {
+      $config->set($key, $value);
+    }
+  }
+
+  $content = $config->get('content') ?: [];
+  $hidden = $config->get('hidden') ?: [];
+
+  $frame = ($content[$field] ?? []) + [
+    'weight' => 0,
+    'settings' => [],
+    'third_party_settings' => [],
+  ];
+  $frame['type'] = 'iframe_default';
+  $frame['label'] = 'visually_hidden';
+  $frame['region'] = 'content';
+  ksort($frame);
+
+  $desired_content = [$field => $frame];
+  $desired_hidden = $hidden;
+  foreach (array_keys($content) as $name) {
+    if ($name !== $field) {
+      $desired_hidden[$name] = TRUE;
+    }
+  }
+  foreach (['langcode', 'created', 'uid', 'thumbnail', 'name'] as $name) {
+    $desired_hidden[$name] = TRUE;
+  }
+  unset($desired_hidden[$field]);
+  ksort($desired_hidden);
+
+  $current_frame = $content[$field] ?? [];
+  ksort($current_frame);
+  ksort($hidden);
+  if (!$creating && array_keys($content) === [$field] && $current_frame === $frame && $hidden === $desired_hidden) {
+    return 'Embed media_library display already laid out; left untouched.';
+  }
+
+  $config->set('content', $desired_content)->set('hidden', $desired_hidden)->save();
+  \Drupal::logger('bioland')->notice('Laid out the embed media_library display.');
+  return 'Laid out the embed media_library display.';
 }
 
 /**
@@ -1350,6 +1434,21 @@ function bioland_update_9105() {
 function bioland_update_9106() {
   $messages = [];
   $messages[] = _bioland_configure_embed_default_display();
+ * Lets the media library picker list embed media and lays out its card.
+ *
+ * BL-1272. Removes the hand-added Media type filter from the media_library
+ * widget views and sets the embed type's Media library view display.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9107() {
+  $messages = [];
+  $messages[] = _bioland_remove_media_library_type_filter();
+  $messages[] = _bioland_configure_embed_media_library_display();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
