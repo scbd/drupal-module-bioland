@@ -1349,3 +1349,23 @@ function _bioland_media_source_extension(EntityInterface $media) {
   $file = $media->get($field)->entity;
   return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
 }
+
+/**
+ * Implements hook_config_schema_info_alter().
+ *
+ * The dmsm provisioning tool writes an extra "nameEnglish" key into the
+ * system.site config object. Core's system.site schema is fully validatable,
+ * so the ValidKeys constraint rejects the undeclared key and the Site
+ * information form fails to save. Declare it as an optional string so the
+ * form saves, and sites without the key are not flagged as missing it.
+ */
+function bioland_config_schema_info_alter(array &$definitions) {
+  if (!isset($definitions['system.site']['mapping'])) {
+    return;
+  }
+  $definitions['system.site']['mapping']['nameEnglish'] = [
+    'type' => 'string',
+    'label' => 'English site name (written by dmsm provisioning)',
+    'requiredKey' => FALSE,
+  ];
+}
