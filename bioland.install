@@ -281,6 +281,7 @@ function bioland_install() {
   // during a config sync: the synced core.extension decides what is enabled.
   if (!\Drupal::isConfigSyncing()) {
     _bioland_enable_contrib_feature_modules();
+    _bioland_enable_media_resize_filter();
 
     // Embed media type on iframe + media_iframe, offered in the CKEditor
     // media picker; BL-1218.
