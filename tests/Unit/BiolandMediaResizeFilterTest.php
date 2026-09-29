@@ -169,6 +169,8 @@ class BiolandMediaResizeFilterTest extends TestCase {
 
     $this->assertSame(['status' => TRUE, 'weight' => 101, 'settings' => []], $formats['disabled']->filters['media_resize']);
     $this->assertSame(['status' => TRUE, 'weight' => 101, 'settings' => []], $formats['misordered']->filters['media_resize']);
+    $this->assertSame(1, $formats['disabled']->saved);
+    $this->assertSame(1, $formats['misordered']->saved);
   }
 
   /**
