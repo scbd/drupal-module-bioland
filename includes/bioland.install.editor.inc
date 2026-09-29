@@ -562,6 +562,61 @@ function _bioland_enable_contrib_feature_modules() {
   return implode(' ', $messages);
 }
 
+/**
+ * Turn on ckeditor_media_resizer's "media_resize" filter on every text format
+ * that embeds media.
+ *
+ * The module only adds the editor handles: they store the chosen size as
+ * data-media-width on <drupal-media>, and nothing reaches the rendered HTML
+ * (so the headless front end) until the filter turns it into inline styles.
+ * The module does not enable its own filter, so a resized image rendered at
+ * its image style's size. BL-917.
+ *
+ * The filter must run after media_embed, which swaps <drupal-media> for the
+ * rendered media. It is weighted after every other filter, so no later filter
+ * can strip the styles it writes. Formats without an enabled media_embed are
+ * left alone, and a format already running it after media_embed is unchanged.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_enable_media_resize_filter() {
+  if (!\Drupal::moduleHandler()->moduleExists('ckeditor_media_resizer')) {
+    return 'ckeditor_media_resizer is not enabled; skipped the media_resize filter.';
+  }
+
+  $updated = [];
+  $formats = \Drupal::entityTypeManager()->getStorage('filter_format')->loadMultiple();
+  foreach ($formats as $format) {
+    $filters = $format->get('filters') ?: [];
+    if (empty($filters['media_embed']['status'])) {
+      continue;
+    }
+    $resize = $filters['media_resize'] ?? [];
+    $embed_weight = (int) ($filters['media_embed']['weight'] ?? 0);
+    if (!empty($resize['status']) && (int) ($resize['weight'] ?? 0) > $embed_weight) {
+      continue;
+    }
+
+    $weights = array_map(fn($filter) => (int) ($filter['weight'] ?? 0), $filters);
+    unset($weights['media_resize']);
+    $format->setFilterConfig('media_resize', [
+      'status' => TRUE,
+      'weight' => max($weights) + 1,
+      'settings' => [],
+    ]);
+    $format->save();
+    $updated[] = $format->id();
+  }
+
+  if (!$updated) {
+    return 'media_resize filter already runs after media_embed on every media format.';
+  }
+  \Drupal::logger('bioland')->notice('Enabled the media_resize filter on: @formats.', ['@formats' => implode(', ', $updated)]);
+  return 'Enabled the media_resize filter on: ' . implode(', ', $updated) . '.';
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS
@@ -656,6 +711,29 @@ function bioland_update_9038() {
 function bioland_update_9096() {
   $messages = [];
   $messages[] = _bioland_enable_contrib_feature_modules();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Enable ckeditor_media_resizer's media_resize filter on the media formats.
+ *
+ * BL-917. 9096 enabled the module but not its filter, so an image resized in
+ * the editor still rendered at its image style's size on the front end. See
+ * _bioland_enable_media_resize_filter().
+ *
+ * Numbered 9101 because the COP-17 branches already use 9097-9100. As the
+ * highest-numbered hook it must also re-apply the canonical v2 Search API
+ * config (SearchApiConvergenceHookTest).
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9101() {
+  $messages = [];
+  $messages[] = _bioland_enable_media_resize_filter();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();

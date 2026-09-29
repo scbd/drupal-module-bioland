@@ -86,6 +86,12 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
     // core.extension decides which modules are enabled.
     $install = $this->functionBody($this->read('bioland.install'), 'bioland_install');
     $this->assertMatchesRegularExpression('/if \(!\\\\Drupal::isConfigSyncing\(\)\) \{\s*_bioland_enable_contrib_feature_modules\(\);/', $install);
+
+    // The resizer's filter is switched on right after the modules, and by
+    // its own hook on sites that already ran 9096.
+    $this->assertMatchesRegularExpression('/_bioland_enable_contrib_feature_modules\(\);\s*_bioland_enable_media_resize_filter\(\);/', $install);
+    $filter_hook = $this->functionBody($this->read('includes/bioland.install.editor.inc'), 'bioland_update_9101');
+    $this->assertStringContainsString('_bioland_enable_media_resize_filter()', $filter_hook);
   }
 
   /**

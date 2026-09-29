@@ -131,6 +131,16 @@ class Drupal {
   }
 
   /**
+   * Gets the module handler.
+   *
+   * @return \Drupal\Core\Extension\ModuleHandlerInterface
+   *   The stubbed 'module_handler' service, or NULL.
+   */
+  public static function moduleHandler() {
+    return static::$container['module_handler'] ?? NULL;
+  }
+
+  /**
    * Gets the logger factory.
    *
    * @return \Drupal\Core\Logger\LoggerChannelFactoryInterface
