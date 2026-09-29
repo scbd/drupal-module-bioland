@@ -261,6 +261,8 @@ function bioland_install() {
   _bioland_install_user_admin_view();
   // _bioland_install_comment_admin_view();
   _bioland_install_media_library_view();
+  // BL-784: un-hide the media bulk actions (Delete, Publish, ...).
+  _bioland_restore_media_bulk_actions();
 
   // Configure media view displays: remote_video default (drop name field)
   // and document media_library (image field instead of thumbnail); BL-1206.

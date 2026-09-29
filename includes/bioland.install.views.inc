@@ -618,6 +618,76 @@ function _bioland_restrict_media_embed_allowed_types() {
   return implode(' ', array_map('strval', $messages));
 }
 
+/**
+ * Clears the media_bulk_form action filter on every display of a view.
+ *
+ * BL-784. Sites were seeded with the media admin view's bulk form set to
+ * "exclude" all four media actions, which leaves the Action dropdown empty
+ * for everyone, administrators included. Resetting to core's default
+ * (exclude nothing) offers every action again; entity access still decides
+ * who can run each one, so 'delete any media' keeps gating deletion.
+ *
+ * @param array $view_data
+ *   Raw views.view.media config data.
+ *
+ * @return array
+ *   [0] the updated view data, [1] ids of the displays that changed.
+ */
+function _bioland_media_view_restore_bulk_actions(array $view_data) {
+  $changed = [];
+  foreach ($view_data['display'] ?? [] as $display_id => $display) {
+    $field = $display['display_options']['fields']['media_bulk_form'] ?? NULL;
+    if ($field === NULL) {
+      continue;
+    }
+    if (($field['include_exclude'] ?? 'exclude') === 'exclude' && empty($field['selected_actions'])) {
+      continue;
+    }
+    $field['include_exclude'] = 'exclude';
+    $field['selected_actions'] = [];
+    $view_data['display'][$display_id]['display_options']['fields']['media_bulk_form'] = $field;
+    $changed[] = $display_id;
+  }
+  return [$view_data, $changed];
+}
+
+/**
+ * Restores the bulk actions on /admin/content/media.
+ *
+ * Idempotent: saves only when a display actually filtered actions out.
+ *
+ * @return string
+ *   Status message.
+ *
+ * @see _bioland_media_view_restore_bulk_actions()
+ */
+function _bioland_restore_media_bulk_actions() {
+  if ($skip = _bioland_require_module('views', 'media bulk action restore')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('media', 'media bulk action restore')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.media');
+  if ($config->isNew()) {
+    return t('View media not found; bulk actions not restored.');
+  }
+
+  [$view_data, $changed] = _bioland_media_view_restore_bulk_actions($config->getRawData());
+  if (empty($changed)) {
+    return t('Media view bulk actions already unrestricted.');
+  }
+
+  $config->setData($view_data)->save();
+  \Drupal::logger('bioland')->notice('Restored media bulk actions on displays: @displays.', [
+    '@displays' => implode(', ', $changed),
+  ]);
+  return t('Restored media bulk actions on displays: @displays.', [
+    '@displays' => implode(', ', $changed),
+  ]);
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Views Installation & Configuration
@@ -687,6 +757,27 @@ function bioland_update_9094() {
   $messages[] = _bioland_remove_media_library_bundle_field();
   $messages[] = _bioland_fix_document_media_library_display();
   $messages[] = _bioland_restrict_media_embed_allowed_types();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Restore the bulk actions on /admin/content/media.
+ *
+ * BL-784. bioland_update_9097() granted 'delete any media', but the media
+ * view's bulk form still excluded every action, so the Action dropdown
+ * stayed empty. See _bioland_restore_media_bulk_actions().
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9101() {
+  $messages = [];
+  $messages[] = _bioland_restore_media_bulk_actions();
   $messages[] = _bioland_v2_update_search_and_facets_config();
 
   return implode(' ', array_map('strval', $messages));
