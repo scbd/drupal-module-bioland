@@ -802,12 +802,26 @@ function _bioland_create_embed_media_type() {
  * BL-1271. The auto-generated default renders every base field (created,
  * author, a broken generic thumbnail) before the frame. This leaves the frame
  * with a visually hidden label, so the name is still read by screen readers.
- * A display that already matches is not saved again.
+ * A display that already matches is not saved again. Does nothing unless the
+ * embed media type exists on the inline_frame source; the frame field name is
+ * read from the type's source configuration.
  *
  * @return string
  *   Plain-text summary, untranslated.
  */
 function _bioland_configure_embed_default_display() {
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed default view display.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed default view display.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed default view display.';
+  }
+
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $display = $storage->load('media.embed.default') ?: $storage->create([
     'targetEntityType' => 'media',
@@ -816,7 +830,6 @@ function _bioland_configure_embed_default_display() {
     'status' => TRUE,
   ]);
 
-  $frame = 'field_media_inline_frame';
   $hidden = ['created', 'uid', 'thumbnail', 'name'];
   $component = $display->getComponent($frame);
   $frame_ok = $component

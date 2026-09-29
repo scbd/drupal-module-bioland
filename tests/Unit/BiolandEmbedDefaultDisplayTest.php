@@ -31,7 +31,7 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
   /**
    * Registers a view display double and returns it.
    */
-  private function registerDisplay(array $components, bool $existing = TRUE): object {
+  private function registerDisplay(array $components, bool $existing = TRUE, ?string $plugin = 'inline_frame', bool $module = TRUE, string $field = 'field_media_inline_frame'): object {
     $display = new class($components) {
       public int $saves = 0;
 
@@ -66,11 +66,43 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
         return $this->display;
       }
     };
-    \Drupal::setService('entity_type.manager', new class($storage) {
-      public function __construct(private object $storage) {}
+    $source = new class($plugin, $field) {
+      public function __construct(private ?string $plugin, private string $field) {}
+
+      public function getPluginId() {
+        return $this->plugin;
+      }
+
+      public function getConfiguration() {
+        return ['source_field' => $this->field];
+      }
+    };
+    $type = $plugin === NULL ? NULL : new class($source) {
+      public function __construct(private object $source) {}
+
+      public function getSource() {
+        return $this->source;
+      }
+    };
+    $types = new class($type) {
+      public function __construct(private ?object $type) {}
+
+      public function load($id) {
+        return $this->type;
+      }
+    };
+    \Drupal::setService('entity_type.manager', new class($storage, $types) {
+      public function __construct(private object $storage, private object $types) {}
 
       public function getStorage($entity_type_id) {
-        return $this->storage;
+        return $entity_type_id === 'media_type' ? $this->types : $this->storage;
+      }
+    });
+    \Drupal::setService('module_handler', new class($module) {
+      public function __construct(private bool $module) {}
+
+      public function moduleExists($name) {
+        return $this->module;
       }
     });
     return $display;
@@ -115,6 +147,32 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
     _bioland_configure_embed_default_display();
     $this->assertSame('Embed default view display already configured.', _bioland_configure_embed_default_display());
     $this->assertSame(1, $display->saves);
+  }
+
+  /**
+   * Without the inline-frame embed type nothing is saved.
+   */
+  public function testSkipsWithoutInlineFrameType(): void {
+    $cases = [
+      'no module' => [TRUE, NULL, FALSE],
+      'no type' => [TRUE, NULL, TRUE],
+      'other source' => [TRUE, 'file', TRUE],
+    ];
+    foreach ($cases as $label => [$existing, $plugin, $module]) {
+      $display = $this->registerDisplay(['created' => ['type' => 'timestamp']], $existing, $plugin, $module);
+      $this->assertStringContainsString('skipped', _bioland_configure_embed_default_display(), $label);
+      $this->assertSame(0, $display->saves, $label);
+      $this->assertArrayHasKey('created', $display->components, $label);
+    }
+  }
+
+  /**
+   * The frame field name comes from the media type's source configuration.
+   */
+  public function testUsesConfiguredSourceField(): void {
+    $display = $this->registerDisplay([], FALSE, 'inline_frame', TRUE, 'field_media_inline_frame_1');
+    _bioland_configure_embed_default_display();
+    $this->assertSame(['field_media_inline_frame_1'], array_keys($display->components));
   }
 
   /**
