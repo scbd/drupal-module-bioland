@@ -221,7 +221,8 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], FALSE)->saved);
     $this->assertFalse($this->autoAllow(['https://app.powerbi.com/view?r=1'], TRUE)->saved);
     $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/a'], TRUE, ['https://claude.ai/artifact/a'])->saved);
-    $this->assertTrue($this->autoAllow(['https://claude.ai/artifact/b'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+    $this->assertFalse($this->autoAllow(['https://claude.ai/artifact/b?x=2'], TRUE, ['https://claude.ai/artifact/a'])->saved);
+    $this->assertTrue($this->autoAllow(['https://claude.ai/other/b'], TRUE, ['https://claude.ai/artifact/a'])->saved);
   }
 
   /**

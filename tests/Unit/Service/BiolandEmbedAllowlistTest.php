@@ -342,6 +342,13 @@ class BiolandEmbedAllowlistTest extends TestCase {
     $this->assertSame('https://app.powerbi.com/groups', end($sibling)['url']);
     $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/other', $sibling));
 
+    // A bare origin never widens a host listed under a narrower path.
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://app.powerbi.com/', $entries));
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://app.powerbi.com?x=1', $entries));
+    // A bare origin on an unlisted host is its own entry.
+    $bare = BiolandEmbedAllowlist::withAutoEntry('https://claude.ai', $entries);
+    $this->assertSame('https://claude.ai', end($bare)['url']);
+
     // Already allowed: nothing to add.
     $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://app.powerbi.com/view?r=1', $entries));
     // Malformed paths still fail.
