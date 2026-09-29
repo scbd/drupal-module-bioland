@@ -388,7 +388,7 @@ class SearchApiConvergenceHookTest extends TestCase {
     $this->assertSame(
       9107,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9107() now holds that role (it adds the BL-1218 embed bundle to the media URL alias pattern and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9107() now holds that role (it removes the BL-1272 media library type filter, lays out the embed media_library display, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

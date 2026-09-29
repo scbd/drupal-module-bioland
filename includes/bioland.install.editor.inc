@@ -883,8 +883,8 @@ function _bioland_setup_embed_media() {
  * Lays out the embed media type's Media library view display.
  *
  * BL-1272. The picker card shows the inline frame URL (label visually
- * hidden) and nothing else: name and every other field sit in the hidden
- * region. Loads or creates core.entity_view_display.media.embed.media_library.
+ * hidden) and the media name (plain text, label hidden); every other field
+ * sits in the hidden region. Loads or creates core.entity_view_display.media.embed.media_library.
  * Idempotent: an admin's iframe formatter settings and weight are kept, only
  * the component set and the label are enforced.
  *
@@ -896,6 +896,9 @@ function _bioland_configure_embed_media_library_display() {
   $field = 'field_media_inline_frame';
   if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
     return 'media_iframe is not enabled; skipped the embed media_library display.';
+  }
+  if (!\Drupal::moduleHandler()->moduleExists('media_library')) {
+    return 'media_library is not enabled; skipped the embed media_library display.';
   }
   $storage = \Drupal::entityTypeManager()->getStorage('media_type');
   if (!$storage->load('embed')) {
@@ -909,7 +912,11 @@ function _bioland_configure_embed_media_library_display() {
       'langcode' => 'en',
       'status' => TRUE,
       'dependencies' => [
-        'config' => ['field.field.media.embed.' . $field, 'media.type.embed'],
+        'config' => [
+          'core.entity_view_mode.media.media_library',
+          'field.field.media.embed.' . $field,
+          'media.type.embed',
+        ],
         'module' => ['iframe'],
       ],
       'id' => 'media.embed.media_library',
@@ -937,23 +944,37 @@ function _bioland_configure_embed_media_library_display() {
   $frame['region'] = 'content';
   ksort($frame);
 
-  $desired_content = [$field => $frame];
+  $name_component = ($content['name'] ?? []) + [
+    'weight' => 1,
+    'settings' => ['link_to_entity' => FALSE],
+    'third_party_settings' => [],
+  ];
+  $name_component['type'] = 'string';
+  $name_component['label'] = 'hidden';
+  $name_component['region'] = 'content';
+  ksort($name_component);
+
+  $desired_content = [$field => $frame, 'name' => $name_component];
   $desired_hidden = $hidden;
   foreach (array_keys($content) as $name) {
-    if ($name !== $field) {
+    if ($name !== $field && $name !== 'name') {
       $desired_hidden[$name] = TRUE;
     }
   }
-  foreach (['langcode', 'created', 'uid', 'thumbnail', 'name'] as $name) {
+  foreach (['langcode', 'created', 'uid', 'thumbnail'] as $name) {
     $desired_hidden[$name] = TRUE;
   }
-  unset($desired_hidden[$field]);
+  unset($desired_hidden[$field], $desired_hidden['name']);
   ksort($desired_hidden);
 
   $current_frame = $content[$field] ?? [];
   ksort($current_frame);
+  $current_name = $content['name'] ?? [];
+  ksort($current_name);
   ksort($hidden);
-  if (!$creating && array_keys($content) === [$field] && $current_frame === $frame && $hidden === $desired_hidden) {
+  $keys = array_keys($content);
+  sort($keys);
+  if (!$creating && $keys === ['field_media_inline_frame', 'name'] && $current_frame === $frame && $current_name === $name_component && $hidden === $desired_hidden) {
     return 'Embed media_library display already laid out; left untouched.';
   }
 
