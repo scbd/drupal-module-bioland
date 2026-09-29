@@ -48,6 +48,39 @@ class BiolandEmbedPreviewSandboxTest extends TestCase {
   }
 
   /**
+   * The fallback text and link are dropped; the frame's attributes stay.
+   */
+  public function testFallbackContentIsRemoved(): void {
+    $element = self::iframe('https://app.powerbi.com/view?r=1');
+    $element['#attributes'] = new Attribute($element['#attributes']->toArray() + ['title' => 'Report']);
+    $element['#text'] = 'Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a>';
+    $out = BiolandEmbedPreviewSandbox::apply($element, self::ENTRIES);
+    $this->assertSame('', $out['#text']);
+    $this->assertSame('iframe', $out['#theme']);
+    $this->assertSame('https://app.powerbi.com/view?r=1', $out['#src']);
+    foreach (['src', 'title', 'width', 'height', 'allowfullscreen'] as $name) {
+      $this->assertArrayHasKey($name, $out['#attributes']);
+    }
+    $this->assertSame('Report', $out['#attributes']['title']);
+  }
+
+  /**
+   * An unmatched frame loses its fallback too, since the head sanitizes it.
+   */
+  public function testFallbackRemovedFromUnmatchedFrame(): void {
+    $element = self::iframe('https://evil.example/') + ['#text' => 'fallback <a href="x">x</a>'];
+    $this->assertSame('', BiolandEmbedPreviewSandbox::apply($element, self::ENTRIES)['#text']);
+  }
+
+  /**
+   * An item without fallback content gains no text key.
+   */
+  public function testItemWithoutFallbackHasNoTextKey(): void {
+    $out = BiolandEmbedPreviewSandbox::apply(self::iframe('https://app.powerbi.com/view'), self::ENTRIES);
+    $this->assertArrayNotHasKey('#text', $out);
+  }
+
+  /**
    * A player gets the head's player policy and fullscreen, no sandbox.
    */
   public function testMediaPlayerGetsPlayerPolicy(): void {
