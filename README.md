@@ -610,8 +610,10 @@ tid 13) get an automatic screenshot of the linked site's first screen
   `og:description`/meta description, and writes them into Title and Body.
   A field is only written while empty or still holding the previous fill,
   so typed text is never overwritten. The fetch is SSRF-guarded: public
-  addresses only, connection pinned to the checked IP, redirects re-checked
-  (max 3), 6 s timeout. Same toggle as the screenshot.
+  addresses only, connection pinned to the checked IP (no proxy), redirects
+  re-checked (max 3), 6 s total across all hops, 2 MB abort cap. Refused
+  addresses are logged to the `bioland` channel (uid and host only). Same
+  toggle as the screenshot.
 
 ## Troubleshooting
 

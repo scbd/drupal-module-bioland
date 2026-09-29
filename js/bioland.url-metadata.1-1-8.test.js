@@ -106,6 +106,36 @@ describe('Bioland URL metadata fill', () => {
     expect(document.querySelector('input[name="title[0][value]"]').value).toBe('');
   });
 
+  test('retries the same URL after a failed lookup', async () => {
+    buildForm();
+    fetch.mockImplementationOnce(() => Promise.resolve({ok: false, status: 504}));
+    leaveUrl('https://slow.example/');
+    await flush();
+    leaveUrl('https://slow.example/');
+    await flush();
+    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(document.querySelector('input[name="title[0][value]"]').value).toBe('CBD');
+
+    fetch.mockImplementationOnce(() => Promise.reject(new Error('offline')));
+    leaveUrl('https://other.example/');
+    await flush();
+    leaveUrl('https://other.example/');
+    await flush();
+    expect(fetch).toHaveBeenCalledTimes(4);
+  });
+
+  test('fills a plain textarea body when CKEditor is not attached', async () => {
+    Drupal.CKEditor5Instances = new Map();
+    buildForm();
+    const onChange = jest.fn();
+    document.querySelector('textarea').addEventListener('change', onChange);
+    leaveUrl('https://www.cbd.int/');
+    await flush();
+    expect(document.querySelector('textarea').value).toBe('<p>Biodiversity &amp; people</p>');
+    expect(onChange).toHaveBeenCalled();
+    expect(editor.setData).not.toHaveBeenCalled();
+  });
+
   test('does nothing without an endpoint', () => {
     document.body.innerHTML = '<input type="url" name="field_url[0][uri]">';
     Drupal.behaviors.biolandUrlMetadata.attach(document, {bioland: {}});
