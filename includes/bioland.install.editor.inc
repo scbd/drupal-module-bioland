@@ -1057,6 +1057,8 @@ function bioland_update_9099() {
  *
  * BL-1218. Grants 'auto allow embed origins': saving an embed on an unlisted
  * host then adds the host to embed.allowed_origins instead of failing.
+ * Numbered above the 9101 and 9103 hooks other tickets already carry on
+ * bsl-cop-17-dev, so it still runs on sites past them.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
@@ -1064,7 +1066,7 @@ function bioland_update_9099() {
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9101() {
+function bioland_update_9104() {
   $messages = [];
   $messages[] = _bioland_grant_embed_auto_allow_permission();
 
