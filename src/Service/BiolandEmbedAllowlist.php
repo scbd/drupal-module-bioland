@@ -272,12 +272,15 @@ final class BiolandEmbedAllowlist {
    * The entries plus an auto entry admitting the URL, or NULL.
    *
    * NULL when the URL already matches, the list is full, or the URL would
-   * still not match (a malformed path).
+   * still not match (a malformed path). A bare-origin entry is never added
+   * for a host already listed under a narrower path.
    */
   public static function withAutoEntry(string $url, array $entries): ?array {
     $url = trim($url);
     $entry = self::autoEntry($url);
-    if ($entry === NULL || count($entries) >= self::MAX_ENTRIES || self::classify($url, $entries) === self::MATCH) {
+    $status = self::classify($url, $entries);
+    if ($entry === NULL || count($entries) >= self::MAX_ENTRIES || $status === self::MATCH
+      || ($status === self::PATH_NOT_ALLOWED && parse_url($entry['url'], PHP_URL_PATH) === NULL)) {
       return NULL;
     }
     $entries[] = $entry;
