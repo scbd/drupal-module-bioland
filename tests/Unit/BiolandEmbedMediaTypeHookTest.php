@@ -224,7 +224,8 @@ class BiolandEmbedMediaTypeHookTest extends TestCase {
    */
   public function testModulesInstalledSelfHeals(): void {
     $this->assertInOrder($this->functionBody('bioland.module', 'bioland_modules_installed'), [
-      "if (\$is_syncing || !in_array('media_iframe', \$modules, TRUE)) {",
+      'if ($is_syncing) {',
+      "if (in_array('media_iframe', \$modules, TRUE)) {",
       "loadInclude('bioland', 'install')",
       '_bioland_setup_embed_media();',
     ]);

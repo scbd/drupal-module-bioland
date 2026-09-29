@@ -59,7 +59,7 @@ class BiolandEmbedAliasPatternTest extends TestCase {
   /**
    * Registers the services the setup reads; returns the pattern objects.
    */
-  private function setUpSite(array $modules, bool $embed_type, array $patterns, array $media = []): object {
+  private function setUpSite(array $modules, bool $embed_type, array $patterns, array $media = [], array $aliased = []): object {
     \Drupal::setService('module_handler', new class($modules) {
       public function __construct(private array $modules) {}
 
@@ -117,13 +117,33 @@ class BiolandEmbedAliasPatternTest extends TestCase {
     });
     $generator = new class {
       public array $calls = [];
+      public array $states = [];
 
-      public function updateEntityAlias($entity, $op) {
-        $this->calls[] = [$entity->id, $op];
+      public function updateEntityAlias($entity, $op, array $options = []) {
+        $this->calls[] = [$entity->id, $op, $options];
         return ['alias' => '/embed/x'];
+      }
+
+      public function get($collection) {
+        $generator = $this;
+        return new class($generator, $collection) {
+          public function __construct(private object $generator, private string $collection) {}
+
+          public function set($key, $value) {
+            $this->generator->states[$this->collection][$key] = $value;
+          }
+        };
       }
     };
     \Drupal::setService('pathauto.generator', $generator);
+    \Drupal::setService('keyvalue', $generator);
+    \Drupal::setService('path_alias.repository', new class($aliased) {
+      public function __construct(private array $aliased) {}
+
+      public function lookupBySystemPath($path, $langcode) {
+        return in_array($path, $this->aliased, TRUE) ? ['alias' => '/x'] : NULL;
+      }
+    });
     return $generator;
   }
 
@@ -166,6 +186,10 @@ class BiolandEmbedAliasPatternTest extends TestCase {
     return new class($id) {
       public function __construct(public int $id) {}
 
+      public function id() {
+        return $this->id;
+      }
+
       public function getTranslationLanguages() {
         return ['en' => NULL];
       }
@@ -182,14 +206,16 @@ class BiolandEmbedAliasPatternTest extends TestCase {
   public function testAddsEmbedAndAliasesExisting(): void {
     $media_pattern = $this->pattern('media', ' /[media:bundle]/[media:name] ', ['c1' => self::condition(['image' => 'image'])]);
     $other = $this->pattern('media_by_id', '/media/[media:mid]', ['c1' => self::condition(['image' => 'image'])]);
-    $generator = $this->setUpSite(['pathauto'], TRUE, ['media' => $media_pattern, 'media_by_id' => $other], [5 => $this->media(5), 9 => $this->media(9)]);
+    $generator = $this->setUpSite(['pathauto'], TRUE, ['media' => $media_pattern, 'media_by_id' => $other], [5 => $this->media(5), 9 => $this->media(9), 11 => $this->media(11)], ['/media/11']);
 
     $message = _bioland_add_embed_to_media_alias_pattern();
 
     $this->assertTrue($media_pattern->saved);
     $this->assertSame(['embed' => 'embed', 'image' => 'image'], $media_pattern->criteria['c1']['bundles']);
     $this->assertFalse($other->saved);
-    $this->assertSame([[5, 'bulkupdate'], [9, 'bulkupdate']], $generator->calls);
+    // Forced past the SKIP state pathauto stored; 11 keeps its own alias.
+    $this->assertSame([[5, 'bulkupdate', ['force' => TRUE]], [9, 'bulkupdate', ['force' => TRUE]]], $generator->calls);
+    $this->assertSame(['5' => 1, '9' => 1], $generator->states['pathauto_state.media']);
     $this->assertStringContainsString('Added embed to media URL alias pattern(s): media.', $message);
     $this->assertStringContainsString('Generated 2 embed media URL alias(es).', $message);
   }
@@ -225,6 +251,16 @@ class BiolandEmbedAliasPatternTest extends TestCase {
     $this->assertMatchesRegularExpression('/^[^}]*_bioland_add_embed_to_media_alias_pattern\(\)/', $setup);
     $hook = substr($source, strpos($source, 'function bioland_update_9105('));
     $this->assertLessThan(strpos($hook, '_bioland_v2_update_search_and_facets_config()'), strpos($hook, '_bioland_add_embed_to_media_alias_pattern()'));
+  }
+
+  /**
+   * Enabling pathauto after the embed type still converges.
+   */
+  public function testPathautoEnableTriggersPattern(): void {
+    $source = file_get_contents(__DIR__ . '/../../bioland.module');
+    $hook = substr($source, strpos($source, 'function bioland_modules_installed('));
+    $hook = substr($hook, 0, strpos($hook, "\n}\n"));
+    $this->assertMatchesRegularExpression("/in_array\\('pathauto', \\\$modules, TRUE\\)\\) \\{[^}]*_bioland_add_embed_to_media_alias_pattern\\(\\);/", $hook);
   }
 
 }

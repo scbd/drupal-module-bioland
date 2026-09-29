@@ -938,14 +938,26 @@ function _bioland_add_embed_to_media_alias_pattern() {
     ? 'Added embed to media URL alias pattern(s): ' . implode(', ', $updated) . '.'
     : 'Media URL alias pattern already covers embed.'];
 
-  // Alias the embeds saved before the pattern covered them.
+  // Alias the embeds saved before the pattern covered them. Pathauto stored
+  // SKIP for those (no pattern applied), which blocks a plain bulk update
+  // and unticks "Generate automatic URL alias", so reset the state to
+  // CREATE and force. Only embeds with no alias at all: a hand-set alias is
+  // left alone.
   $aliased = 0;
   $media_storage = $entity_type_manager->getStorage('media');
   $generator = \Drupal::service('pathauto.generator');
+  $alias_repository = \Drupal::service('path_alias.repository');
+  $state = \Drupal::keyValue('pathauto_state.media');
   $ids = $media_storage->getQuery()->accessCheck(FALSE)->condition('bundle', 'embed')->execute();
   foreach ($media_storage->loadMultiple($ids) as $media) {
-    foreach ($media->getTranslationLanguages() as $langcode => $language) {
-      if ($generator->updateEntityAlias($media->getTranslation($langcode), 'bulkupdate')) {
+    $path = '/media/' . $media->id();
+    $missing = array_filter(array_keys($media->getTranslationLanguages()), fn ($langcode) => !$alias_repository->lookupBySystemPath($path, $langcode));
+    if (!$missing) {
+      continue;
+    }
+    $state->set(\Drupal\pathauto\PathautoState::getPathautoStateKey($media->id()), \Drupal\pathauto\PathautoState::CREATE);
+    foreach ($missing as $langcode) {
+      if ($generator->updateEntityAlias($media->getTranslation($langcode), 'bulkupdate', ['force' => TRUE])) {
         $aliased++;
       }
     }
