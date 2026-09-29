@@ -797,6 +797,55 @@ function _bioland_create_embed_media_type() {
 }
 
 /**
+ * Show only the inline frame on the embed media type's Default view display.
+ *
+ * BL-1271. The auto-generated default renders every base field (created,
+ * author, a broken generic thumbnail) before the frame. This leaves the frame
+ * with a visually hidden label, so the name is still read by screen readers.
+ * A display that already matches is not saved again.
+ *
+ * @return string
+ *   Plain-text summary, untranslated.
+ */
+function _bioland_configure_embed_default_display() {
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  $display = $storage->load('media.embed.default') ?: $storage->create([
+    'targetEntityType' => 'media',
+    'bundle' => 'embed',
+    'mode' => 'default',
+    'status' => TRUE,
+  ]);
+
+  $frame = 'field_media_inline_frame';
+  $hidden = ['created', 'uid', 'thumbnail', 'name'];
+  $component = $display->getComponent($frame);
+  $frame_ok = $component
+    && ($component['type'] ?? '') === 'iframe_default'
+    && ($component['label'] ?? '') === 'visually_hidden';
+  $changed = !$frame_ok;
+  foreach ($hidden as $field) {
+    $changed = $changed || $display->getComponent($field) !== NULL;
+  }
+  if (!$changed) {
+    return 'Embed default view display already configured.';
+  }
+
+  foreach ($hidden as $field) {
+    $display->removeComponent($field);
+  }
+  $display->setComponent($frame, [
+    'type' => 'iframe_default',
+    'label' => 'visually_hidden',
+    'weight' => 0,
+    'region' => 'content',
+    'settings' => $component['settings'] ?? [],
+    'third_party_settings' => $component['third_party_settings'] ?? [],
+  ]);
+  $display->save();
+  return 'Configured the embed default view display.';
+}
+
+/**
  * Create the embed media type, offer it in the CKEditor media picker, and
  * give it URL aliases.
  *
@@ -810,6 +859,7 @@ function _bioland_create_embed_media_type() {
 function _bioland_setup_embed_media() {
   return implode(' ', array_map('strval', [
     _bioland_create_embed_media_type(),
+    _bioland_configure_embed_default_display(),
     _bioland_configure_media_embed_allowed_types(),
     _bioland_add_embed_to_media_alias_pattern(),
   ]));
@@ -1268,6 +1318,25 @@ function bioland_update_9104() {
 function bioland_update_9105() {
   $messages = [];
   $messages[] = _bioland_add_embed_to_media_alias_pattern();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Shows only the frame on the embed media type's Default view display.
+ *
+ * BL-1271. As the highest-numbered hook it is the last writer for every site,
+ * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
+ * Search API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9106() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_default_display();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
