@@ -241,6 +241,10 @@ class BiolandDocumentPreviewService implements DestructableInterface
             ]);
         }
 
+        // writeData() throws DirectoryNotReadyException unless the target
+        // directory already exists; nothing else creates this one.
+        $directory = rtrim(Policy::PREVIEW_URI_PREFIX, '/');
+        $this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
         $destination = Policy::PREVIEW_URI_PREFIX . $mid . '-' . $fid . '.webp';
         $newFile = $this->fileRepository->writeData($bytes, $destination, $this->replaceExisting());
 

@@ -39,6 +39,9 @@ class RecordingDocumentPreviewService extends BiolandDocumentPreviewService
     /** The bytes handed to FileRepository::writeData(), or NULL when nothing was written. */
     public ?string $writtenBytes = null;
 
+    /** Directories passed to FileSystem::prepareDirectory(), in call order. */
+    public array $preparedDirectories = [];
+
     /** @var \ConvertApi\Result[] */
     public array $convertResults = [];
 
@@ -132,10 +135,18 @@ class BiolandDocumentPreviewServiceTest extends TestCase
 
         $fileSystem = $this->createMock('Drupal\Core\File\FileSystemInterface');
         $fileSystem->method('realpath')->willReturn('/tmp/report');
+        $fileSystem->method('prepareDirectory')->willReturnCallback(function ($directory) use (&$service) {
+            $service->preparedDirectories[] = $directory;
+            return true;
+        });
 
         $fileRepository = $this->createMock('Drupal\file\FileRepositoryInterface');
         $service = null;
-        $fileRepository->method('writeData')->willReturnCallback(function ($data) use ($newFile, &$service) {
+        $fileRepository->method('writeData')->willReturnCallback(function ($data, $destination) use ($newFile, &$service) {
+            // Mirrors core: writing into an unprepared directory throws.
+            if (!in_array(dirname($destination), $service->preparedDirectories, true)) {
+                throw new \RuntimeException('DirectoryNotReadyException: ' . dirname($destination));
+            }
             $service->writtenBytes = $data;
             return $newFile;
         });
@@ -177,6 +188,24 @@ class BiolandDocumentPreviewServiceTest extends TestCase
         $this->assertCount(1, $service->convertCalls);
         $this->assertSame('webp', $service->convertCalls[0]['to']);
         $this->assertSame('1', $service->convertCalls[0]['params']['PageRange']);
+    }
+
+    /**
+     * The preview directory is created before the converted bytes are written.
+     *
+     * Regression for BL-1192: on a fresh site public://bioland/document-previews
+     * did not exist, so writeData() threw DirectoryNotReadyException.
+     *
+     * @covers ::process
+     */
+    public function testProcessPreparesPreviewDirectoryBeforeWriting(): void
+    {
+        $service = $this->buildService([new Result(new ResultFile('PDFBYTES'), 1)]);
+
+        $service->process(['mid' => 1, 'fid' => 10, 'extension' => 'pdf']);
+
+        $this->assertSame(['public://bioland/document-previews'], $service->preparedDirectories);
+        $this->assertNotNull($service->writtenBytes);
     }
 
     /**
