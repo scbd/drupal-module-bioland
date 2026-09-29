@@ -2,6 +2,12 @@
 
 ## Requirements
 - `menu_link_attributes` ≥ 1.7 — provides menu link class storage and UI.
+- `convertapi/convertapi-php` (document previews, BL-1192) — this module is rsync-deployed, so its
+  own `composer.json` require does not install anything on a site by itself. Run
+  `composer require convertapi/convertapi-php --with-all-dependencies` in the site root
+  (`/opt/drupal` on staging) **before** `drush updb`/enabling the module; `bioland_requirements()`
+  reports `bioland_dep_convertapi` as an error while the library is missing, and both
+  `bioland_install()` and `bioland_update_9091()` refuse to continue without it.
 
 Operations performed by `bioland_install()` in order:
 

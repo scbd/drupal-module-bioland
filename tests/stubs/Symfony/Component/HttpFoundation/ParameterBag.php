@@ -74,4 +74,14 @@ class ParameterBag {
     return $this->parameters;
   }
 
+  /**
+   * Removes a parameter.
+   *
+   * @param string $key
+   *   The key.
+   */
+  public function remove($key) {
+    unset($this->parameters[$key]);
+  }
+
 }
