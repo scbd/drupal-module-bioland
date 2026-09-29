@@ -731,7 +731,8 @@ function _bioland_enable_contrib_feature_modules(?array $modules = NULL) {
  * BL-1218. Holds external pages (a PowerBI report) or uploaded HTML files
  * shown in an inline frame. Creates the type and its iframe source field with
  * the displays the source prepares (iframe_urlwidthheight widget,
- * iframe_default formatter). Resumable: an existing type without a source
+ * iframe_default formatter; _bioland_configure_embed_default_display() later
+ * switches the Default display to iframe_only). Resumable: an existing type without a source
  * field is finished rather than skipped. An existing, complete type keeps its
  * admin changes; one on another source is left alone. The media_library form
  * and view displays core only adds from the media type UI are ensured every
@@ -1450,8 +1451,9 @@ function bioland_update_9105() {
 /**
  * Shows only the frame on the embed media type's Default view display.
  *
- * BL-1271. Re-applies the canonical v2 Search API config so the last-running
- * hook always converges (see SearchApiConvergenceHookTest).
+ * BL-1271. It also re-applies the canonical v2 Search API config, as
+ * SearchApiConvergenceHookTest expects of the hooks in this file.
+ * bioland_update_9111() is now the highest-numbered hook and the last writer.
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
@@ -1564,7 +1566,7 @@ function bioland_update_9110() {
  * BL-1271. 9106 left the frame on iframe_default, which prints the frame title
  * as a heading above the iframe in CKEditor and on the front end. Sites
  * already past 9106 need this hook to switch the Default display to
- * iframe_only.
+ * iframe_only. Existing formatter settings are kept.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
