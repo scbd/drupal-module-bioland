@@ -824,9 +824,10 @@ function _bioland_setup_embed_media() {
  * its image style's size. BL-917.
  *
  * The filter must run after media_embed, which swaps <drupal-media> for the
- * rendered media. It is weighted after every other filter, so no later filter
- * can strip the styles it writes. Formats without an enabled media_embed are
- * left alone, and a format already running it after media_embed is unchanged.
+ * rendered media. When (re)configured it is weighted after every other
+ * filter, so no later filter can strip the styles it writes. Formats without
+ * an enabled media_embed are left alone, and a format already running it
+ * after media_embed is unchanged.
  *
  * @return string
  *   Plain-text summary, untranslated: translation is not dependable
