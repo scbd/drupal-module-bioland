@@ -131,10 +131,25 @@ class BiolandEmbedDefaultDisplayTest extends TestCase {
    */
   public function testSwitchesTitledFormatterToFrameOnly(): void {
     $display = $this->registerDisplay([
-      'field_media_inline_frame' => ['type' => 'iframe_default', 'label' => 'visually_hidden', 'settings' => ['width' => '100%']],
+      'field_media_inline_frame' => ['type' => 'iframe_default', 'label' => 'visually_hidden', 'settings' => ['width' => '100%'], 'third_party_settings' => ['x' => ['y' => 1]]],
     ]);
     $this->assertSame('Configured the embed default view display.', _bioland_configure_embed_default_display());
     $this->assertSame('iframe_only', $display->components['field_media_inline_frame']['type']);
+    $this->assertSame(['width' => '100%'], $display->components['field_media_inline_frame']['settings']);
+    $this->assertSame(['x' => ['y' => 1]], $display->components['field_media_inline_frame']['third_party_settings']);
+    $this->assertSame(1, $display->saves);
+  }
+
+  /**
+   * A frame already on iframe_only with a visible label is re-saved once.
+   */
+  public function testFixesLabelOnFrameOnly(): void {
+    $display = $this->registerDisplay([
+      'field_media_inline_frame' => ['type' => 'iframe_only', 'label' => 'above', 'settings' => ['width' => '100%']],
+    ]);
+    _bioland_configure_embed_default_display();
+    $this->assertSame('iframe_only', $display->components['field_media_inline_frame']['type']);
+    $this->assertSame('visually_hidden', $display->components['field_media_inline_frame']['label']);
     $this->assertSame(['width' => '100%'], $display->components['field_media_inline_frame']['settings']);
     $this->assertSame(1, $display->saves);
   }
