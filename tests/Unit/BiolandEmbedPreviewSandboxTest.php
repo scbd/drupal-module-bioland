@@ -48,36 +48,35 @@ class BiolandEmbedPreviewSandboxTest extends TestCase {
   }
 
   /**
-   * The fallback text and link are dropped; the frame's attributes stay.
+   * Rendered markup shaped like the iframe module's template.
    */
-  public function testFallbackContentIsRemoved(): void {
-    $element = self::iframe('https://app.powerbi.com/view?r=1');
-    $element['#attributes'] = new Attribute($element['#attributes']->toArray() + ['title' => 'Report']);
-    $element['#text'] = 'Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a>';
-    $out = BiolandEmbedPreviewSandbox::apply($element, self::ENTRIES);
-    $this->assertSame('', $out['#text']);
-    $this->assertSame('iframe', $out['#theme']);
-    $this->assertSame('https://app.powerbi.com/view?r=1', $out['#src']);
-    foreach (['src', 'title', 'width', 'height', 'allowfullscreen'] as $name) {
-      $this->assertArrayHasKey($name, $out['#attributes']);
-    }
-    $this->assertSame('Report', $out['#attributes']['title']);
-  }
+  private const RENDERED = '<div><h3 class="iframe_title">Report</h3><style type="text/css">.a{}</style><iframe src="https://app.powerbi.com/view?r=1" title="Report" allowfullscreen>Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a></iframe></div>';
 
   /**
-   * An unmatched frame loses its fallback too, since the head sanitizes it.
+   * A matched frame gets the trusted post_render callback.
    */
-  public function testFallbackRemovedFromUnmatchedFrame(): void {
-    $element = self::iframe('https://evil.example/') + ['#text' => 'fallback <a href="x">x</a>'];
-    $this->assertSame('', BiolandEmbedPreviewSandbox::apply($element, self::ENTRIES)['#text']);
-  }
-
-  /**
-   * An item without fallback content gains no text key.
-   */
-  public function testItemWithoutFallbackHasNoTextKey(): void {
+  public function testMatchedFrameGetsTrustedPostRender(): void {
     $out = BiolandEmbedPreviewSandbox::apply(self::iframe('https://app.powerbi.com/view'), self::ENTRIES);
-    $this->assertArrayNotHasKey('#text', $out);
+    $this->assertContains([BiolandEmbedPreviewSandbox::class, 'stripIframeFallback'], $out['#post_render']);
+    $this->assertContains('stripIframeFallback', BiolandEmbedPreviewSandbox::trustedCallbacks());
+  }
+
+  /**
+   * The fallback is stripped; title, style and attributes are untouched.
+   */
+  public function testFallbackContentIsStripped(): void {
+    $out = (string) BiolandEmbedPreviewSandbox::stripIframeFallback(self::RENDERED, []);
+    $this->assertSame(str_replace('>Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a></iframe>', '></iframe>', self::RENDERED), $out);
+    $this->assertStringContainsString('<h3 class="iframe_title">Report</h3>', $out);
+    $this->assertStringNotContainsString('<a ', $out);
+  }
+
+  /**
+   * Markup without fallback content is unchanged.
+   */
+  public function testEmptyFrameIsUnchanged(): void {
+    $html = '<div><iframe src="https://x.example/"></iframe></div>';
+    $this->assertSame($html, (string) BiolandEmbedPreviewSandbox::stripIframeFallback($html, []));
   }
 
   /**

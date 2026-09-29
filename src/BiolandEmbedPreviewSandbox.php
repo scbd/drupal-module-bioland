@@ -3,6 +3,8 @@
 namespace Drupal\bioland;
 
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Security\TrustedCallbackInterface;
 
 /**
  * Frames Drupal-side embed previews the way the head does (BL-1218).
@@ -16,7 +18,7 @@ use Drupal\bioland\Service\BiolandEmbedAllowlist;
  * also feeds the head, which drops it; only the CKEditor preview replaces it
  * with a notice, and that output varies by route.
  */
-final class BiolandEmbedPreviewSandbox {
+final class BiolandEmbedPreviewSandbox implements TrustedCallbackInterface {
 
   /**
    * Hosts that get the player permission policy (html.js mediaPlayerHost).
@@ -41,13 +43,6 @@ final class BiolandEmbedPreviewSandbox {
    * $editor_preview is set; either way it carries the route cache context.
    */
   public static function apply(array $element, array $entries, bool $editor_preview = FALSE): array {
-    // The iframe module writes "Your browser does not support iframes ... <a>"
-    // inside the tag. Browsers parse that as raw text, and DOMPurify's
-    // markup-in-text guard then deletes the whole frame in the head (BL-1270).
-    // Emit the frame empty so every consumer of the HTML keeps it.
-    if (isset($element['#text'])) {
-      $element['#text'] = '';
-    }
     $src = (string) ($element['#src'] ?? '');
     $entry = BiolandEmbedAllowlist::findEntry($src, $entries);
     if ($entry === NULL) {
@@ -91,7 +86,29 @@ final class BiolandEmbedPreviewSandbox {
 
     $element['#attributes'] = $attributes;
     $element['#cache']['tags'][] = 'config:bioland.settings';
+    // The iframe template hard-codes "Your browser does not support iframes ...
+    // <a>" inside the tag. DOMPurify in the head deletes any element whose
+    // text looks like markup, so the whole frame is lost (BL-1270). Strip it
+    // after rendering; #text is the title heading and must stay.
+    $element['#post_render'][] = [self::class, 'stripIframeFallback'];
     return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function trustedCallbacks() {
+    return ['stripIframeFallback'];
+  }
+
+  /**
+   * Empties the <iframe> element, leaving the title, style and attributes.
+   *
+   * A #post_render callback: receives the rendered markup and the element.
+   */
+  public static function stripIframeFallback($children, array $element = []) {
+    $stripped = preg_replace('#(<iframe\b[^>]*>).*?(</iframe\s*>)#is', '$1$2', (string) $children);
+    return Markup::create($stripped ?? (string) $children);
   }
 
 }
