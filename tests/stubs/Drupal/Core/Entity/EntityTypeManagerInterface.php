@@ -37,4 +37,26 @@ interface EntityTypeManagerInterface {
    */
   public function getDefinition($entity_type_id);
 
+  /**
+   * Checks whether an entity type is defined.
+   *
+   * @param string $entity_type_id
+   *   The entity type ID.
+   *
+   * @return bool
+   *   TRUE when defined.
+   */
+  public function hasDefinition($entity_type_id);
+
+  /**
+   * Gets the access control handler for an entity type.
+   *
+   * @param string $entity_type_id
+   *   The entity type ID.
+   *
+   * @return object
+   *   The handler; tests expose createAccess().
+   */
+  public function getAccessControlHandler($entity_type_id);
+
 }

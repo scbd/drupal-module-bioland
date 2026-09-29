@@ -162,36 +162,79 @@ function bioland_update_9046() {
  * key was missing from the deployment.
  */
 function bioland_update_9082() {
-  $key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_BASE_URL_KEY;
-  $allowlist_key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_PROD_HOST_ALLOWLIST_KEY;
-
   $messages = [];
 
   if (function_exists('_bioland_v2_update_search_and_facets_config')) {
     $messages[] = (string) _bioland_v2_update_search_and_facets_config();
   }
 
-  $config = \Drupal::configFactory()->getEditable('bioland.settings');
-  $current = $config->get($key);
+  $messages[] = _bioland_seed_dmsm_config_or_fail();
 
-  // The production allowlist is deploy-time configuration for the same reason
-  // the base URL is: no production host ships in code. Seed it when the
-  // deployment offers one, whether or not the base URL itself needs seeding.
+  return implode(' ', array_filter($messages));
+}
+
+/**
+ * Seed the DMSM config from the deployment when the site lacks it.
+ *
+ * Shared by bioland_install(), bioland_update_9082() and
+ * bioland_update_9085(). A fresh install marks every update hook as already
+ * run without executing it, so without the install-time call a new site never
+ * reads BIOLAND_DMSM_CONFIG_BASE_URL and its geography stays frozen.
+ *
+ * The production allowlist is seeded whenever the deployment offers one and
+ * the site has none, whether or not the base URL itself needs seeding. An
+ * existing base URL is never overwritten.
+ *
+ * @return bool|null
+ *   TRUE when the base URL was seeded, FALSE when it was already set, NULL
+ *   when it is unset and the deployment offers no valid value.
+ */
+function _bioland_seed_dmsm_config_from_environment() {
+  $key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_BASE_URL_KEY;
+  $allowlist_key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_PROD_HOST_ALLOWLIST_KEY;
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+
   $allowlist = _bioland_dmsm_prod_allowlist_from_environment();
 
   if ($allowlist !== NULL && !is_array($config->get($allowlist_key))) {
     $config->set($allowlist_key, $allowlist)->save();
   }
 
-  if (is_string($current) && trim($current) !== '') {
-    $messages[] = (string) t('bioland.settings.@key is already set; left unchanged.', ['@key' => $key]);
+  $current = $config->get($key);
 
-    return implode(' ', array_filter($messages));
+  if (is_string($current) && trim($current) !== '') {
+    return FALSE;
   }
 
   $value = _bioland_dmsm_base_url_from_environment();
 
   if ($value === NULL) {
+    return NULL;
+  }
+
+  $config->set($key, $value)->save();
+
+  return TRUE;
+}
+
+/**
+ * Seed the DMSM config for an update hook, failing when no value exists.
+ *
+ * The update FAILS when it cannot derive a value, so the problem surfaces
+ * during deployment rather than silently at the next cron run.
+ *
+ * @return string
+ *   Status message.
+ *
+ * @throws \RuntimeException
+ *   When the base URL is unset and the deployment offers no value.
+ */
+function _bioland_seed_dmsm_config_or_fail() {
+  $key = \Drupal\bioland\Service\BiolandDmsmConfigService::CONFIG_BASE_URL_KEY;
+  $seeded = _bioland_seed_dmsm_config_from_environment();
+
+  if ($seeded === NULL) {
     throw new \RuntimeException(sprintf(
       'Cannot seed bioland.settings.%s: no value is available from the deployment. Set '
       . '$settings[\'bioland_dmsm_config_base_url\'] in settings.php, or the '
@@ -201,14 +244,14 @@ function bioland_update_9082() {
     ));
   }
 
-  $config->set($key, $value)->save();
+  if ($seeded === FALSE) {
+    return (string) t('bioland.settings.@key is already set; left unchanged.', ['@key' => $key]);
+  }
 
-  $messages[] = (string) t('Seeded bioland.settings.@key from the deployment environment: @value', [
+  return (string) t('Seeded bioland.settings.@key from the deployment environment: @value', [
     '@key' => $key,
-    '@value' => $value,
+    '@value' => \Drupal::config('bioland.settings')->get($key),
   ]);
-
-  return implode(' ', array_filter($messages));
 }
 
 /**

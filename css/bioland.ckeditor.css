@@ -80,3 +80,30 @@
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
+
+/*
+ * BL-1207: remote video (YouTube oEmbed) media embeds render at the
+ * provider's default iframe size (e.g. 200x113) inside CKEditor, while the
+ * public frontend renders them full width.
+ *
+ * Two rules are needed. Drupal core styles the editor media widget as
+ * `display: table` (core/modules/ckeditor5/css/drupalmedia.css), so the
+ * widget shrink-wraps to the iframe's own width attribute and a `width:
+ * 100%` on the iframe alone resolves against that 200px table, not the
+ * editor. The widget that holds an oEmbed iframe must itself be full width;
+ * core's alignment rules (max-width: 50% for left / right / center) still
+ * apply on top of it, matching the frontend. The iframe then fills that
+ * widget with a preserved 16:9 aspect ratio.
+ *
+ * Both rules use the same `.ck.ck-content` two-class scope (see header
+ * comment) so they out-specify CKEditor's own `.ck-content` defaults.
+ */
+.ck.ck-content .drupal-media:has(iframe.media-oembed-content) {
+  width: 100%;
+}
+
+.ck.ck-content .drupal-media iframe.media-oembed-content {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}

@@ -169,6 +169,139 @@ function _bioland_disable_comment_field_display() {
   return implode(' ', $messages);
 }
 
+/**
+ * Helper function to configure media view displays (BL-1206).
+ *
+ * - Remote video default display: drops the generic 'name' field, keeping
+ *   only field_media_oembed_video.
+ * - Document media_library display: drops the generic 'thumbnail' field and
+ *   shows the media's own image field instead (found dynamically via
+ *   field_config, never hard-coded), reusing the thumbnail's image style
+ *   when one was set, else 'medium'.
+ *
+ * Tolerant of prior state from sibling ticket BL-1205 (thumbnail already
+ * absent, image field already present) — idempotent either way.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_media_view_displays() {
+  $messages = [];
+  $entity_view_display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+
+  // Remote video: default display should not show the generic name field.
+  $remote_video_display = $entity_view_display_storage->load('media.remote_video.default');
+  if (!$remote_video_display) {
+    $messages[] = t('View display core.entity_view_display.media.remote_video.default not found; skipping.');
+  }
+  else {
+    if ($remote_video_display->getComponent('name')) {
+      $remote_video_display->removeComponent('name');
+      $remote_video_display->save();
+      $messages[] = t('Removed name field from media.remote_video.default view display.');
+    }
+    else {
+      $messages[] = t('media.remote_video.default view display already excludes the name field.');
+    }
+  }
+
+  // Document media_library: swap the generic thumbnail for the media's own
+  // image field.
+  $document_display = $entity_view_display_storage->load('media.document.media_library');
+  if (!$document_display) {
+    $messages[] = t('View display core.entity_view_display.media.document.media_library not found; skipping.');
+  }
+  else {
+    $image_fields = \Drupal::entityTypeManager()
+      ->getStorage('field_config')
+      ->loadByProperties([
+        'entity_type' => 'media',
+        'bundle' => 'document',
+        'field_type' => 'image',
+      ]);
+
+    if (empty($image_fields)) {
+      \Drupal::logger('bioland')->notice('BL-1206: no image field found on media.document; skipping media_library display image swap.');
+      $messages[] = t('No image field found on media.document; skipping media_library display image swap.');
+    }
+    else {
+      // Choose deterministically: prefer field_media_image when present,
+      // otherwise fall back to the alphabetically first field name so the
+      // outcome does not depend on storage/load order.
+      $image_fields_by_name = [];
+      foreach ($image_fields as $image_field_candidate) {
+        $image_fields_by_name[$image_field_candidate->getName()] = $image_field_candidate;
+      }
+
+      if (isset($image_fields_by_name['field_media_image'])) {
+        $image_field_name = 'field_media_image';
+      }
+      else {
+        $sorted_field_names = array_keys($image_fields_by_name);
+        sort($sorted_field_names);
+        $image_field_name = reset($sorted_field_names);
+      }
+
+      $image_field = $image_fields_by_name[$image_field_name];
+
+      if (count($image_fields_by_name) > 1) {
+        \Drupal::logger('bioland')->notice('BL-1206: media.document has @count image fields (@names); using @chosen for the media_library display.', [
+          '@count' => count($image_fields_by_name),
+          '@names' => implode(', ', array_keys($image_fields_by_name)),
+          '@chosen' => $image_field_name,
+        ]);
+      }
+
+      $changed = FALSE;
+
+      // Capture the thumbnail's image style (if any) before removing it, so
+      // the new image field component keeps the same visual size.
+      $image_style = 'medium';
+      $thumbnail_component = $document_display->getComponent('thumbnail');
+      if (!empty($thumbnail_component['settings']['image_style'])) {
+        $image_style = $thumbnail_component['settings']['image_style'];
+      }
+
+      if ($thumbnail_component) {
+        $document_display->removeComponent('thumbnail');
+        $changed = TRUE;
+      }
+
+      $target_component = [
+        'type' => 'image',
+        'label' => 'hidden',
+        'weight' => 0,
+        'settings' => [
+          'image_style' => $image_style,
+          'image_link' => '',
+        ],
+        'region' => 'content',
+      ];
+      $existing_image_component = $document_display->getComponent($image_field_name);
+      $existing_matches = $existing_image_component
+        && ($existing_image_component['type'] ?? NULL) === $target_component['type']
+        && ($existing_image_component['label'] ?? NULL) === $target_component['label']
+        && ($existing_image_component['settings']['image_style'] ?? NULL) === $target_component['settings']['image_style']
+        && ($existing_image_component['settings']['image_link'] ?? '') === $target_component['settings']['image_link'];
+
+      if (!$existing_matches) {
+        $document_display->setComponent($image_field_name, $target_component);
+        $changed = TRUE;
+      }
+
+      if ($changed) {
+        $document_display->save();
+        $messages[] = t('Configured @field as the image display on media.document.media_library (removed thumbnail).', ['@field' => $image_field_name]);
+      }
+      else {
+        $messages[] = t('media.document.media_library view display already configured.');
+      }
+    }
+  }
+
+  return implode(' ', $messages);
+}
+
 /*
  * ===========================================================================
  * UPDATE HOOKS - Form Display
@@ -226,10 +359,37 @@ function bioland_update_9054() {
  */
 function bioland_update_9055() {
   $date_config = \Drupal::configFactory()->getEditable('system.date');
-  
+
   // Set user timezone configuration to FALSE
   $date_config->set('timezone.user.configurable', FALSE);
   $date_config->save();
-  
+
   return t('Set timezone.user.configurable to FALSE in system.date configuration.');
+}
+
+/**
+ * Media display fixes: CKEditor insert types, remote video and document
+ * view displays (BL-1206).
+ *
+ * Restricts the media types selectable in the CKEditor "Insert Media"
+ * dialog (image + remote_video only), drops the generic 'name' field from the
+ * remote_video default display, and swaps the generic thumbnail for the
+ * document's own image field on the document media_library display.
+ *
+ * As the highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search
+ * API config.
+ */
+function bioland_update_9095() {
+  $messages = [];
+
+  $messages[] = _bioland_configure_media_embed_allowed_types();
+  $messages[] = _bioland_configure_media_view_displays();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  \Drupal\Core\Cache\Cache::invalidateTags(['rendered', 'config:filter.format.full_html']);
+
+  return implode(' ', array_map('strval', $messages));
 }

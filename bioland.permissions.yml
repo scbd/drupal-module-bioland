@@ -17,3 +17,8 @@ access bioland config api:
   title: 'Access the Bioland site configuration API'
   description: 'Read the allowlisted Bioland site configuration document over HTTP. Intended for the Bioland front-end service account only.'
   restrict access: TRUE
+
+auto allow embed origins:
+  title: 'Auto-allow embed hosts'
+  description: 'Saving an embed media item on a host that is not on the embed allowlist adds the host to the list instead of failing. Review added hosts under Front End General settings.'
+  restrict access: TRUE
