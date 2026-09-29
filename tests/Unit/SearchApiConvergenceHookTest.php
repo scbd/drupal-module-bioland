@@ -358,12 +358,14 @@ class SearchApiConvergenceHookTest extends TestCase {
       'bioland_update_9105() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
 
-    // bioland_update_9106() (BL-1271 embed default view display) is now the
-    // highest-numbered hook, so it converges too.
+    // bioland_update_9106() (BL-1271 embed default view display) converges
+    // too, so either hook can safely be the last one to land.
     $this->assertMatchesRegularExpression(
       '/function\s+bioland_update_9106\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
       file_get_contents($editorFile),
       'bioland_update_9106() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
     // bioland_update_9107() (BL-1272 media library type filter and embed
     // picker display) is now the highest-numbered hook, so it converges too.
     $this->assertMatchesRegularExpression(

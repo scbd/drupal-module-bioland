@@ -1446,15 +1446,22 @@ function bioland_update_9105() {
 /**
  * Shows only the frame on the embed media type's Default view display.
  *
- * BL-1271. As the highest-numbered hook it is the last writer for every site,
- * so per SearchApiConvergenceHookTest it must also re-apply the canonical v2
- * Search API config.
+ * BL-1271. Re-applies the canonical v2 Search API config so the last-running
+ * hook always converges (see SearchApiConvergenceHookTest).
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
 function bioland_update_9106() {
   $messages = [];
   $messages[] = _bioland_configure_embed_default_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
  * Lets the media library picker list embed media and lays out its card.
  *
  * BL-1272. Removes the hand-added Media type filter from the media_library
