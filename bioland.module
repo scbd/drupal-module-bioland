@@ -11,6 +11,7 @@ use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\BiolandToolbarEmbedLink;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
+use Drupal\bioland\Plugin\Field\FieldWidget\BiolandIframeWidget;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
@@ -616,6 +617,21 @@ function bioland_media_library_embed_url_validate(array &$element, FormStateInte
   }
   if ($error !== NULL) {
     $form_state->setErrorByName('url', $error);
+  }
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ *
+ * Swaps the iframe_default widget class so an embed URL violation is shown
+ * under the URL sub-field only, not repeated under every sub-field
+ * (BL-1273).
+ *
+ * @see \Drupal\bioland\Plugin\Field\FieldWidget\BiolandIframeWidget
+ */
+function bioland_field_widget_info_alter(array &$info) {
+  if (isset($info['iframe_default'])) {
+    $info['iframe_default']['class'] = BiolandIframeWidget::class;
   }
 }
 
