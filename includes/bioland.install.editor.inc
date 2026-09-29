@@ -797,7 +797,8 @@ function _bioland_create_embed_media_type() {
 }
 
 /**
- * Create the embed media type and offer it in the CKEditor media picker.
+ * Create the embed media type, offer it in the CKEditor media picker, and
+ * give it URL aliases.
  *
  * BL-1218. Shared by bioland_update_9098(), bioland_install() and
  * bioland_modules_installed(), so a site that enables media_iframe after the
@@ -810,7 +811,92 @@ function _bioland_setup_embed_media() {
   return implode(' ', array_map('strval', [
     _bioland_create_embed_media_type(),
     _bioland_configure_media_embed_allowed_types(),
+    _bioland_add_embed_to_media_alias_pattern(),
   ]));
+}
+
+/**
+ * The media URL alias pattern the embed bundle joins (BL-1218).
+ */
+const BIOLAND_MEDIA_ALIAS_PATTERN = '/[media:bundle]/[media:name]';
+
+/**
+ * Pure helper: pathauto selection criteria with embed added, or NULL.
+ *
+ * Adds embed to each non-negated media bundle condition that lacks it. NULL
+ * when nothing changes: embed is already there, or no condition limits the
+ * bundle (the pattern then already covers every media type).
+ */
+function _bioland_media_alias_criteria_with_embed(array $criteria) {
+  $changed = FALSE;
+  foreach ($criteria as $key => $condition) {
+    if (($condition['id'] ?? '') === 'entity_bundle:media' && empty($condition['negate'])
+      && is_array($condition['bundles'] ?? NULL) && !isset($condition['bundles']['embed'])) {
+      $criteria[$key]['bundles']['embed'] = 'embed';
+      ksort($criteria[$key]['bundles']);
+      $changed = TRUE;
+    }
+  }
+  return $changed ? $criteria : NULL;
+}
+
+/**
+ * Gives embed media URL aliases from the /[media:bundle]/[media:name] pattern.
+ *
+ * BL-1218. The site's media pattern limits its bundles and predates the
+ * embed type, so embed pages had no alias. Adds embed to every media
+ * pattern with that exact pattern, then aliases the existing embeds that
+ * have none. Idempotent; skips without pathauto or the embed type.
+ *
+ * @return string
+ *   Plain-text summary. Not t(): translation is not dependable mid-update.
+ */
+function _bioland_add_embed_to_media_alias_pattern() {
+  if (!\Drupal::moduleHandler()->moduleExists('pathauto')) {
+    return 'pathauto is not enabled; skipped the embed URL alias pattern.';
+  }
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if (!$entity_type_manager->getStorage('media_type')->load('embed')) {
+    return 'Media type embed does not exist; skipped the embed URL alias pattern.';
+  }
+
+  $updated = [];
+  $matched = 0;
+  foreach ($entity_type_manager->getStorage('pathauto_pattern')->loadByProperties(['type' => 'canonical_entities:media']) as $pattern) {
+    if (trim((string) $pattern->getPattern()) !== BIOLAND_MEDIA_ALIAS_PATTERN) {
+      continue;
+    }
+    $matched++;
+    $criteria = _bioland_media_alias_criteria_with_embed((array) ($pattern->get('selection_criteria') ?? []));
+    if ($criteria !== NULL) {
+      $pattern->set('selection_criteria', $criteria);
+      $pattern->save();
+      $updated[] = $pattern->id();
+    }
+  }
+  if (!$matched) {
+    return 'No media URL alias pattern ' . BIOLAND_MEDIA_ALIAS_PATTERN . ' found; add embed to a media pattern by hand.';
+  }
+
+  $messages = [$updated
+    ? 'Added embed to media URL alias pattern(s): ' . implode(', ', $updated) . '.'
+    : 'Media URL alias pattern already covers embed.'];
+
+  // Alias the embeds saved before the pattern covered them.
+  $aliased = 0;
+  $media_storage = $entity_type_manager->getStorage('media');
+  $generator = \Drupal::service('pathauto.generator');
+  $ids = $media_storage->getQuery()->accessCheck(FALSE)->condition('bundle', 'embed')->execute();
+  foreach ($media_storage->loadMultiple($ids) as $media) {
+    foreach ($media->getTranslationLanguages() as $langcode => $language) {
+      if ($generator->updateEntityAlias($media->getTranslation($langcode), 'bulkupdate')) {
+        $aliased++;
+      }
+    }
+  }
+  $messages[] = 'Generated ' . $aliased . ' embed media URL alias(es).';
+
+  return implode(' ', $messages);
 }
 
 /*
@@ -1067,6 +1153,28 @@ function bioland_update_9099() {
 function bioland_update_9101() {
   $messages = [];
   $messages[] = _bioland_grant_embed_auto_allow_permission();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Gives embed media URL aliases from the media URL alias pattern.
+ *
+ * BL-1218. Adds the embed bundle to the /[media:bundle]/[media:name]
+ * pathauto pattern and aliases existing embeds.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9102() {
+  $messages = [];
+  $messages[] = _bioland_add_embed_to_media_alias_pattern();
 
   // Converge canonical Search API v2 config last (highest-numbered hook).
   $messages[] = _bioland_v2_update_search_and_facets_config();
