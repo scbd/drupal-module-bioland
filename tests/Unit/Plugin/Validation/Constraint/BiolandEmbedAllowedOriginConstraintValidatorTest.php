@@ -6,6 +6,7 @@ use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstra
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
+use Drupal\Core\Session\AccountInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -31,7 +32,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
    * @return array[]
    *   One ['message' => ..., 'path' => ..., 'params' => [...]] per violation.
    */
-  private function violations(array $urls, mixed $origins): array {
+  private function violations(array $urls, mixed $origins, ?AccountInterface $account = NULL): array {
     $settings = $origins === NULL ? [] : ['embed' => ['allowed_origins' => $origins]];
     $factory = $this->createMock(ConfigFactoryInterface::class);
     $factory->method('get')->with('bioland.settings')->willReturn(new ImmutableConfig('bioland.settings', $settings));
@@ -55,7 +56,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
       return $builder;
     });
 
-    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory);
+    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory, $account);
     $validator->initialize($context);
     $items = array_map(fn ($url) => (object) ['url' => $url], $urls);
     $validator->validate($items, new BiolandEmbedAllowedOriginConstraint());
@@ -137,7 +138,8 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
     $factory->expects($this->once())->method('get')->with('bioland.settings')
       ->willReturn(new ImmutableConfig('bioland.settings', []));
     $container = $this->createMock(ContainerInterface::class);
-    $container->expects($this->once())->method('get')->with('config.factory')->willReturn($factory);
+    $services = ['config.factory' => $factory, 'current_user' => $this->account(FALSE)];
+    $container->expects($this->exactly(2))->method('get')->willReturnCallback(fn ($id) => $services[$id]);
 
     $validator = BiolandEmbedAllowedOriginConstraintValidator::create($container);
     $this->assertInstanceOf(BiolandEmbedAllowedOriginConstraintValidator::class, $validator);
@@ -182,6 +184,54 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
       [$template, $params] = BiolandEmbedAllowedOriginConstraintValidator::violation($url, $entries);
       $this->assertSame(strtr($template, $params), (string) BiolandEmbedAllowedOriginConstraintValidator::formError($url, $entries), $url);
     }
+  }
+
+  /**
+   * An account that has, or lacks, the auto-allow permission.
+   */
+  private function account(bool $auto_allow): AccountInterface {
+    $account = $this->createMock(AccountInterface::class);
+    $account->method('hasPermission')->willReturnCallback(
+      fn ($permission) => $auto_allow && $permission === BiolandEmbedAllowedOriginConstraintValidator::AUTO_ALLOW_PERMISSION
+    );
+    return $account;
+  }
+
+  /**
+   * A trusted user may save a URL on an unlisted host; others may not.
+   */
+  public function testAutoAllowPermissionAdmitsUnlistedHost(): void {
+    $url = 'https://claude.ai/artifact/94Nk8f';
+    $this->assertSame([], $this->violations([$url], self::ORIGINS, $this->account(TRUE)));
+    $this->assertCount(1, $this->violations([$url], self::ORIGINS, $this->account(FALSE)));
+    $this->assertCount(1, $this->violations([$url], self::ORIGINS));
+  }
+
+  /**
+   * The permission never widens a listed host's path or admits bad URLs.
+   *
+   * @dataProvider rejectedProvider
+   */
+  public function testAutoAllowStillRejectsPathAndLookalikeMisses(string $url, string $message_property): void {
+    $violations = $this->violations([$url], self::ORIGINS, $this->account(TRUE));
+    if ($message_property === 'pathMessage' || in_array($url, ['https://attacker@app.powerbi.com/view', '/view'], TRUE)) {
+      $this->assertCount(1, $violations);
+    }
+    else {
+      // A lookalike host is just another unlisted host to a trusted user.
+      $this->assertSame([], $violations);
+    }
+  }
+
+  /**
+   * entriesFor() adds the auto entry only for a permitted account.
+   */
+  public function testEntriesFor(): void {
+    $url = 'https://claude.ai/x';
+    $this->assertSame(self::ORIGINS, BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, self::ORIGINS, NULL));
+    $this->assertSame(self::ORIGINS, BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, self::ORIGINS, $this->account(FALSE)));
+    $this->assertCount(4, BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, self::ORIGINS, $this->account(TRUE)));
+    $this->assertSame(self::ORIGINS, BiolandEmbedAllowedOriginConstraintValidator::entriesFor('https://www.youtube.com/x', self::ORIGINS, $this->account(TRUE)));
   }
 
 }

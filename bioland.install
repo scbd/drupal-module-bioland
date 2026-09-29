@@ -119,6 +119,9 @@ function bioland_install() {
   // BL-784: 'delete any media' for content manager and above.
   _bioland_grant_media_delete_permissions();
 
+  // BL-1218: trusted roles add embed hosts by saving an embed.
+  _bioland_grant_embed_auto_allow_permission();
+
   // Configure maintenance mode access (administrator and scbd_staff only).
   _bioland_configure_maintenance_mode_access();
 

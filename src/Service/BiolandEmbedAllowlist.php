@@ -244,6 +244,38 @@ final class BiolandEmbedAllowlist {
   }
 
   /**
+   * The entry that would admit a URL's origin, or NULL.
+   *
+   * For users who add hosts by saving an embed: https only, on a dotted host
+   * that is not an IP literal. No sandbox, like the shipped defaults.
+   */
+  public static function autoEntry(string $url): ?array {
+    $origin = preg_match('~^(https://[^/?#]*)~i', trim($url), $m) ? self::normalizeUrl($m[1]) : NULL;
+    $host = (string) parse_url((string) $origin, PHP_URL_HOST);
+    if ($origin === NULL || !str_contains($host, '.') || self::isDottedQuad($host)) {
+      return NULL;
+    }
+    return ['url' => $origin, 'label' => $host, 'sandbox' => ''];
+  }
+
+  /**
+   * The entries plus an auto entry admitting the URL, or NULL.
+   *
+   * Only a URL on no listed host qualifies, so a host listed under a narrower
+   * path keeps that restriction. NULL too when the list is full or the URL
+   * would still not match (a malformed path).
+   */
+  public static function withAutoEntry(string $url, array $entries): ?array {
+    $url = trim($url);
+    $entry = self::autoEntry($url);
+    if ($entry === NULL || count($entries) >= self::MAX_ENTRIES || self::classify($url, $entries) !== self::HOST_NOT_ALLOWED) {
+      return NULL;
+    }
+    $entries[] = $entry;
+    return self::classify($url, $entries) === self::MATCH ? $entries : NULL;
+  }
+
+  /**
    * Returns an entry in its stored shape. Call only after validateEntry().
    */
   public static function normalizeEntry(array $entry): array {

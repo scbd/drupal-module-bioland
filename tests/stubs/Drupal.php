@@ -188,6 +188,16 @@ class Drupal {
   }
 
   /**
+   * Gets the current user.
+   *
+   * @return \Drupal\Core\Session\AccountInterface|null
+   *   The stubbed 'current_user' service, or NULL.
+   */
+  public static function currentUser() {
+    return static::$container['current_user'] ?? NULL;
+  }
+
+  /**
    * Gets the messenger service.
    *
    * @return object

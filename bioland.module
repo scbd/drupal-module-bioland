@@ -12,6 +12,7 @@ use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Form\BiolandHeroImageWidget;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
 use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
+use Drupal\bioland\Service\BiolandEmbedAllowlist;
 use Drupal\bioland\Service\BiolandMediaImageEditor;
 use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
@@ -599,9 +600,11 @@ function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInter
  * Element validate: the media library iframe URL is on the embed allowlist.
  */
 function bioland_media_library_embed_url_validate(array &$element, FormStateInterface $form_state) {
+  $url = (string) $form_state->getValue('url');
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'));
   $error = BiolandEmbedAllowedOriginConstraintValidator::formError(
-    (string) $form_state->getValue('url'),
-    BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'))
+    $url,
+    BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, $entries, \Drupal::currentUser())
   );
   if ($error !== NULL) {
     $form_state->setErrorByName('url', $error);
@@ -1183,6 +1186,10 @@ function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $
  * form validation, and re-encodes a valid one to the media file's format.
  */
 function bioland_media_presave(EntityInterface $media) {
+  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
+    _bioland_embed_auto_allow($media);
+  }
+
   if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
     return;
   }
@@ -1228,6 +1235,45 @@ function bioland_media_presave(EntityInterface $media) {
       \Drupal::messenger()->addError(t('The edited image could not be saved.'));
     }
   }
+}
+
+/**
+ * Adds an embed's unlisted host to the allowlist (BL-1218).
+ *
+ * Only for users with the auto-allow permission (SCBD staff, site managers,
+ * administrators), whose save the URL constraint already let through. The
+ * host joins bioland.settings embed.allowed_origins without a sandbox, so it
+ * shows on the Front End General settings page for review.
+ */
+function _bioland_embed_auto_allow(MediaInterface $media) {
+  $account = \Drupal::currentUser();
+  if (!$account->hasPermission(BiolandEmbedAllowedOriginConstraintValidator::AUTO_ALLOW_PERMISSION)) {
+    return;
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? NULL;
+  if (!$field || !$media->hasField($field)) {
+    return;
+  }
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries($config);
+  $added = [];
+  foreach ($media->get($field) as $item) {
+    $next = BiolandEmbedAllowlist::withAutoEntry((string) ($item->url ?? ''), $entries);
+    if ($next !== NULL) {
+      $entries = $next;
+      $added[] = end($next)['url'];
+    }
+  }
+  if (!$added) {
+    return;
+  }
+  $config->set('embed.allowed_origins', $entries)->save();
+  $origins = implode(', ', $added);
+  \Drupal::logger('bioland')->notice('Added @origins to the embed allowlist when user @uid saved an embed.', [
+    '@origins' => $origins,
+    '@uid' => $account->id(),
+  ]);
+  \Drupal::messenger()->addStatus(t('Added @origins to the allowed embed hosts. Review it under Front End General settings.', ['@origins' => $origins]));
 }
 
 /**

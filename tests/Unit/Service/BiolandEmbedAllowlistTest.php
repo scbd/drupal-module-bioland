@@ -295,4 +295,59 @@ class BiolandEmbedAllowlistTest extends TestCase {
     $this->assertFalse(BiolandEmbedAllowlist::matches('https://app.powerbi.com/view', [[]]));
   }
 
+  /**
+   * autoEntry() builds an unsandboxed origin entry for public https hosts.
+   *
+   * @dataProvider autoEntryProvider
+   */
+  public function testAutoEntry(string $url, ?array $expected): void {
+    $this->assertSame($expected, BiolandEmbedAllowlist::autoEntry($url));
+  }
+
+  /**
+   * URLs and the auto entry each one gets.
+   */
+  public static function autoEntryProvider(): array {
+    return [
+      'artifact page' => ['https://claude.ai/artifact/94Nk8f', ['url' => 'https://claude.ai', 'label' => 'claude.ai', 'sandbox' => '']],
+      'mixed case, default port, query' => ['  HTTPS://Example.ORG:443/a?b=1 ', ['url' => 'https://example.org', 'label' => 'example.org', 'sandbox' => '']],
+      'explicit port kept' => ['https://example.org:8443/a', ['url' => 'https://example.org:8443', 'label' => 'example.org', 'sandbox' => '']],
+      'http' => ['http://example.org/a', NULL],
+      'ip literal' => ['https://10.0.0.1/a', NULL],
+      'localhost' => ['https://localhost/a', NULL],
+      'dotless host' => ['https://intranet/a', NULL],
+      'userinfo' => ['https://user@example.org/a', NULL],
+      'relative' => ['/a', NULL],
+      'empty' => ['', NULL],
+    ];
+  }
+
+  /**
+   * withAutoEntry() appends an entry only for a URL on no listed host.
+   */
+  public function testWithAutoEntry(): void {
+    $entries = [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']];
+    $added = BiolandEmbedAllowlist::withAutoEntry('https://claude.ai/artifact/x', $entries);
+    $this->assertSame([...$entries, ['url' => 'https://claude.ai', 'label' => 'claude.ai', 'sandbox' => '']], $added);
+    $this->assertTrue(BiolandEmbedAllowlist::matches('https://claude.ai/artifact/x', $added));
+
+    // Already allowed, or listed under a narrower path: nothing to add.
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://app.powerbi.com/view?r=1', $entries));
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://app.powerbi.com/other', $entries));
+    // Malformed path on a new host still fails.
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://claude.ai/a/../b', $entries));
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://claude.ai/a%2fb', $entries));
+    // Not eligible for an auto entry.
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('http://claude.ai/x', $entries));
+  }
+
+  /**
+   * withAutoEntry() never grows the list past MAX_ENTRIES.
+   */
+  public function testWithAutoEntryRespectsMaxEntries(): void {
+    $entries = array_map(fn ($i) => ['url' => "https://h$i.example", 'label' => '', 'sandbox' => ''], range(1, BiolandEmbedAllowlist::MAX_ENTRIES));
+    $this->assertNull(BiolandEmbedAllowlist::withAutoEntry('https://claude.ai/x', $entries));
+    $this->assertCount(BiolandEmbedAllowlist::MAX_ENTRIES, BiolandEmbedAllowlist::withAutoEntry('https://claude.ai/x', array_slice($entries, 1)));
+  }
+
 }
