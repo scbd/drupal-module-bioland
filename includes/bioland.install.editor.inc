@@ -1051,3 +1051,25 @@ function bioland_update_9099() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Lets SCBD staff, site managers and administrators auto-allow embed hosts.
+ *
+ * BL-1218. Grants 'auto allow embed origins': saving an embed on an unlisted
+ * host then adds the host to embed.allowed_origins instead of failing.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9101() {
+  $messages = [];
+  $messages[] = _bioland_grant_embed_auto_allow_permission();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

@@ -231,6 +231,32 @@ function _bioland_grant_media_delete_permissions() {
     : implode(' ', array_map('strval', $messages));
 }
 
+/**
+ * Roles that may add an embed host to the allowlist by saving it (BL-1218).
+ */
+const BIOLAND_EMBED_AUTO_ALLOW_ROLES = ['scbd_staff', 'site_manager', 'administrator'];
+
+/**
+ * Grants 'auto allow embed origins' to BIOLAND_EMBED_AUTO_ALLOW_ROLES.
+ *
+ * Missing roles are skipped. Idempotent.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_grant_embed_auto_allow_permission() {
+  $matrix = [];
+  foreach (BIOLAND_EMBED_AUTO_ALLOW_ROLES as $rid) {
+    if (Role::load($rid)) {
+      $matrix[$rid] = ['auto allow embed origins'];
+    }
+  }
+  $messages = _bioland_grant_role_permissions($matrix);
+  return empty($messages)
+    ? t('auto allow embed origins already granted.')
+    : implode(' ', array_map('strval', $messages));
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Role & Permission Management

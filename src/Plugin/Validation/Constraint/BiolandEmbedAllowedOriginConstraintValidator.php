@@ -5,6 +5,7 @@ namespace Drupal\bioland\Plugin\Validation\Constraint;
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
@@ -20,13 +21,18 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
    */
   public const SETTINGS_PATH = '/admin/config/bioland/settings/front-end/general';
 
-  public function __construct(protected ConfigFactoryInterface $configFactory) {}
+  /**
+   * Lets a user save an embed on an unlisted host, adding it to the list.
+   */
+  public const AUTO_ALLOW_PERMISSION = 'auto allow embed origins';
+
+  public function __construct(protected ConfigFactoryInterface $configFactory, protected ?AccountInterface $currentUser = NULL) {}
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static($container->get('config.factory'));
+    return new static($container->get('config.factory'), $container->get('current_user'));
   }
 
   /**
@@ -35,7 +41,8 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
   public function validate(mixed $items, Constraint $constraint): void {
     $entries = self::entries($this->configFactory->get('bioland.settings'));
     foreach ($items ?? [] as $delta => $item) {
-      $violation = self::violation((string) ($item->url ?? ''), $entries, $constraint);
+      $url = (string) ($item->url ?? '');
+      $violation = self::violation($url, self::entriesFor($url, $entries, $this->currentUser), $constraint);
       if ($violation === NULL) {
         continue;
       }
@@ -53,6 +60,19 @@ class BiolandEmbedAllowedOriginConstraintValidator extends ConstraintValidator i
   public static function entries(?object $config): array {
     $entries = $config ? $config->get('embed.allowed_origins') : NULL;
     return is_array($entries) ? $entries : [];
+  }
+
+  /**
+   * The entries a URL is checked against for an account.
+   *
+   * A user with AUTO_ALLOW_PERMISSION may save a URL on an unlisted host;
+   * bioland_media_presave() adds its origin to the list on save.
+   */
+  public static function entriesFor(string $url, array $entries, ?AccountInterface $account): array {
+    if ($account === NULL || !$account->hasPermission(self::AUTO_ALLOW_PERMISSION)) {
+      return $entries;
+    }
+    return BiolandEmbedAllowlist::withAutoEntry($url, $entries) ?? $entries;
   }
 
   /**
