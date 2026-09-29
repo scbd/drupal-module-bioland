@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9101()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9103()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -313,14 +313,14 @@ class SearchApiConvergenceHookTest extends TestCase {
       'bioland_update_9097() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
 
-    // bioland_update_9101() (BL-784 follow-up: restores the media bulk
+    // bioland_update_9103() (BL-784 follow-up: restores the media bulk
     // actions) is now the highest-numbered hook, so it must converge too.
     $viewsFile = $this->moduleRoot() . '/includes/bioland.install.views.inc';
     $this->assertFileExists($viewsFile);
     $this->assertMatchesRegularExpression(
-      '/function\s+bioland_update_9101\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      '/function\s+bioland_update_9103\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
       file_get_contents($viewsFile),
-      'bioland_update_9101() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+      'bioland_update_9103() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
   }
 
@@ -337,9 +337,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9101,
+      9103,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9101() now holds that role (it restores the BL-784 media bulk actions and re-applies the canonical v2 config after the corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9103() now holds that role (it restores the BL-784 media bulk actions and re-applies the canonical v2 config after the corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 
