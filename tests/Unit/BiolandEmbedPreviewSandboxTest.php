@@ -50,7 +50,7 @@ class BiolandEmbedPreviewSandboxTest extends TestCase {
   /**
    * Rendered markup shaped like the iframe module's template.
    */
-  private const RENDERED = '<div><h3 class="iframe_title">Report</h3><style type="text/css">.a{}</style><iframe src="https://app.powerbi.com/view?r=1" title="Report" allowfullscreen>Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a></iframe></div>';
+  private const RENDERED = "<div><h3 class=\"iframe_title\">Report</h3><style type=\"text/css\">.a{}</style>\n<iframe src=\"https://app.powerbi.com/view?r=1\" title=\"Report\" allowfullscreen>\n  Your browser does not support iframes, but you can visit\n  <a href=\"https://app.powerbi.com/view?r=1\">Report</a>\n</iframe></div>";
 
   /**
    * A matched frame gets the trusted post_render callback.
@@ -66,9 +66,16 @@ class BiolandEmbedPreviewSandboxTest extends TestCase {
    */
   public function testFallbackContentIsStripped(): void {
     $out = (string) BiolandEmbedPreviewSandbox::stripIframeFallback(self::RENDERED, []);
-    $this->assertSame(str_replace('>Your browser does not support iframes, but you can visit <a href="https://app.powerbi.com/view?r=1">Report</a></iframe>', '></iframe>', self::RENDERED), $out);
-    $this->assertStringContainsString('<h3 class="iframe_title">Report</h3>', $out);
+    $this->assertSame("<div><h3 class=\"iframe_title\">Report</h3><style type=\"text/css\">.a{}</style>\n<iframe src=\"https://app.powerbi.com/view?r=1\" title=\"Report\" allowfullscreen></iframe></div>", $out);
     $this->assertStringNotContainsString('<a ', $out);
+  }
+
+  /**
+   * An uppercase multi-line tag pair is stripped too.
+   */
+  public function testUppercaseFrameIsStripped(): void {
+    $html = "<div><IFRAME src=\"https://x.example/\">\n  Fallback\n  <a href=\"https://x.example/\">x</a>\n</IFRAME></div>";
+    $this->assertSame('<div><IFRAME src="https://x.example/"></IFRAME></div>', (string) BiolandEmbedPreviewSandbox::stripIframeFallback($html, []));
   }
 
   /**

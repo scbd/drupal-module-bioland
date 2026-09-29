@@ -106,7 +106,7 @@ final class BiolandEmbedPreviewSandbox implements TrustedCallbackInterface {
    *
    * A #post_render callback: receives the rendered markup and the element.
    */
-  public static function stripIframeFallback($children, array $element = []) {
+  public static function stripIframeFallback(mixed $children, array $element): Markup {
     $stripped = preg_replace('#(<iframe\b[^>]*>).*?(</iframe\s*>)#is', '$1$2', (string) $children);
     return Markup::create($stripped ?? (string) $children);
   }
