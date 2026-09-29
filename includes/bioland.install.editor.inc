@@ -1402,3 +1402,28 @@ function bioland_update_9107() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * Re-runs the media library type filter removal with the real filter key.
+ *
+ * BL-1272. bioland_update_9107() looked for a filter keyed "type", but the
+ * Views UI keys the Media type filter by its field ("bundle"), so the picker
+ * still listed nothing for the embed type. The helper now matches on the
+ * field, and sites already past 9107 need this hook to run it again. 9108
+ * (BL-1274) and 9109 (BL-1276) are taken on the dev branch, hence the gap.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9110() {
+  $messages = [];
+  $messages[] = _bioland_remove_media_library_type_filter();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
