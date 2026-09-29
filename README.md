@@ -519,6 +519,58 @@ Translation default creation activities are logged to the 'bioland' log channel.
 - Multiple languages configured on the site
 - Translatable entity types configured on the site
 
+## URL screenshots
+
+BL-1191: "Related websites" nodes (content type field `field_type_placement`
+tid 13) get an automatic screenshot of the linked site's first screen
+(1280x800, WebP) attached as a media image, via ConvertAPI.
+
+- **Requires** the `convertapi/convertapi-php` library
+  (`composer require convertapi/convertapi-php --with-all-dependencies`) and
+  the `CONVERT_API_SECRET` environment variable (or
+  `$settings['bioland_convert_api_secret']` in `settings.php`). The secret is
+  never stored in config, exported, or logged; a missing value shows as a
+  requirements-page warning, and a missing library as a requirements-page
+  error.
+- **Toggle**: System Functions tab, "Automatically screenshot 'Related
+  websites' links" (`bioland.settings:enable_url_screenshot`, default
+  enabled).
+- **Trigger**: saving a qualifying node with a URL (on insert), or changing
+  the URL on an existing one (on update). The fetch runs from
+  `BiolandUrlScreenshotService::destruct()`, called by Drupal's
+  `needs_destruction` kernel subscriber right after the editor's response is
+  flushed - never inside the save request itself. Under the built-in PHP
+  server or drush the response is not fastcgi-flushed, so the call is
+  effectively synchronous there.
+- **Retry path**: the `bioland_url_screenshot` queue (drained by cron, or
+  `drush queue:run bioland_url_screenshot`) is the fallback for an
+  in-request attempt that failed transiently (ConvertAPI 429/5xx) or never
+  ran (CLI, a fatal error mid-request). `BiolandUrlScreenshotWorker` retries
+  a transient failure up to 3 attempts before giving up; a permanent failure
+  (any other 4xx) is logged and dropped immediately.
+- **ConvertAPI endpoints used**: [HTML to JPG](https://www.convertapi.com/html-to-jpg)
+  (`ImageWidth`/`ImageHeight` render exactly the requested viewport - there
+  is no separate "viewport" parameter and no full-page mode) chained into
+  [JPG to WebP](https://www.convertapi.com/jpg-to-webp) by the stored file
+  URL, so the JPG is never re-uploaded.
+- The screenshot is attached to the node's existing Attachments field
+  (`field_attachments`) at delta 0, so it becomes the record's main image;
+  older items are kept (deleting superseded screenshots is out of scope).
+  No extra field is created; `bioland_update_9090()` removes the
+  `field_website_image` field an earlier revision of this feature added.
+- **Title and description fill**: on the node form, when the editor leaves
+  the URL field with a valid http(s) URL while the type is Related websites,
+  `js/bioland-url-metadata-1-1-8.js` asks `GET /bioland/url-metadata`
+  (`BiolandUrlMetadataController`, node-form permission + CSRF token, 30
+  lookups/minute/user) for the site's `og:title`/`<title>` and
+  `og:description`/meta description, and writes them into Title and Body.
+  A field is only written while empty or still holding the previous fill,
+  so typed text is never overwritten. The fetch is SSRF-guarded: public
+  addresses only, connection pinned to the checked IP (no proxy), redirects
+  re-checked (max 3), 6 s total across all hops, 2 MB abort cap. Refused
+  addresses are logged to the `bioland` channel (uid and host only). Same
+  toggle as the screenshot.
+
 ## Troubleshooting
 
 ### Additional Fields Not Showing

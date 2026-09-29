@@ -435,3 +435,54 @@ function bioland_update_9077() {
 
   return implode(' ', array_map('strval', $messages));
 }
+
+/**
+ * BL-1191: removes the field_website_image field an earlier revision of this
+ * feature created on node.content. Screenshots attach to the existing
+ * Attachments field (field_attachments) instead, so the extra field must not
+ * exist. Idempotent: a no-op when the field was never created.
+ *
+ * @return string
+ *   A plain-string status message (no t() - callers include update hooks).
+ */
+function _bioland_remove_website_image_field() {
+  $field_storage = \Drupal\field\Entity\FieldStorageConfig::loadByName('node', 'field_website_image');
+  if (!$field_storage) {
+    return 'No field_website_image field to remove.';
+  }
+  // Deleting the storage also deletes every FieldConfig instance and drops
+  // the field from the form and view displays.
+  $field_storage->delete();
+  return 'Removed the obsolete field_website_image field from the Content content type.';
+}
+
+/**
+ * BL-1191: website screenshot config default, ConvertAPI requirement, and
+ * removal of the obsolete field_website_image field.
+ *
+ * Hook number 9089 is reserved by open PR #65 (BL-917); 9090/9091 were
+ * pre-assigned to the parallel BL-1191/BL-1192 branches, so this hook is
+ * deliberately 9090, not the next-plus-one from the recount.
+ */
+function bioland_update_9090() {
+  if (!class_exists('\\ConvertApi\\ConvertApi')) {
+    throw new \Drupal\Core\Utility\UpdateException('convertapi/convertapi-php is not installed; run composer require convertapi/convertapi-php --with-all-dependencies');
+  }
+
+  $messages = [];
+  $messages[] = _bioland_remove_website_image_field();
+
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('enable_url_screenshot') === NULL) {
+    $config->set('enable_url_screenshot', TRUE)->save();
+    $messages[] = 'Seeded the website screenshot switch (enable_url_screenshot) as enabled.';
+  }
+  else {
+    $messages[] = 'Website screenshot switch already present; left untouched.';
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}

@@ -137,4 +137,28 @@ interface ContentEntityInterface {
    */
   public function save();
 
+  /**
+   * Gets the bundle of the entity.
+   *
+   * @return string
+   *   The bundle name.
+   */
+  public function bundle();
+
+  /**
+   * Gets the label of the entity.
+   *
+   * @return string|null
+   *   The entity label.
+   */
+  public function label();
+
+  /**
+   * Gets the entity owner's user ID.
+   *
+   * @return int|null
+   *   The owner's user ID.
+   */
+  public function getOwnerId();
+
 }

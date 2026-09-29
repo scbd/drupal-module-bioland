@@ -48,6 +48,11 @@ class Drupal
     return new class {
       public function get($key)
       {
+        if ($key === 'enable_url_screenshot') {
+          // BL-1191: keep the website-screenshot requirements check inert
+          // here; it has its own test coverage elsewhere.
+          return FALSE;
+        }
         if ($key !== 'google_analytics_enabled') {
           throw new RuntimeException('Unexpected configuration key.');
         }

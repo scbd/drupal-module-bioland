@@ -144,3 +144,15 @@ bioland.menu_link_component.add:
     parameters:
       menu:
         type: 'entity:menu'
+
+# BL-1191: title/description lookup for the Related websites URL field.
+bioland.url_metadata:
+  path: '/bioland/url-metadata'
+  defaults:
+    _controller: '\Drupal\bioland\Controller\BiolandUrlMetadataController::lookup'
+  methods: [GET]
+  requirements:
+    _permission: 'create content content+edit own content content+edit any content content'
+    _csrf_token: 'TRUE'
+  options:
+    no_cache: TRUE

@@ -59,6 +59,20 @@ class BiolandSystemFunctionsForm extends BiolandSettingsFormBase {
       '#markup' => '<p>' . $this->t('Clears all cached data from Drupal. This includes page caches, render caches, and compiled templates. Use this when you see outdated content or after making configuration changes that are not reflected on the site. Note, this does not affect CDN cache, browser cache, or middleware API wrapper cache.') . '</p>',
     ];
 
+    // BL-1191: website screenshot toggle.
+    $form['system_functions']['url_screenshot_section'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Website Screenshots'),
+      '#collapsible' => FALSE,
+    ];
+
+    $form['system_functions']['url_screenshot_section']['enable_url_screenshot'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically screenshot "Related websites" links'),
+      '#description' => $this->t('When enabled, saving a Related websites node with a URL fetches a screenshot of that URL via ConvertAPI and attaches it as the media image. Requires the CONVERT_API_SECRET environment variable to be set.'),
+      '#default_value' => $config->get('enable_url_screenshot') !== FALSE,
+    ];
+
     $form['system_functions']['cache_section']['rebuild_cache'] = [
       '#type' => 'submit',
       '#value' => $this->t('Rebuild Drupal Cache'),
@@ -215,6 +229,7 @@ class BiolandSystemFunctionsForm extends BiolandSettingsFormBase {
     $entity_types = array_filter($values['entity_types'] ?? []);
 
     $config
+      ->set('enable_url_screenshot', $values['enable_url_screenshot'] ?? FALSE)
       ->set('translation.auto_create', $values['auto_create'] ?? FALSE)
       ->set('translation.use_all_languages', $values['use_all_languages'] ?? TRUE)
       ->set('translation.target_languages', array_values($target_languages))

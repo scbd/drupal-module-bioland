@@ -26,6 +26,15 @@ auto_summary:
     - core/drupal
     - bioland/debug_logger
 
+url_metadata:
+  js:
+    js/bioland-url-metadata-1-1-8.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - bioland/debug_logger
+
 help_comments:
   js:
     js/bioland-help-comments-1-1-8.js: {}
