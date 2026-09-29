@@ -40,6 +40,16 @@ interface LoggerChannelInterface {
   public function info($message, array $context = []);
 
   /**
+   * Logs a notice message.
+   *
+   * @param string $message
+   *   The log message.
+   * @param array $context
+   *   The context.
+   */
+  public function notice($message, array $context = []);
+
+  /**
    * Logs a warning message.
    *
    * @param string $message

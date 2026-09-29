@@ -13,10 +13,10 @@
 (function (Drupal, once) {
   'use strict';
 
-  var URL_SELECTOR = 'input[name="field_url[0][uri]"]';
-  var TITLE_SELECTOR = 'input[name="title[0][value]"]';
-  var BODY_SELECTOR = 'textarea[name="body[0][value]"]';
-  var TYPE_SELECTOR = '#edit-field-type-placement';
+  const URL_SELECTOR = 'input[name="field_url[0][uri]"]';
+  const TITLE_SELECTOR = 'input[name="title[0][value]"]';
+  const BODY_SELECTOR = 'textarea[name="body[0][value]"]';
+  const TYPE_SELECTOR = '#edit-field-type-placement';
 
   /**
    * Whether a value is an absolute http(s) URL with a host.
@@ -29,7 +29,7 @@
    */
   function isLookupUrl(value) {
     try {
-      var parsed = new URL(value);
+      const parsed = new URL(value);
       return (parsed.protocol === 'http:' || parsed.protocol === 'https:') && parsed.hostname !== '';
     }
     catch (e) {
@@ -41,7 +41,7 @@
    * Escapes text for use inside an HTML paragraph.
    */
   function escapeHtml(text) {
-    var div = document.createElement('div');
+    const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
   }
@@ -50,15 +50,15 @@
    * Returns the CKEditor 5 instance bound to a textarea, if any.
    */
   function editorFor(textarea) {
-    var instances = Drupal.CKEditor5Instances;
+    const instances = Drupal.CKEditor5Instances;
     if (!textarea || !instances) {
       return null;
     }
-    var id = textarea.getAttribute('data-ckeditor5-id');
+    const id = textarea.getAttribute('data-ckeditor5-id');
     if (id && instances.has(id)) {
       return instances.get(id);
     }
-    var found = null;
+    let found = null;
     instances.forEach(function (instance) {
       if (instance.sourceElement === textarea) {
         found = instance;
@@ -83,7 +83,7 @@
     if (value === '') {
       return;
     }
-    var current = io.get().trim();
+    const current = io.get().trim();
     if (current === '' || current === (state[key] || '')) {
       io.set(value);
       state[key] = value;
@@ -94,7 +94,7 @@
    * Applies a lookup result to the title and body fields.
    */
   function apply(form, data, state) {
-    var title = form.querySelector(TITLE_SELECTOR);
+    const title = form.querySelector(TITLE_SELECTOR);
     if (title) {
       fill({
         get: function () { return title.value; },
@@ -102,9 +102,9 @@
       }, data.title || '', state, 'title');
     }
 
-    var body = form.querySelector(BODY_SELECTOR);
-    var description = data.description ? '<p>' + escapeHtml(data.description) + '</p>' : '';
-    var editor = editorFor(body);
+    const body = form.querySelector(BODY_SELECTOR);
+    const description = data.description ? '<p>' + escapeHtml(data.description) + '</p>' : '';
+    const editor = editorFor(body);
     if (editor) {
       fill({
         get: function () { return editor.getData(); },
@@ -121,20 +121,20 @@
 
   Drupal.behaviors.biolandUrlMetadata = {
     attach: function (context, settings) {
-      var config = (settings && settings.bioland) || {};
+      const config = (settings && settings.bioland) || {};
       if (!config.urlMetadataEndpoint) {
         return;
       }
-      var logger = window.biolandGetLogger ? window.biolandGetLogger('urlMetadata', config) : {log: function () {}};
+      const logger = window.biolandGetLogger ? window.biolandGetLogger('urlMetadata', config) : {log: function () {}};
 
       once('bioland-url-metadata', URL_SELECTOR, context).forEach(function (input) {
-        var form = input.form || document;
-        var state = {};
-        var requested = '';
+        const form = input.form || document;
+        const state = {};
+        let requested = '';
 
         input.addEventListener('change', function () {
-          var value = input.value.trim();
-          var type = document.querySelector(TYPE_SELECTOR);
+          const value = input.value.trim();
+          const type = document.querySelector(TYPE_SELECTOR);
           if (!type || Number(type.value) !== Number(config.relatedWebsitesTid)) {
             return;
           }
@@ -142,12 +142,17 @@
             return;
           }
           requested = value;
-          var separator = config.urlMetadataEndpoint.indexOf('?') === -1 ? '?' : '&';
+          const separator = config.urlMetadataEndpoint.indexOf('?') === -1 ? '?' : '&';
           fetch(config.urlMetadataEndpoint + separator + 'url=' + encodeURIComponent(value), {
             credentials: 'same-origin',
             headers: {Accept: 'application/json'}
           })
-            .then(function (response) { return response.ok ? response.json() : null; })
+            .then(function (response) {
+              if (!response.ok) {
+                throw new Error('HTTP ' + response.status);
+              }
+              return response.json();
+            })
             .then(function (data) {
               // A newer URL was typed while this one was in flight.
               if (data && input.value.trim() === value) {
@@ -155,6 +160,10 @@
               }
             })
             .catch(function (error) {
+              // Let the editor retry the same URL (e.g. after a timeout).
+              if (requested === value) {
+                requested = '';
+              }
               logger.log('URL metadata lookup failed:', error);
             });
         });

@@ -10,6 +10,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
+use Drupal\bioland\BiolandUrlScreenshotPolicy;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -269,9 +271,11 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // BL-1191: fill title and description from a Related websites URL.
   if (\Drupal::config('bioland.settings')->get('enable_url_screenshot') !== FALSE) {
     $form['#attached']['library'][] = 'bioland/url_metadata';
-    // toString() without bubbleable metadata embeds the real CSRF token.
-    $form['#attached']['drupalSettings']['bioland']['urlMetadataEndpoint'] = \Drupal\Core\Url::fromRoute('bioland.url_metadata')->toString();
-    $form['#attached']['drupalSettings']['bioland']['relatedWebsitesTid'] = \Drupal\bioland\BiolandUrlScreenshotPolicy::RELATED_WEBSITES_TID;
+    // toString() without bubbleable metadata embeds the real CSRF token, which
+    // is per session, so the form must not be cached across sessions.
+    $form['#attached']['drupalSettings']['bioland']['urlMetadataEndpoint'] = Url::fromRoute('bioland.url_metadata')->toString();
+    $form['#attached']['drupalSettings']['bioland']['relatedWebsitesTid'] = BiolandUrlScreenshotPolicy::RELATED_WEBSITES_TID;
+    $form['#cache']['contexts'][] = 'session';
   }
 
   // Ensure the advanced sidebar exists for our custom elements.
