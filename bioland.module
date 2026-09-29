@@ -9,6 +9,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Service\BiolandMediaImageEditor;
+use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
 
 /**
@@ -606,6 +608,12 @@ function bioland_module_implements_alter(&$implementations, $hook) {
     unset($implementations['bioland']);
     $implementations['bioland'] = $group;
   }
+
+  // bioland_media_presave() must run BEFORE toast_image_editor_media_presave()
+  // so an invalid edited image is dropped before that module writes it.
+  if ($hook === 'media_presave' && isset($implementations['bioland'])) {
+    $implementations = ['bioland' => $implementations['bioland']] + $implementations;
+  }
 }
 
 /**
@@ -871,4 +879,173 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * BL-917: the toast image editor under the media image field, available as
+ * soon as a file is uploaded and behind an "Edit image" button afterwards.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  \Drupal::service('bioland.media_image_editor')->alterWidget($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for media_form.
+ *
+ * Rejects an edited toast_image_editor image that is not a real image of an
+ * allowed type and size (BL-917). Added whenever the module is on, without
+ * looking for its hidden field in $form, so the check never depends on the
+ * order the two form alters run in.
+ *
+ * The #after_build runs after toast_image_editor's own form alter (which
+ * comes later than this one) and swaps its bottom-of-form fieldset for the
+ * one bioland placed under the image widget.
+ */
+function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
+    $form['#validate'][] = '_bioland_toast_image_editor_validate';
+    $form['#after_build'][] = '_bioland_media_image_editor_after_build';
+  }
+}
+
+/**
+ * After-build callback for media forms: finishes the image editor placement.
+ *
+ * @see \Drupal\bioland\Service\BiolandMediaImageEditor::afterBuild()
+ */
+function _bioland_media_image_editor_after_build(array $form, FormStateInterface $form_state) {
+  return \Drupal::service('bioland.media_image_editor')->afterBuild($form, $form_state);
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_focal_point.
+ *
+ * A hero form display that uses Focal Point's widget gets the same editor.
+ */
+function bioland_field_widget_complete_image_focal_point_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  bioland_field_widget_complete_image_image_form_alter($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Form validation handler: checks the submitted toast_image_editor image.
+ *
+ * Reads raw user input, as toast_image_editor does; its hidden field has a
+ * fixed empty #value, so the processed form value is always ''.
+ */
+function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $form_state) {
+  $payloads = BiolandToastImageGuard::payloads($form_state->getUserInput());
+  if (!$payloads) {
+    return;
+  }
+
+  // Validate against the field the editor targets, the same one presave
+  // writes (BiolandMediaImageEditor::editableField()).
+  $media = $form_state->getFormObject()->getEntity();
+  $field = $media instanceof MediaInterface ? \Drupal::service('bioland.media_image_editor')->editableField($media) : NULL;
+  $extension = _bioland_media_image_extension($media, $field);
+  foreach ($payloads as $payload) {
+    $reason = BiolandToastImageGuard::validate($payload, $extension);
+    if ($reason !== NULL) {
+      $form_state->setErrorByName(BiolandToastImageGuard::FIELD, t('The edited image was not saved: @reason.', ['@reason' => $reason]));
+      return;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for media.
+ *
+ * Runs before toast_image_editor_media_presave() (ordering is pinned in
+ * bioland_module_implements_alter()) on the same request object it reads.
+ * Removes an invalid payload, which also covers saves that skip the media
+ * form validation, and re-encodes a valid one to the media file's format.
+ */
+function bioland_media_presave(EntityInterface $media) {
+  if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
+    return;
+  }
+
+  /** @var \Drupal\bioland\Service\BiolandMediaImageEditor $editor */
+  $editor = \Drupal::service('bioland.media_image_editor');
+  $field = $media instanceof MediaInterface ? $editor->editableField($media) : NULL;
+
+  $user = \Drupal::currentUser();
+  $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
+  // The widget input can name any permanent fid; only the media's own file
+  // (stored, or the user's own temporary upload) may be overwritten. This
+  // gate covers the contrib write on image sources too.
+  if ($allowed && $field !== NULL) {
+    $file = $media->get($field)->isEmpty() ? NULL : $media->get($field)->entity;
+    $original = $media->original ?? NULL;
+    $stored_fid = $original && !$original->get($field)->isEmpty() ? (int) $original->get($field)->target_id : NULL;
+    $allowed = $file instanceof FileInterface && BiolandMediaImageEditor::fileEditable(
+      $stored_fid, (int) $file->id(), $file->isTemporary(), (int) $file->getOwnerId(), (int) $user->id());
+  }
+  $post = \Drupal::request()->request;
+  $dropped = BiolandToastImageGuard::sanitize($post, _bioland_media_image_extension($media, $field), $allowed);
+  foreach ($dropped as $reason) {
+    \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
+      '@id' => $media->id(),
+      '@reason' => $reason,
+    ]);
+  }
+
+  // toast_image_editor only writes a media type's image *source* field. When
+  // the edited field is another image field (remote_video, document), write
+  // the sanitized payload here and take it off the request so nothing else
+  // acts on it.
+  if ($field === NULL || $editor->contribWrites($media, $field)) {
+    return;
+  }
+  foreach (BiolandToastImageGuard::payloads($post->all()) as $key => $payload) {
+    $post->remove($key);
+    if ($editor->writeEditedImage($media, $field, $payload)) {
+      \Drupal::messenger()->addStatus(t('Your image changes have been saved.'));
+    }
+    else {
+      \Drupal::messenger()->addError(t('The edited image could not be saved.'));
+    }
+  }
+}
+
+/**
+ * Returns the lowercase extension of the file in a media image field.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $media
+ *   The media entity.
+ * @param string|null $field
+ *   The image field the editor targets; NULL falls back to the source field.
+ *
+ * @return string
+ *   The extension, or '' when the field holds no file.
+ */
+function _bioland_media_image_extension(EntityInterface $media, ?string $field) {
+  if ($field === NULL) {
+    return _bioland_media_source_extension($media);
+  }
+  if (!$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
+}
+
+/**
+ * Returns the lowercase extension of a media entity's source file.
+ *
+ * @return string
+ *   The extension, or '' when the media has no source file.
+ */
+function _bioland_media_source_extension(EntityInterface $media) {
+  if (!method_exists($media, 'getSource')) {
+    return '';
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($field === '' || !$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
 }

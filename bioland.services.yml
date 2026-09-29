@@ -50,3 +50,25 @@ services:
     arguments: ['@bioland.component_registry', '@bioland.component_menu_form_mode', '@redirect.destination']
     calls:
       - [setStringTranslation, ['@string_translation']]
+
+  # BL-917: toast_image_editor under every media image field (see the class
+  # docblock for what the contrib module does not do on its own).
+  bioland.media_image_editor:
+    class: Drupal\bioland\Service\BiolandMediaImageEditor
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@module_handler'
+      - '@config.factory'
+      - '@file_url_generator'
+      - '@file_system'
+      - '@datetime.time'
+      - '@logger.factory'
+      - '@request_stack'
+    calls:
+      - [setStringTranslation, ['@string_translation']]
+
+  bioland.route_subscriber:
+    class: Drupal\bioland\Routing\BiolandRouteSubscriber
+    tags:
+      - { name: event_subscriber }

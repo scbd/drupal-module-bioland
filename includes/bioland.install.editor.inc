@@ -480,6 +480,144 @@ function _bioland_configure_full_html_editor_toolbar() {
   return implode("\n", $messages);
 }
 
+/**
+ * Contrib modules Bioland enables when the codebase provides them (BL-917).
+ *
+ * All five ship in the drupal-docker-wrapper image from 11.4.7-v7.
+ *
+ * @return string[]
+ *   Module machine names.
+ */
+function _bioland_contrib_feature_modules() {
+  return [
+    'toast_image_editor',
+    'ckeditor_media_resizer',
+    'llms_txt',
+    'ckeditor5_fullscreen',
+    'ckeditor5_icons',
+  ];
+}
+
+/**
+ * Enable the contrib feature modules that are present but not yet enabled.
+ *
+ * Already-enabled modules are left alone, so this is safe to run more than
+ * once. A module missing from the codebase (an image older than
+ * drupal-docker-wrapper 11.4.7-v7), or one whose install throws (for example
+ * a missing dependency), is skipped, logged and reported rather than failing
+ * the run. bioland_requirements() keeps flagging it on the status report
+ * until someone enables it by hand.
+ *
+ * @return string
+ *   Plain-text summary. Not t(): translation is not dependable mid-update.
+ */
+function _bioland_enable_contrib_feature_modules() {
+  $module_handler = \Drupal::moduleHandler();
+  // reset() first: the cached list can predate the image that added these
+  // modules (updb before cache rebuild), which would skip them for good.
+  $module_list = \Drupal::service('extension.list.module')->reset();
+  $installer = \Drupal::service('module_installer');
+  $logger = \Drupal::logger('bioland');
+
+  $installed = [];
+  $enabled = [];
+  $missing = [];
+  $failed = [];
+  foreach (_bioland_contrib_feature_modules() as $module) {
+    if ($module_handler->moduleExists($module)) {
+      $enabled[] = $module;
+      continue;
+    }
+    if (!$module_list->exists($module)) {
+      $missing[] = $module;
+      $logger->warning('Module @module is not in the codebase; skipped enabling it (needs drupal-docker-wrapper 11.4.7-v7 or higher).', ['@module' => $module]);
+      continue;
+    }
+    // One module per call: install() resolves every listed module's
+    // dependencies up front, so one bad module would block all of them.
+    try {
+      $installer->install([$module]);
+      $installed[] = $module;
+    }
+    catch (\Exception $e) {
+      $failed[] = $module . ' (' . $e->getMessage() . ')';
+      $logger->warning('Could not enable @module: @message', ['@module' => $module, '@message' => $e->getMessage()]);
+    }
+  }
+
+  $messages = [];
+  if ($installed) {
+    $messages[] = 'Enabled: ' . implode(', ', $installed) . '.';
+  }
+  if ($enabled) {
+    $messages[] = 'Already enabled: ' . implode(', ', $enabled) . '.';
+  }
+  if ($missing) {
+    $messages[] = 'Not in the codebase, skipped (needs drupal-docker-wrapper 11.4.7-v7 or higher): ' . implode(', ', $missing) . '.';
+  }
+  if ($failed) {
+    $messages[] = 'Failed to enable, skipped: ' . implode('; ', $failed) . '.';
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Turn on ckeditor_media_resizer's "media_resize" filter on every text format
+ * that embeds media.
+ *
+ * The module only adds the editor handles: they store the chosen size as
+ * data-media-width on <drupal-media>, and nothing reaches the rendered HTML
+ * (so the headless front end) until the filter turns it into inline styles.
+ * The module does not enable its own filter, so a resized image rendered at
+ * its image style's size. BL-917.
+ *
+ * The filter must run after media_embed, which swaps <drupal-media> for the
+ * rendered media. When (re)configured it is weighted after every other
+ * filter, so no later filter can strip the styles it writes. Formats without
+ * an enabled media_embed are left alone, and a format already running it
+ * after media_embed is unchanged.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_enable_media_resize_filter() {
+  if (!\Drupal::moduleHandler()->moduleExists('ckeditor_media_resizer')) {
+    return 'ckeditor_media_resizer is not enabled; skipped the media_resize filter.';
+  }
+
+  $updated = [];
+  $formats = \Drupal::entityTypeManager()->getStorage('filter_format')->loadMultiple();
+  foreach ($formats as $format) {
+    $filters = $format->get('filters') ?: [];
+    if (empty($filters['media_embed']['status'])) {
+      continue;
+    }
+    $resize = $filters['media_resize'] ?? [];
+    $embed_weight = (int) ($filters['media_embed']['weight'] ?? 0);
+    if (!empty($resize['status']) && (int) ($resize['weight'] ?? 0) > $embed_weight) {
+      continue;
+    }
+
+    $weights = array_map(fn($filter) => (int) ($filter['weight'] ?? 0), $filters);
+    unset($weights['media_resize']);
+    $format->setFilterConfig('media_resize', [
+      'status' => TRUE,
+      'weight' => max($weights) + 1,
+      'settings' => [],
+    ]);
+    $format->save();
+    $updated[] = $format->id();
+  }
+
+  if (!$updated) {
+    return 'media_resize filter already runs after media_embed on every media format.';
+  }
+  \Drupal::logger('bioland')->notice('Enabled the media_resize filter on: @formats.', ['@formats' => implode(', ', $updated)]);
+  return 'Enabled the media_resize filter on: ' . implode(', ', $updated) . '.';
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS
@@ -550,4 +688,56 @@ function bioland_update_9034() {
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * Enable the toast_image_editor, ckeditor_media_resizer, llms_txt and
+ * CKEditor 5 contrib modules.
+ *
+ * BL-917. See _bioland_enable_contrib_feature_modules() for the skip rules.
+ *
+ * Numbered 9096 because the COP-17 integration branch (bsl-cop-17-dev)
+ * already carries 9084-9095 from sibling PRs (BL-815 through BL-1206); the
+ * original 9089 sat below those and never ran on a site already past them.
+ * MERGE ORDER: land this after those siblings reach the same branch. Drupal
+ * only runs hooks above a site's stored schema, so a site that records 9096
+ * first would never run a later-merged 9084-9095.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9096() {
+  $messages = [];
+  $messages[] = _bioland_enable_contrib_feature_modules();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Enable ckeditor_media_resizer's media_resize filter on the media formats.
+ *
+ * BL-917. 9096 enabled the module but not its filter, so an image resized in
+ * the editor still rendered at its image style's size on the front end. See
+ * _bioland_enable_media_resize_filter().
+ *
+ * Numbered 9101 because the COP-17 branches already use 9097-9100. As the
+ * highest-numbered hook it must also re-apply the canonical v2 Search API
+ * config (SearchApiConvergenceHookTest).
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9101() {
+  $messages = [];
+  $messages[] = _bioland_enable_media_resize_filter();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }
