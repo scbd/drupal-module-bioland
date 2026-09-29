@@ -58,7 +58,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
       return $builder;
     });
 
-    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory, $account, $frameability);
+    $validator = new BiolandEmbedAllowedOriginConstraintValidator($factory, $account, $frameability ?? $this->createMock(BiolandEmbedFrameability::class));
     $validator->initialize($context);
     $items ??= array_map(fn ($url) => (object) ['url' => $url], $urls);
     $validator->validate($items, new BiolandEmbedAllowedOriginConstraint());
@@ -82,7 +82,7 @@ class BiolandEmbedAllowedOriginConstraintValidatorTest extends TestCase {
   public function testFrameabilityErrorLandsOnUrlField(): void {
     $origins = [['url' => 'https://claude.ai/artifact', 'label' => 'c', 'sandbox' => '']];
     $violations = $this->violations(['https://claude.ai/artifact/1'], $origins, NULL, $this->frameability(1));
-    $this->assertSame([['message' => 'This page cannot be embedded: claude.ai', 'path' => '0.url', 'params' => []]], $violations);
+    $this->assertSame([['message' => 'This page cannot be embedded: @host', 'path' => '0.url', 'params' => ['@host' => 'claude.ai']]], $violations);
     $this->assertSame([], $this->violations(['https://app.powerbi.com/view?r=1'], self::ORIGINS, NULL, $this->frameability(1)));
   }
 

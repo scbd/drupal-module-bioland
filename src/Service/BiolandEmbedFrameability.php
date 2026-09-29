@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class BiolandEmbedFrameability {
 
   const MAX_REDIRECTS = 5;
+  const MAX_HEADER_ECHO = 200;
   const CACHE_SECONDS = 3600;
   const USER_AGENT = 'Mozilla/5.0 (compatible; BiolandEmbedCheck/1.0)';
 
@@ -53,7 +54,7 @@ class BiolandEmbedFrameability {
   }
 
   /**
-   * The cached verdict for a URL: status ok, refused or unverified.
+   * The verdict for a URL (cached unless unverified): status ok, refused or unverified.
    *
    * @return array{status: string, host: string, header: string}
    */
@@ -64,7 +65,11 @@ class BiolandEmbedFrameability {
       return $cached->data;
     }
     $verdict = $this->fetchVerdict($url, $origin);
-    $this->cache->set($cid, $verdict, time() + self::CACHE_SECONDS);
+    // A fail-closed verdict is never cached: a transient timeout must not lock
+    // the editor out for the whole hour.
+    if ($verdict['status'] !== 'unverified') {
+      $this->cache->set($cid, $verdict, time() + self::CACHE_SECONDS);
+    }
     return $verdict;
   }
 
@@ -84,7 +89,8 @@ class BiolandEmbedFrameability {
     }
     $refusal = self::decide($response->getHeader('Content-Security-Policy'), $response->getHeader('X-Frame-Options'), $origin);
     if ($refusal !== NULL) {
-      return ['status' => 'refused', 'header' => $refusal] + $verdict;
+      // The header is remote-controlled text that lands in the error message.
+      return ['status' => 'refused', 'header' => mb_strimwidth($refusal, 0, self::MAX_HEADER_ECHO, '...')] + $verdict;
     }
     $status = $response->getStatusCode();
     if ($status < 200 || $status >= 300) {
@@ -210,8 +216,14 @@ class BiolandEmbedFrameability {
     if ($scheme !== '' && strcasecmp($scheme, (string) ($site['scheme'] ?? '')) !== 0) {
       return FALSE;
     }
-    if ($port !== '' && $port !== '*' && (int) $port !== ($site['port'] ?? ($site['scheme'] === 'https' ? 443 : 80))) {
+    $default = strtolower((string) ($site['scheme'] ?? '')) === 'https' ? 443 : 80;
+    $sitePort = $site['port'] ?? $default;
+    // A source without a port matches only the scheme's default port.
+    if ($port !== '*' && (int) ($port === '' ? $default : $port) !== $sitePort) {
       return FALSE;
+    }
+    if ($host === '*') {
+      return TRUE;
     }
     $siteHost = strtolower((string) ($site['host'] ?? ''));
     $host = strtolower($host);
