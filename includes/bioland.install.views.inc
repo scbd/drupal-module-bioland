@@ -471,13 +471,20 @@ function _bioland_remove_media_library_bundle_field() {
 }
 
 /**
- * Removes the hand-added "type" filter from the media_library widget views.
+ * Removes the hand-added Media type filter from the media_library widget views.
  *
  * BL-1272. Some sites carry a non-exposed Media type filter on the widget and
  * widget_table displays (Document, Hero, Image, Remote video), so the picker
  * lists nothing for the embed type. Core ships no such filter: the opener's
- * contextual "type" argument already scopes the types, so only the filter is
- * removed. Idempotent: a no-op when it is already absent from both displays.
+ * contextual "bundle" argument already scopes the types, so the filter is
+ * removed. The Views UI keys the filter by its field ("bundle", or "bundle_1"
+ * for a duplicate), so filters are matched on the field they query rather
+ * than on their key. On the widget displays an exposed Media type filter
+ * with a stored value is removed too, since Views applies that value on the
+ * first load before the user touches the form; the default display keeps its
+ * exposed filter (core ships one there, with no value) and only loses a
+ * non-exposed one, for sites where the widget displays inherit their filters
+ * from it. Idempotent: a no-op when no such filter remains.
  *
  * @return string
  *   Status message.
@@ -495,17 +502,24 @@ function _bioland_remove_media_library_type_filter() {
 
   try {
     $removed = [];
-    foreach (['widget', 'widget_table'] as $display_id) {
-      $filters = $config->get('display.' . $display_id . '.display_options.filters');
-      if (is_array($filters) && array_key_exists('type', $filters)) {
-        unset($filters['type']);
-        $config->set('display.' . $display_id . '.display_options.filters', $filters);
+    foreach (['default', 'widget', 'widget_table'] as $display_id) {
+      $key = 'display.' . $display_id . '.display_options.filters';
+      $filters = $config->get($key);
+      if (!is_array($filters)) {
+        continue;
+      }
+      $widget = $display_id !== 'default';
+      $kept = array_filter($filters, static function ($filter) use ($widget) {
+        return !_bioland_is_forced_media_type_filter($filter, $widget);
+      });
+      if (count($kept) !== count($filters)) {
+        $config->set($key, $kept);
         $removed[] = $display_id;
       }
     }
 
     if (empty($removed)) {
-      return t('media_library view widget displays already have no type filter.');
+      return t('media_library view displays already have no forced media type filter.');
     }
 
     $config->save();
@@ -515,19 +529,53 @@ function _bioland_remove_media_library_type_filter() {
       \Drupal::service('views.views_data')->clear();
     }
 
-    \Drupal::logger('bioland')->notice('Removed the type filter from media_library view: @displays.', [
+    \Drupal::logger('bioland')->notice('Removed the forced media type filter from media_library view: @displays.', [
       '@displays' => implode(', ', $removed),
     ]);
-    return t('Removed the type filter from media_library view: @displays.', [
+    return t('Removed the forced media type filter from media_library view: @displays.', [
       '@displays' => implode(', ', $removed),
     ]);
   }
   catch (\Exception $e) {
-    \Drupal::logger('bioland')->error('Failed to remove type filter from media_library view: @message', [
+    \Drupal::logger('bioland')->error('Failed to remove the media type filter from media_library view: @message', [
       '@message' => $e->getMessage(),
     ]);
-    return t('Error removing type filter from media_library view: @message', ['@message' => $e->getMessage()]);
+    return t('Error removing the media type filter from media_library view: @message', ['@message' => $e->getMessage()]);
   }
+}
+
+/**
+ * Tells whether a Views filter definition forces a media type set.
+ *
+ * The Views UI stores the media type filter with field "bundle" (plugin
+ * "bundle" on media_field_data); its key may be "bundle", "bundle_1" or a
+ * legacy "type". A filter that is not exposed forces its bundle set on every
+ * query. An exposed one with a stored value forces it on the first load, so
+ * on the widget displays it counts as forced too.
+ *
+ * @param mixed $filter
+ *   A single entry from a display's filters list.
+ * @param bool $exposed_value_is_forced
+ *   TRUE to treat an exposed filter with a non-empty stored value as forced.
+ *
+ * @return bool
+ *   TRUE when the filter forces a media type set.
+ */
+function _bioland_is_forced_media_type_filter($filter, $exposed_value_is_forced = FALSE) {
+  if (!is_array($filter)) {
+    return FALSE;
+  }
+  $field = $filter['field'] ?? $filter['id'] ?? '';
+  $plugin = $filter['plugin_id'] ?? '';
+  $table = $filter['table'] ?? 'media_field_data';
+  $is_type = ($field === 'bundle' || $plugin === 'bundle' || $field === 'type') && $table === 'media_field_data';
+  if (!$is_type) {
+    return FALSE;
+  }
+  if (empty($filter['exposed'])) {
+    return TRUE;
+  }
+  return $exposed_value_is_forced && !empty($filter['value']);
 }
 
 /**

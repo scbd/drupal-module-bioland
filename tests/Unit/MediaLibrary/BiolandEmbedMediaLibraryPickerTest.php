@@ -76,15 +76,36 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
     return $this->configs[$name];
   }
 
-  private function viewWithTypeFilter(bool $with): array {
-    $filters = [
-      'status' => ['id' => 'status'],
-      'name' => ['id' => 'name'],
-      'default_langcode' => ['id' => 'default_langcode'],
-      'langcode' => ['id' => 'langcode'],
+  /**
+   * A media type filter shaped the way the Views UI stores it.
+   */
+  private function mediaTypeFilter(string $key, bool $exposed = FALSE): array {
+    return [
+      'id' => $key,
+      'table' => 'media_field_data',
+      'field' => 'bundle',
+      'plugin_id' => 'bundle',
+      'entity_type' => 'media',
+      'entity_field' => 'bundle',
+      'operator' => 'in',
+      'value' => ['document' => 'document', 'image' => 'image'],
+      'exposed' => $exposed,
     ];
+  }
+
+  private function baseFilters(): array {
+    return [
+      'status' => ['id' => 'status', 'field' => 'status', 'plugin_id' => 'boolean'],
+      'name' => ['id' => 'name', 'field' => 'name', 'plugin_id' => 'string', 'exposed' => TRUE],
+      'default_langcode' => ['id' => 'default_langcode', 'field' => 'default_langcode', 'plugin_id' => 'boolean'],
+      'langcode' => ['id' => 'langcode', 'field' => 'langcode', 'plugin_id' => 'language'],
+    ];
+  }
+
+  private function viewWithTypeFilter(bool $with, string $key = 'bundle'): array {
+    $filters = $this->baseFilters();
     if ($with) {
-      $filters['type'] = ['id' => 'type', 'value' => ['document' => 'document']];
+      $filters[$key] = $this->mediaTypeFilter($key);
     }
     $display = [
       'display_options' => [
@@ -92,7 +113,12 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
         'arguments' => ['bundle' => ['id' => 'bundle']],
       ],
     ];
-    return ['display' => ['widget' => $display, 'widget_table' => $display]];
+    $default = [
+      'display_options' => [
+        'filters' => $this->baseFilters() + ['bundle' => $this->mediaTypeFilter('bundle', TRUE)],
+      ],
+    ];
+    return ['display' => ['default' => $default, 'widget' => $display, 'widget_table' => $display]];
   }
 
   public function testRemovesTypeFilterFromBothDisplays(): void {
@@ -103,12 +129,52 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
     $config = $this->config('views.view.media_library');
     foreach (['widget', 'widget_table'] as $id) {
       $filters = $config->get("display.$id.display_options.filters");
-      $this->assertArrayNotHasKey('type', $filters);
+      $this->assertArrayNotHasKey('bundle', $filters);
       $this->assertSame(['status', 'name', 'default_langcode', 'langcode'], array_keys($filters));
       $this->assertArrayHasKey('bundle', $config->get("display.$id.display_options.arguments"));
     }
+    // The exposed Media type filter on the default display restricts nothing
+    // and must survive.
+    $this->assertArrayHasKey('bundle', $config->get('display.default.display_options.filters'));
     $this->assertTrue($config->saved);
     $this->assertStringContainsString('Removed', $message);
+    $this->assertStringContainsString('widget, widget_table', $message);
+  }
+
+  public function testRemovesTypeFilterStoredUnderDuplicateKey(): void {
+    $this->config('views.view.media_library', $this->viewWithTypeFilter(TRUE, 'bundle_1'));
+
+    _bioland_remove_media_library_type_filter();
+
+    $filters = $this->config('views.view.media_library')->get('display.widget.display_options.filters');
+    $this->assertArrayNotHasKey('bundle_1', $filters);
+    $this->assertSame(['status', 'name', 'default_langcode', 'langcode'], array_keys($filters));
+  }
+
+  public function testRemovesForcedTypeFilterInheritedFromDefaultDisplay(): void {
+    $view = $this->viewWithTypeFilter(FALSE);
+    $view['display']['default']['display_options']['filters']['bundle'] = $this->mediaTypeFilter('bundle');
+    $this->config('views.view.media_library', $view);
+
+    $message = _bioland_remove_media_library_type_filter();
+
+    $config = $this->config('views.view.media_library');
+    $this->assertArrayNotHasKey('bundle', $config->get('display.default.display_options.filters'));
+    $this->assertStringContainsString('default', $message);
+  }
+
+  public function testRemovesExposedTypeFilterWithStoredValueFromWidgetOnly(): void {
+    $view = $this->viewWithTypeFilter(FALSE);
+    $view['display']['widget']['display_options']['filters']['bundle'] = $this->mediaTypeFilter('bundle', TRUE);
+    $this->config('views.view.media_library', $view);
+
+    $message = _bioland_remove_media_library_type_filter();
+
+    $config = $this->config('views.view.media_library');
+    $this->assertArrayNotHasKey('bundle', $config->get('display.widget.display_options.filters'));
+    $this->assertArrayHasKey('bundle', $config->get('display.default.display_options.filters'));
+    $this->assertStringContainsString('widget', $message);
+    $this->assertStringNotContainsString('default', $message);
   }
 
   public function testTypeFilterRemovalIsNoOpWhenAbsent(): void {
@@ -118,6 +184,19 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
 
     $this->assertFalse($this->config('views.view.media_library')->saved);
     $this->assertStringContainsString('already', $message);
+  }
+
+  public function testForcedTypeFilterDetection(): void {
+    $this->assertTrue(_bioland_is_forced_media_type_filter($this->mediaTypeFilter('bundle')));
+    $this->assertTrue(_bioland_is_forced_media_type_filter($this->mediaTypeFilter('bundle_1')));
+    $this->assertTrue(_bioland_is_forced_media_type_filter(['id' => 'type', 'value' => ['document' => 'document']]));
+    $this->assertFalse(_bioland_is_forced_media_type_filter($this->mediaTypeFilter('bundle', TRUE)));
+    $this->assertTrue(_bioland_is_forced_media_type_filter($this->mediaTypeFilter('bundle', TRUE), TRUE));
+    $exposed_empty = ['value' => []] + $this->mediaTypeFilter('bundle', TRUE);
+    $this->assertFalse(_bioland_is_forced_media_type_filter($exposed_empty, TRUE));
+    $this->assertFalse(_bioland_is_forced_media_type_filter(['table' => 'node_field_data'] + $this->mediaTypeFilter('bundle')));
+    $this->assertFalse(_bioland_is_forced_media_type_filter(['id' => 'status', 'field' => 'status', 'plugin_id' => 'boolean']));
+    $this->assertFalse(_bioland_is_forced_media_type_filter('not-an-array'));
   }
 
   public function testTypeFilterRemovalSkipsWhenViewNotFound(): void {
@@ -190,6 +269,9 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
     $hook = substr($source, strpos($source, 'function bioland_update_9107('));
     $this->assertLessThan(strpos($hook, '_bioland_v2_update_search_and_facets_config()'), strpos($hook, '_bioland_remove_media_library_type_filter()'));
     $this->assertLessThan(strpos($hook, '_bioland_v2_update_search_and_facets_config()'), strpos($hook, '_bioland_configure_embed_media_library_display()'));
+    // 9110 re-runs the filter removal for sites already past 9107.
+    $rerun = substr($source, strpos($source, 'function bioland_update_9110('));
+    $this->assertLessThan(strpos($rerun, '_bioland_v2_update_search_and_facets_config()'), strpos($rerun, '_bioland_remove_media_library_type_filter()'));
   }
 
 }
