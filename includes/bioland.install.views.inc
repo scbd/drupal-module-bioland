@@ -471,6 +471,66 @@ function _bioland_remove_media_library_bundle_field() {
 }
 
 /**
+ * Removes the hand-added "type" filter from the media_library widget views.
+ *
+ * BL-1272. Some sites carry a non-exposed Media type filter on the widget and
+ * widget_table displays (Document, Hero, Image, Remote video), so the picker
+ * lists nothing for the embed type. Core ships no such filter: the opener's
+ * contextual "type" argument already scopes the types, so only the filter is
+ * removed. Idempotent: a no-op when it is already absent from both displays.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_remove_media_library_type_filter() {
+  if ($skip = _bioland_require_module('media_library', 'media library type filter removal')) {
+    return $skip;
+  }
+
+  $config = \Drupal::configFactory()->getEditable('views.view.media_library');
+
+  if ($config->isNew()) {
+    return t('View media_library not found; skipped type filter removal.');
+  }
+
+  try {
+    $removed = [];
+    foreach (['widget', 'widget_table'] as $display_id) {
+      $filters = $config->get('display.' . $display_id . '.display_options.filters');
+      if (is_array($filters) && array_key_exists('type', $filters)) {
+        unset($filters['type']);
+        $config->set('display.' . $display_id . '.display_options.filters', $filters);
+        $removed[] = $display_id;
+      }
+    }
+
+    if (empty($removed)) {
+      return t('media_library view widget displays already have no type filter.');
+    }
+
+    $config->save();
+
+    // Clear the views cache so the updated view is recognized.
+    if (\Drupal::hasService('views.views_data')) {
+      \Drupal::service('views.views_data')->clear();
+    }
+
+    \Drupal::logger('bioland')->notice('Removed the type filter from media_library view: @displays.', [
+      '@displays' => implode(', ', $removed),
+    ]);
+    return t('Removed the type filter from media_library view: @displays.', [
+      '@displays' => implode(', ', $removed),
+    ]);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('bioland')->error('Failed to remove type filter from media_library view: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return t('Error removing type filter from media_library view: @message', ['@message' => $e->getMessage()]);
+  }
+}
+
+/**
  * Fixes the media.document media_library view display (BL-1205).
  *
  * Blank grey document cards in the "Add or select media" picker happen
