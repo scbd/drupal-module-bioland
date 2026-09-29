@@ -257,6 +257,61 @@ function _bioland_grant_embed_auto_allow_permission() {
     : implode(' ', array_map('strval', $messages));
 }
 
+/**
+ * Image media permission => embed media permission (BL-1274).
+ *
+ * The image permissions are site configuration, so the rule is "whatever a
+ * role can do with image media it can do with embed media", not a fixed role
+ * list. The revision permissions exist only on some cores; the permission
+ * handler decides which embed names are granted.
+ */
+const BIOLAND_IMAGE_TO_EMBED_MEDIA_PERMISSIONS = [
+  'create image media' => 'create embed media',
+  'edit own image media' => 'edit own embed media',
+  'edit any image media' => 'edit any embed media',
+  'delete own image media' => 'delete own embed media',
+  'delete any image media' => 'delete any embed media',
+  'view any image media revisions' => 'view any embed media revisions',
+  'revert any image media revisions' => 'revert any embed media revisions',
+  'delete any image media revisions' => 'delete any embed media revisions',
+];
+
+/**
+ * Grants each role the embed media permissions matching its image ones.
+ *
+ * BL-1274. Covers every role, anonymous and authenticated included. Never
+ * revokes. Idempotent: a role already holding every mirrored permission is
+ * not re-saved. Skips when media or the embed media type is absent, and
+ * grants only permission names the permission handler defines, because
+ * Drupal refuses to save a role holding an undefined permission.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_mirror_image_media_permissions_to_embed() {
+  if ($skip = _bioland_require_module('media', 'embed media permissions')) {
+    return $skip;
+  }
+  if (!\Drupal::entityTypeManager()->getStorage('media_type')->load('embed')) {
+    return t('Media type embed does not exist; embed media permissions not granted.');
+  }
+
+  $defined = \Drupal::service('user.permissions')->getPermissions();
+  $matrix = [];
+  foreach (\Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple() as $rid => $role) {
+    foreach (BIOLAND_IMAGE_TO_EMBED_MEDIA_PERMISSIONS as $image => $embed) {
+      if ($role->hasPermission($image) && isset($defined[$embed])) {
+        $matrix[$rid][] = $embed;
+      }
+    }
+  }
+
+  $messages = _bioland_grant_role_permissions($matrix);
+  return empty($messages)
+    ? t('Embed media permissions already mirror the image media permissions.')
+    : t('Mirrored image media permissions to embed media for: @roles.', ['@roles' => implode(', ', array_keys($matrix))]);
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Role & Permission Management
