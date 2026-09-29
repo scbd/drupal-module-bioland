@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * that carries media_bulk_form to core's default (exclude nothing).
  *
  * @group bioland
- * @coversDefaultClass \_bioland_media_view_restore_bulk_actions
+ * @coversNothing
  */
 class BiolandMediaBulkActionsTest extends TestCase
 {
@@ -137,6 +137,19 @@ class BiolandMediaBulkActionsTest extends TestCase
         $this->assertSame(['default', 'media_page_list'], $changed);
         $this->assertSame([], $out['display']['media_page_list']['display_options']['fields']['media_bulk_form']['selected_actions']);
         $this->assertSame($data['display']['block_1'], $out['display']['block_1']);
+    }
+
+    /**
+     * An include list with nothing selected already shows every action.
+     */
+    public function testIncludeWithEmptyListIsUntouched(): void
+    {
+        $data = $this->view(['include_exclude' => 'include', 'selected_actions' => []]);
+
+        [$out, $changed] = _bioland_media_view_restore_bulk_actions($data);
+
+        $this->assertSame([], $changed);
+        $this->assertSame($data, $out);
     }
 
     /**
