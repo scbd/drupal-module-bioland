@@ -5,11 +5,18 @@
  * Main module file for Drupal Module Bioland.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\BiolandEmbeddedImageMedia;
+use Drupal\bioland\BiolandFocalPoint;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Form\BiolandHeroImageWidget;
+use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\media\MediaInterface;
 
 /**
  * Implements hook_menu_links_discovered_alter().
@@ -356,7 +363,7 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#optional' => TRUE,
     ];
 
-    // Help text is added via JavaScript (bioland-help-comments-1-1-8.js)
+    // Help text is added via JavaScript (bioland-help-comments-1-1-12.js)
     // to provide close button, cookie persistence, and info icon toggle.
 
     $form['field_order']['#group'] = 'order_override_wrapper';
@@ -431,6 +438,80 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Attaches the hero editor preview library and its colour settings.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_attach_hero_editor_preview(array &$form) {
+  $form['#attached']['library'][] = 'bioland/hero_editor_preview';
+  $form['#attached']['drupalSettings']['bioland']['heroPreview'] = bioland_hero_editor_preview_settings();
+}
+
+/**
+ * Returns the hero preview colours for drupalSettings.
+ *
+ * Thin wrapper around \Drupal\bioland\Service\BiolandHeroEditorPreview,
+ * which owns the config-reading and fallback-colour logic so it is unit
+ * testable without bootstrapping a form alter (matching the pattern set by
+ * BiolandComponentMenuFormMode::primaryColor()).
+ *
+ * @return array
+ *   `['primary' => '#rrggbb', 'secondary' => '#rrggbb']`.
+ */
+function bioland_hero_editor_preview_settings(): array {
+  return \Drupal::service('bioland.hero_editor_preview')->settings();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for media.
+ *
+ * Image media embedded in a text body shows the image only, never the extra
+ * field labels and values of its view display (BL-1188).
+ *
+ * @see \Drupal\bioland\BiolandEmbeddedImageMedia
+ */
+function bioland_media_view_alter(array &$build, EntityInterface $media, EntityViewDisplayInterface $display) {
+  if (empty($build['#embed']) || !$media instanceof MediaInterface) {
+    return;
+  }
+  $source = $media->getSource();
+  // Pseudo/extra fields (registered via hook_entity_extra_field_info(), for
+  // example a computed summary) have a display component but no #field_name,
+  // so BiolandEmbeddedImageMedia::strip() cannot spot them by #field_name
+  // alone; name them explicitly.
+  $extra_fields = array_diff(array_keys($display->getComponents()), array_keys($media->getFieldDefinitions()));
+  $build = BiolandEmbeddedImageMedia::strip(
+    $build,
+    $source->getPluginId(),
+    $source->getConfiguration()['source_field'] ?? NULL,
+    $extra_fields
+  );
+}
+
+/**
  * Implements hook_entity_type_alter().
  *
  * Registers the "component" entity-form operation on menu_link_content, which
@@ -459,6 +540,21 @@ function bioland_entity_type_alter(array &$entity_types) {
 }
 
 /**
+ * Implements hook_entity_base_field_info().
+ *
+ * Exposes the hero image focal point on media as a computed, read-only
+ * "X,Y" percentage string (JSON:API: media--hero.bioland_focal_point).
+ *
+ * @see \Drupal\bioland\BiolandFocalPoint
+ */
+function bioland_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'media') {
+    return [];
+  }
+  return [BiolandFocalPoint::FIELD_NAME => BiolandFocalPoint::baseFieldDefinition()];
+}
+
+/**
  * Implements hook_entity_insert().
  */
 function bioland_entity_insert(EntityInterface $entity) {
@@ -469,6 +565,13 @@ function bioland_entity_insert(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'insert');
+
+  // BL-1191: enqueue an auto website screenshot for qualifying nodes.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'insert');
+
+  // Enqueue a first-page WebP preview for new Document media (BL-1192). This
+  // only pushes a queue item; the conversion itself runs from cron.
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'insert');
 }
 
 /**
@@ -482,6 +585,13 @@ function bioland_entity_update(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'update');
+
+  // BL-1191: enqueue a refreshed website screenshot when the URL changed.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'update');
+
+  // Enqueue a fresh preview only when the document file itself changed
+  // (BL-1192); see BiolandDocumentPreviewService::enqueueIfNeeded().
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'update');
 }
 
 /**
@@ -605,6 +715,12 @@ function bioland_module_implements_alter(&$implementations, $hook) {
     $group = $implementations['bioland'];
     unset($implementations['bioland']);
     $implementations['bioland'] = $group;
+  }
+
+  // bioland_media_presave() must run BEFORE toast_image_editor_media_presave()
+  // so an invalid edited image is dropped before that module writes it.
+  if ($hook === 'media_presave' && isset($implementations['bioland'])) {
+    $implementations = ['bioland' => $implementations['bioland']] + $implementations;
   }
 }
 
@@ -871,4 +987,166 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * Adds "Choose from media library" to the hero media image field (BL-807).
+ * Skipped entirely without media_library, so no picker and no media_library
+ * class is ever loaded on such a site.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  if (\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
+  }
+  // BL-917: the toast image editor under the media image field, available as
+  // soon as a file is uploaded and behind an "Edit image" button afterwards.
+  \Drupal::service('bioland.media_image_editor')->alterWidget($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for media_form.
+ *
+ * Rejects an edited toast_image_editor image that is not a real image of an
+ * allowed type and size (BL-917). Added whenever the module is on, without
+ * looking for its hidden field in $form, so the check never depends on the
+ * order the two form alters run in.
+ *
+ * The #after_build runs after toast_image_editor's own form alter (which
+ * comes later than this one) and swaps its bottom-of-form fieldset for the
+ * one bioland placed under the image widget.
+ */
+function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
+    $form['#validate'][] = '_bioland_toast_image_editor_validate';
+    $form['#after_build'][] = '_bioland_media_image_editor_after_build';
+  }
+}
+
+/**
+ * After-build callback for media forms: finishes the image editor placement.
+ *
+ * @see \Drupal\bioland\Service\BiolandMediaImageEditor::afterBuild()
+ */
+function _bioland_media_image_editor_after_build(array $form, FormStateInterface $form_state) {
+  return \Drupal::service('bioland.media_image_editor')->afterBuild($form, $form_state);
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_focal_point.
+ *
+ * The hero form display uses Focal Point's widget once focal_point is enabled
+ * (see _bioland_configure_hero_focal_point()), so the picker hooks it too.
+ */
+function bioland_field_widget_complete_image_focal_point_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  bioland_field_widget_complete_image_image_form_alter($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Form validation handler: checks the submitted toast_image_editor image.
+ *
+ * Reads raw user input, as toast_image_editor does; its hidden field has a
+ * fixed empty #value, so the processed form value is always ''.
+ */
+function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $form_state) {
+  $payloads = BiolandToastImageGuard::payloads($form_state->getUserInput());
+  if (!$payloads) {
+    return;
+  }
+
+  $extension = _bioland_media_source_extension($form_state->getFormObject()->getEntity());
+  foreach ($payloads as $payload) {
+    $reason = BiolandToastImageGuard::validate($payload, $extension);
+    if ($reason !== NULL) {
+      $form_state->setErrorByName(BiolandToastImageGuard::FIELD, t('The edited image was not saved: @reason.', ['@reason' => $reason]));
+      return;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for media.
+ *
+ * Runs before toast_image_editor_media_presave() (ordering is pinned in
+ * bioland_module_implements_alter()) on the same request object it reads.
+ * Removes an invalid payload, which also covers saves that skip the media
+ * form validation, and re-encodes a valid one to the media file's format.
+ */
+function bioland_media_presave(EntityInterface $media) {
+  if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
+    return;
+  }
+
+  /** @var \Drupal\bioland\Service\BiolandMediaImageEditor $editor */
+  $editor = \Drupal::service('bioland.media_image_editor');
+  $field = $media instanceof MediaInterface ? $editor->editableField($media) : NULL;
+
+  $user = \Drupal::currentUser();
+  $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
+  $post = \Drupal::request()->request;
+  $dropped = BiolandToastImageGuard::sanitize($post, _bioland_media_image_extension($media, $field), $allowed);
+  foreach ($dropped as $reason) {
+    \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
+      '@id' => $media->id(),
+      '@reason' => $reason,
+    ]);
+  }
+
+  // toast_image_editor only writes a media type's image *source* field. When
+  // the edited field is another image field (remote_video, document), write
+  // the sanitized payload here and take it off the request so nothing else
+  // acts on it.
+  if ($field === NULL || $editor->contribWrites($media, $field)) {
+    return;
+  }
+  foreach (BiolandToastImageGuard::payloads($post->all()) as $key => $payload) {
+    $post->remove($key);
+    if ($editor->writeEditedImage($media, $field, $payload)) {
+      \Drupal::messenger()->addStatus(t('Your image changes have been saved.'));
+    }
+    else {
+      \Drupal::messenger()->addError(t('The edited image could not be saved.'));
+    }
+  }
+}
+
+/**
+ * Returns the lowercase extension of the file in a media image field.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $media
+ *   The media entity.
+ * @param string|null $field
+ *   The image field the editor targets; NULL falls back to the source field.
+ *
+ * @return string
+ *   The extension, or '' when the field holds no file.
+ */
+function _bioland_media_image_extension(EntityInterface $media, ?string $field) {
+  if ($field === NULL) {
+    return _bioland_media_source_extension($media);
+  }
+  if (!$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
+}
+
+/**
+ * Returns the lowercase extension of a media entity's source file.
+ *
+ * @return string
+ *   The extension, or '' when the media has no source file.
+ */
+function _bioland_media_source_extension(EntityInterface $media) {
+  if (!method_exists($media, 'getSource')) {
+    return '';
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($field === '' || !$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
 }

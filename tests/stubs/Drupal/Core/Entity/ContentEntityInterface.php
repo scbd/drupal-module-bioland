@@ -24,6 +24,22 @@ interface ContentEntityInterface {
   public function id();
 
   /**
+   * Gets the bundle of the entity.
+   *
+   * @return string
+   *   The bundle.
+   */
+  public function bundle();
+
+  /**
+   * Gets the label of the entity.
+   *
+   * @return string
+   *   The label.
+   */
+  public function label();
+
+  /**
    * Checks if the entity is translatable.
    *
    * @return bool
@@ -136,5 +152,13 @@ interface ContentEntityInterface {
    * Saves the entity.
    */
   public function save();
+
+  /**
+   * Gets the entity owner's user ID.
+   *
+   * @return int|null
+   *   The owner's user ID.
+   */
+  public function getOwnerId();
 
 }

@@ -181,6 +181,56 @@ function _bioland_sync_scbd_staff_permissions() {
   return t('scbd_staff already has all site_manager permissions.');
 }
 
+/**
+ * Grant 'delete any media' to content manager and above.
+ *
+ * BL-784. Drupal core drops the "Delete media" bulk action from the
+ * /admin/content/media Action dropdown for anyone without 'delete any media',
+ * and no Bioland role was ever granted it. Contributor, system, authenticated
+ * and anonymous are deliberately left out.
+ *
+ * Idempotent: roles that already hold the permission are not re-saved. A
+ * missing role is skipped and logged. Skips entirely when media is not
+ * enabled, because Drupal refuses to save a role holding an undefined
+ * permission.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_grant_media_delete_permissions() {
+  if (!\Drupal::moduleHandler()->moduleExists('media')) {
+    return t('Media module not enabled; delete any media not granted.');
+  }
+
+  $roles = ['content_manager', 'site_manager', 'scbd_staff', 'administrator'];
+
+  $matrix = [];
+  $missing = [];
+  foreach ($roles as $rid) {
+    if (Role::load($rid)) {
+      $matrix[$rid] = ['delete any media'];
+    }
+    else {
+      $missing[] = $rid;
+    }
+  }
+
+  if ($missing) {
+    \Drupal::logger('bioland')->notice('Skipped granting delete any media to missing roles: @roles.', [
+      '@roles' => implode(', ', $missing),
+    ]);
+  }
+
+  $messages = _bioland_grant_role_permissions($matrix);
+  if ($missing) {
+    $messages[] = t('Skipped missing roles: @roles.', ['@roles' => implode(', ', $missing)]);
+  }
+
+  return empty($messages)
+    ? t('delete any media already granted to content manager and above.')
+    : implode(' ', array_map('strval', $messages));
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Role & Permission Management
@@ -268,4 +318,27 @@ function bioland_update_9033() {
  */
 function bioland_update_9045() {
   return _bioland_sync_scbd_staff_permissions();
+}
+
+/**
+ * Grant 'delete any media' to content manager and above.
+ *
+ * BL-784. Restores the "Delete media" bulk action on /admin/content/media for
+ * content_manager, site_manager, scbd_staff and administrator. See
+ * _bioland_grant_media_delete_permissions().
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9097() {
+  $messages = [];
+  $messages[] = _bioland_grant_media_delete_permissions();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

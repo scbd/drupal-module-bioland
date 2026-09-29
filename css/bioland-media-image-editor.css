@@ -1,0 +1,19 @@
+/**
+ * Toast image editor placed under the media image widget (BL-917).
+ *
+ * The collapsed state keeps the editor in the layout with its full width so
+ * tui.ImageEditor measures a real container when it initializes; only the
+ * height is taken away. display:none would give it a 0 x 0 canvas.
+ */
+.bioland-image-editor-wrapper {
+  margin-top: 0.5rem;
+}
+
+.bioland-image-editor--collapsed {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
