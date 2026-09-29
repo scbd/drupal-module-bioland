@@ -41,6 +41,13 @@ final class BiolandEmbedPreviewSandbox {
    * $editor_preview is set; either way it carries the route cache context.
    */
   public static function apply(array $element, array $entries, bool $editor_preview = FALSE): array {
+    // The iframe module writes "Your browser does not support iframes ... <a>"
+    // inside the tag. Browsers parse that as raw text, and DOMPurify's
+    // markup-in-text guard then deletes the whole frame in the head (BL-1270).
+    // Emit the frame empty so every consumer of the HTML keeps it.
+    if (isset($element['#text'])) {
+      $element['#text'] = '';
+    }
     $src = (string) ($element['#src'] ?? '');
     $entry = BiolandEmbedAllowlist::findEntry($src, $entries);
     if ($entry === NULL) {
