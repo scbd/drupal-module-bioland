@@ -640,7 +640,8 @@ function _bioland_media_view_restore_bulk_actions(array $view_data) {
     if ($field === NULL) {
       continue;
     }
-    if (($field['include_exclude'] ?? 'exclude') === 'exclude' && empty($field['selected_actions'])) {
+    // Core offers every action when selected_actions is empty, in either mode.
+    if (empty($field['selected_actions'])) {
       continue;
     }
     $field['include_exclude'] = 'exclude';
