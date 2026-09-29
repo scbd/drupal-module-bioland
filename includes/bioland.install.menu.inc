@@ -88,125 +88,18 @@ function _bioland_enable_main_menu_lock() {
 }
 
 /**
- * Helper function to create the Content menu link.
+ * Retired helper that used to create Publishing > Add > Content.
  *
- * Creates a menu link for quickly adding Content nodes.
+ * BL-836: Publishing now carries only "Content (pages)" and
+ * "Media (attachments)", so the /node/add/content link under "Add" is no
+ * longer created. Kept as a no-op because update hooks 9048, 9051 and 9057
+ * still call it; bioland_update_9092() removes links created earlier.
  *
  * @return string
  *   Status message.
  */
 function _bioland_create_content_menu_link() {
-  $logger = \Drupal::logger('bioland');
-  $logger->info('Starting Content menu link creation.');
-
-  // Check if MenuLinkContent entity type exists.
-  $entity_type_manager = \Drupal::entityTypeManager();
-  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
-    $logger->warning('MenuLinkContent entity type not available; skipping menu link creation.');
-    return t('MenuLinkContent entity type not available; skipping menu link creation.');
-  }
-
-  // Use hardcoded parent UUID.
-  $known_uuid = '059aed54-bd84-4699-a7c4-5358d5e7c36c';
-  $parent_plugin_id = 'menu_link_content:' . $known_uuid;
-
-  $logger->info('Creating Content menu link with hardcoded parent UUID: @uuid', [
-    '@uuid' => $known_uuid,
-  ]);
-
-  // Verify parent exists before creating the link.
-  $parent_link = $entity_type_manager
-    ->getStorage('menu_link_content')
-    ->loadByProperties(['uuid' => $known_uuid]);
-  
-  if (empty($parent_link)) {
-    $logger->error('Parent menu link with UUID @uuid not found. Cannot create Content menu link.', [
-      '@uuid' => $known_uuid,
-    ]);
-    return t('Error: Parent menu link (UUID: @uuid) not found.', ['@uuid' => $known_uuid]);
-  }
-  $logger->info('Parent menu link found and verified.');
-
-  // Create the menu link in the admin toolbar.
-  $menu_link = $entity_type_manager
-    ->getStorage('menu_link_content')
-    ->create([
-      'title' => 'Content',
-      'link' => ['uri' => 'internal:/node/add/content'],
-      'menu_name' => 'admin',
-      'parent' => $parent_plugin_id,
-      'weight' => -100,
-      'expanded' => FALSE,
-      'enabled' => TRUE,
-    ]);
-
-  try {
-    $menu_link->save();
-    $saved_id = $menu_link->id();
-    $saved_uuid = $menu_link->uuid();
-    $logger->info('Successfully saved Content menu link. ID: @id, UUID: @uuid', [
-      '@id' => $saved_id,
-      '@uuid' => $saved_uuid,
-    ]);
-
-    // Verify the menu link was actually persisted to the database.
-    $verification_link = $entity_type_manager
-      ->getStorage('menu_link_content')
-      ->load($saved_id);
-
-    if ($verification_link === NULL) {
-      $logger->error('VERIFICATION FAILED: Content menu link (ID: @id) was not found in database after save. The save() call appeared to succeed but data was not persisted.', [
-        '@id' => $saved_id,
-      ]);
-      return t('Error: Content menu link was not persisted to database after save (ID: @id).', ['@id' => $saved_id]);
-    }
-
-    $logger->info('VERIFICATION PASSED: Content menu link confirmed in database.');
-
-    $logger->info('Successfully created Content menu link with ID: @id, UUID: @uuid', [
-      '@id' => $saved_id,
-      '@uuid' => $saved_uuid,
-    ]);
-  }
-  catch (\Exception $e) {
-    $logger->error('Failed to save Content menu link: @message. Parent was: @parent', [
-      '@message' => $e->getMessage(),
-      '@parent' => $parent_plugin_id,
-    ]);
-    return t('Error saving Content menu link: @message', ['@message' => $e->getMessage()]);
-  }
-
-  // Rebuild caches.
-  try {
-    \Drupal::service('router.builder')->rebuild();
-    $logger->info('Router rebuilt successfully.');
-  }
-  catch (\Exception $e) {
-    $logger->warning('Failed to rebuild router: @message', ['@message' => $e->getMessage()]);
-  }
-
-  try {
-    \Drupal::cache('menu')->invalidateAll();
-    $logger->info('Menu cache invalidated.');
-  }
-  catch (\Exception $e) {
-    $logger->warning('Failed to invalidate menu cache: @message', ['@message' => $e->getMessage()]);
-  }
-
-  // Clear menu cache to ensure the new link appears
-  if (\Drupal::hasService('plugin.manager.menu.link')) {
-    try {
-      \Drupal::service('plugin.manager.menu.link')->rebuild();
-      $logger->info('Menu link tree rebuilt.');
-    }
-    catch (\Exception $e) {
-      $logger->warning('Failed to rebuild menu link tree: @message', ['@message' => $e->getMessage()]);
-    }
-  }
-
-  return t('Created "Content" menu link pointing to /node/add/content (parent: @parent).', [
-    '@parent' => $parent_plugin_id,
-  ]);
+  return t('Publishing > Add > Content menu link is retired (BL-836); nothing created.');
 }
 
 /**
@@ -433,4 +326,204 @@ function bioland_update_9057() {
  */
 function bioland_update_9058() {
   return _bioland_disable_translation_menus();
+}
+
+/**
+ * Remove duplicate Publishing admin menu links (BL-836).
+ *
+ * Sites that ran update hooks 9048, 9051 and 9057 got one "Content" link
+ * (/node/add/content) per run under Publishing > Add, and some also carry
+ * copies of "Content (pages)" / "Media (attachments)" under "Add". This hook
+ * loads every menu_link_content in the 'admin' menu, asks
+ * \Drupal\bioland\BiolandAdminMenuDedupe which ones are duplicates (exact
+ * title + link uri matching) and deletes only those, logging each deletion.
+ * Children of a deleted link are re-parented to the surviving copy; a link
+ * with children and no surviving copy is kept and a warning is logged.
+ * A clean site deletes nothing, so it is safe to run more than once.
+ *
+ * It was the highest-numbered hook when added (bioland_update_9092() now is),
+ * so per SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config.
+ *
+ * @see \Drupal\bioland\BiolandAdminMenuDedupe
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9087() {
+  $messages = [];
+  $logger = \Drupal::logger('bioland');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    $messages[] = 'MenuLinkContent entity type not available; skipped admin menu de-duplication.';
+  }
+  else {
+    // Load/delete failures throw UpdateException so `drush updb` reports the
+    // hook as failed and retries it, instead of marking a partial run done.
+    try {
+      $storage = $entity_type_manager->getStorage('menu_link_content');
+      $links = $storage->loadByProperties(['menu_name' => 'admin']);
+
+      $descriptors = [];
+      foreach ($links as $id => $link) {
+        $descriptors[] = [
+          'id' => (int) $id,
+          'title' => (string) $link->get('title')->value,
+          'uri' => (string) ($link->get('link')->uri ?? ''),
+          'parent' => (string) $link->get('parent')->value,
+          'enabled' => (bool) $link->get('enabled')->value,
+        ];
+      }
+
+      $deleted = 0;
+      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::plan($descriptors) as $id => $survivor_id) {
+        if (!isset($links[$id])) {
+          continue;
+        }
+        $link = $links[$id];
+
+        // Children still point at the deleted link's uuid in their own
+        // 'parent' field; move them to the surviving copy, or keep the link
+        // when there is nowhere safe to move them.
+        $children = $storage->loadByProperties(['parent' => 'menu_link_content:' . $link->uuid()]);
+        if (!empty($children)) {
+          if ($survivor_id === NULL || !isset($links[$survivor_id])) {
+            $logger->warning('BL-836: kept duplicate admin menu link @id "@title": it has @count child link(s) and no surviving copy to move them to.', [
+              '@id' => $id,
+              '@title' => $link->get('title')->value,
+              '@count' => count($children),
+            ]);
+            continue;
+          }
+          $new_parent = 'menu_link_content:' . $links[$survivor_id]->uuid();
+          foreach ($children as $child_id => $child) {
+            $logger->notice('BL-836: moving admin menu link @child from duplicate @id to surviving copy @survivor.', [
+              '@child' => $child_id,
+              '@id' => $id,
+              '@survivor' => $survivor_id,
+            ]);
+            $child->set('parent', $new_parent);
+            $child->save();
+          }
+        }
+
+        $logger->notice('BL-836: deleting duplicate admin menu link @id "@title" (@uri, parent @parent).', [
+          '@id' => $id,
+          '@title' => $link->get('title')->value,
+          '@uri' => $link->get('link')->uri ?? '',
+          '@parent' => $link->get('parent')->value,
+        ]);
+        $link->delete();
+        $deleted++;
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: admin menu de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      throw new \Drupal\Core\Utility\UpdateException('BL-836: admin menu de-duplication failed: ' . $e->getMessage(), 0, $e);
+    }
+
+    $messages[] = sprintf('Admin menu de-duplication: checked %d links, deleted %d duplicates.', count($descriptors), $deleted);
+
+    // A cache/menu rebuild failure must not hide the deleted count above.
+    try {
+      \Drupal::cache('menu')->invalidateAll();
+      if (\Drupal::hasService('plugin.manager.menu.link')) {
+        \Drupal::service('plugin.manager.menu.link')->rebuild();
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: menu cache rebuild after de-duplication failed: @message', ['@message' => $e->getMessage()]);
+      $messages[] = 'Menu cache rebuild failed: ' . $e->getMessage();
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Retire Publishing > Add > Content, leaving two Publishing items (BL-836).
+ *
+ * Publishing should show only "Content (pages)" and "Media (attachments)".
+ * This deletes every "Content" -> /node/add/content link under "Add", then
+ * deletes the "Add" parent itself once it has no children left (a site that
+ * added its own links under "Add" keeps it). A link that has children of its
+ * own is kept and a warning is logged. Safe to run more than once.
+ *
+ * As the highest-numbered hook it runs LAST on every site, so per
+ * SearchApiConvergenceHookTest it also re-applies the canonical v2 Search API
+ * config.
+ *
+ * @see \Drupal\bioland\BiolandAdminMenuDedupe::retiredAddLinkIds()
+ */
+function bioland_update_9092() {
+  $messages = [];
+  $logger = \Drupal::logger('bioland');
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!$entity_type_manager->hasDefinition('menu_link_content')) {
+    $messages[] = 'MenuLinkContent entity type not available; skipped Publishing > Add clean-up.';
+  }
+  else {
+    try {
+      $storage = $entity_type_manager->getStorage('menu_link_content');
+      $add_parent = \Drupal\bioland\BiolandAdminMenuDedupe::ADD_PARENT;
+
+      $links = $storage->loadByProperties(['menu_name' => 'admin', 'parent' => $add_parent]);
+      $descriptors = [];
+      foreach ($links as $id => $link) {
+        $descriptors[] = [
+          'id' => (int) $id,
+          'title' => (string) $link->get('title')->value,
+          'uri' => (string) ($link->get('link')->uri ?? ''),
+          'parent' => (string) $link->get('parent')->value,
+        ];
+      }
+
+      $deleted = 0;
+      foreach (\Drupal\bioland\BiolandAdminMenuDedupe::retiredAddLinkIds($descriptors) as $id) {
+        $link = $links[$id];
+        if (!empty($storage->loadByProperties(['parent' => 'menu_link_content:' . $link->uuid()]))) {
+          $logger->warning('BL-836: kept Publishing > Add > Content link @id: it has child links.', ['@id' => $id]);
+          continue;
+        }
+        $logger->notice('BL-836: deleting retired Publishing > Add > Content link @id.', ['@id' => $id]);
+        $link->delete();
+        $deleted++;
+      }
+      $messages[] = sprintf('Deleted %d Publishing > Add > Content link(s).', $deleted);
+
+      // Drop the "Add" parent once nothing is left under it.
+      $add_uuid = substr($add_parent, strlen('menu_link_content:'));
+      $add_links = $storage->loadByProperties(['uuid' => $add_uuid]);
+      if (!empty($add_links) && empty($storage->loadByProperties(['parent' => $add_parent]))) {
+        foreach ($add_links as $id => $add_link) {
+          $logger->notice('BL-836: deleting empty Publishing > Add menu link @id.', ['@id' => $id]);
+          $add_link->delete();
+        }
+        $messages[] = 'Deleted the empty Publishing > Add menu link.';
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: Publishing > Add clean-up failed: @message', ['@message' => $e->getMessage()]);
+      throw new \Drupal\Core\Utility\UpdateException('BL-836: Publishing > Add clean-up failed: ' . $e->getMessage(), 0, $e);
+    }
+
+    try {
+      \Drupal::cache('menu')->invalidateAll();
+      if (\Drupal::hasService('plugin.manager.menu.link')) {
+        \Drupal::service('plugin.manager.menu.link')->rebuild();
+      }
+    }
+    catch (\Exception $e) {
+      $logger->error('BL-836: menu cache rebuild after Publishing > Add clean-up failed: @message', ['@message' => $e->getMessage()]);
+      $messages[] = 'Menu cache rebuild failed: ' . $e->getMessage();
+    }
+  }
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

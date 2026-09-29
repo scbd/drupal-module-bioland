@@ -340,16 +340,16 @@ $all_settings = $settings_manager->getAllSettings();
 
 The module uses a modular JavaScript architecture:
 
-- **js/bioland-field-visibility-1-1-8.js**: Handles field show/hide logic
-- **js/bioland-additional-fields-1-1-8.js**: Manages Vue.js-based additional field mounting
-- **js/bioland-auto-summary-1-1-8.js**: Provides intelligent summary generation
-- **js/bioland-help-comments-1-1-8.js**: Renders translatable inline field help text
-- **js/bioland-home-widgets-1-1-8.js**: Publishes per-country home-widget settings via `window.Bioland.homeWidgets`
-- **js/bioland-component-menu-form-1-1-8.js**: Behaviours for the mega-menu component link form
-- **js/bioland-language-redirect-1-1-8.js**: Language-redirect behaviour
-- **js/bioland-hide-bulk-actions-1-1-8.js**: Hides selected bulk operations in admin listings
-- **js/bioland-settings-toggle-1-1-8.js**: Show/hide behaviour for settings-form sections
-- **js/bioland-debug-logger-1-1-8.js**: Shared opt-in debug logger used by the other behaviours
+- **js/bioland-field-visibility-1-1-12.js**: Handles field show/hide logic
+- **js/bioland-additional-fields-1-1-12.js**: Manages Vue.js-based additional field mounting
+- **js/bioland-auto-summary-1-1-12.js**: Provides intelligent summary generation
+- **js/bioland-help-comments-1-1-12.js**: Renders translatable inline field help text
+- **js/bioland-home-widgets-1-1-12.js**: Publishes per-country home-widget settings via `window.Bioland.homeWidgets`
+- **js/bioland-component-menu-form-1-1-12.js**: Behaviours for the mega-menu component link form
+- **js/bioland-language-redirect-1-1-12.js**: Language-redirect behaviour
+- **js/bioland-hide-bulk-actions-1-1-12.js**: Hides selected bulk operations in admin listings
+- **js/bioland-settings-toggle-1-1-12.js**: Show/hide behaviour for settings-form sections
+- **js/bioland-debug-logger-1-1-12.js**: Shared opt-in debug logger used by the other behaviours
 
 ### Libraries
 
@@ -421,6 +421,50 @@ The module maintains backward compatibility with the original SCBD field module:
   - Countries: `gt`
   - Region: `north_america`
   - Settings access: restricted by permission `administer bioland settings`, granted to the `administrator` role only by default.
+
+## Document previews
+
+Auto-generates a first-page WebP image for Document media (BL-1192), so the document listings
+stop showing the generic grey placeholder for every document that has no manually chosen Image.
+
+- **Env var**: `CONVERT_API_SECRET`, read via `getenv()` with a `Settings::get('bioland_convert_api_secret')`
+  fallback (see `BiolandDocumentPreviewPolicy::resolveSecret()`). Never stored in config, never
+  logged, never shown in a form; the settings form only shows a read-only "secret present: yes/no"
+  indicator. Missing the secret silently disables the feature (no queue items, no conversions).
+- **Toggle**: `bioland.settings.enable_document_preview` (default `TRUE`), on the System Functions tab.
+- **When it runs**: external HTTP is never performed inside the editor's request. Saving a
+  qualifying Document media item enqueues a `bioland_document_preview` queue item and remembers it;
+  the service is tagged `needs_destruction`, so right after the response is flushed its `destruct()`
+  performs the ConvertAPI call and fills the Image field (same shape as the BL-1191 website
+  screenshot). A successful conversion deletes its queue item. The queue is the retry path only:
+  `BiolandDocumentPreviewWorker` (cron, or `drush queue:run bioland_document_preview`) drains items
+  that failed transiently. This matters because `bioland_update_9061` disables Drupal system cron
+  (ADR 0004), so a cron-only design never produced an image on those sites.
+  An editor-chosen Image is never overwritten, and an edit that does not replace the document file
+  never triggers a new conversion.
+- **PageRange=1 cost rule**: every ConvertAPI call is restricted to page 1 via the `PageRange`
+  parameter — converting the whole document and discarding pages 2..n is billed per page and is
+  never acceptable. A direct conversion billed for more than one page logs a warning so a
+  regression is caught on staging.
+- **Converters used** (re-verified live 2026-09-27 during the fix cycle, against
+  `GET https://v2.convertapi.com/info/openapi/{ext}/to/{target}` for every allowed extension):
+  - Direct (`{ext}/to/webp` exists, one call): `pdf`, `docx`, `pptx`, `xlsx`.
+  - Via-pdf (two chained calls, `{ext}/to/pdf` then `pdf/to/webp`, the stored PDF never
+    re-downloaded): `txt`, `rtf`, `odf`, `odg`, `odp`, `ods`, `odt`.
+  - Via-office (two chained calls, `{ext}/to/{office}` then `{office}/to/webp`, the stored
+    intermediate file never re-downloaded; `PageRange` is not documented on the first call for
+    any of these six extensions, so it is applied only on the second): `doc`→`docx`, `ppt`→`pptx`,
+    `xls`→`xlsx`, `key`→`pptx`, `numbers`→`xlsx`, `pages`→`docx`.
+  - Dropped, no verified route (`webp`/`pdf`/`docx`/`pptx`/`xlsx` targets and, for the flat-ODF
+    forms, their own un-flattened counterpart all returned 404): `fodt`, `fods`, `fodp`, `fodg`.
+    An upload with one of these extensions is skipped at enqueue time with a notice-level log
+    naming the extension; no queue item is created and no ConvertAPI call is made.
+- **Manual pre-merge step**: `field_media_document` and `field_media_image` are pinned as class
+  constants on `BiolandDocumentPreviewPolicy` from the ticket's spec and have not been verified
+  against a live site. Before deploying, run `drush field:info media document` on the target site
+  and confirm those are the real machine names; if either differs, update the constants (the
+  feature silently no-ops — no document field found — rather than erroring, so this is easy to
+  miss).
 
 ## Configuration Export/Import
 
@@ -518,6 +562,58 @@ Translation default creation activities are logged to the 'bioland' log channel.
 - Content Translation module enabled
 - Multiple languages configured on the site
 - Translatable entity types configured on the site
+
+## URL screenshots
+
+BL-1191: "Related websites" nodes (content type field `field_type_placement`
+tid 13) get an automatic screenshot of the linked site's first screen
+(1280x800, WebP) attached as a media image, via ConvertAPI.
+
+- **Requires** the `convertapi/convertapi-php` library
+  (`composer require convertapi/convertapi-php --with-all-dependencies`) and
+  the `CONVERT_API_SECRET` environment variable (or
+  `$settings['bioland_convert_api_secret']` in `settings.php`). The secret is
+  never stored in config, exported, or logged; a missing value shows as a
+  requirements-page warning, and a missing library as a requirements-page
+  error.
+- **Toggle**: System Functions tab, "Automatically screenshot 'Related
+  websites' links" (`bioland.settings:enable_url_screenshot`, default
+  enabled).
+- **Trigger**: saving a qualifying node with a URL (on insert), or changing
+  the URL on an existing one (on update). The fetch runs from
+  `BiolandUrlScreenshotService::destruct()`, called by Drupal's
+  `needs_destruction` kernel subscriber right after the editor's response is
+  flushed - never inside the save request itself. Under the built-in PHP
+  server or drush the response is not fastcgi-flushed, so the call is
+  effectively synchronous there.
+- **Retry path**: the `bioland_url_screenshot` queue (drained by cron, or
+  `drush queue:run bioland_url_screenshot`) is the fallback for an
+  in-request attempt that failed transiently (ConvertAPI 429/5xx) or never
+  ran (CLI, a fatal error mid-request). `BiolandUrlScreenshotWorker` retries
+  a transient failure up to 3 attempts before giving up; a permanent failure
+  (any other 4xx) is logged and dropped immediately.
+- **ConvertAPI endpoints used**: [HTML to JPG](https://www.convertapi.com/html-to-jpg)
+  (`ImageWidth`/`ImageHeight` render exactly the requested viewport - there
+  is no separate "viewport" parameter and no full-page mode) chained into
+  [JPG to WebP](https://www.convertapi.com/jpg-to-webp) by the stored file
+  URL, so the JPG is never re-uploaded.
+- The screenshot is attached to the node's existing Attachments field
+  (`field_attachments`) at delta 0, so it becomes the record's main image;
+  older items are kept (deleting superseded screenshots is out of scope).
+  No extra field is created; `bioland_update_9090()` removes the
+  `field_website_image` field an earlier revision of this feature added.
+- **Title and description fill**: on the node form, when the editor leaves
+  the URL field with a valid http(s) URL while the type is Related websites,
+  `js/bioland-url-metadata-1-1-8.js` asks `GET /bioland/url-metadata`
+  (`BiolandUrlMetadataController`, node-form permission + CSRF token, 30
+  lookups/minute/user) for the site's `og:title`/`<title>` and
+  `og:description`/meta description, and writes them into Title and Body.
+  A field is only written while empty or still holding the previous fill,
+  so typed text is never overwritten. The fetch is SSRF-guarded: public
+  addresses only, connection pinned to the checked IP (no proxy), redirects
+  re-checked (max 3), 6 s total across all hops, 2 MB abort cap. Refused
+  addresses are logged to the `bioland` channel (uid and host only). Same
+  toggle as the screenshot.
 
 ## Troubleshooting
 

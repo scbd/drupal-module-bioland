@@ -23,6 +23,7 @@
  * - jsonapi.inc     : JSON:API configuration
  * - translation.inc : Translation & locale
  * - dmsm.inc        : DMSM country data integration
+ * - home_node.inc   : Editable home node 1000 as the front page
  */
 
 use Drupal\Core\Site\Settings;
@@ -54,6 +55,8 @@ require_once __DIR__ . '/includes/bioland.install.menu.inc';
 require_once __DIR__ . '/includes/bioland.install.jsonapi.inc';
 require_once __DIR__ . '/includes/bioland.install.translation.inc';
 require_once __DIR__ . '/includes/bioland.install.dmsm.inc';
+require_once __DIR__ . '/includes/bioland.install.focal_point.inc';
+require_once __DIR__ . '/includes/bioland.install.home_node.inc';
 
 /*
  * =============================================================================
@@ -97,8 +100,27 @@ function bioland_install() {
   // This MUST happen before any code that references field_order or other optional fields.
   _bioland_install_optional_field_configs();
 
+  // BL-1192: ensure the document-preview feature (ConvertAPI library present,
+  // Image field resolution adequate) is ready on a fresh install too, so it
+  // converges to the same state as an upgraded site. The shared helper always
+  // throws UpdateException (the shape an update hook needs); hook_install()
+  // is not an update hook, so it re-throws as RuntimeException, matching how
+  // the missing-role check above behaves.
+  try {
+    _bioland_ensure_document_preview_ready();
+  }
+  catch (\Drupal\Core\Utility\UpdateException $e) {
+    throw new \RuntimeException($e->getMessage());
+  }
+
   // Grant permissions to roles.
   _bioland_grant_role_permissions(_bioland_get_standard_permission_matrix());
+
+  // BL-784: 'delete any media' for content manager and above.
+  _bioland_grant_media_delete_permissions();
+
+  // BL-1218: trusted roles add embed hosts by saving an embed.
+  _bioland_grant_embed_auto_allow_permission();
 
   // Configure maintenance mode access (administrator and scbd_staff only).
   _bioland_configure_maintenance_mode_access();
@@ -123,6 +145,20 @@ function bioland_install() {
   }
   catch (\Throwable $e) {
     // Swallow errors to avoid failing installation; values will remain defaults.
+  }
+
+  // Seed the DMSM config base URL (and prod allowlist) from the deployment
+  // before anything queues a geography fetch. A fresh install marks
+  // bioland_update_9082() as run without executing it, so this is the only
+  // place a new site picks up BIOLAND_DMSM_CONFIG_BASE_URL. Never fails the
+  // install; bioland_requirements() reports a still-missing value.
+  try {
+    if (_bioland_seed_dmsm_config_from_environment() === NULL) {
+      \Drupal::logger('bioland')->warning('bioland.settings.dmsm_config_base_url is not set and the deployment offers no value (BIOLAND_DMSM_CONFIG_BASE_URL); geography sync will not run.');
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('bioland')->warning('Could not seed the DMSM config during install: @message', ['@message' => $e->getMessage()]);
   }
 
   // Queue the countries update based on hostname. Installation never fetches:
@@ -173,6 +209,10 @@ function bioland_install() {
   // Configure full_html format with Linkit and disable basic_html.
   _bioland_configure_full_html_format();
 
+  // Restrict media types selectable in the CKEditor Insert Media dialog
+  // (image + remote_video only); BL-1206.
+  _bioland_configure_media_embed_allowed_types();
+
   // Sync scbd_staff permissions with site_manager.
   _bioland_sync_scbd_staff_permissions();
 
@@ -188,6 +228,10 @@ function bioland_install() {
 
   // Disable comment field on view displays.
   _bioland_disable_comment_field_display();
+
+  // Hero image focal point widget (BL-841); only when focal_point is already
+  // enabled, hook_install never installs modules.
+  _bioland_configure_hero_focal_point();
 
   // Configure timezone settings (disable user timezone configuration).
   $date_config = \Drupal::configFactory()->getEditable('system.date');
@@ -212,9 +256,6 @@ function bioland_install() {
   // Enable Main Menu Lock and remove permissions from specific roles.
   _bioland_enable_main_menu_lock();
 
-  // Create Content menu link in admin toolbar.
-  _bioland_create_content_menu_link();
-
   // Disable auto_node_translate admin me`nu items.
   _bioland_disable_translation_menus();
 
@@ -225,6 +266,12 @@ function bioland_install() {
   _bioland_install_user_admin_view();
   // _bioland_install_comment_admin_view();
   _bioland_install_media_library_view();
+  // BL-784: un-hide the media bulk actions (Delete, Publish, ...).
+  _bioland_restore_media_bulk_actions();
+
+  // Configure media view displays: remote_video default (drop name field)
+  // and document media_library (image field instead of thumbnail); BL-1206.
+  _bioland_configure_media_view_displays();
 
   // Update menu item 139 URL to /admin/content/media.
   _bioland_update_menu_item_139();
@@ -235,8 +282,26 @@ function bioland_install() {
   // Provision test, training, and staff user accounts.
   _bioland_provision_users();
 
+  // Enable the contrib feature modules the codebase provides (BL-917). Not
+  // during a config sync: the synced core.extension decides what is enabled.
+  if (!\Drupal::isConfigSyncing()) {
+    _bioland_enable_contrib_feature_modules();
+    _bioland_enable_media_resize_filter();
+
+    // Embed media type on iframe + media_iframe, offered in the CKEditor
+    // media picker; BL-1218.
+    _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
+    _bioland_setup_embed_media();
+    // The allowlist default cannot know this site's files URL.
+    _bioland_seed_embed_files_origin();
+  }
+
   // Rebuild router to register view routes and local tasks.
   \Drupal::service('router.builder')->rebuild();
+
+  // Create the editable home node 1000 and make it the front page (BL-838).
+  // Never throws; a conflict or failure is logged and left for an editor.
+  _bioland_ensure_home_node();
 
   // FINAL STEP: Rebuild search index tracking and trigger reindex.
   // This MUST be the last operation to ensure all configuration changes
@@ -271,6 +336,19 @@ function bioland_requirements($phase) {
       }
     }
 
+    // Verify the ConvertAPI PHP library (BL-1192 document previews) is
+    // installed. This module is rsync-deployed, so a require in its own
+    // composer.json installs nothing on a site until composer is actually
+    // run there.
+    if (!class_exists('\ConvertApi\ConvertApi')) {
+      $requirements['bioland_dep_convertapi'] = [
+        'title' => t('Required library: ConvertAPI PHP'),
+        'value' => t('Missing'),
+        'description' => t('Install via Composer: composer require convertapi/convertapi-php --with-all-dependencies'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+
     $has_type = FALSE;
     if (\Drupal::moduleHandler()->moduleExists('node')) {
       $has_type = (bool) NodeType::load('content');
@@ -283,6 +361,53 @@ function bioland_requirements($phase) {
         'value' => t('Missing node type with machine name "content" (form id: node_content_form).'),
         'description' => t('Bioland requires a content type named "Content" with machine name "content". It will be created automatically on install; if still missing at runtime, please create it.'),
         'severity' => $severity,
+      ];
+    }
+  }
+
+  // Runtime-only: flag BL-917 contrib feature modules that are still off.
+  // bioland_update_9096() skips a module it cannot enable (not in the
+  // codebase, or its install threw) and never runs again, so this is the
+  // lasting reminder.
+  if ($phase === 'runtime') {
+    $module_handler = \Drupal::moduleHandler();
+    $disabled = array_values(array_filter(
+      _bioland_contrib_feature_modules(),
+      static fn ($module) => !$module_handler->moduleExists($module)
+    ));
+    if ($disabled) {
+      $requirements['bioland_contrib_feature_modules'] = [
+        'title' => t('Bioland contrib feature modules'),
+        'value' => t('Not enabled: @modules', ['@modules' => implode(', ', $disabled)]),
+        'description' => t('These modules ship in drupal-docker-wrapper 11.4.7-v7 or higher. Update the image if they are missing, then enable them (drush en @modules).', ['@modules' => implode(' ', $disabled)]),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+  }
+
+  // Runtime-only: flag a missing BL-1218 embed media type. bioland_update_9098()
+  // skips it when the image lacks iframe/media_iframe and never runs again;
+  // bioland_modules_installed() creates it once media_iframe is enabled.
+  if ($phase === 'runtime') {
+    $module_handler = \Drupal::moduleHandler();
+    $embed_disabled = array_values(array_filter(
+      BIOLAND_EMBED_MODULES,
+      static fn ($module) => !$module_handler->moduleExists($module)
+    ));
+    if ($embed_disabled) {
+      $requirements['bioland_embed_media'] = [
+        'title' => t('Bioland embed media type'),
+        'value' => t('Not enabled: @modules', ['@modules' => implode(', ', $embed_disabled)]),
+        'description' => t('The embed media type needs these modules from the drupal-docker-wrapper image. Update the image if they are missing, then enable them (drush en @modules); the embed media type is created when media_iframe is enabled.', ['@modules' => implode(' ', $embed_disabled)]),
+        'severity' => REQUIREMENT_WARNING,
+      ];
+    }
+    elseif (!\Drupal::entityTypeManager()->getStorage('media_type')->load('embed')) {
+      $requirements['bioland_embed_media'] = [
+        'title' => t('Bioland embed media type'),
+        'value' => t('Media type embed is missing.'),
+        'description' => t('Recreate it with drush php:eval "\\Drupal::moduleHandler()->loadInclude(\'bioland\', \'install\'); _bioland_setup_embed_media();"'),
+        'severity' => REQUIREMENT_WARNING,
       ];
     }
   }
@@ -349,9 +474,42 @@ function bioland_requirements($phase) {
     }
   }
 
+  // Focal Point is a soft dependency (BL-841): without it the hero image has
+  // no window selector and bioland_focal_point stays empty.
+  if ($phase === 'runtime' && !\Drupal::moduleHandler()->moduleExists('focal_point')) {
+    $requirements['bioland_focal_point'] = [
+      'title' => t('Bioland hero focal point'),
+      'value' => t('Focal Point module not installed'),
+      'description' => t('Editors cannot choose which part of the hero image shows. Run composer require "drupal/focal_point:^2.1" --with-all-dependencies, then drush updb.'),
+      'severity' => REQUIREMENT_WARNING,
+    ];
+  }
+
+  if ($phase === 'runtime') {
+    $screenshot_config = \Drupal::config('bioland.settings');
+    if ($screenshot_config->get('enable_url_screenshot') !== FALSE) {
+      $secret = \Drupal\bioland\BiolandUrlScreenshotPolicy::resolveSecret(
+        [\Drupal\Core\Site\Settings::class, 'get']
+      );
+      if ($secret === '') {
+        $requirements['bioland_convert_api_secret'] = [
+          'title' => t('ConvertAPI secret (website screenshots)'),
+          'value' => t('Not set'),
+          'description' => t('CONVERT_API_SECRET is not set in the environment (or bioland_convert_api_secret in settings.php). Website screenshots (BL-1191) will not run until it is set. No value is ever printed here.'),
+          'severity' => REQUIREMENT_WARNING,
+        ];
+      }
+    }
+  }
+
   // DMSM geography: an unset or refused base URL freezes the site's countries,
   // region and continent silently, so it has to surface on the status report.
   $requirements += _bioland_dmsm_requirements($phase);
+
+  // drupal-docker-wrapper image version (BL-1189): warns when the running
+  // image predates the BL-917 modules' minimum wrapper version, or when the
+  // version cannot be determined at all.
+  $requirements += _bioland_wrapper_requirements($phase);
 
   return $requirements;
 }
