@@ -11,6 +11,7 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Url;
 use Drupal\bioland\Service\BiolandTranslationBatchService;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -972,6 +973,53 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
       [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']],
       $config->get('embed.allowed_origins')
     );
+  }
+
+  /**
+   * Saves the form with $submitted rows over a stored list; returns messages.
+   */
+  protected function submitEmbedRows(array $submitted) {
+    Url::reset();
+    $config = $this->config(['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']]]]);
+    $bioForm = $this->createForm();
+    $this->injectConfigFactory($bioForm, $config);
+    $messenger = $this->recordingMessenger();
+    $bioForm->setMessenger($messenger);
+    $form = [];
+    $bioForm->submitForm($form, $this->formState(['google_analytics_ids' => '', 'embed_allowed_origins' => $submitted]));
+    return $messenger;
+  }
+
+  /**
+   * BL-1289: a changed list adds a link that makes the head reload it.
+   */
+  public function testSubmitFormLinksHeadCacheClearWhenAllowlistChanged(): void {
+    $messenger = $this->submitEmbedRows([
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '', 'remove' => 0],
+      ['url' => 'https://bioland-static.s3.ca-central-1.amazonaws.com', 'label' => '', 'sandbox' => '', 'remove' => 0],
+    ]);
+
+    $this->assertCount(1, $messenger->statuses);
+    $this->assertStringContainsString('<a href="<front>">Clear the front end cache</a>', $messenger->statuses[0]);
+    $this->assertCount(1, Url::$created);
+    $this->assertSame('<front>', Url::$created[0]['route']);
+    $query = Url::$created[0]['options']['query'];
+    $this->assertSame(['seachain-taisce'], array_keys($query));
+    $this->assertMatchesRegularExpression('/^[A-Za-z0-9-]{1,64}$/', $query['seachain-taisce']);
+
+    $this->submitEmbedRows([['url' => 'https://example.org', 'label' => '', 'sandbox' => '', 'remove' => 0]]);
+    $this->assertNotSame($query['seachain-taisce'], Url::$created[0]['options']['query']['seachain-taisce'], 'The head clears once per nonce.');
+  }
+
+  /**
+   * BL-1289: an unchanged list, or no table at all, adds no such link.
+   */
+  public function testSubmitFormAddsNoHeadCacheLinkWhenAllowlistUnchanged(): void {
+    $messenger = $this->submitEmbedRows([
+      ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '', 'remove' => 0],
+    ]);
+    $this->assertSame([], $messenger->statuses);
+    $this->assertSame([], Url::$created);
   }
 
   /**
