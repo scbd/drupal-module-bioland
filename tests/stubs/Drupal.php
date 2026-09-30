@@ -121,6 +121,26 @@ class Drupal {
   }
 
   /**
+   * Gets the module handler registered under 'module_handler'.
+   *
+   * @return mixed
+   *   The stubbed module handler, or NULL.
+   */
+  public static function moduleHandler() {
+    return static::$container['module_handler'] ?? NULL;
+  }
+
+  /**
+   * Gets the entity definition update manager.
+   *
+   * @return mixed
+   *   The stubbed service registered under 'entity.definition_update_manager'.
+   */
+  public static function entityDefinitionUpdateManager() {
+    return static::$container['entity.definition_update_manager'] ?? NULL;
+  }
+
+  /**
    * Gets the entity type manager.
    *
    * @return \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -168,13 +188,44 @@ class Drupal {
   }
 
   /**
+   * Gets a key/value collection.
+   *
+   * @return mixed
+   *   The stubbed 'keyvalue' service's collection, or NULL.
+   */
+  public static function keyValue($collection) {
+    $factory = static::$container['keyvalue'] ?? NULL;
+    return $factory ? $factory->get($collection) : NULL;
+  }
+
+  /**
+   * Gets the current user.
+   *
+   * @return \Drupal\Core\Session\AccountInterface|null
+   *   The stubbed 'current_user' service, or NULL.
+   */
+  public static function currentUser() {
+    return static::$container['current_user'] ?? NULL;
+  }
+
+  /**
+   * Gets the request stack.
+   *
+   * @return \Symfony\Component\HttpFoundation\RequestStack
+   *   The stubbed 'request_stack' service.
+   */
+  public static function requestStack() {
+    return static::service('request_stack');
+  }
+
+  /**
    * Gets the messenger service.
    *
    * @return object
-   *   The messenger.
+   *   The stubbed 'messenger' service, or a no-op one.
    */
   public static function messenger() {
-    return new class {
+    return static::$container['messenger'] ?? new class {
       public function addMessage($message, $type = 'status') {}
       public function addStatus($message) {}
       public function addWarning($message) {}

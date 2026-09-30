@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9083()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9114()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -185,6 +185,232 @@ class SearchApiConvergenceHookTest extends TestCase {
       file_get_contents($helpersFile),
       'bioland_update_9083() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
+
+    // The new highest-numbered hook (bioland_update_9084(), added for BL-841
+    // to enable the hero image focal point widget) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $focalPointFile = $this->moduleRoot() . '/includes/bioland.install.focal_point.inc';
+    $this->assertFileExists($focalPointFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9084\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($focalPointFile),
+      'bioland_update_9084() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9085(), added for BL-841
+    // to remove the stale computed focal point field storage definition) is
+    // the last writer for every site, so it must ALSO converge on the
+    // canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9085\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($focalPointFile),
+      'bioland_update_9085() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9087(), added for BL-836
+    // to delete duplicate Publishing admin menu links) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $menuFile = $this->moduleRoot() . '/includes/bioland.install.menu.inc';
+    $this->assertFileExists($menuFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9087\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($menuFile),
+      'bioland_update_9087() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9088(), added for BL-815
+    // to make the remote video image optional) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9088\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9088() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9090(), added for BL-1191
+    // to install the website screenshot field and switch) is the last writer
+    // for every site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9090\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9090() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9091(), added for
+    // BL-1192 to ready the document-preview feature) is the last writer for
+    // every site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9091\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($fieldsFile),
+      'bioland_update_9091() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9092(), added for BL-836
+    // to retire Publishing > Add > Content) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9092\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($menuFile),
+      'bioland_update_9092() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9093(), added for
+    // BL-1202 to converge the CKEditor image upload limit at 10 MB) is the
+    // last writer for every site, so it must ALSO converge on the canonical
+    // v2 config.
+    $editorFile = $this->moduleRoot() . '/includes/bioland.install.editor.inc';
+    $this->assertFileExists($editorFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9093\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9093() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9094(), added for BL-1205
+    // to clean up document media cards in the media library picker) is the
+    // last writer for every site, so it must ALSO converge on the canonical
+    // v2 config.
+    $viewsFile = $this->moduleRoot() . '/includes/bioland.install.views.inc';
+    $this->assertFileExists($viewsFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9094\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($viewsFile),
+      'bioland_update_9094() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9095(), added for
+    // BL-1206 to fix CKEditor media insert types and the remote video /
+    // document view displays) is the last writer for every site, so it must
+    // ALSO converge on the canonical v2 config.
+    $formDisplayFile = $this->moduleRoot() . '/includes/bioland.install.form_display.inc';
+    $this->assertFileExists($formDisplayFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9095\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($formDisplayFile),
+      'bioland_update_9095() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9096(), added for BL-917
+    // to enable the editor contrib modules) is the last writer for every site,
+    // so it must ALSO converge on the canonical v2 config.
+    $editorFile = $this->moduleRoot() . '/includes/bioland.install.editor.inc';
+    $this->assertFileExists($editorFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9096\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9096() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9097(), added for BL-784
+    // to grant 'delete any media' to content manager and above) is the last
+    // writer for every site, so it must ALSO converge on the canonical v2
+    // config.
+    $rolesFile = $this->moduleRoot() . '/includes/bioland.install.roles.inc';
+    $this->assertFileExists($rolesFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9097\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($rolesFile),
+      'bioland_update_9097() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9100(), added for BL-838
+    // to create the editable home node 1000) is the last writer for every
+    // site, so it must ALSO converge on the canonical v2 config.
+    $homeNodeFile = $this->moduleRoot() . '/includes/bioland.install.home_node.inc';
+    $this->assertFileExists($homeNodeFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9100\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($homeNodeFile),
+      'bioland_update_9100() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // The new highest-numbered hook (bioland_update_9101(), added for BL-917
+    // to enable the media_resize filter) is the last writer for every site,
+    // so it must ALSO converge on the canonical v2 config.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9101\s*\([^)]*\)\s*\{.*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9101() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9103() (BL-784 follow-up: restores the media bulk
+    // actions) was the highest-numbered hook, so it must converge too.
+    $viewsFile = $this->moduleRoot() . '/includes/bioland.install.views.inc';
+    $this->assertFileExists($viewsFile);
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9103\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($viewsFile),
+      'bioland_update_9103() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9112() (BL-1218 auto-allow embed hosts permission)
+    // converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9112\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9112() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9113() (BL-1218 embed URL alias pattern) converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9113\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9113() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9114() (BL-1312 embed display convergence) is the
+    // highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9114\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9114() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9106() (BL-1271 embed default view display) converges
+    // too, so either hook can safely be the last one to land.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9106\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9106() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9107() (BL-1272 media library type filter and embed
+    // picker display) is now the highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9107\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9107() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9108() (BL-1274 embed media permissions) converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9108\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9108() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9109() (BL-1276 menu link rebuild) converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9109\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9109() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9110() (BL-1272 media library type filter re-run) is now
+    // the highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9110\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9110() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
+    // bioland_update_9111() (BL-1271 frame without the title heading) is now
+    // the highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9111\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9111() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
   }
 
   /**
@@ -200,9 +426,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9083,
+      9114,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9083() now holds that role (it seeds the Google Analytics switch as disabled and re-applies the canonical v2 config after the 9071-9082 corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9114() now holds that role (it converges the BL-1312 embed form and view displays and frame size, after 9113 adds the embed bundle to the media URL alias pattern, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

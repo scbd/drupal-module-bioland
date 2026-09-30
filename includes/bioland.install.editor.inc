@@ -14,6 +14,51 @@
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
+/**
+ * Canonical CKEditor5 inline image upload size limit for full_html (BL-1202).
+ *
+ * Shared by _bioland_configure_full_html_editor_toolbar() (the write) and its
+ * own post-save verification, so the two can never drift out of sync.
+ */
+const BIOLAND_EDITOR_IMAGE_MAX_SIZE = '10 MB';
+
+/**
+ * Media types selectable in the CKEditor "Insert Media" dialog (BL-1206).
+ *
+ * Applied to full_html only: image + remote_video plus embed (BL-1218, inline
+ * frames). basic_html deliberately keeps the BL-1205 image + remote_video list
+ * written by _bioland_restrict_media_embed_allowed_types() (hook 9094).
+ * document and hero are intentionally absent.
+ */
+const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['embed', 'image', 'remote_video'];
+
+/**
+ * Contrib modules behind the embed media type (BL-1218).
+ */
+const BIOLAND_EMBED_MODULES = ['iframe', 'media_iframe'];
+
+/**
+ * Widget settings of the embed media type's iframe_urlwidthheight widget.
+ *
+ * BL-1312. Contrib iframe stores width, height and class per media item at
+ * save time from these defaults, so an empty width or height renders at the
+ * formatter's fallback (701 px tall). Values are the strings the widget
+ * stores. Keys are sorted, because array comparison with === is order
+ * sensitive.
+ */
+const BIOLAND_EMBED_WIDGET_SETTINGS = [
+  'allowfullscreen' => '1',
+  'class' => 'iframe-responsive',
+  'expose_class' => FALSE,
+  'frameborder' => '0',
+  'headerlevel' => '3',
+  'height' => '75%',
+  'scrolling' => 'auto',
+  'tokensupport' => '0',
+  'transparency' => '1',
+  'width' => '100%',
+];
+
 /*
  * =============================================================================
  * HELPER FUNCTIONS
@@ -234,7 +279,9 @@ function _bioland_update_content_to_full_html() {
  * Helper function to configure full_html text format.
  *
  * - Adds Linkit extension to editor.editor.full_html
- * - Sets image upload max size to 250kb
+ * - Removes the dead settings.plugins.ckeditor5_imageUpload.max_size key
+ *   (core never reads it; see _bioland_configure_full_html_editor_toolbar()
+ *   for the actual image upload limit, at the top-level image_upload key)
  * - Adds Linkit filter to filter.format.full_html
  * - Grants scbd_staff access to full_html format
  * - Disables basic_html editor
@@ -264,12 +311,16 @@ function _bioland_configure_full_html_format() {
       $messages[] = t('Added Linkit extension to full_html editor.');
     }
 
-    // Update image upload max size.
-    if (!isset($settings['plugins']['ckeditor5_imageUpload'])) {
-      $settings['plugins']['ckeditor5_imageUpload'] = [];
+    // Remove the dead ckeditor5_imageUpload plugin key (BL-1202). Core never
+    // reads settings.plugins.ckeditor5_imageUpload.max_size — the effective
+    // limit lives at the top-level image_upload.max_size key, written by
+    // _bioland_configure_full_html_editor_toolbar(). Unsetting here (rather
+    // than simply no longer writing it) also clears it from already-installed
+    // sites, where it can trip config validation on Drupal 10.3+/11.
+    if (isset($settings['plugins']['ckeditor5_imageUpload'])) {
+      unset($settings['plugins']['ckeditor5_imageUpload']);
+      $messages[] = t('Removed dead ckeditor5_imageUpload plugin key from full_html editor settings.');
     }
-    $settings['plugins']['ckeditor5_imageUpload']['max_size'] = '250kb';
-    $messages[] = t('Set image upload max size to 250kb.');
 
     $editor_config->set('settings', $settings);
     $editor_config->save(TRUE);
@@ -369,7 +420,8 @@ function _bioland_configure_full_html_format() {
 /**
  * Helper function to configure full_html editor toolbar and image upload limit.
  *
- * - Sets image upload max size to 50kb
+ * - Sets image upload max size to BIOLAND_EDITOR_IMAGE_MAX_SIZE (10 MB)
+ * - Ensures image upload is enabled (image_upload.status)
  * - Updates CKEditor5 toolbar with comprehensive button configuration
  *
  * @return string
@@ -388,12 +440,21 @@ function _bioland_configure_full_html_editor_toolbar() {
     // Get current values for debugging
     $current_max_size = $editor_config->get('image_upload.max_size');
     $current_toolbar = $editor_config->get('settings.toolbar.items');
-    
-    // Update image upload max size to 50kb.
-    $editor_config->set('image_upload.max_size', '50kb');
-    $messages[] = t('Set image upload max size to 50kb (was: @old).', [
+
+    // Update image upload max size to the canonical limit.
+    $editor_config->set('image_upload.max_size', BIOLAND_EDITOR_IMAGE_MAX_SIZE);
+    $messages[] = t('Set image upload max size to @size (was: @old).', [
+      '@size' => BIOLAND_EDITOR_IMAGE_MAX_SIZE,
       '@old' => $current_max_size ?: 'not set',
     ]);
+
+    // Ensure image upload is enabled, but only default it on when the key
+    // is missing entirely; never override an admin's intentional FALSE.
+    $image_upload_settings = $editor_config->get('image_upload') ?? [];
+    if (!array_key_exists('status', $image_upload_settings)) {
+      $editor_config->set('image_upload.status', TRUE);
+      $messages[] = t('Enabled image upload for full_html editor.');
+    }
 
     // Define the new toolbar items.
     $toolbar_items = [
@@ -454,9 +515,11 @@ function _bioland_configure_full_html_editor_toolbar() {
     $saved_max_size = $editor_config_verify->get('image_upload.max_size');
     $saved_toolbar = $editor_config_verify->get('settings.toolbar.items');
     
-    if ($saved_max_size === '50kb' && is_array($saved_toolbar) && count($saved_toolbar) === count($toolbar_items)) {
+    if ($saved_max_size === BIOLAND_EDITOR_IMAGE_MAX_SIZE && is_array($saved_toolbar) && count($saved_toolbar) === count($toolbar_items)) {
       $messages[] = t('✓ Verified: Changes saved successfully.');
-      \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and 50kb image limit - VERIFIED.');
+      \Drupal::logger('bioland')->notice('Updated editor.editor.full_html with new toolbar and @size image limit - VERIFIED.', [
+        '@size' => BIOLAND_EDITOR_IMAGE_MAX_SIZE,
+      ]);
     }
     else {
       $messages[] = t('⚠ Warning: Save verification failed. Max size: @size, Toolbar items: @items', [
@@ -478,6 +541,782 @@ function _bioland_configure_full_html_editor_toolbar() {
   }
 
   return implode("\n", $messages);
+}
+
+/**
+ * Pure helper: build the media_embed allowed_media_types list (BL-1206).
+ *
+ * Only 'embed', 'image' and 'remote_video' are selectable in the CKEditor "Insert
+ * Media" dialog, the same allowlist BL-1205 established in
+ * _bioland_restrict_media_embed_allowed_types(). 'document' (inserted /
+ * linked, not embedded) and 'hero' (a page-level banner, never inline
+ * body content) are deliberately excluded, as is any other type. The
+ * allowlist is intersected with the media types that actually exist on
+ * the site so a missing type is never written into config. Returns the
+ * keyed shape MediaEmbed's checkboxes settings form stores in config:
+ * id => id, stable sorted, empty in -> empty out.
+ *
+ * @param string[] $type_ids
+ *   Media type machine names that exist on the site.
+ *
+ * @return array
+ *   Allowed media type ids, keyed by id.
+ */
+function _bioland_media_embed_allowed_types(array $type_ids): array {
+  $allowed = array_values(array_intersect(
+    BIOLAND_MEDIA_EMBED_ALLOWED_TYPES,
+    $type_ids
+  ));
+  sort($allowed, SORT_STRING);
+  return array_combine($allowed, $allowed);
+}
+
+/**
+ * Helper function to restrict media types selectable in the CKEditor
+ * "Insert Media" (media_embed) dialog on full_html (BL-1206).
+ *
+ * Loads filter.format.full_html, ensures the media_embed filter exists and
+ * is enabled, and sets settings.allowed_media_types to embed, image and remote_video
+ * (BIOLAND_MEDIA_EMBED_ALLOWED_TYPES, intersected with the media types that
+ * exist on the site). allowed_view_modes is left untouched. Idempotent; skips with
+ * a message when media / media_library is not enabled, or the format is
+ * missing.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_configure_media_embed_allowed_types() {
+  if ($skip = _bioland_require_module('media', 'media_embed allowed types configuration')) {
+    return $skip;
+  }
+  if ($skip = _bioland_require_module('media_library', 'media_embed allowed types configuration')) {
+    return $skip;
+  }
+
+  $config_factory = \Drupal::configFactory();
+  $filter_config = $config_factory->getEditable('filter.format.full_html');
+  if (!$filter_config || $filter_config->isNew()) {
+    return t('filter.format.full_html not found; skipping media_embed configuration.');
+  }
+
+  $media_type_ids = array_keys(\Drupal::entityTypeManager()->getStorage('media_type')->loadMultiple());
+  $allowed_types = _bioland_media_embed_allowed_types($media_type_ids);
+
+  $messages = [];
+  $changed = FALSE;
+
+  $filters = $filter_config->get('filters') ?: [];
+  if (!isset($filters['media_embed'])) {
+    $filters['media_embed'] = [
+      'id' => 'media_embed',
+      'provider' => 'media',
+      'status' => TRUE,
+      'weight' => 0,
+      'settings' => [
+        'default_view_mode' => 'default',
+        'allowed_media_types' => $allowed_types,
+        'allowed_view_modes' => [],
+      ],
+    ];
+    $messages[] = t('Added media_embed filter to full_html format.');
+    $changed = TRUE;
+  }
+  else {
+    if (empty($filters['media_embed']['status'])) {
+      $filters['media_embed']['status'] = TRUE;
+      $messages[] = t('Enabled media_embed filter on full_html format.');
+      $changed = TRUE;
+    }
+
+    $current_types = $filters['media_embed']['settings']['allowed_media_types'] ?? [];
+    if ($current_types !== $allowed_types) {
+      $filters['media_embed']['settings']['allowed_media_types'] = $allowed_types;
+      $messages[] = t('Restricted full_html media_embed allowed types to embed, image and remote_video.');
+      $changed = TRUE;
+    }
+  }
+
+  if ($changed) {
+    $filter_config->set('filters', $filters);
+
+    // Ensure the media module dependency is declared.
+    $dependencies = $filter_config->get('dependencies') ?: [];
+    $modules = $dependencies['module'] ?? [];
+    if (!in_array('media', $modules, TRUE)) {
+      $modules[] = 'media';
+      sort($modules);
+      $dependencies['module'] = array_values($modules);
+      $filter_config->set('dependencies', $dependencies);
+    }
+
+    $filter_config->save(TRUE);
+  }
+  else {
+    $messages[] = t('full_html media_embed allowed types already configured.');
+  }
+
+  \Drupal::logger('bioland')->notice('media_embed allowed types configuration: @messages', [
+    '@messages' => implode(' ', $messages),
+  ]);
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Contrib modules Bioland enables when the codebase provides them (BL-917).
+ *
+ * All five ship in the drupal-docker-wrapper image from 11.4.7-v7.
+ *
+ * @return string[]
+ *   Module machine names.
+ */
+function _bioland_contrib_feature_modules() {
+  return [
+    'toast_image_editor',
+    'ckeditor_media_resizer',
+    'llms_txt',
+    'ckeditor5_fullscreen',
+    'ckeditor5_icons',
+  ];
+}
+
+/**
+ * Enable the contrib feature modules that are present but not yet enabled.
+ *
+ * Already-enabled modules are left alone, so this is safe to run more than
+ * once. A module missing from the codebase (a drupal-docker-wrapper image
+ * that does not ship it yet), or one whose install throws (for example
+ * a missing dependency), is skipped, logged and reported rather than failing
+ * the run. bioland_requirements() keeps flagging it on the status report
+ * (with the image version each module list needs) until someone enables it.
+ *
+ * @param string[]|null $modules
+ *   Modules to enable; defaults to _bioland_contrib_feature_modules().
+ *
+ * @return string
+ *   Plain-text summary. Not t(): translation is not dependable mid-update.
+ */
+function _bioland_enable_contrib_feature_modules(?array $modules = NULL) {
+  $module_handler = \Drupal::moduleHandler();
+  // reset() first: the cached list can predate the image that added these
+  // modules (updb before cache rebuild), which would skip them for good.
+  $module_list = \Drupal::service('extension.list.module')->reset();
+  $installer = \Drupal::service('module_installer');
+  $logger = \Drupal::logger('bioland');
+
+  $installed = [];
+  $enabled = [];
+  $missing = [];
+  $failed = [];
+  foreach ($modules ?? _bioland_contrib_feature_modules() as $module) {
+    if ($module_handler->moduleExists($module)) {
+      $enabled[] = $module;
+      continue;
+    }
+    if (!$module_list->exists($module)) {
+      $missing[] = $module;
+      $logger->warning('Module @module is not in the codebase; skipped enabling it (update the drupal-docker-wrapper image).', ['@module' => $module]);
+      continue;
+    }
+    // One module per call: install() resolves every listed module's
+    // dependencies up front, so one bad module would block all of them.
+    try {
+      $installer->install([$module]);
+      $installed[] = $module;
+    }
+    catch (\Exception $e) {
+      $failed[] = $module . ' (' . $e->getMessage() . ')';
+      $logger->warning('Could not enable @module: @message', ['@module' => $module, '@message' => $e->getMessage()]);
+    }
+  }
+
+  $messages = [];
+  if ($installed) {
+    $messages[] = 'Enabled: ' . implode(', ', $installed) . '.';
+  }
+  if ($enabled) {
+    $messages[] = 'Already enabled: ' . implode(', ', $enabled) . '.';
+  }
+  if ($missing) {
+    $messages[] = 'Not in the codebase, skipped (update the drupal-docker-wrapper image): ' . implode(', ', $missing) . '.';
+  }
+  if ($failed) {
+    $messages[] = 'Failed to enable, skipped: ' . implode('; ', $failed) . '.';
+  }
+
+  return implode(' ', $messages);
+}
+
+/**
+ * Create or finish the embed media type on media_iframe's inline_frame source.
+ *
+ * BL-1218. Holds external pages (a PowerBI report) or uploaded HTML files
+ * shown in an inline frame. Creates the type and its iframe source field with
+ * the displays the source prepares (iframe_urlwidthheight widget,
+ * iframe_default formatter; _bioland_configure_embed_default_display() later
+ * switches the Default display to iframe_only, and
+ * _bioland_configure_embed_form_displays() fills the widget defaults). Resumable: an existing type without a source
+ * field is finished rather than skipped. An existing, complete type keeps its
+ * admin changes; one on another source is left alone. The media_library form
+ * and view displays core only adds from the media type UI are ensured every
+ * run, so the picker grid never renders a live iframe per tile.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_create_embed_media_type() {
+  $module_handler = \Drupal::moduleHandler();
+  if (!$module_handler->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed media type.';
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('media_type');
+  $type = $storage->load('embed');
+  if ($type && $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed exists on another source; left it untouched.';
+  }
+
+  $messages = [];
+  $type = $type ?: $storage->create([
+    'id' => 'embed',
+    'label' => 'Embed',
+    'description' => 'An external page or uploaded HTML file shown in an inline frame, for example a PowerBI report.',
+    'source' => 'inline_frame',
+  ]);
+  $source = $type->getSource();
+  if (!$source->getSourceFieldDefinition($type)) {
+    $field = $source->createSourceField($type);
+    $source->setConfiguration(['source_field' => $field->getName()] + $source->getConfiguration());
+    // The bundle must exist before its field can be saved.
+    $type->save();
+    $field_storage = $field->getFieldStorageDefinition();
+    if ($field_storage->isNew()) {
+      $field_storage->save();
+    }
+    $field->save();
+
+    $display_repository = \Drupal::service('entity_display.repository');
+    $form_display = $display_repository->getFormDisplay('media', 'embed');
+    $source->prepareFormDisplay($type, $form_display);
+    $form_display->save();
+    $view_display = $display_repository->getViewDisplay('media', 'embed');
+    $source->prepareViewDisplay($type, $view_display);
+    $view_display->save();
+    $messages[] = 'Created media type embed with source field ' . $field->getName() . '.';
+  }
+
+  if ($module_handler->moduleExists('media_library')
+    && function_exists('_media_library_configure_form_display')
+    && function_exists('_media_library_configure_view_display')) {
+    // Both return FALSE when the media_library display already exists.
+    $form_added = _media_library_configure_form_display($type);
+    $view_added = _media_library_configure_view_display($type);
+    if ($form_added || $view_added) {
+      $messages[] = 'Added the embed media_library displays.';
+    }
+  }
+
+  return $messages ? implode(' ', $messages) : 'Media type embed already exists.';
+}
+
+/**
+ * Show only the inline frame on the embed media type's Default view display.
+ *
+ * BL-1271. The auto-generated default renders every base field (created,
+ * author, a broken generic thumbnail) before the frame. This leaves the frame
+ * with a visually hidden label, so the name is still read by screen readers.
+ * The frame uses iframe_only: iframe_default prints the frame's title as a
+ * visible heading over it, in CKEditor and in the rendered body. iframe_only
+ * keeps that title as the iframe title attribute only.
+ * A display that already matches is not saved again. Does nothing unless the
+ * embed media type exists on the inline_frame source; the frame field name is
+ * read from the type's source configuration.
+ *
+ * @return string
+ *   Plain-text summary, untranslated.
+ */
+function _bioland_configure_embed_default_display() {
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed default view display.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed default view display.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed default view display.';
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  $display = $storage->load('media.embed.default') ?: $storage->create([
+    'targetEntityType' => 'media',
+    'bundle' => 'embed',
+    'mode' => 'default',
+    'status' => TRUE,
+  ]);
+
+  $hidden = ['created', 'uid', 'thumbnail', 'name'];
+  $component = $display->getComponent($frame);
+  $frame_ok = $component
+    && ($component['type'] ?? '') === 'iframe_only'
+    && ($component['label'] ?? '') === 'visually_hidden';
+  $changed = !$frame_ok;
+  foreach ($hidden as $field) {
+    $changed = $changed || $display->getComponent($field) !== NULL;
+  }
+  if (!$changed) {
+    return 'Embed default view display already configured.';
+  }
+
+  foreach ($hidden as $field) {
+    $display->removeComponent($field);
+  }
+  $display->setComponent($frame, [
+    'type' => 'iframe_only',
+    'label' => 'visually_hidden',
+    'weight' => 0,
+    'region' => 'content',
+    'settings' => $component['settings'] ?? [],
+    'third_party_settings' => $component['third_party_settings'] ?? [],
+  ]);
+  $display->save();
+  return 'Configured the embed default view display.';
+}
+
+/**
+ * Lays out the embed media type's Default and Media library form displays.
+ *
+ * BL-1312. media_iframe only prepares the view display, so the auto-generated
+ * form display carries the iframe_urlwidthheight widget with empty width and
+ * height, and core's media_library form display drops the frame altogether.
+ * Both get the frame with BIOLAND_EMBED_WIDGET_SETTINGS, so a new embed is
+ * saved at 100% x 75% with the responsive class. The media_library form
+ * display keeps only the name and the frame; created, langcode, path, status
+ * and uid are hidden. The Default form display's other components are left
+ * alone. Existing weights are kept. A display that already matches (settings
+ * compared in key order) is not saved again.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_configure_embed_form_displays() {
+  $handler = \Drupal::moduleHandler();
+  if (!$handler->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed form displays.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed form displays.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed form displays.';
+  }
+
+  $modes = ['default' => 0];
+  if ($handler->moduleExists('media_library')) {
+    $modes['media_library'] = 1;
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $saved = [];
+  foreach ($modes as $mode => $default_weight) {
+    $display = $storage->load('media.embed.' . $mode) ?: $storage->create([
+      'targetEntityType' => 'media',
+      'bundle' => 'embed',
+      'mode' => $mode,
+      'status' => TRUE,
+    ]);
+
+    $current = $display->getComponent($frame);
+    $desired = [
+      'type' => 'iframe_urlwidthheight',
+      'weight' => $current['weight'] ?? $default_weight,
+      'region' => 'content',
+      'settings' => BIOLAND_EMBED_WIDGET_SETTINGS,
+      'third_party_settings' => $current['third_party_settings'] ?? [],
+    ];
+    ksort($desired);
+    $normalized = $current;
+    if (is_array($normalized)) {
+      ksort($normalized);
+      if (is_array($normalized['settings'] ?? NULL)) {
+        ksort($normalized['settings']);
+      }
+    }
+    $changed = $normalized !== $desired;
+
+    $stale = [];
+    $name_missing = FALSE;
+    if ($mode === 'media_library') {
+      foreach (['created', 'langcode', 'path', 'status', 'uid'] as $field) {
+        if ($display->getComponent($field) !== NULL) {
+          $stale[] = $field;
+        }
+      }
+      $name_missing = $display->getComponent('name') === NULL;
+    }
+    if (!$changed && !$stale && !$name_missing) {
+      continue;
+    }
+
+    $display->setComponent($frame, $desired);
+    foreach ($stale as $field) {
+      $display->removeComponent($field);
+    }
+    if ($name_missing) {
+      $display->setComponent('name', [
+        'type' => 'string_textfield',
+        'weight' => 0,
+        'region' => 'content',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+        'third_party_settings' => [],
+      ]);
+    }
+    $display->save();
+    $saved[] = $mode;
+  }
+
+  if (!$saved) {
+    return 'Embed form displays already configured.';
+  }
+  \Drupal::logger('bioland')->notice('Configured the embed form displays: @modes.', ['@modes' => implode(', ', $saved)]);
+  return 'Configured the embed form displays (' . implode(', ', $saved) . ').';
+}
+
+/**
+ * Sets the default width and height on embed media saved without them.
+ *
+ * BL-1312. Contrib iframe stores width and height per media item; an item
+ * saved before the widget had defaults renders at the formatter's fallback
+ * (701 px tall). Only an empty width (100%) or an empty height (75%) is
+ * filled; a stored value, however unusual, is never changed. An estate site
+ * holds a handful of embeds, so this is not chunked.
+ *
+ * @return string
+ *   Plain-text summary, untranslated.
+ */
+function _bioland_backfill_embed_frame_dimensions() {
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed dimension backfill.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed dimension backfill.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed dimension backfill.';
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('media');
+  $ids = $storage->getQuery()->accessCheck(FALSE)->condition('bundle', 'embed')->execute();
+  $defaults = ['width' => '100%', 'height' => '75%'];
+  $updated = 0;
+  foreach ($storage->loadMultiple($ids) as $media) {
+    $item = $media->get($frame)->first();
+    if (!$item) {
+      continue;
+    }
+    $touched = FALSE;
+    foreach ($defaults as $property => $value) {
+      if (trim((string) $item->get($property)->getValue()) === '') {
+        $item->set($property, $value);
+        $touched = TRUE;
+      }
+    }
+    if ($touched) {
+      $media->save();
+      $updated++;
+    }
+  }
+  return $updated
+    ? "Set the default frame size on $updated embed media."
+    : 'No embed media needed a default frame size.';
+}
+
+/**
+ * Create the embed media type, offer it in the CKEditor media picker, and
+ * give it URL aliases.
+ *
+ * BL-1218. Shared by bioland_update_9098(), bioland_install() and
+ * bioland_modules_installed(), so a site that enables media_iframe after the
+ * update hook ran still converges.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_setup_embed_media() {
+  return implode(' ', array_map('strval', [
+    _bioland_create_embed_media_type(),
+    _bioland_configure_embed_form_displays(),
+    _bioland_configure_embed_default_display(),
+    _bioland_configure_media_embed_allowed_types(),
+    _bioland_add_embed_to_media_alias_pattern(),
+    _bioland_configure_embed_media_library_display(),
+    _bioland_backfill_embed_frame_dimensions(),
+    _bioland_mirror_image_media_permissions_to_embed(),
+  ]));
+}
+
+/**
+ * Lays out the embed media type's Media library view display.
+ *
+ * BL-1272. The picker card shows the inline frame (iframe_only formatter,
+ * label visually hidden, as on the Default display; BL-1312 changed it from
+ * iframe_default, which prints the frame title as a heading) and the media
+ * name (plain text, label hidden); every other field sits in the hidden
+ * region. Loads or creates core.entity_view_display.media.embed.media_library.
+ * Idempotent: an admin's iframe formatter settings and weight are kept, only
+ * the component set, the formatter and the label are enforced.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_configure_embed_media_library_display() {
+  $field = 'field_media_inline_frame';
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed media_library display.';
+  }
+  if (!\Drupal::moduleHandler()->moduleExists('media_library')) {
+    return 'media_library is not enabled; skipped the embed media_library display.';
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('media_type');
+  if (!$storage->load('embed')) {
+    return 'Media type embed does not exist; skipped the embed media_library display.';
+  }
+
+  $config = \Drupal::configFactory()->getEditable('core.entity_view_display.media.embed.media_library');
+  $creating = $config->isNew();
+  if ($creating) {
+    $defaults = [
+      'langcode' => 'en',
+      'status' => TRUE,
+      'dependencies' => [
+        'config' => [
+          'core.entity_view_mode.media.media_library',
+          'field.field.media.embed.' . $field,
+          'media.type.embed',
+        ],
+        'module' => ['iframe'],
+      ],
+      'id' => 'media.embed.media_library',
+      'targetEntityType' => 'media',
+      'bundle' => 'embed',
+      'mode' => 'media_library',
+      'content' => [],
+      'hidden' => [],
+    ];
+    foreach ($defaults as $key => $value) {
+      $config->set($key, $value);
+    }
+  }
+
+  $content = $config->get('content') ?: [];
+  $hidden = $config->get('hidden') ?: [];
+
+  $frame = ($content[$field] ?? []) + [
+    'weight' => 0,
+    'settings' => [],
+    'third_party_settings' => [],
+  ];
+  $frame['type'] = 'iframe_only';
+  $frame['label'] = 'visually_hidden';
+  $frame['region'] = 'content';
+  ksort($frame);
+
+  $name_component = ($content['name'] ?? []) + [
+    'weight' => 1,
+    'settings' => ['link_to_entity' => FALSE],
+    'third_party_settings' => [],
+  ];
+  $name_component['type'] = 'string';
+  $name_component['label'] = 'hidden';
+  $name_component['region'] = 'content';
+  ksort($name_component);
+
+  $desired_content = [$field => $frame, 'name' => $name_component];
+  $desired_hidden = $hidden;
+  foreach (array_keys($content) as $name) {
+    if ($name !== $field && $name !== 'name') {
+      $desired_hidden[$name] = TRUE;
+    }
+  }
+  foreach (['langcode', 'created', 'uid', 'thumbnail'] as $name) {
+    $desired_hidden[$name] = TRUE;
+  }
+  unset($desired_hidden[$field], $desired_hidden['name']);
+  ksort($desired_hidden);
+
+  $current_frame = $content[$field] ?? [];
+  ksort($current_frame);
+  $current_name = $content['name'] ?? [];
+  ksort($current_name);
+  ksort($hidden);
+  $keys = array_keys($content);
+  sort($keys);
+  if (!$creating && $keys === ['field_media_inline_frame', 'name'] && $current_frame === $frame && $current_name === $name_component && $hidden === $desired_hidden) {
+    return 'Embed media_library display already laid out; left untouched.';
+  }
+
+  $config->set('content', $desired_content)->set('hidden', $desired_hidden)->save();
+  \Drupal::logger('bioland')->notice('Laid out the embed media_library display.');
+  return 'Laid out the embed media_library display.';
+}
+
+/**
+ * Turn on ckeditor_media_resizer's "media_resize" filter on every text format
+ * that embeds media.
+ *
+ * The module only adds the editor handles: they store the chosen size as
+ * data-media-width on <drupal-media>, and nothing reaches the rendered HTML
+ * (so the headless front end) until the filter turns it into inline styles.
+ * The module does not enable its own filter, so a resized image rendered at
+ * its image style's size. BL-917.
+ *
+ * The filter must run after media_embed, which swaps <drupal-media> for the
+ * rendered media. When (re)configured it is weighted after every other
+ * filter, so no later filter can strip the styles it writes. Formats without
+ * an enabled media_embed are left alone, and a format already running it
+ * after media_embed is unchanged.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_enable_media_resize_filter() {
+  if (!\Drupal::moduleHandler()->moduleExists('ckeditor_media_resizer')) {
+    return 'ckeditor_media_resizer is not enabled; skipped the media_resize filter.';
+  }
+
+  $updated = [];
+  $formats = \Drupal::entityTypeManager()->getStorage('filter_format')->loadMultiple();
+  foreach ($formats as $format) {
+    $filters = $format->get('filters') ?: [];
+    if (empty($filters['media_embed']['status'])) {
+      continue;
+    }
+    $resize = $filters['media_resize'] ?? [];
+    $embed_weight = (int) ($filters['media_embed']['weight'] ?? 0);
+    if (!empty($resize['status']) && (int) ($resize['weight'] ?? 0) > $embed_weight) {
+      continue;
+    }
+
+    $weights = array_map(fn($filter) => (int) ($filter['weight'] ?? 0), $filters);
+    unset($weights['media_resize']);
+    $format->setFilterConfig('media_resize', [
+      'status' => TRUE,
+      'weight' => max($weights) + 1,
+      'settings' => [],
+    ]);
+    $format->save();
+    $updated[] = $format->id();
+  }
+
+  if (!$updated) {
+    return 'media_resize filter already runs after media_embed on every media format.';
+  }
+  \Drupal::logger('bioland')->notice('Enabled the media_resize filter on: @formats.', ['@formats' => implode(', ', $updated)]);
+  return 'Enabled the media_resize filter on: ' . implode(', ', $updated) . '.';
+}
+
+/**
+ * The media URL alias pattern the embed bundle joins (BL-1218).
+ */
+const BIOLAND_MEDIA_ALIAS_PATTERN = '/[media:bundle]/[media:name]';
+
+/**
+ * Pure helper: pathauto selection criteria with embed added, or NULL.
+ *
+ * Adds embed to each non-negated media bundle condition that lacks it. NULL
+ * when nothing changes: embed is already there, or no condition limits the
+ * bundle (the pattern then already covers every media type).
+ */
+function _bioland_media_alias_criteria_with_embed(array $criteria) {
+  $changed = FALSE;
+  foreach ($criteria as $key => $condition) {
+    if (($condition['id'] ?? '') === 'entity_bundle:media' && empty($condition['negate'])
+      && is_array($condition['bundles'] ?? NULL) && !isset($condition['bundles']['embed'])) {
+      $criteria[$key]['bundles']['embed'] = 'embed';
+      ksort($criteria[$key]['bundles']);
+      $changed = TRUE;
+    }
+  }
+  return $changed ? $criteria : NULL;
+}
+
+/**
+ * Gives embed media URL aliases from the /[media:bundle]/[media:name] pattern.
+ *
+ * BL-1218. The site's media pattern limits its bundles and predates the
+ * embed type, so embed pages had no alias. Adds embed to every media
+ * pattern with that exact pattern, then aliases the existing embeds that
+ * have none. Idempotent; skips without pathauto or the embed type.
+ *
+ * @return string
+ *   Plain-text summary. Not t(): translation is not dependable mid-update.
+ */
+function _bioland_add_embed_to_media_alias_pattern() {
+  if (!\Drupal::moduleHandler()->moduleExists('pathauto')) {
+    return 'pathauto is not enabled; skipped the embed URL alias pattern.';
+  }
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if (!$entity_type_manager->getStorage('media_type')->load('embed')) {
+    return 'Media type embed does not exist; skipped the embed URL alias pattern.';
+  }
+
+  $updated = [];
+  $matched = 0;
+  foreach ($entity_type_manager->getStorage('pathauto_pattern')->loadByProperties(['type' => 'canonical_entities:media']) as $pattern) {
+    if (trim((string) $pattern->getPattern()) !== BIOLAND_MEDIA_ALIAS_PATTERN) {
+      continue;
+    }
+    $matched++;
+    $criteria = _bioland_media_alias_criteria_with_embed((array) ($pattern->get('selection_criteria') ?? []));
+    if ($criteria !== NULL) {
+      $pattern->set('selection_criteria', $criteria);
+      $pattern->save();
+      $updated[] = $pattern->id();
+    }
+  }
+  if (!$matched) {
+    return 'No media URL alias pattern ' . BIOLAND_MEDIA_ALIAS_PATTERN . ' found; add embed to a media pattern by hand.';
+  }
+
+  $messages = [$updated
+    ? 'Added embed to media URL alias pattern(s): ' . implode(', ', $updated) . '.'
+    : 'Media URL alias pattern already covers embed.'];
+
+  // Alias the embeds saved before the pattern covered them. Pathauto stored
+  // SKIP for those (no pattern applied), which blocks a plain bulk update
+  // and unticks "Generate automatic URL alias", so reset the state to
+  // CREATE and force. Only embeds with no alias at all: a hand-set alias is
+  // left alone.
+  $aliased = 0;
+  $media_storage = $entity_type_manager->getStorage('media');
+  $generator = \Drupal::service('pathauto.generator');
+  $alias_repository = \Drupal::service('path_alias.repository');
+  $state = \Drupal::keyValue('pathauto_state.media');
+  $ids = $media_storage->getQuery()->accessCheck(FALSE)->condition('bundle', 'embed')->execute();
+  foreach ($media_storage->loadMultiple($ids) as $media) {
+    $path = '/media/' . $media->id();
+    $missing = array_filter(array_keys($media->getTranslationLanguages()), fn ($langcode) => !$alias_repository->lookupBySystemPath($path, $langcode));
+    if (!$missing) {
+      continue;
+    }
+    $state->set(\Drupal\pathauto\PathautoState::getPathautoStateKey($media->id()), \Drupal\pathauto\PathautoState::CREATE);
+    foreach ($missing as $langcode) {
+      if ($generator->updateEntityAlias($media->getTranslation($langcode), 'bulkupdate', ['force' => TRUE])) {
+        $aliased++;
+      }
+    }
+  }
+  $messages[] = 'Generated ' . $aliased . ' embed media URL alias(es).';
+
+  return implode(' ', $messages);
 }
 
 /*
@@ -546,8 +1385,408 @@ function bioland_update_9034() {
 }
 
 /**
- * Update full_html editor: max image size 50kb and new toolbar configuration.
+ * Update full_html editor: max image size (BIOLAND_EDITOR_IMAGE_MAX_SIZE)
+ * and new toolbar configuration.
  */
 function bioland_update_9038() {
   return _bioland_configure_full_html_editor_toolbar();
+}
+
+/**
+ * Raise the CKEditor inline image upload limit to 10 MB (BL-1202).
+ *
+ * Two prior hooks disagreed about the image upload limit for full_html:
+ * bioland_update_9022() (via _bioland_configure_full_html_format()) wrote a
+ * dead settings.plugins.ckeditor5_imageUpload.max_size = 250kb key that core
+ * never reads, and bioland_update_9038() (via
+ * _bioland_configure_full_html_editor_toolbar()) wrote the real limit,
+ * image_upload.max_size, as 50kb. Re-running both helpers here converges
+ * every site on the single canonical limit (BIOLAND_EDITOR_IMAGE_MAX_SIZE)
+ * and clears the dead key.
+ *
+ * As the new highest-numbered hook it is guaranteed to run LAST on every
+ * site, so per SearchApiConvergenceHookTest it must also re-apply the
+ * canonical v2 Search API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9093() {
+  $messages = [];
+  $messages[] = _bioland_configure_full_html_format();
+  $messages[] = _bioland_configure_full_html_editor_toolbar();
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Enable the toast_image_editor, ckeditor_media_resizer, llms_txt and
+ * CKEditor 5 contrib modules.
+ *
+ * BL-917. See _bioland_enable_contrib_feature_modules() for the skip rules.
+ *
+ * Numbered 9096 because the COP-17 integration branch (bsl-cop-17-dev)
+ * already carries 9084-9095 from sibling PRs (BL-815 through BL-1206); the
+ * original 9089 sat below those and never ran on a site already past them.
+ * MERGE ORDER: land this after those siblings reach the same branch. Drupal
+ * only runs hooks above a site's stored schema, so a site that records 9096
+ * first would never run a later-merged 9084-9095.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9096() {
+  $messages = [];
+  $messages[] = _bioland_enable_contrib_feature_modules();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Add the embed media type and offer it in the CKEditor media picker.
+ *
+ * BL-1218. Enables iframe + media_iframe (skipped when the docker wrapper
+ * image does not ship them), creates the embed media type, then re-applies
+ * the media_embed allowlist so embed joins image and remote_video. A site
+ * whose image lacks the modules converges later through
+ * bioland_modules_installed(); bioland_requirements() flags it meanwhile.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9098() {
+  $messages = [];
+  $messages[] = _bioland_enable_contrib_feature_modules(BIOLAND_EMBED_MODULES);
+  $messages[] = _bioland_setup_embed_media();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Returns the site's own public files URL as an allowlist entry, or NULL.
+ *
+ * Seeded from the public files URL, not the site base URL: it honours
+ * $settings['file_public_base_url'] and narrows the entry to the files path.
+ * The head matches the scheme exactly and pages are served over https, so
+ * only an https URL on a public-looking host is seeded. drush without --uri
+ * (http://default), http behind a TLS proxy, localhost, IP literals and
+ * dotless container names seed nothing; the admin adds the row by hand.
+ */
+function _bioland_embed_files_origin_entry() {
+  try {
+    $url = \Drupal::service('file_url_generator')->generateAbsoluteString('public://');
+  }
+  catch (\Throwable $e) {
+    return NULL;
+  }
+  $url = \Drupal\bioland\Service\BiolandEmbedAllowlist::normalizeUrl((string) $url);
+  $host = (string) parse_url((string) $url, PHP_URL_HOST);
+  if ($url === NULL || !str_starts_with($url, 'https://') || !str_contains($host, '.')
+    || $host === 'localhost' || \Drupal\bioland\Service\BiolandEmbedAllowlist::isDottedQuad($host)) {
+    return NULL;
+  }
+  return ['url' => $url, 'label' => 'Site files', 'sandbox' => 'allow-scripts'];
+}
+
+/**
+ * Appends the site files entry to a list that does not already hold its url.
+ */
+function _bioland_embed_with_files_origin(array $origins) {
+  $files = _bioland_embed_files_origin_entry();
+  if ($files && !in_array($files['url'], array_column($origins, 'url'), TRUE)) {
+    $origins[] = $files;
+  }
+  return $origins;
+}
+
+/**
+ * Adds the site files entry to the installed list (hook_install()).
+ */
+function _bioland_seed_embed_files_origin() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $origins = $config->get('embed.allowed_origins');
+  if (is_array($origins) && ($seeded = _bioland_embed_with_files_origin($origins)) !== $origins) {
+    $config->set('embed.allowed_origins', $seeded)->save();
+  }
+}
+
+/**
+ * Seeds embed.allowed_origins on a site that has never stored the key.
+ *
+ * Any stored list, including an empty one, is an admin decision and is kept.
+ */
+function _bioland_backfill_embed_allowed_origins() {
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  if ($config->get('embed.allowed_origins') !== NULL) {
+    return 'embed.allowed_origins already set; left unchanged.';
+  }
+  $defaults = \Drupal\bioland\Service\BiolandEmbedAllowlist::DEFAULTS;
+  $origins = _bioland_embed_with_files_origin($defaults);
+  $config->set('embed.allowed_origins', $origins)->save();
+  return count($origins) > count($defaults)
+    ? 'Seeded embed.allowed_origins, including the site files URL ' . end($origins)['url'] . '.'
+    : 'Seeded embed.allowed_origins without the site files URL (no public https host resolved); add it on the Front End General settings form.';
+}
+
+/**
+ * Backfill the BL-1218 embed allowlist on existing sites.
+ *
+ * As the highest-numbered hook it must also re-apply the canonical v2 Search
+ * API config last.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9099() {
+  $messages = [];
+  $messages[] = _bioland_backfill_embed_allowed_origins();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Enable ckeditor_media_resizer's media_resize filter on the media formats.
+ *
+ * BL-917. 9096 enabled the module but not its filter, so an image resized in
+ * the editor still rendered at its image style's size on the front end. See
+ * _bioland_enable_media_resize_filter().
+ *
+ * Numbered 9101 because the COP-17 branches already use 9097-9100. As the
+ * highest-numbered hook it must also re-apply the canonical v2 Search API
+ * config (SearchApiConvergenceHookTest).
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9101() {
+  $messages = [];
+  $messages[] = _bioland_enable_media_resize_filter();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Lets SCBD staff, site managers and administrators auto-allow embed hosts.
+ *
+ * BL-1218. Grants 'auto allow embed origins': saving an embed on an unlisted
+ * host then adds the host to embed.allowed_origins instead of failing.
+ * Numbered 9112, above every hook other tickets carry on bsl-cop-17-dev
+ * (up to 9111), so it still runs on sites past them.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9112() {
+  $messages = [];
+  $messages[] = _bioland_grant_embed_auto_allow_permission();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Gives embed media URL aliases from the media URL alias pattern.
+ *
+ * BL-1218. Adds the embed bundle to the /[media:bundle]/[media:name]
+ * pathauto pattern and aliases existing embeds. Numbered 9113, after the
+ * auto-allow hook 9112.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9113() {
+  $messages = [];
+  $messages[] = _bioland_add_embed_to_media_alias_pattern();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Converges the embed media type's form and view displays and frame size.
+ *
+ * BL-1312. Fills the iframe_urlwidthheight widget defaults (100% x 75%) on
+ * the Default and Media library form displays, puts the frame back on the
+ * Media library form display, switches the Media library view display to
+ * iframe_only, and gives embed media saved without a width or height the
+ * default. Numbered 9114, after the alias pattern hook 9113.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9114() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_form_displays();
+  $messages[] = _bioland_configure_embed_media_library_display();
+  $messages[] = _bioland_backfill_embed_frame_dimensions();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Shows only the frame on the embed media type's Default view display.
+ *
+ * BL-1271. It also re-applies the canonical v2 Search API config, as
+ * SearchApiConvergenceHookTest expects of the hooks in this file.
+ * bioland_update_9114() is now the highest-numbered hook and the last writer.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9106() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_default_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Lets the media library picker list embed media and lays out its card.
+ *
+ * BL-1272. Removes the hand-added Media type filter from the media_library
+ * widget views and sets the embed type's Media library view display.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9107() {
+  $messages = [];
+  $messages[] = _bioland_remove_media_library_type_filter();
+  $messages[] = _bioland_configure_embed_media_library_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Grants embed media permissions to every role that holds them for images.
+ *
+ * BL-1274. Only administrators could create or edit embed media because
+ * nothing granted the per-bundle permissions Drupal registers for it.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9108() {
+  $messages = [];
+  $messages[] = _bioland_mirror_image_media_permissions_to_embed();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Rebuilds the menu links so the stray Embed toolbar item disappears.
+ *
+ * BL-1276. bioland_menu_links_discovered_alter() disables the embed add link;
+ * existing sites need the menu tree rebuilt to drop it without a cache flush.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9109() {
+  \Drupal::service('plugin.manager.menu.link')->rebuild();
+
+  $messages = [];
+  $messages[] = 'Rebuilt the menu links so the embed add link leaves the admin toolbar.';
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Re-runs the media library type filter removal with the real filter key.
+ *
+ * BL-1272. bioland_update_9107() looked for a filter keyed "type", but the
+ * Views UI keys the Media type filter by its field ("bundle"), so the picker
+ * still listed nothing for the embed type. The helper now matches on the
+ * field, and sites already past 9107 need this hook to run it again.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9110() {
+  $messages = [];
+  $messages[] = _bioland_remove_media_library_type_filter();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Drops the visible title heading over embed frames.
+ *
+ * BL-1271. 9106 left the frame on iframe_default, which prints the frame title
+ * as a heading above the iframe in CKEditor and on the front end. Sites
+ * already past 9106 need this hook to switch the Default display to
+ * iframe_only. Existing formatter settings are kept.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9111() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_default_display();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

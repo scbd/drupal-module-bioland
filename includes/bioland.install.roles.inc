@@ -181,6 +181,137 @@ function _bioland_sync_scbd_staff_permissions() {
   return t('scbd_staff already has all site_manager permissions.');
 }
 
+/**
+ * Grant 'delete any media' to content manager and above.
+ *
+ * BL-784. Drupal core drops the "Delete media" bulk action from the
+ * /admin/content/media Action dropdown for anyone without 'delete any media',
+ * and no Bioland role was ever granted it. Contributor, system, authenticated
+ * and anonymous are deliberately left out.
+ *
+ * Idempotent: roles that already hold the permission are not re-saved. A
+ * missing role is skipped and logged. Skips entirely when media is not
+ * enabled, because Drupal refuses to save a role holding an undefined
+ * permission.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_grant_media_delete_permissions() {
+  if (!\Drupal::moduleHandler()->moduleExists('media')) {
+    return t('Media module not enabled; delete any media not granted.');
+  }
+
+  $roles = ['content_manager', 'site_manager', 'scbd_staff', 'administrator'];
+
+  $matrix = [];
+  $missing = [];
+  foreach ($roles as $rid) {
+    if (Role::load($rid)) {
+      $matrix[$rid] = ['delete any media'];
+    }
+    else {
+      $missing[] = $rid;
+    }
+  }
+
+  if ($missing) {
+    \Drupal::logger('bioland')->notice('Skipped granting delete any media to missing roles: @roles.', [
+      '@roles' => implode(', ', $missing),
+    ]);
+  }
+
+  $messages = _bioland_grant_role_permissions($matrix);
+  if ($missing) {
+    $messages[] = t('Skipped missing roles: @roles.', ['@roles' => implode(', ', $missing)]);
+  }
+
+  return empty($messages)
+    ? t('delete any media already granted to content manager and above.')
+    : implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Roles that may add an embed host to the allowlist by saving it (BL-1218).
+ */
+const BIOLAND_EMBED_AUTO_ALLOW_ROLES = ['scbd_staff', 'site_manager', 'administrator'];
+
+/**
+ * Grants 'auto allow embed origins' to BIOLAND_EMBED_AUTO_ALLOW_ROLES.
+ *
+ * Missing roles are skipped. Idempotent.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_grant_embed_auto_allow_permission() {
+  $matrix = [];
+  foreach (BIOLAND_EMBED_AUTO_ALLOW_ROLES as $rid) {
+    if (Role::load($rid)) {
+      $matrix[$rid] = ['auto allow embed origins'];
+    }
+  }
+  $messages = _bioland_grant_role_permissions($matrix);
+  return empty($messages)
+    ? t('auto allow embed origins already granted.')
+    : implode(' ', array_map('strval', $messages));
+}
+
+/**
+ * Image media permission => embed media permission (BL-1274).
+ *
+ * The image permissions are site configuration, so the rule is "whatever a
+ * role can do with image media it can do with embed media", not a fixed role
+ * list. The revision permissions exist only on some cores; the permission
+ * handler decides which embed names are granted.
+ */
+const BIOLAND_IMAGE_TO_EMBED_MEDIA_PERMISSIONS = [
+  'create image media' => 'create embed media',
+  'edit own image media' => 'edit own embed media',
+  'edit any image media' => 'edit any embed media',
+  'delete own image media' => 'delete own embed media',
+  'delete any image media' => 'delete any embed media',
+  'view any image media revisions' => 'view any embed media revisions',
+  'revert any image media revisions' => 'revert any embed media revisions',
+  'delete any image media revisions' => 'delete any embed media revisions',
+];
+
+/**
+ * Grants each role the embed media permissions matching its image ones.
+ *
+ * BL-1274. Covers every role, anonymous and authenticated included. Never
+ * revokes. Idempotent: a role already holding every mirrored permission is
+ * not re-saved. Skips when media or the embed media type is absent, and
+ * grants only permission names the permission handler defines, because
+ * Drupal refuses to save a role holding an undefined permission.
+ *
+ * @return string
+ *   Status message.
+ */
+function _bioland_mirror_image_media_permissions_to_embed() {
+  if ($skip = _bioland_require_module('media', 'embed media permissions')) {
+    return $skip;
+  }
+  if (!\Drupal::entityTypeManager()->getStorage('media_type')->load('embed')) {
+    return t('Media type embed does not exist; embed media permissions not granted.');
+  }
+
+  $defined = \Drupal::service('user.permissions')->getPermissions();
+  $matrix = [];
+  foreach (\Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple() as $rid => $role) {
+    foreach (BIOLAND_IMAGE_TO_EMBED_MEDIA_PERMISSIONS as $image => $embed) {
+      if ($role->hasPermission($image) && !$role->hasPermission($embed) && isset($defined[$embed])) {
+        $matrix[$rid][] = $embed;
+      }
+    }
+  }
+
+  $messages = _bioland_grant_role_permissions($matrix);
+  return empty($messages)
+    ? t('Embed media permissions already mirror the image media permissions.')
+    : t('Mirrored image media permissions to embed media for: @roles.', ['@roles' => implode(', ', array_keys($matrix))]);
+}
+
 /*
  * =============================================================================
  * UPDATE HOOKS - Role & Permission Management
@@ -268,4 +399,27 @@ function bioland_update_9033() {
  */
 function bioland_update_9045() {
   return _bioland_sync_scbd_staff_permissions();
+}
+
+/**
+ * Grant 'delete any media' to content manager and above.
+ *
+ * BL-784. Restores the "Delete media" bulk action on /admin/content/media for
+ * content_manager, site_manager, scbd_staff and administrator. See
+ * _bioland_grant_media_delete_permissions().
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9097() {
+  $messages = [];
+  $messages[] = _bioland_grant_media_delete_permissions();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
 }

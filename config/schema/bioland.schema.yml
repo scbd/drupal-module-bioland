@@ -26,6 +26,9 @@ bioland.settings:
     is_biosafety_land:
       type: boolean
       label: 'Is Biosafety Land'
+    enable_url_screenshot:
+      type: boolean
+      label: 'Enable auto website screenshot for Related websites nodes'
     enable_field_visibility:
       type: boolean
       label: 'Enable field visibility control'
@@ -177,9 +180,32 @@ bioland.settings:
     google_analytics_enabled:
       type: boolean
       label: 'Enable Google Analytics'
+    enable_document_preview:
+      type: boolean
+      label: 'Auto-generate a first-page preview image for Document media'
     google_analytics_ids:
       type: string
       label: 'Google tag IDs'
+    embed:
+      type: mapping
+      label: 'Embedded content'
+      mapping:
+        allowed_origins:
+          type: sequence
+          label: 'Origins or URL prefixes the public site may frame'
+          sequence:
+            type: mapping
+            label: 'Allowed embed origin'
+            mapping:
+              url:
+                type: string
+                label: 'Origin or URL prefix'
+              label:
+                type: string
+                label: 'Label'
+              sandbox:
+                type: string
+                label: 'Space-separated iframe sandbox tokens; empty means no sandbox'
     enable_debug_logging:
       type: boolean
       label: 'Enable debug logging'
@@ -573,3 +599,10 @@ bioland.settings:
             max_lang_before_wrap:
               type: integer
               label: 'Maximum languages shown before the language bar wraps'
+        page:
+          type: mapping
+          label: 'Page layout theme settings'
+          mapping:
+            info_column:
+              type: string
+              label: 'Page info column position'

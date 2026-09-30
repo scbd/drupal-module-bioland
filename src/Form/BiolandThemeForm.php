@@ -12,7 +12,7 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  *
  * ## What this tab authors (plan decision D4)
  *
- * Exactly the eight LIVE keys named by \Drupal\bioland\BiolandThemeContract,
+ * Exactly the LIVE keys named by \Drupal\bioland\BiolandThemeContract,
  * and nothing else:
  *
  * - color.primary, color.secondary            (hex colour pickers, required)
@@ -23,6 +23,7 @@ use Drupal\bioland\Service\BiolandDmsmConfigService;
  * - mega_menu.max_rows_per_column             (>= 0; 0 means unlimited)
  * - mega_menu.horizontal_card_max             (1-6)
  * - i18n.max_lang_before_wrap                 (integer, required)
+ * - page.info_column                          (left|right, default left)
  *
  * `hero` IS authored here as of BL-1011, as two scalar hex keys. It used to
  * be derived downstream only when no source defined it, which left an editor
@@ -134,6 +135,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     BiolandThemeContract::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN => 'megaMenu.maxRowsPerColumn',
     BiolandThemeContract::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX => 'megaMenu.horizontalCardMax',
     BiolandThemeContract::KEY_I18N_MAX_LANG_BEFORE_WRAP => 'i18n.maxLangBeforeWrap',
+    BiolandThemeContract::KEY_PAGE_INFO_COLUMN => 'page.infoColumn',
   ];
 
   /**
@@ -210,7 +212,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // independently authorable from here on, and a future network document
     // that diverges them must only have to change this table.
     BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BL2,
-    BiolandThemeContract::KEY_HERO_SECONDARY => '#16c56e',
+    BiolandThemeContract::KEY_HERO_SECONDARY => BiolandThemeContract::FALLBACK_HERO_SECONDARY_BL2,
   ];
 
   /**
@@ -241,7 +243,7 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // the same two colours as its brand pair, lower-cased here to round-trip
     // through `<input type="color">`.
     BiolandThemeContract::KEY_HERO_PRIMARY => BiolandThemeContract::FALLBACK_PRIMARY_BSL,
-    BiolandThemeContract::KEY_HERO_SECONDARY => '#428bca',
+    BiolandThemeContract::KEY_HERO_SECONDARY => BiolandThemeContract::FALLBACK_HERO_SECONDARY_BSL,
   ];
 
   /**
@@ -471,6 +473,22 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       '#default_value' => $this->leaf($defaults, 'i18n.max_lang_before_wrap'),
     ];
 
+    // Shown on every site, BSL included: no site-code branch.
+    $form['theme']['page'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Page layout'),
+      '#tree' => TRUE,
+    ];
+    $form['theme']['page']['info_column'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Page info column position'),
+      '#options' => [
+        'left' => $this->t('Left'),
+        'right' => $this->t('Right'),
+      ],
+      '#default_value' => $this->pageInfoColumn($this->leaf($defaults, 'page.info_column')),
+    ];
+
     // RS: the way back to the D2 fall-through. #limit_validation_errors is
     // empty so a site with an incomplete form can still reset, and the confirm
     // dialog makes the deletion deliberate. The message is a static, translated
@@ -570,6 +588,16 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       }
     }
 
+    // Core's select validation covers UI posts; this keeps a programmatic
+    // submit failing the same way.
+    $infoColumn = $this->leaf($values, 'page.info_column');
+    if (!$this->isBlank($infoColumn) && !in_array($infoColumn, BiolandThemeContract::PAGE_INFO_COLUMN_OPTIONS, TRUE)) {
+      $form_state->setErrorByName(
+        'theme][page][info_column',
+        $this->t('Choose Left or Right for the page info column position.')
+      );
+    }
+
     // D7 / W2a: scoped to the element actually being present. On a BSL site the
     // build leg never creates it, so this validator never runs there -- the
     // scope cannot drift away from the build leg, because it IS the build leg.
@@ -608,6 +636,11 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
     // and how the head reconciles the two.
     $config->set('theme.hero.primary', $this->normalizeHex($this->leaf($values, 'hero.primary')));
     $config->set('theme.hero.secondary', $this->normalizeHex($this->leaf($values, 'hero.secondary')));
+
+    $infoColumn = $this->leaf($values, 'page.info_column');
+    if (in_array($infoColumn, BiolandThemeContract::PAGE_INFO_COLUMN_OPTIONS, TRUE)) {
+      $config->set('theme.page.info_column', $infoColumn);
+    }
 
     // D7: never written where the field was never rendered.
     if (isset($form['theme']['home_page_widgets']['columns'])) {
@@ -657,6 +690,21 @@ class BiolandThemeForm extends BiolandSettingsFormBase {
       }
       $config->set('theme.' . $path, (int) $value);
     }
+  }
+
+  /**
+   * Normalises a stored or seeded info column value to an allowed option.
+   *
+   * @param mixed $value
+   *   The stored or seeded value.
+   *
+   * @return string
+   *   The value when allowed, otherwise the contract default.
+   */
+  protected function pageInfoColumn($value): string {
+    return in_array($value, BiolandThemeContract::PAGE_INFO_COLUMN_OPTIONS, TRUE)
+      ? $value
+      : BiolandThemeContract::PAGE_INFO_COLUMN_DEFAULT;
   }
 
   /**
