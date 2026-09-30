@@ -24,6 +24,13 @@ class Request {
   public $query;
 
   /**
+   * The request attributes.
+   *
+   * @var \Symfony\Component\HttpFoundation\ParameterBag
+   */
+  public $attributes;
+
+  /**
    * The request headers.
    *
    * @var \Symfony\Component\HttpFoundation\HeaderBag
@@ -49,6 +56,7 @@ class Request {
    */
   public function __construct(array $query = [], array $headers = [], $host = '') {
     $this->query = new InputBag($query);
+    $this->attributes = new ParameterBag();
     $this->headers = new HeaderBag($headers);
     $this->host = $host;
   }

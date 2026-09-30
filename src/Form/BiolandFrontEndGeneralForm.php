@@ -352,7 +352,10 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
         $entry = BiolandEmbedAllowlist::normalizeEntry($row);
         $origins[$entry['url']] ??= $entry;
       }
+      $stored = $config->get('embed.allowed_origins');
       $config->set('embed.allowed_origins', array_slice(array_values($origins), 0, BiolandEmbedAllowlist::MAX_ENTRIES));
+      // Read by submitForm() once the parent has saved: BL-1289.
+      $form_state->set('bioland_embed_allowlist_changed', $stored !== $config->get('embed.allowed_origins'));
     }
   }
 
@@ -394,6 +397,12 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     $toggle = $form_state->get('bioland_google_analytics_toggle_log');
     if ($toggle) {
       \Drupal::logger('bioland')->notice('Google Analytics @state by user @uid.', $toggle);
+    }
+
+    // BL-1289: the head caches the list for minutes. Offer a one-click clear
+    // rather than redirecting away from this form.
+    if ($form_state->get('bioland_embed_allowlist_changed')) {
+      $this->messenger()->addStatus(BiolandEmbedAllowlist::headCacheClearMessage());
     }
   }
 

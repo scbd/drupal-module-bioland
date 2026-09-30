@@ -209,13 +209,23 @@ class Drupal {
   }
 
   /**
+   * Gets the request stack.
+   *
+   * @return \Symfony\Component\HttpFoundation\RequestStack
+   *   The stubbed 'request_stack' service.
+   */
+  public static function requestStack() {
+    return static::service('request_stack');
+  }
+
+  /**
    * Gets the messenger service.
    *
    * @return object
-   *   The messenger.
+   *   The stubbed 'messenger' service, or a no-op one.
    */
   public static function messenger() {
-    return new class {
+    return static::$container['messenger'] ?? new class {
       public function addMessage($message, $type = 'status') {}
       public function addStatus($message) {}
       public function addWarning($message) {}

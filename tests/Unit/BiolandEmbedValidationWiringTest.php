@@ -13,6 +13,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\media\MediaInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Guards the BL-1218 embed URL constraint and media library form wiring.
@@ -197,6 +199,7 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     $factory->method('getEditable')->with('bioland.settings')->willReturn($settings);
     \Drupal::setService('config.factory', $factory);
     $this->setCurrentUser($auto_allow);
+    $this->pushRequest();
     _bioland_embed_auto_allow($this->embedMedia($urls), $original_urls === NULL ? NULL : $this->embedMedia($original_urls));
     return $settings;
   }
@@ -236,6 +239,139 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     }
     $presave = substr($source, strpos($source, 'function bioland_media_presave('));
     $this->assertStringNotContainsString('_bioland_embed_auto_allow(', substr($presave, 0, strpos($presave, "\n}\n")));
+  }
+
+  /**
+   * Registers a request stack whose current request has $query.
+   */
+  private function pushRequest(array $query = []): Request {
+    $request = new Request($query);
+    $stack = new RequestStack();
+    $stack->push($request);
+    \Drupal::setService('request_stack', $stack);
+    return $request;
+  }
+
+  /**
+   * BL-1289: only a save that added an entry flags the request.
+   */
+  public function testAutoAllowFlagsRequestOnlyWhenListChanged(): void {
+    $this->autoAllow(['https://claude.ai/artifact/a'], TRUE);
+    $this->assertTrue(\Drupal::requestStack()->getCurrentRequest()->attributes->get('_bioland_embed_allowlist_changed'));
+
+    $this->autoAllow(['https://app.powerbi.com/view?r=1'], TRUE);
+    $this->assertNull(\Drupal::requestStack()->getCurrentRequest()->attributes->get('_bioland_embed_allowlist_changed'));
+  }
+
+  /**
+   * Runs the embed media submit handler for a media that is $published and
+   * $viewable. Returns the redirect URL options (NULL when none was set), the
+   * request it ran under and the status messages it added.
+   */
+  private function submitEmbedForm(bool $changed, bool $published = TRUE, bool $viewable = TRUE): array {
+    \Drupal\Core\Url::reset();
+    $request = $this->pushRequest(['destination' => '/admin/content/media']);
+    if ($changed) {
+      $request->attributes->set('_bioland_embed_allowlist_changed', TRUE);
+    }
+    $messenger = new class {
+      public array $statuses = [];
+
+      public function addStatus($message) {
+        $this->statuses[] = (string) $message;
+      }
+
+    };
+    \Drupal::setService('messenger', $messenger);
+    $options = NULL;
+    $url = new \stdClass();
+    $media = $this->getMockBuilder(MediaInterface::class)->addMethods(['toUrl', 'isPublished', 'access'])->getMockForAbstractClass();
+    $media->method('isPublished')->willReturn($published);
+    $media->method('access')->with('view')->willReturn($viewable);
+    $media->method('toUrl')->willReturnCallback(function ($rel, array $opts) use (&$options, $url) {
+      $this->assertSame('canonical', $rel);
+      $options = $opts;
+      return $url;
+    });
+    $form_object = new class($media) {
+
+      public function __construct(private $entity) {}
+
+      public function getEntity() {
+        return $this->entity;
+      }
+
+    };
+    $form_state = $this->getMockBuilder(FormStateInterface::class)->addMethods(['getFormObject', 'setRedirectUrl'])->getMockForAbstractClass();
+    $form_state->method('getFormObject')->willReturn($form_object);
+    $redirects = $changed && $published && $viewable;
+    $form_state->expects($redirects ? $this->once() : $this->never())->method('setRedirectUrl')->with($this->identicalTo($url));
+    $form = [];
+    _bioland_embed_media_form_submit($form, $form_state);
+    return [$options, $request, $messenger->statuses];
+  }
+
+  /**
+   * BL-1289: a save that changed the list lands on the media's own page with
+   * a fresh head cache-clear nonce, replacing ?destination=.
+   */
+  public function testEmbedFormSubmitRedirectsThroughHeadCacheClear(): void {
+    [$first, $request, $statuses] = $this->submitEmbedForm(TRUE);
+    $this->assertSame(['seachain-taisce'], array_keys($first['query']));
+    $this->assertMatchesRegularExpression('/^[A-Za-z0-9-]{1,64}$/', $first['query']['seachain-taisce']);
+    $this->assertFalse($request->query->has('destination'));
+    $this->assertSame([], $statuses);
+
+    [$second] = $this->submitEmbedForm(TRUE);
+    $this->assertNotSame($first['query']['seachain-taisce'], $second['query']['seachain-taisce'], 'The head clears once per nonce.');
+  }
+
+  /**
+   * BL-1289: a save that left the list alone keeps its normal destination.
+   */
+  public function testEmbedFormSubmitLeavesRedirectWhenListUnchanged(): void {
+    [$options, $request, $statuses] = $this->submitEmbedForm(FALSE);
+    $this->assertNull($options);
+    $this->assertSame('/admin/content/media', $request->query->get('destination'));
+    $this->assertSame([], $statuses);
+  }
+
+  /**
+   * BL-1289: an unpublished or hidden embed keeps its normal destination and
+   * gets the front page clear link instead, since the head would 404 it.
+   *
+   * @dataProvider notViewableProvider
+   */
+  public function testEmbedFormSubmitLinksClearWhenMediaNotViewable(bool $published, bool $viewable): void {
+    [$options, $request, $statuses] = $this->submitEmbedForm(TRUE, $published, $viewable);
+    $this->assertNull($options);
+    $this->assertSame('/admin/content/media', $request->query->get('destination'));
+    $this->assertCount(1, $statuses);
+    $this->assertStringContainsString('<a href="<front>">Clear the front end cache</a>', $statuses[0]);
+    $query = \Drupal\Core\Url::$created[0]['options']['query'];
+    $this->assertMatchesRegularExpression('/^[A-Za-z0-9-]{1,64}$/', $query['seachain-taisce']);
+  }
+
+  /**
+   * Embeds the head would not show.
+   */
+  public static function notViewableProvider(): array {
+    return [
+      'unpublished' => [FALSE, TRUE],
+      'no view access' => [TRUE, FALSE],
+    ];
+  }
+
+  /**
+   * BL-1289: both embed media forms get the handler after the save.
+   */
+  public function testEmbedMediaFormsWireSubmitHandler(): void {
+    $form_state = $this->createMock(FormStateInterface::class);
+    foreach (['media_embed_add_form', 'media_embed_edit_form'] as $form_id) {
+      $form = ['actions' => ['submit' => ['#submit' => ['::submitForm', '::save']]]];
+      ('bioland_form_' . $form_id . '_alter')($form, $form_state, $form_id);
+      $this->assertSame(['::submitForm', '::save', '_bioland_embed_media_form_submit'], $form['actions']['submit']['#submit'], $form_id);
+    }
   }
 
 }
