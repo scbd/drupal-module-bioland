@@ -264,20 +264,34 @@ class BiolandEmbedValidationWiringTest extends TestCase {
   }
 
   /**
-   * Runs the embed media submit handler; returns the redirect URL options
-   * (NULL when no redirect was set) and the request it ran under.
+   * Runs the embed media submit handler for a media that is $published and
+   * $viewable. Returns the redirect URL options (NULL when none was set), the
+   * request it ran under and the status messages it added.
    */
-  private function submitEmbedForm(bool $changed): array {
+  private function submitEmbedForm(bool $changed, bool $published = TRUE, bool $viewable = TRUE): array {
+    \Drupal\Core\Url::reset();
     $request = $this->pushRequest(['destination' => '/admin/content/media']);
     if ($changed) {
       $request->attributes->set('_bioland_embed_allowlist_changed', TRUE);
     }
+    $messenger = new class {
+      public array $statuses = [];
+
+      public function addStatus($message) {
+        $this->statuses[] = (string) $message;
+      }
+
+    };
+    \Drupal::setService('messenger', $messenger);
     $options = NULL;
-    $media = $this->getMockBuilder(MediaInterface::class)->addMethods(['toUrl'])->getMockForAbstractClass();
-    $media->method('toUrl')->willReturnCallback(function ($rel, array $opts) use (&$options) {
+    $url = new \stdClass();
+    $media = $this->getMockBuilder(MediaInterface::class)->addMethods(['toUrl', 'isPublished', 'access'])->getMockForAbstractClass();
+    $media->method('isPublished')->willReturn($published);
+    $media->method('access')->with('view')->willReturn($viewable);
+    $media->method('toUrl')->willReturnCallback(function ($rel, array $opts) use (&$options, $url) {
       $this->assertSame('canonical', $rel);
       $options = $opts;
-      return (object) ['options' => $opts];
+      return $url;
     });
     $form_object = new class($media) {
 
@@ -290,10 +304,11 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     };
     $form_state = $this->getMockBuilder(FormStateInterface::class)->addMethods(['getFormObject', 'setRedirectUrl'])->getMockForAbstractClass();
     $form_state->method('getFormObject')->willReturn($form_object);
-    $form_state->expects($changed ? $this->once() : $this->never())->method('setRedirectUrl');
+    $redirects = $changed && $published && $viewable;
+    $form_state->expects($redirects ? $this->once() : $this->never())->method('setRedirectUrl')->with($this->identicalTo($url));
     $form = [];
     _bioland_embed_media_form_submit($form, $form_state);
-    return [$options, $request];
+    return [$options, $request, $messenger->statuses];
   }
 
   /**
@@ -301,10 +316,11 @@ class BiolandEmbedValidationWiringTest extends TestCase {
    * a fresh head cache-clear nonce, replacing ?destination=.
    */
   public function testEmbedFormSubmitRedirectsThroughHeadCacheClear(): void {
-    [$first, $request] = $this->submitEmbedForm(TRUE);
+    [$first, $request, $statuses] = $this->submitEmbedForm(TRUE);
     $this->assertSame(['seachain-taisce'], array_keys($first['query']));
     $this->assertMatchesRegularExpression('/^[A-Za-z0-9-]{1,64}$/', $first['query']['seachain-taisce']);
     $this->assertFalse($request->query->has('destination'));
+    $this->assertSame([], $statuses);
 
     [$second] = $this->submitEmbedForm(TRUE);
     $this->assertNotSame($first['query']['seachain-taisce'], $second['query']['seachain-taisce'], 'The head clears once per nonce.');
@@ -314,9 +330,36 @@ class BiolandEmbedValidationWiringTest extends TestCase {
    * BL-1289: a save that left the list alone keeps its normal destination.
    */
   public function testEmbedFormSubmitLeavesRedirectWhenListUnchanged(): void {
-    [$options, $request] = $this->submitEmbedForm(FALSE);
+    [$options, $request, $statuses] = $this->submitEmbedForm(FALSE);
     $this->assertNull($options);
     $this->assertSame('/admin/content/media', $request->query->get('destination'));
+    $this->assertSame([], $statuses);
+  }
+
+  /**
+   * BL-1289: an unpublished or hidden embed keeps its normal destination and
+   * gets the front page clear link instead, since the head would 404 it.
+   *
+   * @dataProvider notViewableProvider
+   */
+  public function testEmbedFormSubmitLinksClearWhenMediaNotViewable(bool $published, bool $viewable): void {
+    [$options, $request, $statuses] = $this->submitEmbedForm(TRUE, $published, $viewable);
+    $this->assertNull($options);
+    $this->assertSame('/admin/content/media', $request->query->get('destination'));
+    $this->assertCount(1, $statuses);
+    $this->assertStringContainsString('<a href="<front>">Clear the front end cache</a>', $statuses[0]);
+    $query = \Drupal\Core\Url::$created[0]['options']['query'];
+    $this->assertMatchesRegularExpression('/^[A-Za-z0-9-]{1,64}$/', $query['seachain-taisce']);
+  }
+
+  /**
+   * Embeds the head would not show.
+   */
+  public static function notViewableProvider(): array {
+    return [
+      'unpublished' => [FALSE, TRUE],
+      'no view access' => [TRUE, FALSE],
+    ];
   }
 
   /**

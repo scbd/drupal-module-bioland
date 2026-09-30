@@ -976,9 +976,10 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
   }
 
   /**
-   * Saves the form with $submitted rows over a stored list; returns messages.
+   * Saves the form with $submitted rows (NULL: no table) over a stored list;
+   * returns the messenger.
    */
-  protected function submitEmbedRows(array $submitted) {
+  protected function submitEmbedRows(?array $submitted) {
     Url::reset();
     $config = $this->config(['embed' => ['allowed_origins' => [['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '']]]]);
     $bioForm = $this->createForm();
@@ -986,7 +987,11 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
     $messenger = $this->recordingMessenger();
     $bioForm->setMessenger($messenger);
     $form = [];
-    $bioForm->submitForm($form, $this->formState(['google_analytics_ids' => '', 'embed_allowed_origins' => $submitted]));
+    $values = ['google_analytics_ids' => ''];
+    if ($submitted !== NULL) {
+      $values['embed_allowed_origins'] = $submitted;
+    }
+    $bioForm->submitForm($form, $this->formState($values));
     return $messenger;
   }
 
@@ -1019,6 +1024,9 @@ class BiolandFrontEndGeneralFormTest extends TestCase {
       ['url' => 'https://app.powerbi.com/view', 'label' => 'Power BI', 'sandbox' => '', 'remove' => 0],
     ]);
     $this->assertSame([], $messenger->statuses);
+    $this->assertSame([], Url::$created);
+
+    $this->assertSame([], $this->submitEmbedRows(NULL)->statuses);
     $this->assertSame([], Url::$created);
   }
 
