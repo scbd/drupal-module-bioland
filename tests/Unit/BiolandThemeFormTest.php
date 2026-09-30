@@ -1336,6 +1336,36 @@ class BiolandThemeFormTest extends TestCase {
   }
 
   /**
+   * A stored right renders as the select's default.
+   */
+  public function testStoredPageInfoColumnRightIsTheDefault(): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config(['theme' => ['page' => ['info_column' => 'right']]]));
+
+    $this->assertSame('right', $form['theme']['page']['info_column']['#default_value']);
+  }
+
+  /**
+   * A DMSM seed of right comes through when nothing is saved.
+   */
+  public function testSeededPageInfoColumnComesThrough(): void {
+    $this->stubDmsmService(['page' => ['infoColumn' => 'right']]);
+    $form = $this->build($this->config());
+
+    $this->assertSame('right', $form['theme']['page']['info_column']['#default_value']);
+  }
+
+  /**
+   * A seed outside left/right falls back to left.
+   */
+  public function testInvalidSeededPageInfoColumnFallsBackToLeft(): void {
+    $this->stubDmsmService(['page' => ['infoColumn' => 'middle']]);
+    $form = $this->build($this->config());
+
+    $this->assertSame('left', $form['theme']['page']['info_column']['#default_value']);
+  }
+
+  /**
    * The field renders on BSL and non-BSL sites alike.
    */
   public function testPageInfoColumnRendersOnBslAndNonBsl(): void {
@@ -1344,6 +1374,8 @@ class BiolandThemeFormTest extends TestCase {
     foreach ([TRUE, FALSE] as $isBsl) {
       $form = $this->build($this->config(['is_biosafety_land' => $isBsl]));
       $this->assertArrayHasKey('info_column', $form['theme']['page']);
+      $this->assertNotFalse($form['theme']['page']['info_column']['#access'] ?? TRUE);
+      $this->assertNotFalse($form['theme']['page']['#access'] ?? TRUE);
     }
   }
 
