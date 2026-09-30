@@ -110,6 +110,21 @@ final class BiolandThemeContract {
   public const KEY_I18N_MAX_LANG_BEFORE_WRAP = 'i18n.max_lang_before_wrap';
 
   /**
+   * Which side of the page the page info column renders on.
+   */
+  public const KEY_PAGE_INFO_COLUMN = 'page.info_column';
+
+  /**
+   * The allowed values of KEY_PAGE_INFO_COLUMN.
+   */
+  public const PAGE_INFO_COLUMN_OPTIONS = ['left', 'right'];
+
+  /**
+   * The page info column side used when nothing is authored.
+   */
+  public const PAGE_INFO_COLUMN_DEFAULT = 'left';
+
+  /**
    * The complete, canonical set of `theme` config keys (dot-path notation).
    *
    * This is the list p02-01's writer must produce exactly, and the schema's
@@ -126,6 +141,7 @@ final class BiolandThemeContract {
     self::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN,
     self::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX,
     self::KEY_I18N_MAX_LANG_BEFORE_WRAP,
+    self::KEY_PAGE_INFO_COLUMN,
   ];
 
   /**

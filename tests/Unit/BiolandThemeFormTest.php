@@ -1313,8 +1313,83 @@ class BiolandThemeFormTest extends TestCase {
           'horizontal_card_max' => 3,
         ],
         'i18n' => ['max_lang_before_wrap' => 6],
+        'page' => ['info_column' => 'right'],
       ],
     ];
+  }
+
+  // ---------------------------------------------------------------------
+  // Page info column position (BL-1286).
+  // ---------------------------------------------------------------------
+
+  /**
+   * Nothing saved and nothing seeded: the select shows Left.
+   */
+  public function testPageInfoColumnDefaultsToLeft(): void {
+    $this->stubDmsmService(NULL);
+    $form = $this->build($this->config());
+
+    $field = $form['theme']['page']['info_column'];
+    $this->assertSame('select', $field['#type']);
+    $this->assertSame('left', $field['#default_value']);
+    $this->assertSame(['left', 'right'], array_keys($field['#options']));
+  }
+
+  /**
+   * The field renders on BSL and non-BSL sites alike.
+   */
+  public function testPageInfoColumnRendersOnBslAndNonBsl(): void {
+    $this->stubDmsmService(NULL);
+
+    foreach ([TRUE, FALSE] as $isBsl) {
+      $form = $this->build($this->config(['is_biosafety_land' => $isBsl]));
+      $this->assertArrayHasKey('info_column', $form['theme']['page']);
+    }
+  }
+
+  /**
+   * A submitted value round-trips through the writer.
+   *
+   * @dataProvider pageInfoColumnValuesProvider
+   */
+  public function testPageInfoColumnRoundTrips(string $value): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+    $values = $this->submittableValues();
+    $values['theme']['page']['info_column'] = $value;
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $this->formState($values), $config]);
+
+    $this->assertSame($value, $config->get('theme.page.info_column'));
+  }
+
+  /**
+   * Data provider for the two allowed values.
+   *
+   * @return array
+   *   Cases.
+   */
+  public static function pageInfoColumnValuesProvider(): array {
+    return ['left' => ['left'], 'right' => ['right']];
+  }
+
+  /**
+   * An invalid value fails validation and the writer writes nothing.
+   */
+  public function testPageInfoColumnRejectsInvalidValue(): void {
+    $this->stubDmsmService(NULL);
+    $config = $this->config();
+    $form = $this->build($config);
+    $values = $this->submittableValues();
+    $values['theme']['page']['info_column'] = 'middle';
+    $formState = $this->formState($values);
+
+    $this->createForm()->validateForm($form, $formState);
+    $this->assertArrayHasKey('theme][page][info_column', $formState->getErrors());
+
+    $this->invoke($this->createForm(), 'submitSectionForm', [&$form, $formState, $config]);
+    $this->assertNull($config->get('theme.page.info_column'));
   }
 
   // ---------------------------------------------------------------------

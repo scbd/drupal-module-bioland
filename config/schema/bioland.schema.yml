@@ -599,3 +599,10 @@ bioland.settings:
             max_lang_before_wrap:
               type: integer
               label: 'Maximum languages shown before the language bar wraps'
+        page:
+          type: mapping
+          label: 'Page layout theme settings'
+          mapping:
+            info_column:
+              type: string
+              label: 'Page info column position'
