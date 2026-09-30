@@ -310,3 +310,47 @@ itemised here; notable ones:
   per-hook doc comments
 
 Note: hooks 9066-9070 are intentionally absent from the include files on this branch.
+
+- **9091** (`includes/bioland.install.fields.inc`): readies the BL-1192 document-preview feature —
+  throws `UpdateException` (via `_bioland_ensure_document_preview_ready()`) when the
+  `convertapi/convertapi-php` library is missing, run
+  `composer require convertapi/convertapi-php --with-all-dependencies` in the site root
+  (`/opt/drupal` on staging) **before** `drush updb`; widens the `media.document` Image field's
+  `max_resolution` when it is empty or at most 128x128; and re-applies the canonical v2 Search API
+  config as the new highest-numbered hook.
+  - **Manual pre-merge step**: `BiolandDocumentPreviewPolicy::DOCUMENT_FIELD` /
+    `::IMAGE_FIELD` are pinned to `field_media_document` / `field_media_image` from the ticket
+    spec, not verified against a live site. Run `drush field:info media document` on the target
+    site before deploying and correct the constants if the real machine names differ.
+
+## v1.1.13 — COP-17 embed batch
+
+Version bump only; no new update hook. Summarises what shipped since 1.1.12. Run `drush updb`
+after deploying: sites at schema 9109 or lower are missing hooks 9110-9113.
+
+- **BL-1218**: Embed media type on `iframe` + `media_iframe`, the `embed.allowed_origins`
+  setting with validation, backfill and URL aliases (hooks 9112/9113).
+- **BL-1270 / BL-1271**: Embed frames render without fallback content or the title heading
+  (hooks 9106/9111).
+- **BL-1272**: Media library picker lists embed media; hook 9110 removes the forced media type
+  filter from the `widget` displays that 9107 missed.
+- **BL-1273**: Embed URLs that refuse to be framed are rejected on the URL sub-field.
+- **BL-1274 / BL-1276**: Embed permissions mirrored from image media (9108); stray Embed
+  toolbar item disabled (9109).
+- **BL-1286 / BL-1289 / BL-1291**: Page info column position theme setting, cache-clearing
+  redirect after an allowlist change, llms.txt toolbar link disabled.
+- **BL-917 / BL-784 / BL-836 / BL-838 / BL-1230 / BL-1255**: Media image editor and resize
+  filter, media bulk actions and delete permissions, editable home node, hero preview fix,
+  `system.site` nameEnglish key.
+
+## v1.1.12 — COP-17 batch
+
+Version bump only (BL-1194); no new update hook. Summarises the COP-17 feature batch shipped in
+this release:
+
+- **BL-1188**: Embedded image alt/caption text handling for content fields.
+- **BL-1189**: Wrapper module version-check guard.
+- **BL-1191**: URL screenshot capture — adds the `convertapi/convertapi-php` PHP library
+  (`composer require convertapi/convertapi-php --with-all-dependencies`) and update hooks
+  9090/9091; run `drush updb` after the composer install.
+- **BL-1192**: Document preview generation for `media.document` entities (see hook 9091 above).

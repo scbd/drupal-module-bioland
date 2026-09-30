@@ -110,6 +110,21 @@ final class BiolandThemeContract {
   public const KEY_I18N_MAX_LANG_BEFORE_WRAP = 'i18n.max_lang_before_wrap';
 
   /**
+   * Which side of the page the page info column renders on.
+   */
+  public const KEY_PAGE_INFO_COLUMN = 'page.info_column';
+
+  /**
+   * The allowed values of KEY_PAGE_INFO_COLUMN.
+   */
+  public const PAGE_INFO_COLUMN_OPTIONS = ['left', 'right'];
+
+  /**
+   * The page info column side used when nothing is authored.
+   */
+  public const PAGE_INFO_COLUMN_DEFAULT = 'left';
+
+  /**
    * The complete, canonical set of `theme` config keys (dot-path notation).
    *
    * This is the list p02-01's writer must produce exactly, and the schema's
@@ -126,6 +141,7 @@ final class BiolandThemeContract {
     self::KEY_MEGA_MENU_MAX_ROWS_PER_COLUMN,
     self::KEY_MEGA_MENU_HORIZONTAL_CARD_MAX,
     self::KEY_I18N_MAX_LANG_BEFORE_WRAP,
+    self::KEY_PAGE_INFO_COLUMN,
   ];
 
   /**
@@ -215,5 +231,31 @@ final class BiolandThemeContract {
    * @see \Drupal\bioland\Form\BiolandThemeForm::FALLBACK_COLORS_BSL
    */
   public const FALLBACK_PRIMARY_BSL = '#fa6938';
+
+  /**
+   * Last-resort `hero.secondary` for a bl2 site with nothing authored.
+   *
+   * Mirrors self::FALLBACK_PRIMARY_BL2's provenance: the prod/bl2 network
+   * document's `hero.primary` pair is byte-identical to its brand pair, so
+   * this is also BiolandThemeForm::FALLBACK_COLORS_BL2's
+   * `color.secondary`/`hero.secondary` value, hoisted here because both that
+   * form and BiolandHeroEditorPreview (the media hero edit-form preview) need
+   * the identical value and neither owns the other.
+   *
+   * @see \Drupal\bioland\Form\BiolandThemeForm::FALLBACK_COLORS_BL2
+   * @see \Drupal\bioland\Service\BiolandHeroEditorPreview::settings()
+   */
+  public const FALLBACK_HERO_SECONDARY_BL2 = '#16c56e';
+
+  /**
+   * Last-resort `hero.secondary` for a BSL site with nothing authored.
+   *
+   * The BSL counterpart of self::FALLBACK_HERO_SECONDARY_BL2; every reason
+   * given there applies unchanged.
+   *
+   * @see \Drupal\bioland\Form\BiolandThemeForm::FALLBACK_COLORS_BSL
+   * @see \Drupal\bioland\Service\BiolandHeroEditorPreview::settings()
+   */
+  public const FALLBACK_HERO_SECONDARY_BSL = '#428bca';
 
 }

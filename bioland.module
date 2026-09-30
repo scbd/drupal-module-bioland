@@ -5,16 +5,36 @@
  * Main module file for Drupal Module Bioland.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\bioland\BiolandEmbeddedImageMedia;
+use Drupal\bioland\BiolandEmbedPreviewSandbox;
+use Drupal\bioland\BiolandFocalPoint;
+use Drupal\bioland\BiolandToolbarEmbedLink;
+use Drupal\bioland\BiolandToolbarLlmsTxtLink;
 use Drupal\bioland\Form\BiolandComponentMenuLinkForm;
+use Drupal\bioland\Form\BiolandHeroImageWidget;
+use Drupal\bioland\Plugin\Field\FieldWidget\BiolandIframeWidget;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraint;
+use Drupal\bioland\Plugin\Validation\Constraint\BiolandEmbedAllowedOriginConstraintValidator;
+use Drupal\bioland\Service\BiolandEmbedAllowlist;
+use Drupal\bioland\Service\BiolandMediaImageEditor;
+use Drupal\bioland\Service\BiolandToastImageGuard;
 use Drupal\bioland\Service\BiolandComponentMenuFormMode;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\media\MediaInterface;
+use Drupal\bioland\BiolandUrlScreenshotPolicy;
+use Drupal\Core\Url;
+use Drupal\iframe\Plugin\Field\FieldWidget\IframeUrlwidthheightWidget;
 
 /**
  * Implements hook_menu_links_discovered_alter().
  *
- * Hides auto_node_translate menu items from the admin menu.
+ * Hides auto_node_translate menu items from the admin menu and disables the
+ * stray embed add link (BL-1276) and the llms.txt configuration link (BL-1291)
+ * in the admin toolbar.
  */
 function bioland_menu_links_discovered_alter(&$links) {
   // Menu items to hide (system-defined menu links).
@@ -31,6 +51,9 @@ function bioland_menu_links_discovered_alter(&$links) {
       unset($links[$menu_id]);
     }
   }
+
+  BiolandToolbarEmbedLink::disable($links);
+  BiolandToolbarLlmsTxtLink::disable($links);
 }
 
 /**
@@ -193,6 +216,13 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
+  // BL-1313: embed (inline frame) media previews in the body take their size
+  // from the CKEditor resize or the frame field, as on the public page, and
+  // the Media Resize balloon opens prefilled for them.
+  if (\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    $form['#attached']['library'][] = 'bioland/embed_editor_size';
+  }
+
   // Align the CKEditor 5 editing surface with the public (Nuxt) frontend:
   // heading sizes and the primary-coloured underline on h3/h4/h5. CKEditor 5
   // renders inline in the page DOM, so a stylesheet scoped to .ck-content
@@ -264,6 +294,16 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Pass settings to JavaScript if any feature is attached.
   if ($anyAttached) {
     $form['#attached']['drupalSettings']['bioland'] = $jsSettings;
+  }
+
+  // BL-1191: fill title and description from a Related websites URL.
+  if (\Drupal::config('bioland.settings')->get('enable_url_screenshot') !== FALSE) {
+    $form['#attached']['library'][] = 'bioland/url_metadata';
+    // toString() without bubbleable metadata embeds the real CSRF token, which
+    // is per session, so the form must not be cached across sessions.
+    $form['#attached']['drupalSettings']['bioland']['urlMetadataEndpoint'] = Url::fromRoute('bioland.url_metadata')->toString();
+    $form['#attached']['drupalSettings']['bioland']['relatedWebsitesTid'] = BiolandUrlScreenshotPolicy::RELATED_WEBSITES_TID;
+    $form['#cache']['contexts'][] = 'session';
   }
 
   // Ensure the advanced sidebar exists for our custom elements.
@@ -356,7 +396,7 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#optional' => TRUE,
     ];
 
-    // Help text is added via JavaScript (bioland-help-comments-1-1-8.js)
+    // Help text is added via JavaScript (bioland-help-comments-1-1-13.js)
     // to provide close button, cookie persistence, and info icon toggle.
 
     $form['field_order']['#group'] = 'order_override_wrapper';
@@ -431,6 +471,80 @@ function bioland_form_node_form_alter(&$form, FormStateInterface $form_state, $f
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for media_hero_add_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_hero_edit_form.
+ *
+ * BL-841: see BiolandHeroImageWidget's docblock for why the relabel logic
+ * lives in its own class rather than growing bioland_form_alter().
+ */
+function bioland_form_media_hero_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  BiolandHeroImageWidget::alterForm($form);
+  _bioland_attach_hero_editor_preview($form);
+}
+
+/**
+ * Attaches the hero editor preview library and its colour settings.
+ *
+ * @param array $form
+ *   The media hero add/edit form, altered by reference.
+ */
+function _bioland_attach_hero_editor_preview(array &$form) {
+  $form['#attached']['library'][] = 'bioland/hero_editor_preview';
+  $form['#attached']['drupalSettings']['bioland']['heroPreview'] = bioland_hero_editor_preview_settings();
+}
+
+/**
+ * Returns the hero preview colours for drupalSettings.
+ *
+ * Thin wrapper around \Drupal\bioland\Service\BiolandHeroEditorPreview,
+ * which owns the config-reading and fallback-colour logic so it is unit
+ * testable without bootstrapping a form alter (matching the pattern set by
+ * BiolandComponentMenuFormMode::primaryColor()).
+ *
+ * @return array
+ *   `['primary' => '#rrggbb', 'secondary' => '#rrggbb']`.
+ */
+function bioland_hero_editor_preview_settings(): array {
+  return \Drupal::service('bioland.hero_editor_preview')->settings();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for media.
+ *
+ * Image media embedded in a text body shows the image only, never the extra
+ * field labels and values of its view display (BL-1188).
+ *
+ * @see \Drupal\bioland\BiolandEmbeddedImageMedia
+ */
+function bioland_media_view_alter(array &$build, EntityInterface $media, EntityViewDisplayInterface $display) {
+  if (empty($build['#embed']) || !$media instanceof MediaInterface) {
+    return;
+  }
+  $source = $media->getSource();
+  // Pseudo/extra fields (registered via hook_entity_extra_field_info(), for
+  // example a computed summary) have a display component but no #field_name,
+  // so BiolandEmbeddedImageMedia::strip() cannot spot them by #field_name
+  // alone; name them explicitly.
+  $extra_fields = array_diff(array_keys($display->getComponents()), array_keys($media->getFieldDefinitions()));
+  $build = BiolandEmbeddedImageMedia::strip(
+    $build,
+    $source->getPluginId(),
+    $source->getConfiguration()['source_field'] ?? NULL,
+    $extra_fields
+  );
+}
+
+/**
  * Implements hook_entity_type_alter().
  *
  * Registers the "component" entity-form operation on menu_link_content, which
@@ -459,6 +573,116 @@ function bioland_entity_type_alter(array &$entity_types) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for field templates.
+ *
+ * Sandboxes the embed media type's allowlisted iframes (media page, media
+ * library, CKEditor preview) the way the head does. An off-list iframe is
+ * replaced by a notice only in the CKEditor preview; elsewhere, including
+ * the body markup the head consumes, it is left for the head to drop
+ * (BL-1218).
+ *
+ * @see \Drupal\bioland\BiolandEmbedPreviewSandbox
+ */
+function bioland_preprocess_field(&$variables) {
+  $element = $variables['element'] ?? [];
+  if (($element['#entity_type'] ?? NULL) !== 'media' || ($element['#bundle'] ?? NULL) !== 'embed') {
+    return;
+  }
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'));
+  $route = \Drupal::hasService('current_route_match') ? \Drupal::service('current_route_match')->getRouteName() : NULL;
+  foreach ($variables['items'] ?? [] as $delta => $item) {
+    if (($item['content']['#theme'] ?? NULL) === 'iframe') {
+      $variables['items'][$delta]['content'] = BiolandEmbedPreviewSandbox::apply($item['content'], $entries, $route === BiolandEmbedPreviewSandbox::EDITOR_PREVIEW_ROUTE);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_library_add_form_iframe.
+ *
+ * media_iframe's media library add form (the CKEditor media picker path)
+ * validates the new media through the media_library form display, which
+ * holds no source field, so the embed URL constraint's violation is dropped
+ * there. Validate the URL element directly instead, as core's OEmbedForm
+ * does (BL-1218).
+ */
+function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['container']['url'])) {
+    $form['container']['url']['#element_validate'][] = 'bioland_media_library_embed_url_validate';
+  }
+}
+
+/**
+ * Element validate: the media library iframe URL is on the embed allowlist.
+ */
+function bioland_media_library_embed_url_validate(array &$element, FormStateInterface $form_state) {
+  $url = (string) $form_state->getValue('url');
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries(\Drupal::config('bioland.settings'));
+  $error = BiolandEmbedAllowedOriginConstraintValidator::formError(
+    $url,
+    BiolandEmbedAllowedOriginConstraintValidator::entriesFor($url, $entries, \Drupal::currentUser())
+  );
+  // Frameability (BL-1273) only after the allowlist passes: no fetch otherwise.
+  if ($error === NULL && trim($url) !== '') {
+    $error = \Drupal::service('bioland.embed_frameability')->error($url);
+  }
+  if ($error !== NULL) {
+    $form_state->setErrorByName('url', $error);
+  }
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ *
+ * Swaps the iframe_default widget class so an embed URL violation is shown
+ * under the URL sub-field only, not repeated under every sub-field
+ * (BL-1273). Only contrib's own class is swapped, so a future iframe
+ * release that ships a different widget is left alone.
+ *
+ * @see \Drupal\bioland\Plugin\Field\FieldWidget\BiolandIframeWidget
+ */
+function bioland_field_widget_info_alter(array &$info) {
+  $class = $info['iframe_default']['class'] ?? NULL;
+  if (is_string($class) && is_a($class, IframeUrlwidthheightWidget::class, TRUE)) {
+    $info['iframe_default']['class'] = BiolandIframeWidget::class;
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ *
+ * Validates the embed media type's source field against the bioland.settings
+ * embed allowlist (BL-1218). The field name is read from the media type's
+ * stored source configuration, not the source plugin, so this never
+ * re-enters the entity field manager.
+ */
+function bioland_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() !== 'media' || $bundle !== 'embed') {
+    return;
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  $name = $type ? ($type->get('source_configuration')['source_field'] ?? NULL) : NULL;
+  if ($name && isset($fields[$name])) {
+    $fields[$name]->addConstraint(BiolandEmbedAllowedOriginConstraint::PLUGIN_ID);
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Exposes the hero image focal point on media as a computed, read-only
+ * "X,Y" percentage string (JSON:API: media--hero.bioland_focal_point).
+ *
+ * @see \Drupal\bioland\BiolandFocalPoint
+ */
+function bioland_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() !== 'media') {
+    return [];
+  }
+  return [BiolandFocalPoint::FIELD_NAME => BiolandFocalPoint::baseFieldDefinition()];
+}
+
+/**
  * Implements hook_entity_insert().
  */
 function bioland_entity_insert(EntityInterface $entity) {
@@ -469,6 +693,13 @@ function bioland_entity_insert(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'insert');
+
+  // BL-1191: enqueue an auto website screenshot for qualifying nodes.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'insert');
+
+  // Enqueue a first-page WebP preview for new Document media (BL-1192). This
+  // only pushes a queue item; the conversion itself runs from cron.
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'insert');
 }
 
 /**
@@ -482,6 +713,13 @@ function bioland_entity_update(EntityInterface $entity) {
 
   // Use the translation manager service to handle translation creation.
   \Drupal::service('bioland.translation_manager')->createTranslations($entity, 'update');
+
+  // BL-1191: enqueue a refreshed website screenshot when the URL changed.
+  \Drupal::service('bioland.url_screenshot')->enqueueIfNeeded($entity, 'update');
+
+  // Enqueue a fresh preview only when the document file itself changed
+  // (BL-1192); see BiolandDocumentPreviewService::enqueueIfNeeded().
+  \Drupal::service('bioland.document_preview')->enqueueIfNeeded($entity, 'update');
 }
 
 /**
@@ -583,6 +821,30 @@ function bioland_theme() {
 }
 
 /**
+ * Implements hook_modules_installed().
+ *
+ * BL-1218: when media_iframe is enabled after bioland_update_9098() ran on an
+ * image without it (for example drush en media_iframe once the new docker
+ * wrapper image is deployed), create the embed media type and offer it in the
+ * CKEditor media picker exactly as the update hook does. Not during a config
+ * sync: the synced config carries the media type.
+ */
+function bioland_modules_installed($modules, $is_syncing) {
+  if ($is_syncing) {
+    return;
+  }
+  if (in_array('media_iframe', $modules, TRUE)) {
+    \Drupal::moduleHandler()->loadInclude('bioland', 'install');
+    _bioland_setup_embed_media();
+  }
+  elseif (in_array('pathauto', $modules, TRUE)) {
+    // Pathauto enabled after the embed type: give embeds URL aliases.
+    \Drupal::moduleHandler()->loadInclude('bioland', 'install');
+    _bioland_add_embed_to_media_alias_pattern();
+  }
+}
+
+/**
  * Implements hook_module_implements_alter().
  *
  * Moves bioland's hook_form_alter to run last so the Save-button relabel in
@@ -605,6 +867,12 @@ function bioland_module_implements_alter(&$implementations, $hook) {
     $group = $implementations['bioland'];
     unset($implementations['bioland']);
     $implementations['bioland'] = $group;
+  }
+
+  // bioland_media_presave() must run BEFORE toast_image_editor_media_presave()
+  // so an invalid edited image is dropped before that module writes it.
+  if ($hook === 'media_presave' && isset($implementations['bioland'])) {
+    $implementations = ['bioland' => $implementations['bioland']] + $implementations;
   }
 }
 
@@ -871,4 +1139,311 @@ function bioland_preprocess_html(&$variables) {
     }
   }
   */
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_image.
+ *
+ * Adds "Choose from media library" to the hero media image field (BL-807).
+ * Skipped entirely without media_library, so no picker and no media_library
+ * class is ever loaded on such a site.
+ */
+function bioland_field_widget_complete_image_image_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  if (\Drupal::moduleHandler()->moduleExists('media_library')) {
+    \Drupal::service('bioland.hero_media_library')->alterWidget($field_widget_complete_form, $context);
+  }
+  // BL-917: the toast image editor under the media image field, available as
+  // soon as a file is uploaded and behind an "Edit image" button afterwards.
+  \Drupal::service('bioland.media_image_editor')->alterWidget($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for media_form.
+ *
+ * Rejects an edited toast_image_editor image that is not a real image of an
+ * allowed type and size (BL-917). Added whenever the module is on, without
+ * looking for its hidden field in $form, so the check never depends on the
+ * order the two form alters run in.
+ *
+ * The #after_build runs after toast_image_editor's own form alter (which
+ * comes later than this one) and swaps its bottom-of-form fieldset for the
+ * one bioland placed under the image widget.
+ */
+function bioland_form_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (\Drupal::moduleHandler()->moduleExists('toast_image_editor')) {
+    $form['#validate'][] = '_bioland_toast_image_editor_validate';
+    $form['#after_build'][] = '_bioland_media_image_editor_after_build';
+  }
+}
+
+/**
+ * After-build callback for media forms: finishes the image editor placement.
+ *
+ * @see \Drupal\bioland\Service\BiolandMediaImageEditor::afterBuild()
+ */
+function _bioland_media_image_editor_after_build(array $form, FormStateInterface $form_state) {
+  return \Drupal::service('bioland.media_image_editor')->afterBuild($form, $form_state);
+}
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for image_focal_point.
+ *
+ * The hero form display uses Focal Point's widget once focal_point is enabled
+ * (see _bioland_configure_hero_focal_point()), so the picker hooks it too.
+ */
+function bioland_field_widget_complete_image_focal_point_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context) {
+  bioland_field_widget_complete_image_image_form_alter($field_widget_complete_form, $form_state, $context);
+}
+
+/**
+ * Form validation handler: checks the submitted toast_image_editor image.
+ *
+ * Reads raw user input, as toast_image_editor does; its hidden field has a
+ * fixed empty #value, so the processed form value is always ''.
+ */
+function _bioland_toast_image_editor_validate(array &$form, FormStateInterface $form_state) {
+  $payloads = BiolandToastImageGuard::payloads($form_state->getUserInput());
+  if (!$payloads) {
+    return;
+  }
+
+  // Validate against the field the editor targets, the same one presave
+  // writes (BiolandMediaImageEditor::editableField()).
+  $media = $form_state->getFormObject()->getEntity();
+  $field = $media instanceof MediaInterface ? \Drupal::service('bioland.media_image_editor')->editableField($media) : NULL;
+  $extension = _bioland_media_image_extension($media, $field);
+  foreach ($payloads as $payload) {
+    $reason = BiolandToastImageGuard::validate($payload, $extension);
+    if ($reason !== NULL) {
+      $form_state->setErrorByName(BiolandToastImageGuard::FIELD, t('The edited image was not saved: @reason.', ['@reason' => $reason]));
+      return;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for media.
+ *
+ * Runs before toast_image_editor_media_presave() (ordering is pinned in
+ * bioland_module_implements_alter()) on the same request object it reads.
+ * Removes an invalid payload, which also covers saves that skip the media
+ * form validation, and re-encodes a valid one to the media file's format.
+ */
+function bioland_media_presave(EntityInterface $media) {
+  if (!\Drupal::moduleHandler()->moduleExists('toast_image_editor') || !\Drupal::hasRequest()) {
+    return;
+  }
+
+  /** @var \Drupal\bioland\Service\BiolandMediaImageEditor $editor */
+  $editor = \Drupal::service('bioland.media_image_editor');
+  $field = $media instanceof MediaInterface ? $editor->editableField($media) : NULL;
+
+  $user = \Drupal::currentUser();
+  $allowed = $user->hasPermission('use toast image editor') && $media->access('update', $user);
+  // The widget input can name any permanent fid; only the media's own file
+  // (stored, or the user's own temporary upload) may be overwritten. This
+  // gate covers the contrib write on image sources too.
+  if ($allowed && $field !== NULL) {
+    $file = $media->get($field)->isEmpty() ? NULL : $media->get($field)->entity;
+    $original = $media->original ?? NULL;
+    $stored_fid = $original && !$original->get($field)->isEmpty() ? (int) $original->get($field)->target_id : NULL;
+    $allowed = $file instanceof FileInterface && BiolandMediaImageEditor::fileEditable(
+      $stored_fid, (int) $file->id(), $file->isTemporary(), (int) $file->getOwnerId(), (int) $user->id());
+  }
+  $post = \Drupal::request()->request;
+  $dropped = BiolandToastImageGuard::sanitize($post, _bioland_media_image_extension($media, $field), $allowed);
+  foreach ($dropped as $reason) {
+    \Drupal::logger('bioland')->warning('Dropped an invalid toast_image_editor image for media @id: @reason.', [
+      '@id' => $media->id(),
+      '@reason' => $reason,
+    ]);
+  }
+
+  // toast_image_editor only writes a media type's image *source* field. When
+  // the edited field is another image field (remote_video, document), write
+  // the sanitized payload here and take it off the request so nothing else
+  // acts on it.
+  if ($field === NULL || $editor->contribWrites($media, $field)) {
+    return;
+  }
+  foreach (BiolandToastImageGuard::payloads($post->all()) as $key => $payload) {
+    $post->remove($key);
+    if ($editor->writeEditedImage($media, $field, $payload)) {
+      \Drupal::messenger()->addStatus(t('Your image changes have been saved.'));
+    }
+    else {
+      \Drupal::messenger()->addError(t('The edited image could not be saved.'));
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for media.
+ */
+function bioland_media_insert(EntityInterface $media) {
+  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
+    _bioland_embed_auto_allow($media);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for media.
+ */
+function bioland_media_update(EntityInterface $media) {
+  if ($media instanceof MediaInterface && $media->bundle() === 'embed') {
+    $original = method_exists($media, 'getOriginal') ? $media->getOriginal() : ($media->original ?? NULL);
+    _bioland_embed_auto_allow($media, $original instanceof MediaInterface ? $original : NULL);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_embed_add_form.
+ */
+function bioland_form_media_embed_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = '_bioland_embed_media_form_submit';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_embed_edit_form.
+ */
+function bioland_form_media_embed_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = '_bioland_embed_media_form_submit';
+}
+
+/**
+ * Submit handler: sends the editor through the head's cache clear (BL-1289).
+ *
+ * Only when this save added to the embed allowlist. The head caches the list
+ * for minutes, so the new embed would render blank; its own page with the
+ * head's cache-clear parameter makes the head reload the list for the
+ * editor's session first. ?destination= is dropped too, because Drupal's
+ * redirect subscriber would otherwise send the editor there instead.
+ */
+function _bioland_embed_media_form_submit(array &$form, FormStateInterface $form_state) {
+  $request = \Drupal::requestStack()->getCurrentRequest();
+  $media = $form_state->getFormObject()->getEntity();
+  if (!$request?->attributes->get(BiolandEmbedAllowlist::CHANGED_ATTRIBUTE) || !$media instanceof MediaInterface) {
+    return;
+  }
+  // The head would 404 an unpublished or hidden embed: keep the normal
+  // destination and offer the clear as a link instead.
+  if (!$media->isPublished() || !$media->access('view')) {
+    \Drupal::messenger()->addStatus(BiolandEmbedAllowlist::headCacheClearMessage());
+    return;
+  }
+  $form_state->setRedirectUrl($media->toUrl('canonical', ['query' => BiolandEmbedAllowlist::headCacheClearQuery()]));
+  $request->query->remove('destination');
+}
+
+/**
+ * Adds an embed's unlisted URL to the allowlist (BL-1218).
+ *
+ * Only for users with the auto-allow permission (SCBD staff, site managers,
+ * administrators), whose save the URL constraint already let through. Runs
+ * after the save succeeds, and only for URLs that are new on this save, so
+ * re-saving an old embed never re-adds a host a reviewer removed. The entry
+ * is scoped to the URL's first path segment, without a sandbox, and shows on
+ * the Front End General settings page for review.
+ */
+function _bioland_embed_auto_allow(MediaInterface $media, ?MediaInterface $original = NULL) {
+  $account = \Drupal::currentUser();
+  if (!$account->hasPermission(BiolandEmbedAllowedOriginConstraintValidator::AUTO_ALLOW_PERMISSION)) {
+    return;
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? NULL;
+  if (!$field || !$media->hasField($field)) {
+    return;
+  }
+  $previous = [];
+  if ($original && $original->hasField($field)) {
+    foreach ($original->get($field) as $item) {
+      $previous[] = BiolandEmbedAllowlist::autoEntry((string) ($item->url ?? ''))['url'] ?? NULL;
+    }
+  }
+  $config = \Drupal::configFactory()->getEditable('bioland.settings');
+  $entries = BiolandEmbedAllowedOriginConstraintValidator::entries($config);
+  $added = [];
+  foreach ($media->get($field) as $item) {
+    $url = trim((string) ($item->url ?? ''));
+    // Compared by entry, so a changed query on an old embed is not new.
+    $is_old = in_array(BiolandEmbedAllowlist::autoEntry($url)['url'] ?? NULL, array_filter($previous), TRUE);
+    $next = $is_old ? NULL : BiolandEmbedAllowlist::withAutoEntry($url, $entries);
+    if ($next !== NULL) {
+      $entries = $next;
+      $added[] = end($next)['url'];
+    }
+  }
+  if (!$added) {
+    return;
+  }
+  $config->set('embed.allowed_origins', $entries)->save();
+  \Drupal::requestStack()->getCurrentRequest()?->attributes->set(BiolandEmbedAllowlist::CHANGED_ATTRIBUTE, TRUE);
+  $origins = implode(', ', $added);
+  \Drupal::logger('bioland')->notice('Added @origins to the embed allowlist when user @uid saved embed media @mid.', [
+    '@origins' => $origins,
+    '@uid' => $account->id(),
+    '@mid' => $media->id(),
+  ]);
+  \Drupal::messenger()->addStatus(t('Added @origins to the allowed embed hosts. Review it under Front End General settings.', ['@origins' => $origins]));
+}
+
+/**
+ * Returns the lowercase extension of the file in a media image field.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $media
+ *   The media entity.
+ * @param string|null $field
+ *   The image field the editor targets; NULL falls back to the source field.
+ *
+ * @return string
+ *   The extension, or '' when the field holds no file.
+ */
+function _bioland_media_image_extension(EntityInterface $media, ?string $field) {
+  if ($field === NULL) {
+    return _bioland_media_source_extension($media);
+  }
+  if (!$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
+}
+
+/**
+ * Returns the lowercase extension of a media entity's source file.
+ *
+ * @return string
+ *   The extension, or '' when the media has no source file.
+ */
+function _bioland_media_source_extension(EntityInterface $media) {
+  if (!method_exists($media, 'getSource')) {
+    return '';
+  }
+  $field = $media->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($field === '' || !$media->hasField($field) || $media->get($field)->isEmpty()) {
+    return '';
+  }
+  $file = $media->get($field)->entity;
+  return $file ? strtolower(pathinfo($file->getFileUri(), PATHINFO_EXTENSION)) : '';
+}
+
+/**
+ * Implements hook_config_schema_info_alter().
+ *
+ * The dmsm provisioning tool writes an extra "nameEnglish" key into the
+ * system.site config object. Core's system.site schema is fully validatable,
+ * so the ValidKeys constraint rejects the undeclared key and the Site
+ * information form fails to save. Declare it as an optional string so the
+ * form saves, and sites without the key are not flagged as missing it.
+ */
+function bioland_config_schema_info_alter(array &$definitions) {
+  if (!isset($definitions['system.site']['mapping'])) {
+    return;
+  }
+  $definitions['system.site']['mapping']['nameEnglish'] = [
+    'type' => 'string',
+    'label' => 'English site name (written by dmsm provisioning)',
+    'requiredKey' => FALSE,
+    'nullable' => TRUE,
+  ];
 }
