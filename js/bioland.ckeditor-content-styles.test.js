@@ -66,3 +66,49 @@ describe('Bioland CKEditor content styles - remote video width (BL-1207)', () =>
     expect(unscopedCount).toBe(scopedCount);
   });
 });
+
+describe('Bioland CKEditor content styles - embed frames (BL-1313)', () => {
+  let css;
+
+  beforeAll(() => {
+    css = readStylesheet();
+  });
+
+  function ruleBody(selectorPattern) {
+    const match = css.match(new RegExp(selectorPattern + '\\s*\\{([^}]*)\\}'));
+    return match ? match[1] : null;
+  }
+
+  test('makes the media widget holding a non-oEmbed iframe full width', () => {
+    const body = ruleBody(
+      '\\.ck\\.ck-content\\s+\\.drupal-media:has\\(iframe:not\\(\\.media-oembed-content\\)\\)'
+    );
+    expect(body).not.toBeNull();
+    expect(body).toMatch(/width:\s*100%/);
+  });
+
+  test('blocks the embed iframe, caps it at the widget and drops the border', () => {
+    const body = ruleBody(
+      '\\.ck\\.ck-content\\s+\\.drupal-media\\s+iframe:not\\(\\.media-oembed-content\\)'
+    );
+    expect(body).not.toBeNull();
+    expect(body).toMatch(/display:\s*block/);
+    expect(body).toMatch(/max-width:\s*100%/);
+    expect(body).toMatch(/border:\s*0/);
+  });
+
+  test('leaves the embed iframe width and height to the behavior', () => {
+    const body = ruleBody(
+      '\\.ck\\.ck-content\\s+\\.drupal-media\\s+iframe:not\\(\\.media-oembed-content\\)'
+    );
+    expect(body).not.toMatch(/(^|[;\s])width:/);
+    expect(body).not.toMatch(/(^|[;\s])height:/);
+    expect(body).not.toMatch(/aspect-ratio/);
+  });
+
+  test('keeps the two-class .ck.ck-content scope on the embed rules', () => {
+    const unscoped = '.ck-content .drupal-media iframe:not(.media-oembed-content)';
+    expect(css.split(unscoped).length - 1).toBeGreaterThan(0);
+    expect(css.split(unscoped).length).toBe(css.split(`.ck${unscoped}`).length);
+  });
+});

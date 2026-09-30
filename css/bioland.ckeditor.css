@@ -107,3 +107,20 @@
   height: auto;
   aspect-ratio: 16 / 9;
 }
+
+/*
+ * BL-1313: embed (inline frame) media. The widget holding a non-oEmbed
+ * iframe is full width for the same display: table reason as above; the
+ * resizer's inline wrapper width still wins when set. The iframe's width and
+ * height are owned by js/bioland-embed-editor-size-1-1-13.js (the CKEditor
+ * resize, then the frame field), so they are deliberately not set here.
+ */
+.ck.ck-content .drupal-media:has(iframe:not(.media-oembed-content)) {
+  width: 100%;
+}
+
+.ck.ck-content .drupal-media iframe:not(.media-oembed-content) {
+  display: block;
+  max-width: 100%;
+  border: 0;
+}

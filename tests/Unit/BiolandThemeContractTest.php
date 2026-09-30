@@ -406,4 +406,32 @@ class BiolandThemeContractTest extends TestCase {
     );
   }
 
+  /**
+   * BL-1313: the embed frame sizing behavior rides with the content styles.
+   *
+   * Structural pin like the one above: the library must be attached on the
+   * same node content forms as bioland/ckeditor_content_styles, only when
+   * media_iframe (which provides the embed frames) is enabled, and the
+   * library must declare the core once() dependency the behavior uses.
+   */
+  public function testNodeFormAttachesTheEmbedEditorSizeLibrary(): void {
+    $root = dirname(__DIR__, 2);
+    $module = file_get_contents($root . '/bioland.module');
+    $styles = strpos($module, "\$form['#attached']['library'][] = 'bioland/ckeditor_content_styles';");
+    $this->assertNotFalse($styles, 'The ckeditor_content_styles attach site has moved or gone.');
+
+    $guard = "if (\\Drupal::moduleHandler()->moduleExists('media_iframe')) {\n    \$form['#attached']['library'][] = 'bioland/embed_editor_size';\n  }";
+    $embed = strpos($module, $guard);
+    $this->assertNotFalse($embed, 'bioland/embed_editor_size must be attached behind the media_iframe check.');
+    $this->assertSame(1, substr_count($module, "'bioland/embed_editor_size'"), 'The embed library is attached exactly once.');
+    $this->assertLessThan(800, abs($styles - $embed), 'The embed library must sit next to the ckeditor_content_styles attach (same node content forms).');
+
+    $libraries = file_get_contents($root . '/bioland.libraries.yml');
+    $this->assertMatchesRegularExpression(
+      '/^embed_editor_size:\n  js:\n    js\/bioland-embed-editor-size-1-1-13\.js: \{\}\n  dependencies:\n    - core\/drupal\n    - core\/once\n/m',
+      $libraries
+    );
+    $this->assertFileExists($root . '/js/bioland-embed-editor-size-1-1-13.js');
+  }
+
 }

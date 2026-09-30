@@ -216,6 +216,13 @@ function bioland_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     return;
   }
 
+  // BL-1313: embed (inline frame) media previews in the body take their size
+  // from the CKEditor resize or the frame field, as on the public page, and
+  // the Media Resize balloon opens prefilled for them.
+  if (\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    $form['#attached']['library'][] = 'bioland/embed_editor_size';
+  }
+
   // Align the CKEditor 5 editing surface with the public (Nuxt) frontend:
   // heading sizes and the primary-coloured underline on h3/h4/h5. CKEditor 5
   // renders inline in the page DOM, so a stylesheet scoped to .ck-content

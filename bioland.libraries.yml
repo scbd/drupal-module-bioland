@@ -122,6 +122,17 @@ ckeditor_content_styles:
     theme:
       css/bioland.ckeditor.css: {}
 
+# BL-1313: sizes embed (inline frame) media previews in CKEditor 5 from the
+# CKEditor resize or the frame field, and prefills the Media Resize balloon
+# for them. Attached by bioland_form_alter() next to ckeditor_content_styles
+# when media_iframe is enabled.
+embed_editor_size:
+  js:
+    js/bioland-embed-editor-size-1-1-13.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 # Previews the front-end hero gradient over the field_description CKEditor
 # once field_media_image has an image. Attached only on media_hero_add_form
 # and media_hero_edit_form by bioland_form_alter(); see
