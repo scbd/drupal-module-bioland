@@ -96,6 +96,7 @@ class BiolandEmbedValidationWiringTest extends TestCase {
    * The media library iframe add form validates its URL element.
    */
   public function testMediaLibraryAddFormGetsElementValidate(): void {
+    $this->setLibraryFormContent([]);
     $form = ['container' => ['url' => ['#type' => 'url']]];
     bioland_form_media_library_add_form_iframe_alter($form, $this->createMock(FormStateInterface::class), 'media_library_add_form_iframe');
     $this->assertSame(['bioland_media_library_embed_url_validate'], $form['container']['url']['#element_validate']);
@@ -104,6 +105,30 @@ class BiolandEmbedValidationWiringTest extends TestCase {
     $form = ['media' => []];
     bioland_form_media_library_add_form_iframe_alter($form, $this->createMock(FormStateInterface::class), 'media_library_add_form_iframe');
     $this->assertSame(['media' => []], $form);
+  }
+
+  /**
+   * With the frame on the media_library form display the constraint reports.
+   *
+   * BL-1312: validating the URL element as well would show the error twice.
+   */
+  public function testElementValidateSkippedWhenFormDisplayHoldsFrame(): void {
+    $this->setLibraryFormContent(['field_media_iframe' => ['type' => 'iframe_urlwidthheight']]);
+    $form = ['container' => ['url' => ['#type' => 'url']]];
+    bioland_form_media_library_add_form_iframe_alter($form, $this->createMock(FormStateInterface::class), 'media_library_add_form_iframe');
+    $this->assertArrayNotHasKey('#element_validate', $form['container']['url']);
+  }
+
+  /**
+   * Registers config for the embed type and its media_library form display.
+   */
+  private function setLibraryFormContent(array $content): void {
+    $factory = $this->createMock(ConfigFactoryInterface::class);
+    $factory->method('get')->willReturnCallback(fn ($name) => match ($name) {
+      'media.type.embed' => new ImmutableConfig('media.type.embed', ['source_configuration' => ['source_field' => 'field_media_iframe']]),
+      'core.entity_form_display.media.embed.media_library' => new ImmutableConfig($name, ['content' => $content]),
+    });
+    \Drupal::setService('config.factory', $factory);
   }
 
   /**

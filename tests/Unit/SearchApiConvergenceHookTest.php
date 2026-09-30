@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Two Search API configuration paths exist (v1 in bioland.install.search.inc,
  * v2 in bioland.install.search.v2.inc). To stop a site's update history from
  * determining its final index state, the highest-numbered update hook
- * (currently bioland_update_9113()) must re-apply the canonical v2 config.
+ * (currently bioland_update_9114()) must re-apply the canonical v2 config.
  *
  * @group bioland
  * @coversNothing
@@ -358,6 +358,14 @@ class SearchApiConvergenceHookTest extends TestCase {
       'bioland_update_9113() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
     );
 
+    // bioland_update_9114() (BL-1312 embed display convergence) is the
+    // highest-numbered hook, so it converges too.
+    $this->assertMatchesRegularExpression(
+      '/function\s+bioland_update_9114\s*\([^)]*\)\s*\{(?:(?!\nfunction\s).)*_bioland_v2_update_search_and_facets_config\s*\(/s',
+      file_get_contents($editorFile),
+      'bioland_update_9114() must re-apply the canonical v2 config via _bioland_v2_update_search_and_facets_config() so the last-running hook converges.'
+    );
+
     // bioland_update_9106() (BL-1271 embed default view display) converges
     // too, so either hook can safely be the last one to land.
     $this->assertMatchesRegularExpression(
@@ -418,9 +426,9 @@ class SearchApiConvergenceHookTest extends TestCase {
     $numbers = $this->allUpdateHookNumbers();
     $this->assertNotEmpty($numbers, 'Expected to find update hooks.');
     $this->assertSame(
-      9113,
+      9114,
       max($numbers),
-      'The highest-numbered update hook must converge every site last. bioland_update_9113() now holds that role (it adds the BL-1218 embed bundle to the media URL alias pattern, after 9112 grants the auto-allow permission, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
+      'The highest-numbered update hook must converge every site last. bioland_update_9114() now holds that role (it converges the BL-1312 embed form and view displays and frame size, after 9113 adds the embed bundle to the media URL alias pattern, and re-applies the canonical v2 config after the earlier corrective hooks); if you add a higher-numbered hook it must itself converge on the v2 config and this test must be updated to point at it.'
     );
   }
 

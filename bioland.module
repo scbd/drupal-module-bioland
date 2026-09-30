@@ -594,15 +594,32 @@ function bioland_preprocess_field(&$variables) {
  * Implements hook_form_FORM_ID_alter() for media_library_add_form_iframe.
  *
  * media_iframe's media library add form (the CKEditor media picker path)
- * validates the new media through the media_library form display, which
- * holds no source field, so the embed URL constraint's violation is dropped
- * there. Validate the URL element directly instead, as core's OEmbedForm
- * does (BL-1218).
+ * validates the new media through the media_library form display. Without
+ * the source field on that display the embed URL constraint's violation is
+ * dropped, so the URL element is validated directly instead, as core's
+ * OEmbedForm does (BL-1218). BL-1312 puts the source field on the display,
+ * so the constraint reports the violation under the widget; the element
+ * validate is then skipped, or the same bad URL would be reported twice.
  */
 function bioland_form_media_library_add_form_iframe_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (isset($form['container']['url'])) {
-    $form['container']['url']['#element_validate'][] = 'bioland_media_library_embed_url_validate';
+  if (!isset($form['container']['url']) || _bioland_embed_media_library_form_has_frame()) {
+    return;
   }
+  $form['container']['url']['#element_validate'][] = 'bioland_media_library_embed_url_validate';
+}
+
+/**
+ * Whether the embed media_library form display holds the source field.
+ *
+ * Read from stored config, like bioland_entity_bundle_field_info_alter().
+ */
+function _bioland_embed_media_library_form_has_frame(): bool {
+  $factory = \Drupal::configFactory();
+  $name = $factory->get('media.type.embed')->get('source_configuration.source_field');
+  if (!$name) {
+    return FALSE;
+  }
+  return $factory->get('core.entity_form_display.media.embed.media_library')->get('content.' . $name) !== NULL;
 }
 
 /**

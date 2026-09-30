@@ -212,7 +212,7 @@ class BiolandEmbedMediaLibraryPickerTest extends TestCase {
     $content = $config->get('content');
     $this->assertSame(['field_media_inline_frame', 'name'], array_keys($content));
     $this->assertSame('visually_hidden', $content['field_media_inline_frame']['label']);
-    $this->assertSame('iframe_default', $content['field_media_inline_frame']['type']);
+    $this->assertSame('iframe_only', $content['field_media_inline_frame']['type']);
     $this->assertSame('hidden', $content['name']['label']);
     $this->assertSame('string', $content['name']['type']);
     $this->assertContains('core.entity_view_mode.media.media_library', $config->get('dependencies.config'));

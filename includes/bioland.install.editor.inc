@@ -37,6 +37,28 @@ const BIOLAND_MEDIA_EMBED_ALLOWED_TYPES = ['embed', 'image', 'remote_video'];
  */
 const BIOLAND_EMBED_MODULES = ['iframe', 'media_iframe'];
 
+/**
+ * Widget settings of the embed media type's iframe_urlwidthheight widget.
+ *
+ * BL-1312. Contrib iframe stores width, height and class per media item at
+ * save time from these defaults, so an empty width or height renders at the
+ * formatter's fallback (701 px tall). Values are the strings the widget
+ * stores. Keys are sorted, because array comparison with === is order
+ * sensitive.
+ */
+const BIOLAND_EMBED_WIDGET_SETTINGS = [
+  'allowfullscreen' => '1',
+  'class' => 'iframe-responsive',
+  'expose_class' => FALSE,
+  'frameborder' => '0',
+  'headerlevel' => '3',
+  'height' => '75%',
+  'scrolling' => 'auto',
+  'tokensupport' => '0',
+  'transparency' => '1',
+  'width' => '100%',
+];
+
 /*
  * =============================================================================
  * HELPER FUNCTIONS
@@ -732,7 +754,8 @@ function _bioland_enable_contrib_feature_modules(?array $modules = NULL) {
  * shown in an inline frame. Creates the type and its iframe source field with
  * the displays the source prepares (iframe_urlwidthheight widget,
  * iframe_default formatter; _bioland_configure_embed_default_display() later
- * switches the Default display to iframe_only). Resumable: an existing type without a source
+ * switches the Default display to iframe_only, and
+ * _bioland_configure_embed_form_displays() fills the widget defaults). Resumable: an existing type without a source
  * field is finished rather than skipped. An existing, complete type keeps its
  * admin changes; one on another source is left alone. The media_library form
  * and view displays core only adds from the media type UI are ensured every
@@ -863,6 +886,158 @@ function _bioland_configure_embed_default_display() {
 }
 
 /**
+ * Lays out the embed media type's Default and Media library form displays.
+ *
+ * BL-1312. media_iframe only prepares the view display, so the auto-generated
+ * form display carries the iframe_urlwidthheight widget with empty width and
+ * height, and core's media_library form display drops the frame altogether.
+ * Both get the frame with BIOLAND_EMBED_WIDGET_SETTINGS, so a new embed is
+ * saved at 100% x 75% with the responsive class. The media_library form
+ * display keeps only the name and the frame; created, langcode, path, status
+ * and uid are hidden. The Default form display's other components are left
+ * alone. Existing weights are kept. A display that already matches (settings
+ * compared in key order) is not saved again.
+ *
+ * @return string
+ *   Plain-text summary, untranslated: translation is not dependable
+ *   mid-update.
+ */
+function _bioland_configure_embed_form_displays() {
+  $handler = \Drupal::moduleHandler();
+  if (!$handler->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed form displays.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed form displays.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed form displays.';
+  }
+
+  $modes = ['default' => 0];
+  if ($handler->moduleExists('media_library')) {
+    $modes['media_library'] = 1;
+  }
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+  $saved = [];
+  foreach ($modes as $mode => $default_weight) {
+    $display = $storage->load('media.embed.' . $mode) ?: $storage->create([
+      'targetEntityType' => 'media',
+      'bundle' => 'embed',
+      'mode' => $mode,
+      'status' => TRUE,
+    ]);
+
+    $current = $display->getComponent($frame);
+    $desired = [
+      'type' => 'iframe_urlwidthheight',
+      'weight' => $current['weight'] ?? $default_weight,
+      'region' => 'content',
+      'settings' => BIOLAND_EMBED_WIDGET_SETTINGS,
+      'third_party_settings' => $current['third_party_settings'] ?? [],
+    ];
+    ksort($desired);
+    $normalized = $current;
+    if (is_array($normalized)) {
+      ksort($normalized);
+      if (is_array($normalized['settings'] ?? NULL)) {
+        ksort($normalized['settings']);
+      }
+    }
+    $changed = $normalized !== $desired;
+
+    $stale = [];
+    $name_missing = FALSE;
+    if ($mode === 'media_library') {
+      foreach (['created', 'langcode', 'path', 'status', 'uid'] as $field) {
+        if ($display->getComponent($field) !== NULL) {
+          $stale[] = $field;
+        }
+      }
+      $name_missing = $display->getComponent('name') === NULL;
+    }
+    if (!$changed && !$stale && !$name_missing) {
+      continue;
+    }
+
+    $display->setComponent($frame, $desired);
+    foreach ($stale as $field) {
+      $display->removeComponent($field);
+    }
+    if ($name_missing) {
+      $display->setComponent('name', [
+        'type' => 'string_textfield',
+        'weight' => 0,
+        'region' => 'content',
+        'settings' => ['size' => 60, 'placeholder' => ''],
+        'third_party_settings' => [],
+      ]);
+    }
+    $display->save();
+    $saved[] = $mode;
+  }
+
+  if (!$saved) {
+    return 'Embed form displays already configured.';
+  }
+  \Drupal::logger('bioland')->notice('Configured the embed form displays: @modes.', ['@modes' => implode(', ', $saved)]);
+  return 'Configured the embed form displays (' . implode(', ', $saved) . ').';
+}
+
+/**
+ * Sets the default width and height on embed media saved without them.
+ *
+ * BL-1312. Contrib iframe stores width and height per media item; an item
+ * saved before the widget had defaults renders at the formatter's fallback
+ * (701 px tall). Only an empty width (100%) or an empty height (75%) is
+ * filled; a stored value, however unusual, is never changed. An estate site
+ * holds a handful of embeds, so this is not chunked.
+ *
+ * @return string
+ *   Plain-text summary, untranslated.
+ */
+function _bioland_backfill_embed_frame_dimensions() {
+  if (!\Drupal::moduleHandler()->moduleExists('media_iframe')) {
+    return 'media_iframe is not enabled; skipped the embed dimension backfill.';
+  }
+  $type = \Drupal::entityTypeManager()->getStorage('media_type')->load('embed');
+  if (!$type || $type->getSource()->getPluginId() !== 'inline_frame') {
+    return 'Media type embed is missing or on another source; skipped the embed dimension backfill.';
+  }
+  $frame = $type->getSource()->getConfiguration()['source_field'] ?? '';
+  if ($frame === '') {
+    return 'Media type embed has no source field yet; skipped the embed dimension backfill.';
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('media');
+  $ids = $storage->getQuery()->accessCheck(FALSE)->condition('bundle', 'embed')->execute();
+  $defaults = ['width' => '100%', 'height' => '75%'];
+  $updated = 0;
+  foreach ($storage->loadMultiple($ids) as $media) {
+    $item = $media->get($frame)->first();
+    if (!$item) {
+      continue;
+    }
+    $touched = FALSE;
+    foreach ($defaults as $property => $value) {
+      if (trim((string) $item->get($property)->getValue()) === '') {
+        $item->set($property, $value);
+        $touched = TRUE;
+      }
+    }
+    if ($touched) {
+      $media->save();
+      $updated++;
+    }
+  }
+  return $updated
+    ? "Set the default frame size on $updated embed media."
+    : 'No embed media needed a default frame size.';
+}
+
+/**
  * Create the embed media type, offer it in the CKEditor media picker, and
  * give it URL aliases.
  *
@@ -876,10 +1051,12 @@ function _bioland_configure_embed_default_display() {
 function _bioland_setup_embed_media() {
   return implode(' ', array_map('strval', [
     _bioland_create_embed_media_type(),
+    _bioland_configure_embed_form_displays(),
     _bioland_configure_embed_default_display(),
     _bioland_configure_media_embed_allowed_types(),
     _bioland_add_embed_to_media_alias_pattern(),
     _bioland_configure_embed_media_library_display(),
+    _bioland_backfill_embed_frame_dimensions(),
     _bioland_mirror_image_media_permissions_to_embed(),
   ]));
 }
@@ -887,11 +1064,13 @@ function _bioland_setup_embed_media() {
 /**
  * Lays out the embed media type's Media library view display.
  *
- * BL-1272. The picker card shows the inline frame URL (label visually
- * hidden) and the media name (plain text, label hidden); every other field
- * sits in the hidden region. Loads or creates core.entity_view_display.media.embed.media_library.
+ * BL-1272. The picker card shows the inline frame (iframe_only formatter,
+ * label visually hidden, as on the Default display; BL-1312 changed it from
+ * iframe_default, which prints the frame title as a heading) and the media
+ * name (plain text, label hidden); every other field sits in the hidden
+ * region. Loads or creates core.entity_view_display.media.embed.media_library.
  * Idempotent: an admin's iframe formatter settings and weight are kept, only
- * the component set and the label are enforced.
+ * the component set, the formatter and the label are enforced.
  *
  * @return string
  *   Plain-text summary, untranslated: translation is not dependable
@@ -944,7 +1123,7 @@ function _bioland_configure_embed_media_library_display() {
     'settings' => [],
     'third_party_settings' => [],
   ];
-  $frame['type'] = 'iframe_default';
+  $frame['type'] = 'iframe_only';
   $frame['label'] = 'visually_hidden';
   $frame['region'] = 'content';
   ksort($frame);
@@ -1450,11 +1629,38 @@ function bioland_update_9113() {
 }
 
 /**
+ * Converges the embed media type's form and view displays and frame size.
+ *
+ * BL-1312. Fills the iframe_urlwidthheight widget defaults (100% x 75%) on
+ * the Default and Media library form displays, puts the frame back on the
+ * Media library form display, switches the Media library view display to
+ * iframe_only, and gives embed media saved without a width or height the
+ * default. Numbered 9114, after the alias pattern hook 9113.
+ *
+ * As the highest-numbered hook it is the last writer for every site, so per
+ * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
+ * API config.
+ *
+ * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
+ */
+function bioland_update_9114() {
+  $messages = [];
+  $messages[] = _bioland_configure_embed_form_displays();
+  $messages[] = _bioland_configure_embed_media_library_display();
+  $messages[] = _bioland_backfill_embed_frame_dimensions();
+
+  // Converge canonical Search API v2 config last (highest-numbered hook).
+  $messages[] = _bioland_v2_update_search_and_facets_config();
+
+  return implode(' ', array_map('strval', $messages));
+}
+
+/**
  * Shows only the frame on the embed media type's Default view display.
  *
  * BL-1271. It also re-applies the canonical v2 Search API config, as
  * SearchApiConvergenceHookTest expects of the hooks in this file.
- * bioland_update_9113() is now the highest-numbered hook and the last writer.
+ * bioland_update_9114() is now the highest-numbered hook and the last writer.
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
