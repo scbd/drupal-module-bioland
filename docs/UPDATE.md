@@ -322,3 +322,20 @@ Note: hooks 9066-9070 are intentionally absent from the include files on this br
     `::IMAGE_FIELD` are pinned to `field_media_document` / `field_media_image` from the ticket
     spec, not verified against a live site. Run `drush field:info media document` on the target
     site before deploying and correct the constants if the real machine names differ.
+
+## v1.1.14
+
+Version bump only; no new update hook. Bumps the module from 1.1.12 to 1.1.14. Version 1.1.13 was
+a dev-only bump and was never released from this branch, so there is no v1.1.13 section here.
+
+## v1.1.12 — COP-17 batch
+
+Version bump only (BL-1194); no new update hook. Summarises the COP-17 feature batch shipped in
+this release:
+
+- **BL-1188**: Embedded image alt/caption text handling for content fields.
+- **BL-1189**: Wrapper module version-check guard.
+- **BL-1191**: URL screenshot capture — adds the `convertapi/convertapi-php` PHP library
+  (`composer require convertapi/convertapi-php --with-all-dependencies`) and update hooks
+  9090/9091; run `drush updb` after the composer install.
+- **BL-1192**: Document preview generation for `media.document` entities (see hook 9091 above).
