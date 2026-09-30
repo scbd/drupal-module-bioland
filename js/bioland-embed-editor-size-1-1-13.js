@@ -98,7 +98,10 @@
    *   The style attribute value.
    */
   function sizeEmbedPreview(iframe) {
-    var ck = ckDimensions(iframe);
+    return styleFor(iframe, ckDimensions(iframe));
+  }
+
+  function styleFor(iframe, ck) {
     var width = ck.width || toLength(iframe.getAttribute('width'));
     var height = ck.height || toLength(iframe.getAttribute('height'));
     if (ck.width && ck.width.unit === '%') {
@@ -110,7 +113,8 @@
   // Writes only on a real change: an unchanged setAttribute still queues a
   // mutation record, which would wake the observers again.
   function sizeFrame(iframe) {
-    var style = sizeEmbedPreview(iframe);
+    var ck = ckDimensions(iframe);
+    var style = styleFor(iframe, ck);
     if (iframe.getAttribute('style') !== style) {
       iframe.setAttribute('style', style);
     }
@@ -119,7 +123,6 @@
     }
     // A CKEditor px + px size is a ratio of the column, as on the public
     // page, so the resizer's inline px width on the wrapper must go.
-    var ck = ckDimensions(iframe);
     if (ck.wrapper && ck.width && ck.height && ck.width.unit === 'px' && ck.height.unit === 'px' && ck.wrapper.style.width) {
       ck.wrapper.style.width = '';
     }
