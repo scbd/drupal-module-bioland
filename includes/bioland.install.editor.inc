@@ -1407,8 +1407,8 @@ function bioland_update_9101() {
  *
  * BL-1218. Grants 'auto allow embed origins': saving an embed on an unlisted
  * host then adds the host to embed.allowed_origins instead of failing.
- * Numbered above the 9101 and 9103 hooks other tickets already carry on
- * bsl-cop-17-dev, so it still runs on sites past them.
+ * Numbered 9112, above every hook other tickets carry on bsl-cop-17-dev
+ * (up to 9111), so it still runs on sites past them.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
@@ -1416,7 +1416,7 @@ function bioland_update_9101() {
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9104() {
+function bioland_update_9112() {
   $messages = [];
   $messages[] = _bioland_grant_embed_auto_allow_permission();
 
@@ -1430,7 +1430,8 @@ function bioland_update_9104() {
  * Gives embed media URL aliases from the media URL alias pattern.
  *
  * BL-1218. Adds the embed bundle to the /[media:bundle]/[media:name]
- * pathauto pattern and aliases existing embeds.
+ * pathauto pattern and aliases existing embeds. Numbered 9113, after the
+ * auto-allow hook 9112.
  *
  * As the highest-numbered hook it is the last writer for every site, so per
  * SearchApiConvergenceHookTest it must also re-apply the canonical v2 Search
@@ -1438,7 +1439,7 @@ function bioland_update_9104() {
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */
-function bioland_update_9105() {
+function bioland_update_9113() {
   $messages = [];
   $messages[] = _bioland_add_embed_to_media_alias_pattern();
 
@@ -1453,7 +1454,7 @@ function bioland_update_9105() {
  *
  * BL-1271. It also re-applies the canonical v2 Search API config, as
  * SearchApiConvergenceHookTest expects of the hooks in this file.
- * bioland_update_9111() is now the highest-numbered hook and the last writer.
+ * bioland_update_9113() is now the highest-numbered hook and the last writer.
  *
  * @see \Drupal\Tests\bioland\Unit\SearchApiConvergenceHookTest
  */

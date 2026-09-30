@@ -243,13 +243,13 @@ class BiolandEmbedAliasPatternTest extends TestCase {
   }
 
   /**
-   * The setup and hook 9105 both run it; the hook converges last.
+   * The setup and hook 9113 both run it; the hook converges last.
    */
   public function testWiring(): void {
     $source = file_get_contents(__DIR__ . '/../../includes/bioland.install.editor.inc');
     $setup = substr($source, strpos($source, 'function _bioland_setup_embed_media('));
     $this->assertMatchesRegularExpression('/^[^}]*_bioland_add_embed_to_media_alias_pattern\(\)/', $setup);
-    $hook = substr($source, strpos($source, 'function bioland_update_9105('));
+    $hook = substr($source, strpos($source, 'function bioland_update_9113('));
     $this->assertLessThan(strpos($hook, '_bioland_v2_update_search_and_facets_config()'), strpos($hook, '_bioland_add_embed_to_media_alias_pattern()'));
   }
 
