@@ -222,10 +222,10 @@ class Drupal {
    * Gets the messenger service.
    *
    * @return object
-   *   The messenger.
+   *   The stubbed 'messenger' service, or a no-op one.
    */
   public static function messenger() {
-    return new class {
+    return static::$container['messenger'] ?? new class {
       public function addMessage($message, $type = 'status') {}
       public function addStatus($message) {}
       public function addWarning($message) {}

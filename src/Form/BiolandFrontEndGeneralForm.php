@@ -5,7 +5,6 @@ namespace Drupal\bioland\Form;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
-use Drupal\Core\Url;
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
 
 /**
@@ -403,8 +402,7 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     // BL-1289: the head caches the list for minutes. Offer a one-click clear
     // rather than redirecting away from this form.
     if ($form_state->get('bioland_embed_allowlist_changed')) {
-      $url = Url::fromRoute('<front>', [], ['query' => BiolandEmbedAllowlist::headCacheClearQuery()]);
-      $this->messenger()->addStatus($this->t('The front end still uses the old embed allowlist for a few minutes. <a href=":url">Clear the front end cache</a> to use the new one now.', [':url' => $url->toString()]));
+      $this->messenger()->addStatus(BiolandEmbedAllowlist::headCacheClearMessage());
     }
   }
 

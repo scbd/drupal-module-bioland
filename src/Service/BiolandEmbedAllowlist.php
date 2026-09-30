@@ -2,6 +2,9 @@
 
 namespace Drupal\bioland\Service;
 
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
+
 /**
  * Normalises and validates bioland.settings embed.allowed_origins (BL-1218).
  *
@@ -314,10 +317,21 @@ final class BiolandEmbedAllowlist {
   /**
    * Returns a URL query that makes the head reload the list (BL-1289).
    *
-   * The nonce is 16 hex characters, well inside the head's 1-64 [A-Za-z0-9_-].
+   * The nonce is 16 hex characters, well inside the head's nonce regex
+   * /^[A-Za-z0-9_-]{1,64}$/ in bioland-head server/middleware/00.cache-clear.ts.
    */
   public static function headCacheClearQuery(): array {
     return [self::HEAD_CACHE_CLEAR_PARAM => bin2hex(random_bytes(8))];
+  }
+
+  /**
+   * Returns a status message linking to the front page with a fresh nonce.
+   *
+   * For saves that change the list but do not send the editor to the head.
+   */
+  public static function headCacheClearMessage(): TranslatableMarkup {
+    $url = Url::fromRoute('<front>', [], ['query' => self::headCacheClearQuery()]);
+    return new TranslatableMarkup('The front end still uses the old embed allowlist for a few minutes. <a href=":url">Clear the front end cache</a> to use the new one now.', [':url' => $url->toString()]);
   }
 
 }

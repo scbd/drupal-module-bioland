@@ -1318,6 +1318,12 @@ function _bioland_embed_media_form_submit(array &$form, FormStateInterface $form
   if (!$request?->attributes->get(BiolandEmbedAllowlist::CHANGED_ATTRIBUTE) || !$media instanceof MediaInterface) {
     return;
   }
+  // The head would 404 an unpublished or hidden embed: keep the normal
+  // destination and offer the clear as a link instead.
+  if (!$media->isPublished() || !$media->access('view')) {
+    \Drupal::messenger()->addStatus(BiolandEmbedAllowlist::headCacheClearMessage());
+    return;
+  }
   $form_state->setRedirectUrl($media->toUrl('canonical', ['query' => BiolandEmbedAllowlist::headCacheClearQuery()]));
   $request->query->remove('destination');
 }
