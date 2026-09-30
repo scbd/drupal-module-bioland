@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-media-image-editor-1-1-12.js
+ * Unit tests for bioland-media-image-editor-1-1-13.js
  */
 
 describe('Bioland Media Image Editor toggle', () => {
@@ -31,7 +31,7 @@ describe('Bioland Media Image Editor toggle', () => {
         return true;
       });
     };
-    require('./bioland-media-image-editor-1-1-12.js');
+    require('./bioland-media-image-editor-1-1-13.js');
   });
 
   afterEach(() => {

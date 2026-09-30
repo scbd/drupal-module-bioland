@@ -323,6 +323,26 @@ Note: hooks 9066-9070 are intentionally absent from the include files on this br
     spec, not verified against a live site. Run `drush field:info media document` on the target
     site before deploying and correct the constants if the real machine names differ.
 
+## v1.1.13 — COP-17 embed batch
+
+Version bump only; no new update hook. Summarises what shipped since 1.1.12. Run `drush updb`
+after deploying: sites at schema 9109 or lower are missing hooks 9110-9113.
+
+- **BL-1218**: Embed media type on `iframe` + `media_iframe`, the `embed.allowed_origins`
+  setting with validation, backfill and URL aliases (hooks 9112/9113).
+- **BL-1270 / BL-1271**: Embed frames render without fallback content or the title heading
+  (hooks 9106/9111).
+- **BL-1272**: Media library picker lists embed media; hook 9110 removes the forced media type
+  filter from the `widget` displays that 9107 missed.
+- **BL-1273**: Embed URLs that refuse to be framed are rejected on the URL sub-field.
+- **BL-1274 / BL-1276**: Embed permissions mirrored from image media (9108); stray Embed
+  toolbar item disabled (9109).
+- **BL-1286 / BL-1289 / BL-1291**: Page info column position theme setting, cache-clearing
+  redirect after an allowlist change, llms.txt toolbar link disabled.
+- **BL-917 / BL-784 / BL-836 / BL-838 / BL-1230 / BL-1255**: Media image editor and resize
+  filter, media bulk actions and delete permissions, editable home node, hero preview fix,
+  `system.site` nameEnglish key.
+
 ## v1.1.12 — COP-17 batch
 
 Version bump only (BL-1194); no new update hook. Summarises the COP-17 feature batch shipped in

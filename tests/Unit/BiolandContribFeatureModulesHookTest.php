@@ -182,8 +182,8 @@ class BiolandContribFeatureModulesHookTest extends TestCase {
 
     $libraries = $this->read('bioland.libraries.yml');
     $this->assertStringContainsString('media_image_editor:', $libraries);
-    $this->assertStringContainsString('js/bioland-media-image-editor-1-1-12.js', $libraries);
-    $this->assertFileExists(dirname(__DIR__, 2) . '/js/bioland-media-image-editor-1-1-12.js');
+    $this->assertStringContainsString('js/bioland-media-image-editor-1-1-13.js', $libraries);
+    $this->assertFileExists(dirname(__DIR__, 2) . '/js/bioland-media-image-editor-1-1-13.js');
     $this->assertFileExists(dirname(__DIR__, 2) . '/css/bioland-media-image-editor.css');
   }
 

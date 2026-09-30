@@ -1,6 +1,6 @@
 /**
  * @file
- * Unit tests for bioland-hero-editor-preview-1-1-12.js
+ * Unit tests for bioland-hero-editor-preview-1-1-13.js
  */
 
 describe('Bioland Hero Editor Preview', () => {
@@ -97,7 +97,7 @@ describe('Bioland Hero Editor Preview', () => {
         });
     };
     jest.resetModules();
-    require('./bioland-hero-editor-preview-1-1-12.js');
+    require('./bioland-hero-editor-preview-1-1-13.js');
   });
 
   test('registers the behavior', () => {
