@@ -323,6 +323,11 @@ Note: hooks 9066-9070 are intentionally absent from the include files on this br
     spec, not verified against a live site. Run `drush field:info media document` on the target
     site before deploying and correct the constants if the real machine names differ.
 
+## v1.1.14
+
+Version bump only; no new update hook. Bumps the module from 1.1.12 to 1.1.14. Version 1.1.13 was
+a dev-only bump and was never released from this branch, so there is no v1.1.13 section here.
+
 ## v1.1.12 — COP-17 batch
 
 Version bump only (BL-1194); no new update hook. Summarises the COP-17 feature batch shipped in
