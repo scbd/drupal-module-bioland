@@ -5,6 +5,7 @@ namespace Drupal\bioland\Form;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Url;
 use Drupal\bioland\Service\BiolandEmbedAllowlist;
 
 /**
@@ -352,7 +353,10 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
         $entry = BiolandEmbedAllowlist::normalizeEntry($row);
         $origins[$entry['url']] ??= $entry;
       }
+      $stored = $config->get('embed.allowed_origins');
       $config->set('embed.allowed_origins', array_slice(array_values($origins), 0, BiolandEmbedAllowlist::MAX_ENTRIES));
+      // Read by submitForm() once the parent has saved: BL-1289.
+      $form_state->set('bioland_embed_allowlist_changed', $stored !== $config->get('embed.allowed_origins'));
     }
   }
 
@@ -394,6 +398,13 @@ class BiolandFrontEndGeneralForm extends BiolandSettingsFormBase {
     $toggle = $form_state->get('bioland_google_analytics_toggle_log');
     if ($toggle) {
       \Drupal::logger('bioland')->notice('Google Analytics @state by user @uid.', $toggle);
+    }
+
+    // BL-1289: the head caches the list for minutes. Offer a one-click clear
+    // rather than redirecting away from this form.
+    if ($form_state->get('bioland_embed_allowlist_changed')) {
+      $url = Url::fromRoute('<front>', [], ['query' => BiolandEmbedAllowlist::headCacheClearQuery()]);
+      $this->messenger()->addStatus($this->t('The front end still uses the old embed allowlist for a few minutes. <a href=":url">Clear the front end cache</a> to use the new one now.', [':url' => $url->toString()]));
     }
   }
 

@@ -1248,6 +1248,39 @@ function bioland_media_update(EntityInterface $media) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for media_embed_add_form.
+ */
+function bioland_form_media_embed_add_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = '_bioland_embed_media_form_submit';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for media_embed_edit_form.
+ */
+function bioland_form_media_embed_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = '_bioland_embed_media_form_submit';
+}
+
+/**
+ * Submit handler: sends the editor through the head's cache clear (BL-1289).
+ *
+ * Only when this save added to the embed allowlist. The head caches the list
+ * for minutes, so the new embed would render blank; its own page with the
+ * head's cache-clear parameter makes the head reload the list for the
+ * editor's session first. ?destination= is dropped too, because Drupal's
+ * redirect subscriber would otherwise send the editor there instead.
+ */
+function _bioland_embed_media_form_submit(array &$form, FormStateInterface $form_state) {
+  $request = \Drupal::requestStack()->getCurrentRequest();
+  $media = $form_state->getFormObject()->getEntity();
+  if (!$request?->attributes->get(BiolandEmbedAllowlist::CHANGED_ATTRIBUTE) || !$media instanceof MediaInterface) {
+    return;
+  }
+  $form_state->setRedirectUrl($media->toUrl('canonical', ['query' => BiolandEmbedAllowlist::headCacheClearQuery()]));
+  $request->query->remove('destination');
+}
+
+/**
  * Adds an embed's unlisted URL to the allowlist (BL-1218).
  *
  * Only for users with the auto-allow permission (SCBD staff, site managers,
@@ -1289,6 +1322,7 @@ function _bioland_embed_auto_allow(MediaInterface $media, ?MediaInterface $origi
     return;
   }
   $config->set('embed.allowed_origins', $entries)->save();
+  \Drupal::requestStack()->getCurrentRequest()?->attributes->set(BiolandEmbedAllowlist::CHANGED_ATTRIBUTE, TRUE);
   $origins = implode(', ', $added);
   \Drupal::logger('bioland')->notice('Added @origins to the embed allowlist when user @uid saved embed media @mid.', [
     '@origins' => $origins,

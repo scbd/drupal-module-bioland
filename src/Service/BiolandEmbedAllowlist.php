@@ -38,6 +38,19 @@ final class BiolandEmbedAllowlist {
   public const MAX_ENTRIES = 50;
 
   /**
+   * Request attribute set when an embed save added to the list (BL-1289).
+   */
+  public const CHANGED_ATTRIBUTE = '_bioland_embed_allowlist_changed';
+
+  /**
+   * Query parameter that makes the head clear its site cache (BL-1289).
+   *
+   * The head clears it for a logged-in cache-admin session only, once per
+   * distinct value, so every link needs a fresh nonce.
+   */
+  public const HEAD_CACHE_CLEAR_PARAM = 'seachain-taisce';
+
+  /**
    * Entries every site ships with. The site's own files URL is site-specific.
    */
   public const DEFAULTS = [
@@ -296,6 +309,15 @@ final class BiolandEmbedAllowlist {
       'label' => trim((string) ($entry['label'] ?? '')),
       'sandbox' => implode(' ', self::sandboxTokens((string) ($entry['sandbox'] ?? ''))),
     ];
+  }
+
+  /**
+   * Returns a URL query that makes the head reload the list (BL-1289).
+   *
+   * The nonce is 16 hex characters, well inside the head's 1-64 [A-Za-z0-9_-].
+   */
+  public static function headCacheClearQuery(): array {
+    return [self::HEAD_CACHE_CLEAR_PARAM => bin2hex(random_bytes(8))];
   }
 
 }
